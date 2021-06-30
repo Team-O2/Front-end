@@ -1,6 +1,6 @@
 import React from 'react';
 
-function LearnMyself() {
+function LearnMyself(): React.ReactElement {
   return <div>LearnMyself</div>;
 }
 

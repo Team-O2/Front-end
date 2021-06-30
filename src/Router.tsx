@@ -2,7 +2,7 @@ import React from 'react';
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
 import Home from './pages/Home/index';
 
-function Router() {
+function Router(): React.ReactElement {
   return (
     <BrowserRouter>
       <Switch>

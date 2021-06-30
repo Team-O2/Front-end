@@ -1,6 +1,6 @@
 import React from 'react';
 
-function Join() {
+function Join(): React.ReactElement {
   return <div>Join</div>;
 }
 

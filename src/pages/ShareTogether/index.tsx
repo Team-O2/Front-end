@@ -1,6 +1,6 @@
 import React from 'react';
 
-function ShareTogether() {
+function ShareTogether(): React.ReactElement {
   return <div>ShareTogether</div>;
 }
 

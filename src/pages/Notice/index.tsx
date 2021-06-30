@@ -1,6 +1,6 @@
 import React from 'react';
 
-function Notice() {
+function Notice(): React.ReactElement {
   return <div>Notice</div>;
 }
 

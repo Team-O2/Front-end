@@ -1,6 +1,6 @@
 import React from 'react';
 
-function Setting() {
+function Setting(): React.ReactElement {
   return <div>Setting</div>;
 }
 

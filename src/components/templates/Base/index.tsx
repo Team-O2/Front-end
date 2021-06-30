@@ -1,6 +1,6 @@
 import React from 'react';
 
-function BasedTemplate() {
+function BasedTemplate(): React.ReactElement {
   return <div>BasedTemplate</div>;
 }
 

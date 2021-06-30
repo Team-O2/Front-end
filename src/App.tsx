@@ -5,7 +5,7 @@ import Router from './Router';
 import GlobalStyles from './assets/styles/GlobalStyles';
 import theme from 'assets/styles/theme';
 
-function App() {
+function App(): React.ReactElement {
   return (
     <ThemeProvider theme={theme}>
       <GlobalStyles />

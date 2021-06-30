@@ -1,6 +1,6 @@
 import React from 'react';
 
-function Login() {
+function Login(): React.ReactElement {
   return <div>Login</div>;
 }
 
