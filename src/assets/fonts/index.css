@@ -1,0 +1,6 @@
+@font-face {
+  font-family: 'blahblah';
+  font-style: normal;
+  font-weight: 400;
+  src: url('./blahblah.ttf') format('truetype');
+}

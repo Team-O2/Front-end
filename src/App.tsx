@@ -1,16 +1,18 @@
 import React from 'react';
-import { BrowserRouter, Route, Switch } from "react-router-dom";
-import { RecoilRoot } from "recoil";
+import { RecoilRoot } from 'recoil';
+import { ThemeProvider } from 'styled-components';
+import Router from './Router';
+import GlobalStyles from './assets/styles/GlobalStyles';
+import theme from 'assets/styles/theme';
 
 function App() {
   return (
-    <RecoilRoot>
-      <BrowserRouter>
-        <Switch>
-          
-        </Switch>
-      </BrowserRouter>
-    </RecoilRoot>
+    <ThemeProvider theme={theme}>
+      <GlobalStyles />
+      <RecoilRoot>
+        <Router />
+      </RecoilRoot>
+    </ThemeProvider>
   );
 }
 
