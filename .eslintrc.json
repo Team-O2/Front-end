@@ -11,11 +11,12 @@
     }
   },
   "extends": [
+    // "react-app",
     "plugin:import/errors",
     "plugin:import/warnings",
-    "plugin:prettier/recommended",
+    "plugin:react/recommended",
     "plugin:@typescript-eslint/recommended",
-    "prettier/@typescript-eslint"
+    "plugin:prettier/recommended"  
   ],
   "plugins": ["react", "jest", "@typescript-eslint", "prettier"],
   "env": {
