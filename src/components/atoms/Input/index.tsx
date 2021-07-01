@@ -22,6 +22,9 @@ function Input({ name, autoComplete = 'off', ...props }: IProps): React.ReactEle
   return <SInput name={name} autoComplete={autoComplete} {...props} />;
 }
 
-const SInput = Styled.input``;
+const SInput = Styled.input`
+    margin : 0;
+`;
 
 export default Input;
+
