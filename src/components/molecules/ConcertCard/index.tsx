@@ -3,15 +3,19 @@ import Styled from 'styled-components';
 import ConcertCardText from '../../atoms/ConcertCardText';
 import test from '../../../assets/images/test.svg';
 
-function ConcertCard(): React.ReactElement {
-  const imgDesc = '창업 속 살아남기 오늘도 눈물 짓는 소쩍새가 되는 방법 공유';
-  const title = '앵그리엘모';
-  const category = '그래픽 및 디자인/AR앱/기타';
+interface IProps {
+  image: any;
+  imgDesc: string;
+  title: string;
+  category: string;
+}
+
+function ConcertCard({ image, imgDesc, title, category }: IProps): React.ReactElement {
   return (
     <>
       <SConcertCard>
         <div className="card__main">
-          <img className="card__main--img" src={test} alt="" />
+          <img className="card__main--img" src={image} alt="" />
           <ConcertCardText content={imgDesc}></ConcertCardText>
         </div>
         <div className="card__detail">
