@@ -4,18 +4,20 @@
     "project": "./tsconfig.json",
     "ecmaVersion": 2018,
     "sourceType": "module",
+    "extraFileExtensions": [".css"],
     "ecmaFeatures": {
       "impliedStrict": true,
       "jsx": true
     }
   },
   "extends": [
-    "react-app",
-    "plugin:react/recommended",
+    "plugin:import/errors",
+    "plugin:import/warnings",
+    "plugin:prettier/recommended",
     "plugin:@typescript-eslint/recommended",
-    "plugin:prettier/recommended"  
+    "prettier/@typescript-eslint"
   ],
-  "plugins": ["react", "jest", "@typescript-eslint"],
+  "plugins": ["react", "jest", "@typescript-eslint", "prettier"],
   "env": {
     "es6": true,
     "node": true,
