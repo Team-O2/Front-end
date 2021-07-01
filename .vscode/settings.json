@@ -1,7 +1,12 @@
 {
   "editor.defaultFormatter": "esbenp.prettier-vscode",
   "editor.codeActionsOnSave": {
+    "source.fixAll": true,
     "source.fixAll.eslint": true
+    // "source.organizeImports": true
   },
+  "eslint.validate": ["html", "javascript", "typescript", "javascriptreact", "typescriptreact", "css"],
+  "eslint.alwaysShowStatus": true,
+  "eslint.workingDirectories": [{ "mode": "auto" }],
   "editor.formatOnSave": true,
 }
