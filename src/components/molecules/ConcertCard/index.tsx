@@ -1,26 +1,25 @@
 import React from 'react';
 import Styled from 'styled-components';
-import ConcertCardText from '../../atoms/ConcertCardText';
-import test from '../../../assets/images/test.svg';
+import ConcertText from '../../atoms/ConcertText';
 
 interface IProps {
   image: any;
-  imgDesc: string;
   title: string;
+  speaker: string;
   category: string;
 }
 
-function ConcertCard({ image, imgDesc, title, category }: IProps): React.ReactElement {
+function ConcertCard({ image, title, speaker, category }: IProps): React.ReactElement {
   return (
     <>
       <SConcertCard>
         <div className="card__main">
           <img className="card__main--img" src={image} alt="" />
-          <ConcertCardText content={imgDesc}></ConcertCardText>
+          <ConcertText content={title}></ConcertText>
         </div>
         <div className="card__detail">
-          <ConcertCardText content={title}></ConcertCardText>
-          <ConcertCardText content={category}></ConcertCardText>
+          <ConcertText content={speaker}></ConcertText>
+          <ConcertText content={category}></ConcertText>
         </div>
       </SConcertCard>
     </>

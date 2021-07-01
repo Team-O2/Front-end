@@ -5,10 +5,10 @@ interface IProps {
   content: string;
 }
 
-function ConcertCardText({ content }: IProps): React.ReactElement {
+function ConcertText({ content }: IProps): React.ReactElement {
   return <SText>{content}</SText>;
 }
 
 const SText = Styled.p`
 `;
-export default ConcertCardText;
+export default ConcertText;

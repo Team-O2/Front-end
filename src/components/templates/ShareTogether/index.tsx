@@ -1,11 +1,13 @@
 import React from 'react';
 import Styled from 'styled-components';
 import ConcertCardList from '../../organisms/ConcertCardList';
+import ConcertList from '../../organisms/ConcertList';
 
 function ShareTogether(): React.ReactElement {
   return (
     <SShareTogether>
       <ConcertCardList />
+      <ConcertList></ConcertList>
     </SShareTogether>
   );
 }
