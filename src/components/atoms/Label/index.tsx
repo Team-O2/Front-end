@@ -10,6 +10,9 @@ function Label({ name, ...props }: IProps): React.ReactElement {
   return <SLabel {...props}>{name}</SLabel>;
 }
 
-const SLabel = Styled.label``;
+const SLabel = Styled.p`
+    margin : 0;
+`;
 
 export default Label;
+

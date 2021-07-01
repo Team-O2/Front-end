@@ -1,10 +1,10 @@
 import React from 'react';
-import Header from 'components/organisms/Header';
+import CLogin from '../../components/organisms/Login/index';
 
 function Login(): React.ReactElement {
   return (
     <>
-      <Header />
+      <CLogin />
     </>
   );
 }
