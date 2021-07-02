@@ -1,7 +1,7 @@
 @font-face {
-  font-family: AppleSDGothicNeo;
-  src: local("AppleSDGothicNeo-Regular"),
-    url("./AppleSDGothicNeo-Regular.woff2") format("woff2"),
+  font-family: "AppleSDGothicNeo";
+  src: 
+    /* url("./AppleSDGothicNeo-Regular.woff2") format("woff2"), */
     url("./AppleSDGothicNeo-Regular.woff") format("woff"),
     url("./AppleSDGothicNeo-Regular.ttf") format("truetype");
   font-weight: normal;
@@ -9,9 +9,9 @@
   font-stretch: normal;
 }
 @font-face {
-  font-family: AppleSDGothicNeo;
-  src: local("AppleSDGothicNeo-Bold"),
-    url("./AppleSDGothicNeo-Bold.woff2") format("woff2"),
+  font-family: "AppleSDGothicNeo";
+  src: 
+    /* url("./AppleSDGothicNeo-Bold.woff2") format("woff2"), */
     url("./AppleSDGothicNeo-Bold.woff") format("woff"),
     url("./AppleSDGothicNeo-Bold.ttf") format("truetype");
   font-weight: bold;
@@ -19,9 +19,9 @@
   font-stretch: normal;
 }
 @font-face {
-  font-family: HomepageBaukasten;
-  src: local("HomepageBaukasten-Book"),
-    url("./HomepageBaukasten-Book.woff2") format("woff2"),
+  font-family: "HomepageBaukasten";
+  src: 
+    /* url("./HomepageBaukasten-Book.woff2") format("woff2"), */
     url("./HomepageBaukasten-Book.woff") format("woff"),
     url("./HomepageBaukasten-Book.ttf") format("truetype");
   font-weight: normal;
@@ -29,9 +29,9 @@
   font-stretch: normal;
 }
 @font-face {
-  font-family: HomepageBaukasten;
-  src: local("HomepageBaukasten-Bold"),
-    url("./HomepageBaukasten-Bold.woff2") format("woff2"),
+  font-family: "HomepageBaukasten";
+  src: 
+    /* url("./HomepageBaukasten-Bold.woff2") format("woff2"), */
     url("./HomepageBaukasten-Bold.woff") format("woff"),
     url("./HomepageBaukasten-Bold.ttf") format("truetype");
   font-weight: bold;

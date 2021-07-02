@@ -7,7 +7,7 @@ const GlobalStyles = createGlobalStyle`
   
   * {
     margin: 0;
-    font-family: 'AppleSDGothicNeo';
+    padding: 0;
     box-sizing: border-box;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
@@ -17,6 +17,7 @@ const GlobalStyles = createGlobalStyle`
   }
   body {
     height: 100%;
+    font-family: 'AppleSDGothicNeo';
   }
   a, button {
     text-decoration: none;
