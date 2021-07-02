@@ -1,7 +1,8 @@
 import React from 'react';
+import CJoin from '../../components/organisms/Join';
 
 function Join(): React.ReactElement {
-  return <div>Join</div>;
+  return <CJoin />;
 }
 
 export default Join;
