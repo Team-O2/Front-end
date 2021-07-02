@@ -1,7 +1,6 @@
 import React from 'react';
 import Styled from 'styled-components';
 import ConcertDetailTitle from '../../molecules/ConcertDetailTitle';
-import ConcertList from '../../organisms/ConcertList';
 
 interface IProps {
   selectedConcert: any;

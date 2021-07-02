@@ -1,5 +1,5 @@
-import TShareTogether from 'components/templates/ShareTogether';
 import React from 'react';
+import TShareTogether from 'components/templates/ShareTogether';
 import test from '../../assets/images/test.svg';
 
 const mockData = [
