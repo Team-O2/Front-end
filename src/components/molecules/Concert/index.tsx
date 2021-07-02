@@ -1,6 +1,5 @@
 import React from 'react';
 import Styled from 'styled-components';
-import ConcertText from '../../atoms/ConcertText';
 
 interface IProps {
   image: any;
@@ -16,13 +15,13 @@ function Concert({ image, speaker, category, date, title, desc }: IProps): React
     <>
       <SConcert>
         <div className="content__left">
-          <ConcertText content={speaker}></ConcertText>
-          <ConcertText content={category}></ConcertText>
-          <ConcertText content={date}></ConcertText>
+          <p>{speaker}</p>
+          <p>{category}</p>
+          <p>{date}</p>
         </div>
         <div className="content__middle">
-          <ConcertText content={title}></ConcertText>
-          <ConcertText content={desc}></ConcertText>
+          <p>{title}</p>
+          <p>{desc}</p>
         </div>
         <div className="content__right">
           <img className="content__right--img" src={image} alt="" />

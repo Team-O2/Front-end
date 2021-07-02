@@ -1,6 +1,5 @@
 import React from 'react';
 import Styled from 'styled-components';
-import ConcertText from '../../atoms/ConcertText';
 
 interface IProps {
   speaker: string;
@@ -17,12 +16,12 @@ function ConcertDetailTitle({ speaker, category, date, title }: IProps): React.R
           <p>Share Together</p>
         </div>
         <div className="title__middle">
-          <ConcertText content={title}></ConcertText>
+          <p>{title}</p>
         </div>
         <div className="title__bottom">
-          <ConcertText content={speaker}></ConcertText>
-          <ConcertText content={date}></ConcertText>
-          <ConcertText content={category}></ConcertText>
+          <p>{speaker}</p>
+          <p>{date}</p>
+          <p>{category}</p>
         </div>
       </SConcertDetailTitle>
     </>
