@@ -5,6 +5,7 @@ export interface IProps {
   checked: boolean;
   id?: string;
   className?: string;
+  name?: string;
   onChange?: (event: React.ChangeEvent<HTMLInputElement>, isChecked?: boolean) => void;
 }
 
