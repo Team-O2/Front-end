@@ -26,9 +26,17 @@ const text = {
   'colors-grayscale-0-d-black': '#0d0d0d',
 };
 
+const size = {
+  mobile: '(max-width: 600px)',
+  tablet: '(max-width: 900px)',
+  laptop: '(max-width: 1200px)',
+  desktop: '(min-width: 1800px)',
+};
+
 const theme = {
   ...colorStyles,
   ...text,
+  ...size,
 };
 
 export default theme;
