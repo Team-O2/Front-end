@@ -4,6 +4,8 @@ import Home from './pages/Home/index';
 import Login from './pages/Login/index';
 
 import ShareTogether from './pages/ShareTogether/index';
+import ShareTogether from 'pages/ShareTogether/index';
+import ShareTogetherDetail from 'pages/ShareTogetherDetail';
 function Router(): React.ReactElement {
   return (
     <BrowserRouter>
@@ -11,6 +13,7 @@ function Router(): React.ReactElement {
         <Route exact path="/" component={Home} />
         <Route exact path="/Login" component={Login} />
         <Route exact path="/ShareTogether" component={ShareTogether} />
+        <Route exact path="/ShareTogetherDetail/:id" component={ShareTogetherDetail} />
         <Route component={() => <div>404 Not Found</div>} />
       </Switch>
     </BrowserRouter>
