@@ -7,14 +7,15 @@ interface IProps {
   title: string;
   speaker: string;
   category: string;
+  onClickFunc: () => void;
 }
 
-function ConcertCard({ image, title, speaker, category }: IProps): React.ReactElement {
+function ConcertCard({ image, title, speaker, category, onClickFunc }: IProps): React.ReactElement {
   return (
     <>
       <SConcertCard>
         <div className="card__main">
-          <img className="card__main--img" src={image} alt="" />
+          <img className="card__main--img" onClick={onClickFunc} src={image} alt="" />
           <ConcertText content={title}></ConcertText>
         </div>
         <div className="card__detail">
