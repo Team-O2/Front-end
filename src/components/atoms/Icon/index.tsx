@@ -15,7 +15,7 @@ function Icon({ height = '2rem', alt = '', ...props }: IProps): React.ReactEleme
 
 const SImg = Styled.img`
   height: ${(props) => props.height};
-  border-radius: ${ifProp('circular', '50%', '')}
+  border-radius: ${ifProp('circular', '50%', '')};
 `;
 
 export default Icon;
