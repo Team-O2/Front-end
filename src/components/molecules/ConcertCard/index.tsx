@@ -2,14 +2,14 @@ import React from 'react';
 import Styled from 'styled-components';
 
 interface IProps {
-  image: any;
+  image: string;
   title: string;
   speaker: string;
-  category: string;
+  interest: string[];
   onClickFunc: () => void;
 }
 
-function ConcertCard({ image, title, speaker, category, onClickFunc }: IProps): React.ReactElement {
+function ConcertCard({ image, title, speaker, interest, onClickFunc }: IProps): React.ReactElement {
   return (
     <>
       <SConcertCard>
@@ -19,7 +19,7 @@ function ConcertCard({ image, title, speaker, category, onClickFunc }: IProps): 
         </div>
         <div className="card__detail">
           <p>{speaker}</p>
-          <p>{category}</p>
+          <p>{interest}</p>
         </div>
       </SConcertCard>
     </>

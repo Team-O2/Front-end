@@ -2,22 +2,22 @@ import React from 'react';
 import Styled from 'styled-components';
 
 interface IProps {
-  image: any;
+  image: string;
   speaker: string;
-  category: string;
-  date: string;
+  interest: string[];
+  createdAt: string;
   title: string;
   desc: string;
 }
 
-function Concert({ image, speaker, category, date, title, desc }: IProps): React.ReactElement {
+function Concert({ image, speaker, interest, createdAt, title, desc }: IProps): React.ReactElement {
   return (
     <>
       <SConcert>
         <div className="content__left">
           <p>{speaker}</p>
-          <p>{category}</p>
-          <p>{date}</p>
+          <p>{interest}</p>
+          <p>{createdAt}</p>
         </div>
         <div className="content__middle">
           <p>{title}</p>

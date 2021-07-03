@@ -2,13 +2,24 @@ import React from 'react';
 import Styled from 'styled-components';
 import ConcertCardList from '../../organisms/ConcertCardList';
 import ConcertList from '../../organisms/ConcertList';
+import SeachForm from '../../organisms/SearchForm';
 
+interface IData {
+  concertId: string;
+  image: string;
+  speaker: string;
+  interest: string[];
+  createdAt: string;
+  title: string;
+  desc: string;
+  like: number;
+}
 interface IProps {
-  concerts: any;
+  concerts: Array<IData>;
 }
 
 function ShareTogether({ concerts }: IProps): React.ReactElement {
-  concerts.sort(function (a: any, b: any) {
+  concerts.sort(function (a: IData, b: IData) {
     return b.like - a.like;
   });
   const concertCardData = concerts.slice(undefined, 3);
@@ -16,6 +27,7 @@ function ShareTogether({ concerts }: IProps): React.ReactElement {
 
   return (
     <SShareTogether>
+      <SeachForm></SeachForm>
       <ConcertCardList concertCardData={concertCardData} />
       <ConcertList concertData={concertData}></ConcertList>
     </SShareTogether>

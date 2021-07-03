@@ -2,19 +2,29 @@ import React from 'react';
 import Styled from 'styled-components';
 import Concert from '../../molecules/Concert';
 
+interface IData {
+  concertId: string;
+  image: string;
+  speaker: string;
+  interest: string[];
+  createdAt: string;
+  title: string;
+  desc: string;
+  like: number;
+}
 interface IProps {
-  concertData: any;
+  concertData: Array<IData>;
 }
 function ConcertList({ concertData }: IProps): React.ReactElement {
   return (
     <>
       <SConcertList>
-        {concertData.map((card: any) => (
+        {concertData.map((card: IData) => (
           <Concert
             image={card.image}
             speaker={card.speaker}
-            category={card.category}
-            date={card.date}
+            interest={card.interest}
+            createdAt={card.createdAt}
             title={card.title}
             desc={card.desc}
             key={card.concertId}
