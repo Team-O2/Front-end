@@ -2,7 +2,7 @@ import React from 'react';
 import Styled from 'styled-components';
 
 export interface IProps {
-  alt: string;
+  alt?: string;
   src: string;
 }
 
@@ -14,6 +14,7 @@ const SImg = Styled.img`
   width: inherit;
   height: inherit;
   object-fit: inherit;
+  border-radius: inherit;
 `;
 
 export default Img;
