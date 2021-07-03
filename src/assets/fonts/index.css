@@ -38,7 +38,7 @@
   font-style: normal;
   font-stretch: normal;
 }
-.Display3apple46_bold {
+.Display3-apple46_bold {
   font-family: AppleSDGothicNeo;
   font-size: 48px;
   font-weight: bold;
@@ -56,7 +56,7 @@
   line-height: 1.22;
   letter-spacing: -0.5px;
 }
-.Display2apple40_bold {
+.Display2-apple40_bold {
   font-family: AppleSDGothicNeo;
   font-size: 40px;
   font-weight: bold;
@@ -74,7 +74,7 @@
   line-height: 1.2;
   letter-spacing: -0.5px;
 }
-.Display1apple36_bold {
+.Display1-apple36_bold {
   font-family: AppleSDGothicNeo;
   font-size: 36px;
   font-weight: bold;
@@ -92,7 +92,7 @@
   line-height: 1.17;
   letter-spacing: -0.5px;
 }
-.Headline2apple32_bold {
+.Headline2-apple32_bold {
   font-family: AppleSDGothicNeo;
   font-size: 32px;
   font-weight: bold;
@@ -110,7 +110,7 @@
   line-height: 1.19;
   letter-spacing: -0.5px;
 }
-.Headline1apple28_bold {
+.Headline1-apple28_bold {
   font-family: AppleSDGothicNeo;
   font-size: 28px;
   font-weight: bold;
@@ -137,7 +137,7 @@
   line-height: 1.33;
   letter-spacing: -0.5px;
 }
-.Subhead4apple18_bold {
+.Subhead4-apple18_bold {
   font-family: AppleSDGothicNeo;
   font-size: 18px;
   font-weight: bold;
@@ -155,7 +155,7 @@
   line-height: 1.33;
   letter-spacing: normal;
 }
-.Body4apple18_regular {
+.Body4-apple18_regular {
   font-family: AppleSDGothicNeo;
   font-size: 18px;
   font-weight: normal;
@@ -164,7 +164,7 @@
   line-height: 1.56;
   letter-spacing: -0.5px;
 }
-.Body4hb18_book {
+.Body4-hb18_book {
   font-family: HomepageBaukasten;
   font-size: 18px;
   font-weight: normal;
@@ -173,7 +173,7 @@
   line-height: 1.33;
   letter-spacing: normal;
 }
-.Subhead3apple16_bold {
+.Subhead3-apple16_bold {
   font-family: AppleSDGothicNeo;
   font-size: 16px;
   font-weight: bold;
@@ -182,7 +182,7 @@
   line-height: 1.38;
   letter-spacing: -0.5px;
 }
-.Subhead3hb16_bold {
+.Subhead3-hb16_bold {
   font-family: HomepageBaukasten;
   font-size: 16px;
   font-weight: bold;
@@ -209,7 +209,7 @@
   line-height: 1.25;
   letter-spacing: normal;
 }
-.Subhead2apple14_bold {
+.Subhead2-apple14_bold {
   font-family: AppleSDGothicNeo;
   font-size: 14px;
   font-weight: bold;
@@ -236,7 +236,7 @@
   line-height: 1.5;
   letter-spacing: -0.5px;
 }
-.Body2hb14_book {
+.Body2-hb14_book {
   font-family: HomepageBaukasten;
   font-size: 14px;
   font-weight: normal;
@@ -272,7 +272,7 @@
   line-height: 1.5;
   letter-spacing: -0.5px;
 }
-.Body1hb12_book {
+.Body1-hb12_book {
   font-family: HomepageBaukasten;
   font-size: 12px;
   font-weight: normal;
