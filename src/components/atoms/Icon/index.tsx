@@ -3,10 +3,11 @@ import Styled from 'styled-components';
 import { ifProp } from 'styled-tools';
 
 export interface IProps {
-  alt: string;
+  alt?: string;
   src: string;
   height?: string;
   circular?: boolean;
+  className?: string;
 }
 
 function Icon({ height = '2rem', alt = '', ...props }: IProps): React.ReactElement {
