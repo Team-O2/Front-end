@@ -5,6 +5,7 @@ import { Link as link } from 'react-router-dom';
 export interface IProps {
   children: string | React.ReactElement;
   to: string;
+  replace?: boolean;
 }
 
 function Link({ children, to, ...props }: IProps): React.ReactElement {
