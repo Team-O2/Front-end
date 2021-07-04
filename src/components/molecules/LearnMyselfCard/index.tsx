@@ -26,8 +26,8 @@ function LearnMyselfCard({ imagePath, isBookmarked, id, name, content }: IProps)
             <Icon className="card__icon" src={isBookmarked ? FilledBookmark : EmptyBookmark} height="2.4rem" />
           </div>
           {!!imagePath ? <Img className="card__img" src={imagePath} /> : null}
-          <h3 className="card__name Subhead3-apple16_bold">{name}</h3>
-          <p className="card__content Body2-apple14_regular">{content}</p>
+          <h3 className="card__name subhead3">{name}</h3>
+          <p className="card__content body2">{content}</p>
         </div>
       </span>
     </LinkWrapper>
@@ -81,6 +81,7 @@ const LinkWrapper = Styled(Link)`
       text-align: left;
       word-break: break-word;
       display: -webkit-box;
+      color: #838383;
       -webkit-line-clamp: 2;
       -webkit-box-orient: vertical;
     }
