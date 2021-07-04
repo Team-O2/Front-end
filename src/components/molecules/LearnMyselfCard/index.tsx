@@ -25,7 +25,7 @@ function LearnMyselfCard({ imagePath, isBookmarked, id, name, content }: IProps)
           >
             <Icon className="card__icon" src={isBookmarked ? FilledBookmark : EmptyBookmark} height="2.4rem" />
           </div>
-          {!!imagePath ? <Img className="card__img" src={imagePath} /> : null}
+          <Img className="card__img" src={imagePath} />
           <h3 className="card__name subhead3">{name}</h3>
           <p className="card__content body2">{content}</p>
         </div>

@@ -26,7 +26,9 @@ function ShareTogetherCard({
     <LinkWrapper to={`${id}`}>
       <span>
         <div className="card">
-          <div className="card__img-wrapper">{imagePath && <Img src={imagePath} />}</div>
+          <div className="card__img-wrapper">
+            <Img src={imagePath} />
+          </div>
           <div className="card__info">
             <Tag className="subhead2" name={tagName} color={tagColor} />
             <div className="card__info--title subhead4">{title}</div>
@@ -57,7 +59,6 @@ const LinkWrapper = Styled(Link)`
       height: 214px;
       margin: 0 20px 0 0;
       object-fit: cover;
-      background-color: ${palette('emptyImage')};
       border-radius: 10px 0 0 10px;
 
       img {
