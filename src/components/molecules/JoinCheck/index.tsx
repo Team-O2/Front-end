@@ -18,6 +18,7 @@ interface userDataType {
   gender: string;
   interest: Array<string>;
   marpolicy: boolean;
+  policyMust: boolean;
 }
 
 export interface IProps {
@@ -52,6 +53,14 @@ function JoinCheck({ ...props }: IProps): React.ReactElement {
     setUserData({ ...userData, marpolicy: check3 });
   }, [check3]);
 
+  useEffect(() => {
+    if (check1 && check2) {
+      setUserData({ ...userData, policyMust: true });
+    } else {
+      setUserData({ ...userData, policyMust: false });
+    }
+  }, [check1, check2]);
+
   const checkHandler = (e: React.ChangeEvent<HTMLInputElement>): any => {
     switch (e.target.name) {
       case 'policy1':
@@ -68,7 +77,7 @@ function JoinCheck({ ...props }: IProps): React.ReactElement {
     }
   };
 
-  const modalHandler = (e: React.MouseEvent<HTMLElement, MouseEvent>): any => {
+  const modalHandler = (e: React.MouseEvent): any => {
     console.log();
     setPolicyOpen(!policyOpen);
   };

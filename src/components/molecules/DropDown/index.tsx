@@ -11,6 +11,7 @@ interface userDataType {
   gender: string;
   interest: Array<string>;
   marpolicy: boolean;
+  policyMust: boolean;
 }
 
 export interface IProps {
