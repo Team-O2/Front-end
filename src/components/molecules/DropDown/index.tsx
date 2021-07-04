@@ -1,4 +1,4 @@
-import React, { Component, useState, useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 
 import Styled from 'styled-components';
 import arrowDown from 'assets/images/arrowDown.svg';
@@ -19,7 +19,7 @@ function DropDown({ ...props }: IProps): React.ReactElement {
     setSelectedValue(e.target.value);
     setOpen(false);
   };
-  const openClickListener = (e: React.MouseEvent<HTMLElement, MouseEvent>): any => {
+  const openClickListener = (): void => {
     setOpen(!open);
   };
   useEffect(() => {

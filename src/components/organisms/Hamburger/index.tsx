@@ -8,22 +8,15 @@ import loginIcon from 'assets/images/loginIcon.svg';
 import challengeIcon from 'assets/images/hamChallengeicon.svg';
 import unChallengeIcon from 'assets/images/hamUnchallengeicon.svg';
 
-export interface IProps {
-  className?: string;
-  show?: boolean;
-  ref?: React.MutableRefObject<undefined>;
-}
-
-function Hamburger({ ...props }: IProps): React.ReactElement {
+function Hamburger(): React.ReactElement {
   //user상태 :
   // 0: 비회원,
   // 1: 챌린지안하는유저,
   // 2: 챌린지하는유저,
   // 3: 챌린지하는유저&챌린지종료,
   // 4: 관리자
-  const { show } = props;
   const [userImg, setUserImg] = useState(userImage); //유저&사진이 존재 하면 이미지변경
-  const [userState, setUserState] = useState(4);
+  const [userState, setUserState] = useState(1);
   const [userName, setUserName] = useState('이은솔');
 
   return (

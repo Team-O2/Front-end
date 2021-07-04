@@ -1,4 +1,4 @@
-import React, { Component, useState, useEffect } from 'react';
+import React, { useState } from 'react';
 
 import Styled from 'styled-components';
 import arrowDown from 'assets/images/ham_arrowDown.svg';
