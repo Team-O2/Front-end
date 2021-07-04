@@ -1,22 +1,35 @@
-import React, { useContext } from 'react';
+import React, { useState, useEffect } from 'react';
 import Styled from 'styled-components';
 import Button from '../../atoms/Button/index';
+import Hamburger from 'components/organisms/Hamburger';
+import Modal from 'components/atoms/Modal';
 
 import Ham_Logo from '../../../assets/images/hamburgerLogo.svg';
 import O2_Logo from '../../../assets/images/header_logo.svg';
 
 function Header(): React.ReactElement {
+  const [hamburgerOpen, setHamburgerOpen] = useState(false);
+
   return (
-    <HeaderWrap>
-      <div className="header_buttons">
-        <Button>
-          <img className="button" src={Ham_Logo}></img>
-        </Button>
-        <Button>
-          <img className="button" src={O2_Logo}></img>
-        </Button>
-      </div>
-    </HeaderWrap>
+    <>
+      <HeaderWrap>
+        <div className="header_buttons">
+          <Button
+            onClick={() => {
+              setHamburgerOpen(!hamburgerOpen);
+            }}
+          >
+            <img className="button" src={Ham_Logo}></img>
+          </Button>
+          <Button>
+            <img className="button" src={O2_Logo}></img>
+          </Button>
+        </div>
+        <Modal isOpen={hamburgerOpen} setIsOpen={setHamburgerOpen}>
+          <Hamburger />
+        </Modal>
+      </HeaderWrap>
+    </>
   );
 }
 

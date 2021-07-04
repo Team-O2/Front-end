@@ -3,8 +3,10 @@ import Styled from 'styled-components';
 
 export interface IProps {
   children: React.ReactElement | string;
-  onClick?: () => void;
+  onClick?: (e: React.MouseEvent<HTMLElement, MouseEvent>) => void;
   className?: string;
+  value?: string;
+  // style?: string;
 }
 
 function Button({ children, ...props }: IProps): React.ReactElement {
@@ -14,6 +16,9 @@ function Button({ children, ...props }: IProps): React.ReactElement {
 const SButton = Styled.button`
     background : none;
     border : none;
+    :focus {
+      outline : none;
+    }
   `;
 
 export default Button;

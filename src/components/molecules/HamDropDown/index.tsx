@@ -1,0 +1,124 @@
+import React, { Component, useState, useEffect } from 'react';
+
+import Styled from 'styled-components';
+import arrowDown from 'assets/images/ham_arrowDown.svg';
+import arrowUp from 'assets/images/ham_arrowUp.svg';
+import Button from '../../atoms/Button/index';
+
+export interface IProps {
+  className?: string;
+  title: string;
+  list: string[];
+}
+
+function HamDropDown({ ...props }: IProps): React.ReactElement {
+  const { title, list } = props;
+  const [opened, setOpened] = useState(false);
+
+  const learnOpenClickListener = (): void => {
+    setOpened(!opened);
+  };
+  const learnDetailClickListener = (e: any): void => {
+    console.log(e.target.value);
+  };
+
+  return (
+    <SHamDropDown>
+      <Button className="title" onClick={learnOpenClickListener}>
+        <>
+          <div className="title__label" style={opened ? { fontWeight: 'bold' } : { fontWeight: 'normal' }}>
+            {title}
+          </div>
+          {opened ? <img className="title__icon" src={arrowUp} /> : <img className="title_icon" src={arrowDown} />}
+        </>
+      </Button>
+      {opened && (
+        <div className="detail">
+          <div className="detail__container">
+            <div className="detail__btnContainer">
+              {list.map((value, id) => {
+                return (
+                  <Button key={id} className="detail__btn" value={value} onClick={learnDetailClickListener}>
+                    {value}
+                  </Button>
+                );
+              })}
+              <Button className="detail__btn--fake">어쩌구 가려질것</Button>
+            </div>
+            <div className="detail__hide"></div>
+          </div>
+        </div>
+      )}
+    </SHamDropDown>
+  );
+}
+
+const SHamDropDown = Styled.div`
+  .title{
+    display : flex;
+    align-items : center;
+    justify-content : center;
+    color : #3d3d3d;
+      &__label{
+        font-size: 16px;
+        line-height: 1.25;
+        letter-spacing: normal;
+        text-align: left;
+        :hover{
+          font-weight: bold;
+        }
+      }
+      &__icon{
+        width: 20px;
+        height: 20px;
+        margin: 0 0 0 1px;
+        object-fit: contain;
+      }
+  }
+
+  .detail{
+    width : 100%;
+    display : flex;
+    justify-content:center;
+    &__container{
+      width : 98px;
+      display : flex;
+      flex-direction : column;
+      align-items : center;
+      position : relative;
+      margin-top : 20px;
+    }
+    &__btnContainer{
+      width : 98px;
+      display : flex;
+      flex-direction : column;
+      max-height : 229px;
+      overflow: scroll;
+      align-items : center;
+    }
+    &__btn{
+      height: 18px;
+      font-size: 14px;
+      line-height: 1.29;
+      margin: 5px 0;
+      color : #8b8b8b;
+      white-space: nowrap;
+      &--fake{
+        color : rgba(0,0,0,0);
+        line-height : 20px;
+      }
+      :hover{
+        font-weight: bold;
+      }
+    }
+    &__hide{
+      width : 100%;
+      height : 36px;
+      background-image: linear-gradient(to bottom, rgba(255, 255, 255, 0), #ffffff);
+      position : absolute;
+      bottom : 0px;
+    }
+  }
+`;
+
+export default HamDropDown;
