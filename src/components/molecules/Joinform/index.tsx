@@ -16,6 +16,7 @@ interface userDataType {
   gender: string;
   interest: Array<string>;
   marpolicy: boolean;
+  policyMust: boolean;
 }
 
 interface conditionMet {
@@ -24,7 +25,8 @@ interface conditionMet {
   passwordCheck: boolean;
   nickname: boolean;
   interest: boolean;
-  marpolicy: boolean;
+  policyMust: boolean;
+  gender: boolean;
 }
 
 export interface IProps {
@@ -80,12 +82,29 @@ function Joinform({ ...props }: IProps): React.ReactElement {
   }, [userData.passwordCheck]);
 
   useEffect(() => {
-    if (userData.nickname.match(/([a-zA-Z].*[!,@,#,$,%,^,&,*,?,~,-])|([!,@,#,$,%,^,&,*,?,~,-].*[a-zA-Z])/)) {
+    const check = /^[ㄱ-ㅎ|가-힣|0-9|.,_,]+$/;
+    if (!check.test(userData.nickname)) {
       setIsConditionMet({ ...isConditionMet, nickname: false });
     } else if (userData.nickname.length > 0) {
       setIsConditionMet({ ...isConditionMet, nickname: true });
+    } else {
+      setIsConditionMet({ ...isConditionMet, nickname: false });
     }
   }, [userData.nickname]);
+  useEffect(() => {
+    if (userData.policyMust) {
+      setIsConditionMet({ ...isConditionMet, policyMust: true });
+    } else {
+      setIsConditionMet({ ...isConditionMet, policyMust: false });
+    }
+  }, [userData.policyMust]);
+  useEffect(() => {
+    if (userData.gender != 'unchecked') {
+      setIsConditionMet({ ...isConditionMet, gender: true });
+    } else {
+      setIsConditionMet({ ...isConditionMet, gender: false });
+    }
+  }, [userData.gender]);
 
   return (
     <JoinformWrap>
