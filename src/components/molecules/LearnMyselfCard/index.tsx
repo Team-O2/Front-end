@@ -48,6 +48,7 @@ const LinkWrapper = Styled(Link)`
     height: 259px;
     margin: 0 15px 15px 0;
     box-shadow: 0 0 24px 0 rgba(13, 12, 63, 0.1);
+    border-radius: 20px;
 
     &__icon-wrapper {
       position: absolute;
