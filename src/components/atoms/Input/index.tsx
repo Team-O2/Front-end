@@ -27,4 +27,3 @@ const SInput = Styled.input`
 `;
 
 export default Input;
-

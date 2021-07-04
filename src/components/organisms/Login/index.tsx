@@ -9,7 +9,7 @@ import Line from '../../../assets/images/line.svg';
 function CLogin(): React.ReactElement {
   return (
     <LoginWrap>
-      <Label className="login_label">로그인</Label>
+      <Label className="login_label" name="로그인" />
       <Loginform />
       <div className="etc_buttons">
         <Button className="etc_leftbtn">비밀번호 찾기</Button>
