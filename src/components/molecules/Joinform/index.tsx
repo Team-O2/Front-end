@@ -1,47 +1,203 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import Styled from 'styled-components';
-import Select from 'react-select';
 
 import Input from 'components/atoms/Input';
 import Label from 'components/atoms/Label';
 import DropDown from 'components/molecules/DropDown';
 import JoinCheck from 'components/molecules/JoinCheck';
-import { useState } from 'react';
-import checkOff from '../../../assets/images/check_off.svg';
-import checkOn from '../../../assets/images/check_on.svg';
-import checkall_off from '../../../assets/images/checkall_off.svg';
-import checkall_on from '../../../assets/images/checkall_on.svg';
 
-function Joinform(): React.ReactElement {
-  const agreement = [
-    '(필수) 서비스 이용약관 동의',
-    '(필수) 개인정보 수집 이용 동의',
-    '(선택) 광고성 정보 수신 및 마케팅 활용 동의',
-  ];
-  const [items, setItems] = useState([false, false, false]);
+import JoinErr from 'assets/images/joinInputErrIcon.svg';
+
+interface userDataType {
+  email: string;
+  password: string;
+  passwordCheck: string;
+  nickname: string;
+  gender: string;
+  interest: Array<string>;
+  marpolicy: boolean;
+}
+
+interface conditionMet {
+  email: boolean;
+  password: boolean;
+  passwordCheck: boolean;
+  nickname: boolean;
+  interest: boolean;
+  marpolicy: boolean;
+}
+
+export interface IProps {
+  className?: string;
+  isConditionMet: conditionMet;
+  userData: userDataType;
+  setUserData: (value: userDataType) => void;
+  setIsConditionMet: (value: conditionMet) => void;
+}
+const conditionMetStyle = {
+  border: 'double 1px transparent',
+  backgroundImage: 'linear-gradient(white, white), linear-gradient(to right, #36c8f5,#13e2dd)',
+  backgroundOrigin: 'border-box',
+  backgroundClip: 'content-box, border-box',
+};
+const conditionNotMetStyle = {
+  border: 'solid 1px #f66436',
+};
+const defaultStyle = {
+  border: 'solid 1px #c1c1c1',
+};
+
+function Joinform({ ...props }: IProps): React.ReactElement {
+  const { isConditionMet, userData, setUserData, setIsConditionMet } = props;
+  const [isFocused, setIsFocused] = useState({
+    email: false,
+    password: false,
+    passwordCheck: false,
+    nickname: false,
+  });
+
+  useEffect(() => {
+    if (userData.email.includes('@')) {
+      setIsConditionMet({ ...isConditionMet, email: true });
+    } else {
+      setIsConditionMet({ ...isConditionMet, email: false });
+    }
+  }, [userData.email]);
+
+  useEffect(() => {
+    if (userData.password.match(/([a-zA-Z0-9].*[!,@,#,$,%,^,&,*,?,_,~,-])|([!,@,#,$,%,^,&,*,?,_,~,-].*[a-zA-Z0-9])/)) {
+      setIsConditionMet({ ...isConditionMet, password: true });
+    } else {
+      setIsConditionMet({ ...isConditionMet, password: false });
+    }
+  }, [userData.password]);
+  useEffect(() => {
+    if (userData.password.length > 0 && userData.password === userData.passwordCheck) {
+      setIsConditionMet({ ...isConditionMet, passwordCheck: true });
+    } else {
+      setIsConditionMet({ ...isConditionMet, passwordCheck: false });
+    }
+  }, [userData.passwordCheck]);
+
+  useEffect(() => {
+    if (userData.nickname.match(/([a-zA-Z].*[!,@,#,$,%,^,&,*,?,~,-])|([!,@,#,$,%,^,&,*,?,~,-].*[a-zA-Z])/)) {
+      setIsConditionMet({ ...isConditionMet, nickname: false });
+    } else if (userData.nickname.length > 0) {
+      setIsConditionMet({ ...isConditionMet, nickname: true });
+    }
+  }, [userData.nickname]);
 
   return (
     <JoinformWrap>
-      <Label className="join_subtitle">아이디(이메일)</Label>
-      <Input className="join_input" inputName="userEmail" placeholder="이메일을 입력해 주세요"></Input>
-      <Label className="join_subtitle">비밀번호</Label>
-      <Input
-        className="join_input join_pwd"
-        type="password"
-        inputName="userPwd"
-        placeholder="비밀번호를 입력해 주세요"
-      ></Input>
-      <Input className="join_input" type="password" inputName="userPwd" placeholder="비밀번호를 입력해 주세요"></Input>
-      <Label className="join_subtitle">닉네임</Label>
-      <Input
+      <Label className="join_subtitle" name="아이디(이메일)" />
+      <div
         className="join_input"
-        inputName="userEmail"
-        placeholder="닉네임에는 한글, 숫자, 밑줄 및 마침표만 사용할 수 있습니다"
-      ></Input>
-      <Label className="join_subtitle">성별</Label>
-      <DropDown className="join_dropdown" />
-      <Label className="join_subtitle">약관동의</Label>
-      <JoinCheck />
+        style={
+          !isFocused.email
+            ? defaultStyle
+            : isFocused.email && isConditionMet.email
+            ? conditionMetStyle
+            : conditionNotMetStyle
+        }
+      >
+        <Input
+          name="userEmail"
+          placeholder="이메일을 입력해 주세요"
+          onChange={(e) => {
+            setUserData({ ...userData, email: e.target.value });
+          }}
+          onFocus={() => {
+            setIsFocused({ ...isFocused, email: true });
+          }}
+        />
+        {isFocused.email && !isConditionMet.email && <img className="join__image--error" src={JoinErr}></img>}
+      </div>
+      {isFocused.email && !isConditionMet.email && <div className="join__exp--error">올바르지 않은 형식입니다</div>}
+      <Label className="join_subtitle" name="비밀번호" />
+      <div
+        className="join_input"
+        style={
+          !isFocused.password
+            ? defaultStyle
+            : isFocused.password && isConditionMet.password
+            ? conditionMetStyle
+            : conditionNotMetStyle
+        }
+      >
+        <Input
+          type="password"
+          name="userPwd"
+          placeholder="비밀번호를 입력해 주세요"
+          onChange={(e) => {
+            setUserData({ ...userData, password: e.target.value });
+          }}
+          onFocus={() => {
+            setIsFocused({ ...isFocused, password: true });
+          }}
+        />
+        {isFocused.password && !isConditionMet.password && <img className="join__image--error" src={JoinErr}></img>}
+      </div>
+      {isFocused.password && !isConditionMet.password && (
+        <div className="join__exp--error">영어 대문자, 소문자, 특수문자가 포함되어야 합니다</div>
+      )}
+      <div
+        className="join_input join_pwd"
+        style={
+          !isFocused.passwordCheck
+            ? defaultStyle
+            : isFocused.passwordCheck && isConditionMet.passwordCheck
+            ? conditionMetStyle
+            : conditionNotMetStyle
+        }
+      >
+        <Input
+          type="password"
+          name="userPwdCheck"
+          placeholder="비밀번호를 입력해 주세요"
+          onChange={(e) => {
+            setUserData({ ...userData, passwordCheck: e.target.value });
+          }}
+          onFocus={() => {
+            setIsFocused({ ...isFocused, passwordCheck: true });
+          }}
+        />
+        {isFocused.passwordCheck && !isConditionMet.passwordCheck && (
+          <img className="join__image--error" src={JoinErr}></img>
+        )}
+      </div>
+      {isFocused.passwordCheck && !isConditionMet.passwordCheck && (
+        <div className="join__exp--error">비밀번호가 일치하지 않습니다</div>
+      )}
+      <Label className="join_subtitle" name="닉네임" />
+      <div
+        className="join_input"
+        style={
+          !isFocused.nickname
+            ? defaultStyle
+            : isFocused.nickname && isConditionMet.nickname
+            ? conditionMetStyle
+            : conditionNotMetStyle
+        }
+      >
+        <Input
+          name="userNickname"
+          placeholder="닉네임에는 한글, 숫자, 밑줄 및 마침표만 사용할 수 있습니다"
+          onChange={(e) => {
+            setUserData({ ...userData, nickname: e.target.value });
+          }}
+          onFocus={() => {
+            setIsFocused({ ...isFocused, nickname: true });
+          }}
+        />
+        {isFocused.nickname && !isConditionMet.nickname && <img className="join__image--error" src={JoinErr}></img>}
+      </div>
+      {isFocused.nickname && !isConditionMet.nickname && (
+        <div className="join__exp--error">닉네임에는 한글, 숫자, 밑줄 및 마침표만 사용할 수 있습니다</div>
+      )}
+      <Label className="join_subtitle" name="성별" />
+      <DropDown className="join_dropdown" setUserData={setUserData} userData={userData} />
+      <Label className="join_subtitle" name="약관동의" />
+      <JoinCheck setUserData={setUserData} userData={userData} />
     </JoinformWrap>
   );
 }
@@ -50,6 +206,24 @@ const JoinformWrap = Styled.div`
   display : flex;
   flex-direction : column;
   align-items : center;
+  input {
+    border : none;
+    font-size : 16px;
+    color : #0d0d0d;
+    letter-spacing: -0.5px;
+    text-align: left;
+    width : 100%;
+    height : 100%;
+    padding: 18px 20px;
+    border-radius: 4px;
+    
+    :placeholder{
+      color : #c1c1c1;
+    }
+    :focus{
+      outline : none;
+    }
+  }
   .check{
       width : 22px;
       margin : 10px;
@@ -71,29 +245,15 @@ const JoinformWrap = Styled.div`
         letter-spacing: -0.5px;
     }
     &_pwd{
-        margin-bottom : 14px;
+        margin-top : 14px;
     }
     &_input{
       width: 406px;
       height: 60px;
-      border-radius: 4px;
       border : solid 1px #c1c1c1;
-      padding: 18px 20px;
-      font-size : 16px;
-      color : #0d0d0d;
-      letter-spacing: -0.5px;
-      text-align: left;
-      :placeholder{
-        color : #c1c1c1;
-      }
-      :focus{
-        outline : none;
-        border-style: solid;
-        border-width: 1px;
-        border-image: linear-gradient(to right, #36c8f5,#13e2dd );
-        border-image-slice: 1;
-        color : #0d0d0d;
-      }
+      border-radius : 4px;   
+      display : flex;    
+      align-items : center;  
     }
     &_button{
       width: 406px;
@@ -104,6 +264,21 @@ const JoinformWrap = Styled.div`
       font-weight : bold;
       color : #ffffff;
       margin-top : 14px;
+    }
+    &__image--error{
+      width : 24px;
+      height : 24px;
+      margin-right : 15px;
+    }
+    &__exp--error{
+      width : 406px;
+      text-align : left;
+      margin-top : 5px;
+      font-size: 14px;
+      line-height: 1.5;
+      letter-spacing: -0.5px;
+      text-align: left;
+      color: #f66436;
     }
   }
 

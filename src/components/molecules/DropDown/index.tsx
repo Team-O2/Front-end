@@ -3,6 +3,16 @@ import Styled from 'styled-components';
 import arrowDown from 'assets/images/arrowDown.svg';
 import arrowUp from 'assets/images/arrowUp.svg';
 
+interface userDataType {
+  email: string;
+  password: string;
+  passwordCheck: string;
+  nickname: string;
+  gender: string;
+  interest: Array<string>;
+  marpolicy: boolean;
+}
+
 export interface IProps {
   className?: string;
   setState: (value: string) => void;
