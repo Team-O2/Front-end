@@ -20,6 +20,7 @@ const theme = {
     background,
     primary,
     grayscale,
+    emptyImage: '#0292a5',
   },
   size: {
     mobile: '(max-width: 600px)',
