@@ -15,4 +15,3 @@ const SLabel = Styled.p`
 `;
 
 export default Label;
-
