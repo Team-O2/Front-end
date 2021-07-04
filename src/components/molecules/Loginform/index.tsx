@@ -9,8 +9,8 @@ import Line from '../../../assets/images/line.svg';
 function Loginform(): React.ReactElement {
   return (
     <LoginformWrap>
-      <Input className="login_input" inputName="userEmail" placeholder="이메일을 입력해 주세요"></Input>
-      <Input className="login_input" inputName="userPwd" placeholder="비밀번호를 입력해 주세요"></Input>
+      <Input className="login_input" name="userEmail" type="text" placeholder="이메일을 입력해 주세요"></Input>
+      <Input className="login_input" name="userPwd" type="password" placeholder="비밀번호를 입력해 주세요"></Input>
       <Button className="login_button">로그인</Button>
     </LoginformWrap>
   );
