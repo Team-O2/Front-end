@@ -107,8 +107,11 @@ function Hamburger(): React.ReactElement {
             <HamDropDown title="글 올리기" list={['Share Together', '공지사항']} />
           </>
         )}
+        <div className="middle__padding--forHide">어쩌구 가려질것</div>
       </div>
       <div className="bottom">
+        <div className="middle--forHide"></div>
+
         {(userState === 1 || userState === 2 || userState === 3) && (
           <Button>
             <div className="bottom__button" style={{ color: '#3d3d3d' }}>
@@ -118,7 +121,7 @@ function Hamburger(): React.ReactElement {
         )}
         {(userState === 1 || userState === 2 || userState === 3 || userState === 4) && (
           <Button>
-            <div className="bottom__button" style={{ color: '#8b8b8b', marginLeft: '8px' }}>
+            <div className="bottom__button" style={{ color: '#8b8b8b', marginLeft: '8px', marginRight: '24px' }}>
               로그아웃
             </div>
           </Button>
@@ -136,6 +139,8 @@ const HamburgerWrap = Styled.div`
   box-shadow: 0 4px 40px 0 rgba(30, 37, 98, 0.1);
   background-color : #ffffff;
   z-index : 999;
+  display : flex;
+  flex-direction:column;
 
   span{
     font-weight : bold;
@@ -144,6 +149,7 @@ const HamburgerWrap = Styled.div`
   .top{
     background-color: #edfeff;
     height : 376px;
+    flex:none;
     display : flex;
     flex-direction : column;
     align-items : center;
@@ -231,8 +237,8 @@ const HamburgerWrap = Styled.div`
     flex-direction : column;
     align-items : center;
     padding-top : 70px;
-    /* height : 100%; */
-    position : relative;
+    overflow : scroll;
+    flex:1;
 
     &__button--title{
       font-size: 16px;
@@ -252,12 +258,25 @@ const HamburgerWrap = Styled.div`
       background-color: #c1c1c1;
       margin : 20px 0;
     }
+    &--forHide{
+      width : 100%;
+      height : 50px;
+      background-image: linear-gradient(to bottom, rgba(255, 255, 255, 0), #ffffff);
+      position : absolute;
+      top:-50px;
+    }
+    &__padding--forHide{
+      line-height : 60px;
+      color:rgba(0,0,0,0);
+    }
   }
   .bottom{
     display: flex;
-    position : absolute;
-    bottom : 50px;
-    right : 30px;
+    height : 84px;
+    flex:none;
+    align-items:flex-start;
+    justify-content:flex-end;
+    position:relative;
     &__button{
       font-size: 16px;
       font-weight: normal;
