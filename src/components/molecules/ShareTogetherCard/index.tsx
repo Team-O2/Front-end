@@ -27,10 +27,10 @@ function ShareTogetherCard({
         <div className="card">
           <div className="card__img-wrapper">{!!imagePath ? <Img src={imagePath} /> : null}</div>
           <div className="card__info">
-            <Tag className="Subhead2-apple14_bold" name={tagName} color={tagColor} />
-            <div className="card__info--title Subhead4-apple18_bold">{title}</div>
-            <div className="card__info--content Body2-apple14_regular">{content}</div>
-            <div className="card__info--date Body1-hb12_book">{date}</div>
+            <Tag className="subhead2" name={tagName} color={tagColor} />
+            <div className="card__info--title subhead4">{title}</div>
+            <div className="card__info--content body2">{content}</div>
+            <div className="card__info--date body1">{date}</div>
           </div>
         </div>
       </span>

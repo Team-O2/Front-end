@@ -8,6 +8,7 @@
   font-style: normal;
   font-stretch: normal;
 }
+
 @font-face {
   font-family: "AppleSDGothicNeo";
   src: 
@@ -18,6 +19,7 @@
   font-style: normal;
   font-stretch: normal;
 }
+
 @font-face {
   font-family: "HomepageBaukasten";
   src: 
@@ -28,6 +30,7 @@
   font-style: normal;
   font-stretch: normal;
 }
+
 @font-face {
   font-family: "HomepageBaukasten";
   src: 
@@ -38,7 +41,8 @@
   font-style: normal;
   font-stretch: normal;
 }
-.Display3-apple46_bold {
+
+.dp4 {
   font-family: AppleSDGothicNeo;
   font-size: 48px;
   font-weight: bold;
@@ -47,7 +51,8 @@
   line-height: 1.42;
   letter-spacing: -0.5px;
 }
-.Display3-hb48_bold {
+
+.dp3_eng {
   font-family: HomepageBaukasten;
   font-size: 46px;
   font-weight: bold;
@@ -56,7 +61,8 @@
   line-height: 1.22;
   letter-spacing: -0.5px;
 }
-.Display2-apple40_bold {
+
+.dp2 {
   font-family: AppleSDGothicNeo;
   font-size: 40px;
   font-weight: bold;
@@ -65,7 +71,8 @@
   line-height: 1.25;
   letter-spacing: -0.5px;
 }
-.Display2-hb40_bold {
+
+.dp2_eng {
   font-family: HomepageBaukasten;
   font-size: 40px;
   font-weight: bold;
@@ -74,7 +81,8 @@
   line-height: 1.2;
   letter-spacing: -0.5px;
 }
-.Display1-apple36_bold {
+
+.dp1 {
   font-family: AppleSDGothicNeo;
   font-size: 36px;
   font-weight: bold;
@@ -83,7 +91,8 @@
   line-height: 1.22;
   letter-spacing: -0.5px;
 }
-.Display1-hb36_bold {
+
+.dp1_eng {
   font-family: HomepageBaukasten;
   font-size: 36px;
   font-weight: bold;
@@ -92,7 +101,8 @@
   line-height: 1.17;
   letter-spacing: -0.5px;
 }
-.Headline2-apple32_bold {
+
+h2 {
   font-family: AppleSDGothicNeo;
   font-size: 32px;
   font-weight: bold;
@@ -101,7 +111,8 @@
   line-height: 1.31;
   letter-spacing: -0.5px;
 }
-.Headline2-hb32_bold {
+
+.h2_eng {
   font-family: HomepageBaukasten;
   font-size: 32px;
   font-weight: bold;
@@ -110,7 +121,8 @@
   line-height: 1.19;
   letter-spacing: -0.5px;
 }
-.Headline1-apple28_bold {
+
+h1 {
   font-family: AppleSDGothicNeo;
   font-size: 28px;
   font-weight: bold;
@@ -119,7 +131,8 @@
   line-height: 1.36;
   letter-spacing: -0.5px;
 }
-.Headline1-hb28_bold {
+
+.h1_eng {
   font-family: HomepageBaukasten;
   font-size: 28px;
   font-weight: bold;
@@ -128,7 +141,8 @@
   line-height: 1.21;
   letter-spacing: -0.5px;
 }
-.Subhead5-apple24_bold {
+
+.subhead5 {
   font-family: AppleSDGothicNeo;
   font-size: 24px;
   font-weight: bold;
@@ -137,7 +151,18 @@
   line-height: 1.33;
   letter-spacing: -0.5px;
 }
-.Subhead4-apple18_bold {
+
+.subhead5_eng {
+  font-family: HomepageBaukasten;
+  font-size: 24px;
+  font-weight: bold;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: 1.33;
+  letter-spacing: normal;
+}
+
+.subhead4 {
   font-family: AppleSDGothicNeo;
   font-size: 18px;
   font-weight: bold;
@@ -146,7 +171,8 @@
   line-height: 1.33;
   letter-spacing: -0.5px;
 }
-.Subhead4-hb18_bold {
+
+.subhead4_eng {
   font-family: HomepageBaukasten;
   font-size: 18px;
   font-weight: bold;
@@ -155,7 +181,8 @@
   line-height: 1.33;
   letter-spacing: normal;
 }
-.Body4-apple18_regular {
+
+.body4 {
   font-family: AppleSDGothicNeo;
   font-size: 18px;
   font-weight: normal;
@@ -164,7 +191,8 @@
   line-height: 1.56;
   letter-spacing: -0.5px;
 }
-.Body4-hb18_book {
+
+.body4_eng {
   font-family: HomepageBaukasten;
   font-size: 18px;
   font-weight: normal;
@@ -173,7 +201,8 @@
   line-height: 1.33;
   letter-spacing: normal;
 }
-.Subhead3-apple16_bold {
+
+.subhead3 {
   font-family: AppleSDGothicNeo;
   font-size: 16px;
   font-weight: bold;
@@ -182,7 +211,8 @@
   line-height: 1.38;
   letter-spacing: -0.5px;
 }
-.Subhead3-hb16_bold {
+
+.subhead3_eng {
   font-family: HomepageBaukasten;
   font-size: 16px;
   font-weight: bold;
@@ -191,7 +221,8 @@
   line-height: 1.25;
   letter-spacing: normal;
 }
-.Body3-apple16_regular {
+
+.body3 {
   font-family: AppleSDGothicNeo;
   font-size: 16px;
   font-weight: normal;
@@ -200,7 +231,8 @@
   line-height: 1.5;
   letter-spacing: -0.5px;
 }
-.Body3-hb16_book {
+
+.body_eng {
   font-family: HomepageBaukasten;
   font-size: 16px;
   font-weight: normal;
@@ -209,7 +241,8 @@
   line-height: 1.25;
   letter-spacing: normal;
 }
-.Subhead2-apple14_bold {
+
+.subhead2 {
   font-family: AppleSDGothicNeo;
   font-size: 14px;
   font-weight: bold;
@@ -218,7 +251,8 @@
   line-height: 1.43;
   letter-spacing: -0.5px;
 }
-.Subhead2-hb14_bold {
+
+.subhead2_eng {
   font-family: HomepageBaukasten;
   font-size: 14px;
   font-weight: bold;
@@ -227,7 +261,8 @@
   line-height: 1.29;
   letter-spacing: normal;
 }
-.Body2-apple14_regular {
+
+.body2 {
   font-family: AppleSDGothicNeo;
   font-size: 14px;
   font-weight: normal;
@@ -236,7 +271,8 @@
   line-height: 1.5;
   letter-spacing: -0.5px;
 }
-.Body2-hb14_book {
+
+.body2_eng {
   font-family: HomepageBaukasten;
   font-size: 14px;
   font-weight: normal;
@@ -245,7 +281,8 @@
   line-height: 1.29;
   letter-spacing: normal;
 }
-.Subhead1-apple12_bold {
+
+.subhead1 {
   font-family: AppleSDGothicNeo;
   font-size: 12px;
   font-weight: bold;
@@ -254,7 +291,8 @@
   line-height: 1.5;
   letter-spacing: -0.5px;
 }
-.Subhead1-hb12_bold {
+
+.subhead1_eng {
   font-family: HomepageBaukasten;
   font-size: 12px;
   font-weight: bold;
@@ -263,7 +301,8 @@
   line-height: 1.33;
   letter-spacing: normal;
 }
-.Body1-apple12_regular {
+
+.body1 {
   font-family: AppleSDGothicNeo;
   font-size: 12px;
   font-weight: normal;
@@ -272,7 +311,8 @@
   line-height: 1.5;
   letter-spacing: -0.5px;
 }
-.Body1-hb12_book {
+
+.body1_eng {
   font-family: HomepageBaukasten;
   font-size: 12px;
   font-weight: normal;
