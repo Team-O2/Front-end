@@ -1,6 +1,7 @@
 import React from 'react';
 import Styled from 'styled-components';
 import { Link, Img, Tag } from 'components/atoms';
+import { palette } from 'styled-tools';
 
 export interface IProps {
   imagePath?: string;
@@ -25,7 +26,7 @@ function ShareTogetherCard({
     <LinkWrapper to={`${id}`}>
       <span>
         <div className="card">
-          <div className="card__img-wrapper">{!!imagePath ? <Img src={imagePath} /> : null}</div>
+          <div className="card__img-wrapper">{imagePath && <Img src={imagePath} />}</div>
           <div className="card__info">
             <Tag className="subhead2" name={tagName} color={tagColor} />
             <div className="card__info--title subhead4">{title}</div>
@@ -46,16 +47,18 @@ const LinkWrapper = Styled(Link)`
   .card {
     display: flex;
     border-radius: 10px;
-    border: solid 1px gray;
     width: 516px;
     height: 214px;
     padding: 0 20px 0 0;
+    box-shadow: 0 0 24px 0 rgba(13, 12, 63, 0.1);
 
     &__img-wrapper {
       width: 200px;
       height: 214px;
       margin: 0 20px 0 0;
       object-fit: cover;
+      background-color: ${palette('emptyImage')};
+      border-radius: 10px 0 0 10px;
 
       img {
         border-radius: 10px 0 0 10px;
@@ -73,6 +76,7 @@ const LinkWrapper = Styled(Link)`
       &--title {
         width: 274px;
         margin: 33px 0 10px 2px;
+        color: ${palette('grayscale', 7)};
         white-space: nowrap;
       }
 
@@ -80,6 +84,7 @@ const LinkWrapper = Styled(Link)`
         width: 238px;
         height: 2.6em;
         margin: 0 0 24px 1px;
+        color: ${palette('grayscale', 4)};
         text-align: left;
         white-space: normal;
         word-wrap: break-word;
@@ -88,8 +93,9 @@ const LinkWrapper = Styled(Link)`
         -webkit-box-orient: vertical;
       }
 
-      &--time {
+      &--date {
         margin-left: 4px;
+        color: ${palette('grayscale', 4)};
       }
     }
   }
