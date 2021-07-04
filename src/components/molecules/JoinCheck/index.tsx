@@ -153,8 +153,7 @@ function JoinCheck({ ...props }: IProps): React.ReactElement {
           </Button>
         </div>
       </div>
-      {policyOpen && <div className="modal__background"></div>}
-      <Modal isOpen={policyOpen} setIsOpen={setPolicyOpen}>
+      <Modal isOpen={policyOpen} setIsOpen={setPolicyOpen} isBlur={true}>
         <div className="modal__container">
           <Button
             onClick={() => {
@@ -176,15 +175,6 @@ display : flex;
 flex-direction: column;
 align-items : center;
 .modal{
-  &__background{
-    position : fixed;
-    top : 0;
-    left : 0;
-    width : 100vw;
-    height : 100vh;
-    opacity: 0.3;
-    background-color: rgba(0, 0, 0, 0.5);
-  }
   &__container{
     position : fixed;
     top : 0;
