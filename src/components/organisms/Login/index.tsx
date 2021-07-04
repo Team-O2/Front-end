@@ -1,8 +1,7 @@
-import React, { useContext } from 'react';
+import React from 'react';
 import Styled from 'styled-components';
 import Loginform from '../../molecules/Loginform/index';
 import Label from 'components/atoms/Label';
-import Input from 'components/atoms/Input';
 import Button from 'components/atoms/Button';
 import Line from '../../../assets/images/line.svg';
 
