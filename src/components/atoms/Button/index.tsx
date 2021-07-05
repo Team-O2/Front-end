@@ -6,7 +6,6 @@ export interface IProps {
   onClick?: (e: React.MouseEvent<HTMLElement, MouseEvent>) => void;
   className?: string;
   value?: string;
-  // style?: string;
 }
 
 function Button({ children, ...props }: IProps): React.ReactElement {

@@ -79,7 +79,10 @@ function Hamburger(): React.ReactElement {
       <div className="middle">
         {(userState === 0 || userState === 1 || userState === 2 || userState === 3) && (
           <>
-            <HamDropDown title="Learn Myself" list={['1st', '2nd', '3rd', '4st', '5th', '6th', '7th', '8th', '9th']} />
+            <HamDropDown
+              title="Learn Myself"
+              itemList={['1st', '2nd', '3rd', '4st', '5th', '6th', '7th', '8th', '9th']}
+            />
             <div style={{ marginBottom: '10px' }}></div>
             <Button className="middle__button--title">Share Together</Button>
           </>
@@ -87,7 +90,7 @@ function Hamburger(): React.ReactElement {
         {userState === 2 && (
           <>
             <div style={{ marginBottom: '10px' }}></div>
-            <HamDropDown title="아카이빙" list={['1st', '2nd', '3rd']} />
+            <HamDropDown title="아카이빙" itemList={['1st', '2nd', '3rd']} />
           </>
         )}
         {(userState === 0 || userState === 1 || userState === 2 || userState === 3) && (
@@ -104,14 +107,13 @@ function Hamburger(): React.ReactElement {
             <Button className="middle__button--title">챌린지 오픈하기</Button>
             <Button className="middle__button--title">챌린지 정보</Button>
             <div style={{ marginBottom: '10px' }}></div>
-            <HamDropDown title="글 올리기" list={['Share Together', '공지사항']} />
+            <HamDropDown title="글 올리기" itemList={['Share Together', '공지사항']} />
           </>
         )}
         <div className="middle__padding--forHide">어쩌구 가려질것</div>
       </div>
       <div className="bottom">
         <div className="middle--forHide"></div>
-
         {(userState === 1 || userState === 2 || userState === 3) && (
           <Button>
             <div className="bottom__button" style={{ color: '#3d3d3d' }}>

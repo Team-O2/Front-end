@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-
 import Styled from 'styled-components';
 import arrowDown from 'assets/images/ham_arrowDown.svg';
 import arrowUp from 'assets/images/ham_arrowUp.svg';
@@ -8,42 +7,35 @@ import Button from '../../atoms/Button/index';
 export interface IProps {
   className?: string;
   title: string;
-  list: string[];
+  itemList: string[];
 }
 
-function HamDropDown({ ...props }: IProps): React.ReactElement {
-  const { title, list } = props;
-  const [opened, setOpened] = useState(false);
-
+function HamDropDown({ title, itemList }: IProps): React.ReactElement {
+  const [isOpened, setIsOpened] = useState(false);
   const learnOpenClickListener = (): void => {
-    setOpened(!opened);
-  };
-  const learnDetailClickListener = (e: any): void => {
-    console.log(e.target.value);
+    setIsOpened(!isOpened);
   };
 
   return (
-    <SHamDropDown>
+    <SHamDropDown isOpened={isOpened}>
       <Button className="title" onClick={learnOpenClickListener}>
         <>
-          <div className="title__label" style={opened ? { fontWeight: 'bold' } : { fontWeight: 'normal' }}>
-            {title}
-          </div>
-          {opened ? <img className="title__icon" src={arrowUp} /> : <img className="title_icon" src={arrowDown} />}
+          <div className="title__label">{title}</div>
+          <img className="title__icon" src={isOpened ? arrowUp : arrowDown} />
         </>
       </Button>
-      {opened && (
+      {isOpened && (
         <div className="detail">
           <div className="detail__container">
             <div className="detail__btnContainer">
-              {list.map((value, id) => {
+              {itemList.map((value, id) => {
                 return (
-                  <Button key={id} className="detail__btn" value={value} onClick={learnDetailClickListener}>
+                  <Button key={id} className="detail__btn" value={value}>
                     {value}
                   </Button>
                 );
               })}
-              <Button className="detail__btn--fake">어쩌구 가려질것</Button>
+              <Button className="detail__btn--fake">_</Button>
             </div>
             <div className="detail__hide"></div>
           </div>
@@ -53,7 +45,7 @@ function HamDropDown({ ...props }: IProps): React.ReactElement {
   );
 }
 
-const SHamDropDown = Styled.div`
+const SHamDropDown = Styled.div<{ isOpened?: boolean }>`
   .title{
     display : flex;
     align-items : center;
@@ -64,6 +56,7 @@ const SHamDropDown = Styled.div`
         line-height: 1.25;
         letter-spacing: normal;
         text-align: left;
+        fontWeight : ${(props) => (props.isOpened ? 'bold' : 'normal')};
         :hover{
           font-weight: bold;
         }
@@ -75,7 +68,6 @@ const SHamDropDown = Styled.div`
         object-fit: contain;
       }
   }
-
   .detail{
     width : 100%;
     display : flex;

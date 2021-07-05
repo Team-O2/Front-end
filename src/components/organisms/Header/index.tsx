@@ -9,27 +9,24 @@ import O2_Logo from '../../../assets/images/header_logo.svg';
 
 function Header(): React.ReactElement {
   const [hamburgerOpen, setHamburgerOpen] = useState(false);
+  const hamburgerOpenClickListener = () => {
+    setHamburgerOpen(!hamburgerOpen);
+  };
 
   return (
-    <>
-      <HeaderWrap>
-        <div className="header_buttons">
-          <Button
-            onClick={() => {
-              setHamburgerOpen(!hamburgerOpen);
-            }}
-          >
-            <img className="button" src={Ham_Logo}></img>
-          </Button>
-          <Button>
-            <img className="button" src={O2_Logo}></img>
-          </Button>
-        </div>
-        <Modal isOpen={hamburgerOpen} setIsOpen={setHamburgerOpen}>
-          <Hamburger />
-        </Modal>
-      </HeaderWrap>
-    </>
+    <HeaderWrap>
+      <div className="header_buttons">
+        <Button onClick={hamburgerOpenClickListener}>
+          <img className="button" src={Ham_Logo}></img>
+        </Button>
+        <Button>
+          <img className="button" src={O2_Logo}></img>
+        </Button>
+      </div>
+      <Modal isOpen={hamburgerOpen} setIsOpen={setHamburgerOpen} isBlur={false}>
+        <Hamburger />
+      </Modal>
+    </HeaderWrap>
   );
 }
 

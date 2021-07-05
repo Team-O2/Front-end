@@ -1,5 +1,4 @@
-import React, { useEffect, useRef } from 'react';
-
+import React from 'react';
 import Styled from 'styled-components';
 
 export interface IProps {
@@ -7,28 +6,40 @@ export interface IProps {
   className?: string;
   isOpen: boolean;
   setIsOpen: (value: boolean) => void;
+  isBlur: boolean; //모달창이 켜졌을때 뒤에 회색으로 처리하는지 (true면 회색처리됨)
 }
 
 function Modal({ ...props }: IProps): React.ReactElement {
-  const { children, isOpen, setIsOpen } = props;
-  const Ref = useRef<HTMLDivElement>(null);
-  const closeHandler = (evt: any): void => {
-    if (isOpen && (!Ref.current || !Ref.current?.contains(evt.target))) {
-      setIsOpen(false);
-    }
+  const { children, isOpen, setIsOpen, isBlur } = props;
+  const closeHandler = (): void => {
+    setIsOpen(false);
   };
 
-  useEffect(() => {
-    window.addEventListener('click', closeHandler);
-    return () => {
-      window.removeEventListener('click', closeHandler);
-    };
-  }, [isOpen]);
-
-  return <>{isOpen && <SModal ref={Ref}>{children}</SModal>}</>;
+  return (
+    <SModal isBlur={isBlur}>
+      {isOpen && (
+        <>
+          <div className="modal__background" onClick={closeHandler}></div>
+          <div className="modal">{children}</div>
+        </>
+      )}
+    </SModal>
+  );
 }
 
-const SModal = Styled.div`
+const SModal = Styled.div<{ isBlur?: boolean }>`
+.modal{
+  z-index : 3;
+  &__background{
+    position : fixed;
+    top : 0;
+    left : 0;
+    width : 100vw;
+    height : 100vh;
+    opacity : ${(props) => (props.isBlur ? 0.3 : undefined)};
+    background-color : ${(props) => (props.isBlur ? 'rgba(0,0,0,0.5)' : undefined)};
+  }
+}
 `;
 
 export default Modal;
