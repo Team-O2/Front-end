@@ -12,18 +12,15 @@ interface MatchParams {
 function ShareTogetherDetail({ match }: RouteComponentProps<MatchParams>): React.ReactElement {
   const { id } = match.params;
   const selectedConcert = mockData.find((el) => el.concertId === id);
-  /*
-  const initialstate = {
-    _id: '',
-    author: '',
-    text:'',
-  }
-  const [commentlist, setCommentList] = useState(initialstate);
+  const [commentlist, setCommentList] = useState(selectedConcert?.comments);
+
   useEffect(() => {
     selectedConcert && setCommentList(selectedConcert.comments);
   }, []);
   console.log(commentlist);
-  */
+  const reLoad = (newComment: any) => {
+    setCommentList(commentlist?.concat(newComment));
+  };
   return (
     <SShareTogetherDetail>
       <ConcertDetailTitle
@@ -32,7 +29,7 @@ function ShareTogetherDetail({ match }: RouteComponentProps<MatchParams>): React
         createdAt={selectedConcert?.createdAt}
         interest={selectedConcert?.interest}
       ></ConcertDetailTitle>
-      <CommentList commentList={selectedConcert?.comments} concertId={selectedConcert?.concertId}></CommentList>
+      <CommentList commentList={commentlist} concertId={selectedConcert?.concertId} reLoad={reLoad}></CommentList>
     </SShareTogetherDetail>
   );
 }
@@ -58,16 +55,15 @@ const mockData = [
     like: 2,
     comments: [
       {
-        _id: 'id',
+        _id: '1',
         author: '작성자 닉넴',
         text: '댓글 내용',
-        reply: [
-          {
-            _id: 'id',
-            author: '작성자 닉넴',
-            text: '댓글 내용',
-          },
-        ],
+      },
+      {
+        _id: '2',
+        parentId: '1',
+        author: '작성자 닉넴',
+        text: '댓글 내용',
       },
     ],
   },
@@ -82,16 +78,15 @@ const mockData = [
     like: 3,
     comments: [
       {
-        _id: 'id',
+        _id: '1',
         author: '작성자 닉넴',
         text: '댓글 내용',
-        reply: [
-          {
-            _id: 'id',
-            author: '작성자 닉넴',
-            text: '댓글 내용',
-          },
-        ],
+      },
+      {
+        _id: '2',
+        parentId: '1',
+        author: '작성자 닉넴',
+        text: '댓글 내용',
       },
     ],
   },
@@ -106,16 +101,15 @@ const mockData = [
     like: 1,
     comments: [
       {
-        _id: 'id',
+        _id: '1',
         author: '작성자 닉넴',
         text: '댓글 내용',
-        reply: [
-          {
-            _id: 'id',
-            author: '작성자 닉넴',
-            text: '댓글 내용',
-          },
-        ],
+      },
+      {
+        _id: '2',
+        parentId: '1',
+        author: '작성자 닉넴',
+        text: '댓글 내용',
       },
     ],
   },
@@ -130,16 +124,15 @@ const mockData = [
     like: 5,
     comments: [
       {
-        _id: 'id',
+        _id: '1',
         author: '작성자 닉넴',
         text: '댓글 내용',
-        reply: [
-          {
-            _id: 'id',
-            author: '작성자 닉넴',
-            text: '댓글 내용',
-          },
-        ],
+      },
+      {
+        _id: '2',
+        parentId: '1',
+        author: '작성자 닉넴',
+        text: '댓글 내용',
       },
     ],
   },
@@ -154,16 +147,15 @@ const mockData = [
     like: 4,
     comments: [
       {
-        _id: 'id',
+        _id: '1',
         author: '작성자 닉넴',
         text: '댓글 내용',
-        reply: [
-          {
-            _id: 'id',
-            author: '작성자 닉넴',
-            text: '댓글 내용',
-          },
-        ],
+      },
+      {
+        _id: '2',
+        parentId: '1',
+        author: '작성자 닉넴',
+        text: '댓글 내용',
       },
     ],
   },
@@ -178,16 +170,15 @@ const mockData = [
     like: 9,
     comments: [
       {
-        _id: 'id',
+        _id: '1',
         author: '작성자 닉넴',
         text: '댓글 내용',
-        reply: [
-          {
-            _id: 'id',
-            author: '작성자 닉넴',
-            text: '댓글 내용',
-          },
-        ],
+      },
+      {
+        _id: '2',
+        parentId: '1',
+        author: '작성자 닉넴',
+        text: '댓글 내용',
       },
     ],
   },
@@ -202,16 +193,15 @@ const mockData = [
     like: 8,
     comments: [
       {
-        _id: 'id',
+        _id: '1',
         author: '작성자 닉넴',
         text: '댓글 내용',
-        reply: [
-          {
-            _id: 'id',
-            author: '작성자 닉넴',
-            text: '댓글 내용',
-          },
-        ],
+      },
+      {
+        _id: '2',
+        parentId: '1',
+        author: '작성자 닉넴',
+        text: '댓글 내용',
       },
     ],
   },
@@ -229,42 +219,28 @@ const mockData = [
         _id: '1',
         author: '깡또아뚜아',
         text: '와 엘모님 어쩜 그렇게 글을 잘 쓰시는거죠? 잘 읽었습니다. 특히 배울 점이 진짜 대박많아요... 그런데 오늘 날씨가 너무 덥네요. 저는 카페에 가서 엘모님 본받아서 써야겠어요.',
-        reply: [
-          {
-            _id: '1',
-            author: '콩나물콩콩',
-            text: '저 지금 콩나물 먹어야 되니까 말 걸지 마세요 코코~!',
-          },
-          {
-            _id: '2',
-            author: '작성자 닉넴',
-            text: '콩나물 마싯냑',
-          },
-        ],
       },
       {
         _id: '2',
         author: '어노잉뚜빈',
         text: '와 엘모님 어쩜 그렇게 글을 잘 쓰시는거죠? 잘 읽었습니다. 특히 배울 점이 진짜 대박많아요... 그런데 오늘 날씨가 너무 덥네요. 저는 카페에 가서 엘모님 본받아서 써야겠어요.',
-        reply: [
-          {
-            _id: '1',
-            author: '작성자 닉넴',
-            text: '댓글 내용',
-          },
-        ],
       },
       {
         _id: '3',
         author: '어노잉뚜빈',
         text: '와 엘모님 어쩜 그렇게 글을 잘 쓰시는거죠? 잘 읽었습니다. 특히 배울 점이 진짜 대박많아요... 그런데 오늘 날씨가 너무 덥네요. 저는 카페에 가서 엘모님 본받아서 써야겠어요.',
-        reply: [
-          {
-            _id: '1',
-            author: '작성자 닉넴',
-            text: '댓글 내용',
-          },
-        ],
+      },
+      {
+        _id: '4',
+        parentId: '1',
+        author: '콩나물콩콩',
+        text: '저 지금 콩나물 먹어야 되니까 말 걸지 마세요 코코~!',
+      },
+      {
+        _id: '5',
+        parentId: '1',
+        author: '작성자 닉넴',
+        text: '콩나물 마싯냑',
       },
     ],
   },
