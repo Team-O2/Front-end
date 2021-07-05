@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { RouteComponentProps } from 'react-router';
 import test from '../../assets/images/test.svg';
 import Styled from 'styled-components';
@@ -8,10 +8,22 @@ import CommentList from 'components/organisms/CommentList';
 interface MatchParams {
   id: string;
 }
+
 function ShareTogetherDetail({ match }: RouteComponentProps<MatchParams>): React.ReactElement {
   const { id } = match.params;
   const selectedConcert = mockData.find((el) => el.concertId === id);
-
+  /*
+  const initialstate = {
+    _id: '',
+    author: '',
+    text:'',
+  }
+  const [commentlist, setCommentList] = useState(initialstate);
+  useEffect(() => {
+    selectedConcert && setCommentList(selectedConcert.comments);
+  }, []);
+  console.log(commentlist);
+  */
   return (
     <SShareTogetherDetail>
       <ConcertDetailTitle
@@ -20,7 +32,7 @@ function ShareTogetherDetail({ match }: RouteComponentProps<MatchParams>): React
         createdAt={selectedConcert?.createdAt}
         interest={selectedConcert?.interest}
       ></ConcertDetailTitle>
-      <CommentList selectedConcert={selectedConcert}></CommentList>
+      <CommentList commentList={selectedConcert?.comments} concertId={selectedConcert?.concertId}></CommentList>
     </SShareTogetherDetail>
   );
 }
