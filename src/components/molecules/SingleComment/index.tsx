@@ -4,16 +4,13 @@ import CommentWrite from '../CommentWrite';
 import Profile from 'assets/images/Profile.svg';
 
 interface IProps {
+  _id?: string;
+  parentId?: string;
   author: string;
   text: string;
-  reply: {
-    _id: string;
-    author: string;
-    text: string;
-  }[];
 }
 
-function SingleComment({ author, text, reply }: IProps): React.ReactElement {
+function SingleComment({ author, text }: IProps): React.ReactElement {
   const [openReply, setOpenReply] = useState(false);
   const [commentValue, setCommentValue] = useState('');
 

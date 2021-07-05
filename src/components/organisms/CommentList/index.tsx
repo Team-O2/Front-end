@@ -4,21 +4,19 @@ import CommentWrite from 'components/molecules/CommentWrite';
 import SingleComment from 'components/molecules/SingleComment';
 
 interface IData {
-  _id: string;
+  _id?: string;
+  parentId?: string;
   author: string;
   text: string;
-  reply: {
-    _id: string;
-    author: string;
-    text: string;
-  }[];
 }
+
 interface IProps {
   commentList: Array<IData> | undefined;
   concertId: string | undefined;
+  reLoad: (newComment: IData) => void;
 }
 
-function CommentList({ commentList, concertId }: IProps): React.ReactElement {
+function CommentList({ commentList, concertId, reLoad }: IProps): React.ReactElement {
   const [commentValue, setCommentValue] = useState('');
   const handleChange = (event: React.ChangeEvent<HTMLTextAreaElement>) => {
     setCommentValue(event.currentTarget.value);
@@ -37,11 +35,21 @@ function CommentList({ commentList, concertId }: IProps): React.ReactElement {
     .then(response =>{
         if(response.data.success){
            console.log(response.data.result)
+           reLoad(response.data.result)
         }else{
             alert('FAIL')
         }
     })
     */
+    const commentListLength = commentList?.length;
+    const nextId = String(commentListLength && commentListLength + 1);
+    const variables = {
+      _id: nextId,
+      author: '깡또아뚜아',
+      text: commentValue,
+    };
+    reLoad(variables);
+    setCommentValue('');
   };
   return (
     <SCommentList>
@@ -54,9 +62,17 @@ function CommentList({ commentList, concertId }: IProps): React.ReactElement {
         onSubmit={onSubmit}
       ></CommentWrite>
       {commentList &&
-        commentList.map((data: IData) => (
-          <SingleComment key={data._id} author={data.author} text={data.text} reply={data.reply}></SingleComment>
-        ))}
+        commentList.map(
+          (data: IData) =>
+            !data.parentId && (
+              <SingleComment
+                key={data._id}
+                parentId={data?.parentId}
+                author={data.author}
+                text={data.text}
+              ></SingleComment>
+            ),
+        )}
     </SCommentList>
   );
 }
