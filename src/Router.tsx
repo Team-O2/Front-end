@@ -2,10 +2,8 @@ import React from 'react';
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
 import Home from './pages/Home/index';
 import Login from './pages/Login/index';
-
-import ShareTogether from './pages/ShareTogether/index';
 import ShareTogether from 'pages/ShareTogether/index';
-import ShareTogetherDetail from 'pages/ShareTogetherDetail';
+import ShareTogetherDetail from 'pages/ShareTogetherDetail/index';
 function Router(): React.ReactElement {
   return (
     <BrowserRouter>
