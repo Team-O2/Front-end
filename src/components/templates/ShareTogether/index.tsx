@@ -1,8 +1,9 @@
 import React from 'react';
 import Styled from 'styled-components';
+import ConcertTitle from '../../molecules/ConcertTitle';
+import SeachForm from '../../organisms/SearchForm';
 import ConcertCardList from '../../organisms/ConcertCardList';
 import ConcertList from '../../organisms/ConcertList';
-import SeachForm from '../../organisms/SearchForm';
 
 interface IData {
   concertId: string;
@@ -27,6 +28,7 @@ function ShareTogether({ concerts }: IProps): React.ReactElement {
 
   return (
     <SShareTogether>
+      <ConcertTitle></ConcertTitle>
       <SeachForm></SeachForm>
       <ConcertCardList concertCardData={concertCardData} />
       <ConcertList concertData={concertData}></ConcertList>
