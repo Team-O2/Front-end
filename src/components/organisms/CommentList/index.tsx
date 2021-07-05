@@ -28,6 +28,17 @@ interface IProps {
     | undefined;
 }
 
+interface IComment {
+  _id: string;
+  author: string;
+  text: string;
+  reply: {
+    _id: string;
+    author: string;
+    text: string;
+  }[];
+}
+
 function CommentList({ selectedConcert }: IProps): React.ReactElement {
   const [commentValue, setCommentValue] = useState('');
   const handleChange = (event: React.ChangeEvent<HTMLTextAreaElement>) => {
@@ -62,7 +73,7 @@ function CommentList({ selectedConcert }: IProps): React.ReactElement {
         onClick={onSubmit}
       ></CommentWrite>
       {selectedConcert &&
-        selectedConcert.comments.map((data: any) => (
+        selectedConcert.comments.map((data: IComment) => (
           <SingleComment key={data._id} author={data.author} text={data.text} reply={data.reply}></SingleComment>
         ))}
     </SCommentList>
