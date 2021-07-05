@@ -15,10 +15,33 @@ interface IProps {
 
 function SingleComment({ author, text, reply }: IProps): React.ReactElement {
   const [openReply, setOpenReply] = useState(false);
+  const [commentValue, setCommentValue] = useState('');
 
   const onClickReplyOpen = () => {
     setOpenReply(!openReply);
   };
+  const handleChange = (event: React.ChangeEvent<HTMLTextAreaElement>) => {
+    setCommentValue(event?.currentTarget.value);
+  };
+  const onSubmit = (event: React.FormEvent<HTMLFormElement>) => {
+    event.preventDefault();
+  };
+  /*
+    FIX ME : 코드 수정 후 서버연결 필요
+    const variables = {
+      author: 로그인한 유저,
+      text: commentValue,
+      parentId: 부모 댓글 아이디,
+    }
+    Axios.post('api/concert/comment',variables)
+    .then(response =>{
+        if(response.data.success){
+           console.log(response.data.result)
+        }else{
+            alert('FAIL')
+        }
+    })
+    */
   return (
     <SSingleComment>
       <div className="comment">
@@ -29,7 +52,17 @@ function SingleComment({ author, text, reply }: IProps): React.ReactElement {
           {openReply ? '접기' : '답글보기'}
         </div>
       </div>
-      <div className="reply">{openReply && <CommentWrite isComment={false}></CommentWrite>}</div>
+      <div className="reply">
+        {openReply && (
+          <CommentWrite
+            value={commentValue}
+            onChange={handleChange}
+            onClick={onSubmit}
+            onSubmit={onSubmit}
+            isComment={false}
+          ></CommentWrite>
+        )}
+      </div>
     </SSingleComment>
   );
 }

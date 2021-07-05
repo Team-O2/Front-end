@@ -9,29 +9,33 @@ export interface IProps {
   isCommentt?: boolean;
   onChange?: (e: React.ChangeEvent<HTMLTextAreaElement>) => void;
   onClick?: (event: any) => void;
+  onSubmit?: (event: React.FormEvent<HTMLFormElement>) => void;
 }
 
-function CommentWrite({ className, value, isComment, onChange, onClick }: IProps): React.ReactElement {
+function CommentWrite({ className, value, isComment, onChange, onClick, onSubmit }: IProps): React.ReactElement {
   return (
     <SCommentWrite isCommentt={isComment} className={className}>
-      <TextArea
-        className="input"
-        name="comment"
-        onChange={onChange}
-        value={value}
-        placeholder=" | 댓글을 입력해 주세요"
-      ></TextArea>
-      <p onClick={onClick} className="button">
-        {isComment ? '댓글 작성' : '답글 작성'}
-      </p>
+      <form className="form" onSubmit={onSubmit}>
+        <TextArea
+          className="input"
+          name="comment"
+          onChange={onChange}
+          value={value}
+          placeholder=" | 댓글을 입력해 주세요"
+        ></TextArea>
+        <p onClick={onClick} className="button">
+          {isComment ? '댓글 작성' : '답글 작성'}
+        </p>
+      </form>
     </SCommentWrite>
   );
 }
 
 const SCommentWrite = Styled.div`
-  display: flex;
-  flex-direction: column;
-  font-family: 'AppleSDGothicNeo';
+  .form{
+    display: flex;
+    flex-direction: column;
+    font-family: 'AppleSDGothicNeo';
   .input {
     width: ${({ isCommentt }: IProps) => (isCommentt ? undefined : '713px')};
     height: ${({ isCommentt }: IProps) => (isCommentt ? '110px' : '53px')};
@@ -52,6 +56,8 @@ const SCommentWrite = Styled.div`
       opacity: 70%;
     }
   }
+  }
+  
 `;
 
 export default CommentWrite;
