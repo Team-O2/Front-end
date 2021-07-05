@@ -2,15 +2,13 @@ import React from 'react';
 import Styled from 'styled-components';
 
 interface IProps {
-  //speaker: string;
-  //interest?: string[];
-  //createdAt?: string;
-  //title?: string;
-  selectedConcert: any;
+  speaker?: string;
+  interest?: string[];
+  createdAt?: string;
+  title?: string;
 }
 
-function ConcertDetailTitle({ selectedConcert }: IProps): React.ReactElement {
-  const { title, speaker, createdAt, interest } = selectedConcert;
+function ConcertDetailTitle({ title, speaker, createdAt, interest }: IProps): React.ReactElement {
   return (
     <>
       <SConcertDetailTitle>

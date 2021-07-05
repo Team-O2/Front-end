@@ -14,7 +14,12 @@ function ShareTogetherDetail({ match }: RouteComponentProps<MatchParams>): React
 
   return (
     <SShareTogetherDetail>
-      <ConcertDetailTitle selectedConcert={selectedConcert}></ConcertDetailTitle>
+      <ConcertDetailTitle
+        title={selectedConcert?.title}
+        speaker={selectedConcert?.speaker}
+        createdAt={selectedConcert?.createdAt}
+        interest={selectedConcert?.interest}
+      ></ConcertDetailTitle>
       <CommentList selectedConcert={selectedConcert}></CommentList>
     </SShareTogetherDetail>
   );
