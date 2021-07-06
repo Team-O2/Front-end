@@ -14,23 +14,30 @@ function Header(): React.ReactElement {
   };
 
   return (
-    <HeaderWrap>
-      <div className="header_buttons">
-        <Button onClick={hamburgerOpenClickListener}>
-          <img className="button" src={Ham_Logo}></img>
-        </Button>
-        <Button>
-          <img className="button" src={O2_Logo}></img>
-        </Button>
-      </div>
-      <Modal isOpen={hamburgerOpen} setIsOpen={setHamburgerOpen} isBlur={false}>
-        <Hamburger />
-      </Modal>
-    </HeaderWrap>
+    <>
+      <HeaderWrap>
+        <div className="header_buttons">
+          <Button onClick={hamburgerOpenClickListener}>
+            <img className="button" src={Ham_Logo}></img>
+          </Button>
+          <Button>
+            <img className="button" src={O2_Logo}></img>
+          </Button>
+        </div>
+        <Modal isOpen={hamburgerOpen} setIsOpen={setHamburgerOpen} isBlur={false}>
+          <Hamburger />
+        </Modal>
+      </HeaderWrap>
+      <HideWrap></HideWrap>
+    </>
   );
 }
 
 const HeaderWrap = Styled.div`
+  position: fixed;
+  top:0;
+  left:0;
+  z-index:999;
     height : 80px;
     width : 100vw;
     background-color : #242424;
@@ -43,6 +50,11 @@ const HeaderWrap = Styled.div`
     .button{
         width : 32px;
     }  
+`;
+
+const HideWrap = Styled.div`
+  height : 80px;
+  width : 100vw;
 `;
 
 export default Header;
