@@ -1,11 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import Styled from 'styled-components';
-
 import Input from 'components/atoms/Input';
 import Label from 'components/atoms/Label';
 import DropDown from 'components/molecules/DropDown';
 import JoinCheck from 'components/molecules/JoinCheck';
-
 import JoinErr from 'assets/images/joinInputErrIcon.svg';
 
 interface userDataType {
@@ -36,6 +34,7 @@ export interface IProps {
   setUserData: (value: userDataType) => void;
   setIsConditionMet: (value: conditionMet) => void;
 }
+
 const conditionMetStyle = {
   border: 'double 1px transparent',
   backgroundImage: 'linear-gradient(white, white), linear-gradient(to right, #36c8f5,#13e2dd)',
@@ -50,6 +49,7 @@ const defaultStyle = {
 };
 
 function Joinform({ ...props }: IProps): React.ReactElement {
+  const [gender, setGender] = useState('선택안함');
   const { isConditionMet, userData, setUserData, setIsConditionMet } = props;
   const [isFocused, setIsFocused] = useState({
     email: false,
@@ -57,7 +57,11 @@ function Joinform({ ...props }: IProps): React.ReactElement {
     passwordCheck: false,
     nickname: false,
   });
+  useEffect(() => {
+    setUserData({ ...userData, gender: gender });
+  }, [gender]);
 
+  //입력값이 달라질때마다 조건 충족여부 파악하는 useEffect
   useEffect(() => {
     if (userData.email.includes('@')) {
       setIsConditionMet({ ...isConditionMet, email: true });
@@ -65,7 +69,6 @@ function Joinform({ ...props }: IProps): React.ReactElement {
       setIsConditionMet({ ...isConditionMet, email: false });
     }
   }, [userData.email]);
-
   useEffect(() => {
     if (userData.password.match(/([a-zA-Z0-9].*[!,@,#,$,%,^,&,*,?,_,~,-])|([!,@,#,$,%,^,&,*,?,_,~,-].*[a-zA-Z0-9])/)) {
       setIsConditionMet({ ...isConditionMet, password: true });
@@ -80,7 +83,6 @@ function Joinform({ ...props }: IProps): React.ReactElement {
       setIsConditionMet({ ...isConditionMet, passwordCheck: false });
     }
   }, [userData.passwordCheck]);
-
   useEffect(() => {
     const check = /^[ㄱ-ㅎ|가-힣|0-9|.,_,]+$/;
     if (!check.test(userData.nickname)) {
@@ -214,7 +216,13 @@ function Joinform({ ...props }: IProps): React.ReactElement {
         <div className="join__exp--error">닉네임에는 한글, 숫자, 밑줄 및 마침표만 사용할 수 있습니다</div>
       )}
       <Label className="join_subtitle" name="성별" />
-      <DropDown className="join_dropdown" setUserData={setUserData} userData={userData} />
+      <DropDown
+        className="join_dropdown"
+        state={gender}
+        setState={setGender}
+        defaultMsg="성별 선택"
+        itemList={['남성', '여성', '선택안함']}
+      />
       <Label className="join_subtitle" name="약관동의" />
       <JoinCheck setUserData={setUserData} userData={userData} />
     </JoinformWrap>
