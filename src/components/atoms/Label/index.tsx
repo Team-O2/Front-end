@@ -2,12 +2,13 @@ import React from 'react';
 import Styled from 'styled-components';
 
 export interface IProps {
-  name: string;
+  children: React.ReactElement | string;
   className?: string;
+  for?: string;
 }
 
-function Label({ name, ...props }: IProps): React.ReactElement {
-  return <SLabel {...props}>{name}</SLabel>;
+function Label({ children, ...props }: IProps): React.ReactElement {
+  return <SLabel {...props}>{children}</SLabel>;
 }
 
 const SLabel = Styled.p`
