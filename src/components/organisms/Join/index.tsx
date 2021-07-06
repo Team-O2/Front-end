@@ -1,6 +1,6 @@
-import React, { useContext, useState, useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import Styled from 'styled-components';
-import Joinform from '../../molecules/Joinform/index';
+import Joinform from 'components/molecules/Joinform';
 import Label from 'components/atoms/Label';
 import Button from 'components/atoms/Button';
 import Modal from 'components/atoms/Modal';
@@ -46,7 +46,7 @@ const selectedStyleList = [
 
 function CJoin(): React.ReactElement {
   const [isButtonDisabled, setIsButtonDisabled] = useState(true);
-  const [isInterestModalOpen, setIsInterestModalOpen] = useState(true);
+  const [isInterestModalOpen, setIsInterestModalOpen] = useState(false);
   const [isConditionMet, setIsConditionMet] = useState({
     email: false,
     password: false,
@@ -67,10 +67,29 @@ function CJoin(): React.ReactElement {
     policyMust: false,
   });
   const [selectedInterest, setSelectedInterest] = useState<string[]>([]);
-
-  useEffect(() => {
-    console.log(userData);
-  }, [userData]);
+  const modalInterestHandler = (interest: string) => {
+    if (selectedInterest.length === 0) {
+      setSelectedInterest([interest]);
+    }
+    if (selectedInterest.length < 5) {
+      if (!selectedInterest.includes(interest)) {
+        setSelectedInterest([...selectedInterest, interest]);
+      } else {
+        setSelectedInterest(selectedInterest.filter((v) => v !== interest));
+      }
+    } else {
+      if (selectedInterest.includes(interest)) {
+        setSelectedInterest(selectedInterest.filter((v) => v !== interest));
+      }
+    }
+  };
+  const modalBtnHandler = () => {
+    setUserData({ ...userData, interest: selectedInterest });
+    setIsInterestModalOpen(false);
+  };
+  const joinBtnHandler = () => {
+    setIsInterestModalOpen(true);
+  };
 
   useEffect(() => {
     if (
@@ -88,22 +107,15 @@ function CJoin(): React.ReactElement {
   }, [isConditionMet]);
 
   return (
-    <JoinWrap>
-      <Label className="join_label" name="회원가입"></Label>
+    <JoinWrap isButtonDisabled={isButtonDisabled} selectedInterest={selectedInterest}>
+      <Label className="join__label" name="회원가입"></Label>
       <Joinform
         setIsConditionMet={setIsConditionMet}
         isConditionMet={isConditionMet}
         userData={userData}
         setUserData={setUserData}
       />
-      <Button
-        className="join_button"
-        disabled={isButtonDisabled}
-        style={!isButtonDisabled ? { backgroundImage: 'linear-gradient(to right, #36c8f5,#13e2dd )' } : {}}
-        onClick={() => {
-          setIsInterestModalOpen(true);
-        }}
-      >
+      <Button className="join__button--fin" disabled={isButtonDisabled} onClick={joinBtnHandler}>
         가입 완료
       </Button>
       <Modal isOpen={isInterestModalOpen} setIsOpen={setIsInterestModalOpen} isBlur={true}>
@@ -115,24 +127,11 @@ function CJoin(): React.ReactElement {
                 <Button
                   className="interestModal__button--interest"
                   key={id}
-                  value={interest}
                   onClick={() => {
-                    if (selectedInterest.length === 0) {
-                      setSelectedInterest([interest]);
-                    }
-                    if (selectedInterest.length < 5) {
-                      if (!selectedInterest.includes(interest)) {
-                        setSelectedInterest([...selectedInterest, interest]);
-                      } else {
-                        setSelectedInterest(selectedInterest.filter((v) => v !== interest));
-                      }
-                    } else {
-                      if (selectedInterest.includes(interest)) {
-                        setSelectedInterest(selectedInterest.filter((v) => v !== interest));
-                      }
-                    }
+                    modalInterestHandler(interest);
                   }}
                   style={
+                    //이부분 styled-component로 빼는방법 모르겠음
                     interest == selectedInterest[0]
                       ? selectedStyleList[0]
                       : interest == selectedInterest[1]
@@ -154,11 +153,7 @@ function CJoin(): React.ReactElement {
           <Button
             className="interestModal__button--fin"
             disabled={selectedInterest.length > 0 ? false : true}
-            style={selectedInterest.length > 0 ? { backgroundColor: '#0d0d0d' } : { backgroundColor: '#dfdfdf' }}
-            onClick={() => {
-              setUserData({ ...userData, interest: selectedInterest });
-              setIsInterestModalOpen(false);
-            }}
+            onClick={modalBtnHandler}
           >
             <div>확인 ({selectedInterest.length}/5)</div>
           </Button>
@@ -168,25 +163,27 @@ function CJoin(): React.ReactElement {
   );
 }
 
-const JoinWrap = Styled.div`
+const JoinWrap = Styled.div<{ isButtonDisabled?: boolean; selectedInterest: string[] }>`
   display : flex;
   flex-direction : column;
   align-items : center;
   .join{
-    &_label{
+    &__label{
       font-size: 40px;
       font-weight: bold;
       margin-bottom : 20px;
     }
-    &_button{
+    &__button--fin{
       width: 406px;
       height: 60px;
-      background-color : #dfdfdf;
       border-radius: 4px;
       font-size : 16px;
       font-weight : bold;     
       color : #ffffff; 
       margin-top : 60px;
+      background-color : ${(props) => (props.isButtonDisabled ? '#dfdfdf' : undefined)};
+      background-image : ${(props) =>
+        !props.isButtonDisabled ? 'linear-gradient(to right, #36c8f5,#13e2dd )' : undefined};
     }
   }
   .interestModal{
@@ -241,6 +238,7 @@ const JoinWrap = Styled.div`
         letter-spacing: -0.5px;
         color : #ffffff;
         margin-top : 38px;
+        background-color : ${(props) => (props.selectedInterest.length > 0 ? '#0d0d0d' : '#dfdfdf')};
       }
     }
     &__btnContainer{
