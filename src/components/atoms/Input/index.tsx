@@ -10,8 +10,12 @@ export interface IProps {
   defaultValue?: string;
   placeholder?: string;
   autoComplete?: string;
+  type?: string;
   onChange?: (e: React.ChangeEvent<HTMLInputElement>) => void;
   onFocusOut?: (e: React.FocusEvent<HTMLInputElement>) => void;
+  onBlur?: (e: React.FocusEvent<HTMLInputElement>) => void;
+  onFocus?: (e: React.FocusEvent<HTMLInputElement>) => void;
+  onKeyUp?: (e: React.KeyboardEvent<Element>) => void;
 }
 
 function Input({ name, autoComplete = 'off', ...props }: IProps): React.ReactElement {
