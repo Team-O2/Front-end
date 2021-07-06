@@ -6,6 +6,7 @@ export interface IProps {
   children: string | React.ReactElement;
   to: string;
   replace?: boolean;
+  className?: string;
 }
 
 function Link({ children, to, ...props }: IProps): React.ReactElement {
