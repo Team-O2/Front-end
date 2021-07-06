@@ -3,6 +3,7 @@ import { RouteComponentProps } from 'react-router';
 import test from '../../assets/images/test.svg';
 import Styled from 'styled-components';
 import DetailTitle from 'components/molecules/DetailTitle';
+import DetailContent from 'components/organisms/DetailContent';
 import CommentList from 'components/organisms/CommentList';
 
 interface MatchParams {
@@ -29,6 +30,14 @@ function ShareTogetherDetail({ match }: RouteComponentProps<MatchParams>): React
         createdAt={selectedConcert?.createdAt}
         interest={selectedConcert?.interest}
       ></DetailTitle>
+      <DetailContent
+        image={selectedConcert?.image}
+        desc={selectedConcert?.desc}
+        hashtag={selectedConcert?.hashtag}
+        like={selectedConcert?.like}
+        comments={selectedConcert?.comments.length}
+        scrap={selectedConcert?.scrap}
+      ></DetailContent>
       <CommentList commentList={commentlist} concertId={selectedConcert?.concertId} reLoad={reLoad}></CommentList>
     </SShareTogetherDetail>
   );
@@ -66,6 +75,8 @@ const mockData = [
         text: '댓글 내용',
       },
     ],
+    hashtag: ['#해시태그', '#오투 사랑해'],
+    scrap: 5,
   },
   {
     concertId: '2',
@@ -89,6 +100,8 @@ const mockData = [
         text: '댓글 내용',
       },
     ],
+    hashtag: ['#해시태그', '#오투 사랑해'],
+    scrap: 5,
   },
   {
     concertId: '3',
@@ -112,6 +125,8 @@ const mockData = [
         text: '댓글 내용',
       },
     ],
+    hashtag: ['#해시태그', '#오투 사랑해'],
+    scrap: 5,
   },
   {
     concertId: '4',
@@ -135,6 +150,8 @@ const mockData = [
         text: '댓글 내용',
       },
     ],
+    hashtag: ['#해시태그', '#오투 사랑해'],
+    scrap: 5,
   },
   {
     concertId: '5',
@@ -158,6 +175,8 @@ const mockData = [
         text: '댓글 내용',
       },
     ],
+    hashtag: ['#해시태그', '#오투 사랑해'],
+    scrap: 5,
   },
   {
     concertId: '6',
@@ -181,6 +200,8 @@ const mockData = [
         text: '댓글 내용',
       },
     ],
+    hashtag: ['#해시태그', '#오투 사랑해'],
+    scrap: 5,
   },
   {
     concertId: '7',
@@ -204,6 +225,8 @@ const mockData = [
         text: '댓글 내용',
       },
     ],
+    hashtag: ['#해시태그', '#오투 사랑해'],
+    scrap: 5,
   },
   {
     concertId: '8',
@@ -212,7 +235,7 @@ const mockData = [
     interest: ['그래픽 및 디자인'],
     createdAt: '2021-07-01',
     title: '노동으로 히트친 그 사람, 드디어 만나보다 엘모의 내적',
-    desc: '평소 컨텐츠 영감을 얻기 위해서 많은 커뮤니티나 오픈카톡방을 눈팅하고는 한다. 그러다가도 괜한 오지랖에 조언을 하고는 하는데, 영상에 등장하신 참치님(오픈카톡방 닉네임)은 그렇게 만난분들 중 하...',
+    desc: '평소 컨텐츠 영감을 얻기 위해서 많은 커뮤니티나 오픈카톡방을 눈팅하고는 한다. 그러다가도 괜한 오지랖에 조언을 하고는 하는데, 영상에 등장하신 참치님(오픈카톡방 닉네임)은 그렇게 만난분들 중 하...평소 컨텐츠 영감을 얻기 위해서 많은 커뮤니티나 오픈카톡방을 눈팅하고는 한다. 그러다가도 괜한 오지랖에 조언을 하고는 하는데, 영상에 등장하신 참치님(오픈카톡방 닉네임)은 그렇게 만난분들 중 하...평소 컨텐츠 영감을 얻기 위해서 많은 커뮤니티나 오픈카톡방을 눈팅하고는 한다. 그러다가도 괜한 오지랖에 조언을 하고는 하는데, 영상에 등장하신 참치님(오픈카톡방 닉네임)은 그렇게 만난분들 중 하...평소 컨텐츠 영감을 얻기 위해서 많은 커뮤니티나 오픈카톡방을 눈팅하고는 한다. 그러다가도 괜한 오지랖에 조언을 하고는 하는데, 영상에 등장하신 참치님(오픈카톡방 닉네임)은 그렇게 만난분들 중 하...평소 컨텐츠 영감을 얻기 위해서 많은 커뮤니티나 오픈카톡방을 눈팅하고는 한다. 그러다가도 괜한 오지랖에 조언을 하고는 하는데, 영상에 등장하신 참치님(오픈카톡방 닉네임)은 그렇게 만난분들 중 하...평소 컨텐츠 영감을 얻기 위해서 많은 커뮤니티나 오픈카톡방을 눈팅하고는 한다. 그러다가도 괜한 오지랖에 조언을 하고는 하는데, 영상에 등장하신 참치님(오픈카톡방 닉네임)은 그렇게 만난분들 중 하...평소 컨텐츠 영감을 얻기 위해서 많은 커뮤니티나 오픈카톡방을 눈팅하고는 한다. 그러다가도 괜한 오지랖에 조언을 하고는 하는데, 영상에 등장하신 참치님(오픈카톡방 닉네임)은 그렇게 만난분들 중 하...평소 컨텐츠 영감을 얻기 위해서 많은 커뮤니티나 오픈카톡방을 눈팅하고는 한다. 그러다가도 괜한 오지랖에 조언을 하고는 하는데, 영상에 등장하신 참치님(오픈카톡방 닉네임)은 그렇게 만난분들 중 하...평소 컨텐츠 영감을 얻기 위해서 많은 커뮤니티나 오픈카톡방을 눈팅하고는 한다. 그러다가도 괜한 오지랖에 조언을 하고는 하는데, 영상에 등장하신 참치님(오픈카톡방 닉네임)은 그렇게 만난분들 중 하...v평소 컨텐츠 영감을 얻기 위해서 많은 커뮤니티나 오픈카톡방을 눈팅하고는 한다. 그러다가도 괜한 오지랖에 조언을 하고는 하는데, 영상에 등장하신 참치님(오픈카톡방 닉네임)은 그렇게 만난분들 중 하...',
     like: 7,
     comments: [
       {
@@ -243,5 +266,16 @@ const mockData = [
         text: '콩나물 마싯냑',
       },
     ],
+    hashtag: [
+      '#해시태그',
+      '#오투 사랑해',
+      '#해시태그',
+      '#오투 사랑해',
+      '#해시태그',
+      '#오투 사랑해',
+      '#해시태그',
+      '#오투 사랑해',
+    ],
+    scrap: 5,
   },
 ];
