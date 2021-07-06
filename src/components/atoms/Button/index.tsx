@@ -6,6 +6,7 @@ export interface IProps {
   onClick?: (e: React.MouseEvent<HTMLElement, MouseEvent>) => void;
   className?: string;
   value?: string;
+  disabled?: boolean;
 }
 
 function Button({ children, ...props }: IProps): React.ReactElement {
@@ -15,6 +16,7 @@ function Button({ children, ...props }: IProps): React.ReactElement {
 const SButton = Styled.button`
     background : none;
     border : none;
+    padding : 0;
     :focus {
       outline : none;
     }

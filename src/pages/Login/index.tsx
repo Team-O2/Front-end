@@ -1,6 +1,5 @@
 import React from 'react';
-
-import Header from '../../components/organisms/Header/index';
+import Header from 'components/organisms/Header';
 
 function Login(): React.ReactElement {
   return (
