@@ -3,7 +3,6 @@ import Styled from 'styled-components';
 import Button from 'components/atoms/Button';
 import CheckBox from 'components/atoms/CheckBox';
 import Modal from 'components/atoms/Modal';
-
 import checkOff from 'assets/images/check_off.svg';
 import checkOn from 'assets/images/check_on.svg';
 import checkall_off from 'assets/images/checkall_off.svg';
@@ -33,9 +32,8 @@ function JoinCheck({ ...props }: IProps): React.ReactElement {
   const [check1, setCheck1] = useState(false);
   const [check2, setCheck2] = useState(false);
   const [check3, setCheck3] = useState(false);
-  const [policyOpen, setPolicyOpen] = useState(false);
-
-  const checkAllHandler = (e: React.ChangeEvent<HTMLInputElement>): any => {
+  const [isPolicyOpen, setIsPolicyOpen] = useState(false);
+  const checkAllHandler = (): void => {
     if (!checkAll) {
       setCheckAll(true);
       setCheck1(true);
@@ -49,6 +47,24 @@ function JoinCheck({ ...props }: IProps): React.ReactElement {
       setCheck3(false);
     }
   };
+  const checkHandler = (e: React.ChangeEvent<HTMLInputElement>): void => {
+    switch (e.target.name) {
+      case 'policy1':
+        setCheck1(!check1);
+        break;
+      case 'policy2':
+        setCheck2(!check2);
+        break;
+
+      case 'policy3':
+        setCheck3(!check3);
+        break;
+    }
+  };
+  const modalHandler = (): void => {
+    setIsPolicyOpen(!isPolicyOpen);
+  };
+
   useEffect(() => {
     setUserData({ ...userData, marpolicy: check3 });
   }, [check3]);
@@ -61,32 +77,14 @@ function JoinCheck({ ...props }: IProps): React.ReactElement {
     }
   }, [check1, check2]);
 
-  const checkHandler = (e: React.ChangeEvent<HTMLInputElement>): any => {
-    switch (e.target.name) {
-      case 'policy1':
-        setCheck1(!check1);
-        break;
-
-      case 'policy2':
-        setCheck2(!check2);
-        break;
-
-      case 'policy3':
-        setCheck3(!check3);
-        break;
-    }
-  };
-
-  const modalHandler = (e: React.MouseEvent): any => {
-    console.log();
-    setPolicyOpen(!policyOpen);
-  };
   interface Policy {
     title: string;
     content: string;
   }
   const policyList: Policy[] = [
     {
+      //리스트 인덱스에 따라 내용다르게,
+      //content 꾸미는건 내용 확정돼서 나오면 그때 수정할 것
       title: '서비스 이용약관',
       content: `*제1조(목적)
 
@@ -108,7 +106,6 @@ function JoinCheck({ ...props }: IProps): React.ReactElement {
     `,
     },
   ];
-  // console.log(policyList[0].content);
 
   return (
     <JoinCheckWrap>
@@ -162,11 +159,11 @@ function JoinCheck({ ...props }: IProps): React.ReactElement {
           </Button>
         </div>
       </div>
-      <Modal isOpen={policyOpen} setIsOpen={setPolicyOpen} isBlur={true}>
+      <Modal isOpen={isPolicyOpen} setIsOpen={setIsPolicyOpen} isBlur={true}>
         <div className="modal__container">
           <Button
             onClick={() => {
-              setPolicyOpen(false);
+              setIsPolicyOpen(false);
             }}
           >
             <img className="modal__button--close" src={modalClose}></img>
