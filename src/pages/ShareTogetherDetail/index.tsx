@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { RouteComponentProps } from 'react-router';
 import test from '../../assets/images/test.svg';
 import Styled from 'styled-components';
-import ConcertDetailTitle from 'components/molecules/ConcertDetailTitle';
+import DetailTitle from 'components/molecules/DetailTitle';
 import CommentList from 'components/organisms/CommentList';
 
 interface MatchParams {
@@ -23,12 +23,12 @@ function ShareTogetherDetail({ match }: RouteComponentProps<MatchParams>): React
   };
   return (
     <SShareTogetherDetail>
-      <ConcertDetailTitle
+      <DetailTitle
         title={selectedConcert?.title}
         speaker={selectedConcert?.speaker}
         createdAt={selectedConcert?.createdAt}
         interest={selectedConcert?.interest}
-      ></ConcertDetailTitle>
+      ></DetailTitle>
       <CommentList commentList={commentlist} concertId={selectedConcert?.concertId} reLoad={reLoad}></CommentList>
     </SShareTogetherDetail>
   );

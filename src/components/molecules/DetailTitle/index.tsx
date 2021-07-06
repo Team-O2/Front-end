@@ -8,10 +8,10 @@ interface IProps {
   title?: string;
 }
 
-function ConcertDetailTitle({ title, speaker, createdAt, interest }: IProps): React.ReactElement {
+function DetailTitle({ title, speaker, createdAt, interest }: IProps): React.ReactElement {
   return (
     <>
-      <SConcertDetailTitle>
+      <SDetailTitle>
         <div className="title__top">
           <p>Share Together</p>
         </div>
@@ -23,12 +23,12 @@ function ConcertDetailTitle({ title, speaker, createdAt, interest }: IProps): Re
           <p>{createdAt}</p>
           <p>{interest}</p>
         </div>
-      </SConcertDetailTitle>
+      </SDetailTitle>
     </>
   );
 }
 
-const SConcertDetailTitle = Styled.div`
+const SDetailTitle = Styled.div`
   display: flex;
   flex-direction: column;
   height: 164px;
@@ -77,4 +77,4 @@ const SConcertDetailTitle = Styled.div`
 
 `;
 
-export default ConcertDetailTitle;
+export default DetailTitle;
