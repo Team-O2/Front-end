@@ -1,85 +1,74 @@
 import React, { useState, useEffect } from 'react';
 import Styled from 'styled-components';
-
 import Input from 'components/atoms/Input';
 import Button from 'components/atoms/Button';
 
-const existValueStyle = {
-  border: 'double 1px transparent',
-  backgroundImage: 'linear-gradient(white, white), linear-gradient(to right, #36c8f5,#13e2dd)',
-  backgroundOrigin: 'border-box',
-  backgroundClip: 'content-box, border-box',
-};
-const defaultStyle = {
-  border: 'solid 1px #c1c1c1',
-};
-
 function Loginform(): React.ReactElement {
-  const [userLogin, setUserLogin] = useState({
+  const [loginData, setLoginData] = useState({
     // 값 저장
     email: '',
     password: '',
   });
-  const [valueStatus, setValueStatus] = useState({
+  const [isValueExist, setIsValueExist] = useState({
     // 값이 들어있는지 유무
     email: false,
     password: false,
   });
-  const [focusStatus, setFocusStatus] = useState({
+  const [isFocused, setIsFocused] = useState({
     // 인풋에 포커스가 되어있는지 유무
     email: false,
     password: false,
   });
 
   useEffect(() => {
-    if (userLogin.email != '') {
-      setValueStatus({ ...valueStatus, email: true });
+    if (loginData.email != '') {
+      setIsValueExist({ ...isValueExist, email: true });
     } else {
-      setValueStatus({ ...valueStatus, email: false });
+      setIsValueExist({ ...isValueExist, email: false });
     }
-  }, [userLogin.email]);
+  }, [loginData.email]);
 
   useEffect(() => {
-    if (userLogin.password != '') {
-      setValueStatus({ ...valueStatus, password: true });
+    if (loginData.password != '') {
+      setIsValueExist({ ...isValueExist, password: true });
     } else {
-      setValueStatus({ ...valueStatus, password: false });
+      setIsValueExist({ ...isValueExist, password: false });
     }
-  }, [userLogin.password]);
+  }, [loginData.password]);
 
   return (
-    <LoginformWrap>
-      <div className="login_div" style={valueStatus.email || focusStatus.email ? existValueStyle : defaultStyle}>
+    <LoginformWrap isValueExist={isValueExist} isFocused={isFocused}>
+      <div className="login_div login_div--id">
         <Input
           className="login_input"
           name="userEmail"
           type="text"
           placeholder="이메일을 입력해 주세요"
           onChange={(e) => {
-            setUserLogin({ ...userLogin, email: e.target.value });
+            setLoginData({ ...loginData, email: e.target.value });
           }}
           onFocus={() => {
-            setFocusStatus({ ...focusStatus, email: true });
+            setIsFocused({ ...isFocused, email: true });
           }}
           onBlur={() => {
-            setFocusStatus({ ...focusStatus, email: false });
+            setIsFocused({ ...isFocused, email: false });
           }}
         ></Input>
       </div>
-      <div className="login_div" style={valueStatus.password || focusStatus.password ? existValueStyle : defaultStyle}>
+      <div className="login_div login_div--pwd">
         <Input
           className="login_input"
           name="userPwd"
           type="password"
           placeholder="비밀번호를 입력해 주세요"
           onChange={(e) => {
-            setUserLogin({ ...userLogin, password: e.target.value });
+            setLoginData({ ...loginData, password: e.target.value });
           }}
           onFocus={() => {
-            setFocusStatus({ ...focusStatus, password: true });
+            setIsFocused({ ...isFocused, password: true });
           }}
           onBlur={() => {
-            setFocusStatus({ ...focusStatus, password: false });
+            setIsFocused({ ...isFocused, password: false });
           }}
         ></Input>
       </div>
@@ -88,7 +77,10 @@ function Loginform(): React.ReactElement {
   );
 }
 
-const LoginformWrap = Styled.div`
+const LoginformWrap = Styled.div<{
+  isValueExist?: { email: boolean; password: boolean };
+  isFocused: { email: boolean; password: boolean };
+}>`
   display : flex;
   flex-direction : column;
   align-items : center;
@@ -99,7 +91,30 @@ const LoginformWrap = Styled.div`
       border-radius: 4px;
       border : solid 1px #c1c1c1;
       margin-bottom : 16px;
-
+      &--id{
+        border : ${(props) =>
+          props.isValueExist?.email || props.isFocused.email ? 'double 1px transparent' : '1px solid #c1c1c1'};
+        background-image : ${(props) =>
+          props.isValueExist?.email || props.isFocused.email
+            ? 'linear-gradient(white, white), linear-gradient(to right, #36c8f5,#13e2dd)'
+            : undefined};
+        background-origin : ${(props) =>
+          props.isValueExist?.email || props.isFocused.email ? 'border-box' : undefined};
+        background-clip : ${(props) =>
+          props.isValueExist?.email || props.isFocused.email ? 'content-box, border-box' : undefined};        
+      }
+      &--pwd{
+        border : ${(props) =>
+          props.isValueExist?.password || props.isFocused.password ? 'double 1px transparent' : '1px solid #c1c1c1'};
+        background-image : ${(props) =>
+          props.isValueExist?.password || props.isFocused.password
+            ? 'linear-gradient(white, white), linear-gradient(to right, #36c8f5,#13e2dd)'
+            : undefined};
+        background-origin : ${(props) =>
+          props.isValueExist?.password || props.isFocused.password ? 'border-box' : undefined};
+        background-clip : ${(props) =>
+          props.isValueExist?.password || props.isFocused.password ? 'content-box, border-box' : undefined};        
+      }
     }
     &_input{
       width : 100%;
