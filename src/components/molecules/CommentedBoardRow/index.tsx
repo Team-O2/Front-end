@@ -19,11 +19,13 @@ function CommentedBoardRow({ isChecked = false, content, date, boardId, id }: IP
       <div className="row">
         <CheckBox className="row__checkbox" id={id} checked={isChecked} />
         <Label className="row__content body4">{content}</Label>
-        <span className="row__date body3_eng">{date}</span>
-        <span className="row__date--bar"></span>
-        <Link className="row__link" to={`${boardId}`}>
-          <span className="body3">원문보기</span>
-        </Link>
+        <div className="row__infoWrapper">
+          <span className="row__date body3_eng">{date}</span>
+          <span className="row__date--bar"></span>
+          <Link className="row__link" to={`${boardId}`}>
+            <span className="body3">원문보기</span>
+          </Link>
+        </div>
       </div>
     </Wrapper>
   );
@@ -35,6 +37,7 @@ const Wrapper = Styled.div`
   border-bottom: 1px solid ${palette('grayscale', 1)};
 
   .row {
+    position: relative;
     display: flex;
     align-items: center;
 
@@ -46,6 +49,7 @@ const Wrapper = Styled.div`
 
       + label {
         padding-left: 31px; 
+        cursor: pointer;
         background-repeat: no-repeat;
         background-position: left center;
         background-image: url('${EmptyCheckBox}');
@@ -64,6 +68,13 @@ const Wrapper = Styled.div`
       overflow: hidden;
       text-overflow: ellipsis;
       white-space: nowrap;
+    }
+
+    &__infoWrapper {
+      position: absolute;
+      right: 0px;
+      display: flex;
+      align-items: center;
     }
 
     &__date {
