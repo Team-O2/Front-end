@@ -1,16 +1,30 @@
 import React, { useState } from 'react';
 import Styled from 'styled-components';
 import CommentWrite from '../CommentWrite';
+import ReplyComment from '../ReplyComment';
 import Profile from 'assets/images/Profile.svg';
 
 interface IProps {
-  _id?: string;
-  parentId?: string;
-  author: string;
+  childrenComment: {
+    _id: string;
+    userID: {
+      _id: string;
+      nickname: string;
+    };
+    text: string;
+  }[];
+  nickname: string;
   text: string;
 }
-
-function SingleComment({ author, text }: IProps): React.ReactElement {
+interface IReply {
+  _id: string;
+  userID: {
+    _id: string;
+    nickname: string;
+  };
+  text: string;
+}
+function SingleComment({ nickname, childrenComment, text }: IProps): React.ReactElement {
   const [openReply, setOpenReply] = useState(false);
   const [commentValue, setCommentValue] = useState('');
 
@@ -43,7 +57,7 @@ function SingleComment({ author, text }: IProps): React.ReactElement {
     <SSingleComment>
       <div className="comment">
         <img className="comment__profile" src={Profile} alt="" />
-        <div className="comment__writer">{author}</div>
+        <div className="comment__writer">{nickname}</div>
         <div className="comment__text">{text}</div>
         <div className="comment__toggle" onClick={onClickReplyOpen}>
           {openReply ? '접기' : '답글보기'}
@@ -51,13 +65,25 @@ function SingleComment({ author, text }: IProps): React.ReactElement {
       </div>
       <div className="reply">
         {openReply && (
-          <CommentWrite
-            value={commentValue}
-            onChange={handleChange}
-            onClick={onSubmit}
-            onSubmit={onSubmit}
-            isComment={false}
-          ></CommentWrite>
+          <>
+            <CommentWrite
+              className="reply__write"
+              value={commentValue}
+              onChange={handleChange}
+              onClick={onSubmit}
+              onSubmit={onSubmit}
+              isComment={false}
+            ></CommentWrite>
+            {childrenComment &&
+              childrenComment.map((data: IReply) => (
+                <ReplyComment
+                  className="reply__comment"
+                  key={data._id}
+                  nickname={data.userID.nickname}
+                  text={data.text}
+                ></ReplyComment>
+              ))}
+          </>
         )}
       </div>
     </SSingleComment>
@@ -94,8 +120,16 @@ const SSingleComment = Styled.div`
   }
   .reply {
     display: flex;
-    justify-content: flex-end;
+    flex-direction: column;
     margin: 16px 0 31px;
+    &__write {
+    display: flex;
+    justify-content: flex-end;
+    }
+    &__comment {
+      width: 712px;
+    }
   }
+
 `;
 export default SingleComment;

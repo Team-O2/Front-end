@@ -4,16 +4,34 @@ import CommentWrite from 'components/molecules/CommentWrite';
 import SingleComment from 'components/molecules/SingleComment';
 
 interface IData {
-  _id?: string;
-  parentId?: string;
-  author: string;
+  childrenComment: {
+    _id: string;
+    userID: {
+      _id: string;
+      nickname: string;
+    };
+    text: string;
+  }[];
+  _id: string;
+  userID: {
+    _id: string;
+    nickname: string;
+  };
+  text: string;
+}
+interface INewComment {
+  _id: string;
+  userID: {
+    _id: string;
+    nickname: string;
+  };
   text: string;
 }
 
 interface IProps {
   commentList: Array<IData> | undefined;
   concertId: string | undefined;
-  reLoad: (newComment: IData) => void;
+  reLoad: (newComment: INewComment) => void;
 }
 
 function CommentList({ commentList, concertId, reLoad }: IProps): React.ReactElement {
@@ -45,7 +63,10 @@ function CommentList({ commentList, concertId, reLoad }: IProps): React.ReactEle
     const nextId = String(commentListLength && commentListLength + 1);
     const variables = {
       _id: nextId,
-      author: '깡또아뚜아',
+      userID: {
+        _id: '1',
+        nickname: '깡또아 뚜아',
+      },
       text: commentValue,
     };
     reLoad(variables);
@@ -62,17 +83,14 @@ function CommentList({ commentList, concertId, reLoad }: IProps): React.ReactEle
         onSubmit={onSubmit}
       ></CommentWrite>
       {commentList &&
-        commentList.map(
-          (data: IData) =>
-            !data.parentId && (
-              <SingleComment
-                key={data._id}
-                parentId={data?.parentId}
-                author={data.author}
-                text={data.text}
-              ></SingleComment>
-            ),
-        )}
+        commentList.map((data: IData) => (
+          <SingleComment
+            key={data._id}
+            nickname={data.userID.nickname}
+            childrenComment={data.childrenComment}
+            text={data.text}
+          ></SingleComment>
+        ))}
     </SCommentList>
   );
 }

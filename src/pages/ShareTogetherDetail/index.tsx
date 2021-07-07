@@ -75,15 +75,31 @@ const mockData = [
     like: 2,
     comments: [
       {
+        childrenComment: [],
         _id: '1',
-        author: '작성자 닉넴',
-        text: '댓글 내용',
+        userID: {
+          _id: '1',
+          nickname: '작성자 닉넴',
+        },
+        text: '댓글 테스트 4',
       },
       {
+        childrenComment: [
+          {
+            _id: '11',
+            userID: {
+              _id: '1',
+              nickname: '작성자 닉넴',
+            },
+            text: '들어가라 답글 얍!',
+          },
+        ],
         _id: '2',
-        parentId: '1',
-        author: '작성자 닉넴',
-        text: '댓글 내용',
+        userID: {
+          _id: '1',
+          nickname: '작성자 닉넴',
+        },
+        text: '들어가라 댓글 얍!',
       },
     ],
     hashtag: ['#해시태그', '#오투 사랑해'],
@@ -100,15 +116,31 @@ const mockData = [
     like: 3,
     comments: [
       {
+        childrenComment: [],
         _id: '1',
-        author: '작성자 닉넴',
-        text: '댓글 내용',
+        userID: {
+          _id: '1',
+          nickname: '작성자 닉넴',
+        },
+        text: '댓글 테스트 4',
       },
       {
+        childrenComment: [
+          {
+            _id: '11',
+            userID: {
+              _id: '1',
+              nickname: '작성자 닉넴',
+            },
+            text: '들어가라 답글 얍!',
+          },
+        ],
         _id: '2',
-        parentId: '1',
-        author: '작성자 닉넴',
-        text: '댓글 내용',
+        userID: {
+          _id: '1',
+          nickname: '작성자 닉넴',
+        },
+        text: '들어가라 댓글 얍!',
       },
     ],
     hashtag: ['#해시태그', '#오투 사랑해'],
@@ -125,15 +157,31 @@ const mockData = [
     like: 1,
     comments: [
       {
+        childrenComment: [],
         _id: '1',
-        author: '작성자 닉넴',
-        text: '댓글 내용',
+        userID: {
+          _id: '1',
+          nickname: '작성자 닉넴',
+        },
+        text: '댓글 테스트 4',
       },
       {
+        childrenComment: [
+          {
+            _id: '11',
+            userID: {
+              _id: '1',
+              nickname: '작성자 닉넴',
+            },
+            text: '들어가라 답글 얍!',
+          },
+        ],
         _id: '2',
-        parentId: '1',
-        author: '작성자 닉넴',
-        text: '댓글 내용',
+        userID: {
+          _id: '1',
+          nickname: '작성자 닉넴',
+        },
+        text: '들어가라 댓글 얍!',
       },
     ],
     hashtag: ['#해시태그', '#오투 사랑해'],
@@ -150,15 +198,31 @@ const mockData = [
     like: 5,
     comments: [
       {
+        childrenComment: [],
         _id: '1',
-        author: '작성자 닉넴',
-        text: '댓글 내용',
+        userID: {
+          _id: '1',
+          nickname: '작성자 닉넴',
+        },
+        text: '댓글 테스트 4',
       },
       {
+        childrenComment: [
+          {
+            _id: '11',
+            userID: {
+              _id: '1',
+              nickname: '작성자 닉넴',
+            },
+            text: '들어가라 답글 얍!',
+          },
+        ],
         _id: '2',
-        parentId: '1',
-        author: '작성자 닉넴',
-        text: '댓글 내용',
+        userID: {
+          _id: '1',
+          nickname: '작성자 닉넴',
+        },
+        text: '들어가라 댓글 얍!',
       },
     ],
     hashtag: ['#해시태그', '#오투 사랑해'],
@@ -175,15 +239,31 @@ const mockData = [
     like: 4,
     comments: [
       {
+        childrenComment: [],
         _id: '1',
-        author: '작성자 닉넴',
-        text: '댓글 내용',
+        userID: {
+          _id: '1',
+          nickname: '작성자 닉넴',
+        },
+        text: '댓글 테스트 4',
       },
       {
+        childrenComment: [
+          {
+            _id: '11',
+            userID: {
+              _id: '1',
+              nickname: '작성자 닉넴',
+            },
+            text: '들어가라 답글 얍!',
+          },
+        ],
         _id: '2',
-        parentId: '1',
-        author: '작성자 닉넴',
-        text: '댓글 내용',
+        userID: {
+          _id: '1',
+          nickname: '작성자 닉넴',
+        },
+        text: '들어가라 댓글 얍!',
       },
     ],
     hashtag: ['#해시태그', '#오투 사랑해'],
@@ -200,15 +280,31 @@ const mockData = [
     like: 9,
     comments: [
       {
+        childrenComment: [],
         _id: '1',
-        author: '작성자 닉넴',
-        text: '댓글 내용',
+        userID: {
+          _id: '1',
+          nickname: '작성자 닉넴',
+        },
+        text: '댓글 테스트 4',
       },
       {
+        childrenComment: [
+          {
+            _id: '11',
+            userID: {
+              _id: '1',
+              nickname: '작성자 닉넴',
+            },
+            text: '들어가라 답글 얍!',
+          },
+        ],
         _id: '2',
-        parentId: '1',
-        author: '작성자 닉넴',
-        text: '댓글 내용',
+        userID: {
+          _id: '1',
+          nickname: '작성자 닉넴',
+        },
+        text: '들어가라 댓글 얍!',
       },
     ],
     hashtag: ['#해시태그', '#오투 사랑해'],
@@ -225,15 +321,31 @@ const mockData = [
     like: 8,
     comments: [
       {
+        childrenComment: [],
         _id: '1',
-        author: '작성자 닉넴',
-        text: '댓글 내용',
+        userID: {
+          _id: '1',
+          nickname: '작성자 닉넴',
+        },
+        text: '댓글 테스트 4',
       },
       {
+        childrenComment: [
+          {
+            _id: '11',
+            userID: {
+              _id: '1',
+              nickname: '작성자 닉넴',
+            },
+            text: '들어가라 답글 얍!',
+          },
+        ],
         _id: '2',
-        parentId: '1',
-        author: '작성자 닉넴',
-        text: '댓글 내용',
+        userID: {
+          _id: '1',
+          nickname: '작성자 닉넴',
+        },
+        text: '들어가라 댓글 얍!',
       },
     ],
     hashtag: ['#해시태그', '#오투 사랑해'],
@@ -250,31 +362,48 @@ const mockData = [
     like: 7,
     comments: [
       {
+        childrenComment: [
+          {
+            _id: '11',
+            userID: {
+              _id: '3',
+              nickname: '콩나물콩콩',
+            },
+            text: '저 지금 콩나물 먹어야 되니까 말 걸지 마세요 코코~!',
+          },
+          {
+            _id: '12',
+            userID: {
+              _id: '4',
+              nickname: '작성자닉넴',
+            },
+            text: '콩나물 마싯냑',
+          },
+        ],
         _id: '1',
-        author: '깡또아뚜아',
+        userID: {
+          _id: '1',
+          nickname: '깡또아뚜아',
+        },
         text: '와 엘모님 어쩜 그렇게 글을 잘 쓰시는거죠? 잘 읽었습니다. 특히 배울 점이 진짜 대박많아요... 그런데 오늘 날씨가 너무 덥네요. 저는 카페에 가서 엘모님 본받아서 써야겠어요.',
       },
       {
+        childrenComment: [],
         _id: '2',
-        author: '어노잉뚜빈',
-        text: '와 엘모님 어쩜 그렇게 글을 잘 쓰시는거죠? 잘 읽었습니다. 특히 배울 점이 진짜 대박많아요... 그런데 오늘 날씨가 너무 덥네요. 저는 카페에 가서 엘모님 본받아서 써야겠어요.',
+        userID: {
+          _id: '2',
+          nickname: '어노잉뚜빈',
+        },
+        text: '헐 엘모님 어쩜 그렇게 글을 잘 쓰시는거죠? 잘 읽었습니다. 특히 배울 점이 진짜 대박많아요... 그런데 오늘 날씨가 너무 덥네요. 저는 카페에 가서 엘모님 본받아서 써야겠어요.',
       },
       {
+        childrenComment: [],
         _id: '3',
-        author: '어노잉뚜빈',
+        userID: {
+          _id: '2',
+          nickname: '어노잉뚜빈',
+        },
         text: '와 엘모님 어쩜 그렇게 글을 잘 쓰시는거죠? 잘 읽었습니다. 특히 배울 점이 진짜 대박많아요... 그런데 오늘 날씨가 너무 덥네요. 저는 카페에 가서 엘모님 본받아서 써야겠어요.',
-      },
-      {
-        _id: '4',
-        parentId: '1',
-        author: '콩나물콩콩',
-        text: '저 지금 콩나물 먹어야 되니까 말 걸지 마세요 코코~!',
-      },
-      {
-        _id: '5',
-        parentId: '1',
-        author: '작성자 닉넴',
-        text: '콩나물 마싯냑',
       },
     ],
     hashtag: [
