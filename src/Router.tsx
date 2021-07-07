@@ -6,6 +6,7 @@ import Home from './pages/Home';
 import Login from './pages/Login';
 import AdminWrite from './pages/AdminWrite';
 import AdminChallengeOpen from './pages/AdminChallengeOpen';
+import AdminChallengeList from 'pages/AdminChallengeList';
 
 function Router(): React.ReactElement {
   return (
@@ -17,6 +18,7 @@ function Router(): React.ReactElement {
         <Route exact path="/login" component={Login} />
         <Route exact path="/adminwrite" component={AdminWrite} />
         <Route exact path="/adminchallengeopen" component={AdminChallengeOpen} />
+        <Route exact path="/adminchallengelist" component={AdminChallengeList} />
         <Route component={() => <div>404 Not Found</div>} />
       </Switch>
     </BrowserRouter>
