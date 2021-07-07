@@ -1,8 +1,11 @@
 import React from 'react';
 import Styled from 'styled-components';
-import LikeIcon from 'assets/images/Icons_heart.svg';
-import CommentIcon from 'assets/images/Icons_comment.svg';
-import ScrapIcon from 'assets/images/Icons_scrap.svg';
+import LikeIcon from 'assets/images/heart.svg';
+import CommentIcon from 'assets/images/comment.svg';
+import ScrapIcon from 'assets/images/scrap.svg';
+import LikeIconFilled from 'assets/images/heart_filled.svg';
+import CommentIconFilled from 'assets/images/comment_filled.svg';
+import ScrapIconFilled from 'assets/images/scrap_filled.svg';
 import HashTag from 'components/atoms/HashTag';
 interface IProps {
   image?: string;
@@ -11,9 +14,11 @@ interface IProps {
   like?: number;
   comments?: number;
   scrap?: number;
+  onLike?: () => void;
+  likeClick: boolean;
 }
 
-function DetailContent({ image, desc, hashtag, like, comments, scrap }: IProps): React.ReactElement {
+function DetailContent({ image, desc, hashtag, like, comments, scrap, onLike, likeClick }: IProps): React.ReactElement {
   return (
     <SDetailContent>
       <div className="image">
@@ -27,7 +32,12 @@ function DetailContent({ image, desc, hashtag, like, comments, scrap }: IProps):
       </div>
       <div className="icons">
         <div className="like">
-          <img className="like__img" src={LikeIcon} alt="" />
+          {likeClick ? (
+            <img className="like__img" src={LikeIconFilled} onClick={onLike} alt="" />
+          ) : (
+            <img className="like__img" src={LikeIcon} onClick={onLike} alt="" />
+          )}
+
           {like}
         </div>
         <div className="comments">

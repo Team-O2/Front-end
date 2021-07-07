@@ -14,13 +14,22 @@ function ShareTogetherDetail({ match }: RouteComponentProps<MatchParams>): React
   const { id } = match.params;
   const selectedConcert = mockData.find((el) => el.concertId === id);
   const [commentlist, setCommentList] = useState(selectedConcert?.comments);
-
+  const [Likes, setLikes] = useState(0);
+  const [likeClick, setLikeClick] = useState(false);
   useEffect(() => {
     selectedConcert && setCommentList(selectedConcert.comments);
+    selectedConcert && setLikes(selectedConcert.like);
   }, []);
-  console.log(commentlist);
   const reLoad = (newComment: any) => {
     setCommentList(commentlist?.concat(newComment));
+  };
+  const onLike = () => {
+    setLikeClick(!likeClick);
+    if (likeClick == true) {
+      setLikes(Likes - 1);
+    } else {
+      setLikes(Likes + 1);
+    }
   };
   return (
     <SShareTogetherDetail>
@@ -34,9 +43,11 @@ function ShareTogetherDetail({ match }: RouteComponentProps<MatchParams>): React
         image={selectedConcert?.image}
         desc={selectedConcert?.desc}
         hashtag={selectedConcert?.hashtag}
-        like={selectedConcert?.like}
-        comments={selectedConcert?.comments.length}
+        like={Likes}
+        comments={commentlist?.length}
         scrap={selectedConcert?.scrap}
+        onLike={onLike}
+        likeClick={likeClick}
       ></DetailContent>
       <CommentList commentList={commentlist} concertId={selectedConcert?.concertId} reLoad={reLoad}></CommentList>
     </SShareTogetherDetail>
