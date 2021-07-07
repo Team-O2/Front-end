@@ -1,46 +1,177 @@
-# Getting Started with Create React App
+# 🐳 O2-Frontend
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## 서비스명
 
-## Available Scripts
+💙 O2 : open together 
 
-In the project directory, you can run:
+-함께 성장하는 공간, CEO들이 마시는 산소
 
-### `npm start`
+Project Period : 2021.06.26 ~ 2021.07.17
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+## 프로젝트 소개
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+<img src="https://user-images.githubusercontent.com/60960130/124759231-63462180-df6a-11eb-8aaf-80cd9f3e17c7.PNG" width="590">
 
-### `npm test`
+💡 O2는 타인과의 정보를 공유하여 성장하고 
+마침내 성공적인 결과를 만들어 낼 수 있는 가치를 추구합니다. 
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+## 개발 담당 부분
 
-### `npm run build`
+🧑🏻‍💻 강영우
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+```
+* My Page
+* Setting 
+* Archiving
+```
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+👩🏻‍💻 김효인
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+```
+* Learn Myself
+* Id, Pwd 찾기
+```
 
-### `npm run eject`
+👩🏻‍💻 배수빈
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+```
+* Header
+* Login, Signin
+* Landing Page
+* Admin Page
+```
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+👩🏻‍💻 현지영
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+```
+* Share Together
+* Footer
+* Notice Page
+```
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+## 기술 스택 및 사용 라이브러리
 
-## Learn More
+```jsx
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+"@testing-library/jest-dom": "^5.14.1",
+"@testing-library/react": "^11.2.7",
+"@testing-library/user-event": "^12.8.3",
+"@types/jest": "^26.0.23",
+"@types/node": "^12.20.15",
+"@types/react": "^17.0.11",
+"@types/react-dom": "^17.0.8",
+"@types/react-router-dom": "^5.1.7",
+"@types/styled-components": "^5.1.10",
+"axios": "^0.21.1",
+"react": "^17.0.2",
+"react-dom": "^17.0.2",
+"react-router-dom": "^5.2.0",
+"react-scripts": "4.0.3",
+"recoil": "^0.3.1",
+"styled-components": "^5.3.0",
+"styled-reset": "^4.3.4",
+"styled-tools": "^1.7.2",
+"typescript": "^4.3.4",
+"web-vitals": "^1.1.2"
+"@typescript-eslint/eslint-plugin": "^4.28.1",
+"@typescript-eslint/parser": "^4.28.1",
+"eslint": "^7.29.0",
+"eslint-config-prettier": "^8.3.0",
+"eslint-plugin-prettier": "^3.4.0",
+"eslint-plugin-react": "^7.24.0",
+"prettier": "^2.3.2"
+```
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+## 프로젝트 구조
+
+```jsx
+📦src
+ ┣ 📂apis
+ ┣ 📂assets
+ ┃ ┣ 📂fonts
+ ┃ ┣ 📂images
+ ┃ ┗ 📂styles
+ ┣ 📂components
+ ┃ ┣ 📂atoms
+ ┃ ┃ ┣ 📂Button
+ ┃ ┃ ┣ 📂CheckBox
+ ┃ ┃ ┣ 📂HashTag
+ ┃ ┃ ┣ 📂Icon
+ ┃ ┃ ┣ 📂ImgSelector
+ ┃ ┃ ┣ 📂Input
+ ┃ ┃ ┣ 📂Label
+ ┃ ┃ ┣ 📂Modal
+ ┃ ┃ ┗ 📂TextArea 
+ ┃ ┣ 📂molecules
+ ┃ ┃ ┣ 📂Card
+ ┃ ┃ ┣ 📂Concert
+ ┃ ┃ ┣ 📂DetailTitle
+ ┃ ┃ ┣ 📂DropDown
+ ┃ ┃ ┣ 📂HamDropDown
+ ┃ ┃ ┣ 📂SearchBar
+ ┃ ┃ ┗ 📂SingleComment
+ ┃ ┣ 📂organisms
+ ┃ ┃ ┣ 📂CommentList
+ ┃ ┃ ┣ 📂ConcertList
+ ┃ ┃ ┣ 📂DetailContent
+ ┃ ┃ ┣ 📂Footer
+ ┃ ┃ ┣ 📂Hamburger
+ ┃ ┃ ┣ 📂Header
+ ┃ ┃ ┗ 📂SearchForm
+ ┃ ┣ 📂templates
+ ┃ ┃ ┣ 📂Base
+ ┃ ┃ ┣ 📂Home
+ ┃ ┃ ┣ 📂Join
+ ┃ ┃ ┣ 📂LearnMyself
+ ┃ ┃ ┣ 📂Login
+ ┃ ┃ ┣ 📂MyPage
+ ┃ ┃ ┣ 📂Notice
+ ┃ ┃ ┣ 📂Setting
+ ┃ ┃ ┗ 📂ShareTogether
+ ┃ ┗ 📜index.ts
+ ┣ 📂hooks
+ ┣ 📂libs
+ ┃ ┗ 📜axios.ts
+ ┣ 📂pages
+ ┃ ┣ 📂Home
+ ┃ ┣ 📂Join
+ ┃ ┣ 📂LearnMyself
+ ┃ ┣ 📂Login
+ ┃ ┣ 📂MyPage
+ ┃ ┣ 📂Notice
+ ┃ ┣ 📂Setting
+ ┃ ┣ 📂ShareTogether
+ ┃ ┗ 📜index.ts
+ ┣ 📂resources
+ ┃ ┗ 📜string.ts
+ ┣ 📂stores
+ ┃ ┗ 📜user.ts
+ ┣ 📂types
+ ┃ ┣ 📜learnMySelf.ts
+ ┃ ┗ 📜shareTogether.ts
+ ┣ 📂utils
+ ┣ 📜App.tsx
+ ┣ 📜index.tsx
+ ┣ 📜react-app-env.d.ts
+ ┗ 📜Router.tsx
+```
+
+## Code Convention
+
+### 🏝 브랜치 중심 운영
+
+**`main`  `develop`**  **`feat/`**  **`fix/`** 
+
+### 🔤 **커밋 메세지**
+
+```jsx
+Feat: 기능 추가
+Fix: 오류 수정
+Refactor: 코드 수정 //기능까지 변경
+Style: 코드 수정 //기능은 수정되지 않음
+Docs: 문서 변경
+Fix: 오류 수정
+Etc: 기타 
+
+✅ 한글로 Commit
+```
