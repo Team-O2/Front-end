@@ -5,6 +5,7 @@ import ShareTogetherDetail from 'pages/ShareTogetherDetail';
 import Home from './pages/Home';
 import Login from './pages/Login';
 import AdminWrite from './pages/AdminWrite';
+import AdminChallengeOpen from './pages/AdminChallengeOpen';
 
 function Router(): React.ReactElement {
   return (
@@ -15,6 +16,7 @@ function Router(): React.ReactElement {
         <Route exact path="/ShareTogetherDetail/:id" component={ShareTogetherDetail} />
         <Route exact path="/login" component={Login} />
         <Route exact path="/adminwrite" component={AdminWrite} />
+        <Route exact path="/adminchallengeopen" component={AdminChallengeOpen} />
         <Route component={() => <div>404 Not Found</div>} />
       </Switch>
     </BrowserRouter>
