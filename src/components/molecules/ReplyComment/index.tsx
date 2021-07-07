@@ -3,35 +3,38 @@ import Styled from 'styled-components';
 import Profile from 'assets/images/Profile.svg';
 
 interface IProps {
-  _id?: string;
-  parentId?: string;
-  author: string;
+  nickname: string;
   text: string;
+  className?: string;
 }
 
-function Replycomment({ author, text }: IProps): React.ReactElement {
+function Replycomment({ nickname, text }: IProps): React.ReactElement {
   return (
     <SReplyComment>
-      <img className="comment__profile" src={Profile} alt="" />
-      <div className="comment__writer">{author}</div>
-      <div className="comment__text">{text}</div>
+      <img className="profile" src={Profile} alt="" />
+      <div className="writer">{nickname}</div>
+      <div className="text">{text}</div>
     </SReplyComment>
   );
 }
 const SReplyComment = Styled.div`
     display: flex;
+    justify-content: flex-end;
+    margin-top:20px;
     font-family: 'AppleSDGothicNeo';
     line-height: 1.43;
-    &__profile {
+    .profile {
       width: 26px;
       height: 26px;
+      margin-right: 10px;
     }
-    &__writer {
+    .writer {
       font-size: 16px;
       font-weight: bold;
       color:#0d0d0d;
+      margin-right: 22px;
     }
-    &__text {
+    .text {
       width: 586px;
       font-size: 16px;
       color: #6f6f6f;
