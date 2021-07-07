@@ -19,7 +19,11 @@ export interface IProps {
 
 function AdminChallengeCard({ challengeData }: IProps): React.ReactElement {
   return (
-    <SAdminChallengeCard>
+    <SAdminChallengeCard
+      onClick={() => {
+        console.log(`${challengeData.cardiNum}기`);
+      }}
+    >
       <img className="card__image" src={challengeData.img}></img>
       <div className="card_-container--bottom">
         <div className="card__title">오투 회고 챌린지 {challengeData.cardiNum}</div>
@@ -62,6 +66,10 @@ const SAdminChallengeCard = Styled.div`
     border-radius: 18px;
     box-shadow: 0 0 24px 0 rgba(13, 12, 63, 0.1);
     background-color: #ffffff;
+    display : flex;
+    flex-direction : column;
+    align-items : center;
+    cursor : pointer;
     .card{
         &__image{
             height : 148px;
@@ -69,6 +77,7 @@ const SAdminChallengeCard = Styled.div`
             border-top-left-radius:18px;
             border-top-right-radius:18px;
             object-fit: cover;
+            margin-bottom : 30px;
         }
         &__title{
             font-size: 32px;
@@ -79,7 +88,7 @@ const SAdminChallengeCard = Styled.div`
             margin-bottom : 40px;
             width : 322px;
         }
-        &container{
+        &__container{
             &--row{
                 display : flex;
                 flex-direction : row;
@@ -89,17 +98,27 @@ const SAdminChallengeCard = Styled.div`
             &--bottom{
                 display : flex;
                 flex-direction : column;
+                width : 322px;
             }
         }
         &__label{
             width : 90px;
             margin-right : 41px;
+            font-size: 16px;
+            font-weight: normal;
+            font-stretch: normal;
+            font-style: normal;
+            line-height: 1.5;
+            letter-spacing: -0.5px;
+            text-align: left;
+            color:#6f6f6f;
         }
         &__exp{
             font-size: 16px;
             line-height: 1.5;
             letter-spacing: -0.5px;
             color : #6f6f6f;
+            font-weight: bold;
         }
     }
   `;
