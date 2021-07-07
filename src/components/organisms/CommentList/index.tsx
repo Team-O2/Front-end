@@ -19,6 +19,7 @@ interface IData {
   };
   text: string;
 }
+
 interface INewComment {
   _id: string;
   userID: {
@@ -30,11 +31,10 @@ interface INewComment {
 
 interface IProps {
   commentList: Array<IData> | undefined;
-  concertId: string | undefined;
-  reLoad: (newComment: INewComment) => void;
+  reLoadComment: (newComment: INewComment) => void;
 }
 
-function CommentList({ commentList, concertId, reLoad }: IProps): React.ReactElement {
+function CommentList({ commentList, reLoadComment }: IProps): React.ReactElement {
   const [commentValue, setCommentValue] = useState('');
   const handleChange = (event: React.ChangeEvent<HTMLTextAreaElement>) => {
     setCommentValue(event.currentTarget.value);
@@ -69,7 +69,7 @@ function CommentList({ commentList, concertId, reLoad }: IProps): React.ReactEle
       },
       text: commentValue,
     };
-    reLoad(variables);
+    reLoadComment(variables);
     setCommentValue('');
   };
   return (

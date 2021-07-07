@@ -20,9 +20,10 @@ function ShareTogetherDetail({ match }: RouteComponentProps<MatchParams>): React
     selectedConcert && setCommentList(selectedConcert.comments);
     selectedConcert && setLikes(selectedConcert.like);
   }, []);
-  const reLoad = (newComment: any) => {
+  const reLoadComment = (newComment: any) => {
     setCommentList(commentlist?.concat(newComment));
   };
+
   const onLike = () => {
     setLikeClick(!likeClick);
     if (likeClick == true) {
@@ -49,7 +50,7 @@ function ShareTogetherDetail({ match }: RouteComponentProps<MatchParams>): React
         onLike={onLike}
         likeClick={likeClick}
       ></DetailContent>
-      <CommentList commentList={commentlist} concertId={selectedConcert?.concertId} reLoad={reLoad}></CommentList>
+      <CommentList commentList={commentlist} reLoadComment={reLoadComment}></CommentList>
     </SShareTogetherDetail>
   );
 }

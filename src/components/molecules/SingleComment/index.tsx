@@ -26,16 +26,29 @@ interface IReply {
 }
 function SingleComment({ nickname, childrenComment, text }: IProps): React.ReactElement {
   const [openReply, setOpenReply] = useState(false);
-  const [commentValue, setCommentValue] = useState('');
+  const [replyValue, setReplyValue] = useState('');
+  const [reply, setReply] = useState(childrenComment);
 
   const onClickReplyOpen = () => {
     setOpenReply(!openReply);
   };
   const handleChange = (event: React.ChangeEvent<HTMLTextAreaElement>) => {
-    setCommentValue(event?.currentTarget.value);
+    setReplyValue(event.currentTarget.value);
   };
   const onSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
+    const replyListLength = reply?.length;
+    const nextId = String(replyListLength && replyListLength + 1);
+    const variables = {
+      _id: nextId,
+      userID: {
+        _id: '1',
+        nickname: '대댓글임다',
+      },
+      text: replyValue,
+    };
+    setReply(reply.concat(variables));
+    setReplyValue('');
   };
   /*
     FIX ME : 코드 수정 후 서버연결 필요
@@ -68,14 +81,14 @@ function SingleComment({ nickname, childrenComment, text }: IProps): React.React
           <>
             <CommentWrite
               className="reply__write"
-              value={commentValue}
+              value={replyValue}
               onChange={handleChange}
               onClick={onSubmit}
               onSubmit={onSubmit}
               isComment={false}
             ></CommentWrite>
-            {childrenComment &&
-              childrenComment.map((data: IReply) => (
+            {reply &&
+              reply.map((data: IReply) => (
                 <ReplyComment
                   className="reply__comment"
                   key={data._id}
