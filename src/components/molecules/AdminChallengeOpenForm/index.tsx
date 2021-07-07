@@ -51,8 +51,8 @@ function AdminChallengeOpenForm({
   useEffect(() => {
     setIsConditionMet({
       title: isValueExist.title,
-      challengePeriod: isValueExist.challengePeriod[0] && isValueExist.challengePeriod[0],
-      applyPeriod: isValueExist.applyPeriod[0] && isValueExist.applyPeriod[0],
+      challengePeriod: isValueExist.challengePeriod[0] && isValueExist.challengePeriod[1],
+      applyPeriod: isValueExist.applyPeriod[0] && isValueExist.applyPeriod[1],
       peopleNum: isValueExist.peopleNum,
     });
   }, [isValueExist]);
