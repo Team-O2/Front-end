@@ -16,6 +16,7 @@ interface IProps {
   nickname: string;
   text: string;
 }
+
 interface IReply {
   _id: string;
   userID: {
@@ -24,6 +25,7 @@ interface IReply {
   };
   text: string;
 }
+
 function SingleComment({ nickname, childrenComment, text }: IProps): React.ReactElement {
   const [openReply, setOpenReply] = useState(false);
   const [replyValue, setReplyValue] = useState('');
