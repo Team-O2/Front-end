@@ -1,11 +1,46 @@
 import React from 'react';
-import TShareTogether from 'components/templates/ShareTogether';
+import Styled from 'styled-components';
+import ConcertTitle from 'components/molecules/ConcertTitle';
+import SeachForm from 'components/organisms/SearchForm';
+import ConcertCardList from 'components/organisms/ConcertCardList';
+import ConcertList from 'components/organisms/ConcertList';
 import test from '../../assets/images/test.svg';
 
-function ShareTogether(): React.ReactElement {
-  return <TShareTogether concerts={mockData}></TShareTogether>;
+interface IData {
+  concertId: string;
+  image: string;
+  speaker: string;
+  interest: string[];
+  createdAt: string;
+  title: string;
+  desc: string;
+  like: number;
 }
 
+function ShareTogether(): React.ReactElement {
+  mockData.sort(function (a: IData, b: IData) {
+    return b.like - a.like;
+  });
+  const concertCardData = mockData.slice(undefined, 3);
+  const concertData = mockData.slice(3);
+
+  return (
+    <SShareTogether>
+      <ConcertTitle></ConcertTitle>
+      <SeachForm></SeachForm>
+      <ConcertCardList concertCardData={concertCardData} />
+      <ConcertList concertData={concertData}></ConcertList>
+    </SShareTogether>
+  );
+}
+
+const SShareTogether = Styled.div`
+  width: 845px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+`;
 export default ShareTogether;
 
 const mockData = [

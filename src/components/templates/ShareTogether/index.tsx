@@ -1,3 +1,5 @@
+export {};
+/*
 import React from 'react';
 import Styled from 'styled-components';
 import ConcertTitle from '../../molecules/ConcertTitle';
@@ -44,3 +46,4 @@ const SShareTogether = Styled.div`
   justify-content: center;
 `;
 export default ShareTogether;
+*/
