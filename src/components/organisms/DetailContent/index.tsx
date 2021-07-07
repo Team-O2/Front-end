@@ -7,6 +7,7 @@ import LikeIconFilled from 'assets/images/heart_filled.svg';
 import CommentIconFilled from 'assets/images/comment_filled.svg';
 import ScrapIconFilled from 'assets/images/scrap_filled.svg';
 import HashTag from 'components/atoms/HashTag';
+
 interface IProps {
   image?: string;
   desc?: string;
@@ -37,7 +38,6 @@ function DetailContent({ image, desc, hashtag, like, comments, scrap, onLike, li
           ) : (
             <img className="like__img" src={LikeIcon} onClick={onLike} alt="" />
           )}
-
           {like}
         </div>
         <div className="comments">
