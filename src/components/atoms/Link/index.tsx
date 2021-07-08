@@ -17,7 +17,6 @@ function Link({ children, to, ...props }: IProps): React.ReactElement {
   );
 }
 
-const SLink = Styled(link)`
-`;
+const SLink = Styled(link)``;
 
 export default Link;
