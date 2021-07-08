@@ -1,10 +1,13 @@
-import React, { useEffect, useRef, useState } from 'react';
-import Styled, { css } from 'styled-components';
-import MyPageCard from '../../atoms/MyPageCard/index';
+import { WelcomeToO2Fill } from 'assets/images';
 import { ReactComponent as LeftArrow } from 'assets/images/largeLeftArrow.svg';
 import { ReactComponent as RightArrow } from 'assets/images/largeRightArrow.svg';
-import Button from '../../atoms/Button/index';
+import percent100Img from 'assets/images/mypage/100img.svg';
 import { fadeIn, fadeOut } from 'assets/styles/animation';
+import { Button, DotText, Img, Label, MyPageCard } from 'components/atoms';
+import dayjs from 'dayjs';
+import React, { useEffect, useRef, useState } from 'react';
+import styled, { css } from 'styled-components';
+import { palette } from 'styled-tools';
 
 export interface IProps {
   learnMyselfData?: string;
@@ -52,13 +55,91 @@ function MyPageSlider(): React.ReactElement {
       <div className="slider">
         <div className="slider__box" ref={slideRef}>
           <MyPageCard title="Learn Myself" width="350">
-            <div></div>
+            <div className="slider__learnMyself">
+              <p className="slider__learnMyself--date subhead3_eng">
+                {`${dayjs().startOf('month').format('YY.MM.DD')} - ${dayjs().endOf('month').format('YY.MM.DD')}`}
+              </p>
+              <div className="slider__learnMyself--img">
+                <Img src={percent100Img} />
+              </div>
+              <p className="slider__learnMyself--percent subhead5_eng">100% 달성</p>
+              <p className="slider__learnMyself--count body2">
+                내가 쓴 개수 &nbsp; &nbsp;<span>36</span> &nbsp;/ &nbsp;36
+              </p>
+            </div>
           </MyPageCard>
           <MyPageCard title="Share Together" width="310">
-            <div></div>
+            <div className="slider__shareTogether">
+              <div className="slider__shareTogether--title subhead3">
+                {'앵그리감자'}님이 하셨던
+                <br /> 강연의 주제들이에요!
+              </div>
+              <DotText content={'PM이 되기 위해서 내가 한 노력 3가지'} />
+            </div>
           </MyPageCard>
           <MyPageCard title="Coupon Book" width="550">
-            <div></div>
+            <div className="slider__couponBook">
+              <div className="slider__coupon">
+                <Img src={WelcomeToO2Fill} />
+                <Label className="body1">{'웰컴 투 오투'}</Label>
+              </div>
+              <div className="slider__coupon">
+                <Img src={WelcomeToO2Fill} />
+                <Label className="body1">{'웰컴 투 오투'}</Label>
+              </div>
+              <div className="slider__coupon">
+                <Img src={WelcomeToO2Fill} />
+                <Label className="body1">{'웰컴 투 오투'}</Label>
+              </div>
+              <div className="slider__coupon">
+                <Img src={WelcomeToO2Fill} />
+                <Label className="body1">{'웰컴 투 오투'}</Label>
+              </div>
+              <div className="slider__coupon">
+                <Img src={WelcomeToO2Fill} />
+                <Label className="body1">{'웰컴 투 오투'}</Label>
+              </div>
+              <div className="slider__coupon">
+                <Img src={WelcomeToO2Fill} />
+                <Label className="body1">{'웰컴 투 오투'}</Label>
+              </div>
+              <div className="slider__coupon">
+                <Img src={WelcomeToO2Fill} />
+                <Label className="body1">{'웰컴 투 오투'}</Label>
+              </div>
+              <div className="slider__coupon">
+                <Img src={WelcomeToO2Fill} />
+                <Label className="body1">{'웰컴 투 오투'}</Label>
+              </div>
+              <div className="slider__coupon">
+                <Img src={WelcomeToO2Fill} />
+                <Label className="body1">{'웰컴 투 오투'}</Label>
+              </div>
+              <div className="slider__coupon">
+                <Img src={WelcomeToO2Fill} />
+                <Label className="body1">{'웰컴 투 오투'}</Label>
+              </div>
+              <div className="slider__coupon">
+                <Img src={WelcomeToO2Fill} />
+                <Label className="body1">{'웰컴 투 오투'}</Label>
+              </div>
+              <div className="slider__coupon">
+                <Img src={WelcomeToO2Fill} />
+                <Label className="body1">{'웰컴 투 오투'}</Label>
+              </div>
+              <div className="slider__coupon">
+                <Img src={WelcomeToO2Fill} />
+                <Label className="body1">{'웰컴 투 오투'}</Label>
+              </div>
+              <div className="slider__coupon">
+                <Img src={WelcomeToO2Fill} />
+                <Label className="body1">{'웰컴 투 오투'}</Label>
+              </div>
+              <div className="slider__coupon">
+                <Img src={WelcomeToO2Fill} />
+                <Label className="body1">{'웰컴 투 오투'}</Label>
+              </div>
+            </div>
           </MyPageCard>
         </div>
       </div>
@@ -71,16 +152,17 @@ function MyPageSlider(): React.ReactElement {
   );
 }
 
-const Wrapper = Styled.div<{ disappear: boolean }>`
-  position: relative;
-  background-color: black;
+const Wrapper = styled.div<{ disappear: boolean }>`
   display: flex;
+  position: relative;
   align-items: center;
+  background-color: black;
   width: 1386px;
 
   .prevButton {
     margin-right: 20px;
   }
+
   .nextButton {
     margin-left: 20px;
   }
@@ -90,20 +172,85 @@ const Wrapper = Styled.div<{ disappear: boolean }>`
     overflow: hidden;
 
     &__box {
-      width: 100%;
       display: flex;
+      width: 100%;
+    }
+
+    &__learnMyself {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      width: 100%;
+      height: 100%;
+
+      &--date {
+        margin: 40px 0 20px 0;
+        color: ${palette('grayscale', 4)};
+      }
+
+      &--img {
+        margin-bottom: 20px;
+        width: 180px;
+        height: 115px;
+      }
+
+      &--percent {
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+        background-image: linear-gradient(to right, ${palette('primary', 3)}, ${palette('primary', 0)});
+      }
+
+      &--count {
+        margin-top: 5px;
+        color: ${palette('grayscale', 5)};
+
+        span {
+          color: ${palette('grayscale', 7)};
+        }
+      }
+    }
+
+    &__shareTogether {
+      display: flex;
+      flex-direction: column;
+
+      &--title {
+        margin: 30px 0 49px 20px;
+      }
+    }
+
+    &__coupon {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+
+      label {
+        margin-top: 4px;
+        color: ${palette('grayscale', -4)};
+      }
+    }
+
+    &__couponBook {
+      display: grid;
+      grid-template-rows: repeat(3, 1fr);
+      grid-template-columns: repeat(4, 1fr) 140px;
+      align-items: center;
+      justify-items: center;
+      width: 100%;
+      height: 100%;
     }
 
     &__gradientBack--left {
       position: absolute;
+      margin: 28px 0 0 68px;
+      background-image: linear-gradient(to right, #fff, rgba(255, 255, 255, 0));
       width: 224px;
       height: 313px;
-      margin: 28px 0 0 68px;
+      animation-name: ${fadeOut};
       animation-duration: 0.5s;
       animation-timing-function: ease-out;
       animation-fill-mode: forwards;
-      background-image: linear-gradient(to right, #fff, rgba(255, 255, 255, 0));
-      animation-name: ${fadeOut};
       ${(props) =>
         props.disappear &&
         css`
@@ -113,14 +260,14 @@ const Wrapper = Styled.div<{ disappear: boolean }>`
 
     &__gradientBack--right {
       position: absolute;
+      margin: 28px 0 0 793px;
+      background-image: linear-gradient(to left, #fff, rgba(255, 255, 255, 0));
       width: 100px;
       height: 313px;
-      margin: 28px 0 0 793px;
+      animation-name: ${fadeIn};
       animation-duration: 0.5s;
       animation-timing-function: ease-out;
       animation-fill-mode: forwards;
-      background-image: linear-gradient(to left, #fff, rgba(255, 255, 255, 0));
-      animation-name: ${fadeIn};
       ${(props) =>
         props.disappear &&
         css`
@@ -128,14 +275,14 @@ const Wrapper = Styled.div<{ disappear: boolean }>`
         `}
     }
   }
-  
+
   button {
+    all: unset;
+    border-radius: 10px;
+    background-color: inherit;
     width: 48px;
     height: 48px;
-    background-color: inherit;
-    all: unset;
     color: coral;
-    border-radius: 10px;
     &:hover {
       cursor: pointer;
       color: #fff;
