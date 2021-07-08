@@ -56,6 +56,8 @@
     "eslint-config-prettier": "^8.3.0",
     "eslint-plugin-prettier": "^3.4.0",
     "eslint-plugin-react": "^7.24.0",
-    "prettier": "^2.3.2"
+    "prettier": "^2.3.2",
+    "stylelint": "^13.13.1",
+    "stylelint-config-concentric-order": "^4.0.1"
   }
 }
