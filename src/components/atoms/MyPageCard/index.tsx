@@ -6,6 +6,7 @@ export interface IProps {
   title: string;
   children: string | React.ReactElement;
   width: string;
+  className?: string;
 }
 
 function MyPageCard({ title, children, ...props }: IProps): React.ReactElement {
