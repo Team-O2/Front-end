@@ -1,4 +1,18 @@
-import { WelcomeToO2Fill } from 'assets/images';
+import {
+  CommunicationKingFill,
+  EmpathizingFill,
+  FirstCommentFill,
+  GetChallengeFill,
+  GrowingTogetherFill,
+  NaturalBornO2Fill,
+  ReadyForCommunicationFill,
+  ReadyForGrowFill,
+  ShyEmailFill,
+  SympathyKingFill,
+  UsefulLearnMyselfFill,
+  UsefulShareTogetherFill,
+  WelcomeToO2Fill,
+} from 'assets/images';
 import { ReactComponent as LeftArrow } from 'assets/images/largeLeftArrow.svg';
 import { ReactComponent as RightArrow } from 'assets/images/largeRightArrow.svg';
 import percent100Img from 'assets/images/mypage/100img.svg';
@@ -81,63 +95,63 @@ function MyPageSlider(): React.ReactElement {
             <div className="slider__couponBook">
               <div className="slider__coupon">
                 <Img src={WelcomeToO2Fill} />
-                <Label className="body1">{'웰컴 투 오투'}</Label>
+                <Label className="body1">웰컴 투 오투</Label>
               </div>
               <div className="slider__coupon">
-                <Img src={WelcomeToO2Fill} />
-                <Label className="body1">{'웰컴 투 오투'}</Label>
+                <Img src={ReadyForGrowFill} />
+                <Label className="body1">성장 준비 완료</Label>
               </div>
               <div className="slider__coupon">
-                <Img src={WelcomeToO2Fill} />
-                <Label className="body1">{'웰컴 투 오투'}</Label>
+                <Img src={GrowingTogetherFill} />
+                <Label className="body1">함께 성장 중</Label>
               </div>
               <div className="slider__coupon">
-                <Img src={WelcomeToO2Fill} />
-                <Label className="body1">{'웰컴 투 오투'}</Label>
+                <Img src={ReadyForCommunicationFill} />
+                <Label className="body1">소통 준비 완료</Label>
               </div>
               <div className="slider__coupon">
-                <Img src={WelcomeToO2Fill} />
-                <Label className="body1">{'웰컴 투 오투'}</Label>
+                <Img src={GetChallengeFill} />
+                <Label className="body1">1차 챌린지 달성</Label>
               </div>
               <div className="slider__coupon">
-                <Img src={WelcomeToO2Fill} />
-                <Label className="body1">{'웰컴 투 오투'}</Label>
+                <Img src={CommunicationKingFill} />
+                <Label className="body1">나는야 소통왕</Label>
               </div>
               <div className="slider__coupon">
-                <Img src={WelcomeToO2Fill} />
-                <Label className="body1">{'웰컴 투 오투'}</Label>
+                <Img src={EmpathizingFill} />
+                <Label className="body1">당신은 공감중</Label>
               </div>
               <div className="slider__coupon">
-                <Img src={WelcomeToO2Fill} />
-                <Label className="body1">{'웰컴 투 오투'}</Label>
+                <Img src={SympathyKingFill} />
+                <Label className="body1">당신은 공감왕</Label>
               </div>
               <div className="slider__coupon">
-                <Img src={WelcomeToO2Fill} />
-                <Label className="body1">{'웰컴 투 오투'}</Label>
+                <Img src={NaturalBornO2Fill} />
+                <Label className="body1">뼛속부터 오투인</Label>
               </div>
               <div className="slider__coupon">
-                <Img src={WelcomeToO2Fill} />
-                <Label className="body1">{'웰컴 투 오투'}</Label>
+                <Img src={GetChallengeFill} />
+                <Label className="body1">2차 챌린지 달성</Label>
               </div>
               <div className="slider__coupon">
-                <Img src={WelcomeToO2Fill} />
-                <Label className="body1">{'웰컴 투 오투'}</Label>
+                <Img src={ShyEmailFill} />
+                <Label className="body1">수줍은 이메일</Label>
               </div>
               <div className="slider__coupon">
-                <Img src={WelcomeToO2Fill} />
-                <Label className="body1">{'웰컴 투 오투'}</Label>
+                <Img src={UsefulLearnMyselfFill} />
+                <Label className="body1">유용한 런마쎌</Label>
               </div>
               <div className="slider__coupon">
-                <Img src={WelcomeToO2Fill} />
-                <Label className="body1">{'웰컴 투 오투'}</Label>
+                <Img src={UsefulShareTogetherFill} />
+                <Label className="body1">유용한 쉐투</Label>
               </div>
               <div className="slider__coupon">
-                <Img src={WelcomeToO2Fill} />
-                <Label className="body1">{'웰컴 투 오투'}</Label>
+                <Img src={FirstCommentFill} />
+                <Label className="body1">설레는 첫 답글</Label>
               </div>
               <div className="slider__coupon">
-                <Img src={WelcomeToO2Fill} />
-                <Label className="body1">{'웰컴 투 오투'}</Label>
+                <Img src={GetChallengeFill} />
+                <Label className="body1">3차 챌린지 달성</Label>
               </div>
             </div>
           </MyPageCard>
