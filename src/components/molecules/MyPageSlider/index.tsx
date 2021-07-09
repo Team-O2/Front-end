@@ -238,6 +238,10 @@ const Wrapper = styled.div<{ disappear: boolean }>`
       flex-direction: column;
       align-items: center;
 
+      img {
+        margin: 0;
+      }
+
       label {
         margin-top: 4px;
         color: ${palette('grayscale', -4)};
