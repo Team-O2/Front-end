@@ -1,6 +1,7 @@
 import React from 'react';
 import Styled from 'styled-components';
 import ConcertTitle from 'components/molecules/ConcertTitle';
+import CategoryList from 'components/organisms/CategoryList';
 import SeachForm from 'components/organisms/SearchForm';
 import ConcertCardList from 'components/organisms/ConcertCardList';
 import ConcertList from 'components/organisms/ConcertList';
@@ -27,6 +28,7 @@ function ShareTogether(): React.ReactElement {
   return (
     <SShareTogether>
       <ConcertTitle></ConcertTitle>
+      <CategoryList></CategoryList>
       <SeachForm></SeachForm>
       <ConcertCardList concertCardData={concertCardData} />
       <ConcertList concertData={concertData}></ConcertList>
