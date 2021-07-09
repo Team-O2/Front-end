@@ -2,8 +2,7 @@ import { Edit } from 'assets/images';
 import React from 'react';
 import Styled from 'styled-components';
 import { palette } from 'styled-tools';
-import Icon from '../../atoms/Icon/index';
-import Link from '../../atoms/Link/index';
+import { Icon, Link } from '../../atoms';
 import MyPageSlider from '../../molecules/MyPageSlider/index';
 
 export interface IProps {
