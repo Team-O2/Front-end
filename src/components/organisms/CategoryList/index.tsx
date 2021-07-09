@@ -3,12 +3,19 @@ import Styled from 'styled-components';
 import CategoryButton from 'components/molecules/CategoryButton';
 import moreIcon from 'assets/images/moreIcon.svg';
 import nextIcon from 'assets/images/nextIcon.svg';
+import moreClicked from 'assets/images/more_filled.svg';
 
 function CategoryList(): React.ReactElement {
   const totalSlide = 6;
   const [currentSlide, setCurrentSlide] = useState(0);
   const slideRef = useRef<HTMLInputElement>(null);
+  const [openMore, setOpenMore] = useState(false);
+  const [clicked, setClicked] = useState(false);
 
+  const onClickOpenMore = () => {
+    setOpenMore(!openMore);
+    setClicked(!clicked);
+  };
   const nextSlide = () => {
     console.log(currentSlide);
     if (currentSlide >= totalSlide) {
@@ -25,27 +32,46 @@ function CategoryList(): React.ReactElement {
   }, [currentSlide]);
   return (
     <SCategoryList>
-      <CategoryButton className="fix" tag="전체" isEntire={true}></CategoryButton>
-      <div className="hashtag__container">
-        <div className="hashtags" ref={slideRef}>
-          {hashtagList.map((tag, index) => (
-            <CategoryButton key={index} tag={tag} isEntire={false}></CategoryButton>
-          ))}
+      <div className="main">
+        <CategoryButton className="fix" tag="전체"></CategoryButton>
+        <div className="hashtag__container">
+          <div className="hashtags" ref={slideRef}>
+            {hashtagList.map((tag, index) => (
+              <CategoryButton isMore={false} key={index} tag={tag}></CategoryButton>
+            ))}
+          </div>
         </div>
+        <div className="shadow"></div>
+        <img className="next" src={nextIcon} onClick={nextSlide} alt="" />
+        <img src={clicked ? moreClicked : moreIcon} onClick={onClickOpenMore} alt="" />
       </div>
-      <div className="shadow"></div>
-      <img className="next" src={nextIcon} onClick={nextSlide} alt="" />
-      <img src={moreIcon} alt="" />
+
+      <div className="more">
+        {openMore && (
+          <>
+            <div className="more__box">
+              {hashtagList.map((tag, index) => (
+                <CategoryButton key={index} tag={tag} isMore={true}></CategoryButton>
+              ))}
+            </div>
+          </>
+        )}
+      </div>
     </SCategoryList>
   );
 }
 
 const SCategoryList = Styled.label`
   display: flex;
-  width: 815px;
+  flex-direction: column;
   align-items: center;
   margin: 0 auto 50px;
   position: relative;
+  .main {
+    width: 815px;
+    display: flex;
+    align-items: center;
+  }
   .hashtag__container{
     width: 645px;
     display: flex;
@@ -61,10 +87,23 @@ const SCategoryList = Styled.label`
     background: linear-gradient(270deg, #FFFFFF 33.87%, rgba(255, 255, 255, 0) 94.35%);
     margin-right: -20px;
     right: 120px;
-    } 
-    .next {
-      z-index:5;
-    }
+  } 
+  .next {
+    z-index:5;
+  }
+  .more__box{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    width: 844px;
+    height: 328px;
+    margin-top: 20px;
+    padding: 25px 0;
+    border-radius: 16px;
+    box-shadow: 0 0 15px 0 rgba(23, 22, 91, 0.08);
+    border: solid 1px rgba(223, 223, 223, 0.5);
+    
+  }
 `;
 
 export default CategoryList;
