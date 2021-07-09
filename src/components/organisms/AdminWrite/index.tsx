@@ -25,7 +25,7 @@ function AdminWrite(): React.ReactElement {
       isConditionMet.title &&
       isConditionMet.category &&
       isConditionMet.menu &&
-      // isConditionMet.content &&
+      isConditionMet.content &&
       isConditionMet.hashtag
     ) {
       setIsButtonDisabled(false);

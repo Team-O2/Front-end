@@ -5,6 +5,7 @@ import Input from 'components/atoms/Input';
 import DropDown from 'components/molecules/DropDown';
 import ChipBtn from 'components/atoms/ChipBtn';
 import { interestList } from 'resources/string';
+import EditorForm from 'components/molecules/EditorForm';
 
 interface IUserData {
   title: string;
@@ -29,6 +30,7 @@ export interface IProps {
 function AdminWriteForm({ setIsConditionMet, writeData, setWriteData }: IProps): React.ReactElement {
   const [category, setCategory] = useState('카테고리를 선택하세요');
   const [menu, setMenu] = useState('메뉴를 선택하세요');
+  const [content, setContent] = useState('');
   const [currentHashtag, setCurrentHashtag] = useState('');
   const [isValueExist, setIsValueExist] = useState({
     // 값이 들어있는지 유무
@@ -105,6 +107,15 @@ function AdminWriteForm({ setIsConditionMet, writeData, setWriteData }: IProps):
       setIsValueExist({ ...isValueExist, menu: false });
     }
   }, [writeData.menu]);
+  useEffect(() => {
+    console.log(content);
+    setWriteData({ ...writeData, content: content });
+    if (content !== '') {
+      setIsValueExist({ ...isValueExist, content: true });
+    } else {
+      setIsValueExist({ ...isValueExist, content: false });
+    }
+  }, [content]);
 
   return (
     <SAdminWriteForm isValueExist={isValueExist} isFocused={isFocused}>
@@ -159,7 +170,7 @@ function AdminWriteForm({ setIsConditionMet, writeData, setWriteData }: IProps):
         <div className="admin__container--categoryChips">for hide</div>
       )}
 
-      <div className="admin__editor"></div>
+      <EditorForm setContent={setContent} content={content} />
       <Label className="admin__label" name="해시태그" />
       <div className="admin__div admin__div--hashtag">
         <Input
