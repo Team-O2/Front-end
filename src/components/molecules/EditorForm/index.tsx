@@ -13,7 +13,8 @@ function EditorForm({ content, setContent }: IProps): React.ReactElement {
   const modules = {
     toolbar: [
       [{ header: [1, 2, false] }],
-      ['bold', 'italic', 'underline', 'strike', 'blockquote'],
+      //   ['bold', 'italic', 'underline', 'strike', 'blockquote'],
+      ['underline', 'strike', 'blockquote'],
       [{ list: 'ordered' }, { list: 'bullet' }, { indent: '-1' }, { indent: '+1' }],
       [{ align: [] }, { color: [] }, { background: [] }], // dropdown with defaults from theme
       ['clean'],
@@ -22,8 +23,8 @@ function EditorForm({ content, setContent }: IProps): React.ReactElement {
   const formats = [
     //'font',
     'header',
-    'bold',
-    'italic',
+    // 'bold',
+    // 'italic',
     'underline',
     'strike',
     'blockquote',
@@ -45,10 +46,14 @@ function EditorForm({ content, setContent }: IProps): React.ReactElement {
         modules={modules}
         formats={formats}
         value={content || ''}
-        onChange={(content, delta, source, editor) => setContent(editor.getHTML())}
-      >
-        <div className="my-editing-area" />
-      </ReactQuill>
+        onChange={(content, delta, source, editor) => {
+          console.log(content);
+          setContent(content);
+        }}
+        //   >
+        //     <div className="my-editing-area"></div>
+        //   </ReactQuill>
+      />
     </SEditorForm>
   );
 }
@@ -58,8 +63,9 @@ const SEditorForm = Styled.div`
         width : 844px;
         height : 700px;
         margin-bottom : 80px;
+        margin-top : 34px;
     }
-    .my-editing-area{
+    /* .my-editing-area{
         font-size : 16px;
         letter-spacing: -0.5px;
         strong{
@@ -68,7 +74,7 @@ const SEditorForm = Styled.div`
         em{
             font-style : italic;
         }
-    }
+    } */
   `;
 
 export default EditorForm;

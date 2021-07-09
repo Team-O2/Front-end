@@ -110,7 +110,7 @@ function AdminWriteForm({ setIsConditionMet, writeData, setWriteData }: IProps):
   useEffect(() => {
     console.log(content);
     setWriteData({ ...writeData, content: content });
-    if (content !== '') {
+    if (content !== '<p><br></p>' && content !== '') {
       setIsValueExist({ ...isValueExist, content: true });
     } else {
       setIsValueExist({ ...isValueExist, content: false });
