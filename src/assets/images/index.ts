@@ -3,6 +3,7 @@ export { default as EmptyBookmark } from './emptyBookmark.svg';
 export { default as EmptyCheckBox } from './emptyCheckBox.svg';
 export { default as LargeLeftArrow } from './largeLeftArrow.svg';
 export { default as LargeRightArrow } from './largeRightArrow.svg';
+export { default as Logo } from './logo.svg';
 export { default as MoreViewArrow } from './moreViewArrow.svg';
 export { default as CommunicationKing } from './mypage/communicationKing.svg';
 export { default as CommunicationKingFill } from './mypage/communicationKing_fill.svg';
