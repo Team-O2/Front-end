@@ -20,7 +20,7 @@ import { fadeIn, fadeOut } from 'assets/styles/animation';
 import { Button, DotText, Img, Label, MyPageCard } from 'components/atoms';
 import dayjs from 'dayjs';
 import React, { useEffect, useRef, useState } from 'react';
-import styled, { css } from 'styled-components';
+import Styled, { css } from 'styled-components';
 import { palette } from 'styled-tools';
 
 export interface IProps {
@@ -166,7 +166,7 @@ function MyPageSlider(): React.ReactElement {
   );
 }
 
-const Wrapper = styled.div<{ disappear: boolean }>`
+const Wrapper = Styled.div<{ disappear: boolean }>`
   display: flex;
   position: relative;
   align-items: center;
