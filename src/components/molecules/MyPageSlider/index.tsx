@@ -170,7 +170,6 @@ const Wrapper = styled.div<{ disappear: boolean }>`
   display: flex;
   position: relative;
   align-items: center;
-  background-color: black;
   width: 1386px;
 
   .prevButton {
