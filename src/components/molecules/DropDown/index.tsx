@@ -80,6 +80,7 @@ const SDropDown = Styled.div<{ isOpen?: boolean; isChecked: boolean; page: strin
   .summary{
     &__container{
       &--outer{
+        cursor : pointer;
         width:${(props) => (props.page === 'adminwrite' ? '391px' : '406px')};
         height:${(props) => (props.page === 'adminwrite' ? '60px' : '62.6px')};
         margin-top: 5px;
@@ -135,6 +136,7 @@ const SDropDown = Styled.div<{ isOpen?: boolean; isChecked: boolean; page: strin
     flex-direction: column;
     padding: 20px 18px;
     position:${(props) => (props.page === 'adminwrite' ? 'absolute' : undefined)};
+    z-index : 10;
     background-color : #ffffff;
   }
   label {
