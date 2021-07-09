@@ -1,6 +1,6 @@
+import { Img, Link, Tag } from 'components/atoms';
 import React from 'react';
 import Styled from 'styled-components';
-import { Link, Img, Tag } from 'components/atoms';
 import { palette } from 'styled-tools';
 
 export interface IProps {
