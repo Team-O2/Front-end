@@ -10,6 +10,7 @@ export { default as mainCard1 } from './mainCard1.png';
 export { default as mainCard2 } from './mainCard2.png';
 export { default as mainCard3 } from './mainCard3.png';
 export { default as mainCard4 } from './mainCard4.png';
+export { default as MoreViewArrow } from './moreViewArrow.svg';
 export { default as Percent20Img } from './mypage/0-20img.svg';
 export { default as Percent100Img } from './mypage/100img.svg';
 export { default as Percent40Img } from './mypage/21-50img.svg';
