@@ -9,6 +9,9 @@ import AdminChallengeOpen from './pages/AdminChallengeOpen';
 import AdminChallengeList from 'pages/AdminChallengeList';
 import Join from './pages/Join/index';
 import FindPwd from 'pages/FindPwd';
+import WriteLearnMyself from 'components/templates/LearnMyself/ChallengeWrite';
+import LearnMyself from 'components/templates/LearnMyself/ChallengeList';
+import ChallengeRegister from 'components/templates/LearnMyself/ChallengeRegister';
 
 function Router(): React.ReactElement {
   return (
@@ -23,6 +26,10 @@ function Router(): React.ReactElement {
         <Route exact path="/adminchallengelist" component={AdminChallengeList} />
         <Route exact path="/join" component={Join} />
         <Route exact path="/findPwd" component={FindPwd} />
+        <Route exact path="/challenge" component={LearnMyself} />
+        <Route exact path="/challengeRegister" component={ChallengeRegister} />
+        <Route exact path="/write" component={WriteLearnMyself} />
+        <Route exact path="/edit" component={WriteLearnMyself} />
         <Route component={() => <div>404 Not Found</div>} />
       </Switch>
     </BrowserRouter>
