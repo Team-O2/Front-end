@@ -6,6 +6,8 @@ import DropDown from 'components/molecules/DropDown';
 import ChipBtn from 'components/atoms/ChipBtn';
 import { interestList } from 'resources/string';
 import EditorForm from 'components/molecules/EditorForm';
+import FileUpload from 'components/atoms/fileUpload';
+import plusIcon from 'assets/images/plusIcon.svg';
 
 interface IUserData {
   title: string;
@@ -32,6 +34,8 @@ function AdminWriteForm({ setIsConditionMet, writeData, setWriteData }: IProps):
   const [menu, setMenu] = useState('메뉴를 선택하세요');
   const [content, setContent] = useState('');
   const [currentHashtag, setCurrentHashtag] = useState('');
+  const [videoFile, setVideoFile] = useState('');
+
   const [isValueExist, setIsValueExist] = useState({
     // 값이 들어있는지 유무
     title: false,
@@ -171,6 +175,26 @@ function AdminWriteForm({ setIsConditionMet, writeData, setWriteData }: IProps):
       )}
 
       <EditorForm setContent={setContent} content={content} />
+      <div className="admin__container--uploads">
+        <div className="admin__container--upload admin__container--videoUpload">
+          <Label className="admin__label" name="동영상 업로드" />
+          <FileUpload width={'400px'} height={'225px'} setFile={setVideoFile} fileType={1}>
+            <div className="fileUpload__container fileUpload__container--video">
+              <img className="fileUpload__icon--plus" src={plusIcon}></img>
+              <div className="fileUpload__desc">동영상 업로드하기</div>
+            </div>
+          </FileUpload>
+        </div>
+        <div className="admin__container--upload">
+          <Label className="admin__label" name="썸네일 업로드" />
+          <FileUpload width={'262px'} height={'225px'} setFile={setVideoFile} fileType={0}>
+            <div className="fileUpload__container fileUpload__container--thumbnail">
+              <img className="fileUpload__icon--plus" src={plusIcon}></img>
+              <div className="fileUpload__desc">썸네일 이미지 업로드하기</div>
+            </div>
+          </FileUpload>
+        </div>
+      </div>
       <Label className="admin__label" name="해시태그" />
       <div className="admin__div admin__div--hashtag">
         <Input
@@ -317,6 +341,20 @@ const SAdminWriteForm = Styled.div<{
         height : 46px;
         color : rgba(0,0,0,0);
       }
+      &--uploads{
+        display : flex;
+        flex-direction: row;
+        width : 100%;
+        justify-content : flex-start;
+        margin-bottom : 40px;
+      }
+      &--upload{
+        display : flex;
+        flex-direction: column;
+      }
+      &--videoUpload{
+        margin-right : 20px;
+      }
     }
     &__editor{
       width : 844px;
@@ -339,6 +377,38 @@ const SAdminWriteForm = Styled.div<{
       margin-bottom:10px;
     }
   }
+
+  .fileUpload{
+        &__container{
+            background-color : #f2f2f2;
+            display : flex;
+            flex-direction : column;
+            align-items : center;
+            justify-content : center;
+            &--video{
+              width: 400px;
+              height: 225px; 
+            }
+            &--thumbnail{
+              width: 262px;
+              height: 225px;
+            }
+        }
+        &__icon--plus{
+            width : 38px;
+            height : 38px;
+        }
+        &__desc{
+            font-size: 16px;
+            font-weight: bold;
+            line-height: 1.38;
+            letter-spacing: -0.5px;
+            color : #a5a5a5;
+            text-align: center;
+            margin-top :4px;
+            margin-bottom : 20px;
+        }
+    }
 `;
 
 export default AdminWriteForm;
