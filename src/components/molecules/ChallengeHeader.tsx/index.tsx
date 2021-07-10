@@ -5,7 +5,7 @@ import MyFeedIcon from '../../../assets/images/myfeedIcon.svg';
 import AllFeedIcon from '../../../assets/images/allfeedIcon.svg';
 import WriteIcon from '../../../assets/images/writeIcon.svg';
 import WriteLearnMyself from '../../templates/LearnMyself/ChallengeList';
-import SearchFrom from '../SearchFrom';
+import SearchForm from '../../organisms/SearchForm';
 
 export interface IProps {
   className?: string;
@@ -15,7 +15,7 @@ function ChallengeHeader({ ...props }: IProps) {
   const [userState, setUserState] = useState(2);
   return (
     <SChallengeHeader {...props}>
-      <SearchFrom />
+      <SearchForm />
       {userState === 0 || userState === 1 ? null : (
         <div>
           <button className="button__icon">
