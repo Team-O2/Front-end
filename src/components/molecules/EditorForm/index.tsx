@@ -47,7 +47,6 @@ function EditorForm({ content, setContent }: IProps): React.ReactElement {
         formats={formats}
         value={content || ''}
         onChange={(content, delta, source, editor) => {
-          console.log(content);
           setContent(content);
         }}
         //   >

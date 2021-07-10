@@ -9,6 +9,8 @@ interface IUserData {
   menu: string;
   content: string;
   hashtag: string[];
+  video: string;
+  thumbnail: string;
 }
 
 export interface IProps {
