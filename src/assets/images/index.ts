@@ -4,7 +4,6 @@ export { default as EmptyCheckBox } from './emptyCheckBox.svg';
 export { default as LargeLeftArrow } from './largeLeftArrow.svg';
 export { default as LargeRightArrow } from './largeRightArrow.svg';
 export { default as Logo } from './logo.svg';
-export { default as MoreViewArrow } from './moreViewArrow.svg';
 export { default as CommunicationKing } from './mypage/communicationKing.svg';
 export { default as CommunicationKingFill } from './mypage/communicationKing_fill.svg';
 export { default as Empathizing } from './mypage/empathizing.svg';
@@ -31,3 +30,5 @@ export { default as UsefulShareTogether } from './mypage/usefulShareTogether.svg
 export { default as UsefulShareTogetherFill } from './mypage/usefulShareTogether_fill.svg';
 export { default as WelcomeToO2 } from './mypage/welcomeToO2.svg';
 export { default as WelcomeToO2Fill } from './mypage/welcomeToO2_fill.svg';
+export { default as SmallLeftArrow } from './smallLeftArrow.svg';
+export { default as SmallRightArrow } from './smallRightArrow.svg';
