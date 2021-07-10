@@ -14,10 +14,10 @@ function Button({ children, ...props }: IProps): React.ReactElement {
 }
 
 const SButton = Styled.button`
-  padding : 0;
+  display: flex;
   border: 0;
   background-color: inherit;
-  padding: 0;
+  padding : 0;
   :focus {
     outline : none;
   }
