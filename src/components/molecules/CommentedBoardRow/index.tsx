@@ -1,9 +1,8 @@
+import { EmptyCheckBox, FilledCheckBox } from 'assets/images';
 import { CheckBox, Label, Link } from 'components/atoms';
 import React from 'react';
 import Styled from 'styled-components';
 import { palette } from 'styled-tools';
-import EmptyCheckBox from '../../../assets/images/emptyCheckBox.svg';
-import FilledCheckBox from '../../../assets/images/filledCheckBox.svg';
 
 export interface IProps {
   isChecked?: boolean;

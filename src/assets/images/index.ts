@@ -1,9 +1,16 @@
 export { default as Edit } from './edit.svg';
 export { default as EmptyBookmark } from './emptyBookmark.svg';
 export { default as EmptyCheckBox } from './emptyCheckBox.svg';
+export { default as FilledBookmark } from './filledBookmark.svg';
+export { default as FilledCheckBox } from './filledCheckBox.svg';
 export { default as LargeLeftArrow } from './largeLeftArrow.svg';
 export { default as LargeRightArrow } from './largeRightArrow.svg';
 export { default as Logo } from './logo.svg';
+export { default as Percent20Img } from './mypage/0-20img.svg';
+export { default as Percent100Img } from './mypage/100img.svg';
+export { default as Percent40Img } from './mypage/21-50img.svg';
+export { default as Percent60Img } from './mypage/51-80img.svg';
+export { default as Percent80Img } from './mypage/81-99img.svg';
 export { default as CommunicationKing } from './mypage/communicationKing.svg';
 export { default as CommunicationKingFill } from './mypage/communicationKing_fill.svg';
 export { default as Empathizing } from './mypage/empathizing.svg';
