@@ -3,19 +3,27 @@ import Styled from 'styled-components';
 import CategoryButton from 'components/molecules/CategoryButton';
 import moreIcon from 'assets/images/moreIcon.svg';
 import nextIcon from 'assets/images/nextIcon.svg';
-import moreClicked from 'assets/images/more_filled.svg';
-
-function CategoryList(): React.ReactElement {
+import moreClickedIcon from 'assets/images/more_filled.svg';
+interface IProps {
+  reRender?: (interest: string) => void;
+}
+function CategoryList({ reRender }: IProps): React.ReactElement {
   const totalSlide = 6;
   const [currentSlide, setCurrentSlide] = useState(0);
   const slideRef = useRef<HTMLInputElement>(null);
   const [openMore, setOpenMore] = useState(false);
-  const [clicked, setClicked] = useState(false);
+  const [moreClicked, setMoreClicked] = useState(false);
+  const [interest, setInterest] = useState('');
 
   const onClickOpenMore = () => {
     setOpenMore(!openMore);
-    setClicked(!clicked);
+    setMoreClicked(!moreClicked);
   };
+  const onClickInterest = (newInterest: any) => {
+    setInterest(newInterest);
+    reRender && reRender(interest);
+  };
+
   const nextSlide = () => {
     console.log(currentSlide);
     if (currentSlide >= totalSlide) {
@@ -30,6 +38,7 @@ function CategoryList(): React.ReactElement {
       slideRef.current.style.transform = `translateX(-${currentSlide * 15}%)`;
     }
   }, [currentSlide]);
+
   return (
     <SCategoryList>
       <div className="main">
@@ -43,7 +52,7 @@ function CategoryList(): React.ReactElement {
         </div>
         <div className="shadow"></div>
         <img className="next" src={nextIcon} onClick={nextSlide} alt="" />
-        <img src={clicked ? moreClicked : moreIcon} onClick={onClickOpenMore} alt="" />
+        <img src={moreClicked ? moreClickedIcon : moreIcon} onClick={onClickOpenMore} alt="" />
       </div>
 
       <div className="more">
@@ -51,7 +60,7 @@ function CategoryList(): React.ReactElement {
           <>
             <div className="more__box">
               {hashtagList.map((tag, index) => (
-                <CategoryButton key={index} tag={tag} isMore={true}></CategoryButton>
+                <CategoryButton key={index} tag={tag} onClickInterest={onClickInterest} isMore={true}></CategoryButton>
               ))}
             </div>
           </>
