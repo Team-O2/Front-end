@@ -222,6 +222,7 @@ function Joinform({ ...props }: IProps): React.ReactElement {
         setState={setGender}
         defaultMsg="성별 선택"
         itemList={['남성', '여성', '선택안함']}
+        page="joinform"
       />
       <Label className="join_subtitle" name="약관동의" />
       <JoinCheck setUserData={setUserData} userData={userData} />

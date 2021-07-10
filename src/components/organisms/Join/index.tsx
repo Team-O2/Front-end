@@ -124,7 +124,7 @@ function CJoin(): React.ReactElement {
           <div className="interestModal__btnContainer">
             {interestList.map((interest, id) => {
               return (
-                <Button
+                <button
                   className="interestModal__button--interest"
                   key={id}
                   onClick={() => {
@@ -146,7 +146,7 @@ function CJoin(): React.ReactElement {
                   }
                 >
                   {interest}
-                </Button>
+                </button>
               );
             })}
           </div>
