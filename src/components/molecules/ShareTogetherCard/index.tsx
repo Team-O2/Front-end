@@ -30,7 +30,7 @@ function ShareTogetherCard({
             <Img src={imagePath} />
           </div>
           <div className="card__info">
-            <Tag className="subhead2" name={tagName} color={tagColor} />
+            <Tag className="subhead2" name={tagName} color={tagColor} isSelected={false} />
             <div className="card__info--title subhead4">{title}</div>
             <div className="card__info--content body2">{content}</div>
             <div className="card__info--date body1">{date}</div>
