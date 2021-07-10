@@ -143,6 +143,15 @@ const HamburgerWrap = Styled.div`
   z-index : 999;
   display : flex;
   flex-direction:column;
+  animation : slideIn 0.5s;
+  @keyframes slideIn {
+    from {
+      left : -282px;
+    }
+    to {
+      left : 0%;
+    }
+  }
 
   span{
     font-weight : bold;
