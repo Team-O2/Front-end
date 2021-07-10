@@ -1,9 +1,9 @@
-import React, { useState, useEffect } from 'react';
-import Styled from 'styled-components';
-import Joinform from 'components/molecules/Joinform';
-import Label from 'components/atoms/Label';
 import Button from 'components/atoms/Button';
+import Label from 'components/atoms/Label';
 import Modal from 'components/atoms/Modal';
+import Joinform from 'components/molecules/Joinform';
+import React, { useEffect, useState } from 'react';
+import Styled from 'styled-components';
 
 const interestList: string[] = [
   '건강 및 피트니스',
@@ -108,7 +108,7 @@ function CJoin(): React.ReactElement {
 
   return (
     <JoinWrap isButtonDisabled={isButtonDisabled} selectedInterest={selectedInterest}>
-      <Label className="join__label" name="회원가입"></Label>
+      <Label className="join__label">회원가입</Label>
       <Joinform
         setIsConditionMet={setIsConditionMet}
         isConditionMet={isConditionMet}
@@ -120,7 +120,7 @@ function CJoin(): React.ReactElement {
       </Button>
       <Modal isOpen={isInterestModalOpen} setIsOpen={setIsInterestModalOpen} isBlur={true}>
         <div className="interestModal">
-          <Label className="interestModal__label" name="관심있는 분야를 5개 선택해 주세요"></Label>
+          <Label className="interestModal__label">관심있는 분야를 5개 선택해 주세요</Label>
           <div className="interestModal__btnContainer">
             {interestList.map((interest, id) => {
               return (

@@ -1,13 +1,13 @@
-import React, { useState, useEffect } from 'react';
-import Styled from 'styled-components';
-import Label from 'components/atoms/Label';
-import Input from 'components/atoms/Input';
-import DropDown from 'components/molecules/DropDown';
-import ChipBtn from 'components/atoms/ChipBtn';
-import { interestList } from 'resources/string';
-import EditorForm from 'components/molecules/EditorForm';
-import FileUpload from 'components/atoms/fileUpload';
 import plusIcon from 'assets/images/plusIcon.svg';
+import ChipBtn from 'components/atoms/ChipBtn';
+import FileUpload from 'components/atoms/fileUpload';
+import Input from 'components/atoms/Input';
+import Label from 'components/atoms/Label';
+import DropDown from 'components/molecules/DropDown';
+import EditorForm from 'components/molecules/EditorForm';
+import React, { useEffect, useState } from 'react';
+import { interestList } from 'resources/string';
+import Styled from 'styled-components';
 
 interface IUserData {
   title: string;
@@ -145,7 +145,7 @@ function AdminWriteForm({ setIsConditionMet, writeData, setWriteData }: IProps):
 
   return (
     <SAdminWriteForm isValueExist={isValueExist} isFocused={isFocused}>
-      <Label className="admin__label" name="제목" />
+      <Label className="admin__label">제목</Label>
       <div className="admin__div admin__div--title">
         <Input
           className="admin__input"
@@ -164,7 +164,7 @@ function AdminWriteForm({ setIsConditionMet, writeData, setWriteData }: IProps):
       </div>
       <div className="admin__container--dropdowns">
         <div style={{ marginRight: '62px' }}>
-          <Label className="admin__label" name="카테고리" />
+          <Label className="admin__label">카테고리</Label>
           <DropDown
             state={category}
             setState={setCategory}
@@ -174,7 +174,7 @@ function AdminWriteForm({ setIsConditionMet, writeData, setWriteData }: IProps):
           />
         </div>
         <div>
-          <Label className="admin__label" name="메뉴" />
+          <Label className="admin__label">메뉴</Label>
           <DropDown
             state={menu}
             setState={setMenu}
@@ -199,7 +199,7 @@ function AdminWriteForm({ setIsConditionMet, writeData, setWriteData }: IProps):
       <EditorForm setContent={setContent} content={content} />
       <div className="admin__container--uploads">
         <div className="admin__container--upload admin__container--videoUpload">
-          <Label className="admin__label" name="동영상 업로드" />
+          <Label className="admin__label">동영상 업로드</Label>
           <FileUpload width={'400px'} height={'225px'} setFile={setVideoFile} fileType={1}>
             <div className="fileUpload__container fileUpload__container--video">
               <img className="fileUpload__icon--plus" src={plusIcon}></img>
@@ -208,7 +208,7 @@ function AdminWriteForm({ setIsConditionMet, writeData, setWriteData }: IProps):
           </FileUpload>
         </div>
         <div className="admin__container--upload">
-          <Label className="admin__label" name="썸네일 업로드" />
+          <Label className="admin__label">썸네일 업로드</Label>
           <FileUpload width={'262px'} height={'225px'} setFile={setThumbnail} fileType={0}>
             <div className="fileUpload__container fileUpload__container--thumbnail">
               <img className="fileUpload__icon--plus" src={plusIcon}></img>
@@ -217,7 +217,7 @@ function AdminWriteForm({ setIsConditionMet, writeData, setWriteData }: IProps):
           </FileUpload>
         </div>
       </div>
-      <Label className="admin__label" name="해시태그" />
+      <Label className="admin__label">해시태그</Label>
       <div className="admin__div admin__div--hashtag">
         <Input
           className="admin__input"

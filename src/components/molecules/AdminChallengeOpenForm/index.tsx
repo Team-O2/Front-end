@@ -1,7 +1,7 @@
-import React, { useState, useEffect } from 'react';
-import Styled from 'styled-components';
-import Label from 'components/atoms/Label';
 import Input from 'components/atoms/Input';
+import Label from 'components/atoms/Label';
+import React, { useEffect, useState } from 'react';
+import Styled from 'styled-components';
 
 interface IChallengeOpenData {
   title: string;
@@ -103,7 +103,7 @@ function AdminChallengeOpenForm({
 
   return (
     <SAdminChallengeOpenForm isValueExist={isValueExist} isFocused={isFocused}>
-      <Label className="admin__label" name="챌린지 제목" />
+      <Label className="admin__label">챌린지 제목</Label>
       <div className="admin__div admin__div--title">
         <Input
           className="admin__input"
@@ -121,7 +121,7 @@ function AdminChallengeOpenForm({
         />
       </div>
 
-      <Label className="admin__label" name="챌린지 기간" />
+      <Label className="admin__label">챌린지 기간</Label>
       <div className="admin__container--period">
         <div className="admin__div admin__div--period1-1">
           <Input
@@ -164,7 +164,7 @@ function AdminChallengeOpenForm({
         </div>
       </div>
 
-      <Label className="admin__label" name="챌린지 신청 기간" />
+      <Label className="admin__label">챌린지 신청 기간</Label>
       <div className="admin__container--period">
         <div className="admin__div admin__div--period2-1">
           <Input
@@ -206,7 +206,7 @@ function AdminChallengeOpenForm({
           />
         </div>
       </div>
-      <Label className="admin__label" name="제한 인원 수" />
+      <Label className="admin__label">제한 인원 수</Label>
       <div className="admin__container--people">
         <div className="admin__div admin__div--people">
           <Input

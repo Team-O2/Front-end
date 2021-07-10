@@ -1,14 +1,14 @@
+import Line from 'assets/images/line.svg';
+import Button from 'components/atoms/Button';
+import Label from 'components/atoms/Label';
 import React from 'react';
 import Styled from 'styled-components';
 import Loginform from '../../molecules/Loginform/index';
-import Label from 'components/atoms/Label';
-import Button from 'components/atoms/Button';
-import Line from 'assets/images/line.svg';
 
 function CLogin(): React.ReactElement {
   return (
     <LoginWrap>
-      <Label className="login__label" name="로그인" />
+      <Label className="login__label">로그인</Label>
       <Loginform />
       <div className="etc__buttons">
         <Button className="etc__leftbtn">비밀번호 찾기</Button>

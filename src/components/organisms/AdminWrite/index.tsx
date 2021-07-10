@@ -1,8 +1,8 @@
-import React, { useState, useEffect } from 'react';
-import Styled from 'styled-components';
-import Label from 'components/atoms/Label';
 import Button from 'components/atoms/Button';
+import Label from 'components/atoms/Label';
 import AdminWriteForm from 'components/molecules/AdminWriteForm';
+import React, { useEffect, useState } from 'react';
+import Styled from 'styled-components';
 
 function AdminWrite(): React.ReactElement {
   const [isButtonDisabled, setIsButtonDisabled] = useState(true);
@@ -46,8 +46,8 @@ function AdminWrite(): React.ReactElement {
 
   return (
     <SAdminWrite isButtonDisabled={isButtonDisabled}>
-      <Label className="admin__label--page" name="관리자 페이지" />
-      <Label className="admin__label--title" name="글 올리기" />
+      <Label className="admin__label--page">관리자 페이지</Label>
+      <Label className="admin__label--title">글 올리기</Label>
       <AdminWriteForm setIsConditionMet={setIsConditionMet} writeData={writeData} setWriteData={setWriteData} />
       <Button className="admin__button--fin" disabled={isButtonDisabled} onClick={buttonHandler}>
         등록하기

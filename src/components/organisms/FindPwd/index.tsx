@@ -1,8 +1,8 @@
-import Label from 'components/atoms/Label';
-import React, { useState, useEffect } from 'react';
-import Styled from 'styled-components';
-import FindPWDForm from 'components/molecules/FindPwdForm';
 import Button from 'components/atoms/Button';
+import Label from 'components/atoms/Label';
+import FindPWDForm from 'components/molecules/FindPwdForm';
+import React, { useEffect, useState } from 'react';
+import Styled from 'styled-components';
 
 export interface IProps {
   className?: string;
@@ -24,7 +24,7 @@ function FindPWD({ ...props }: IProps): React.ReactElement {
   });
   return (
     <FindPWDWrap isBtnDisabled={isBtnDisabled}>
-      <Label name="비밀번호 찾기" className="findPwd__label--title" />
+      <Label className="findPwd__label--title">비밀번호 찾기</Label>
       <FindPWDForm
         data={data}
         setData={setData}

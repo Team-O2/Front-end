@@ -1,8 +1,8 @@
-import Label from 'components/atoms/Label';
-import React, { useState, useEffect } from 'react';
-import Styled from 'styled-components';
-import StyledInput from 'components/atoms/StyledInput';
 import Button from 'components/atoms/Button';
+import Label from 'components/atoms/Label';
+import StyledInput from 'components/atoms/StyledInput';
+import React, { useEffect, useState } from 'react';
+import Styled from 'styled-components';
 
 interface IData {
   email: string;
@@ -45,7 +45,7 @@ function FindPWDForm({ data, setData, isConditionMet, setIsConditionMet }: IProp
 
   return (
     <FindPWDFormWrap isConditionMet={isConditionMet}>
-      <Label name="아이디" className="findPwd__label--subtitle" />
+      <Label className="findPwd__label--subtitle">아이디</Label>
       <div className="findPwd__container--emailFlex">
         <StyledInput
           placeHolder="아이디(이메일)를 입력해 주세요"
@@ -61,7 +61,7 @@ function FindPWDForm({ data, setData, isConditionMet, setIsConditionMet }: IProp
           인증번호 전송
         </Button>
       </div>
-      <Label name="인증번호" className="findPwd__label--subtitle" />
+      <Label className="findPwd__label--subtitle">인증번호</Label>
       <StyledInput
         placeHolder="인증번호를 입력해 주세요"
         width="406px"

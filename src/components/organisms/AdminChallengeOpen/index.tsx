@@ -1,13 +1,13 @@
-import React, { useState, useEffect } from 'react';
-import Styled from 'styled-components';
-import Label from 'components/atoms/Label';
-import Button from 'components/atoms/Button';
-import AdminChallengeOpenForm from 'components/molecules/AdminChallengeOpenForm';
-import PhotoUpload from 'components/atoms/fileUpload';
-import CheckBox from 'components/atoms/CheckBox';
-import checkOn from 'assets/images/checkall_on.svg';
 import checkOff from 'assets/images/checkall_off.svg';
+import checkOn from 'assets/images/checkall_on.svg';
 import plusIcon from 'assets/images/plusIcon.svg';
+import Button from 'components/atoms/Button';
+import CheckBox from 'components/atoms/CheckBox';
+import PhotoUpload from 'components/atoms/fileUpload';
+import Label from 'components/atoms/Label';
+import AdminChallengeOpenForm from 'components/molecules/AdminChallengeOpenForm';
+import React, { useEffect, useState } from 'react';
+import Styled from 'styled-components';
 
 function AdminChallengeOpen(): React.ReactElement {
   const [image, setImage] = useState('');
@@ -51,15 +51,15 @@ function AdminChallengeOpen(): React.ReactElement {
 
   return (
     <SAdminChallengeOpen isButtonDisabled={isButtonDisabled}>
-      <Label className="admin__label--page" name="관리자 페이지" />
-      <Label className="admin__label--title" name="챌린지 등록" />
+      <Label className="admin__label--page">관리자 페이지</Label>
+      <Label className="admin__label--title">챌린지 등록</Label>
       <AdminChallengeOpenForm
         setIsConditionMet={setIsConditionMet}
         challengeOpenData={challengeOpenData}
         setChallengeOpenData={setChallengeOpenData}
       />
       <div className="admin__container--uploder">
-        <Label className="admin__label--element" name="사진 업로드" />
+        <Label className="admin__label--element">사진 업로드</Label>
         <PhotoUpload width={'262px'} height={'216px'} setFile={setImage} fileType={0}>
           <div className="photoUpload__container">
             <img className="photoUpload__icon--plus" src={plusIcon}></img>

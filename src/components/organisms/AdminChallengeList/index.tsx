@@ -1,9 +1,9 @@
-import React from 'react';
-import Styled from 'styled-components';
+import plusIcon from 'assets/images/plusIcon_dfdfdf.svg';
 import Label from 'components/atoms/Label';
 import AdminChallengeCard from 'components/molecules/AdminChallengeCard';
-import plusIcon from 'assets/images/plusIcon_dfdfdf.svg';
+import React from 'react';
 import { Link } from 'react-router-dom';
+import Styled from 'styled-components';
 
 const challengeDataList = [
   {
@@ -35,8 +35,8 @@ const challengeDataList = [
 function AdminChallengeList(): React.ReactElement {
   return (
     <SAdminChallengeList>
-      <Label className="admin__label--page" name="관리자 페이지" />
-      <Label className="admin__label--title" name="챌린지 정보" />
+      <Label className="admin__label--page">관리자 페이지</Label>
+      <Label className="admin__label--title">챌린지 정보</Label>
       <div className="admin__container--bottom">
         <Link to="/adminchallengeopen">
           <div className="admin__card--add">

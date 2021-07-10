@@ -1,10 +1,10 @@
-import React, { useState, useEffect } from 'react';
-import Styled from 'styled-components';
+import JoinErr from 'assets/images/joinInputErrIcon.svg';
 import Input from 'components/atoms/Input';
 import Label from 'components/atoms/Label';
 import DropDown from 'components/molecules/DropDown';
 import JoinCheck from 'components/molecules/JoinCheck';
-import JoinErr from 'assets/images/joinInputErrIcon.svg';
+import React, { useEffect, useState } from 'react';
+import Styled from 'styled-components';
 
 interface userDataType {
   email: string;
@@ -110,7 +110,7 @@ function Joinform({ ...props }: IProps): React.ReactElement {
 
   return (
     <JoinformWrap>
-      <Label className="join_subtitle" name="아이디(이메일)" />
+      <Label className="join_subtitle">아이디(이메일)</Label>
       <div
         className="join_input"
         style={
@@ -134,7 +134,7 @@ function Joinform({ ...props }: IProps): React.ReactElement {
         {isFocused.email && !isConditionMet.email && <img className="join__image--error" src={JoinErr}></img>}
       </div>
       {isFocused.email && !isConditionMet.email && <div className="join__exp--error">올바르지 않은 형식입니다</div>}
-      <Label className="join_subtitle" name="비밀번호" />
+      <Label className="join_subtitle">비밀번호</Label>
       <div
         className="join_input"
         style={
@@ -189,7 +189,7 @@ function Joinform({ ...props }: IProps): React.ReactElement {
       {isFocused.passwordCheck && !isConditionMet.passwordCheck && (
         <div className="join__exp--error">비밀번호가 일치하지 않습니다</div>
       )}
-      <Label className="join_subtitle" name="닉네임" />
+      <Label className="join_subtitle">닉네임</Label>
       <div
         className="join_input"
         style={
@@ -215,7 +215,7 @@ function Joinform({ ...props }: IProps): React.ReactElement {
       {isFocused.nickname && !isConditionMet.nickname && (
         <div className="join__exp--error">닉네임에는 한글, 숫자, 밑줄 및 마침표만 사용할 수 있습니다</div>
       )}
-      <Label className="join_subtitle" name="성별" />
+      <Label className="join_subtitle">성별</Label>
       <DropDown
         className="join_dropdown"
         state={gender}
@@ -224,7 +224,7 @@ function Joinform({ ...props }: IProps): React.ReactElement {
         itemList={['남성', '여성', '선택안함']}
         page="joinform"
       />
-      <Label className="join_subtitle" name="약관동의" />
+      <Label className="join_subtitle">약관동의</Label>
       <JoinCheck setUserData={setUserData} userData={userData} />
     </JoinformWrap>
   );
