@@ -23,7 +23,8 @@ const GlobalStyles = createGlobalStyle`
     text-decoration: none;
     cursor: pointer;
   }
-  
+  ul li {list-style-type: none;}
+
   a { text-decoration: none; color: black; }
   a:visited { text-decoration: none; }
   a:hover { text-decoration: none; }
