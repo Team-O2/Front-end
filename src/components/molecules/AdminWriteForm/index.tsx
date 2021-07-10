@@ -15,6 +15,8 @@ interface IUserData {
   menu: string;
   content: string;
   hashtag: string[];
+  video: string;
+  thumbnail: string;
 }
 interface IConditionMet {
   title: boolean;
@@ -22,6 +24,8 @@ interface IConditionMet {
   menu: boolean;
   content: boolean;
   hashtag: boolean;
+  video: boolean;
+  thumbnail: boolean;
 }
 export interface IProps {
   setIsConditionMet: (value: IConditionMet) => void;
@@ -35,6 +39,7 @@ function AdminWriteForm({ setIsConditionMet, writeData, setWriteData }: IProps):
   const [content, setContent] = useState('');
   const [currentHashtag, setCurrentHashtag] = useState('');
   const [videoFile, setVideoFile] = useState('');
+  const [thumbnail, setThumbnail] = useState('');
 
   const [isValueExist, setIsValueExist] = useState({
     // 값이 들어있는지 유무
@@ -43,6 +48,8 @@ function AdminWriteForm({ setIsConditionMet, writeData, setWriteData }: IProps):
     menu: false,
     content: false,
     hashtag: false,
+    video: false,
+    thumbnail: false,
   });
   const [isFocused, setIsFocused] = useState({
     // 인풋에 포커스가 되어있는지 유무
@@ -112,7 +119,6 @@ function AdminWriteForm({ setIsConditionMet, writeData, setWriteData }: IProps):
     }
   }, [writeData.menu]);
   useEffect(() => {
-    console.log(content);
     setWriteData({ ...writeData, content: content });
     if (content !== '<p><br></p>' && content !== '') {
       setIsValueExist({ ...isValueExist, content: true });
@@ -120,6 +126,22 @@ function AdminWriteForm({ setIsConditionMet, writeData, setWriteData }: IProps):
       setIsValueExist({ ...isValueExist, content: false });
     }
   }, [content]);
+  useEffect(() => {
+    setWriteData({ ...writeData, video: videoFile });
+    if (videoFile !== '') {
+      setIsValueExist({ ...isValueExist, video: true });
+    } else {
+      setIsValueExist({ ...isValueExist, video: false });
+    }
+  }, [videoFile]);
+  useEffect(() => {
+    setWriteData({ ...writeData, thumbnail: thumbnail });
+    if (thumbnail !== '') {
+      setIsValueExist({ ...isValueExist, thumbnail: true });
+    } else {
+      setIsValueExist({ ...isValueExist, thumbnail: false });
+    }
+  }, [thumbnail]);
 
   return (
     <SAdminWriteForm isValueExist={isValueExist} isFocused={isFocused}>
@@ -187,7 +209,7 @@ function AdminWriteForm({ setIsConditionMet, writeData, setWriteData }: IProps):
         </div>
         <div className="admin__container--upload">
           <Label className="admin__label" name="썸네일 업로드" />
-          <FileUpload width={'262px'} height={'225px'} setFile={setVideoFile} fileType={0}>
+          <FileUpload width={'262px'} height={'225px'} setFile={setThumbnail} fileType={0}>
             <div className="fileUpload__container fileUpload__container--thumbnail">
               <img className="fileUpload__icon--plus" src={plusIcon}></img>
               <div className="fileUpload__desc">썸네일 이미지 업로드하기</div>

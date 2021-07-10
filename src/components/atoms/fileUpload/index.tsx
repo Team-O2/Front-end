@@ -21,12 +21,10 @@ function PhotoUpload({ children, width, height, setFile, fileType }: IProps): Re
   };
   useEffect(() => {
     setFile(newFile);
-    console.log(newFile);
   }, [newFile]);
 
   const fileInputHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
     e.preventDefault();
-    console.log(e.target.files);
     if (e.target.files !== null) {
       const file = e.target.files[0];
       const imgFileForm = /(.*?)\.(jpg|JPG|jpeg|JPEG|png|PNG|gif|GIF|bmp|BMP)$/;
@@ -43,7 +41,6 @@ function PhotoUpload({ children, width, height, setFile, fileType }: IProps): Re
         //동영상파일
         if (file?.name?.match(videoFileForm)) {
           //파일 확장자 체크
-          console.log('아아 비디오');
           setNewFile(URL.createObjectURL(file));
         } else {
           alert('동영상 파일을 첨부해주세요');

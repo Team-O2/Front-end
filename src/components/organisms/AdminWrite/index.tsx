@@ -12,6 +12,8 @@ function AdminWrite(): React.ReactElement {
     menu: false,
     content: false,
     hashtag: false,
+    video: false,
+    thumbnail: false,
   });
   const [writeData, setWriteData] = useState({
     title: '',
@@ -19,14 +21,22 @@ function AdminWrite(): React.ReactElement {
     menu: '',
     content: '',
     hashtag: [''],
+    video: '',
+    thumbnail: '',
   });
+  const buttonHandler = () => {
+    console.log(writeData);
+  };
+
   useEffect(() => {
     if (
       isConditionMet.title &&
       isConditionMet.category &&
       isConditionMet.menu &&
       isConditionMet.content &&
-      isConditionMet.hashtag
+      isConditionMet.hashtag &&
+      isConditionMet.video &&
+      isConditionMet.thumbnail
     ) {
       setIsButtonDisabled(false);
     } else {
@@ -39,7 +49,7 @@ function AdminWrite(): React.ReactElement {
       <Label className="admin__label--page" name="관리자 페이지" />
       <Label className="admin__label--title" name="글 올리기" />
       <AdminWriteForm setIsConditionMet={setIsConditionMet} writeData={writeData} setWriteData={setWriteData} />
-      <Button className="admin__button--fin" disabled={isButtonDisabled}>
+      <Button className="admin__button--fin" disabled={isButtonDisabled} onClick={buttonHandler}>
         등록하기
       </Button>
     </SAdminWrite>
