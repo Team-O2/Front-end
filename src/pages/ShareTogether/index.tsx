@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import Styled from 'styled-components';
 import ConcertTitle from 'components/molecules/ConcertTitle';
 import CategoryList from 'components/organisms/CategoryList';
@@ -19,6 +19,12 @@ interface IData {
 }
 
 function ShareTogether(): React.ReactElement {
+  const [filteredData, setFilteredData] = useState(mockData);
+
+  const reRender = (interestList: string) => {
+    console.log(interestList);
+  };
+
   mockData.sort(function (a: IData, b: IData) {
     return b.like - a.like;
   });
@@ -28,7 +34,7 @@ function ShareTogether(): React.ReactElement {
   return (
     <SShareTogether>
       <ConcertTitle></ConcertTitle>
-      <CategoryList></CategoryList>
+      <CategoryList reRender={reRender}></CategoryList>
       <SeachForm></SeachForm>
       <ConcertCardList concertCardData={concertCardData} />
       <ConcertList concertData={concertData}></ConcertList>
@@ -50,7 +56,7 @@ const mockData = [
     concertId: '1',
     image: test,
     speaker: '앵그리엘모',
-    interest: ['IT', '요식업'],
+    interest: ['뷰티', '금융'],
     createdAt: '2021-07-01',
     title: '창업에서 살아남기 오늘도 눈물짓는 소쩍새가 되는 방법 공유',
     desc: '좋아요 7등 평소 컨텐츠 영감을 얻기 위해서 많은 커뮤니티나 오픈카톡방을 눈팅하고는 한다. 그러다가도 괜한 오지랖에 조언을 하고는 하는데, 영상에 등장하신 참치님(오픈카톡방 닉네임)은 그렇게 만난분들 중 하...',
@@ -74,7 +80,7 @@ const mockData = [
     concertId: '2',
     image: test,
     speaker: '앵그리엘모',
-    interest: ['IT', '요식업'],
+    interest: ['뷰티', '금융'],
     createdAt: '2021-07-01',
     title: '창업에서 살아남기 오늘도 눈물짓는 소쩍새가 되는 방법 공유',
     desc: '좋아요 6등평소 컨텐츠 영감을 얻기 위해서 많은 커뮤니티나 오픈카톡방을 눈팅하고는 한다. 그러다가도 괜한 오지랖에 조언을 하고는 하는데, 영상에 등장하신 참치님(오픈카톡방 닉네임)은 그렇게 만난분들 중 하...',
@@ -98,7 +104,7 @@ const mockData = [
     concertId: '3',
     image: test,
     speaker: '앵그리엘모',
-    interest: ['IT', '요식업'],
+    interest: ['금융', '뷰티'],
     createdAt: '2021-07-01',
     title: '창업에서 살아남기 오늘도 눈물짓는 소쩍새가 되는 방법 공유',
     desc: '좋아요 8등평소 컨텐츠 영감을 얻기 위해서 많은 커뮤니티나 오픈카톡방을 눈팅하고는 한다. 그러다가도 괜한 오지랖에 조언을 하고는 하는데, 영상에 등장하신 참치님(오픈카톡방 닉네임)은 그렇게 만난분들 중 하...',
@@ -122,7 +128,7 @@ const mockData = [
     concertId: '4',
     image: test,
     speaker: '앵그리엘모',
-    interest: ['IT', '요식업'],
+    interest: ['금융', '뷰티'],
     createdAt: '2021-07-01',
     title: '창업에서 살아남기 오늘도 눈물짓는 소쩍새가 되는 방법 공유',
     desc: '좋아요 4등평소 컨텐츠 영감을 얻기 위해서 많은 커뮤니티나 오픈카톡방을 눈팅하고는 한다. 그러다가도 괜한 오지랖에 조언을 하고는 하는데, 영상에 등장하신 참치님(오픈카톡방 닉네임)은 그렇게 만난분들 중 하...',
@@ -146,7 +152,7 @@ const mockData = [
     concertId: '5',
     image: test,
     speaker: '앵그리엘모',
-    interest: ['IT', '요식업'],
+    interest: ['금융', '뷰티'],
     createdAt: '2021-07-01',
     title: '창업에서 살아남기 오늘도 눈물짓는 소쩍새가 되는 방법 공유',
     desc: '좋아요 5등평소 컨텐츠 영감을 얻기 위해서 많은 커뮤니티나 오픈카톡방을 눈팅하고는 한다. 그러다가도 괜한 오지랖에 조언을 하고는 하는데, 영상에 등장하신 참치님(오픈카톡방 닉네임)은 그렇게 만난분들 중 하...',

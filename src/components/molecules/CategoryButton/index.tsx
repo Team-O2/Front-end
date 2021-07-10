@@ -7,15 +7,21 @@ interface IProps {
   isMore?: boolean;
   className?: string | undefined;
   ref?: React.RefObject<HTMLInputElement>;
+  onClickInterest?: ((tag: string) => void) | undefined;
 }
 interface IData {
   readMore?: boolean;
 }
 
-function CategoryButton({ tag, isMore }: IProps): React.ReactElement {
+function CategoryButton({ tag, isMore, onClickInterest }: IProps): React.ReactElement {
+  const onSelectInterest = () => {
+    onClickInterest && onClickInterest(tag);
+  };
   return (
     <SCategoryButton readMore={isMore}>
-      <Button className="button">{tag}</Button>
+      <Button onClick={onSelectInterest} className="button">
+        {tag}
+      </Button>
     </SCategoryButton>
   );
 }
