@@ -5,6 +5,7 @@ import {
   GetChallengeFill,
   GrowingTogetherFill,
   NaturalBornO2Fill,
+  Percent100Img,
   ReadyForCommunicationFill,
   ReadyForGrowFill,
   ShyEmailFill,
@@ -15,7 +16,6 @@ import {
 } from 'assets/images';
 import { ReactComponent as LeftArrow } from 'assets/images/largeLeftArrow.svg';
 import { ReactComponent as RightArrow } from 'assets/images/largeRightArrow.svg';
-import percent100Img from 'assets/images/mypage/100img.svg';
 import { fadeIn, fadeOut } from 'assets/styles/animation';
 import { Button, DotText, Img, Label, MyPageCard } from 'components/atoms';
 import dayjs from 'dayjs';
@@ -74,7 +74,7 @@ function MyPageSlider(): React.ReactElement {
                 {`${dayjs().startOf('month').format('YY.MM.DD')} - ${dayjs().endOf('month').format('YY.MM.DD')}`}
               </p>
               <div className="slider__learnMyself--img">
-                <Img src={percent100Img} />
+                <Img src={Percent100Img} />
               </div>
               <p className="slider__learnMyself--percent subhead5_eng">100% 달성</p>
               <p className="slider__learnMyself--count body2">

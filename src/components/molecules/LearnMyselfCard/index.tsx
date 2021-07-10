@@ -1,5 +1,4 @@
-import EmptyBookmark from 'assets/images/emptyBookmark.svg';
-import FilledBookmark from 'assets/images/filledBookmark.svg';
+import { EmptyBookmark, FilledBookmark } from 'assets/images';
 import { Icon, Img, Link } from 'components/atoms';
 import React from 'react';
 import Styled from 'styled-components';
