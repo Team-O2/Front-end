@@ -7,26 +7,28 @@ import FilledCheckBox from '../../../assets/images/filledCheckBox.svg';
 
 export interface IProps {
   isChecked?: boolean;
-  id: string;
-  content: string;
-  date: string;
-  boardId: string;
+  id?: string;
+  content?: string;
+  date?: string;
+  boardId?: string;
 }
 
 function CommentedBoardRow({ isChecked = false, content, date, boardId, id }: IProps): React.ReactElement {
   return (
     <Wrapper>
-      <div className="row">
-        <CheckBox className="row__checkbox" id={id} checked={isChecked} />
-        <Label className="row__content body4">{content}</Label>
-        <div className="row__infoWrapper">
-          <span className="row__date body3_eng">{date}</span>
-          <span className="row__date--bar"></span>
-          <Link className="row__link" to={`${boardId}`}>
-            <span className="body3">원문보기</span>
-          </Link>
+      {content && (
+        <div className="row">
+          <CheckBox className="row__checkbox" id={id} checked={isChecked} />
+          <Label className="row__content body4">{content}</Label>
+          <div className="row__infoWrapper">
+            <span className="row__date body3_eng">{date}</span>
+            <span className="row__date--bar"></span>
+            <Link className="row__link" to={`${boardId}`}>
+              <span className="body3">원문보기</span>
+            </Link>
+          </div>
         </div>
-      </div>
+      )}
     </Wrapper>
   );
 }
@@ -80,13 +82,14 @@ const Wrapper = Styled.div`
     &__date {
       width: 95px;
       height: 20px;
+      text-align: right;
       color: ${palette('grayscale', -5)};
       margin-right: 10px;
 
       &--bar {
         width: 1px;
         height: 16px;
-        background-color: ${palette('grayscale', 3)}
+        background-color: ${palette('grayscale', 3)};
       }
     }
 
