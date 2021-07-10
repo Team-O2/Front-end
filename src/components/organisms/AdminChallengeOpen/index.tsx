@@ -3,7 +3,7 @@ import Styled from 'styled-components';
 import Label from 'components/atoms/Label';
 import Button from 'components/atoms/Button';
 import AdminChallengeOpenForm from 'components/molecules/AdminChallengeOpenForm';
-import PhotoUpload from 'components/atoms/PhotoUpload';
+import PhotoUpload from 'components/atoms/fileUpload';
 import CheckBox from 'components/atoms/CheckBox';
 import checkOn from 'assets/images/checkall_on.svg';
 import checkOff from 'assets/images/checkall_off.svg';
@@ -60,7 +60,7 @@ function AdminChallengeOpen(): React.ReactElement {
       />
       <div className="admin__container--uploder">
         <Label className="admin__label--element" name="사진 업로드" />
-        <PhotoUpload width={'262px'} height={'216px'} setImage={setImage}>
+        <PhotoUpload width={'262px'} height={'216px'} setFile={setImage} fileType={0}>
           <div className="photoUpload__container">
             <img className="photoUpload__icon--plus" src={plusIcon}></img>
             <div className="photoUpload__desc--middle">
