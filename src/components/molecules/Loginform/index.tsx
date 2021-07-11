@@ -2,9 +2,11 @@ import Button from 'components/atoms/Button';
 import Input from 'components/atoms/Input';
 import { postLogin } from 'libs/axios';
 import React, { useEffect, useState } from 'react';
+import { useHistory } from 'react-router-dom';
 import Styled from 'styled-components';
 
 function Loginform(): React.ReactElement {
+  const history = useHistory();
   const [loginData, setLoginData] = useState({
     // 값 저장
     email: '',
@@ -77,7 +79,11 @@ function Loginform(): React.ReactElement {
         className="login_button"
         onClick={async () => {
           const data = await postLogin(loginData);
-          console.log(data);
+          if (data.status == 200) {
+            history.push('/');
+          } else {
+            alert(data.message);
+          }
         }}
       >
         로그인

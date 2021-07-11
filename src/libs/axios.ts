@@ -13,12 +13,9 @@ interface ILoginData {
 
 export const postLogin = async (loginData: ILoginData) => {
   try {
-    console.log('data', loginData);
     const data = await serverAxios.post('/auth/signin', loginData);
-    console.log('[SUCCESS] POST host data');
     return data;
   } catch (e) {
-    console.log('[FAIL] POST host data', e);
-    return null;
+    return e.response.data;
   }
 };
