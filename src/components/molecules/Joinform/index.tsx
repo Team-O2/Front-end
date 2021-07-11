@@ -11,7 +11,7 @@ interface userDataType {
   password: string;
   passwordCheck: string;
   nickname: string;
-  gender: string;
+  gender: number;
   interest: Array<string>;
   marpolicy: boolean;
   policyMust: boolean;
@@ -58,7 +58,7 @@ function Joinform({ ...props }: IProps): React.ReactElement {
     nickname: false,
   });
   useEffect(() => {
-    setUserData({ ...userData, gender: gender });
+    setUserData({ ...userData, gender: gender == '남성' ? 0 : gender == '여성' ? 1 : 2 });
   }, [gender]);
 
   //입력값이 달라질때마다 조건 충족여부 파악하는 useEffect
@@ -101,7 +101,7 @@ function Joinform({ ...props }: IProps): React.ReactElement {
     }
   }, [userData.policyMust]);
   useEffect(() => {
-    if (userData.gender != 'unchecked') {
+    if (userData.gender != -1) {
       setIsConditionMet({ ...isConditionMet, gender: true });
     } else {
       setIsConditionMet({ ...isConditionMet, gender: false });

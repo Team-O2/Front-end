@@ -1,20 +1,20 @@
-import React, { useState, useEffect } from 'react';
-import Styled from 'styled-components';
+import checkall_off from 'assets/images/checkall_off.svg';
+import checkall_on from 'assets/images/checkall_on.svg';
+import checkOff from 'assets/images/check_off.svg';
+import checkOn from 'assets/images/check_on.svg';
+import modalClose from 'assets/images/modalClose.svg';
 import Button from 'components/atoms/Button';
 import CheckBox from 'components/atoms/CheckBox';
 import Modal from 'components/atoms/Modal';
-import checkOff from 'assets/images/check_off.svg';
-import checkOn from 'assets/images/check_on.svg';
-import checkall_off from 'assets/images/checkall_off.svg';
-import checkall_on from 'assets/images/checkall_on.svg';
-import modalClose from 'assets/images/modalClose.svg';
+import React, { useEffect, useState } from 'react';
+import Styled from 'styled-components';
 
 interface userDataType {
   email: string;
   password: string;
   passwordCheck: string;
   nickname: string;
-  gender: string;
+  gender: number;
   interest: Array<string>;
   marpolicy: boolean;
   policyMust: boolean;
