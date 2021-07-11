@@ -57,8 +57,19 @@ function Joinform({ ...props }: IProps): React.ReactElement {
     passwordCheck: false,
     nickname: false,
   });
+  const genderStringtoNum = (gender: string) => {
+    switch (gender) {
+      case '남성':
+        return 0;
+      case '여성':
+        return 1;
+      default:
+        return 2;
+    }
+  };
+
   useEffect(() => {
-    setUserData({ ...userData, gender: gender == '남성' ? 0 : gender == '여성' ? 1 : 2 });
+    setUserData({ ...userData, gender: genderStringtoNum(gender) });
   }, [gender]);
 
   //입력값이 달라질때마다 조건 충족여부 파악하는 useEffect
