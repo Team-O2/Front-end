@@ -1,10 +1,11 @@
-import React, { useState, useEffect } from 'react';
-import Styled from 'styled-components';
 import ConcertTitle from 'components/molecules/ConcertTitle';
 import CategoryList from 'components/organisms/CategoryList';
-import SeachForm from 'components/organisms/SearchForm';
 import ConcertCardList from 'components/organisms/ConcertCardList';
 import ConcertList from 'components/organisms/ConcertList';
+import Header from 'components/organisms/Header';
+import SeachForm from 'components/organisms/SearchForm';
+import React, { useState } from 'react';
+import Styled from 'styled-components';
 import test from '../../assets/images/test.svg';
 
 interface IData {
@@ -20,9 +21,8 @@ interface IData {
 
 function ShareTogether(): React.ReactElement {
   const [filteredData, setFilteredData] = useState(mockData);
-
-  const reRender = (interestList: string) => {
-    console.log(interestList);
+  const reRender = (category: string) => {
+    console.log(category);
   };
 
   mockData.sort(function (a: IData, b: IData) {
@@ -32,22 +32,25 @@ function ShareTogether(): React.ReactElement {
   const concertData = mockData.slice(3);
 
   return (
-    <SShareTogether>
-      <ConcertTitle></ConcertTitle>
-      <CategoryList reRender={reRender}></CategoryList>
-      <SeachForm></SeachForm>
-      <ConcertCardList concertCardData={concertCardData} />
-      <ConcertList concertData={concertData}></ConcertList>
-    </SShareTogether>
+    <>
+      <Header />
+      <SShareTogether>
+        <ConcertTitle></ConcertTitle>
+        <CategoryList reRender={reRender}></CategoryList>
+        <SeachForm></SeachForm>
+        <ConcertCardList concertCardData={concertCardData} />
+        <ConcertList concertData={concertData}></ConcertList>
+      </SShareTogether>
+    </>
   );
 }
 
 const SShareTogether = Styled.div`
-  width: 845px;
-  margin: 0 auto;
   display: flex;
   flex-direction: column;
   justify-content: center;
+  margin: 0 auto;
+  width: 845px;
 `;
 export default ShareTogether;
 
