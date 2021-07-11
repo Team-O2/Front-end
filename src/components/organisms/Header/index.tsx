@@ -1,11 +1,11 @@
-import React, { useState } from 'react';
-import Styled from 'styled-components';
-import Button from '../../atoms/Button/index';
-import Hamburger from 'components/organisms/Hamburger';
 import Modal from 'components/atoms/Modal';
-
+import Hamburger from 'components/organisms/Hamburger';
+import React, { useState } from 'react';
+import { Link } from 'react-router-dom';
+import Styled from 'styled-components';
 import Ham_Logo from '../../../assets/images/hamburgerLogo.svg';
 import O2_Logo from '../../../assets/images/header_logo.svg';
+import Button from '../../atoms/Button/index';
 
 function Header(): React.ReactElement {
   const [hamburgerOpen, setHamburgerOpen] = useState(false);
@@ -20,9 +20,11 @@ function Header(): React.ReactElement {
           <Button onClick={hamburgerOpenClickListener}>
             <img className="button" src={Ham_Logo}></img>
           </Button>
-          <Button>
-            <img className="button" src={O2_Logo}></img>
-          </Button>
+          <Link to="/">
+            <Button>
+              <img className="button" src={O2_Logo}></img>
+            </Button>
+          </Link>
         </div>
         <Modal isOpen={hamburgerOpen} setIsOpen={setHamburgerOpen} isBlur={false}>
           <Hamburger />
@@ -49,6 +51,7 @@ const HeaderWrap = Styled.div`
     }  
     .button{
         width : 32px;
+        margin-right : 20px;
     }  
 `;
 
