@@ -1,5 +1,5 @@
-import moreIcon from 'assets/images/moreIcon.svg';
-import moreClickedIcon from 'assets/images/more_filled.svg';
+import moreIcon from 'assets/images/moreButtonIcon.svg';
+import moreClickedIcon from 'assets/images/moreIcon.svg';
 import nextIcon from 'assets/images/nextIcon.svg';
 import CategoryButton from 'components/molecules/CategoryButton';
 import React, { useEffect, useRef, useState } from 'react';
@@ -13,15 +13,15 @@ function CategoryList({ reRender }: IProps): React.ReactElement {
   const slideRef = useRef<HTMLInputElement>(null);
   const [openMore, setOpenMore] = useState(false);
   const [moreClicked, setMoreClicked] = useState(false);
-  const [interest, setInterest] = useState('');
+  const [selectedCategory, setSelectedCategory] = useState('전체');
 
   const onClickOpenMore = () => {
     setOpenMore(!openMore);
     setMoreClicked(!moreClicked);
   };
-  const onClickInterest = (newInterest: any) => {
-    setInterest(newInterest);
-    reRender && reRender(interest);
+  const onClickInterest = (category: any) => {
+    setSelectedCategory(category);
+    reRender && reRender(selectedCategory);
   };
 
   const nextSlide = () => {
@@ -42,11 +42,22 @@ function CategoryList({ reRender }: IProps): React.ReactElement {
   return (
     <SCategoryList>
       <div className="main">
-        <CategoryButton className="fix" tag="전체"></CategoryButton>
+        <CategoryButton
+          tag="전체"
+          isMore={false}
+          selectedCategory={selectedCategory}
+          onClickInterest={onClickInterest}
+        ></CategoryButton>
         <div className="hashtag__container">
           <div className="hashtags" ref={slideRef}>
             {hashtagList.map((tag, index) => (
-              <CategoryButton isMore={false} key={index} tag={tag}></CategoryButton>
+              <CategoryButton
+                key={index}
+                tag={tag}
+                isMore={false}
+                selectedCategory={selectedCategory}
+                onClickInterest={onClickInterest}
+              ></CategoryButton>
             ))}
           </div>
         </div>
@@ -60,7 +71,13 @@ function CategoryList({ reRender }: IProps): React.ReactElement {
           <>
             <div className="more__box">
               {hashtagList.map((tag, index) => (
-                <CategoryButton key={index} tag={tag} onClickInterest={onClickInterest} isMore={true}></CategoryButton>
+                <CategoryButton
+                  key={index}
+                  tag={tag}
+                  isMore={true}
+                  selectedCategory={selectedCategory}
+                  onClickInterest={onClickInterest}
+                ></CategoryButton>
               ))}
             </div>
           </>
@@ -72,18 +89,18 @@ function CategoryList({ reRender }: IProps): React.ReactElement {
 
 const SCategoryList = Styled.label`
   display: flex;
+  position: relative;
   flex-direction: column;
   align-items: center;
   margin: 0 auto 50px;
-  position: relative;
   .main {
-    width: 815px;
     display: flex;
     align-items: center;
+    width: 815px;
   }
   .hashtag__container{
-    width: 645px;
     display: flex;
+    width: 645px;
     overflow: hidden;
   }
   .hashtags {
@@ -91,11 +108,11 @@ const SCategoryList = Styled.label`
   }
   .shadow {
     position: absolute;
+    right: 120px;
+    margin-right: -20px;
+    background: linear-gradient(270deg, #FFFFFF 33.87%, rgba(255, 255, 255, 0) 94.35%);
     width: 81px;
     height: 46px;
-    background: linear-gradient(270deg, #FFFFFF 33.87%, rgba(255, 255, 255, 0) 94.35%);
-    margin-right: -20px;
-    right: 120px;
   } 
   .next {
     z-index:5;
@@ -104,13 +121,13 @@ const SCategoryList = Styled.label`
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
-    width: 844px;
-    height: 328px;
     margin-top: 20px;
-    padding: 25px 0;
+    border: solid 1px rgba(223, 223, 223, 0.5);
     border-radius: 16px;
     box-shadow: 0 0 15px 0 rgba(23, 22, 91, 0.08);
-    border: solid 1px rgba(223, 223, 223, 0.5);
+    padding: 25px 25px;
+    width: 844px;
+    height: 328px;
     
   }
 `;

@@ -1,24 +1,27 @@
+import Button from 'components/atoms/Button';
 import React from 'react';
 import Styled from 'styled-components';
-import Button from 'components/atoms/Button';
 
 interface IProps {
   tag: string;
   isMore?: boolean;
-  className?: string | undefined;
-  ref?: React.RefObject<HTMLInputElement>;
+  selectedCategory?: string;
   onClickInterest?: ((tag: string) => void) | undefined;
+  ref?: React.RefObject<HTMLInputElement>;
 }
 interface IData {
   readMore?: boolean;
+  isCategoryClicked?: boolean;
 }
 
-function CategoryButton({ tag, isMore, onClickInterest }: IProps): React.ReactElement {
+function CategoryButton({ tag, isMore, selectedCategory, onClickInterest }: IProps): React.ReactElement {
+  const isSelected = tag === selectedCategory ? true : false;
   const onSelectInterest = () => {
     onClickInterest && onClickInterest(tag);
   };
+  console.log(selectedCategory);
   return (
-    <SCategoryButton readMore={isMore}>
+    <SCategoryButton readMore={isMore} isCategoryClicked={isSelected}>
       <Button onClick={onSelectInterest} className="button">
         {tag}
       </Button>
@@ -31,12 +34,14 @@ const SCategoryButton = Styled.label`
   border-radius: 60px;
   padding: 12px 25px;
   margin-right: 10px;
-  background-color: white;
-  border: ${({ readMore }: IData) => (readMore ? '1px solid #8b8b8b' : '1px solid #03b6ce')};
+  background-color:${({ isCategoryClicked }: IData) => (isCategoryClicked ? '#03b6ce' : '#ffffff')};
+  border: ${({ isCategoryClicked }: IData) =>
+    isCategoryClicked ? '#03b6ce' : ({ readMore }: IData) => (readMore ? '1px solid #8b8b8b' : '1px solid #03b6ce')};
   .button {
     white-space : nowrap; 
     font-size: 16px;
-    color: ${({ readMore }: IData) => (readMore ? '#8b8b8b' : '#03b6ce')};
+    color: ${({ isCategoryClicked }: IData) =>
+      isCategoryClicked ? '#ffffff' : ({ readMore }: IData) => (readMore ? '#8b8b8b' : '#03b6ce')};
     font-family: 'AppleSDGothicNeo';
     font-weight: bold;
   }
