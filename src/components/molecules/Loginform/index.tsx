@@ -1,7 +1,8 @@
-import React, { useState, useEffect } from 'react';
-import Styled from 'styled-components';
-import Input from 'components/atoms/Input';
 import Button from 'components/atoms/Button';
+import Input from 'components/atoms/Input';
+import { postLogin } from 'libs/axios';
+import React, { useEffect, useState } from 'react';
+import Styled from 'styled-components';
 
 function Loginform(): React.ReactElement {
   const [loginData, setLoginData] = useState({
@@ -72,7 +73,15 @@ function Loginform(): React.ReactElement {
           }}
         ></Input>
       </div>
-      <Button className="login_button">로그인</Button>
+      <Button
+        className="login_button"
+        onClick={async () => {
+          const data = await postLogin(loginData);
+          console.log(data);
+        }}
+      >
+        로그인
+      </Button>
     </LoginformWrap>
   );
 }
