@@ -11,6 +11,7 @@ interface IData {
   title: string;
   desc: string;
   like: number;
+  commentNum: number;
 }
 interface IProps {
   concertData: Array<IData>;
@@ -27,6 +28,8 @@ function ConcertList({ concertData }: IProps): React.ReactElement {
             createdAt={card.createdAt}
             title={card.title}
             desc={card.desc}
+            commentNum={card.commentNum}
+            like={card.like}
             key={card.concertId}
           ></Concert>
         ))}
