@@ -20,7 +20,7 @@ function Router(): React.ReactElement {
       <Switch>
         <Route exact path="/" component={Home} />
         <Route exact path="/ShareTogether" component={ShareTogether} />
-        <Route exact path="/ShareTogetherDetail/:id" component={ShareTogetherDetail} />
+        <Route exact path="/ShareTogether/:id" component={ShareTogetherDetail} />
         <Route exact path="/login" component={Login} />
         <Route exact path="/adminwrite" component={AdminWrite} />
         <Route exact path="/adminchallengeopen" component={AdminChallengeOpen} />

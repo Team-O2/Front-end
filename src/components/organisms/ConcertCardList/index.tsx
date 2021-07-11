@@ -1,7 +1,7 @@
 import React from 'react';
+import { useHistory } from 'react-router';
 import Styled from 'styled-components';
 import ConcertCard from '../../molecules/ConcertCard';
-import { useHistory } from 'react-router';
 
 interface IData {
   concertId: string;
@@ -28,7 +28,7 @@ function ConcertCardList({ concertCardData }: IProps): React.ReactElement {
           speaker={card.speaker}
           interest={card.interest}
           key={card.concertId}
-          onClickFunc={() => history.push(`/ShareTogetherDetail/${card.concertId}`)}
+          onClickFunc={() => history.push(`/ShareTogether/${card.concertId}`)}
         ></ConcertCard>
       ))}
     </SConcertCardList>
