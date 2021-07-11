@@ -2,40 +2,12 @@ import Button from 'components/atoms/Button';
 import Label from 'components/atoms/Label';
 import Modal from 'components/atoms/Modal';
 import Joinform from 'components/molecules/Joinform';
+import { postJoin } from 'libs/axios';
 import React, { useEffect, useState } from 'react';
+import { useHistory } from 'react-router-dom';
+import { interestList } from 'resources/string';
 import Styled from 'styled-components';
 
-const interestList: string[] = [
-  '건강 및 피트니스',
-  '게임',
-  '교육',
-  '그래픽 및 디자인',
-  '금융',
-  'K-pop',
-  '뉴스, 신문',
-  '데이트',
-  '날씨',
-  '네비게이션',
-  '출판,도서',
-  '뷰티',
-  '라이프 스타일',
-  '만화',
-  '부동산 / 홈 인테리어',
-  '사진 및 비디오',
-  '쇼핑',
-  '비즈니스',
-  '생산성',
-  '소셜 네트워킹',
-  '스포츠',
-  '어린이',
-  'AR앱',
-  '여행',
-  '유틸리티',
-  '음식 및 음료',
-  '음악',
-  '의료',
-  '기타',
-];
 const selectedStyleList = [
   { backgroundColor: '#13E2DD', border: '1px solid #13E2DD', color: '#ffffff' },
   { backgroundColor: '#36C8F5', border: '1px solid #36C8F5', color: '#ffffff' },
@@ -45,6 +17,7 @@ const selectedStyleList = [
 ];
 
 function CJoin(): React.ReactElement {
+  const history = useHistory();
   const [isButtonDisabled, setIsButtonDisabled] = useState(true);
   const [isInterestModalOpen, setIsInterestModalOpen] = useState(false);
   const [isConditionMet, setIsConditionMet] = useState({
@@ -61,7 +34,7 @@ function CJoin(): React.ReactElement {
     password: '',
     passwordCheck: '',
     nickname: '',
-    gender: 'unchecked',
+    gender: -1,
     interest: [''],
     marpolicy: false,
     policyMust: false,
@@ -83,9 +56,24 @@ function CJoin(): React.ReactElement {
       }
     }
   };
-  const modalBtnHandler = () => {
+  const modalBtnHandler = async () => {
+    //여기서 api호출!!
     setUserData({ ...userData, interest: selectedInterest });
-    setIsInterestModalOpen(false);
+    const postData = {
+      email: userData.email,
+      password: userData.password,
+      nickname: userData.nickname,
+      interest: userData.interest,
+      gender: userData.gender,
+      marpolicy: userData.marpolicy,
+    };
+    const getData = await postJoin(postData);
+    if (getData.status == 201) {
+      history.push('/');
+    } else {
+      alert(getData.message);
+    }
+    // setIsInterestModalOpen(false);
   };
   const joinBtnHandler = () => {
     setIsInterestModalOpen(true);
