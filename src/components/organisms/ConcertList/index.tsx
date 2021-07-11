@@ -1,4 +1,5 @@
 import React from 'react';
+import { useHistory } from 'react-router';
 import Styled from 'styled-components';
 import Concert from '../../molecules/Concert';
 
@@ -17,6 +18,7 @@ interface IProps {
   concertData: Array<IData>;
 }
 function ConcertList({ concertData }: IProps): React.ReactElement {
+  const history = useHistory();
   return (
     <>
       <SConcertList>
@@ -31,6 +33,7 @@ function ConcertList({ concertData }: IProps): React.ReactElement {
             commentNum={card.commentNum}
             like={card.like}
             key={card.concertId}
+            onClickFunc={() => history.push(`/ShareTogether/${card.concertId}`)}
           ></Concert>
         ))}
       </SConcertList>

@@ -12,9 +12,20 @@ interface IProps {
   desc: string;
   commentNum: number;
   like: number;
+  onClickFunc: () => void;
 }
 
-function Concert({ image, speaker, interest, createdAt, title, desc, commentNum, like }: IProps): React.ReactElement {
+function Concert({
+  image,
+  speaker,
+  interest,
+  createdAt,
+  title,
+  desc,
+  commentNum,
+  like,
+  onClickFunc,
+}: IProps): React.ReactElement {
   return (
     <>
       <SConcert>
@@ -23,7 +34,7 @@ function Concert({ image, speaker, interest, createdAt, title, desc, commentNum,
           <p>{interest}</p>
           <p>{createdAt}</p>
         </div>
-        <div className="content__middle">
+        <div className="content__middle" onClick={onClickFunc}>
           <p>{title}</p>
           <p>{desc}</p>
         </div>
