@@ -1,3 +1,5 @@
+import CommentIcon from 'assets/images/thumnailComment.svg';
+import LikeIcon from 'assets/images/thumnailHeart.svg';
 import React from 'react';
 import Styled from 'styled-components';
 
@@ -8,9 +10,11 @@ interface IProps {
   createdAt: string;
   title: string;
   desc: string;
+  commentNum: number;
+  like: number;
 }
 
-function Concert({ image, speaker, interest, createdAt, title, desc }: IProps): React.ReactElement {
+function Concert({ image, speaker, interest, createdAt, title, desc, commentNum, like }: IProps): React.ReactElement {
   return (
     <>
       <SConcert>
@@ -25,6 +29,14 @@ function Concert({ image, speaker, interest, createdAt, title, desc }: IProps): 
         </div>
         <div className="content__right">
           <img className="content__right--img" src={image} alt="" />
+          <div className="overlay overlayFade">
+            <div className="content">
+              <img src={LikeIcon} alt="" />
+              <p> {like}</p>
+              <img src={CommentIcon} alt="" />
+              <p> {commentNum}</p>
+            </div>
+          </div>
         </div>
       </SConcert>
     </>
@@ -34,24 +46,24 @@ function Concert({ image, speaker, interest, createdAt, title, desc }: IProps): 
 const SConcert = Styled.div`
   display: flex;
   flex-direction: row;
-  justify-content: space-around;
-  height: 144px;
   align-items: center;
+  justify-content: space-around;
   border-bottom: 1px solid #DFDFDF;
+  height: 144px;
   font-family: 'AppleSDGothicNeo';
   .content__left {
     display: flex;
     flex-direction: column;
     width: 111px;
     height: 84px;
-    font-size: 12px;
-    color: #404040;
     line-height: 1.5;
+    color: #404040;
+    font-size: 12px;
     & p:nth-of-type(1) {
         margin: 0 38px 12px 0;
+        line-height: 1.38;
         font-size: 16px;
         font-weight: bold;
-        line-height: 1.38;
     }
   }
   .content__middle {
@@ -59,24 +71,60 @@ const SConcert = Styled.div`
     flex-direction: column;
     width: 524px;
     height: 84px;
+    line-height: 1.38;
+    color: #0d0d0d;
     font-size: 16px;
     font-weight: bold;
-    color: #0d0d0d;
-    line-height: 1.38;
     & p:nth-of-type(2) {
       margin-top: 12px;
+      line-height: 1.5;
+      color: #3d3d3d;
       font-size: 14px;
       font-weight: normal;
-      color: #3d3d3d;
-      line-height: 1.5;
     }
   }
   .content__right {
+    position: relative;
     &--img {
       width: 170px;
       height: 84px;
       object-fit: cover;
     }
+  }
+  .overlay{
+    position: absolute;
+    transition: all .3s ease;
+    opacity: 0;
+  }
+  .content__right:hover .overlay{
+    opacity: .6;
+  }
+  .content {
+    display: flex;
+    position:absolute;
+    top: 50%;
+    left: 50%;
+    align-items:center;
+    transform: translate(-50%, -50%);
+    color: white;
+    font-family: 'HomepageBaukasten';
+    font-size: 14px;
+    img {
+      margin-right:5px;
+    }
+    p {
+      margin-right:10px;
+    }
+  }
+  .overlayFade{
+    top: 0;
+    left: 0;
+    opacity: 0;
+    width:100%;
+    height: 100%;
+  }
+  .content__right:hover .overlayFade{
+    opacity: .7;
   }
 `;
 
