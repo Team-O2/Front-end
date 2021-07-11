@@ -407,6 +407,8 @@ const JoinWrap = Styled.div`
     &__container--card{
       margin-top :80px;
       display : flex;
+      width : 1109px;
+      justify-content : space-between;
     }
     &__img--card{
       width : 254px;
