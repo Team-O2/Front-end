@@ -22,13 +22,13 @@ import { Button } from 'components/atoms';
 import BadgeCard from 'components/molecules/BadgeExpCard';
 import Header from 'components/organisms/Header';
 import React from 'react';
+import { Link } from 'react-router-dom';
 import Styled from 'styled-components';
 
 function Home(): React.ReactElement {
   return (
     <>
       <Header />
-
       <JoinWrap>
         <div className="top">
           <h1 className="top__title--O2 ">O2</h1>
@@ -37,7 +37,9 @@ function Home(): React.ReactElement {
             창업가들이 마시는 산소
           </h2>
           <p className="top__exp body4">답답한 창업 여정에 시원한 산소 한 모금</p>
-          <Button className="top__button subhead2">챌린지 시작하기</Button>
+          <Link to="/challenge">
+            <Button className="top__button subhead2">챌린지 보러가기</Button>
+          </Link>
         </div>
         <div className="learnMyself">
           <h2 className="middle__title--title dp1_eng">Learn Myself</h2>
@@ -233,7 +235,9 @@ function Home(): React.ReactElement {
               <br />
               챌린지를 시작해 보세요
             </p>
-            <Button className="subhead4_eng linkTo__button">More</Button>
+            <Link to="/challenge">
+              <Button className="subhead4_eng linkTo__button">More</Button>
+            </Link>
           </div>
           <div className="linkTo__container--card">
             <h1 className="h1_eng linkTo__title">Share Together</h1>
@@ -242,7 +246,9 @@ function Home(): React.ReactElement {
               <br />
               들어보세요!
             </p>
-            <Button className="subhead4_eng linkTo__button">More</Button>
+            <Link to="/ShareTogether">
+              <Button className="subhead4_eng linkTo__button">More</Button>
+            </Link>
           </div>
         </div>
       </JoinWrap>
