@@ -22,6 +22,14 @@ function Loginform(): React.ReactElement {
     email: false,
     password: false,
   });
+  const loginBtnHandler = async () => {
+    const data = await postLogin(loginData);
+    if (data.status === 200) {
+      history.push('/');
+    } else {
+      alert(data.message);
+    }
+  };
 
   useEffect(() => {
     if (loginData.email != '') {
@@ -75,17 +83,7 @@ function Loginform(): React.ReactElement {
           }}
         ></Input>
       </div>
-      <Button
-        className="login_button"
-        onClick={async () => {
-          const data = await postLogin(loginData);
-          if (data.status == 200) {
-            history.push('/');
-          } else {
-            alert(data.message);
-          }
-        }}
-      >
+      <Button className="login_button" onClick={loginBtnHandler}>
         로그인
       </Button>
     </LoginformWrap>

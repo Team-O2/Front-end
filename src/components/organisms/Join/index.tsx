@@ -68,7 +68,7 @@ function CJoin(): React.ReactElement {
       marpolicy: userData.marpolicy,
     };
     const getData = await postJoin(postData);
-    if (getData.status == 201) {
+    if (getData.status === 201) {
       history.push('/');
     } else {
       alert(getData.message);
