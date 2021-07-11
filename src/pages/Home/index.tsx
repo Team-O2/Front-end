@@ -269,6 +269,16 @@ const JoinWrap = Styled.div`
     margin : 0;
     padding : 0;
   }
+  @keyframes moveUp {
+    from {
+      transform: translateY(8%);
+      opacity: 0;
+    }
+    to {
+      transform: translateY(0);
+      opacity: 1;
+    }
+  }
   .linkTo{
     width : 100%;
     padding-top : 208px;
@@ -293,9 +303,9 @@ const JoinWrap = Styled.div`
     }
    &__button{
     width: 200px;
-  height: 60px;
-     background-color : #36c8f5;
-     color : #ffffff;
+    height: 60px;
+    background-color : #36c8f5;
+    color : #ffffff;
    }
   }
   .o2badge{
@@ -359,6 +369,8 @@ const JoinWrap = Styled.div`
   .top{
     padding-top : 178px;
     width : 1109px;
+    animation-name: moveUp;
+    animation-duration: 1.5s;
     &__title{
       &--O2{
         font-size: 90px;
