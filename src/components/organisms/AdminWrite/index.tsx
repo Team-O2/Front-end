@@ -1,7 +1,7 @@
 import Button from 'components/atoms/Button';
 import Label from 'components/atoms/Label';
 import AdminWriteForm from 'components/molecules/AdminWriteForm';
-import { postConcertWrite } from 'libs/axios';
+import { postConcertWrite, postNoticeWrite } from 'libs/axios';
 import React, { useEffect, useState } from 'react';
 import Styled from 'styled-components';
 
@@ -38,10 +38,13 @@ function AdminWrite(): React.ReactElement {
   });
   const buttonHandler = () => {
     console.log(writeData);
-    postNoticeHandler();
+    if (writeData.menu === '공지사항') {
+      postNoticeHandler();
+    } else {
+      postConcertHandler();
+    }
   };
-  // const postConcertHandler = () => {};
-  const postNoticeHandler = () => {
+  const postConcertHandler = () => {
     postConcertWrite(
       'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoiNjBlYjI3Y2ZjZmY1NTkyNmM0M2NlN2ZmIn0sImlhdCI6MTYyNjA4ODY1NiwiZXhwIjoxNjI3Mjk4MjU2fQ.uxM51YrnEf6qZsq9tjPbkvRS587g_8xclrC0zxAN0IU',
       {
@@ -52,6 +55,17 @@ function AdminWrite(): React.ReactElement {
         interest: writeData.category,
         hashtag: writeData.hashtag,
         authorNickname: writeData.nickname,
+      },
+    );
+  };
+  const postNoticeHandler = () => {
+    postNoticeWrite(
+      'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoiNjBlYjI3Y2ZjZmY1NTkyNmM0M2NlN2ZmIn0sImlhdCI6MTYyNjA4ODY1NiwiZXhwIjoxNjI3Mjk4MjU2fQ.uxM51YrnEf6qZsq9tjPbkvRS587g_8xclrC0zxAN0IU',
+      {
+        title: writeData.title,
+        text: writeData.content,
+        interest: writeData.category,
+        hashtag: writeData.hashtag,
       },
     );
   };
