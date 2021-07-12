@@ -19,7 +19,6 @@ function CategoryButton({ tag, isMore, selectedCategory, onClickInterest }: IPro
   const onSelectInterest = () => {
     onClickInterest && onClickInterest(tag);
   };
-  console.log(selectedCategory);
   return (
     <SCategoryButton readMore={isMore} isCategoryClicked={isSelected}>
       <Button onClick={onSelectInterest} className="button">

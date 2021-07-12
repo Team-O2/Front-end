@@ -9,7 +9,7 @@ interface MatchParams {
 }
 function SearchForm({ location }: RouteComponentProps<MatchParams>): React.ReactElement {
   const path = location.pathname;
-  console.log(path);
+
   return (
     <SSearchForm>
       <div className="main">
@@ -27,8 +27,8 @@ function SearchForm({ location }: RouteComponentProps<MatchParams>): React.React
 const SSearchForm = Styled.div`
   display: flex;
   flex-direction: column;
-  height: 80px;
   margin-bottom: 60px;
+  height: 80px;
   .main {
     display: flex;
     flex-direction: row;
@@ -40,18 +40,18 @@ const SSearchForm = Styled.div`
     &__title {
         flex:1;
         margin-left: 10px;
+        color: #242424;
         font-size: 32px;
         font-weight: bold;
-        color: #242424;
     }
     &__searchbar {
         margin-right:33px;
     }
   }
   .detail {
-    font-size: 16px;
-    color: #3d3d3d;
     margin-top:12px;
+    color: #3d3d3d;
+    font-size: 16px;
   }
 `;
 
