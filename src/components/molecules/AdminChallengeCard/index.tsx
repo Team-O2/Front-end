@@ -16,6 +16,13 @@ export interface IData {
 export interface IProps {
   challengeData: IData;
 }
+const datetoString = (date: string, isIncludeYear: boolean): string => {
+  const year = date.substr(0, 4);
+  const month = date.substr(5, 2);
+  const day = date.substr(8, 2);
+  if (isIncludeYear) return `${year}.${month}.${day}`;
+  else return `${month}.${day}`;
+};
 
 function AdminChallengeCard({ challengeData }: IProps): React.ReactElement {
   return (
@@ -30,32 +37,32 @@ function AdminChallengeCard({ challengeData }: IProps): React.ReactElement {
         <div className="card__title">오투 회고 챌린지 1기</div>
 
         <div className="card__container--row">
-          <div className="card__label">오픈일자</div>
-          <div className="card__exp">{challengeData.createdDT}</div>
+          <div className="card__label body3">오픈일자</div>
+          <div className="card__exp subhead3">{datetoString(challengeData.createdDT, true)}</div>
         </div>
         <div className="card__container--row">
-          <div className="card__label">진행기간</div>
-          <div className="card__exp">
-            {challengeData.challengeStartDT}~{challengeData.challengeEndDT}
+          <div className="card__label body3">진행기간</div>
+          <div className="card__exp subhead3">
+            {datetoString(challengeData.challengeStartDT, true)} ~ {datetoString(challengeData.challengeEndDT, false)}
           </div>
         </div>
         <div className="card__container--row">
-          <div className="card__label">신청기간</div>
-          <div className="card__exp">
-            {challengeData.registerStartDT}~{challengeData.registerEndDT}
+          <div className="card__label body3">신청기간</div>
+          <div className="card__exp subhead3">
+            {datetoString(challengeData.registerStartDT, true)} ~ {datetoString(challengeData.registerEndDT, false)}
           </div>
         </div>
         <div className="card__container--row">
-          <div className="card__label">신청인</div>
-          <div className="card__exp">{challengeData.applyNum}명</div>
+          <div className="card__label body3">신청인</div>
+          <div className="card__exp subhead3">{challengeData.applyNum}명</div>
         </div>
         <div className="card__container--row">
-          <div className="card__label">참여인원수</div>
-          <div className="card__exp">{challengeData.participants}명</div>
+          <div className="card__label body3">참여인원수</div>
+          <div className="card__exp subhead3">{challengeData.participants}명</div>
         </div>
         <div className="card__container--row">
-          <div className="card__label">총 게시물 개수</div>
-          <div className="card__exp">{challengeData.postNum}개</div>
+          <div className="card__label body3">총 게시물 개수</div>
+          <div className="card__exp subhead3">{challengeData.postNum}개</div>
         </div>
       </div>
     </SAdminChallengeCard>
@@ -106,21 +113,10 @@ const SAdminChallengeCard = Styled.div`
         &__label{
             width : 90px;
             margin-right : 41px;
-            font-size: 16px;
-            font-weight: normal;
-            font-stretch: normal;
-            font-style: normal;
-            line-height: 1.5;
-            letter-spacing: -0.5px;
-            text-align: left;
             color:#6f6f6f;
         }
         &__exp{
-            font-size: 16px;
-            line-height: 1.5;
-            letter-spacing: -0.5px;
             color : #6f6f6f;
-            font-weight: bold;
         }
     }
   `;
