@@ -1,4 +1,4 @@
-import { SmallRightArrow } from 'assets/images';
+import { MoreViewArrow } from 'assets/images';
 import { Icon, Link } from 'components/atoms';
 import React from 'react';
 import Styled from 'styled-components';
@@ -23,7 +23,7 @@ function MyPageSection({ title, subTitle, path, data, renderItemList, ...props }
         <Link to={path}>
           <div className="infoContainer__link">
             <p className="body2">더보기</p>
-            <Icon src={SmallRightArrow} />
+            <Icon src={MoreViewArrow} />
           </div>
         </Link>
       </div>
