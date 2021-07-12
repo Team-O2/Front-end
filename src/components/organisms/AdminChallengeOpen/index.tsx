@@ -10,7 +10,7 @@ import React, { useEffect, useState } from 'react';
 import Styled from 'styled-components';
 
 function AdminChallengeOpen(): React.ReactElement {
-  const [image, setImage] = useState('');
+  const [image, setImage] = useState<File | null>(null);
   const [check, setCheck] = useState(false);
   const [isButtonDisabled, setIsButtonDisabled] = useState(true);
   const [isConditionMet, setIsConditionMet] = useState({
@@ -40,7 +40,7 @@ function AdminChallengeOpen(): React.ReactElement {
       isConditionMet.challengePeriod &&
       isConditionMet.applyPeriod &&
       isConditionMet.peopleNum &&
-      image != '' &&
+      image != null &&
       check
     ) {
       setIsButtonDisabled(false);
