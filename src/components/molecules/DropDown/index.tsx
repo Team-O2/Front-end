@@ -1,7 +1,7 @@
-import React, { useState, useEffect } from 'react';
-import Styled from 'styled-components';
 import arrowDown from 'assets/images/arrowDown.svg';
 import arrowUp from 'assets/images/arrowUp.svg';
+import React, { useEffect, useState } from 'react';
+import Styled from 'styled-components';
 
 export interface IProps {
   className?: string;
@@ -81,7 +81,7 @@ const SDropDown = Styled.div<{ isOpen?: boolean; isChecked: boolean; page: strin
     &__container{
       &--outer{
         cursor : pointer;
-        width:${(props) => (props.page === 'adminwrite' ? '391px' : '406px')};
+        width:${(props) => (props.page === 'adminwrite' ? '412px' : '406px')};
         height:${(props) => (props.page === 'adminwrite' ? '60px' : '62.6px')};
         margin-top: 5px;
         border-radius: 4px;
