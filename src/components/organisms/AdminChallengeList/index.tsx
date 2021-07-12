@@ -1,38 +1,37 @@
 import plusIcon from 'assets/images/plusIcon_dfdfdf.svg';
 import Label from 'components/atoms/Label';
 import AdminChallengeCard from 'components/molecules/AdminChallengeCard';
-import React from 'react';
+import { getChallengeList } from 'libs/axios';
+import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import Styled from 'styled-components';
 
-const challengeDataList = [
-  {
-    cardiNum: 1, //기수
-    createdDT: '2021. 05. 15.', //오픈일자
-    registerStartDT: '2021. 05. 20.',
-    registerEndDT: '05. 30.',
-    challengeStartDT: '2021. 06. 01.',
-    challengeEndDT: '06. 30. ',
-    applyNum: 105, //신청인
-    participants: 20, //참여인원수
-    postNum: 300, //총 게시물 개수
-    img: 'https://images.velog.io/images/sukong/post/be8cbf04-1f14-451b-9a2a-20723fcb220a/Atto3.jpg', //이미지주소
-  },
-  {
-    cardiNum: 2, //기수
-    createdDT: '2021. 05. 15.', //오픈일자
-    registerStartDT: '2021. 05. 20.',
-    registerEndDT: '05. 30.',
-    challengeStartDT: '2021. 06. 01.',
-    challengeEndDT: '06. 30. ',
-    applyNum: 105, //신청인
-    participants: 20, //참여인원수
-    postNum: 300, //총 게시물 개수
-    img: 'https://images.velog.io/images/sukong/post/d55b039a-038d-4e5d-bc8c-facdcc15f576/Atto1.JPG', //이미지주소
-  },
-];
+interface IChallengeData {
+  registerStartDT: string;
+  registerEndDT: string;
+  challengeStartDT: string;
+  challengeEndDT: string;
+  createdDT: string;
+  applyNum: number;
+  participants: number;
+  postNum: number;
+  img: string;
+}
 
 function AdminChallengeList(): React.ReactElement {
+  const [challengeDataList, setChallengeDataList] = useState<IChallengeData[] | null>(null);
+  useEffect(() => {
+    getChallengeDataList(
+      'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoiNjBlYjI3Y2ZjZmY1NTkyNmM0M2NlN2ZmIn0sImlhdCI6MTYyNjA3MDY2MywiZXhwIjoxNjI3MjgwMjYzfQ.ABf6m4DdpfMBKZ9uJMx5or3GgJyvT2hH7_lbvmTWUdI',
+    );
+  }, []);
+  const getChallengeDataList = async (token: string): Promise<void> => {
+    const data = await getChallengeList(token);
+    console.log(data);
+    data && setChallengeDataList(data);
+    console.log(challengeDataList);
+  };
+
   return (
     <SAdminChallengeList>
       <Label className="admin__label--page">관리자 페이지</Label>
@@ -44,8 +43,8 @@ function AdminChallengeList(): React.ReactElement {
             <div className="admin__label--add">챌린지 등록하기</div>
           </div>
         </Link>
-        {challengeDataList.map((data, id) => {
-          return <AdminChallengeCard key={id} challengeData={data} />;
+        {challengeDataList?.map((data, id) => {
+          return data && <AdminChallengeCard key={id} challengeData={data} />;
         })}
       </div>
     </SAdminChallengeList>
