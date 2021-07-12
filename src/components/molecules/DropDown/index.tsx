@@ -126,7 +126,7 @@ const SDropDown = Styled.div<{ isOpen?: boolean; isChecked: boolean; page: strin
     margin : 13px 0 14px 0 ;
   }
   .container{
-    width:${(props) => (props.page === 'adminwrite' ? '391px' : '406px')};
+    width:${(props) => (props.page === 'adminwrite' ? '412px' : '406px')};
     max-height:${(props) => (props.page === 'adminwrite' ? '220px' : undefined)};
     overflow:${(props) => (props.page === 'adminwrite' ? 'scroll' : undefined)};
     margin-top: 5px;
