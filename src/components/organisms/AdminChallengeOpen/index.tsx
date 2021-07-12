@@ -1,11 +1,12 @@
 import checkOff from 'assets/images/checkall_off.svg';
 import checkOn from 'assets/images/checkall_on.svg';
-import plusIcon from 'assets/images/plusIcon.svg';
+import plusIcon from 'assets/images/plusIconGrey.svg';
 import Button from 'components/atoms/Button';
 import CheckBox from 'components/atoms/CheckBox';
 import PhotoUpload from 'components/atoms/fileUpload';
 import Label from 'components/atoms/Label';
 import AdminChallengeOpenForm from 'components/molecules/AdminChallengeOpenForm';
+import { challengeOpen } from 'libs/axios';
 import React, { useEffect, useState } from 'react';
 import Styled from 'styled-components';
 
@@ -48,6 +49,12 @@ function AdminChallengeOpen(): React.ReactElement {
       setIsButtonDisabled(true);
     }
   }, [isConditionMet, image, check]);
+  const btnHandler = () => {
+    challengeOpen(
+      'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoiNjBlYjI3Y2ZjZmY1NTkyNmM0M2NlN2ZmIn0sImlhdCI6MTYyNjA4ODY1NiwiZXhwIjoxNjI3Mjk4MjU2fQ.uxM51YrnEf6qZsq9tjPbkvRS587g_8xclrC0zxAN0IU',
+      { ...challengeOpenData, img: image },
+    );
+  };
 
   return (
     <SAdminChallengeOpen isButtonDisabled={isButtonDisabled}>
@@ -79,7 +86,7 @@ function AdminChallengeOpen(): React.ReactElement {
           내용을 확인하셨습니까?
         </label>
       </div>
-      <Button className="admin__button--fin" disabled={isButtonDisabled}>
+      <Button className="admin__button--fin" disabled={isButtonDisabled} onClick={btnHandler}>
         등록하기
       </Button>
     </SAdminChallengeOpen>
