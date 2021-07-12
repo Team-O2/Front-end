@@ -1,10 +1,12 @@
-import React, { useState, useEffect } from 'react';
-import { RouteComponentProps } from 'react-router';
-import test from '../../assets/images/test.svg';
-import Styled from 'styled-components';
 import DetailTitle from 'components/molecules/DetailTitle';
-import DetailContent from 'components/organisms/DetailContent';
 import CommentList from 'components/organisms/CommentList';
+import DetailContent from 'components/organisms/DetailContent';
+import Footer from 'components/organisms/Footer';
+import Header from 'components/organisms/Header';
+import React, { useEffect, useState } from 'react';
+import { RouteComponentProps } from 'react-router';
+import Styled from 'styled-components';
+import test from '../../assets/images/test.svg';
 
 interface MatchParams {
   id: string;
@@ -33,34 +35,38 @@ function ShareTogetherDetail({ match }: RouteComponentProps<MatchParams>): React
     }
   };
   return (
-    <SShareTogetherDetail>
-      <DetailTitle
-        title={selectedConcert?.title}
-        speaker={selectedConcert?.speaker}
-        createdAt={selectedConcert?.createdAt}
-        interest={selectedConcert?.interest}
-      ></DetailTitle>
-      <DetailContent
-        image={selectedConcert?.image}
-        desc={selectedConcert?.desc}
-        hashtag={selectedConcert?.hashtag}
-        like={Likes}
-        comments={commentlist?.length}
-        scrap={selectedConcert?.scrap}
-        onLike={onLike}
-        likeClick={likeClick}
-      ></DetailContent>
-      <CommentList commentList={commentlist} reLoadComment={reLoadComment}></CommentList>
-    </SShareTogetherDetail>
+    <>
+      <Header />
+      <SShareTogetherDetail>
+        <DetailTitle
+          title={selectedConcert?.title}
+          speaker={selectedConcert?.speaker}
+          createdAt={selectedConcert?.createdAt}
+          interest={selectedConcert?.interest}
+        ></DetailTitle>
+        <DetailContent
+          image={selectedConcert?.image}
+          desc={selectedConcert?.desc}
+          hashtag={selectedConcert?.hashtag}
+          like={Likes}
+          comments={commentlist?.length}
+          scrap={selectedConcert?.scrap}
+          onLike={onLike}
+          likeClick={likeClick}
+        ></DetailContent>
+        <CommentList commentList={commentlist} reLoadComment={reLoadComment}></CommentList>
+      </SShareTogetherDetail>
+      <Footer />
+    </>
   );
 }
 
 const SShareTogetherDetail = Styled.div`
-  width: 845px;
-  margin: 0 auto;
   display: flex;
   flex-direction: column;
   justify-content: center;
+  margin: 0 auto;
+  width: 845px;
 `;
 export default ShareTogetherDetail;
 
