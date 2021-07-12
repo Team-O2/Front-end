@@ -69,3 +69,22 @@ export const getUserData = async (token: string) => {
     return null;
   }
 };
+
+export const getChallengeList = async (token: string) => {
+  try {
+    const data = await serverAxios.get('/admin', {
+      headers: {
+        Authorization: token,
+      },
+    });
+    if (data.data.status === 200) {
+      console.log(data.data.data.offsetAdmin);
+      return data.data.data.offsetAdmin;
+    } else {
+      return null;
+    }
+  } catch (e) {
+    alert(e?.response?.data?.message);
+    return null;
+  }
+};
