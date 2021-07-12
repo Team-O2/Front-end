@@ -1,18 +1,19 @@
-import React, { useRef, useEffect, useState } from 'react';
-import Styled from 'styled-components';
 import Button from 'components/atoms/Button';
+import React, { useEffect, useRef, useState } from 'react';
+import Styled from 'styled-components';
 
 export interface IProps {
   children: React.ReactElement | string;
   className?: string;
   width: string;
   height: string;
-  setFile: (e: string) => void;
+  setFile: (e: File) => void;
   fileType: number; //0:이미지, 1:영상
 }
 
 function PhotoUpload({ children, width, height, setFile, fileType }: IProps): React.ReactElement {
-  const [newFile, setNewFile] = useState('');
+  const [newFile, setNewFile] = useState<File | null>(null);
+  const [fileString, setFileString] = useState('');
   const inputRef = useRef<HTMLInputElement>(null);
   const buttonHandler = () => {
     if (inputRef.current !== null) {
@@ -20,7 +21,7 @@ function PhotoUpload({ children, width, height, setFile, fileType }: IProps): Re
     }
   };
   useEffect(() => {
-    setFile(newFile);
+    newFile && setFile(newFile);
   }, [newFile]);
 
   const fileInputHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -33,7 +34,8 @@ function PhotoUpload({ children, width, height, setFile, fileType }: IProps): Re
         // 이미지파일
         if (file?.name?.match(imgFileForm)) {
           //파일 확장자 체크
-          setNewFile(URL.createObjectURL(file));
+          setNewFile(file);
+          setFileString(URL.createObjectURL(file));
         } else {
           alert('이미지 파일을 첨부해주세요');
         }
@@ -41,7 +43,8 @@ function PhotoUpload({ children, width, height, setFile, fileType }: IProps): Re
         //동영상파일
         if (file?.name?.match(videoFileForm)) {
           //파일 확장자 체크
-          setNewFile(URL.createObjectURL(file));
+          setNewFile(file);
+          setFileString(URL.createObjectURL(file));
         } else {
           alert('동영상 파일을 첨부해주세요');
         }
@@ -56,10 +59,10 @@ function PhotoUpload({ children, width, height, setFile, fileType }: IProps): Re
         {!newFile ? ( //파일이 없는 경우
           children
         ) : newFile && fileType == 0 ? ( //업로드된 파일이 사진일 경우
-          <img src={newFile} className="upload__image--preview" />
+          <img src={fileString} className="upload__image--preview" />
         ) : (
           //업로드된 파일이 영상일 경우
-          <video src={newFile} className="upload__image--preview" />
+          <video src={fileString} className="upload__image--preview" />
         )}
       </Button>
     </SPhotoUpload>

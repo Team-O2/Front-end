@@ -17,6 +17,21 @@ interface IJoinData {
   gender: number;
   marpolicy: boolean;
 }
+interface IConcertWriteData {
+  videoLink: File | null;
+  imgThumbnail: File | null;
+  title: string;
+  text: string;
+  interest: string[];
+  hashtag: string[];
+  authorNickname: string;
+}
+interface INoticeData {
+  title: string;
+  text: string;
+  interest: string[];
+  hashtag: string[];
+}
 
 export const postLogin = async (loginData: ILoginData) => {
   try {
@@ -86,5 +101,51 @@ export const getChallengeList = async (token: string) => {
   } catch (e) {
     alert(e?.response?.data?.message);
     return null;
+  }
+};
+
+export const postConcertWrite = async (token: string, concertWriteData: IConcertWriteData) => {
+  const form = new FormData();
+  console.log(concertWriteData);
+  concertWriteData.videoLink && form.append('videoLink', concertWriteData.videoLink);
+  concertWriteData.imgThumbnail && form.append('imgThumbnail', concertWriteData.imgThumbnail);
+  form.append('title', concertWriteData.title);
+  form.append('text', concertWriteData.text);
+  form.append('interest', `[${concertWriteData.interest.join()}]`);
+  form.append('hashtag', `[${concertWriteData.hashtag.join()}]`);
+  form.append('authorNickname', concertWriteData.authorNickname);
+  try {
+    const data = await serverAxios.post('/admin/concert', {
+      headers: {
+        Authorization: token,
+      },
+      body: {
+        form,
+      },
+    });
+    console.log(data);
+  } catch (e) {
+    console.log(e.response.data);
+  }
+};
+
+export const postNoticeWrite = async (token: string, noticeWriteData: INoticeData) => {
+  const form = new FormData();
+  form.append('title', noticeWriteData.title);
+  form.append('text', noticeWriteData.text);
+  form.append('interest', `[${noticeWriteData.interest.join()}]`);
+  form.append('hashtag', `[${noticeWriteData.hashtag.join()}]`);
+  try {
+    const data = await serverAxios.post('/admin/concert', {
+      headers: {
+        Authorization: token,
+      },
+      body: {
+        form,
+      },
+    });
+    console.log(data);
+  } catch (e) {
+    console.log(e.response.data);
   }
 };

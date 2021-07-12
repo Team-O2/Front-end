@@ -1,6 +1,7 @@
 import Button from 'components/atoms/Button';
 import Label from 'components/atoms/Label';
 import AdminWriteForm from 'components/molecules/AdminWriteForm';
+import { postConcertWrite } from 'libs/axios';
 import React, { useEffect, useState } from 'react';
 import Styled from 'styled-components';
 
@@ -16,34 +17,73 @@ function AdminWrite(): React.ReactElement {
     thumbnail: false,
     nickname: false,
   });
-  const [writeData, setWriteData] = useState({
+  const [writeData, setWriteData] = useState<{
+    title: string;
+    category: string[];
+    menu: string;
+    content: string;
+    hashtag: string[];
+    video: File | null;
+    thumbnail: File | null;
+    nickname: string;
+  }>({
     title: '',
     category: [''],
     menu: '',
     content: '',
     hashtag: [''],
-    video: '',
-    thumbnail: '',
+    video: null,
+    thumbnail: null,
     nickname: '',
   });
   const buttonHandler = () => {
     console.log(writeData);
+    postNoticeHandler();
+  };
+  // const postConcertHandler = () => {};
+  const postNoticeHandler = () => {
+    postConcertWrite(
+      'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoiNjBlYjI3Y2ZjZmY1NTkyNmM0M2NlN2ZmIn0sImlhdCI6MTYyNjA4ODY1NiwiZXhwIjoxNjI3Mjk4MjU2fQ.uxM51YrnEf6qZsq9tjPbkvRS587g_8xclrC0zxAN0IU',
+      {
+        videoLink: writeData.video,
+        imgThumbnail: writeData.thumbnail,
+        title: writeData.title,
+        text: writeData.content,
+        interest: writeData.category,
+        hashtag: writeData.hashtag,
+        authorNickname: writeData.nickname,
+      },
+    );
   };
 
   useEffect(() => {
-    if (
-      isConditionMet.title &&
-      isConditionMet.category &&
-      isConditionMet.menu &&
-      isConditionMet.content &&
-      isConditionMet.hashtag &&
-      isConditionMet.video &&
-      isConditionMet.thumbnail &&
-      isConditionMet.nickname
-    ) {
-      setIsButtonDisabled(false);
+    if (writeData.menu === 'Share Together') {
+      if (
+        isConditionMet.title &&
+        isConditionMet.category &&
+        isConditionMet.menu &&
+        isConditionMet.content &&
+        isConditionMet.hashtag &&
+        isConditionMet.video &&
+        isConditionMet.thumbnail &&
+        isConditionMet.nickname
+      ) {
+        setIsButtonDisabled(false);
+      } else {
+        setIsButtonDisabled(true);
+      }
     } else {
-      setIsButtonDisabled(true);
+      if (
+        isConditionMet.title &&
+        isConditionMet.category &&
+        isConditionMet.menu &&
+        isConditionMet.content &&
+        isConditionMet.hashtag
+      ) {
+        setIsButtonDisabled(false);
+      } else {
+        setIsButtonDisabled(true);
+      }
     }
   }, [isConditionMet]);
 

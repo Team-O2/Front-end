@@ -15,8 +15,8 @@ interface IUserData {
   menu: string;
   content: string;
   hashtag: string[];
-  video: string;
-  thumbnail: string;
+  video: File | null;
+  thumbnail: File | null;
   nickname: string;
 }
 interface IConditionMet {
@@ -40,8 +40,8 @@ function AdminWriteForm({ setIsConditionMet, writeData, setWriteData }: IProps):
   const [menu, setMenu] = useState('메뉴를 선택하세요');
   const [content, setContent] = useState('');
   const [currentHashtag, setCurrentHashtag] = useState('');
-  const [videoFile, setVideoFile] = useState('');
-  const [thumbnail, setThumbnail] = useState('');
+  const [videoFile, setVideoFile] = useState<File | null>(null);
+  const [thumbnail, setThumbnail] = useState<File | null>(null);
 
   const [isValueExist, setIsValueExist] = useState({
     // 값이 들어있는지 유무
@@ -139,7 +139,7 @@ function AdminWriteForm({ setIsConditionMet, writeData, setWriteData }: IProps):
   }, [content]);
   useEffect(() => {
     setWriteData({ ...writeData, video: videoFile });
-    if (videoFile !== '') {
+    if (videoFile !== null) {
       setIsValueExist({ ...isValueExist, video: true });
     } else {
       setIsValueExist({ ...isValueExist, video: false });
@@ -147,7 +147,7 @@ function AdminWriteForm({ setIsConditionMet, writeData, setWriteData }: IProps):
   }, [videoFile]);
   useEffect(() => {
     setWriteData({ ...writeData, thumbnail: thumbnail });
-    if (thumbnail !== '') {
+    if (thumbnail !== null) {
       setIsValueExist({ ...isValueExist, thumbnail: true });
     } else {
       setIsValueExist({ ...isValueExist, thumbnail: false });

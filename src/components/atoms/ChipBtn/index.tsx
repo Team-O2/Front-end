@@ -9,8 +9,8 @@ interface IUserData {
   menu: string;
   content: string;
   hashtag: string[];
-  video: string;
-  thumbnail: string;
+  video: File | null;
+  thumbnail: File | null;
   nickname: string;
 }
 
