@@ -2,7 +2,7 @@ import React from 'react';
 import Styled from 'styled-components';
 
 export interface IData {
-  // cardiNum: number; //기수
+  generation: number; //기수
   createdDT: string; //오픈일자
   registerStartDT: string;
   registerEndDT: string;
@@ -28,13 +28,12 @@ function AdminChallengeCard({ challengeData }: IProps): React.ReactElement {
   return (
     <SAdminChallengeCard
       onClick={() => {
-        // console.log(`${challengeData.cardiNum}기`);
+        console.log(`${challengeData.generation}기`);
       }}
     >
       <img className="card__image" src={challengeData.img}></img>
       <div className="card__container--bottom">
-        {/* <div className="card__title">오투 회고 챌린지 {challengeData.cardiNum}</div> */}
-        <div className="card__title">오투 회고 챌린지 1기</div>
+        <div className="card__title">오투 회고 챌린지 {challengeData.generation}기</div>
 
         <div className="card__container--row">
           <div className="card__label body3">오픈일자</div>

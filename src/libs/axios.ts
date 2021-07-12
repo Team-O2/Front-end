@@ -104,6 +104,10 @@ export const getChallengeList = async (token: string) => {
       headers: {
         Authorization: token,
       },
+      params: {
+        limit: 6,
+        offset: 0,
+      },
     });
     if (data.data.status === 200) {
       console.log(data.data.data.offsetAdmin);
@@ -177,7 +181,6 @@ export const challengeOpen = async (token: string, challengeOpenData: IChallenge
   form.append('challengeEndDT', changeDateStyle(challengeOpenData.challengePeriod.end));
   form.append('limitNum', `${challengeOpenData.peopleNum}`);
   challengeOpenData.img && form.append('img', challengeOpenData.img);
-
   try {
     const data = await serverAxios.post('/admin/concert', {
       headers: {
