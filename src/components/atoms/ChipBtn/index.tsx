@@ -1,7 +1,7 @@
-import React from 'react';
-import Styled from 'styled-components';
 import XBtn from 'assets/images/xBtn.svg';
 import Button from 'components/atoms/Button';
+import React from 'react';
+import Styled from 'styled-components';
 
 interface IUserData {
   title: string;
@@ -11,6 +11,7 @@ interface IUserData {
   hashtag: string[];
   video: string;
   thumbnail: string;
+  nickname: string;
 }
 
 export interface IProps {

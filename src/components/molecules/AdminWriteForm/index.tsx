@@ -1,4 +1,4 @@
-import plusIcon from 'assets/images/plusIcon.svg';
+import plusIconGrey from 'assets/images/plusIconGrey.svg';
 import ChipBtn from 'components/atoms/ChipBtn';
 import FileUpload from 'components/atoms/fileUpload';
 import Input from 'components/atoms/Input';
@@ -17,6 +17,7 @@ interface IUserData {
   hashtag: string[];
   video: string;
   thumbnail: string;
+  nickname: string;
 }
 interface IConditionMet {
   title: boolean;
@@ -26,6 +27,7 @@ interface IConditionMet {
   hashtag: boolean;
   video: boolean;
   thumbnail: boolean;
+  nickname: boolean;
 }
 export interface IProps {
   setIsConditionMet: (value: IConditionMet) => void;
@@ -50,11 +52,13 @@ function AdminWriteForm({ setIsConditionMet, writeData, setWriteData }: IProps):
     hashtag: false,
     video: false,
     thumbnail: false,
+    nickname: false,
   });
   const [isFocused, setIsFocused] = useState({
     // 인풋에 포커스가 되어있는지 유무
     title: false,
     hashtag: false,
+    nickname: false,
   });
   const hashTagInputHandler = () => {
     if (currentHashtag !== '' && writeData.hashtag.length < 15) {
@@ -94,6 +98,13 @@ function AdminWriteForm({ setIsConditionMet, writeData, setWriteData }: IProps):
       setIsValueExist({ ...isValueExist, title: false });
     }
   }, [writeData.title]);
+  useEffect(() => {
+    if (writeData.nickname !== '') {
+      setIsValueExist({ ...isValueExist, nickname: true });
+    } else {
+      setIsValueExist({ ...isValueExist, nickname: false });
+    }
+  }, [writeData.nickname]);
   useEffect(() => {
     if (writeData.hashtag.length > 0 && writeData.hashtag[0] != '') {
       setIsValueExist({ ...isValueExist, hashtag: true });
@@ -145,25 +156,48 @@ function AdminWriteForm({ setIsConditionMet, writeData, setWriteData }: IProps):
 
   return (
     <SAdminWriteForm isValueExist={isValueExist} isFocused={isFocused}>
-      <Label className="admin__label">제목</Label>
-      <div className="admin__div admin__div--title">
-        <Input
-          className="admin__input"
-          name="adminWriteTitle"
-          placeholder="제목을 입력하세요"
-          onChange={(e) => {
-            setWriteData({ ...writeData, title: e.target.value });
-          }}
-          onFocus={() => {
-            setIsFocused({ ...isFocused, title: true });
-          }}
-          onBlur={() => {
-            setIsFocused({ ...isFocused, title: false });
-          }}
-        />
+      <div className="admin__container--topouter">
+        <div className="admin__container--title">
+          <Label className="admin__label">제목</Label>
+          <div className="admin__div admin__div--title">
+            <Input
+              className="admin__input"
+              name="adminWriteTitle"
+              placeholder="제목을 입력하세요"
+              onChange={(e) => {
+                setWriteData({ ...writeData, title: e.target.value });
+              }}
+              onFocus={() => {
+                setIsFocused({ ...isFocused, title: true });
+              }}
+              onBlur={() => {
+                setIsFocused({ ...isFocused, title: false });
+              }}
+            />
+          </div>
+        </div>
+        <div className="admin__container--nickname">
+          <Label className="admin__label">연사 닉네임</Label>
+          <div className="admin__div admin__div--nickname">
+            <Input
+              className="admin__input"
+              name="adminWriteTitle"
+              placeholder="연사 닉네임을 입력하세요"
+              onChange={(e) => {
+                setWriteData({ ...writeData, nickname: e.target.value });
+              }}
+              onFocus={() => {
+                setIsFocused({ ...isFocused, nickname: true });
+              }}
+              onBlur={() => {
+                setIsFocused({ ...isFocused, nickname: false });
+              }}
+            />
+          </div>
+        </div>
       </div>
       <div className="admin__container--dropdowns">
-        <div style={{ marginRight: '62px' }}>
+        <div>
           <Label className="admin__label">카테고리</Label>
           <DropDown
             state={category}
@@ -202,7 +236,7 @@ function AdminWriteForm({ setIsConditionMet, writeData, setWriteData }: IProps):
           <Label className="admin__label">동영상 업로드</Label>
           <FileUpload width={'400px'} height={'225px'} setFile={setVideoFile} fileType={1}>
             <div className="fileUpload__container fileUpload__container--video">
-              <img className="fileUpload__icon--plus" src={plusIcon}></img>
+              <img className="fileUpload__icon--plus" src={plusIconGrey}></img>
               <div className="fileUpload__desc">동영상 업로드하기</div>
             </div>
           </FileUpload>
@@ -211,7 +245,7 @@ function AdminWriteForm({ setIsConditionMet, writeData, setWriteData }: IProps):
           <Label className="admin__label">썸네일 업로드</Label>
           <FileUpload width={'262px'} height={'225px'} setFile={setThumbnail} fileType={0}>
             <div className="fileUpload__container fileUpload__container--thumbnail">
-              <img className="fileUpload__icon--plus" src={plusIcon}></img>
+              <img className="fileUpload__icon--plus" src={plusIconGrey}></img>
               <div className="fileUpload__desc">썸네일 이미지 업로드하기</div>
             </div>
           </FileUpload>
@@ -266,10 +300,12 @@ const SAdminWriteForm = Styled.div<{
     menu: boolean;
     content: boolean;
     hashtag: boolean;
+    nickname: boolean;
   };
   isFocused: {
     title: boolean;
     hashtag: boolean;
+    nickname: boolean;
   };
 }>`
   display : flex;
@@ -323,6 +359,18 @@ const SAdminWriteForm = Styled.div<{
         background-clip : ${(props) =>
           props.isValueExist?.hashtag || props.isFocused.hashtag ? 'content-box, border-box' : undefined};    
       }
+      &--nickname{
+        border : ${(props) =>
+          props.isValueExist?.nickname || props.isFocused.nickname ? 'double 1px transparent' : '1px solid #c1c1c1'};
+        background-image : ${(props) =>
+          props.isValueExist?.nickname || props.isFocused.nickname
+            ? 'linear-gradient(white, white), linear-gradient(to right, #36c8f5,#13e2dd)'
+            : undefined};
+        background-origin : ${(props) =>
+          props.isValueExist?.nickname || props.isFocused.nickname ? 'border-box' : undefined};
+        background-clip : ${(props) =>
+          props.isValueExist?.nickname || props.isFocused.nickname ? 'content-box, border-box' : undefined};    
+      }
     }
     &__input{
       width : 100%;
@@ -338,6 +386,17 @@ const SAdminWriteForm = Styled.div<{
     }
 
     &__container{
+      &--topouter{
+        width : 100%;
+        display : flex;
+        justify-content : space-between;
+      }
+      &--title{
+        width : 600px;
+      }
+      &--nickname{
+        width : 224px;
+      }
       &--hastagList{
         width : 100%;
         display : flex;
@@ -351,6 +410,7 @@ const SAdminWriteForm = Styled.div<{
         display : flex;
         justify-content : space-between;
         margin-top : 42px;
+        width : 844px;
       }
       &--categoryChips{
         width : 100%;

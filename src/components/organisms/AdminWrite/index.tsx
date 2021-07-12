@@ -14,6 +14,7 @@ function AdminWrite(): React.ReactElement {
     hashtag: false,
     video: false,
     thumbnail: false,
+    nickname: false,
   });
   const [writeData, setWriteData] = useState({
     title: '',
@@ -23,6 +24,7 @@ function AdminWrite(): React.ReactElement {
     hashtag: [''],
     video: '',
     thumbnail: '',
+    nickname: '',
   });
   const buttonHandler = () => {
     console.log(writeData);
@@ -36,7 +38,8 @@ function AdminWrite(): React.ReactElement {
       isConditionMet.content &&
       isConditionMet.hashtag &&
       isConditionMet.video &&
-      isConditionMet.thumbnail
+      isConditionMet.thumbnail &&
+      isConditionMet.nickname
     ) {
       setIsButtonDisabled(false);
     } else {
