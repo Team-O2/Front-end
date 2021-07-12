@@ -68,12 +68,15 @@ function CJoin(): React.ReactElement {
       marpolicy: userData.marpolicy,
     };
     const getData = await postJoin(postData);
-    if (getData.status === 201) {
-      history.push('/');
+    if (getData !== undefined) {
+      if (getData.status === 201) {
+        history.push('/');
+      } else {
+        alert(getData.message);
+      }
     } else {
-      alert(getData.message);
+      alert('네트워크가 좋지 않습니다');
     }
-    // setIsInterestModalOpen(false);
   };
   const joinBtnHandler = () => {
     setIsInterestModalOpen(true);

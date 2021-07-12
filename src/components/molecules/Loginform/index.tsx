@@ -24,10 +24,14 @@ function Loginform(): React.ReactElement {
   });
   const loginBtnHandler = async () => {
     const data = await postLogin(loginData);
-    if (data.status === 200) {
-      history.push('/');
+    if (data !== undefined) {
+      if (data.status === 200) {
+        history.push('/');
+      } else {
+        alert(data.message);
+      }
     } else {
-      alert(data.message);
+      alert('네트워크가 좋지 않습니다');
     }
   };
 

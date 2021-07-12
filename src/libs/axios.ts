@@ -21,17 +21,33 @@ interface IJoinData {
 export const postLogin = async (loginData: ILoginData) => {
   try {
     const data = await serverAxios.post('/auth/signin', loginData);
-    return data.data;
+    if (data !== undefined) {
+      return data.data;
+    } else {
+      return undefined;
+    }
   } catch (e) {
-    return e.response.data;
+    if (e.response !== undefined) {
+      return e.response.data;
+    } else {
+      return undefined;
+    }
   }
 };
 
 export const postJoin = async (joinData: IJoinData) => {
   try {
     const data = await serverAxios.post('/auth/signup', joinData);
-    return data.data;
+    if (data !== undefined) {
+      return data.data;
+    } else {
+      return undefined;
+    }
   } catch (e) {
-    return e.response.data;
+    if (e.response !== undefined) {
+      return e.response.data;
+    } else {
+      return undefined;
+    }
   }
 };
