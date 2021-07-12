@@ -39,7 +39,9 @@ const SConcertCard = Styled.div`
     color: white;
     font-size: 20px;
     &--img {
-        border-radius: 7px 7px 0px 0px;
+      border-radius: 7px 7px 0px 0px;
+      width: 271px;
+      height: 220px;
     }
     & p{
         position: absolute;

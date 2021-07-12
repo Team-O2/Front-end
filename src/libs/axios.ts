@@ -233,9 +233,12 @@ export const getConcertListData = async (token: string) => {
       headers: {
         Authorization: token,
       },
+      params: {
+        limit: 8,
+      },
     });
     if (data.data.status === 200) {
-      return data;
+      return data.data.data.concerts;
     } else {
       return null;
     }
