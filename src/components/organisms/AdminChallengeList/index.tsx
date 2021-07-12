@@ -16,6 +16,7 @@ interface IChallengeData {
   participants: number;
   postNum: number;
   img: string;
+  generation: number;
 }
 
 function AdminChallengeList(): React.ReactElement {
