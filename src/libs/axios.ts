@@ -51,3 +51,21 @@ export const postJoin = async (joinData: IJoinData) => {
     }
   }
 };
+
+export const getUserData = async (token: string) => {
+  try {
+    const data = await serverAxios.get('/user/userInfo', {
+      headers: {
+        Authorization: token,
+      },
+    });
+    if (data.data.status === 200) {
+      return data.data.data;
+    } else {
+      return null;
+    }
+  } catch (e) {
+    alert(e?.response?.data?.message);
+    return null;
+  }
+};

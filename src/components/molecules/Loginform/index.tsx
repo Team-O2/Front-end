@@ -1,8 +1,10 @@
 import Button from 'components/atoms/Button';
 import Input from 'components/atoms/Input';
-import { postLogin } from 'libs/axios';
+import { getUserData, postLogin } from 'libs/axios';
 import React, { useEffect, useState } from 'react';
 import { useHistory } from 'react-router-dom';
+import { useRecoilState } from 'recoil';
+import { userState, userStatusState } from 'stores/user';
 import Styled from 'styled-components';
 
 function Loginform(): React.ReactElement {
@@ -22,17 +24,55 @@ function Loginform(): React.ReactElement {
     email: false,
     password: false,
   });
+  const [userStatusData, setUserStatusData] = useRecoilState(userStatusState);
+  const [userData, setUserData] = useRecoilState(userState);
+
   const loginBtnHandler = async () => {
+    const token = await getUserStatusData();
+    const isSuccess = await getUserDetailData(token);
+    // isSuccess && history.push('/');
+  };
+  useEffect(() => {
+    userData && history.push('/');
+  }, [userData]);
+
+  const getUserStatusData = async () => {
     const data = await postLogin(loginData);
     if (data !== undefined) {
       if (data.status === 200) {
-        history.push('/');
+        setUserStatusData({
+          token: data.token,
+          userType: data.data.userState,
+          totalGeneration: data.data.totalGeneration,
+        });
+        return data.token;
       } else {
         alert(data.message);
       }
     } else {
       alert('네트워크가 좋지 않습니다');
     }
+    return false;
+  };
+  const getUserDetailData = async (token: string) => {
+    if (token) {
+      const data = await getUserData(token);
+      if (data !== undefined) {
+        setUserData({
+          interest: data.interest,
+          marpolicy: data.marpolicy,
+          img: data.img,
+          _id: data._id,
+          email: data.email,
+          nickname: data.nickname,
+          gender: data.gender,
+        });
+        return true;
+      } else {
+        alert('네트워크가 좋지 않습니다');
+      }
+    }
+    return false;
   };
 
   useEffect(() => {
