@@ -8,6 +8,7 @@ import EditorForm from 'components/molecules/EditorForm';
 import React, { useEffect, useState } from 'react';
 import { interestList } from 'resources/string';
 import Styled from 'styled-components';
+// import ChipBtn from 'components/atoms/ChipBtn'
 
 interface IUserData {
   title: string;
@@ -198,16 +199,6 @@ function AdminWriteForm({ setIsConditionMet, writeData, setWriteData }: IProps):
       </div>
       <div className="admin__container--dropdowns">
         <div>
-          <Label className="admin__label">카테고리</Label>
-          <DropDown
-            state={category}
-            setState={setCategory}
-            defaultMsg="카테고리를 선택하세요"
-            itemList={interestList}
-            page="adminwrite"
-          />
-        </div>
-        <div>
           <Label className="admin__label">메뉴</Label>
           <DropDown
             state={menu}
@@ -217,18 +208,30 @@ function AdminWriteForm({ setIsConditionMet, writeData, setWriteData }: IProps):
             page="adminwrite"
           />
         </div>
-      </div>
-      {writeData.category.length > 0 ? (
-        <div className="admin__container--categoryChips">
-          {writeData.category.map((category, id) => {
-            return (
-              category != '' && <ChipBtn name={category} key={id} writeData={writeData} setWriteData={setWriteData} />
-            );
-          })}
+        <div>
+          <Label className="admin__label">카테고리</Label>
+          <DropDown
+            state={category}
+            setState={setCategory}
+            defaultMsg="카테고리를 선택하세요"
+            itemList={interestList}
+            page="adminwrite"
+          />
+          {writeData.category.length > 0 ? (
+            <div className="admin__container--categoryChips">
+              {writeData.category.map((category, id) => {
+                return (
+                  category != '' && (
+                    <ChipBtn name={category} key={id} writeData={writeData} setWriteData={setWriteData} />
+                  )
+                );
+              })}
+            </div>
+          ) : (
+            <div className="admin__container--categoryChips">for hide</div>
+          )}
         </div>
-      ) : (
-        <div className="admin__container--categoryChips">for hide</div>
-      )}
+      </div>
 
       <EditorForm setContent={setContent} content={content} />
       <div className="admin__container--uploads">
@@ -413,14 +416,15 @@ const SAdminWriteForm = Styled.div<{
         width : 844px;
       }
       &--categoryChips{
-        width : 100%;
+        width : 412px;
         display : flex;
         column-gap: 10px;
+        row-gap : 10px;
         flex-direction: row;
         justify-content : flex-start;
         flex-wrap : wrap;
         margin-top : 20px;
-        height : 46px;
+        min-height : 46px;
         color : rgba(0,0,0,0);
       }
       &--uploads{
