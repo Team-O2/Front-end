@@ -265,6 +265,7 @@ const JoinWrap = Styled.div`
   background-size: cover;
   background-position: center;
   min-height: 6114px;
+  overflow-x: hidden;
   img{
     margin : 0;
     padding : 0;
