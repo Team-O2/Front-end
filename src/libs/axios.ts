@@ -203,3 +203,16 @@ export const sendEmail = async (email: string) => {
     alert(e?.response?.data?.message);
   }
 };
+
+export const sendVerifinum = async (email: string, verifiNum: string) => {
+  try {
+    const data = await serverAxios.post('/auth/code', { email: email, emailCode: verifiNum });
+    if (data.data.status === 200) {
+      alert(data.data.message);
+      return data.data.data.isOkay;
+    }
+  } catch (e) {
+    alert(e?.response?.data?.message);
+    return null;
+  }
+};

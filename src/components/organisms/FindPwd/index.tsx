@@ -1,7 +1,9 @@
 import Button from 'components/atoms/Button';
 import Label from 'components/atoms/Label';
 import FindPWDForm from 'components/molecules/FindPwdForm';
+import { sendVerifinum } from 'libs/axios';
 import React, { useEffect, useState } from 'react';
+import { useHistory } from 'react-router-dom';
 import Styled from 'styled-components';
 
 export interface IProps {
@@ -9,6 +11,7 @@ export interface IProps {
 }
 
 function FindPWD(): React.ReactElement {
+  const history = useHistory();
   const [data, setData] = useState({
     email: '',
     certifiNum: '',
@@ -18,6 +21,10 @@ function FindPWD(): React.ReactElement {
     certifiNum: false,
   });
   const [isBtnDisabled, setIsBtnDisabled] = useState(false);
+  const finishBtnHandler = async () => {
+    const isSuccess = await sendVerifinum(data.email, data.certifiNum);
+    isSuccess && history.push('/');
+  };
   useEffect(() => {
     if (isConditionMet.email && isConditionMet.certifiNum) setIsBtnDisabled(true);
     else setIsBtnDisabled(false);
@@ -31,7 +38,11 @@ function FindPWD(): React.ReactElement {
         isConditionMet={isConditionMet}
         setIsConditionMet={setIsConditionMet}
       />
-      <Button className="findPwd__button" disabled={!(isConditionMet.email && isConditionMet.certifiNum)}>
+      <Button
+        className="findPwd__button"
+        disabled={!(isConditionMet.email && isConditionMet.certifiNum)}
+        onClick={finishBtnHandler}
+      >
         인증완료
       </Button>
     </FindPWDWrap>
