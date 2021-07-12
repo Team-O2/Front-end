@@ -1,5 +1,5 @@
 import { EmptyBookmark, FilledBookmark } from 'assets/images';
-import { Icon, Img, Link } from 'components/atoms';
+import { Button, Icon, Img, Link } from 'components/atoms';
 import React from 'react';
 import Styled from 'styled-components';
 
@@ -13,32 +13,31 @@ export interface IProps {
 
 function LearnMyselfCard({ imagePath, isBookmarked, id, name, content }: IProps): React.ReactElement {
   return (
-    <LinkWrapper to={`${id}`}>
-      <span>
-        <div className="card">
-          <div
-            className="card__icon-wrapper"
-            onClick={() => {
-              alert('북마크 누르기');
-            }}
-          >
-            <Icon className="card__icon" src={isBookmarked ? FilledBookmark : EmptyBookmark} height="2.4rem" />
-          </div>
+    <Wrapper>
+      <Button
+        className="card__icon-wrapper"
+        onClick={() => {
+          alert('북마크 누르기');
+        }}
+      >
+        <Icon className="card__icon" src={isBookmarked ? FilledBookmark : EmptyBookmark} height="2.4rem" />
+      </Button>
+      <Link to={`${id}`}>
+        <span className="card">
           <Img className="card__img" src={imagePath} />
           <h3 className="card__name subhead3">{name}</h3>
           <p className="card__content body2">{content}</p>
-        </div>
-      </span>
-    </LinkWrapper>
+        </span>
+      </Link>
+    </Wrapper>
   );
 }
 
-const LinkWrapper = Styled(Link)`
+const Wrapper = Styled.div`
+  position: relative;
+
   span {
     display: inline-block;
-  }
-  
-  .card {
     display: flex;
     position: relative;
     flex-direction: column;
@@ -47,6 +46,9 @@ const LinkWrapper = Styled(Link)`
     box-shadow: 0 0 24px 0 rgba(13, 12, 63, 0.1);
     width: 254px;
     height: 259px;
+  }
+  
+  .card {
 
     &__icon-wrapper {
       display: flex;
