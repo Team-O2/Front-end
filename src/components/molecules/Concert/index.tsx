@@ -4,46 +4,46 @@ import React from 'react';
 import Styled from 'styled-components';
 
 interface IProps {
-  image: string;
-  speaker: string;
+  imgThumbnail: string;
+  authorNickname: string;
   interest: string[];
   createdAt: string;
   title: string;
-  desc: string;
+  text: string;
   commentNum: number;
-  like: number;
+  likes: number;
   onClickFunc: () => void;
 }
 
 function Concert({
-  image,
-  speaker,
+  imgThumbnail,
+  authorNickname,
   interest,
   createdAt,
   title,
-  desc,
+  text,
   commentNum,
-  like,
+  likes,
   onClickFunc,
 }: IProps): React.ReactElement {
   return (
     <>
       <SConcert>
         <div className="content__left">
-          <p>{speaker}</p>
+          <p>{authorNickname}</p>
           <p>{interest}</p>
           <p>{createdAt}</p>
         </div>
         <div className="content__middle" onClick={onClickFunc}>
           <p>{title}</p>
-          <p>{desc}</p>
+          <p>{text}</p>
         </div>
         <div className="content__right">
-          <img className="content__right--img" src={image} alt="" />
+          <img className="content__right--img" src={imgThumbnail} alt="" />
           <div className="overlay overlayFade">
             <div className="content">
               <img src={LikeIcon} alt="" />
-              <p> {like}</p>
+              <p> {likes}</p>
               <img src={CommentIcon} alt="" />
               <p> {commentNum}</p>
             </div>

@@ -226,3 +226,21 @@ export const sendVerifinum = async (email: string, verifiNum: string) => {
     return null;
   }
 };
+
+export const getConcertData = async (token: string) => {
+  try {
+    const data = await serverAxios.get('/concert', {
+      headers: {
+        Authorization: token,
+      },
+    });
+    if (data.data.status === 200) {
+      return data.data.data.concerts;
+    } else {
+      return null;
+    }
+  } catch (e) {
+    alert(e.response.data.message);
+    return undefined;
+  }
+};

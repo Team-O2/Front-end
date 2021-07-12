@@ -4,36 +4,45 @@ import Styled from 'styled-components';
 import Concert from '../../molecules/Concert';
 
 interface IData {
-  concertId: string;
-  image: string;
-  speaker: string;
-  interest: string[];
-  createdAt: string;
-  title: string;
-  desc: string;
-  like: number;
+  videoLink: string;
+  imgThumbnail: string;
+  likes: number;
   commentNum: number;
+  scrapNum: number;
+  interest: string[];
+  hashtag: string[];
+  isDeleted: boolean;
+  comments: string[];
+  isNotice: boolean;
+  _id: string;
+  title: string;
+  user: { _id: string; nickname: string; img: string };
+  createdAt: string;
+  text: string;
+  authorNickname: string;
+  updatedAt: string;
+  __v: number;
 }
 interface IProps {
-  concertData: Array<IData>;
+  concertData: Array<IData> | undefined;
 }
 function ConcertList({ concertData }: IProps): React.ReactElement {
   const history = useHistory();
   return (
     <>
       <SConcertList>
-        {concertData.map((card: IData) => (
+        {concertData?.map((card: IData) => (
           <Concert
-            image={card.image}
-            speaker={card.speaker}
+            imgThumbnail={card.imgThumbnail}
+            authorNickname={card.authorNickname}
             interest={card.interest}
             createdAt={card.createdAt}
             title={card.title}
-            desc={card.desc}
+            text={card.text}
             commentNum={card.commentNum}
-            like={card.like}
-            key={card.concertId}
-            onClickFunc={() => history.push(`/ShareTogether/${card.concertId}`)}
+            likes={card.likes}
+            key={card._id}
+            onClickFunc={() => history.push(`/ShareTogether/${card._id}`)}
           ></Concert>
         ))}
       </SConcertList>
