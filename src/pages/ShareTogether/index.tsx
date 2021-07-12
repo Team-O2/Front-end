@@ -33,14 +33,12 @@ function ShareTogether(): React.ReactElement {
   const [concertList, setConcertList] = useState<IConcertData[] | null>(null);
   useEffect(() => {
     getConcertList(
-      'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoiNjBlYTljOWU4YzEyYTE1NTJjZGM3NDM2In0sImlhdCI6MTYyNTk4OTQwNywiZXhwIjoxNjI3MTk5MDA3fQ.JgH9MI8B-ZZnnmITFmusHTUZ4PGoyfI2I7CgUHOC5a8',
+      'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoiNjBlNmIyYzRhZjM0ZDUxYmEwNmQzZGJiIn0sImlhdCI6MTYyNjEwNTQzMCwiZXhwIjoxNjI3MzE1MDMwfQ.JoWA_yA5o9v7LRMObG2RC-PTlfEhBS6v2eoYumcWSa4',
     );
   }, []);
   const getConcertList = async (token: string): Promise<void> => {
     const data = await getConcertListData(token);
-    console.log(data);
-    //data && setConcertList(data);
-    //console.log(concertList);
+    data && setConcertList(data);
   };
   const reRender = (category: string) => {
     //console.log(category);
