@@ -4,7 +4,7 @@ import Styled from 'styled-components';
 export interface IProps {
   children: React.ReactElement | string;
   className?: string;
-  for?: string;
+  htmlFor?: string;
 }
 
 function Label({ children, ...props }: IProps): React.ReactElement {

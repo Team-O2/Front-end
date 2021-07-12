@@ -18,7 +18,9 @@ function CommentedBoardRow({ isChecked = false, content, date, boardId, id }: IP
       {content && (
         <div className="row">
           <CheckBox className="row__checkbox" id={id} checked={isChecked} />
-          <Label className="row__content body4">{content}</Label>
+          <Label className="row__content body4" htmlFor={id}>
+            {content}
+          </Label>
           <div className="row__infoWrapper">
             <span className="row__date body3_eng">{date}</span>
             <span className="row__date--bar"></span>
@@ -36,6 +38,7 @@ const Wrapper = Styled.div`
   width: 1061px;
   height: 57px;
   border-bottom: 1px solid ${palette('grayscale', 1)};
+  margin-bottom: 40px;
 
   .row {
     position: relative;
