@@ -8,10 +8,10 @@ export interface IProps {
   className?: string;
 }
 
-function FindPWD({ ...props }: IProps): React.ReactElement {
+function FindPWD(): React.ReactElement {
   const [data, setData] = useState({
     email: '',
-    certifiNum: 0,
+    certifiNum: '',
   });
   const [isConditionMet, setIsConditionMet] = useState({
     email: false,
@@ -31,7 +31,7 @@ function FindPWD({ ...props }: IProps): React.ReactElement {
         isConditionMet={isConditionMet}
         setIsConditionMet={setIsConditionMet}
       />
-      <Button className="findPwd__button" disabled={isConditionMet.email && isConditionMet.certifiNum}>
+      <Button className="findPwd__button" disabled={!(isConditionMet.email && isConditionMet.certifiNum)}>
         인증완료
       </Button>
     </FindPWDWrap>

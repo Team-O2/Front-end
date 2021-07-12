@@ -1,12 +1,13 @@
 import Button from 'components/atoms/Button';
 import Label from 'components/atoms/Label';
 import StyledInput from 'components/atoms/StyledInput';
+import { sendEmail } from 'libs/axios';
 import React, { useEffect, useState } from 'react';
 import Styled from 'styled-components';
 
 interface IData {
   email: string;
-  certifiNum: number;
+  certifiNum: string;
 }
 interface IIsconditionMet {
   email: boolean;
@@ -23,9 +24,18 @@ export interface IProps {
 
 function FindPWDForm({ data, setData, isConditionMet, setIsConditionMet }: IProps): React.ReactElement {
   const [email, setEmail] = useState('');
-  const [certifiNum, setCertifiNum] = useState(0);
-
+  const [certifiNum, setCertifiNum] = useState('');
   const [emailErrMsg, setEmailErrMsg] = useState('');
+  const numSendBtnHandler = async () => {
+    await sendEmail(email);
+  };
+
+  useEffect(() => {
+    setData({
+      email: email,
+      certifiNum: certifiNum,
+    });
+  }, [email, certifiNum]);
 
   useEffect(() => {
     if (email.includes('@')) {
@@ -36,7 +46,8 @@ function FindPWDForm({ data, setData, isConditionMet, setIsConditionMet }: IProp
     }
   }, [email]);
   useEffect(() => {
-    if (certifiNum.toString().length == 6) {
+    const certifinumMatch = /[0-9]{6}$/;
+    if (certifinumMatch.test(certifiNum)) {
       setIsConditionMet({ ...isConditionMet, certifiNum: true });
     } else {
       setIsConditionMet({ ...isConditionMet, certifiNum: false });
@@ -57,7 +68,7 @@ function FindPWDForm({ data, setData, isConditionMet, setIsConditionMet }: IProp
           isConditionMet={isConditionMet.email}
           errorMsg={emailErrMsg}
         />
-        <Button className="findPwd__button--sendNum" disabled={isConditionMet.email}>
+        <Button className="findPwd__button--sendNum" disabled={!isConditionMet.email} onClick={numSendBtnHandler}>
           인증번호 전송
         </Button>
       </div>
@@ -67,7 +78,7 @@ function FindPWDForm({ data, setData, isConditionMet, setIsConditionMet }: IProp
         width="406px"
         height="60px"
         onChange={(value) => {
-          if (!isNaN(Number(value))) setCertifiNum(Number(value));
+          if (typeof value === 'string') setCertifiNum(value);
         }}
         isConditionMet={isConditionMet.certifiNum}
       />
@@ -93,7 +104,9 @@ const FindPWDFormWrap = Styled.div<{ isConditionMet: { email: boolean; certifiNu
         }
         &__button{
             &--sendNum{
-                background-color : #dfdfdf;
+                background-image : ${(props) =>
+                  props.isConditionMet.email && 'linear-gradient(to right , #36c8f5, #13e2dd)'};
+                background-color : ${(props) => !props.isConditionMet.email && '#dfdfdf'};
                 width : 134px;
                 height 60px;
                 padding : 19px 25px;
@@ -103,6 +116,7 @@ const FindPWDFormWrap = Styled.div<{ isConditionMet: { email: boolean; certifiNu
                 font-weight : bold;
                 line-height: 1.38;
                 letter-spacing: -0.5px;
+                
             }
         }
         &__container{

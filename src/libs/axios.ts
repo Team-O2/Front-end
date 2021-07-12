@@ -192,3 +192,14 @@ export const challengeOpen = async (token: string, challengeOpenData: IChallenge
     console.log(e.response.data);
   }
 };
+
+export const sendEmail = async (email: string) => {
+  try {
+    const data = await serverAxios.post('/auth/email', { email: email });
+    if (data.data.status === 200) {
+      alert(data.data.message);
+    }
+  } catch (e) {
+    alert(e?.response?.data?.message);
+  }
+};

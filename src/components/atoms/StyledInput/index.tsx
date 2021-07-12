@@ -1,6 +1,6 @@
-import React, { useState, useEffect } from 'react';
-import Styled from 'styled-components';
 import errIcon from 'assets/images/errIcon.svg';
+import React, { useState } from 'react';
+import Styled from 'styled-components';
 
 export interface IProps {
   name?: string;
@@ -35,11 +35,6 @@ function StyledInput({
   height,
 }: IProps): React.ReactElement {
   const [isFocused, setIsfocused] = useState(false);
-  useEffect(() => {
-    console.log(isFocused);
-    console.log(isConditionMet);
-    console.log(errorMsg);
-  }, [isFocused]);
 
   return (
     <SStyledInput isConditionMet={isConditionMet} isFocused={isFocused} width={width} height={height}>
