@@ -5,7 +5,7 @@ import ConcertList from 'components/organisms/ConcertList';
 import Footer from 'components/organisms/Footer';
 import Header from 'components/organisms/Header';
 import SeachForm from 'components/organisms/SearchForm';
-import { getConcertData } from 'libs/axios';
+import { getConcertListData } from 'libs/axios';
 import React, { useEffect, useState } from 'react';
 import Styled from 'styled-components';
 
@@ -32,14 +32,14 @@ interface IConcertData {
 function ShareTogether(): React.ReactElement {
   const [concertList, setConcertList] = useState<IConcertData[] | null>(null);
   useEffect(() => {
-    getConcertDataList(
+    getConcertList(
       'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoiNjBlYTljOWU4YzEyYTE1NTJjZGM3NDM2In0sImlhdCI6MTYyNTk4OTQwNywiZXhwIjoxNjI3MTk5MDA3fQ.JgH9MI8B-ZZnnmITFmusHTUZ4PGoyfI2I7CgUHOC5a8',
     );
   }, []);
-  const getConcertDataList = async (token: string): Promise<void> => {
-    const data = await getConcertData(token);
-    //console.log(data);
-    data && setConcertList(data);
+  const getConcertList = async (token: string): Promise<void> => {
+    const data = await getConcertListData(token);
+    console.log(data);
+    //data && setConcertList(data);
     //console.log(concertList);
   };
   const reRender = (category: string) => {

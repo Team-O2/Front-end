@@ -227,7 +227,7 @@ export const sendVerifinum = async (email: string, verifiNum: string) => {
   }
 };
 
-export const getConcertData = async (token: string) => {
+export const getConcertListData = async (token: string) => {
   try {
     const data = await serverAxios.get('/concert', {
       headers: {
@@ -235,7 +235,7 @@ export const getConcertData = async (token: string) => {
       },
     });
     if (data.data.status === 200) {
-      return data.data.data.concerts;
+      return data;
     } else {
       return null;
     }
