@@ -193,9 +193,14 @@ export const challengeOpen = async (token: string, challengeOpenData: IChallenge
       },
     });
     console.log(data);
+    if (data.data.status === 200) {
+      alert('챌린지 오픈을 완료했습니다.');
+      return true;
+    }
   } catch (e) {
     console.log(e.response.data);
   }
+  return false;
 };
 
 export const sendEmail = async (email: string) => {
