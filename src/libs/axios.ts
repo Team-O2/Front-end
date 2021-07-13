@@ -268,3 +268,24 @@ export const getConcertData = async (token: string, concertID: string) => {
     return undefined;
   }
 };
+
+export const getConcertSearchData = async (token: string, tag: string, keyword: string) => {
+  try {
+    const data = await serverAxios.get(`/concert/search?tag=${tag}&keyword=${keyword}`, {
+      headers: {
+        Authorization: token,
+      },
+      params: {
+        limit: 8,
+      },
+    });
+    if (data.data.status === 200) {
+      return data.data.data;
+    } else {
+      return null;
+    }
+  } catch (e) {
+    alert(e.response.data.message);
+    return undefined;
+  }
+};

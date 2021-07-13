@@ -5,7 +5,7 @@ import ConcertList from 'components/organisms/ConcertList';
 import Footer from 'components/organisms/Footer';
 import Header from 'components/organisms/Header';
 import SeachForm from 'components/organisms/SearchForm';
-import { getConcertListData } from 'libs/axios';
+import { getConcertListData, getConcertSearchData } from 'libs/axios';
 import React, { useEffect, useState } from 'react';
 import Styled from 'styled-components';
 
@@ -31,32 +31,51 @@ interface IConcertData {
 }
 function ShareTogether(): React.ReactElement {
   const [concertList, setConcertList] = useState<IConcertData[] | null>(null);
+  const [selectedCategory, setSelectedCategory] = useState('전체');
+  const [keyword, setKeyword] = useState('');
   useEffect(() => {
     getConcertList(
       'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoiNjBlNmIyYzRhZjM0ZDUxYmEwNmQzZGJiIn0sImlhdCI6MTYyNjEwNTQzMCwiZXhwIjoxNjI3MzE1MDMwfQ.JoWA_yA5o9v7LRMObG2RC-PTlfEhBS6v2eoYumcWSa4',
     );
   }, []);
+  useEffect(() => {
+    getConcertCategoryList(
+      'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoiNjBlNmIyYzRhZjM0ZDUxYmEwNmQzZGJiIn0sImlhdCI6MTYyNjEwNTQzMCwiZXhwIjoxNjI3MzE1MDMwfQ.JoWA_yA5o9v7LRMObG2RC-PTlfEhBS6v2eoYumcWSa4',
+      selectedCategory,
+      keyword,
+    );
+  }, [selectedCategory, keyword]);
   const getConcertList = async (token: string): Promise<void> => {
     const data = await getConcertListData(token);
     data && setConcertList(data);
   };
-  const reRender = (category: string) => {
-    //console.log(category);
+  const getConcertCategoryList = async (token: string, selectedCategory: string, keyword: string): Promise<void> => {
+    const data = await getConcertSearchData(token, selectedCategory, keyword);
+    data && setConcertList(data);
   };
-
+  const reRenderCategory = (category: string) => {
+    setSelectedCategory(category);
+  };
+  const reRenderKeyword = (keyword: string) => {
+    setKeyword(keyword);
+  };
   concertList?.sort(function (a: IConcertData, b: IConcertData) {
     return b.likes - a.likes;
   });
   const concertCardData = concertList?.slice(undefined, 3);
   const concertData = concertList?.slice(3);
-
+  const concertListNum = concertList?.length;
   return (
     <>
       <Header />
       <SShareTogether>
         <ConcertTitle></ConcertTitle>
-        <CategoryList reRender={reRender}></CategoryList>
-        <SeachForm></SeachForm>
+        <CategoryList reRenderCategory={reRenderCategory} selectedCategory={selectedCategory}></CategoryList>
+        <SeachForm
+          reRenderKeyword={reRenderKeyword}
+          selectedCategory={selectedCategory}
+          concertListNum={concertListNum}
+        ></SeachForm>
         <ConcertCardList concertCardData={concertCardData} />
         <ConcertList concertData={concertData}></ConcertList>
       </SShareTogether>

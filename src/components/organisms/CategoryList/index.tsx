@@ -4,24 +4,24 @@ import nextIcon from 'assets/images/nextIcon.svg';
 import CategoryButton from 'components/molecules/CategoryButton';
 import React, { useEffect, useRef, useState } from 'react';
 import Styled from 'styled-components';
+
 interface IProps {
-  reRender?: (interest: string) => void;
+  reRenderCategory?: (interest: string) => void;
+  selectedCategory?: string;
 }
-function CategoryList({ reRender }: IProps): React.ReactElement {
+function CategoryList({ reRenderCategory, selectedCategory }: IProps): React.ReactElement {
   const totalSlide = 6;
   const [currentSlide, setCurrentSlide] = useState(0);
   const slideRef = useRef<HTMLInputElement>(null);
   const [openMore, setOpenMore] = useState(false);
   const [moreClicked, setMoreClicked] = useState(false);
-  const [selectedCategory, setSelectedCategory] = useState('전체');
 
   const onClickOpenMore = () => {
     setOpenMore(!openMore);
     setMoreClicked(!moreClicked);
   };
-  const onClickInterest = (category: any) => {
-    setSelectedCategory(category);
-    reRender && reRender(selectedCategory);
+  const onClickInterest = (category: string) => {
+    reRenderCategory && reRenderCategory(category);
   };
 
   const nextSlide = () => {
