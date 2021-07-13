@@ -1,17 +1,34 @@
 import {
+  CommunicationKing,
   CommunicationKingFill,
+  Empathizing,
   EmpathizingFill,
+  FirstComment,
   FirstCommentFill,
+  GetChallenge,
   GetChallengeFill,
+  GrowingTogether,
   GrowingTogetherFill,
+  NaturalBornO2,
   NaturalBornO2Fill,
   Percent100Img,
+  Percent20Img,
+  Percent40Img,
+  Percent60Img,
+  Percent80Img,
+  ReadyForCommunication,
   ReadyForCommunicationFill,
+  ReadyForGrow,
   ReadyForGrowFill,
+  ShyEmail,
   ShyEmailFill,
+  SympathyKing,
   SympathyKingFill,
+  UsefulLearnMyself,
   UsefulLearnMyselfFill,
+  UsefulShareTogether,
   UsefulShareTogetherFill,
+  WelcomeToO2,
   WelcomeToO2Fill,
 } from 'assets/images';
 import { ReactComponent as LeftArrow } from 'assets/images/largeLeftArrow.svg';
@@ -61,6 +78,14 @@ function MyPageSlider(): React.ReactElement {
     setLocalVisible(!currentSlide);
   }, [localVisible, currentSlide]);
 
+  const getLevelIcon = (percent: number): string => {
+    if (percent <= 20) return Percent20Img;
+    else if (percent <= 50) return Percent40Img;
+    else if (percent <= 80) return Percent60Img;
+    else if (percent <= 99) return Percent80Img;
+    else return Percent100Img;
+  };
+
   return (
     <Wrapper disappear={!!currentSlide}>
       <Button className="prevButton" onClick={prevSlide}>
@@ -74,8 +99,7 @@ function MyPageSlider(): React.ReactElement {
                 {`${dayjs().startOf('month').format('YY.MM.DD')} - ${dayjs().endOf('month').format('YY.MM.DD')}`}
               </p>
               <div className="slider__learnMyself--img">
-                <Img src={Percent100Img} />
-              </div>
+                  <Img src={getLevelIcon(userInfo.learnMyselfAchieve.percent)} />
               <p className="slider__learnMyself--percent subhead5_eng">100% 달성</p>
               <p className="slider__learnMyself--count body2">
                 내가 쓴 개수 &nbsp; &nbsp;<span>36</span> &nbsp;/ &nbsp;36
