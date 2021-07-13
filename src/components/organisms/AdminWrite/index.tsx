@@ -61,16 +61,19 @@ function AdminWrite(): React.ReactElement {
         authorNickname: writeData.nickname,
       });
       isSuccess && history.goBack();
+    } else {
+      alert('로그인 후 이용하세요');
     }
   };
-  const postNoticeHandler = () => {
+  const postNoticeHandler = async () => {
     if (userStatusData) {
-      postNoticeWrite(userStatusData.token, {
+      const isSuccess = await postNoticeWrite(userStatusData.token, {
         title: writeData.title,
         text: writeData.content,
         interest: writeData.category,
         hashtag: writeData.hashtag,
       });
+      isSuccess && history.goBack();
     } else {
       alert('로그인 후 이용하세요');
     }
