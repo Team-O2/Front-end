@@ -1,1 +1,1 @@
-export { getMyCommentList } from './myPage';
+export {};
