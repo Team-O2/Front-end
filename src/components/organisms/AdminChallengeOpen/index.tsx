@@ -8,9 +8,12 @@ import Label from 'components/atoms/Label';
 import AdminChallengeOpenForm from 'components/molecules/AdminChallengeOpenForm';
 import { challengeOpen } from 'libs/axios';
 import React, { useEffect, useState } from 'react';
+import { useRecoilState } from 'recoil';
+import { userStatusState } from 'stores/user';
 import Styled from 'styled-components';
 
 function AdminChallengeOpen(): React.ReactElement {
+  const [userStatusData, setUserStatusData] = useRecoilState(userStatusState);
   const [image, setImage] = useState<File | null>(null);
   const [check, setCheck] = useState(false);
   const [isButtonDisabled, setIsButtonDisabled] = useState(true);
@@ -50,10 +53,11 @@ function AdminChallengeOpen(): React.ReactElement {
     }
   }, [isConditionMet, image, check]);
   const btnHandler = () => {
-    challengeOpen(
-      'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoiNjBlYjI3Y2ZjZmY1NTkyNmM0M2NlN2ZmIn0sImlhdCI6MTYyNjA4ODY1NiwiZXhwIjoxNjI3Mjk4MjU2fQ.uxM51YrnEf6qZsq9tjPbkvRS587g_8xclrC0zxAN0IU',
-      { ...challengeOpenData, img: image },
-    );
+    if (userStatusData) {
+      challengeOpen(userStatusData.token, { ...challengeOpenData, img: image });
+    } else {
+      alert('로그인 후 이용하세요');
+    }
   };
 
   return (

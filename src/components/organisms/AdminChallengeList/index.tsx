@@ -4,6 +4,8 @@ import AdminChallengeCard from 'components/molecules/AdminChallengeCard';
 import { getChallengeList } from 'libs/axios';
 import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
+import { useRecoilState } from 'recoil';
+import { userStatusState } from 'stores/user';
 import Styled from 'styled-components';
 
 interface IChallengeData {
@@ -20,11 +22,11 @@ interface IChallengeData {
 }
 
 function AdminChallengeList(): React.ReactElement {
+  const [userStatusData, setUserStatusData] = useRecoilState(userStatusState);
   const [challengeDataList, setChallengeDataList] = useState<IChallengeData[] | null>(null);
   useEffect(() => {
-    getChallengeDataList(
-      'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoiNjBlYjI3Y2ZjZmY1NTkyNmM0M2NlN2ZmIn0sImlhdCI6MTYyNjA3MDY2MywiZXhwIjoxNjI3MjgwMjYzfQ.ABf6m4DdpfMBKZ9uJMx5or3GgJyvT2hH7_lbvmTWUdI',
-    );
+    if (userStatusData) getChallengeDataList(userStatusData.token);
+    else alert('로그인 후 이용하세요');
   }, []);
   const getChallengeDataList = async (token: string): Promise<void> => {
     const data = await getChallengeList(token);

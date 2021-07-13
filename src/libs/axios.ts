@@ -136,10 +136,16 @@ export const postConcertWrite = async (token: string, concertWriteData: IConcert
         Authorization: token,
       },
     });
-    console.log(data);
+    console.log(data.data);
+    if (data.data.status === 200) {
+      alert('콘서트 글 올리기를 완료했습니다.');
+      return true;
+    }
   } catch (e) {
+    alert('글올리기 실패');
     console.log(e.response.data);
   }
+  return false;
 };
 
 export const postNoticeWrite = async (token: string, noticeWriteData: INoticeData) => {
