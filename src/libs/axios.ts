@@ -161,9 +161,15 @@ export const postNoticeWrite = async (token: string, noticeWriteData: INoticeDat
       },
     });
     console.log(data.data);
+    if (data.data.status === 200) {
+      alert('공지사항 업로드를 완료했습니다.');
+      return true;
+    }
   } catch (e) {
+    alert('글올리기 실패');
     console.log(e.response.data);
   }
+  return false;
 };
 const changeDateStyle = (date: string) => {
   const year = date.substr(0, 4);
