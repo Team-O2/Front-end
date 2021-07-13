@@ -1,9 +1,9 @@
+import { getConcertData } from 'apis/ShareTogether';
 import DetailTitle from 'components/molecules/DetailTitle';
 import CommentList from 'components/organisms/CommentList';
 import DetailContent from 'components/organisms/DetailContent';
 import Footer from 'components/organisms/Footer';
 import Header from 'components/organisms/Header';
-import { getConcertData } from 'libs/axios';
 import React, { useEffect, useState } from 'react';
 import { RouteComponentProps } from 'react-router';
 import Styled from 'styled-components';

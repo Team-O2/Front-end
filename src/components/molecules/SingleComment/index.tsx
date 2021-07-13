@@ -1,4 +1,4 @@
-import { postConcertComment } from 'libs/axios';
+import { postConcertComment } from 'apis/ShareTogether';
 import React, { useState } from 'react';
 import { useRecoilValue } from 'recoil';
 import { userState } from 'stores/user';
