@@ -8,11 +8,13 @@ import Label from 'components/atoms/Label';
 import AdminChallengeOpenForm from 'components/molecules/AdminChallengeOpenForm';
 import { challengeOpen } from 'libs/axios';
 import React, { useEffect, useState } from 'react';
+import { useHistory } from 'react-router-dom';
 import { useRecoilState } from 'recoil';
 import { userStatusState } from 'stores/user';
 import Styled from 'styled-components';
 
 function AdminChallengeOpen(): React.ReactElement {
+  const history = useHistory();
   const [userStatusData, setUserStatusData] = useRecoilState(userStatusState);
   const [image, setImage] = useState<File | null>(null);
   const [check, setCheck] = useState(false);
@@ -52,9 +54,10 @@ function AdminChallengeOpen(): React.ReactElement {
       setIsButtonDisabled(true);
     }
   }, [isConditionMet, image, check]);
-  const btnHandler = () => {
+  const btnHandler = async () => {
     if (userStatusData) {
-      challengeOpen(userStatusData.token, { ...challengeOpenData, img: image });
+      const isSuccess = await challengeOpen(userStatusData.token, { ...challengeOpenData, img: image });
+      isSuccess && history.goBack();
     } else {
       alert('로그인 후 이용하세요');
     }
