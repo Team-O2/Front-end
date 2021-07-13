@@ -27,7 +27,13 @@ function MyPageSection({ title, subTitle, path, data, renderItemList, ...props }
           </div>
         </Link>
       </div>
-      <div className="itemContainer">{renderItemList(data)}</div>
+      {data ? (
+        <div className="itemContainer">{renderItemList(data)}</div>
+      ) : (
+        <div className="emptyContainer">
+          <p className="subhead4">스크랩한 글이 없어요</p>
+        </div>
+      )}
     </Wrapper>
   );
 }
@@ -39,6 +45,7 @@ const Wrapper = Styled.div<{ column: number; gap: number }>`
     margin-bottom: 14px;
     color: ${palette('grayscale', -3)};
   }
+
   .infoContainer {
     display: flex;
     align-items: center;
@@ -62,6 +69,13 @@ const Wrapper = Styled.div<{ column: number; gap: number }>`
         height: 24px;
       }
     }
+  }
+  
+  .emptyContainer {
+    width: 100%;
+    text-align: center;
+    margin-top: 90px;
+    color: ${palette('grayscale', 2)}
   }
 
   .itemContainer {
