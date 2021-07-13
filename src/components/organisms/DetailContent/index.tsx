@@ -1,15 +1,13 @@
+import CommentIcon from 'assets/images/comment.svg';
+import LikeIcon from 'assets/images/heart.svg';
+import LikeIconFilled from 'assets/images/heart_filled.svg';
+import ScrapIcon from 'assets/images/scrap.svg';
+import HashTag from 'components/atoms/HashTag';
 import React from 'react';
 import Styled from 'styled-components';
-import LikeIcon from 'assets/images/heart.svg';
-import CommentIcon from 'assets/images/comment.svg';
-import ScrapIcon from 'assets/images/scrap.svg';
-import LikeIconFilled from 'assets/images/heart_filled.svg';
-import CommentIconFilled from 'assets/images/comment_filled.svg';
-import ScrapIconFilled from 'assets/images/scrap_filled.svg';
-import HashTag from 'components/atoms/HashTag';
 
 interface IProps {
-  image?: string;
+  video?: string;
   desc?: string;
   hashtag?: string[];
   like?: number;
@@ -19,11 +17,12 @@ interface IProps {
   likeClick: boolean;
 }
 
-function DetailContent({ image, desc, hashtag, like, comments, scrap, onLike, likeClick }: IProps): React.ReactElement {
+function DetailContent({ video, desc, hashtag, like, comments, scrap, onLike, likeClick }: IProps): React.ReactElement {
+  console.log(video);
   return (
     <SDetailContent>
       <div className="image">
-        <img className="image__video" src={image} alt="" />
+        <video className="image__video" src={video} controls></video>
       </div>
       <div className="text">{desc}</div>
       <div className="hashtag">
@@ -55,8 +54,8 @@ function DetailContent({ image, desc, hashtag, like, comments, scrap, onLike, li
 
 const SDetailContent = Styled.div`
   .image {
-    height: 468px;
     margin-top: 60px;
+    height: 468px;
     &__video{
       width: 100%;
       height: 100%;
@@ -65,35 +64,35 @@ const SDetailContent = Styled.div`
   }
   .text {
     margin-top: 40px;
-    font-size: 18px;
+    line-height: 1.56;
     color: #555555;
     font-family: 'AppleSDGothicNeo';
-    line-height: 1.56;
+    font-size: 18px;
   }
   .hashtag {
     margin-top: 60px;
   }
   .icons {
-    margin: 60px 0 18px;
     display: flex;
     flex-direction: row;
-    font-size: 18px;
+    margin: 60px 0 18px;
     color:#3d3d3d;
     font-family: 'HomepageBaukasten';
+    font-size: 18px;
   }
   .like{
-    margin-right: 20px;
     display: flex;
     align-items:center;
+    margin-right: 20px;
     &__img
     {
         margin-right: 10px;
     }
   }
   .comments{
-    margin-right: 20px;
     display: flex;
     align-items:center;
+    margin-right: 20px;
     &__img
     {
         margin-right: 10px;

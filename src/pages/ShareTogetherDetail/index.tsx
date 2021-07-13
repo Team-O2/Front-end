@@ -74,7 +74,7 @@ function ShareTogetherDetail({ match }: RouteComponentProps<MatchParams>): React
           interest={concert?.interest}
         ></DetailTitle>
         <DetailContent
-          image={concert?.imgThumbnail}
+          video={concert?.videoLink}
           desc={concert?.text}
           hashtag={concert?.hashtag}
           like={Likes}
