@@ -1,19 +1,19 @@
-import React, { useState } from 'react';
-import Styled from 'styled-components';
 import CommentWrite from 'components/molecules/CommentWrite';
 import SingleComment from 'components/molecules/SingleComment';
+import React, { useState } from 'react';
+import Styled from 'styled-components';
 
 interface IData {
   childrenComment: {
     _id: string;
-    userID: {
-      _id: string;
-      nickname: string;
-    };
+    nickname: string;
     text: string;
+    createdAt?: string;
   }[];
-  _id: string;
+  isDeleted?: boolean;
+  _id?: string;
   userID: {
+    img: string;
     _id: string;
     nickname: string;
   };
@@ -30,7 +30,7 @@ interface INewComment {
 }
 
 interface IProps {
-  commentList: Array<IData> | undefined;
+  commentList: Array<IData>;
   reLoadComment: (newComment: INewComment) => void;
 }
 
@@ -82,15 +82,14 @@ function CommentList({ commentList, reLoadComment }: IProps): React.ReactElement
         onClick={onSubmit}
         onSubmit={onSubmit}
       ></CommentWrite>
-      {commentList &&
-        commentList.map((data: IData) => (
-          <SingleComment
-            key={data._id}
-            nickname={data.userID.nickname}
-            childrenComment={data.childrenComment}
-            text={data.text}
-          ></SingleComment>
-        ))}
+      {commentList?.map((data: IData) => (
+        <SingleComment
+          key={data._id}
+          userID={data.userID}
+          childrenComment={data.childrenComment}
+          text={data.text}
+        ></SingleComment>
+      ))}
     </SCommentList>
   );
 }

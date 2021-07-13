@@ -2,31 +2,30 @@ import React, { useState } from 'react';
 import Styled from 'styled-components';
 import CommentWrite from '../CommentWrite';
 import ReplyComment from '../ReplyComment';
-import Profile from 'assets/images/Profile.svg';
 
 interface IProps {
   childrenComment: {
     _id: string;
-    userID: {
-      _id: string;
-      nickname: string;
-    };
+    nickname: string;
     text: string;
+    createdAt?: string;
   }[];
-  nickname: string;
-  text: string;
-}
-
-interface IReply {
-  _id: string;
+  isDeleted?: boolean;
+  _id?: string;
   userID: {
+    img: string;
     _id: string;
     nickname: string;
   };
   text: string;
 }
 
-function SingleComment({ nickname, childrenComment, text }: IProps): React.ReactElement {
+interface IReply {
+  _id: string;
+  nickname: string;
+  text: string;
+}
+function SingleComment({ userID, childrenComment, text }: IProps): React.ReactElement {
   const [openReply, setOpenReply] = useState(false);
   const [replyValue, setReplyValue] = useState('');
   const [reply, setReply] = useState(childrenComment);
@@ -43,10 +42,7 @@ function SingleComment({ nickname, childrenComment, text }: IProps): React.React
     const nextId = String(replyListLength && replyListLength + 1);
     const variables = {
       _id: nextId,
-      userID: {
-        _id: '1',
-        nickname: '대댓글임다',
-      },
+      nickname: '대댓글임다',
       text: replyValue,
     };
     setReply(reply.concat(variables));
@@ -71,8 +67,8 @@ function SingleComment({ nickname, childrenComment, text }: IProps): React.React
   return (
     <SSingleComment>
       <div className="comment">
-        <img className="comment__profile" src={Profile} alt="" />
-        <div className="comment__writer">{nickname}</div>
+        <img className="comment__profile" src={userID?.img} alt="" />
+        <div className="comment__writer">{userID?.nickname}</div>
         <div className="comment__text">{text}</div>
         <div className="comment__toggle" onClick={onClickReplyOpen}>
           {openReply ? '접기' : '답글보기'}
@@ -94,7 +90,7 @@ function SingleComment({ nickname, childrenComment, text }: IProps): React.React
                 <ReplyComment
                   className="reply__comment"
                   key={data._id}
-                  nickname={data.userID.nickname}
+                  nickname={data.nickname}
                   text={data.text}
                 ></ReplyComment>
               ))}
@@ -110,8 +106,8 @@ const SSingleComment = Styled.div`
   .comment {
     display: flex;
     justify-content: space-between;
-    font-family: 'AppleSDGothicNeo';
     line-height: 1.43;
+    font-family: 'AppleSDGothicNeo';
     &__profile {
       width: 28px;
       height: 28px;
@@ -122,15 +118,15 @@ const SSingleComment = Styled.div`
     }
     &__text {
       width: 647px;
-      font-size: 16px;
       color: #6f6f6f;
+      font-size: 16px;
     }
     &__toggle {
       width: 50px;
+      text-align: right;
+      color: #36c8f5;
       font-size: 14px;
       font-weight: bold;
-      color: #36c8f5;
-      text-align: right;
     }
   }
   .reply {

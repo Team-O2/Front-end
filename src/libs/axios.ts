@@ -247,3 +247,24 @@ export const getConcertListData = async (token: string) => {
     return undefined;
   }
 };
+
+export const getConcertData = async (token: string, concertID: string) => {
+  try {
+    const data = await serverAxios.get(`/concert/${concertID}`, {
+      headers: {
+        Authorization: token,
+      },
+      params: {
+        concertID: concertID,
+      },
+    });
+    if (data.data.status === 200) {
+      return data.data.data;
+    } else {
+      return null;
+    }
+  } catch (e) {
+    alert(e.response.data.message);
+    return undefined;
+  }
+};
