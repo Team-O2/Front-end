@@ -25,10 +25,11 @@ interface IReply {
   nickname: string;
   text: string;
 }
+
 function SingleComment({ userID, childrenComment, text }: IProps): React.ReactElement {
   const [openReply, setOpenReply] = useState(false);
   const [replyValue, setReplyValue] = useState('');
-  const [reply, setReply] = useState(childrenComment);
+  const [replyList, setReplyList] = useState(childrenComment);
 
   const onClickReplyOpen = () => {
     setOpenReply(!openReply);
@@ -38,14 +39,14 @@ function SingleComment({ userID, childrenComment, text }: IProps): React.ReactEl
   };
   const onSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-    const replyListLength = reply?.length;
+    const replyListLength = replyList?.length;
     const nextId = String(replyListLength && replyListLength + 1);
     const variables = {
       _id: nextId,
       nickname: '대댓글임다',
       text: replyValue,
     };
-    setReply(reply.concat(variables));
+    setReplyList(replyList.concat(variables));
     setReplyValue('');
   };
   /*
@@ -85,15 +86,14 @@ function SingleComment({ userID, childrenComment, text }: IProps): React.ReactEl
               onSubmit={onSubmit}
               isComment={false}
             ></CommentWrite>
-            {reply &&
-              reply.map((data: IReply) => (
-                <ReplyComment
-                  className="reply__comment"
-                  key={data._id}
-                  nickname={data.nickname}
-                  text={data.text}
-                ></ReplyComment>
-              ))}
+            {replyList.map((data: IReply) => (
+              <ReplyComment
+                className="reply__comment"
+                key={data._id}
+                nickname={data.nickname}
+                text={data.text}
+              ></ReplyComment>
+            ))}
           </>
         )}
       </div>

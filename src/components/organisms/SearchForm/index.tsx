@@ -1,24 +1,34 @@
 import DiamondIcon from 'assets/images/diamond.svg';
 import SearchBar from 'components/molecules/SearchBar';
-import React from 'react';
-import { RouteComponentProps, withRouter } from 'react-router-dom';
+import React, { useState } from 'react';
 import Styled from 'styled-components';
-
-interface MatchParams {
-  path: string;
+interface IProps {
+  reRenderKeyword?: (keyword: string) => void;
+  selectedCategory?: string;
+  concertListNum?: number;
 }
-function SearchForm({ location }: RouteComponentProps<MatchParams>): React.ReactElement {
-  const path = location.pathname;
-
+function SearchForm({ reRenderKeyword, selectedCategory, concertListNum }: IProps): React.ReactElement {
+  const [searchValue, setSearchValue] = useState('');
+  const onChangeKeyword = (event: React.ChangeEvent<HTMLInputElement>) => {
+    setSearchValue(event.currentTarget.value);
+  };
+  const onClickSearch = (event: React.MouseEvent) => {
+    event.preventDefault();
+    reRenderKeyword && reRenderKeyword(searchValue);
+  };
   return (
     <SSearchForm>
       <div className="main">
         <img className="main__img" src={DiamondIcon} alt="" />
-        <p className="main__title">전체</p>
-        <SearchBar className="main__searchbar"></SearchBar>
+        <p className="main__title">{selectedCategory}</p>
+        <SearchBar
+          onChangeKeyword={onChangeKeyword}
+          onClickSearch={onClickSearch}
+          className="main__searchbar"
+        ></SearchBar>
       </div>
       <div className="detail">
-        <p>12344개의 콘텐츠</p>
+        <p>{concertListNum}개의 콘텐츠</p>
       </div>
     </SSearchForm>
   );
@@ -55,4 +65,4 @@ const SSearchForm = Styled.div`
   }
 `;
 
-export default withRouter(SearchForm);
+export default SearchForm;

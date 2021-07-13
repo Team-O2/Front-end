@@ -1,24 +1,20 @@
 import SearchIcon from 'assets/images/icons_search.svg';
 import Button from 'components/atoms/Button';
 import Input from 'components/atoms/Input';
-import React, { useState } from 'react';
+import React from 'react';
 import Styled from 'styled-components';
 
 export interface IProps {
   className?: string;
+  onClickSearch?: (e: React.MouseEvent) => void;
+  onChangeKeyword: (e: React.ChangeEvent<HTMLInputElement>) => void;
 }
 
-function SearchBar({ ...props }: IProps): React.ReactElement {
-  const [searchTerm, setSearchTerm] = useState('');
+function SearchBar({ onClickSearch, onChangeKeyword }: IProps): React.ReactElement {
   return (
-    <SSearchBar {...props}>
-      <Input
-        className="input"
-        name="searchBar"
-        placeholder="키워드를 검색해 주세요"
-        onChange={(event) => setSearchTerm(event.target.value)}
-      ></Input>
-      <Button className="button">
+    <SSearchBar>
+      <Input className="input" name="searchBar" onChange={onChangeKeyword} placeholder="키워드를 검색해 주세요"></Input>
+      <Button className="button" onClick={onClickSearch}>
         <img src={SearchIcon} alt="" />
       </Button>
     </SSearchBar>
@@ -30,24 +26,24 @@ const SSearchBar = Styled.div`
   flex-direction: row;
   align-items: center;
   .input {
-    width: 298px;
-    height: 46px;
-    padding: 9px 18px 9px 20px;
     border: 1px solid #dfdfdf;
     border-radius: 72px;
     background-color: rgba(223, 223, 223, 0.2);
+    padding: 9px 18px 9px 20px;
+    width: 298px;
+    height: 46px;
     color: #c1c1c1;
     font-size: 18px;
     :focus {outline:none;}
   }
   .button {
+    opacity: 50%;
+    margin-bottom:4px;
+    margin-left:-50px;
+    border: #ffffff;
+    background-color: rgba(223, 223, 223, 0.2);
     width: 24px;
     height: 24px;
-    background-color: rgba(223, 223, 223, 0.2);
-    border: #ffffff;
-    margin-left:-50px;
-    margin-bottom:4px;
-    opacity: 50%;
   }
 `;
 
