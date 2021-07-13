@@ -123,7 +123,6 @@ export const getChallengeList = async (token: string) => {
 
 export const postConcertWrite = async (token: string, concertWriteData: IConcertWriteData) => {
   const form = new FormData();
-  console.log(concertWriteData);
   concertWriteData.videoLink && form.append('videoLink', concertWriteData.videoLink);
   concertWriteData.imgThumbnail && form.append('imgThumbnail', concertWriteData.imgThumbnail);
   form.append('title', concertWriteData.title);
@@ -132,12 +131,9 @@ export const postConcertWrite = async (token: string, concertWriteData: IConcert
   form.append('hashtag', `[${concertWriteData.hashtag.join()}]`);
   form.append('authorNickname', concertWriteData.authorNickname);
   try {
-    const data = await serverAxios.post('/admin/concert', {
+    const data = await serverAxios.post('/admin/concert', form, {
       headers: {
         Authorization: token,
-      },
-      body: {
-        form,
       },
     });
     console.log(data);
@@ -153,15 +149,12 @@ export const postNoticeWrite = async (token: string, noticeWriteData: INoticeDat
   form.append('interest', `[${noticeWriteData.interest.join()}]`);
   form.append('hashtag', `[${noticeWriteData.hashtag.join()}]`);
   try {
-    const data = await serverAxios.post('/admin/concert', {
+    const data = await serverAxios.post('/admin/notice', form, {
       headers: {
         Authorization: token,
       },
-      body: {
-        form,
-      },
     });
-    console.log(data);
+    console.log(data.data);
   } catch (e) {
     console.log(e.response.data);
   }
@@ -182,12 +175,9 @@ export const challengeOpen = async (token: string, challengeOpenData: IChallenge
   form.append('limitNum', `${challengeOpenData.peopleNum}`);
   challengeOpenData.img && form.append('img', challengeOpenData.img);
   try {
-    const data = await serverAxios.post('/admin/concert', {
+    const data = await serverAxios.post('/admin/challenge', form, {
       headers: {
         Authorization: token,
-      },
-      body: {
-        form,
       },
     });
     console.log(data);
