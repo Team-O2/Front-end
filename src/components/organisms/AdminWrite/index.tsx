@@ -3,9 +3,14 @@ import Label from 'components/atoms/Label';
 import AdminWriteForm from 'components/molecules/AdminWriteForm';
 import { postConcertWrite, postNoticeWrite } from 'libs/axios';
 import React, { useEffect, useState } from 'react';
+import { useHistory } from 'react-router-dom';
+import { useRecoilState } from 'recoil';
+import { userStatusState } from 'stores/user';
 import Styled from 'styled-components';
 
 function AdminWrite(): React.ReactElement {
+  const history = useHistory();
+  const [userStatusData, setUserStatusData] = useRecoilState(userStatusState);
   const [isButtonDisabled, setIsButtonDisabled] = useState(true);
   const [isConditionMet, setIsConditionMet] = useState({
     title: false,
@@ -44,10 +49,9 @@ function AdminWrite(): React.ReactElement {
       postConcertHandler();
     }
   };
-  const postConcertHandler = () => {
-    postConcertWrite(
-      'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoiNjBlYjI3Y2ZjZmY1NTkyNmM0M2NlN2ZmIn0sImlhdCI6MTYyNjA4ODY1NiwiZXhwIjoxNjI3Mjk4MjU2fQ.uxM51YrnEf6qZsq9tjPbkvRS587g_8xclrC0zxAN0IU',
-      {
+  const postConcertHandler = async () => {
+    if (userStatusData) {
+      const isSuccess = await postConcertWrite(userStatusData.token, {
         videoLink: writeData.video,
         imgThumbnail: writeData.thumbnail,
         title: writeData.title,
@@ -55,19 +59,21 @@ function AdminWrite(): React.ReactElement {
         interest: writeData.category,
         hashtag: writeData.hashtag,
         authorNickname: writeData.nickname,
-      },
-    );
+      });
+      isSuccess && history.goBack();
+    }
   };
   const postNoticeHandler = () => {
-    postNoticeWrite(
-      'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoiNjBlYjI3Y2ZjZmY1NTkyNmM0M2NlN2ZmIn0sImlhdCI6MTYyNjA4ODY1NiwiZXhwIjoxNjI3Mjk4MjU2fQ.uxM51YrnEf6qZsq9tjPbkvRS587g_8xclrC0zxAN0IU',
-      {
+    if (userStatusData) {
+      postNoticeWrite(userStatusData.token, {
         title: writeData.title,
         text: writeData.content,
         interest: writeData.category,
         hashtag: writeData.hashtag,
-      },
-    );
+      });
+    } else {
+      alert('로그인 후 이용하세요');
+    }
   };
 
   useEffect(() => {
