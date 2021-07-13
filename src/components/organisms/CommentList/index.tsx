@@ -1,6 +1,6 @@
+import { postConcertComment } from 'apis/ShareTogether';
 import CommentWrite from 'components/molecules/CommentWrite';
 import SingleComment from 'components/molecules/SingleComment';
-import { postConcertComment } from 'libs/axios';
 import React, { useState } from 'react';
 import { useRecoilValue } from 'recoil';
 import { userState } from 'stores/user';

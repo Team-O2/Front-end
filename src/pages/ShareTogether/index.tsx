@@ -1,3 +1,4 @@
+import { getConcertListData, getConcertSearchData } from 'apis/ShareTogether';
 import ConcertTitle from 'components/molecules/ConcertTitle';
 import CategoryList from 'components/organisms/CategoryList';
 import ConcertCardList from 'components/organisms/ConcertCardList';
@@ -5,7 +6,6 @@ import ConcertList from 'components/organisms/ConcertList';
 import Footer from 'components/organisms/Footer';
 import Header from 'components/organisms/Header';
 import SeachForm from 'components/organisms/SearchForm';
-import { getConcertListData, getConcertSearchData } from 'libs/axios';
 import React, { useEffect, useState } from 'react';
 import Styled from 'styled-components';
 
