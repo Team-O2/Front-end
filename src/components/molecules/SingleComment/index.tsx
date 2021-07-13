@@ -1,35 +1,40 @@
+import { postConcertComment } from 'libs/axios';
 import React, { useState } from 'react';
+import { useRecoilValue } from 'recoil';
+import { userState } from 'stores/user';
 import Styled from 'styled-components';
 import CommentWrite from '../CommentWrite';
 import ReplyComment from '../ReplyComment';
-
 interface IProps {
   childrenComment: {
-    _id: string;
-    nickname: string;
-    text: string;
+    _id?: string;
+    nickname?: string;
+    text?: string;
     createdAt?: string;
   }[];
   isDeleted?: boolean;
-  _id?: string;
+  _id: string;
   userID: {
     img: string;
     _id: string;
     nickname: string;
   };
   text: string;
+  concertID?: string;
 }
 
 interface IReply {
-  _id: string;
-  nickname: string;
-  text: string;
+  _id?: string;
+  parentID?: string;
+  text?: string;
+  nickname?: string;
 }
 
-function SingleComment({ userID, childrenComment, text }: IProps): React.ReactElement {
+function SingleComment({ _id, userID, childrenComment, text, concertID }: IProps): React.ReactElement {
   const [openReply, setOpenReply] = useState(false);
   const [replyValue, setReplyValue] = useState('');
   const [replyList, setReplyList] = useState(childrenComment);
+  const user = useRecoilValue(userState);
 
   const onClickReplyOpen = () => {
     setOpenReply(!openReply);
@@ -37,8 +42,25 @@ function SingleComment({ userID, childrenComment, text }: IProps): React.ReactEl
   const handleChange = (event: React.ChangeEvent<HTMLTextAreaElement>) => {
     setReplyValue(event.currentTarget.value);
   };
-  const onSubmit = (event: React.FormEvent<HTMLFormElement>) => {
+  const onSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
+    const variables = {
+      /*
+      _id: concertID,
+      userID: {
+        img: user.img,
+        _id: user._id,
+        nickname: user.nickname,
+      },*/
+      parentID: _id,
+      text: replyValue,
+    };
+    const token =
+      'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoiNjBlZDg2NTZkOWM0ZTg0NzM4NzM1OTYyIn0sImlhdCI6MTYyNjE3OTI4OSwiZXhwIjoxNjI3Mzg4ODg5fQ.kmF5YDPDVAv6XyR6wNW_7JWm_3byloniqKSM7zcrDbg';
+    const postData = await postConcertComment(token, concertID, variables);
+    setReplyList(replyList.concat(variables));
+    setReplyValue('');
+    /*
     const replyListLength = replyList?.length;
     const nextId = String(replyListLength && replyListLength + 1);
     const variables = {
@@ -48,6 +70,7 @@ function SingleComment({ userID, childrenComment, text }: IProps): React.ReactEl
     };
     setReplyList(replyList.concat(variables));
     setReplyValue('');
+    */
   };
   /*
     FIX ME : 코드 수정 후 서버연결 필요

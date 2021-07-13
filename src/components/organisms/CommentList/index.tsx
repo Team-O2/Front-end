@@ -1,6 +1,9 @@
 import CommentWrite from 'components/molecules/CommentWrite';
 import SingleComment from 'components/molecules/SingleComment';
+import { postConcertComment } from 'libs/axios';
 import React, { useState } from 'react';
+import { useRecoilValue } from 'recoil';
+import { userState } from 'stores/user';
 import Styled from 'styled-components';
 
 interface IData {
@@ -11,7 +14,7 @@ interface IData {
     createdAt?: string;
   }[];
   isDeleted?: boolean;
-  _id?: string;
+  _id: string;
   userID: {
     img: string;
     _id: string;
@@ -21,54 +24,37 @@ interface IData {
 }
 
 interface INewComment {
-  _id: string;
-  userID: {
-    _id: string;
-    nickname: string;
-  };
+  parentID?: string;
   text: string;
 }
 
 interface IProps {
   commentList: Array<IData>;
+  concertID?: string;
   reLoadComment: (newComment: INewComment) => void;
 }
 
-function CommentList({ commentList, reLoadComment }: IProps): React.ReactElement {
+function CommentList({ commentList, concertID, reLoadComment }: IProps): React.ReactElement {
   const [commentValue, setCommentValue] = useState('');
+  const user = useRecoilValue(userState);
   const handleChange = (event: React.ChangeEvent<HTMLTextAreaElement>) => {
     setCommentValue(event.currentTarget.value);
   };
-  const onSubmit = (event: React.FormEvent<HTMLFormElement>) => {
+  const onSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-    /*
-    FIX ME : 코드 수정 후 서버연결 필요
     const variables = {
-      postId: selectedConcertId,
-      _id: 댓글 아이디
-      author: 로그인한 유저,
-      text: commentValue,
-    }
-    Axios.post('api/concert/comment',variables)
-    .then(response =>{
-        if(response.data.success){
-           console.log(response.data.result)
-           reLoad(response.data.result)
-        }else{
-            alert('FAIL')
-        }
-    })
-    */
-    const commentListLength = commentList?.length;
-    const nextId = String(commentListLength && commentListLength + 1);
-    const variables = {
-      _id: nextId,
+      /*
+      _id: concertID,
       userID: {
-        _id: '1',
-        nickname: '깡또아 뚜아',
-      },
+        img: user.img,
+        _id: user._id,
+        nickname: user.nickname,
+      },*/
       text: commentValue,
     };
+    const token =
+      'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoiNjBlZDg2NTZkOWM0ZTg0NzM4NzM1OTYyIn0sImlhdCI6MTYyNjE3OTI4OSwiZXhwIjoxNjI3Mzg4ODg5fQ.kmF5YDPDVAv6XyR6wNW_7JWm_3byloniqKSM7zcrDbg';
+    const postData = await postConcertComment(token, concertID, variables);
     reLoadComment(variables);
     setCommentValue('');
   };
@@ -85,9 +71,11 @@ function CommentList({ commentList, reLoadComment }: IProps): React.ReactElement
       {commentList?.map((data: IData) => (
         <SingleComment
           key={data._id}
+          _id={data._id}
           userID={data.userID}
           childrenComment={data.childrenComment}
           text={data.text}
+          concertID={concertID}
         ></SingleComment>
       ))}
     </SCommentList>

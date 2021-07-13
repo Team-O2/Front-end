@@ -40,7 +40,7 @@ function ShareTogetherDetail({ match }: RouteComponentProps<MatchParams>): React
   const [likeClick, setLikeClick] = useState(false);
   useEffect(() => {
     getConcertList(
-      'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoiNjBlNmIyYzRhZjM0ZDUxYmEwNmQzZGJiIn0sImlhdCI6MTYyNjEwNTQzMCwiZXhwIjoxNjI3MzE1MDMwfQ.JoWA_yA5o9v7LRMObG2RC-PTlfEhBS6v2eoYumcWSa4',
+      'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoiNjBlZDg2NTZkOWM0ZTg0NzM4NzM1OTYyIn0sImlhdCI6MTYyNjE3OTI4OSwiZXhwIjoxNjI3Mzg4ODg5fQ.kmF5YDPDVAv6XyR6wNW_7JWm_3byloniqKSM7zcrDbg',
       id,
     );
   }, []);
@@ -83,7 +83,7 @@ function ShareTogetherDetail({ match }: RouteComponentProps<MatchParams>): React
           onLike={onLike}
           likeClick={likeClick}
         ></DetailContent>
-        <CommentList commentList={commentList} reLoadComment={reLoadComment}></CommentList>
+        <CommentList commentList={commentList} concertID={concert?._id} reLoadComment={reLoadComment}></CommentList>
       </SShareTogetherDetail>
       <Footer />
     </>
