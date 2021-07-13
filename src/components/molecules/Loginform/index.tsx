@@ -30,11 +30,14 @@ function Loginform(): React.ReactElement {
   const loginBtnHandler = async () => {
     const token = await getUserStatusData();
     const isSuccess = await getUserDetailData(token);
-    // isSuccess && history.push('/');
+    isSuccess && history.push('/');
   };
   useEffect(() => {
-    userData && history.push('/');
-  }, [userData]);
+    if (userStatusData && userData) {
+      alert('이미 로그인이 되어있습니다. ');
+      history.push('/');
+    }
+  }, []);
 
   const getUserStatusData = async () => {
     const data = await postLogin(loginData);
