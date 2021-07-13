@@ -20,6 +20,7 @@
     "react-router-dom": "^5.2.0",
     "react-scripts": "4.0.3",
     "recoil": "^0.3.1",
+    "recoil-persist": "2.9.0",
     "styled-components": "^5.3.0",
     "styled-reset": "^4.3.4",
     "styled-tools": "^1.7.2",

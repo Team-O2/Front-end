@@ -1,4 +1,8 @@
 import { atom } from 'recoil';
+import { recoilPersist } from 'recoil-persist';
+
+const { persistAtom } = recoilPersist();
+
 interface IUserStatusState {
   token: string;
   userType: number;
@@ -17,9 +21,11 @@ interface IUserState {
 export const userState = atom<IUserState | null>({
   key: 'user/atom',
   default: null,
+  effects_UNSTABLE: [persistAtom],
 });
 
 export const userStatusState = atom<IUserStatusState | null>({
   key: 'userStatus/atom',
   default: null,
+  effects_UNSTABLE: [persistAtom],
 });
