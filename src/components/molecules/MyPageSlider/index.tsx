@@ -98,6 +98,7 @@ function MyPageSlider({ userInfo }: IProps): React.ReactElement {
       <div className="slider">
         <div className="slider__box" ref={slideRef}>
           <MyPageCard title="Learn Myself" width="350">
+            {userInfo?.learnMyselfAchieve ? (
               <div className="slider__learnMyself">
                 <p className="slider__learnMyself--date subhead3_eng">
                   {`${dayjs(userInfo.learnMyselfAchieve.startDT).format('YY.MM.DD')} - ${dayjs(
@@ -113,8 +114,14 @@ function MyPageSlider({ userInfo }: IProps): React.ReactElement {
                   {userInfo.learnMyselfAchieve.totalNum}
                 </p>
               </div>
+            ) : (
+              <div className="slider__noContents">
+                <p className="body2">현재 참여한 챌린지가 없어요!</p>
+              </div>
+            )}
           </MyPageCard>
           <MyPageCard title="Share Together" width="310">
+            {userInfo?.shareTogether ? (
               <div className="slider__shareTogether">
                 <div className="slider__shareTogether--title subhead3">
                   {globalUserInfo?.nickname}님이 하셨던
@@ -123,6 +130,12 @@ function MyPageSlider({ userInfo }: IProps): React.ReactElement {
                 {userInfo?.shareTogether.map((item: IMyPageShareTogether) => (
                   <DotText key={item._id} content={item.title} />
                 ))}
+              </div>
+            ) : (
+              <div className="slider__noContents">
+                <p className="body2">현재 참여한 강연이 없어요!</p>
+              </div>
+            )}
           </MyPageCard>
           <MyPageCard title="Coupon Book" width="550">
             <div className="slider__couponBook">
@@ -219,6 +232,18 @@ const Wrapper = Styled.div<{ disappear: boolean }>`
     &__box {
       display: flex;
       width: 100%;
+    }
+
+    &__noContents {
+      width: 100%;
+      height: 100%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+
+      p {
+        color: ${palette('grayscale', 5)};
+      }
     }
 
     &__learnMyself {
