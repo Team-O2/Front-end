@@ -35,12 +35,12 @@ function ShareTogether(): React.ReactElement {
   const [keyword, setKeyword] = useState('');
   useEffect(() => {
     getConcertList(
-      'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoiNjBlNmIyYzRhZjM0ZDUxYmEwNmQzZGJiIn0sImlhdCI6MTYyNjEwNTQzMCwiZXhwIjoxNjI3MzE1MDMwfQ.JoWA_yA5o9v7LRMObG2RC-PTlfEhBS6v2eoYumcWSa4',
+      'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoiNjBlZDg2NTZkOWM0ZTg0NzM4NzM1OTYyIn0sImlhdCI6MTYyNjE3OTI4OSwiZXhwIjoxNjI3Mzg4ODg5fQ.kmF5YDPDVAv6XyR6wNW_7JWm_3byloniqKSM7zcrDbg',
     );
   }, []);
   useEffect(() => {
     getConcertCategoryList(
-      'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoiNjBlNmIyYzRhZjM0ZDUxYmEwNmQzZGJiIn0sImlhdCI6MTYyNjEwNTQzMCwiZXhwIjoxNjI3MzE1MDMwfQ.JoWA_yA5o9v7LRMObG2RC-PTlfEhBS6v2eoYumcWSa4',
+      'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoiNjBlZDg2NTZkOWM0ZTg0NzM4NzM1OTYyIn0sImlhdCI6MTYyNjE3OTI4OSwiZXhwIjoxNjI3Mzg4ODg5fQ.kmF5YDPDVAv6XyR6wNW_7JWm_3byloniqKSM7zcrDbg',
       selectedCategory,
       keyword,
     );
@@ -59,9 +59,6 @@ function ShareTogether(): React.ReactElement {
   const reRenderKeyword = (keyword: string) => {
     setKeyword(keyword);
   };
-  concertList?.sort(function (a: IConcertData, b: IConcertData) {
-    return b.likes - a.likes;
-  });
   const concertCardData = concertList?.slice(undefined, 3);
   const concertData = concertList?.slice(3);
   const concertListNum = concertList?.length;

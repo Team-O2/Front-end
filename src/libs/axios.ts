@@ -234,7 +234,7 @@ export const getConcertListData = async (token: string) => {
         Authorization: token,
       },
       params: {
-        limit: 8,
+        limit: 20,
       },
     });
     if (data.data.status === 200) {
@@ -281,6 +281,28 @@ export const getConcertSearchData = async (token: string, tag: string, keyword: 
     });
     if (data.data.status === 200) {
       return data.data.data;
+    } else {
+      return null;
+    }
+  } catch (e) {
+    alert(e.response.data.message);
+    return undefined;
+  }
+};
+
+export const postConcertComment = async (
+  token: string,
+  concertID: string | undefined,
+  commentData: IConcertCommentData,
+) => {
+  try {
+    const data = await serverAxios.post(`/concert/comment/${concertID}`, commentData, {
+      headers: {
+        Authorization: token,
+      },
+    });
+    if (data.data.status === 200) {
+      alert(data.data.message);
     } else {
       return null;
     }
