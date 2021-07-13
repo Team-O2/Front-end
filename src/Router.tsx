@@ -2,6 +2,7 @@ import EditLearnMyself from 'components/templates/LearnMyself/ChallengeEdit';
 import LearnMyself from 'components/templates/LearnMyself/ChallengeList';
 import ChallengeRegister from 'components/templates/LearnMyself/ChallengeRegister';
 import WriteLearnMyself from 'components/templates/LearnMyself/ChallengeWrite';
+import { MyPage } from 'pages';
 import AdminChallengeList from 'pages/AdminChallengeList';
 import FindPwd from 'pages/FindPwd';
 import Notice from 'pages/Notice';
@@ -33,6 +34,7 @@ function Router(): React.ReactElement {
         <Route exact path="/write" component={WriteLearnMyself} />
         <Route exact path="/edit" component={EditLearnMyself} />
         <Route exact path="/notice" component={Notice} />
+        <Route exact path="/mypage" component={MyPage} />
         <Route component={() => <div>404 Not Found</div>} />
       </Switch>
     </BrowserRouter>
