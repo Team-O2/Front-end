@@ -37,17 +37,21 @@ import { fadeIn, fadeOut } from 'assets/styles/animation';
 import { Button, DotText, Img, Label, MyPageCard } from 'components/atoms';
 import dayjs from 'dayjs';
 import React, { useEffect, useRef, useState } from 'react';
+import { useRecoilValue } from 'recoil';
+import { userState } from 'stores/user';
 import Styled, { css } from 'styled-components';
 import { palette } from 'styled-tools';
+import { IMyPageHeader, IMyPageShareTogether } from 'types/myPage';
 
 export interface IProps {
-  learnMyselfData?: string;
+  userInfo: IMyPageHeader | null;
 }
 
-function MyPageSlider(): React.ReactElement {
+function MyPageSlider({ userInfo }: IProps): React.ReactElement {
   const [currentSlide, setCurrentSlide] = useState(0);
   const [animation, setAnimation] = useState(false);
   const [localVisible, setLocalVisible] = useState(!currentSlide);
+  const globalUserInfo = useRecoilValue(userState);
   const slideRef = useRef<HTMLInputElement>(null);
 
   const nextSlide = (): void => {
@@ -94,87 +98,92 @@ function MyPageSlider(): React.ReactElement {
       <div className="slider">
         <div className="slider__box" ref={slideRef}>
           <MyPageCard title="Learn Myself" width="350">
-            <div className="slider__learnMyself">
-              <p className="slider__learnMyself--date subhead3_eng">
-                {`${dayjs().startOf('month').format('YY.MM.DD')} - ${dayjs().endOf('month').format('YY.MM.DD')}`}
-              </p>
-              <div className="slider__learnMyself--img">
+              <div className="slider__learnMyself">
+                <p className="slider__learnMyself--date subhead3_eng">
+                  {`${dayjs(userInfo.learnMyselfAchieve.startDT).format('YY.MM.DD')} - ${dayjs(
+                    userInfo.learnMyselfAchieve.endDT,
+                  ).format('YY.MM.DD')}`}
+                </p>
+                <div className="slider__learnMyself--img">
                   <Img src={getLevelIcon(userInfo.learnMyselfAchieve.percent)} />
-              <p className="slider__learnMyself--percent subhead5_eng">100% 달성</p>
-              <p className="slider__learnMyself--count body2">
-                내가 쓴 개수 &nbsp; &nbsp;<span>36</span> &nbsp;/ &nbsp;36
-              </p>
-            </div>
+                </div>
+                <p className="slider__learnMyself--percent subhead5_eng">{userInfo.learnMyselfAchieve.percent}% 달성</p>
+                <p className="slider__learnMyself--count body2">
+                  내가 쓴 개수 &nbsp; &nbsp;<span>{userInfo.learnMyselfAchieve.completeNum}</span> &nbsp;/ &nbsp;
+                  {userInfo.learnMyselfAchieve.totalNum}
+                </p>
+              </div>
           </MyPageCard>
           <MyPageCard title="Share Together" width="310">
-            <div className="slider__shareTogether">
-              <div className="slider__shareTogether--title subhead3">
-                {'앵그리감자'}님이 하셨던
-                <br /> 강연의 주제들이에요!
-              </div>
-              <DotText content={'PM이 되기 위해서 내가 한 노력 3가지'} />
-            </div>
+              <div className="slider__shareTogether">
+                <div className="slider__shareTogether--title subhead3">
+                  {globalUserInfo?.nickname}님이 하셨던
+                  <br /> 강연의 주제들이에요!
+                </div>
+                {userInfo?.shareTogether.map((item: IMyPageShareTogether) => (
+                  <DotText key={item._id} content={item.title} />
+                ))}
           </MyPageCard>
           <MyPageCard title="Coupon Book" width="550">
             <div className="slider__couponBook">
               <div className="slider__coupon">
-                <Img src={WelcomeToO2Fill} />
+                <Img src={userInfo?.couponBook.welcomeBadge ? WelcomeToO2Fill : WelcomeToO2} />
                 <Label className="body1">웰컴 투 오투</Label>
               </div>
               <div className="slider__coupon">
-                <Img src={ReadyForGrowFill} />
+                <Img src={userInfo?.couponBook.firstJoinBadge ? ReadyForGrowFill : ReadyForGrow} />
                 <Label className="body1">성장 준비 완료</Label>
               </div>
               <div className="slider__coupon">
-                <Img src={GrowingTogetherFill} />
+                <Img src={userInfo?.couponBook.firstWriteBadge ? GrowingTogetherFill : GrowingTogether} />
                 <Label className="body1">함께 성장 중</Label>
               </div>
               <div className="slider__coupon">
-                <Img src={ReadyForCommunicationFill} />
+                <Img src={userInfo?.couponBook.oneCommentBadge ? ReadyForCommunicationFill : ReadyForCommunication} />
                 <Label className="body1">소통 준비 완료</Label>
               </div>
               <div className="slider__coupon">
-                <Img src={GetChallengeFill} />
+                <Img src={userInfo?.couponBook.challengeBadge === 1 ? GetChallengeFill : GetChallenge} />
                 <Label className="body1">1차 챌린지 달성</Label>
               </div>
               <div className="slider__coupon">
-                <Img src={CommunicationKingFill} />
+                <Img src={userInfo?.couponBook.fiveCommentBadge ? CommunicationKingFill : CommunicationKing} />
                 <Label className="body1">나는야 소통왕</Label>
               </div>
               <div className="slider__coupon">
-                <Img src={EmpathizingFill} />
+                <Img src={userInfo?.couponBook.oneLikeBadge ? EmpathizingFill : Empathizing} />
                 <Label className="body1">당신은 공감중</Label>
               </div>
               <div className="slider__coupon">
-                <Img src={SympathyKingFill} />
+                <Img src={userInfo?.couponBook.fiveLikeBadge ? SympathyKingFill : SympathyKing} />
                 <Label className="body1">당신은 공감왕</Label>
               </div>
               <div className="slider__coupon">
-                <Img src={NaturalBornO2Fill} />
+                <Img src={userInfo?.couponBook.loginBadge ? NaturalBornO2Fill : NaturalBornO2} />
                 <Label className="body1">뼛속부터 오투인</Label>
               </div>
               <div className="slider__coupon">
-                <Img src={GetChallengeFill} />
+                <Img src={userInfo?.couponBook.challengeBadge === 2 ? GetChallengeFill : GetChallenge} />
                 <Label className="body1">2차 챌린지 달성</Label>
               </div>
               <div className="slider__coupon">
-                <Img src={ShyEmailFill} />
+                <Img src={userInfo?.couponBook.marketingBadge ? ShyEmailFill : ShyEmail} />
                 <Label className="body1">수줍은 이메일</Label>
               </div>
               <div className="slider__coupon">
-                <Img src={UsefulLearnMyselfFill} />
+                <Img src={userInfo?.couponBook.learnMySelfBadge ? UsefulLearnMyselfFill : UsefulLearnMyself} />
                 <Label className="body1">유용한 런마쎌</Label>
               </div>
               <div className="slider__coupon">
-                <Img src={UsefulShareTogetherFill} />
+                <Img src={userInfo?.couponBook.concertScrapBadge ? UsefulShareTogetherFill : UsefulShareTogether} />
                 <Label className="body1">유용한 쉐투</Label>
               </div>
               <div className="slider__coupon">
-                <Img src={FirstCommentFill} />
+                <Img src={userInfo?.couponBook.firstReplyBadge ? FirstCommentFill : FirstComment} />
                 <Label className="body1">설레는 첫 답글</Label>
               </div>
               <div className="slider__coupon">
-                <Img src={GetChallengeFill} />
+                <Img src={userInfo?.couponBook.challengeBadge === 3 ? GetChallengeFill : GetChallenge} />
                 <Label className="body1">3차 챌린지 달성</Label>
               </div>
             </div>

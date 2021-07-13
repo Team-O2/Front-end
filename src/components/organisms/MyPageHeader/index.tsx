@@ -1,15 +1,20 @@
 import { Edit } from 'assets/images';
+import { Icon, Link } from 'components/atoms';
+import MyPageSlider from 'components/molecules/MyPageSlider/index';
 import React from 'react';
+import { useRecoilValue } from 'recoil';
+import { userState } from 'stores/user';
 import Styled from 'styled-components';
 import { palette } from 'styled-tools';
-import { Icon, Link } from '../../atoms';
-import MyPageSlider from '../../molecules/MyPageSlider/index';
+import { IMyPageHeader } from 'types/myPage';
 
 export interface IProps {
-  userInfo?: string;
+  userInfo: IMyPageHeader | null;
 }
 
-function MyPageHeader(): React.ReactElement {
+function MyPageHeader({ userInfo }: IProps): React.ReactElement {
+  const globalUserInfo = useRecoilValue(userState);
+
   return (
     <Wrapper>
       <div className="userInfo">
@@ -21,19 +26,19 @@ function MyPageHeader(): React.ReactElement {
           height="75px"
           circular={true}
         />
-        <p className="dp1">{'앵그리앨모'}님의</p>
+        <p className="dp1">{globalUserInfo?.nickname}님의</p>
         <span className="dp1_eng">MY O2</span>
         <Link to="">
           <Icon className="userInfo__editIcon" src={Edit} />
         </Link>
         <div className="userInfo__tag body3">
-          {['IT서비스', '플랫폼', '음식'].map((tag, idx) => (
+          {globalUserInfo.interest?.map((tag, idx) => (
             <span key={idx}>#{tag} </span>
           ))}
         </div>
       </div>
       <div>
-        <MyPageSlider />
+        <MyPageSlider userInfo={userInfo} />
       </div>
     </Wrapper>
   );
