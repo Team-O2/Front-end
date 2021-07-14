@@ -55,7 +55,6 @@ function ViewCardList({ challengeData }: IProps): React.ReactElement {
       data && setChallenge(data);
       data && setCommentList(data.comments);
     }
-    console.log('아아');
   };
 
   React.useEffect(() => {
@@ -69,7 +68,6 @@ function ViewCardList({ challengeData }: IProps): React.ReactElement {
   return (
     <SViewCardList>
       {challenge?.map((data: IData) => {
-        console.log(data);
         return (
           <ViewListCard
             nickname={data?.user?.nickname}

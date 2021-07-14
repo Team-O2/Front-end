@@ -45,7 +45,6 @@ function Hamburger(): React.ReactElement {
   };
 
   const getChallengeList = () => {
-    console.log('시작');
     const arr: IHamDrop[] = [];
     if (userStatusData) {
       for (let i = 1; i <= userStatusData.progressGeneration; i++) {

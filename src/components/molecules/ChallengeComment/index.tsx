@@ -38,7 +38,6 @@ function ChallengeComment({ commentList, reLoadComment }: IProps): React.ReactEl
     reLoadComment(variables);
     setCommentValue('');
   };
-  console.log('ChallengeCommentList', commentList);
   return (
     <SCommentList>
       <ChallengeCommentWrite

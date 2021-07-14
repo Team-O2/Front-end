@@ -26,11 +26,7 @@ const datetoString = (date: string, isIncludeYear: boolean): string => {
 
 function AdminChallengeCard({ challengeData }: IProps): React.ReactElement {
   return (
-    <SAdminChallengeCard
-      onClick={() => {
-        console.log(`${challengeData.generation}기`);
-      }}
-    >
+    <SAdminChallengeCard>
       <img className="card__image" src={challengeData.img}></img>
       <div className="card__container--bottom">
         <div className="card__title">오투 회고 챌린지 {challengeData.generation}기</div>
@@ -69,32 +65,32 @@ function AdminChallengeCard({ challengeData }: IProps): React.ReactElement {
 }
 
 const SAdminChallengeCard = Styled.div`
-    width: 402px;
-    height: 484px;
-    border-radius: 18px;
-    box-shadow: 0 0 24px 0 rgba(13, 12, 63, 0.1);
-    background-color: #ffffff;
     display : flex;
     flex-direction : column;
     align-items : center;
+    border-radius: 18px;
+    box-shadow: 0 0 24px 0 rgba(13, 12, 63, 0.1);
+    background-color: #ffffff;
     cursor : pointer;
+    width: 402px;
+    height: 484px;
     .card{
         &__image{
-            height : 148px;
-            width : 402px;
+            margin-bottom : 30px;
             border-top-left-radius:18px;
             border-top-right-radius:18px;
+            width : 402px;
+            height : 148px;
             object-fit: cover;
-            margin-bottom : 30px;
         }
         &__title{
-            font-size: 32px;
-            font-weight: bold;
+            margin-bottom : 40px;
+            width : 322px;
             line-height: 1.31;
             letter-spacing: -0.5px;
             color : #3d3d3d;
-            margin-bottom : 40px;
-            width : 322px;
+            font-size: 32px;
+            font-weight: bold;
         }
         &__container{
             &--row{
@@ -110,8 +106,8 @@ const SAdminChallengeCard = Styled.div`
             }
         }
         &__label{
-            width : 90px;
             margin-right : 41px;
+            width : 90px;
             color:#6f6f6f;
         }
         &__exp{

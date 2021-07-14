@@ -6,9 +6,7 @@ interface MatchParams {
 }
 
 function ChallengeWrite({}): React.ReactElement {
-  const onChangeForm = (form: { description1: string; description2: string; description3: string }) => {
-    console.log(form);
-  };
+  const onChangeForm = (form: { description1: string; description2: string; description3: string }) => {};
 
   return <TextEdit onChangeForm={onChangeForm} />;
 }

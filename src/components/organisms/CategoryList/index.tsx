@@ -25,7 +25,6 @@ function CategoryList({ reRenderCategory, selectedCategory }: IProps): React.Rea
   };
 
   const nextSlide = () => {
-    console.log(currentSlide);
     if (currentSlide >= totalSlide) {
       setCurrentSlide(0);
     } else {

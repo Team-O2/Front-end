@@ -75,7 +75,6 @@ const ChallengeTag = () => {
                   onClick={() => {
                     modalInterestHandler(interest);
                     setIsClickTag(!isClickTag);
-                    console.log(interest);
                   }}
                   style={
                     interest == selectedInterest[0]
@@ -117,30 +116,30 @@ const ChallengeTag = () => {
 const STag = Styled.div`
 
 .tag{
-    width:844px;
     align-items:center;
     margin:0 auto;
     padding-top:60px;
+    width:844px;
+    text-align: left;
+    line-height: 1.33;
+    letter-spacing: -0.5px;
+    color: var(--colors-grayscale-6-f);
     font-family: AppleSDGothicNeo;
     font-size: 24px;
     font-weight: bold;
-    line-height: 1.33;
-    letter-spacing: -0.5px;
-    text-align: left;
-    color: var(--colors-grayscale-6-f);
 
     &__interest{
-        padding : 12px 30px;
         margin : 12px 5px;
-        height : 48px;
-        border-radius: 60px;
         border: solid 1px #8b8b8b;
-        font-size: 18px;
-        font-weight: bold;
+        border-radius: 60px;
+        background-color:#FFFFFF;
+        padding : 12px 30px;
+        height : 48px;
         line-height: 1.33;
         letter-spacing: -0.5px;
         color : #8b8b8b;
-        background-color:#FFFFFF;
+        font-size: 18px;
+        font-weight: bold;
       }
 
     &__moreIcon{
@@ -149,6 +148,6 @@ const STag = Styled.div`
     }
 
 
-`;
+}`;
 
 export default ChallengeTag;
