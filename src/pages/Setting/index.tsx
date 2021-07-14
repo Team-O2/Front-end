@@ -65,14 +65,25 @@ function Setting({ history }: any): React.ReactElement {
   };
 
   const handleClickEdit = async () => {
-    await updateUserInfo(
-      userStatusData?.token,
-      img,
-      userInfo.nickname,
-      userInfo.interest,
-      userInfo.gender,
-      userInfo.marpolicy,
-    );
+    if (Object.keys(img).length !== 0) {
+      await updateUserInfo(
+        userStatusData?.token,
+        img,
+        userInfo.nickname,
+        userInfo.interest,
+        userInfo.gender,
+        userInfo.marpolicy,
+      );
+    } else {
+      await updateUserInfo(
+        userStatusData?.token,
+        undefined,
+        userInfo.nickname,
+        userInfo.interest,
+        userInfo.gender,
+        userInfo.marpolicy,
+      );
+    }
   };
 
   // get user info
