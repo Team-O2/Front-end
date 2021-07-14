@@ -19,6 +19,7 @@ function NoticeHeader(): React.ReactElement {
 }
 const SNoticeHeader = Styled.div`
   position: relative;
+  margin-bottom: 50px;
   .background {
     width: 100%;
   }
