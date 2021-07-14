@@ -89,3 +89,63 @@ export const postConcertComment = async (
     return undefined;
   }
 };
+
+export const postConcertLike = async (token: string, concertID: string) => {
+  try {
+    const data = await serverAxios.post(`/concert/like/${concertID}`, {
+      headers: {
+        Authorization: token,
+      },
+    });
+    if (data.data.status === 200) {
+      alert(data.data.message);
+    } else {
+      return null;
+    }
+  } catch (e) {
+    alert(e.response.data.message);
+    return undefined;
+  }
+};
+
+export const getNoticeListData = async (token: string) => {
+  try {
+    const data = await serverAxios.get('/notice', {
+      headers: {
+        Authorization: token,
+      },
+      params: {
+        limit: 40,
+      },
+    });
+    if (data.data.status === 200) {
+      return data.data.data.notices;
+    } else {
+      return null;
+    }
+  } catch (e) {
+    alert(e.response.data.message);
+    return undefined;
+  }
+};
+
+export const getNoticeSearchData = async (token: string, keyword: string) => {
+  try {
+    const data = await serverAxios.get(`/notice/search?keyword=${keyword}`, {
+      headers: {
+        Authorization: token,
+      },
+      params: {
+        limit: 8,
+      },
+    });
+    if (data.data.status === 200) {
+      return data.data.data.notices;
+    } else {
+      return null;
+    }
+  } catch (e) {
+    alert(e.response.data.message);
+    return undefined;
+  }
+};
