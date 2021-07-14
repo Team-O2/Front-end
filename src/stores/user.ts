@@ -10,6 +10,7 @@ interface IUserStatusState {
   registGeneration: number | null;
   progressGeneration: number;
 }
+
 interface IUserState {
   interest: string[];
   marpolicy: boolean;
