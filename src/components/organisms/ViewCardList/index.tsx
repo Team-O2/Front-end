@@ -51,10 +51,10 @@ function ViewCardList({ challengeData }: IProps): React.ReactElement {
   const ChallengeList = async (): Promise<void> => {
     if (userStatusData) {
       const data = await ChallengeListData(userStatusData.token);
-      data && setChallenge(data);
-      // data && setCommentList(data?.comments);
+      data && setCommentList(data.comments);
     }
   };
+
   React.useEffect(() => {
     ChallengeList();
   }, []);
@@ -69,6 +69,7 @@ function ViewCardList({ challengeData }: IProps): React.ReactElement {
   return (
     <SViewCardList>
       {challenge?.map((data: IData) => {
+        console.log(data);
         return (
           <ViewListCard
             id={data?._id}
