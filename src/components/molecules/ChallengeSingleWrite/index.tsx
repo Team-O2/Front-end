@@ -52,22 +52,7 @@ function ChallengeSingleComment({ nickname, childrenComment, text }: IProps): Re
     setReply(reply.concat(variables));
     setReplyValue('');
   };
-  /*
-    FIX ME : 코드 수정 후 서버연결 필요
-    const variables = {
-      author: 로그인한 유저,
-      text: commentValue,
-      parentId: 부모 댓글 아이디,
-    }
-    Axios.post('api/concert/comment',variables)
-    .then(response =>{
-        if(response.data.success){
-           console.log(response.data.result)
-        }else{
-            alert('FAIL')
-        }
-    })
-    */
+
   return (
     <SSingleComment>
       <div className="comment">
