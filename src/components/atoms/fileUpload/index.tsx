@@ -22,7 +22,7 @@ function PhotoUpload({ children, width, height, setFile, fileType }: IProps): Re
   };
   useEffect(() => {
     newFile && setFile(newFile);
-  }, [newFile]);
+  }, [newFile, setFile]);
 
   const fileInputHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
     e.preventDefault();
