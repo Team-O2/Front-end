@@ -2,15 +2,16 @@ import React from 'react';
 import Styled from 'styled-components';
 
 export interface IProps {
-  checked: boolean;
+  checked?: boolean;
   id?: string;
+  value?: string;
   className?: string;
   name?: string;
   onChange?: (event: React.ChangeEvent<HTMLInputElement>, isChecked?: boolean) => void;
 }
 
-function CheckBox({ checked, ...props }: IProps): React.ReactElement {
-  return <SCheckBox type="checkbox" checked={checked} {...props} />;
+function CheckBox({ ...props }: IProps): React.ReactElement {
+  return <SCheckBox type="checkbox" {...props} />;
 }
 
 const SCheckBox = Styled.input``;
