@@ -161,3 +161,19 @@ export const DeleteChallenge = async (challengeID: string, token: string) => {
   }
   return false;
 };
+
+export const getChallengeContent = async (id: string, token: string) => {
+  try {
+    const data = await instance.get(`/challenge/${id}`, {
+      headers: {
+        Authorization: token,
+      },
+      params: {
+        challengeID: id,
+      },
+    });
+    console.log(data);
+  } catch (error) {
+    console.log('[FAIL] GET data', error);
+  }
+};

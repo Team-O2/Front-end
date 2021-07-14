@@ -41,9 +41,9 @@ function Router(): React.ReactElement {
         <Route exact path="/challenge" component={LearnMyself} />
         <Route exact path="/challengeRegister" component={ChallengeRegister} />
         <Route exact path="/write" component={WriteLearnMyself} />
-        <Route exact path="/edit" component={EditLearnMyself} />
         <Route exact path="/notice" component={Notice} />
         <Route exact path="/mypage" component={MyPage} />
+        <Route exact path="/edit/:id" component={EditLearnMyself} />
         <Route exact path="/notice/:id" component={NoticeDetail} />
         <Route exact path="/setting" component={Setting} />
         <Route exact path="/mypage/challenge/scrap" component={ScrappedLearnMyself} />
@@ -54,7 +54,7 @@ function Router(): React.ReactElement {
               <p>404 Not Found</p>
             </ForbiddenComponent>
           )}
-        />
+        />        
       </Switch>
       <Footer />
     </BrowserRouter>

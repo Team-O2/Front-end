@@ -3,8 +3,8 @@ import Button from 'components/atoms/Button';
 import { ICommentData } from 'components/organisms/ViewCardList';
 import dayjs from 'dayjs';
 import { DeleteChallenge } from 'libs/getChallenge';
-import React, { useEffect, useState } from 'react';
-import { Link } from 'react-router-dom';
+import React, { useState } from 'react';
+import { useHistory } from 'react-router';
 import { useRecoilState } from 'recoil';
 import { userStatusState } from 'stores/user';
 import Styled from 'styled-components';
@@ -68,6 +68,7 @@ function ViewListCard({
 >>>>>>> Feat: 삭제 api 연결
   reLoadComment,
 }: IProps): React.ReactElement {
+  const history = useHistory();
   const [userStatusData, setUserStatusData] = useRecoilState(userStatusState);
   const [isOpenComment, setIsOpenComment] = useState(false);
   const [lookMoreButton, setLookMoreButton] = useState(true);
@@ -110,13 +111,6 @@ function ViewListCard({
       }
     }
   };
-  useEffect(() => {
-    console.log('');
-  }, [reRenderFlag]);
-
-  // const handleDelete = async () => {
-  //   const data = await DeleteChallenge(id);
-  // };
 
   if (deleteModalOpen === true) {
     document.body.style.overflow = 'hidden';
@@ -176,10 +170,13 @@ function ViewListCard({
                       >
                         <img src={DeleteIcon} alt="" />
                       </Button>
-                      <Button className="edit_icon">
-                        <Link to="/edit">
-                          <img src={EditIcon} alt="" />
-                        </Link>
+                      <Button
+                        className="edit_icon"
+                        onClick={() => {
+                          history.push(`/edit/${id}`);
+                        }}
+                      >
+                        <img src={EditIcon} alt="" />
                       </Button>
                     </div>
                   ) : (
