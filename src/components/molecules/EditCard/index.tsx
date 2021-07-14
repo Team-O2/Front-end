@@ -1,4 +1,4 @@
-import { writeForm } from 'libs/getChallenge';
+import { getChallengeContent, writeForm } from 'libs/getChallenge';
 import React, { useEffect, useState } from 'react';
 import { useHistory } from 'react-router-dom';
 import { useRecoilState } from 'recoil';
@@ -59,12 +59,11 @@ const selectedInterestStyle: selectedStyleLists = {
   '의료': { backgroundColor: '#6f6f6f', color: '#FFFFFF' },
   '기타': { backgroundColor: '#6f6f6f', color: '#FFFFFF' },
 };
+interface IEditCard {
+  id: string;
+}
 
-type MyFormProps = {
-  onChangeForm: (form: { description1: string; description2: string; description3: string }) => void;
-};
-
-function WriteCard({ onChangeForm }: MyFormProps) {
+function EditCard({ id }: IEditCard) {
   const [userStatusData, setUserStatusData] = useRecoilState(userStatusState);
   const history = useHistory();
   const maxByte = 1000; //최대 1000바이트
@@ -76,7 +75,6 @@ function WriteCard({ onChangeForm }: MyFormProps) {
     byte2: 0,
     byte3: 0,
   });
-  const [isButtonClick, setIsButtonClick] = useState(false);
 
   const [form, setForm] = useState({
     description1: '',
@@ -96,7 +94,6 @@ function WriteCard({ onChangeForm }: MyFormProps) {
   const handleSubmit = async (e: any) => {
     setUserData({ ...userData, interest: selectedInterest });
     e.preventDefault();
-    onChangeForm(form);
     setForm({
       description1: '',
       description2: '',
@@ -163,6 +160,15 @@ function WriteCard({ onChangeForm }: MyFormProps) {
   useEffect(() => {
     progressBarState();
   }, [byte]);
+  useEffect(() => {
+    getDefaultData();
+  }, []);
+  const getDefaultData = async () => {
+    if (userStatusData) {
+      const data = await getChallengeContent(id, userStatusData.token);
+    } else {
+    }
+  };
 
   const [isOpenTag, setIsOpenTag] = useState(false);
   const [isClickTag, setIsClickTag] = useState(false);
@@ -527,4 +533,4 @@ const SWriteCard = Styled.div`
 
 }`;
 
-export default WriteCard;
+export default EditCard;
