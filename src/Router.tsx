@@ -1,3 +1,4 @@
+import Footer from 'components/organisms/Footer';
 import Header from 'components/organisms/Header';
 import EditLearnMyself from 'components/templates/LearnMyself/ChallengeEdit';
 import LearnMyself from 'components/templates/LearnMyself/ChallengeList';
@@ -39,6 +40,7 @@ function Router(): React.ReactElement {
         <Route exact path="/mypage" component={MyPage} />
         <Route component={() => <div>404 Not Found</div>} />
       </Switch>
+      <Footer />
     </BrowserRouter>
   );
 }

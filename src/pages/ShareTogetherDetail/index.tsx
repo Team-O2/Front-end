@@ -2,7 +2,6 @@ import { getConcertData } from 'apis/ShareTogether';
 import DetailTitle from 'components/molecules/DetailTitle';
 import CommentList from 'components/organisms/CommentList';
 import DetailContent from 'components/organisms/DetailContent';
-import Footer from 'components/organisms/Footer';
 import React, { useEffect, useState } from 'react';
 import { RouteComponentProps } from 'react-router';
 import Styled from 'styled-components';
@@ -60,29 +59,27 @@ function ShareTogetherDetail({ match }: RouteComponentProps<MatchParams>): React
       setLikes(Likes + 1);
     }
   };
+
   return (
-    <>
-      <SShareTogetherDetail>
-        <DetailTitle
-          title={concert?.title}
-          speaker={concert?.authorNickname}
-          createdAt={concert?.createdAt}
-          interest={concert?.interest}
-        ></DetailTitle>
-        <DetailContent
-          video={concert?.videoLink}
-          desc={concert?.text}
-          hashtag={concert?.hashtag}
-          like={Likes}
-          comments={concert?.commentNum}
-          scrap={concert?.scrapNum}
-          onLike={onLike}
-          likeClick={likeClick}
-        ></DetailContent>
-        <CommentList commentList={commentList} concertID={concert?._id} reLoadComment={reLoadComment}></CommentList>
-      </SShareTogetherDetail>
-      <Footer />
-    </>
+    <SShareTogetherDetail>
+      <DetailTitle
+        title={concert?.title}
+        speaker={concert?.authorNickname}
+        createdAt={concert?.createdAt}
+        interest={concert?.interest}
+      ></DetailTitle>
+      <DetailContent
+        video={concert?.videoLink}
+        desc={concert?.text}
+        hashtag={concert?.hashtag}
+        like={Likes}
+        comments={concert?.commentNum}
+        scrap={concert?.scrapNum}
+        onLike={onLike}
+        likeClick={likeClick}
+      ></DetailContent>
+      <CommentList commentList={commentList} concertID={concert?._id} reLoadComment={reLoadComment}></CommentList>
+    </SShareTogetherDetail>
   );
 }
 
