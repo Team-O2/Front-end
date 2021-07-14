@@ -3,6 +3,8 @@ import { Icon, Link } from 'components/atoms';
 import React from 'react';
 import Styled from 'styled-components';
 import { palette, prop } from 'styled-tools';
+import { ILearnMySelf } from 'types/myPage';
+import { IShareTogether } from 'types/shareTogether';
 
 export interface IProps {
   title: string;
@@ -10,8 +12,8 @@ export interface IProps {
   column: number;
   gap: number;
   path: string;
-  data: any; // TODO: API연결 시 타입 정의해서 사용할 것
-  renderItemList: (data: any /**TODO: API연결 시 타입 정의해서 사용할 것 */) => React.ReactElement[];
+  data?: IShareTogether[] | ILearnMySelf[] | null;
+  renderItemList: (data: any[]) => React.ReactElement[]; // FIXME: IShareTogether[]와 ILearnMySelf[]를 제네릭으로 받는 방법을 모르겠음...
 }
 
 function MyPageSection({ title, subTitle, path, data, renderItemList, ...props }: IProps): React.ReactElement {
