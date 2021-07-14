@@ -46,12 +46,10 @@ function ShareTogetherDetail({ match }: RouteComponentProps<MatchParams>): React
   }, []);
   const getConcertList = async (token: string, condertID: string): Promise<void> => {
     const data = await getConcertData(token, condertID);
-    //console.log(data);
     data && setConcert(data);
     data && setCommentList(data.comments);
     data && setLikes(data.likes);
   };
-  console.log(commentList);
   const reLoadComment = (newComment: any) => {
     setCommentList(commentList?.concat(newComment));
   };

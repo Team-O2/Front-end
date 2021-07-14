@@ -42,7 +42,6 @@ function Notice(): React.ReactElement {
   }, [keyword]);
   const getNoticeList = async (token: string): Promise<void> => {
     const data = await getNoticeListData(token);
-    console.log(data);
     data && setnoticeList(data);
   };
   const getNoticeSearchList = async (token: string, keyword: string): Promise<void> => {

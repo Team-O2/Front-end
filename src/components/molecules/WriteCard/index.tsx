@@ -111,7 +111,6 @@ function WriteCard({ onChangeForm }: MyFormProps) {
     };
     if (userStatusData) {
       const data = await writeForm(writeData, userStatusData.token);
-      console.log('getData', data);
       history.push('/challenge');
     }
   };
@@ -364,76 +363,75 @@ const SWriteCard = Styled.div`
     .header{
       padding-top:100px;
       text-align:center;
+      line-height: 1.22;
+      letter-spacing: -0.5px;
       font-family: HomepageBaukasten;
       font-size: 46px;
       font-weight: bold;
-      line-height: 1.22;
-      letter-spacing: -0.5px;
 }
-    }
     .challenge-card{
+        margin: 0 auto;
         padding-top:60px;
         width:844px;
-        margin: 0 auto;
 
         &__title{
-            font-weight: bold;
-            font-size:22px;
             line-height:38px;
             letter-spacing: -0.5px;
             color: #3D3D3D;
+            font-size:22px;
+            font-weight: bold;
         }
         &__restriction{
-            font-weight: bold;
-            font-size: 14px;
-            line-height: 18px;
-            text-align: right;
             padding-bottom: 30px;
+            text-align: right;
+            line-height: 18px;
             color: #B1B1B1;
+            font-size: 14px;
+            font-weight: bold;
         }
     }
     .textarea{
+        box-sizing: border-box;
         align-items: center;
+        border: 1px solid #DFDFDF;
         padding: 40px 60px 40px 60px;
         width: 844px;
         height:369px;
         font-size: 18px;
-        border: 1px solid #DFDFDF;
-        box-sizing: border-box;
     }
 
     .button{
-        width:844px;
-        margin: 0 auto;
         align-items: center;
+        margin: 0 auto;
+        width:844px;
     }
     
     .write__button-color{
-        width:844px;
         margin: 0 auto;
         margin-top:60px;
-        text-align: center;
-        background: linear-gradient(91.91deg, #36C8F5 7.34%, #13E2DD 90.35%);
-        border-radius: 4px;
-        height: 60px;
-        color: #FFFFFF;
         border:none;
+        border-radius: 4px;
+        background: linear-gradient(91.91deg, #36C8F5 7.34%, #13E2DD 90.35%);
+        width:844px;
+        height: 60px;
+        text-align: center;
+        color: #FFFFFF;
     }
     .write__button-black{
-        width:844px;
         margin: 0 auto;
         margin-top:60px;
-        text-align: center;
-        background: #DFDFDF;
-        border-radius: 4px;
-        height: 60px;
-        color: #FFFFFF;
         border:none;
+        border-radius: 4px;
+        background: #DFDFDF;
+        width:844px;
+        height: 60px;
+        text-align: center;
+        color: #FFFFFF;
     }
     .character{
+        margin: 0 auto;
         padding-top:60px;
         width:844px;
-        margin: 0 auto;
 
         &__1{
             padding-left:60px;
@@ -457,77 +455,76 @@ const SWriteCard = Styled.div`
         &__message{
             padding-top:12.32px;
             padding-bottom: 12px;
-            font-size: 14px;
-            font-weight: bold;
             line-height: 1.43;
             letter-spacing: -0.5px;
+            font-size: 14px;
+            font-weight: bold;
         }
     }   
     .progressbar{
         display: inline-block;
+        background-color: #d6d3d3;
         width: 844px;
         height: 5px;
-        background-color: #d6d3d3;
     }
     .gauge__initial{
         display: inline-block;
+        background-color: #3abff7;
         width: 1%;
         height: 5px;
-        background-color: #3abff7;
     }
 
     .gauge__quarter{
             display: inline-block;
+            background-color: #3abff7;
             width: 34%;
             height: 5px;
-            background-color: #3abff7;
         }
     .gauge__half{
             display: inline-block;
+            background-color: #3abff7;
             width: 67%;
             height: 5px;
-            background-color: #3abff7;
         }
     .gauge__one{
             display: inline-block;
+            background-color: #3abff7;
             width: 100%;
             height: 5px;
-            background-color: #3abff7;
         }
-    }
 
     .tag{
-      width:844px;
       align-items:center;
       margin:0 auto;
       padding-top:60px;
+      width:844px;
+      text-align: left;
+      line-height: 1.33;
+      letter-spacing: -0.5px;
+      color: var(--colors-grayscale-6-f);
       font-family: AppleSDGothicNeo;
       font-size: 24px;
       font-weight: bold;
-      line-height: 1.33;
-      letter-spacing: -0.5px;
-      text-align: left;
-      color: var(--colors-grayscale-6-f);
 
       &__moreIcon{
-        vertical-align : middle;
         padding-bottom:5px;
+        vertical-align : middle;
       }
   
       &__interest{
-          padding : 12px 30px;
           margin : 12px 5px;
-          height : 48px;
-          border-radius: 60px;
           border: solid 1px #8b8b8b;
-          font-size: 18px;
-          font-weight: bold;
+          border-radius: 60px;
+          background-color:#FFFFFF;
+          padding : 12px 30px;
+          height : 48px;
           line-height: 1.33;
           letter-spacing: -0.5px;
           color : #8b8b8b;
-          background-color:#FFFFFF;
+          font-size: 18px;
+          font-weight: bold;
         }
 
-`;
+}`;
 
 export default WriteCard;

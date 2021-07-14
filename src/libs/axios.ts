@@ -110,7 +110,6 @@ export const getChallengeList = async (token: string) => {
       },
     });
     if (data.data.status === 200) {
-      console.log(data.data.data.offsetAdmin);
       return data.data.data.offsetAdmin;
     } else {
       return null;
@@ -136,7 +135,6 @@ export const postConcertWrite = async (token: string, concertWriteData: IConcert
         Authorization: token,
       },
     });
-    console.log(data.data);
     if (data.data.status === 200) {
       alert('콘서트 글 올리기를 완료했습니다.');
       return true;
@@ -160,7 +158,6 @@ export const postNoticeWrite = async (token: string, noticeWriteData: INoticeDat
         Authorization: token,
       },
     });
-    console.log(data.data);
     if (data.data.status === 200) {
       alert('공지사항 업로드를 완료했습니다.');
       return true;
@@ -192,7 +189,6 @@ export const challengeOpen = async (token: string, challengeOpenData: IChallenge
         Authorization: token,
       },
     });
-    console.log(data);
     if (data.data.status === 200) {
       alert('챌린지 오픈을 완료했습니다.');
       return true;

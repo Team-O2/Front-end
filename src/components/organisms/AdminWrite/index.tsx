@@ -42,7 +42,6 @@ function AdminWrite(): React.ReactElement {
     nickname: '',
   });
   const buttonHandler = () => {
-    console.log(writeData);
     if (writeData.menu === '공지사항') {
       postNoticeHandler();
     } else {

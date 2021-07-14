@@ -30,9 +30,7 @@ function AdminChallengeList(): React.ReactElement {
   }, []);
   const getChallengeDataList = async (token: string): Promise<void> => {
     const data = await getChallengeList(token);
-    console.log(data);
     data && setChallengeDataList(data);
-    console.log(challengeDataList);
   };
 
   return (
@@ -61,58 +59,58 @@ const SAdminChallengeList = Styled.div`
     .admin{
         &__label{
             &--page{
-                font-size: 16px;
+                margin-top : 60px;
                 line-height: 1.5;
                 letter-spacing: -0.5px;
                 color : #3d3d3d;
-                margin-top : 60px;
+                font-size: 16px;
             }
             &--title{
-                font-size: 48px;
-                font-weight: bold;
+                margin-top:10px;
+                margin-bottom : 110px;
                 line-height: 1.42;
                 letter-spacing: -0.5px;
                 color:#3d3d3d;
-                margin-top:10px;
-                margin-bottom : 110px;
+                font-size: 48px;
+                font-weight: bold;
             }
         }
         &__container{
             &--bottom{
                 display : grid;
                 grid-template-columns: repeat(2, 1fr);
-                grid-column-gap: 40px;
                 grid-row-gap: 40px;
+                grid-column-gap: 40px;
                 margin-bottom : 354px;
             }
         }
         &__card{
             &--add{
-                width: 402px;
-                height: 484px;
-                height: 484px;
-                border-radius: 18px;
-                box-shadow: 0 0 24px 0 rgba(13, 12, 63, 0.1);
-                background-color : #ffffff;
                 display : flex;
                 flex-direction : column;
                 align-items : center;
+                border-radius: 18px;
+                box-shadow: 0 0 24px 0 rgba(13, 12, 63, 0.1);
+                background-color : #ffffff;
+                width: 402px;
+                height: 484px;
+                height: 484px;
             }
         }
         &__icon{
           &--add{
+            margin-top : 162px;
             width : 140px;
             height : 140px;
-            margin-top : 162px;
           }
         }
         &__label{
           &--add{
-            font-size: 24px;
-            font-weight: bold;
             line-height: 1.33;
             letter-spacing: -0.5px;
             color : #dfdfdf;
+            font-size: 24px;
+            font-weight: bold;
           }
         }
     }
