@@ -52,11 +52,12 @@ function ShareTogetherDetail({ match }: RouteComponentProps<MatchParams>): React
       }
     };
     getConcertList();
-  }, []);
+  }, [commentList]);
 
   const reLoadComment = (newComment: any) => {
     setCommentList(commentList?.concat(newComment));
   };
+
   const onLike = () => {
     setLikeClick(!likeClick);
     if (likeClick == true) {

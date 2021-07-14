@@ -1,17 +1,17 @@
-import Profile from 'assets/images/Profile.svg';
 import React from 'react';
 import Styled from 'styled-components';
 
 interface IProps {
+  profile?: string;
   nickname?: string;
   text?: string;
   className?: string;
 }
 
-function Replycomment({ nickname, text }: IProps): React.ReactElement {
+function Replycomment({ profile, nickname, text }: IProps): React.ReactElement {
   return (
     <SReplyComment>
-      <img className="profile" src={Profile} alt="" />
+      <img className="profile" src={profile} alt="" />
       <div className="writer">{nickname}</div>
       <div className="text">{text}</div>
     </SReplyComment>
