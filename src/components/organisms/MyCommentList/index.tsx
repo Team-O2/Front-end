@@ -7,7 +7,7 @@ import { ifProp, palette } from 'styled-tools';
 import { IMyUserCommentResponse } from 'types/myPage';
 import { changeDateFormat } from 'utils';
 import { deleteUserCommentList } from '../../../apis/myPage';
-import { userState } from '../../../stores/user';
+import { userState, userStatusState } from '../../../stores/user';
 import { IMyUserComment } from '../../../types/myPage';
 import CommentedBoardRow from '../../molecules/CommentedBoardRow/index';
 
@@ -36,6 +36,7 @@ function MyCommentList({
   const [allCommentIdList, setAllCommentIdList] = useState<string[]>([]);
   const [isSelectAll, setIsSelectAll] = useState(false);
   const globalUserInfo = useRecoilValue(userState);
+  const globalUserStatusInfo = useRecoilValue(userStatusState);
 
   const commentsOfPage = 5;
   const totalPage = Math.ceil(userCommentData.commentNum / commentsOfPage);
@@ -56,7 +57,7 @@ function MyCommentList({
   }, [allCommentIdList, checkedCommentList]);
 
   const deleteSelectedCommentList = async () => {
-    await deleteUserCommentList({ token: TOKEN, commentIdList: checkedCommentList });
+    await deleteUserCommentList({ token: globalUserStatusInfo?.token, commentIdList: checkedCommentList });
     setIsSelectAll(false);
     setReRenderFlag(!reRenderFlag);
   };
@@ -113,7 +114,7 @@ function MyCommentList({
   return (
     <Wrapper>
       <h2 className="dp2">댓글 단 글</h2>
-      <h4 className="body3">{globalUserInfo.nickname}님이 댓글 단 글이에요</h4>
+      <h4 className="body3">{globalUserInfo?.nickname}님이 댓글 단 글이에요</h4>
       <div className="tagContainer">
         <Button value="Concert" onClick={handleClick}>
           <Tag
