@@ -1,9 +1,9 @@
-import React, { useState, useRef, useEffect } from 'react';
-import Styled from 'styled-components';
-import CategoryButton from 'components/molecules/CategoryButton';
 import moreIcon from 'assets/images/moreIcon.svg';
-import nextIcon from 'assets/images/nextIcon.svg';
 import moreClickedIcon from 'assets/images/more_filled.svg';
+import nextIcon from 'assets/images/nextIcon.svg';
+import CategoryButton from 'components/molecules/CategoryButton';
+import React, { useEffect, useRef, useState } from 'react';
+import Styled from 'styled-components';
 interface IProps {
   reRender?: (interest: string) => void;
 }
