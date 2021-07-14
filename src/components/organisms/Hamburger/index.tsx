@@ -10,6 +10,11 @@ import Styled from 'styled-components';
 import Button from '../../atoms/Button/index';
 import HamDropDown from '../../molecules/HamDropDown';
 
+interface IHamDrop {
+  name: string;
+  link: string;
+}
+
 function Hamburger(): React.ReactElement {
   // user상태 :
   // 0: 비회원,
@@ -25,7 +30,34 @@ function Hamburger(): React.ReactElement {
   const [userStateNum, setUserState] = useState(userStatusData ? userStatusData.userType : 0);
   // const [userStateNum, setUserState] = useState(1);
   const [userName, setUserName] = useState(userData?.nickname);
+  const [challengeList, setChallengeList] = useState<IHamDrop[]>([{ name: '', link: '' }]);
+  const indextoName = (index: number) => {
+    switch (index) {
+      case 1:
+        return '1st';
+      case 2:
+        return `2nd`;
+      case 3:
+        return `3rd`;
+      default:
+        return `${index}th`;
+    }
+  };
 
+  const getChallengeList = () => {
+    console.log('시작');
+    const arr: IHamDrop[] = [];
+    if (userStatusData) {
+      for (let i = 1; i <= userStatusData.progressGeneration; i++) {
+        //TODO: 링크 연결
+        arr.push({ name: indextoName(i), link: '/' });
+      }
+      if (userStatusData.registGeneration) {
+        arr.push({ name: indextoName(userStatusData.registGeneration), link: '/challengeRegister' });
+      }
+    }
+    setChallengeList(arr);
+  };
   const logOutHandler = () => {
     setUserStatusData(null);
     setUserData(null);
@@ -34,8 +66,14 @@ function Hamburger(): React.ReactElement {
   };
 
   useEffect(() => {
-    userStatusData ? setUserState(userStatusData.userType) : setUserState(0);
     userData ? setUserName(userData.nickname) : setUserName('');
+    if (userStatusData) {
+      setUserState(userStatusData.userType);
+      getChallengeList();
+    } else {
+      setUserState(0);
+      getChallengeList();
+    }
   }, [userStatusData]);
 
   return (
@@ -112,10 +150,7 @@ function Hamburger(): React.ReactElement {
               title="Learn Myself"
               // TODO: 아이템리스트 1st, 2nd 이런거로 수정하고
               // 링크도 연결해줘야함
-              itemList={[
-                { name: 'Share Together', link: '/adminwrite' },
-                { name: '공지사항', link: '/adminwrite' },
-              ]}
+              itemList={challengeList}
             />
             <div style={{ marginBottom: '10px' }}></div>
             <Link to="/ShareTogether">
