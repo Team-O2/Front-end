@@ -35,6 +35,10 @@ interface SignData {
   challengeCNT: number;
 }
 
+interface ChallengeID {
+  id: number;
+}
+
 export const writeForm = async (writeData: WriteData) => {
   console.log('data', writeData);
   const data = await instance
@@ -98,6 +102,16 @@ export const SignRegister = async (signData: SignData) => {
     });
 };
 
-export const DeleteChallenge = async () => {
-  console.log('data');
+export const DeleteChallenge = async (challengeID: ChallengeID) => {
+  try {
+    console.log('data', challengeID);
+    const data = await instance.delete(`/challenge/${challengeID}`, {
+      params: {
+        challengeID: challengeID,
+      },
+    });
+  } catch (error) {
+    console.log('FAIL DELETE DATA');
+    return null;
+  }
 };
