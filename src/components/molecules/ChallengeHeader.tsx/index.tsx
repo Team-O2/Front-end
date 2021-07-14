@@ -1,22 +1,33 @@
+import CategoryList from 'components/organisms/CategoryList';
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import Styled from 'styled-components';
-import MyFeedIcon from '../../../assets/images/myfeedIcon.svg';
 import AllFeedIcon from '../../../assets/images/allfeedIcon.svg';
+import MyFeedIcon from '../../../assets/images/myfeedIcon.svg';
 import WriteIcon from '../../../assets/images/writeIcon.svg';
-import WriteLearnMyself from '../../templates/LearnMyself/ChallengeList';
 import SearchForm from '../../organisms/SearchForm';
 
 export interface IProps {
   className?: string;
 }
 
+//user상태 :
+// 0: 비회원,
+// 1: 챌린지안하는유저,
+// 2: 챌린지하는유저,
+// 3: 챌린지하는유저&챌린지종료,
+// 4: 관리자
+
 function ChallengeHeader({ ...props }: IProps) {
   const [userState, setUserState] = useState(2);
   return (
     <SChallengeHeader {...props}>
+      <div className="title">
+        <p className="title__text">Learn Myself 2nd</p>
+      </div>
+      <CategoryList />
       <SearchForm />
-      {userState === 0 || userState === 1 ? null : (
+      {userState === 1 || userState === 0 ? null : (
         <div>
           <button className="button__icon">
             <Link to="/write">
@@ -38,8 +49,17 @@ function ChallengeHeader({ ...props }: IProps) {
 const SChallengeHeader = Styled.div`
     width: 844px;
     margin:0 auto;
-    align-text:center;
-    padding-top: 150px;
+
+    .title{
+      font-size: 46px;
+      font-family: 'HomepageBaukasten';
+      font-weight: bold;
+      color: #3d3d3d;
+      margin: 100px auto 110px;
+      &__text{
+        text-align:center;
+      }
+    }
     .header{
         display: inline-block;
 

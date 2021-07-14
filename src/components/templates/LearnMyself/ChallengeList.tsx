@@ -1,6 +1,7 @@
-import React,{useState,useEffect} from 'react';
-import DetailCard from '../../organisms/ViewCardList/index';
+import ViewCardList from 'components/organisms/ViewCardList';
+import React from 'react';
 import ChallengeHeader from '../../molecules/ChallengeHeader.tsx';
+import Header from '../../organisms/Header';
 // import {getChallengeData} from '../../../libs/ChallengeApi';
 
 // const [challengeData,setChallengeData] =useState("");
@@ -11,18 +12,19 @@ import ChallengeHeader from '../../molecules/ChallengeHeader.tsx';
 
 // useEffect(() => {
 //     (async ()=>{
-        
+
 //     })
 //     getChallengeData();
 // },[]);
 
 const ChallengeView = () => {
-    return (
-        <div>
-            <ChallengeHeader/>
-            <DetailCard/>
-        </div>
-    );
+  return (
+    <div>
+      <Header />
+      <ChallengeHeader />
+      <ViewCardList />
+    </div>
+  );
 };
 
 export default ChallengeView;
