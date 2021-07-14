@@ -3,12 +3,29 @@ import { ChallengeListData } from 'libs/getChallenge';
 import React, { useState } from 'react';
 import Styled from 'styled-components';
 
-interface IChallengeData {
+export interface ICommentData {
+  childrenComment: {
+    _id: string;
+    userID: {
+      _id: string;
+      nickname: string;
+    };
+    text: string;
+  }[];
+  _id: string;
+  userID: {
+    _id: string;
+    nickname: string;
+  };
+  text: string;
+}
+
+export interface IData {
   good: string;
   bad: string;
   learn: string;
   commentNum: number;
-  comments: string[];
+  comments: ICommentData[];
   generation: number;
   createdAt: string;
   isDeleted: boolean;
@@ -21,64 +38,48 @@ interface IChallengeData {
   _id: string;
 }
 
-function viewCardList(): React.ReactElement {
-  const [state, setState] = useState([]);
-  const [challenge, setChallenge] = useState<IChallengeData | null>(null);
+interface IProps {
+  challengeData?: Array<IData>;
+}
+
+function viewCardList({ challengeData }: IProps): React.ReactElement {
+  const [challenge, setChallenge] = useState<IData[] | null>(null);
   const [commentList, setCommentList] = useState([]);
-  const [likes, setLikes] = useState(0);
-  const [likeClick, setLikeClick] = useState(false);
 
   const ChallengeList = async (): Promise<void> => {
     const data = await ChallengeListData();
     data && setChallenge(data);
     data && setCommentList(data.comments);
-    data && setLikes(data.likes);
-    console.log('데이터잘들어올까요?', data);
-    // setState(data);
-    // React.useEffect(() => {
-    //   setState(data);
-    // }, [state]);
   };
 
   React.useEffect(() => {
     ChallengeList();
   }, []);
 
-  console.log('데이터잘들어올까요222?', challenge);
-
   const reLoadComment = (newComment: any) => {
     setCommentList(commentList?.concat(newComment));
   };
 
-  const clickLike = () => {
-    setLikeClick(!likeClick);
-    if (likeClick === true) {
-      setLikes(likes - 1);
-    } else {
-      setLikes(likes + 1);
-    }
-  };
-
   return (
     <SViewCardList>
-      {challenge?.map((data: IChallengeData) => {
-        <ViewListCard
-          nickname={challenge?.user?.nickname}
-          image={challenge?.user?.img}
-          createdAt={challenge?.createdAt}
-          interest={challenge?.interest}
-          good={challenge?.good}
-          bad={challenge?.bad}
-          learn={challenge?.learn}
-          like={likes}
-          commentlist={commentList}
-          reLoadComment={reLoadComment}
-          comments={commentList?.length}
-          scrap={challenge?.scrapNum}
-          onClickLike={clickLike}
-          likeClick={likeClick}
-          key={challenge?.user?._id}
-        />;
+      {challenge?.map((data: IData) => {
+        return (
+          <ViewListCard
+            nickname={data?.user?.nickname}
+            image={data?.user?.img}
+            createdAt={data?.createdAt}
+            interest={data?.interest}
+            good={data?.good}
+            bad={data?.bad}
+            learn={data?.learn}
+            like={data?.likes}
+            commentlist={data?.comments}
+            reLoadComment={reLoadComment}
+            comments={data?.comments.length}
+            scrap={data?.scrapNum}
+            key={data?._id}
+          />
+        );
       })}
     </SViewCardList>
   );

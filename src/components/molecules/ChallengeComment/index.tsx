@@ -1,23 +1,8 @@
 import ChallengeCommentWrite from 'components/molecules/ChallengeCommentWrite';
 import ChallengeSingleComment from 'components/molecules/ChallengeSingleWrite';
+import { ICommentData } from 'components/organisms/ViewCardList';
 import React, { useState } from 'react';
 import Styled from 'styled-components';
-interface IData {
-  childrenComment: {
-    _id: string;
-    userID: {
-      _id: string;
-      nickname: string;
-    };
-    text: string;
-  }[];
-  _id: string;
-  userID: {
-    _id: string;
-    nickname: string;
-  };
-  text: string;
-}
 
 interface INewComment {
   _id: string;
@@ -29,7 +14,7 @@ interface INewComment {
 }
 
 interface IProps {
-  commentList: Array<IData> | undefined;
+  commentList?: Array<ICommentData>;
   reLoadComment: (newComment: INewComment) => void;
 }
 
@@ -53,6 +38,7 @@ function ChallengeComment({ commentList, reLoadComment }: IProps): React.ReactEl
     reLoadComment(variables);
     setCommentValue('');
   };
+
   console.log('ChallengeCommentList', commentList);
   return (
     <SCommentList>
@@ -65,7 +51,7 @@ function ChallengeComment({ commentList, reLoadComment }: IProps): React.ReactEl
         onSubmit={onSubmit}
       ></ChallengeCommentWrite>
       {commentList &&
-        commentList.map((data: IData) => (
+        commentList.map((data: ICommentData) => (
           <ChallengeSingleComment
             key={data._id}
             nickname={data.userID.nickname}
