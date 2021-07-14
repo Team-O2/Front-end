@@ -8,7 +8,7 @@ import {
   IMyUserLearnMyself,
 } from '../types/myPage';
 
-export const getMyPageUserInfo = async (token: string): Promise<IMyPageHeader | null> => {
+export const getMyPageUserInfo = async (token?: string): Promise<IMyPageHeader | null> => {
   try {
     const data = await serverAxios.get('/user/mypage/info', {
       headers: { Accept: 'application/json', Authorization: token },
@@ -25,7 +25,7 @@ export const getMyPageUserInfo = async (token: string): Promise<IMyPageHeader | 
 };
 
 interface IFetchParameter {
-  token: string;
+  token?: string;
   limit?: number;
   offset?: number;
 }
