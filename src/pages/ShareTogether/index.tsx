@@ -4,7 +4,6 @@ import CategoryList from 'components/organisms/CategoryList';
 import ConcertCardList from 'components/organisms/ConcertCardList';
 import ConcertList from 'components/organisms/ConcertList';
 import Footer from 'components/organisms/Footer';
-import Header from 'components/organisms/Header';
 import SeachForm from 'components/organisms/SearchForm';
 import React, { useEffect, useState } from 'react';
 import Styled from 'styled-components';
@@ -70,7 +69,6 @@ function ShareTogether(): React.ReactElement {
   const concertListNum = concertList?.length;
   return (
     <>
-      <Header />
       <SShareTogether>
         <ConcertTitle></ConcertTitle>
         <CategoryList reRenderCategory={reRenderCategory} selectedCategory={selectedCategory}></CategoryList>

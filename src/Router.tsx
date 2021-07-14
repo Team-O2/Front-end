@@ -1,3 +1,4 @@
+import Header from 'components/organisms/Header';
 import EditLearnMyself from 'components/templates/LearnMyself/ChallengeEdit';
 import LearnMyself from 'components/templates/LearnMyself/ChallengeList';
 import ChallengeRegister from 'components/templates/LearnMyself/ChallengeRegister';
@@ -19,6 +20,7 @@ import Login from './pages/Login';
 function Router(): React.ReactElement {
   return (
     <BrowserRouter>
+      <Header />
       <Switch>
         <Route exact path="/" component={Home} />
         <Route exact path="/ShareTogether" component={ShareTogether} />
