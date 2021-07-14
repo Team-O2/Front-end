@@ -1,8 +1,8 @@
-import React from 'react';
-import Styled from 'styled-components';
-import SearchBar from 'components/molecules/SearchBar';
 import DiamondIcon from 'assets/images/diamond.svg';
+import SearchBar from 'components/molecules/SearchBar';
+import React from 'react';
 import { RouteComponentProps, withRouter } from 'react-router-dom';
+import Styled from 'styled-components';
 
 interface MatchParams {
   path: string;

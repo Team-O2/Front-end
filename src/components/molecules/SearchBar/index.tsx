@@ -1,17 +1,23 @@
-import React from 'react';
-import Styled from 'styled-components';
-import Input from 'components/atoms/Input';
-import Button from 'components/atoms/Button';
 import SearchIcon from 'assets/images/icons_search.svg';
+import Button from 'components/atoms/Button';
+import Input from 'components/atoms/Input';
+import React, { useState } from 'react';
+import Styled from 'styled-components';
 
 export interface IProps {
   className?: string;
 }
 
 function SearchBar({ ...props }: IProps): React.ReactElement {
+  const [searchTerm, setSearchTerm] = useState('');
   return (
     <SSearchBar {...props}>
-      <Input className="input" name="searchBar" placeholder="키워드를 검색해 주세요"></Input>
+      <Input
+        className="input"
+        name="searchBar"
+        placeholder="키워드를 검색해 주세요"
+        onChange={(event) => setSearchTerm(event.target.value)}
+      ></Input>
       <Button className="button">
         <img src={SearchIcon} alt="" />
       </Button>

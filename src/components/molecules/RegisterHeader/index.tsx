@@ -30,7 +30,7 @@ const SHeader = Styled.div`
       z-index: 2;
       text-align: center;
       top:0;
-      padding-top:150px;
+      padding-top:300px;
       transform: translate(-50%, -50%);                                                                   
       font-family: AppleSDGothicNeo;
       font-size: 48px;
