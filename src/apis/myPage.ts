@@ -1,5 +1,6 @@
 import { serverAxios } from 'libs/axios';
 import {
+  IGetMyPageUserInfoParameter,
   IMyPageHeader,
   IMyScrappedLearnMyself,
   IMyScrappedShareTogether,
@@ -106,6 +107,26 @@ export const getUserCommentListData = async ({
     const data = await serverAxios.get('/user/mypage/comment', {
       headers: { Accept: 'application/json', Authorization: token },
       params: { limit, offset, postModel: category },
+    });
+
+    if (data.status === 200) {
+      return data.data.data;
+    } else {
+      throw new Error('통신성공 데이터 없음');
+    }
+  } catch (err) {
+    console.log(err.message);
+    return null;
+  }
+};
+
+export const deleteUserCommentList = async ({ token, commentIdList }: IGetMyPageUserInfoParameter): Promise<null> => {
+  try {
+    const data = await serverAxios.delete('/user/mypage/comment', {
+      headers: { Accept: 'application/json', Authorization: token },
+      data: {
+        commentID: commentIdList,
+      },
     });
 
     if (data.status === 200) {
