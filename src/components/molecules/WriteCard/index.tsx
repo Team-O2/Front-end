@@ -1,5 +1,6 @@
 import { writeForm } from 'libs/getChallenge';
 import React, { useEffect, useState } from 'react';
+import { useHistory } from 'react-router-dom';
 import Styled from 'styled-components';
 import CharacterBlack from '../../../assets/images/character_black.svg';
 import CharacterColor1 from '../../../assets/images/character_color1.svg';
@@ -62,6 +63,7 @@ type MyFormProps = {
 };
 
 function WriteCard({ onChangeForm }: MyFormProps) {
+  const history = useHistory();
   const maxByte = 1000; //최대 1000바이트
   const [isBadgeModal, setIsBadgeModal] = useState(false); //뱃지 모달
   const [countProgressBar, setCountProgressBar] = useState(0); //프로그래스바
@@ -106,6 +108,7 @@ function WriteCard({ onChangeForm }: MyFormProps) {
     };
     const data = await writeForm(writeData);
     console.log('getData', data);
+    history.push('/challenge');
   };
 
   const progressBarState = () => {
