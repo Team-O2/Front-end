@@ -1,26 +1,27 @@
-import React, { useState } from 'react';
-import Styled from 'styled-components';
 import arrowDown from 'assets/images/ham_arrowDown.svg';
 import arrowUp from 'assets/images/ham_arrowUp.svg';
+import React, { useState } from 'react';
+import Styled from 'styled-components';
 import Button from '../../atoms/Button/index';
 
 export interface IProps {
   className?: string;
   title: string;
   itemList: string[];
+  isEnglish: boolean;
 }
 
-function HamDropDown({ title, itemList }: IProps): React.ReactElement {
+function HamDropDown({ title, itemList, isEnglish }: IProps): React.ReactElement {
   const [isOpened, setIsOpened] = useState(false);
   const learnOpenClickListener = (): void => {
     setIsOpened(!isOpened);
   };
 
   return (
-    <SHamDropDown isOpened={isOpened}>
+    <SHamDropDown isOpened={isOpened} isEnglish={isEnglish}>
       <Button className="title" onClick={learnOpenClickListener}>
         <>
-          <div className="title__label">{title}</div>
+          <div className="title__label ">{title}</div>
           <img className="title__icon" src={isOpened ? arrowUp : arrowDown} />
         </>
       </Button>
@@ -45,7 +46,11 @@ function HamDropDown({ title, itemList }: IProps): React.ReactElement {
   );
 }
 
-const SHamDropDown = Styled.div<{ isOpened?: boolean }>`
+const SHamDropDown = Styled.div<{ isOpened?: boolean; isEnglish: boolean }>`
+  display : flex;
+  flex-direction: column;
+  align-items : center;
+  justify-content : center; 
   .title{
     display : flex;
     align-items : center;
@@ -56,6 +61,7 @@ const SHamDropDown = Styled.div<{ isOpened?: boolean }>`
         line-height: 1.25;
         letter-spacing: normal;
         text-align: left;
+        font-family : ${(props) => (props.isEnglish ? 'HomepageBaukasten' : 'AppleSDGothicNeo')};
         fontWeight : ${(props) => (props.isOpened ? 'bold' : 'normal')};
         :hover{
           font-weight: bold;
@@ -97,7 +103,7 @@ const SHamDropDown = Styled.div<{ isOpened?: boolean }>`
       white-space: nowrap;
       &--fake{
         color : rgba(0,0,0,0);
-        line-height : 20px;
+        line-height : 30px;
       }
       :hover{
         font-weight: bold;

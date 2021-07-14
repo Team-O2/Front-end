@@ -45,7 +45,7 @@ function Hamburger(): React.ReactElement {
           <Button className="loginBtn">
             <>
               <img className="loginBtn_icon" src={loginIcon}></img>
-              <div className="loginBtn_login">마이페이지</div>
+              <div className="loginBtn_login ">마이페이지</div>
             </>
           </Button>
         )}
@@ -58,7 +58,7 @@ function Hamburger(): React.ReactElement {
           <Button className="top__subtitle top__subtitle--unchallengeUser">
             <>
               <img className="top__icon--subtitle" src={unChallengeIcon}></img>
-              <div style={{ color: '#36c8f5' }}>1st Learn Myself 신청</div>
+              <div style={{ color: '#36c8f5', fontWeight: 'bold' }}>1st Learn Myself 신청</div>
             </>
           </Button>
         )}
@@ -66,7 +66,7 @@ function Hamburger(): React.ReactElement {
           <Button className="top__subtitle top__subtitle--unchallengeUser">
             <>
               <img className="top__icon--subtitle" src={challengeIcon}></img>
-              <div style={{ color: '#03b6ce' }}>오늘의 Learn Myself 작성</div>
+              <div style={{ color: '#03b6ce', fontWeight: 'bold' }}>오늘의 Learn Myself 작성</div>
             </>
           </Button>
         )}
@@ -83,11 +83,12 @@ function Hamburger(): React.ReactElement {
         {(userStateNum === 0 || userStateNum === 1 || userStateNum === 2 || userStateNum === 3) && (
           <>
             <HamDropDown
+              isEnglish={true}
               title="Learn Myself"
               itemList={['1st', '2nd', '3rd', '4st', '5th', '6th', '7th', '8th', '9th']}
             />
             <div style={{ marginBottom: '10px' }}></div>
-            <Button className="middle__button--title">Share Together</Button>
+            <Button className="middle__button--title middle__button--engTitle">Share Together</Button>
             <div className="middle__line"></div>
             <Button className="middle__button--title">공지사항</Button>
           </>
@@ -97,10 +98,10 @@ function Hamburger(): React.ReactElement {
         )}
         {userStateNum === 4 && (
           <>
-            <Button className="middle__button--title">챌린지 오픈하기</Button>
-            <Button className="middle__button--title">챌린지 정보</Button>
+            <Button className="middle__button--title body3">챌린지 오픈하기</Button>
+            <Button className="middle__button--title body3">챌린지 정보</Button>
             <div style={{ marginBottom: '10px' }}></div>
-            <HamDropDown title="글 올리기" itemList={['Share Together', '공지사항']} />
+            <HamDropDown isEnglish={false} title="글 올리기" itemList={['Share Together', '공지사항']} />
           </>
         )}
         <div className="middle__padding--forHide">어쩌구 가려질것</div>
@@ -191,6 +192,7 @@ const HamburgerWrap = Styled.div`
       font-style: normal;
       line-height: 1.25;
       letter-spacing: normal;
+      font-family: HomepageBaukasten;
       &--nologin{
         margin-top : 16px;
         margin-bottom : 30px;
@@ -243,17 +245,19 @@ const HamburgerWrap = Styled.div`
     padding-top : 70px;
     overflow : scroll;
     flex:1;
-
-    &__button--title{
-      font-size: 16px;
-      font-weight: normal;
-      font-stretch: normal;
-      font-style: normal;
-      line-height: 1.25;
-      color : #3d3d3d;
-      margin : 10px 0;
-      :hover {
-        font-weight: bold;
+    &__button{
+      &--title{
+        color : #3d3d3d;
+        margin : 10px 0;
+        font-size : 16px;
+        font-family : AppleSDGothicNeo;
+        height : 20px;
+        :hover {
+          font-weight: bold;
+        }
+      }
+      &--engTitle{
+        font-family : HomepageBaukasten;
       }
     }
     &__line{
@@ -282,12 +286,14 @@ const HamburgerWrap = Styled.div`
     justify-content:flex-end;
     position:relative;
     &__button{
+      font-family: AppleSDGothicNeo;
       font-size: 16px;
       font-weight: normal;
       font-stretch: normal;
       font-style: normal;
       line-height: 1.5;
       letter-spacing: -0.5px;
+      font-size : 16px;
     }
   }
 `;
