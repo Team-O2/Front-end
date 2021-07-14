@@ -44,7 +44,7 @@ interface IProps {
   challengeData?: Array<IData>;
 }
 
-function viewCardList({ challengeData }: IProps): React.ReactElement {
+function ViewCardList({ challengeData }: IProps): React.ReactElement {
   const [userStatusData, setUserStatusData] = useRecoilState(userStatusState);
   const [challenge, setChallenge] = useState<IData[] | null>(null);
   const [commentList, setCommentList] = useState([]);
@@ -95,4 +95,4 @@ function viewCardList({ challengeData }: IProps): React.ReactElement {
 const SViewCardList = Styled.div`
 `;
 
-export default viewCardList;
+export default ViewCardList;
