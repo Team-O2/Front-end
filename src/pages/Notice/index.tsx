@@ -1,16 +1,17 @@
 import { getNoticeListData, getNoticeSearchData } from 'apis/ShareTogether';
+import ConcertList from 'components/organisms/ConcertList';
 import Footer from 'components/organisms/Footer';
 import Header from 'components/organisms/Header';
 import NoticeHeader from 'components/organisms/NoticeHeader';
 import SeachForm from 'components/organisms/SearchForm';
 import React, { useEffect, useState } from 'react';
 import Styled from 'styled-components';
-//import ConcertList from 'components/organisms/ConcertList';
 interface INoticeData {
+  videoLink: string;
+  imgThumbnail: string;
   likes: number;
   commentNum: number;
   scrapNum: number;
-  generation: number;
   interest: string[];
   hashtag: string[];
   isDeleted: boolean;
@@ -19,15 +20,14 @@ interface INoticeData {
   _id: string;
   title: string;
   user: { _id: string; nickname: string; img: string };
-  videoLink: string;
-  imgThumbnail: string;
-  text: string;
   createdAt: string;
+  text: string;
+  authorNickname: string;
   updatedAt: string;
   __v: number;
 }
 function Notice(): React.ReactElement {
-  const [noticeList, setnoticeList] = useState<INoticeData[] | null>(null);
+  const [noticeList, setnoticeList] = useState<INoticeData[] | undefined>(undefined);
   const [keyword, setKeyword] = useState('');
   useEffect(() => {
     getNoticeList(
@@ -42,6 +42,7 @@ function Notice(): React.ReactElement {
   }, [keyword]);
   const getNoticeList = async (token: string): Promise<void> => {
     const data = await getNoticeListData(token);
+    console.log(data);
     data && setnoticeList(data);
   };
   const getNoticeSearchList = async (token: string, keyword: string): Promise<void> => {
@@ -58,8 +59,12 @@ function Notice(): React.ReactElement {
       <Header />
       <NoticeHeader />
       <SNotice>
-        <SeachForm reRenderKeyword={reRenderKeyword} concertListNum={noticeListNum}></SeachForm>
-        {/*<ConcertList concertData={noticeList}></ConcertList>*/}
+        <SeachForm
+          reRenderKeyword={reRenderKeyword}
+          concertListNum={noticeListNum}
+          selectedCategory="공지사항"
+        ></SeachForm>
+        <ConcertList concertData={noticeList}></ConcertList>
       </SNotice>
       <Footer />
     </>
