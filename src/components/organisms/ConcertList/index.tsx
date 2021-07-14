@@ -31,20 +31,23 @@ function ConcertList({ concertData }: IProps): React.ReactElement {
   return (
     <>
       <SConcertList>
-        {concertData?.map((card: IData) => (
-          <Concert
-            imgThumbnail={card.imgThumbnail}
-            authorNickname={card.authorNickname}
-            interest={card.interest}
-            createdAt={card.createdAt}
-            title={card.title}
-            text={card.text}
-            commentNum={card.commentNum}
-            likes={card.likes}
-            key={card._id}
-            onClickFunc={() => history.push(`/ShareTogether/${card._id}`)}
-          ></Concert>
-        ))}
+        {concertData?.map(
+          (card: IData) =>
+            card && (
+              <Concert
+                imgThumbnail={card.imgThumbnail}
+                authorNickname={card.authorNickname}
+                interest={card.interest}
+                createdAt={card.createdAt}
+                title={card.title}
+                text={card.text}
+                commentNum={card.commentNum}
+                likes={card.likes}
+                key={card._id}
+                onClickFunc={() => history.push(`/ShareTogether/${card._id}`)}
+              ></Concert>
+            ),
+        )}
       </SConcertList>
     </>
   );
