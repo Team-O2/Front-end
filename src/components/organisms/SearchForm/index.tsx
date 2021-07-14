@@ -16,6 +16,9 @@ function SearchForm({ reRenderKeyword, selectedCategory, concertListNum }: IProp
     event.preventDefault();
     reRenderKeyword && reRenderKeyword(searchValue);
   };
+  if (selectedCategory === '') {
+    selectedCategory = '전체';
+  }
   return (
     <SSearchForm>
       <div className="main">
