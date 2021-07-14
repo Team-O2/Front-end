@@ -98,6 +98,6 @@ export interface IComment {
 }
 
 export interface IGetMyPageUserInfoParameter {
-  token: string;
+  token?: string;
   commentIdList: string[];
 }
