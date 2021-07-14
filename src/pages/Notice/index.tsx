@@ -1,6 +1,6 @@
 import { getNoticeListData, getNoticeSearchData } from 'apis/ShareTogether';
-import ConcertList from 'components/organisms/ConcertList';
 import NoticeHeader from 'components/organisms/NoticeHeader';
+import NoticeList from 'components/organisms/NoticeList';
 import SeachForm from 'components/organisms/SearchForm';
 import React, { useEffect, useState } from 'react';
 import { useRecoilState } from 'recoil';
