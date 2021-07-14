@@ -3,7 +3,7 @@ import {
   getMyPageUserInfo,
   getShareTogetherListData,
   getUserCommentListData,
-  getUserLearnMyselfListData
+  getUserLearnMyselfListData,
 } from 'apis/myPage';
 import { Logo } from 'assets/images';
 import { LearnMyselfCard, MyPageSection, ShareTogetherCard } from 'components/molecules';
@@ -19,7 +19,7 @@ import {
   IMyScrappedLearnMyself,
   IMyScrappedShareTogether,
   IMyUserCommentResponse,
-  IMyUserLearnMyself
+  IMyUserLearnMyself,
 } from 'types/myPage';
 import { IShareTogether } from 'types/shareTogether';
 import { changeDateFormat } from 'utils';
@@ -32,6 +32,9 @@ function MyPage(): React.ReactElement {
   const [learnMyselfData, setLearnMyselfData] = useState<IMyScrappedLearnMyself | null>(null);
   const [userLearnMyselfData, setUserLearnMyselfData] = useState<IMyUserLearnMyself | null>(null);
   const [userCommentData, setUserCommentData] = useState<IMyUserCommentResponse | null>(null);
+  const [selectedCategory, setSelectedCategory] = useState('Concert');
+  const [reRenderFlag, setReRenderFlag] = useState(false);
+  const [currentPage, setCurrentPage] = useState(1);
   const globalUserInfo = useRecoilValue(userState);
 
   const onChangeSection = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -58,8 +61,13 @@ function MyPage(): React.ReactElement {
     setUserLearnMyselfData(data);
   };
 
-  const fetchUserCommentListData = async () => {
-    const data = await getUserCommentListData({ token: TOKEN });
+  const fetchUserCommentListData = async (selectedCategory: string, pageIndex: number) => {
+    const LIMIT_PER_PAGE = 5;
+    const data = await getUserCommentListData({
+      token: TOKEN,
+      category: selectedCategory,
+      offset: (pageIndex - 1) * LIMIT_PER_PAGE,
+    });
     setUserCommentData(data);
   };
 
@@ -68,8 +76,11 @@ function MyPage(): React.ReactElement {
     fetchScrappedShareTogetherData();
     fetchScrappedLearnMyselfData();
     fetchUserLearnMyselfData();
-    fetchUserCommentListData();
   }, []);
+
+  useEffect(() => {
+    fetchUserCommentListData(selectedCategory, currentPage);
+  }, [selectedCategory, currentPage, reRenderFlag]);
 
   const renderScrappedShareTogether = (data: IShareTogether[]) => {
     return data?.map((item: IShareTogether) => {
@@ -160,7 +171,17 @@ function MyPage(): React.ReactElement {
               renderItemList={renderLearnMyself}
             />
           ) : (
-            userCommentData && <MyCommentList userCommentData={userCommentData} />
+            userCommentData && (
+              <MyCommentList
+                userCommentData={userCommentData}
+                selectedCategory={selectedCategory}
+                setSelectedCategory={setSelectedCategory}
+                currentPage={currentPage}
+                setCurrentPage={setCurrentPage}
+                reRenderFlag={reRenderFlag}
+                setReRenderFlag={setReRenderFlag}
+              />
+            )
           )}
         </div>
       </div>

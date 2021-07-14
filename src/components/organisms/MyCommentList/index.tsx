@@ -1,88 +1,207 @@
-import { Button, Tag } from 'components/atoms';
-import React from 'react';
+import { SmallLeftArrow, SmallRightArrow } from 'assets/images';
+import { Button, Icon, Tag } from 'components/atoms';
+import React, { useEffect, useState } from 'react';
+import { useRecoilValue } from 'recoil';
 import Styled from 'styled-components';
-import { palette } from 'styled-tools';
+import { ifProp, palette } from 'styled-tools';
+import { IMyUserCommentResponse } from 'types/myPage';
+import { changeDateFormat } from 'utils';
+import { deleteUserCommentList } from '../../../apis/myPage';
+import { userState } from '../../../stores/user';
+import { IMyUserComment } from '../../../types/myPage';
 import CommentedBoardRow from '../../molecules/CommentedBoardRow/index';
 
 export interface IProps {
-  data?: any; // TODO: API연결 후 인터페이스 정의하기
+  userCommentData: IMyUserCommentResponse;
+  selectedCategory: string;
+  currentPage: number;
+  reRenderFlag: boolean;
+  setReRenderFlag: (value: boolean) => void;
+  setSelectedCategory: (value: string) => void;
+  setCurrentPage: (value: number) => void;
 }
 
-const requestData = [
-  {
-    _id: '1',
-    userID: '작성자 object id',
-    text: '댓글 내용',
-    child: ['대댓글 object id'],
-  },
-  {
-    _id: '2',
-    userID: '작성자 object id',
-    text: '댓글 내용',
-    child: ['대댓글 object id'],
-  },
-  {
-    _id: '3',
-    userID: '작성자 object id',
-    text: '댓글 내용',
-    child: ['대댓글 object id'],
-  },
-];
+function MyCommentList({
+  userCommentData,
+  selectedCategory,
+  setSelectedCategory,
+  currentPage,
+  setCurrentPage,
+  reRenderFlag,
+  setReRenderFlag,
+}: IProps): React.ReactElement {
+  const [startPage, setStartPage] = useState(0);
+  const [endPage, setEndPage] = useState(5);
+  const [checkedCommentList, setCheckedCommentList] = useState<string[]>([]);
+  const [allCommentIdList, setAllCommentIdList] = useState<string[]>([]);
+  const [isSelectAll, setIsSelectAll] = useState(false);
+  const globalUserInfo = useRecoilValue(userState);
 
-function MyCommentList({ data }: IProps): React.ReactElement {
+  const commentsOfPage = 5;
+  const totalPage = Math.ceil(userCommentData.commentNum / commentsOfPage);
+  const pageIndex: number[] = [...Array(totalPage)].map((_, i) => i + 1);
+  const target = pageIndex.slice(startPage, endPage);
+
+  useEffect(() => {
+    setCheckedCommentList([]);
+    setAllCommentIdList([]);
+  }, [selectedCategory]);
+
+  useEffect(() => {
+    setAllCommentIdList(userCommentData.comments.map((item) => item._id));
+  }, [selectedCategory, currentPage, userCommentData.comments]);
+
+  useEffect(() => {
+    setIsSelectAll(allCommentIdList.includes(checkedCommentList[checkedCommentList.length - 1]));
+  }, [allCommentIdList, checkedCommentList]);
+
+  const deleteSelectedCommentList = async () => {
+    await deleteUserCommentList({ token: TOKEN, commentIdList: checkedCommentList });
+    setIsSelectAll(false);
+    setReRenderFlag(!reRenderFlag);
+  };
+
+  const handleAllSelectClick = () => {
+    setCheckedCommentList([...checkedCommentList, ...allCommentIdList]);
+  };
+
+  const handleAllUnselectClick = () => {
+    setCheckedCommentList(checkedCommentList.filter((commentId) => !allCommentIdList.includes(commentId)));
+  };
+
+  const handleClick = (e: React.MouseEvent<HTMLButtonElement>) => {
+    setSelectedCategory(e.currentTarget.value);
+    setCurrentPage(1);
+  };
+
+  const handlePageClick = (e: React.MouseEvent<HTMLButtonElement>) => {
+    setCurrentPage(parseInt(e.currentTarget.value));
+  };
+
+  const handleCommentSelect = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const selectedId = e.target.id;
+
+    if (checkedCommentList.includes(selectedId)) {
+      setCheckedCommentList(checkedCommentList.filter((commentId) => commentId !== selectedId));
+    } else {
+      setCheckedCommentList([...checkedCommentList, selectedId]);
+    }
+  };
+
+  const handlePrevPageClick = () => {
+    if (startPage !== 0) {
+      setStartPage(startPage - 5);
+      setEndPage(startPage);
+      setCurrentPage(startPage);
+    }
+  };
+
+  const handleNextPageClick = () => {
+    if (endPage !== totalPage) {
+      if (startPage + 5 <= totalPage) {
+        setStartPage(startPage + 5);
+        setCurrentPage(startPage + 6);
+        if (endPage + 5 <= totalPage) {
+          setEndPage(endPage + 5);
+        } else {
+          setEndPage(totalPage);
+        }
+      }
+    }
+  };
+
   return (
     <Wrapper>
       <h2 className="dp2">댓글 단 글</h2>
-      <h4 className="body3">{'앵그리엘모'}님이 댓글 단 글이에요</h4>
+      <h4 className="body3">{globalUserInfo.nickname}님이 댓글 단 글이에요</h4>
       <div className="tagContainer">
-        <Button>
+        <Button value="Concert" onClick={handleClick}>
           <Tag
             className="subhead4_eng"
             name="Share Together"
             paddingX="20px"
             paddingY="10px"
             color="5"
-            isSelected={false}
+            isSelected={selectedCategory === 'Concert'}
           />
         </Button>
-        <Button>
+        <Button value="Challenge" onClick={handleClick}>
           <Tag
             className="subhead4_eng"
             name="Learn Myself"
             paddingX="20px"
             paddingY="10px"
             color="5"
-            isSelected={true}
+            isSelected={selectedCategory === 'Challenge'}
           />
         </Button>
-        <Button>
-          <Tag className="subhead4" name="공지사항" paddingX="20px" paddingY="10px" color="5" isSelected={false} />
+        <Button value="Notice" onClick={handleClick}>
+          <Tag
+            className="subhead4"
+            name="공지사항"
+            paddingX="20px"
+            paddingY="10px"
+            color="5"
+            isSelected={selectedCategory === 'Notice'}
+          />
         </Button>
       </div>
       <div className="buttonContainer">
-        <Button className="body4">{'전체선택'}</Button>
-        <Button className="subhead4">{'삭제'}</Button>
+        <Button className="body4" onClick={isSelectAll ? handleAllUnselectClick : handleAllSelectClick}>
+          {isSelectAll ? '선택해제' : '전체선택'}
+        </Button>
+        <Button className="subhead4" onClick={deleteSelectedCommentList}>
+          삭제
+        </Button>
       </div>
       <div className="commentContainer">
-        <ul>
-          <li>
-            <CommentedBoardRow id={'1'} content={'slkdjf'} date={'2019. 13. 13'} boardId={'123132'} />
-          </li>
-          <li>
-            <CommentedBoardRow />
-          </li>
-        </ul>
+        {userCommentData.comments?.map((item: IMyUserComment) => {
+          return (
+            <CommentedBoardRow
+              id={item._id}
+              key={item._id}
+              content={item.text}
+              date={changeDateFormat(item.createdAt)}
+              boardId={item.post}
+              isChecked={checkedCommentList.includes(item._id)}
+              onChange={handleCommentSelect}
+            />
+          );
+        })}
       </div>
-      <div className="pageContainer">
-        {/* 왼쪽버튼 */}
+      <div className="navigationContainer">
+        <PageNavi onClick={handlePrevPageClick}>
+          <Icon src={SmallLeftArrow} />
+        </PageNavi>
         <ul>
-          <li>{/* 페이지 */}</li>
+          {target.map((pageIdx: number) => (
+            <li key={pageIdx}>
+              <PageNumber
+                className="subhead4_eng"
+                value={`${pageIdx}`}
+                onClick={handlePageClick}
+                isSelected={currentPage === pageIdx}
+              >
+                {`${pageIdx}`}
+              </PageNumber>
+            </li>
+          ))}
         </ul>
-        {/* 오른쪽 버튼 */}
+        <PageNavi onClick={handleNextPageClick}>
+          <Icon src={SmallRightArrow} />
+        </PageNavi>
       </div>
     </Wrapper>
   );
 }
+
+const PageNumber = Styled(Button)<{ isSelected?: boolean }>`
+  color: ${ifProp('isSelected', '#03b6ce', '#6f6f6f')};
+`;
+
+const PageNavi = Styled(Button)`
+  margin: 0 25px;
+`;
 
 const Wrapper = Styled.div`
   width: 1062px;
@@ -112,15 +231,32 @@ const Wrapper = Styled.div`
     margin-bottom: 40px;
     button:first-child {
       margin-right: 17px;
+      color: ${palette('grayscale', 4)};
+    }
+    button:nth-child(2) {
+      margin-right: 17px;
+      color: ${palette('grayscale', 5)};
     }
   }
 
   .commentContainer {
-    display: grid;
-    grid-template-columns: repeat(5, 1fr);
-    grid-template-columns: repeat(5, 1fr);
-    gap: 40px;
     width: 100%;
+  }
+
+  .navigationContainer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    
+    img {
+      width: 24px;
+      height: 24px;
+    }
+
+    ul li {
+      margin: 0 15px;
+      float: left;
+    }
   }
 `;
 
