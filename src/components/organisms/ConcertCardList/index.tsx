@@ -52,5 +52,6 @@ const SConcertCardList = Styled.div`
   display: flex;
   flex-direction: row;
   justify-content: space-around;
+  margin-top: 60px;
 `;
 export default ConcertCardList;

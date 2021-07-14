@@ -40,7 +40,6 @@ function SearchForm({ reRenderKeyword, selectedCategory, concertListNum }: IProp
 const SSearchForm = Styled.div`
   display: flex;
   flex-direction: column;
-  margin-bottom: 60px;
   height: 80px;
   .main {
     display: flex;
