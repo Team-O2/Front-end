@@ -28,19 +28,19 @@ function CategoryButton({ tag, isMore, selectedCategory, onClickInterest }: IPro
   );
 }
 
-const SCategoryButton = Styled.label`
+const SCategoryButton = Styled.label<IData>`
   height: 46px;
   border-radius: 60px;
   padding: 12px 25px;
   margin-right: 10px;
-  background-color:${({ isCategoryClicked }: IData) => (isCategoryClicked ? '#03b6ce' : '#ffffff')};
-  border: ${({ isCategoryClicked }: IData) =>
-    isCategoryClicked ? '#03b6ce' : ({ readMore }: IData) => (readMore ? '1px solid #8b8b8b' : '1px solid #03b6ce')};
+  background-color:${({ isCategoryClicked }) => (isCategoryClicked ? '#03b6ce' : '#ffffff')};
+  border: ${({ isCategoryClicked }) =>
+    isCategoryClicked ? '#03b6ce' : ({ readMore }) => (readMore ? '1px solid #8b8b8b' : '1px solid #03b6ce')};
   .button {
     white-space : nowrap; 
     font-size: 16px;
-    color: ${({ isCategoryClicked }: IData) =>
-      isCategoryClicked ? '#ffffff' : ({ readMore }: IData) => (readMore ? '#8b8b8b' : '#03b6ce')};
+    color: ${({ isCategoryClicked }) =>
+      isCategoryClicked ? '#ffffff' : ({ readMore }) => (readMore ? '#8b8b8b' : '#03b6ce')};
     font-family: 'AppleSDGothicNeo';
     font-weight: bold;
   }

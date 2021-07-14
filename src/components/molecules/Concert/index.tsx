@@ -6,7 +6,7 @@ import Styled from 'styled-components';
 interface IProps {
   imgThumbnail: string;
   authorNickname: string;
-  interest: string[];
+  interestList: string[];
   createdAt: string;
   title: string;
   text: string;
@@ -18,7 +18,7 @@ interface IProps {
 function Concert({
   imgThumbnail,
   authorNickname,
-  interest,
+  interestList,
   createdAt,
   title,
   text,
@@ -31,7 +31,7 @@ function Concert({
       <SConcert>
         <div className="content__left">
           <p>{authorNickname}</p>
-          <p>{interest}</p>
+          <p>{interestList}</p>
           <p>{createdAt}</p>
         </div>
         <div className="content__middle" onClick={onClickFunc}>
