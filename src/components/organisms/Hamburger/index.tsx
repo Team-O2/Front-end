@@ -21,7 +21,7 @@ function Hamburger(): React.ReactElement {
   const [userStatusData, setUserStatusData] = useRecoilState(userStatusState);
   const [userData, setUserData] = useRecoilState(userState);
 
-  const [userImg, setUserImg] = useState(userImage); //유저&사진이 존재 하면 이미지변경
+  const [userImg, setUserImg] = useState(userData ? userData.img : userImage); //유저&사진이 존재 하면 이미지변경
   const [userStateNum, setUserState] = useState(userStatusData ? userStatusData.userType : 0);
   // const [userStateNum, setUserState] = useState(1);
   const [userName, setUserName] = useState(userData?.nickname);
