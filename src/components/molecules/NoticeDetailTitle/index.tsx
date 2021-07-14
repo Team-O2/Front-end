@@ -8,27 +8,27 @@ interface IProps {
   title?: string;
 }
 
-function DetailTitle({ title, speaker, createdAt, interest }: IProps): React.ReactElement {
+function NoticeDetailTitle({ title, speaker, createdAt, interest }: IProps): React.ReactElement {
   return (
     <>
-      <SDetailTitle>
+      <SNoticeDetailTitle>
         <div className="title__top">
-          <p>Share Together</p>
+          <p>공지사항</p>
         </div>
         <div className="title__middle">
           <p>{title && title}</p>
         </div>
         <div className="title__bottom">
-          <p>{speaker}</p>
-          <p>{createdAt}</p>
-          <p>{interest}</p>
+          <p>{speaker && speaker}</p>
+          <p>{createdAt && createdAt}</p>
+          <p>{interest && interest}</p>
         </div>
-      </SDetailTitle>
+      </SNoticeDetailTitle>
     </>
   );
 }
 
-const SDetailTitle = Styled.div`
+const SNoticeDetailTitle = Styled.div`
   display: flex;
   flex-direction: column;
   margin-top: 100px;
@@ -77,4 +77,4 @@ const SDetailTitle = Styled.div`
 
 `;
 
-export default DetailTitle;
+export default NoticeDetailTitle;
