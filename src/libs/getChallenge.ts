@@ -172,6 +172,9 @@ export const getChallengeContent = async (id: string, token: string) => {
         challengeID: id,
       },
     });
+    if (data.status === 200) {
+      return data.data.data[0];
+    }
     console.log(data);
   } catch (error) {
     console.log('[FAIL] GET data', error);
