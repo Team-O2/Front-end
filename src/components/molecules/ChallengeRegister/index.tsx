@@ -1,14 +1,15 @@
+import { SignRegister } from 'libs/getChallenge';
 import React, { useState } from 'react';
 import Styled from 'styled-components';
-import ChallengeImg from '../../../assets/images/challengeregister_img.png';
-import PlusIcon from '../../../assets/images/plusIcon.svg';
-import MinusIcon from '../../../assets/images/minusIcon.svg';
 import alertIcon from '../../../assets/images/alertIcon.svg';
-import RegisterHeader from '../RegisterHeader';
-import Modal from '../../atoms/Modal/index';
 import CautionIcon from '../../../assets/images/cautionIcon.png';
+import ChallengeImg from '../../../assets/images/challengeregister_img.png';
 import CheckIcon from '../../../assets/images/checkWhite.svg';
 import CheckCircleIcon from '../../../assets/images/check_circleIcon.png';
+import MinusIcon from '../../../assets/images/minusIcon.svg';
+import PlusIcon from '../../../assets/images/plusIcon.svg';
+import Modal from '../../atoms/Modal/index';
+import RegisterHeader from '../RegisterHeader';
 
 const ChallengeRegister = (): React.ReactElement => {
   const [registerCount, setRegisterCount] = useState(0);
@@ -20,6 +21,16 @@ const ChallengeRegister = (): React.ReactElement => {
       setRegisterCount(registerCount - 1);
     }
   }
+
+  const handleSubmit = async () => {
+    setRegisterSubmit(true);
+    setIsOpenModal(false);
+    const signData = {
+      challengeCNT: registerCount,
+    };
+    const getData = await SignRegister(signData);
+    console.log('getData', getData);
+  };
   return (
     <SRegister>
       <RegisterHeader />
@@ -95,18 +106,10 @@ const ChallengeRegister = (): React.ReactElement => {
                       챌린지 개수 2개를 선택하시면 최종 달성률 80%를 넘더라도 배지를 받을 수 없어요!
                     </div>
                   </div>
-                  <div className="modal__button">
-                    <img src={CheckIcon} alt=""></img>
-                    <button
-                      className="modal__register-button"
-                      onClick={() => {
-                        setRegisterSubmit(true);
-                        setIsOpenModal(false);
-                      }}
-                    >
-                      주의 사항을 확인했으며 챌린지 신청을 완료합니다.
-                    </button>
-                  </div>
+                  <button className="modal__button" onClick={handleSubmit}>
+                    <img className="modal__img" src={CheckIcon} alt=""></img>
+                    <div className="modal__register-button">주의 사항을 확인했으며 챌린지 신청을 완료합니다.</div>
+                  </button>
                 </div>
               </Modal>
               {registerSubmit === true ? (
@@ -392,14 +395,18 @@ const SRegister = Styled.div`
       width:500px;
       background: linear-gradient(91.91deg, #36C8F5 7.34%, #13E2DD 90.35%);
       border-radius: 0px 0px 16px 16px;
+      border:none;
 
     }
+    .modal__img{
+      display:inline-block;
+    }
     .modal__register-button{
+        display:inline-block;
         font-size: 16px;
         font-weight: bold;
         line-height: 1.38;
         letter-spacing: -0.5px;
-        padding-top:25px;
         border:none;
         background: linear-gradient(91.91deg, #36C8F5 7.34%, #13E2DD 90.35%);
         border-radius: 0px 0px 16px 16px;
