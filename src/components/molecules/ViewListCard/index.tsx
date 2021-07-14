@@ -1,8 +1,10 @@
 import LikeIconFilled from 'assets/images/heart_filled.svg';
 import Button from 'components/atoms/Button';
 import ChallengeComment from 'components/molecules/ChallengeComment';
+import { ICommentData } from 'components/organisms/ViewCardList';
+import dayjs from 'dayjs';
 import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, RouteComponentProps, withRouter } from 'react-router-dom';
 import Styled from 'styled-components';
 import ColorScrapIcon from '../../../assets/images/color_scrapIcon.svg';
 import CommentCount from '../../../assets/images/commentIcon.svg';
@@ -14,7 +16,7 @@ import MenuBar from '../../../assets/images/menu_bar.svg';
 import ScrapIcon from '../../../assets/images/scrapIcon.svg';
 import Modal from '../../atoms/Modal/index';
 
-interface IProps {
+interface IProps extends RouteComponentProps<MatchParams> {
   nickname?: string;
   image?: string;
   createdAt?: string;
@@ -25,10 +27,12 @@ interface IProps {
   like?: number;
   comments?: number;
   scrap?: number;
-  onClickLike?: () => void;
-  likeClick: boolean;
   reLoadComment: (newComment: any) => void;
-  commentlist: any;
+  commentlist: ICommentData[];
+}
+
+interface MatchParams {
+  id: string;
 }
 
 function ViewListCard({
@@ -43,9 +47,8 @@ function ViewListCard({
   comments,
   commentlist,
   scrap,
-  onClickLike,
+  match,
   reLoadComment,
-  likeClick,
 }: IProps): React.ReactElement {
   const [isOpenComment, setIsOpenComment] = useState(false);
   const [lookMoreButton, setLookMoreButton] = useState(true);
@@ -56,6 +59,25 @@ function ViewListCard({
   const [scrapOpen, setScrap] = useState(false);
   const [deleteModalOpen, setDeleteModalOpen] = useState(false);
   const [userState, setUserState] = useState(2);
+  const [likes, setLikes] = useState<number | null>(like || null);
+  const [likeClick, setLikeClick] = useState(false);
+
+  const { id } = match.params;
+
+  const onClickLike = () => {
+    setLikeClick(!likeClick);
+    if (likes) {
+      if (likeClick === true) {
+        setLikes(likes - 1);
+      } else {
+        setLikes(likes + 1);
+      }
+    }
+  };
+
+  // const handleDelete = async () => {
+  //   const data = await DeleteChallenge(id);
+  // };
 
   if (deleteModalOpen === true) {
     document.body.style.overflow = 'hidden';
@@ -78,7 +100,7 @@ function ViewListCard({
               <div className="profile">
                 <div className="profile__sub">
                   <div className="profile__nickname">{nickname}</div>
-                  <p className="profile__time">{createdAt}</p>
+                  <p className="profile__time">{dayjs(createdAt).format('MM.DD')}</p>
                   {userState === 0 || userState === 1 ? (
                     scrapOpen === false ? (
                       <div className="menu__bar">
@@ -484,4 +506,4 @@ const SViewListCard = Styled.div`
 }
 `;
 
-export default ViewListCard;
+export default withRouter(ViewListCard);
