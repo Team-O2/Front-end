@@ -3,7 +3,7 @@ import Styled from 'styled-components';
 
 export interface IProps {
   children: React.ReactElement | string;
-  onClick?: (e: React.MouseEvent) => void;
+  onClick?: (e: React.MouseEvent<HTMLButtonElement>) => void;
   className?: string;
   value?: string;
   disabled?: boolean;
