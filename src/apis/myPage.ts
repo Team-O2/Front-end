@@ -29,6 +29,10 @@ interface IFetchParameter {
   offset?: number;
 }
 
+interface IFetchCommentParameter extends IFetchParameter {
+  category: string;
+}
+
 export const getShareTogetherListData = async ({
   token,
   limit = 6,
@@ -96,12 +100,14 @@ export const getUserCommentListData = async ({
   token,
   limit = 5,
   offset = 0,
-}: IFetchParameter): Promise<IMyUserCommentResponse | null> => {
+  category,
+}: IFetchCommentParameter): Promise<IMyUserCommentResponse | null> => {
   try {
     const data = await serverAxios.get('/user/mypage/comment', {
       headers: { Accept: 'application/json', Authorization: token },
-      params: { limit, offset },
+      params: { limit, offset, postModel: category },
     });
+
     if (data.status === 200) {
       return data.data.data;
     } else {
