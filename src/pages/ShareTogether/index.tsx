@@ -5,6 +5,8 @@ import ConcertCardList from 'components/organisms/ConcertCardList';
 import ConcertList from 'components/organisms/ConcertList';
 import SeachForm from 'components/organisms/SearchForm';
 import React, { useEffect, useState } from 'react';
+import { useRecoilState } from 'recoil';
+import { userStatusState } from 'stores/user';
 import Styled from 'styled-components';
 
 interface IConcertData {
@@ -32,26 +34,31 @@ function ShareTogether(): React.ReactElement {
   const [selectedCategory, setSelectedCategory] = useState('전체');
   const [keyword, setKeyword] = useState('');
   const [isClickedEntire, setISClickedEntire] = useState(false);
+  const [userStatusData, setUserStausData] = useRecoilState(userStatusState);
   useEffect(() => {
-    getConcertList(
-      'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoiNjBlZDg2NTZkOWM0ZTg0NzM4NzM1OTYyIn0sImlhdCI6MTYyNjE3OTI4OSwiZXhwIjoxNjI3Mzg4ODg5fQ.kmF5YDPDVAv6XyR6wNW_7JWm_3byloniqKSM7zcrDbg',
-    );
+    const getConcertList = async () => {
+      if (userStatusData) {
+        const data = await getConcertListData(userStatusData.token);
+        data && setConcertList(data);
+      } else {
+        alert('로그인 후 이용하세요');
+      }
+    };
+    getConcertList();
   }, [isClickedEntire]);
+
   useEffect(() => {
-    getConcertCategoryList(
-      'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoiNjBlZDg2NTZkOWM0ZTg0NzM4NzM1OTYyIn0sImlhdCI6MTYyNjE3OTI4OSwiZXhwIjoxNjI3Mzg4ODg5fQ.kmF5YDPDVAv6XyR6wNW_7JWm_3byloniqKSM7zcrDbg',
-      selectedCategory,
-      keyword,
-    );
+    const getConcertCategoryList = async () => {
+      if (userStatusData) {
+        const data = await getConcertSearchData(userStatusData.token, selectedCategory, keyword);
+        data && setConcertList(data);
+      } else {
+        alert('로그인 후 이용하세요');
+      }
+    };
+    getConcertCategoryList();
   }, [selectedCategory, keyword]);
-  const getConcertList = async (token: string): Promise<void> => {
-    const data = await getConcertListData(token);
-    data && setConcertList(data);
-  };
-  const getConcertCategoryList = async (token: string, selectedCategory: string, keyword: string): Promise<void> => {
-    const data = await getConcertSearchData(token, selectedCategory, keyword);
-    data && setConcertList(data);
-  };
+
   const reRenderCategory = (category: string) => {
     if (category === '전체') {
       setSelectedCategory('');

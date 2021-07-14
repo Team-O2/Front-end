@@ -4,6 +4,8 @@ import CommentList from 'components/organisms/CommentList';
 import DetailContent from 'components/organisms/DetailContent';
 import React, { useEffect, useState } from 'react';
 import { RouteComponentProps } from 'react-router';
+import { useRecoilState } from 'recoil';
+import { userStatusState } from 'stores/user';
 import Styled from 'styled-components';
 
 interface MatchParams {
@@ -36,18 +38,22 @@ function ShareTogetherDetail({ match }: RouteComponentProps<MatchParams>): React
   const [commentList, setCommentList] = useState([]);
   const [Likes, setLikes] = useState(0);
   const [likeClick, setLikeClick] = useState(false);
+  const [userStatusData, setUserStausData] = useRecoilState(userStatusState);
+
   useEffect(() => {
-    getConcertList(
-      'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoiNjBlZDg2NTZkOWM0ZTg0NzM4NzM1OTYyIn0sImlhdCI6MTYyNjE3OTI4OSwiZXhwIjoxNjI3Mzg4ODg5fQ.kmF5YDPDVAv6XyR6wNW_7JWm_3byloniqKSM7zcrDbg',
-      id,
-    );
+    const getConcertList = async () => {
+      if (userStatusData) {
+        const data = await getConcertData(userStatusData.token, id);
+        data && setConcert(data);
+        data && setCommentList(data.comments);
+        data && setLikes(data.likes);
+      } else {
+        alert('로그인 후 이용하세요');
+      }
+    };
+    getConcertList();
   }, []);
-  const getConcertList = async (token: string, condertID: string): Promise<void> => {
-    const data = await getConcertData(token, condertID);
-    data && setConcert(data);
-    data && setCommentList(data.comments);
-    data && setLikes(data.likes);
-  };
+
   const reLoadComment = (newComment: any) => {
     setCommentList(commentList?.concat(newComment));
   };
