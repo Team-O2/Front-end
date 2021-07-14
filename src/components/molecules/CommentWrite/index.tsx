@@ -1,6 +1,6 @@
+import TextArea from 'components/atoms/TextArea';
 import React from 'react';
 import Styled from 'styled-components';
-import TextArea from 'components/atoms/TextArea';
 
 export interface IProps {
   className?: string;

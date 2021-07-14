@@ -1,17 +1,18 @@
-import React from 'react';
-import { BrowserRouter, Route, Switch } from 'react-router-dom';
-import ShareTogether from 'pages/ShareTogether';
-import ShareTogetherDetail from 'pages/ShareTogetherDetail';
-import Home from './pages/Home';
-import Login from './pages/Login';
-import AdminWrite from './pages/AdminWrite';
-import AdminChallengeOpen from './pages/AdminChallengeOpen';
-import AdminChallengeList from 'pages/AdminChallengeList';
-import Join from './pages/Join/index';
-import FindPwd from 'pages/FindPwd';
-import WriteLearnMyself from 'components/templates/LearnMyself/ChallengeWrite';
+import EditLearnMyself from 'components/templates/LearnMyself/ChallengeEdit';
 import LearnMyself from 'components/templates/LearnMyself/ChallengeList';
 import ChallengeRegister from 'components/templates/LearnMyself/ChallengeRegister';
+import WriteLearnMyself from 'components/templates/LearnMyself/ChallengeWrite';
+import AdminChallengeList from 'pages/AdminChallengeList';
+import FindPwd from 'pages/FindPwd';
+import ShareTogether from 'pages/ShareTogether';
+import ShareTogetherDetail from 'pages/ShareTogetherDetail';
+import React from 'react';
+import { BrowserRouter, Route, Switch } from 'react-router-dom';
+import AdminChallengeOpen from './pages/AdminChallengeOpen';
+import AdminWrite from './pages/AdminWrite';
+import Home from './pages/Home';
+import Join from './pages/Join/index';
+import Login from './pages/Login';
 
 function Router(): React.ReactElement {
   return (
@@ -29,7 +30,7 @@ function Router(): React.ReactElement {
         <Route exact path="/challenge" component={LearnMyself} />
         <Route exact path="/challengeRegister" component={ChallengeRegister} />
         <Route exact path="/write" component={WriteLearnMyself} />
-        <Route exact path="/edit" component={WriteLearnMyself} />
+        <Route exact path="/edit" component={EditLearnMyself} />
         <Route component={() => <div>404 Not Found</div>} />
       </Switch>
     </BrowserRouter>
