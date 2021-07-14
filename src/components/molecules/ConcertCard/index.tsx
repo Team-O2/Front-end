@@ -5,11 +5,11 @@ interface IProps {
   imgThumbnail: string;
   title: string;
   authorNickname: string;
-  interest: string[];
+  interestList: string[];
   onClickFunc: () => void;
 }
 
-function ConcertCard({ imgThumbnail, title, authorNickname, interest, onClickFunc }: IProps): React.ReactElement {
+function ConcertCard({ imgThumbnail, title, authorNickname, interestList, onClickFunc }: IProps): React.ReactElement {
   return (
     <>
       <SConcertCard>
@@ -19,7 +19,7 @@ function ConcertCard({ imgThumbnail, title, authorNickname, interest, onClickFun
         </div>
         <div className="card__detail" onClick={onClickFunc}>
           <p>{authorNickname}</p>
-          <p>{interest}</p>
+          <p>{interestList}</p>
         </div>
       </SConcertCard>
     </>

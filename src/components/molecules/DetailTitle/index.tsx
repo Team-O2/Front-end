@@ -6,17 +6,14 @@ interface IProps {
   interest?: string[];
   createdAt?: string;
   title?: string;
-  page?: string;
 }
 
-function DetailTitle({ page, title, speaker, createdAt, interest }: IProps): React.ReactElement {
-  console.log(page);
-  const pageTitle = page === 'notice' ? '공지사항' : 'Share Together';
+function DetailTitle({ title, speaker, createdAt, interest }: IProps): React.ReactElement {
   return (
     <>
       <SDetailTitle>
         <div className="title__top">
-          <p>{pageTitle}</p>
+          <p>Share Together</p>
         </div>
         <div className="title__middle">
           <p>{title}</p>

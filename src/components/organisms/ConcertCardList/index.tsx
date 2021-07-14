@@ -38,7 +38,7 @@ function ConcertCardList({ concertCardData }: IProps): React.ReactElement {
               imgThumbnail={card.imgThumbnail}
               title={card.title}
               authorNickname={card.authorNickname}
-              interest={card.interest}
+              interestList={card.interest}
               key={card._id}
               onClickFunc={() => history.push(`/ShareTogether/${card._id}`)}
             ></ConcertCard>

@@ -37,7 +37,7 @@ function ConcertList({ concertData }: IProps): React.ReactElement {
               <Concert
                 imgThumbnail={card.imgThumbnail}
                 authorNickname={card.authorNickname}
-                interest={card.interest}
+                interestList={card.interest}
                 createdAt={card.createdAt}
                 title={card.title}
                 text={card.text}

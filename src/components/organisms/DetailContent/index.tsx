@@ -18,7 +18,6 @@ interface IProps {
 }
 
 function DetailContent({ video, desc, hashtag, like, comments, scrap, onLike, likeClick }: IProps): React.ReactElement {
-  console.log(video);
   return (
     <SDetailContent>
       <div className="image">
