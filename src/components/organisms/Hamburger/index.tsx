@@ -2,8 +2,8 @@ import challengeIcon from 'assets/images/hamChallengeicon.svg';
 import unChallengeIcon from 'assets/images/hamUnchallengeicon.svg';
 import loginIcon from 'assets/images/loginIcon.svg';
 import userImage from 'assets/images/userImage.png';
-import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
+import React, { useEffect, useState } from 'react';
+import { Link, useHistory } from 'react-router-dom';
 import { useRecoilState } from 'recoil';
 import { userState, userStatusState } from 'stores/user';
 import Styled from 'styled-components';
@@ -17,12 +17,26 @@ function Hamburger(): React.ReactElement {
   // 2: 챌린지 안하는 유저 (기간은 신청기간이 아님)
   // 3: 챌린지 하는 유저 (기간은 챌린지 중)
   // 4: 관리자
+  const history = useHistory();
   const [userStatusData, setUserStatusData] = useRecoilState(userStatusState);
   const [userData, setUserData] = useRecoilState(userState);
+
   const [userImg, setUserImg] = useState(userImage); //유저&사진이 존재 하면 이미지변경
   const [userStateNum, setUserState] = useState(userStatusData ? userStatusData.userType : 0);
   // const [userStateNum, setUserState] = useState(1);
   const [userName, setUserName] = useState(userData?.nickname);
+
+  const logOutHandler = () => {
+    setUserStatusData(null);
+    setUserData(null);
+    alert('로그아웃 되었습니다');
+    history.push('/');
+  };
+
+  useEffect(() => {
+    userStatusData ? setUserState(userStatusData.userType) : setUserState(0);
+    userData ? setUserName(userData.nickname) : setUserName('');
+  }, [userStatusData]);
 
   return (
     <HamburgerWrap>
@@ -155,7 +169,7 @@ function Hamburger(): React.ReactElement {
           </Link>
         )}
         {(userStateNum === 1 || userStateNum === 2 || userStateNum === 3 || userStateNum === 4) && (
-          <Button>
+          <Button onClick={logOutHandler}>
             <div className="bottom__button" style={{ color: '#8b8b8b', marginLeft: '8px', marginRight: '24px' }}>
               로그아웃
             </div>
