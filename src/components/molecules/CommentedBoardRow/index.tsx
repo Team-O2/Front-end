@@ -10,14 +10,15 @@ export interface IProps {
   content?: string;
   date?: string;
   boardId?: string;
+  onChange?: (e: React.ChangeEvent<HTMLInputElement>) => void;
 }
 
-function CommentedBoardRow({ isChecked = false, content, date, boardId, id }: IProps): React.ReactElement {
+function CommentedBoardRow({ content, date, boardId, id, onChange, isChecked }: IProps): React.ReactElement {
   return (
     <Wrapper>
       {content && (
         <div className="row">
-          <CheckBox className="row__checkbox" id={id} checked={isChecked} />
+          <CheckBox className="row__checkbox" id={id} onChange={onChange} checked={isChecked} />
           <Label className="row__content body4" htmlFor={id}>
             {content}
           </Label>
