@@ -135,9 +135,6 @@ export const getNoticeData = async (token: string, noticeID: string) => {
       headers: {
         Authorization: token,
       },
-      params: {
-        noticeID: noticeID,
-      },
     });
     if (data.data.status === 200) {
       return data.data.data;

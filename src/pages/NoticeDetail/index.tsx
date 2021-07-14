@@ -1,7 +1,7 @@
 import { getNoticeData } from 'apis/ShareTogether';
-import DetailTitle from 'components/molecules/DetailTitle';
+import NoticeDetailTitle from 'components/molecules/NoticeDetailTitle';
 import CommentList from 'components/organisms/CommentList';
-import DetailContent from 'components/organisms/DetailContent';
+import NoticeDetailContent from 'components/organisms/NoticeDetailContent';
 import React, { useEffect, useState } from 'react';
 import { RouteComponentProps } from 'react-router';
 import Styled from 'styled-components';
@@ -42,30 +42,30 @@ function NoticeDetail({ match }: RouteComponentProps<MatchParams>): React.ReactE
   }, []);
   const getNotice = async (token: string, noticeID: string): Promise<void> => {
     const data = await getNoticeData(token, noticeID);
-    data && setNotice(data);
-    data && setCommentList(data.comments);
+    data[0] && setNotice(data[0]);
+    console.log(data);
+    data[0] && setCommentList(data[0].comments);
+    console.log(notice);
   };
   const reLoadComment = (newComment: any) => {
     setCommentList(commentList?.concat(newComment));
   };
 
   return (
-    <SNoticeDetail>
-      <DetailTitle
-        title={notice?.title}
-        speaker={notice?.authorNickname}
-        createdAt={notice?.createdAt}
-        interest={notice?.interest}
-      ></DetailTitle>
-      <DetailContent
-        video={notice?.videoLink}
-        desc={notice?.text}
-        hashtag={notice?.hashtag}
-        comments={notice?.commentNum}
-        scrap={notice?.scrapNum}
-      ></DetailContent>
-      <CommentList commentList={commentList} concertID={notice?._id} reLoadComment={reLoadComment}></CommentList>
-    </SNoticeDetail>
+      <SNoticeDetail>
+        <NoticeDetailTitle
+          title={notice?.title}
+          createdAt={notice?.createdAt}
+          speaker={notice?.user.nickname}
+          interest={notice?.interest}
+        ></NoticeDetailTitle>
+        <NoticeDetailContent
+          imgThumbnail={notice?.imgThumbnail}
+          desc={notice?.text}
+          comments={notice?.commentNum}
+        ></NoticeDetailContent>
+        <CommentList commentList={commentList} concertID={notice?._id} reLoadComment={reLoadComment}></CommentList>
+      </SNoticeDetail>
   );
 }
 

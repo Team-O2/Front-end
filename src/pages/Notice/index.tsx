@@ -4,6 +4,7 @@ import NoticeHeader from 'components/organisms/NoticeHeader';
 import SeachForm from 'components/organisms/SearchForm';
 import React, { useEffect, useState } from 'react';
 import Styled from 'styled-components';
+
 interface INoticeData {
   videoLink: string;
   imgThumbnail: string;
@@ -60,7 +61,7 @@ function Notice(): React.ReactElement {
           concertListNum={noticeListNum}
           selectedCategory="공지사항"
         ></SeachForm>
-        <ConcertList concertData={noticeList}></ConcertList>
+        <NoticeList noticeList={noticeList}></NoticeList>
       </SNotice>
     </>
   );
