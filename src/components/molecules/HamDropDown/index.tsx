@@ -1,13 +1,19 @@
 import arrowDown from 'assets/images/ham_arrowDown.svg';
 import arrowUp from 'assets/images/ham_arrowUp.svg';
+import { Link } from 'components/atoms';
 import React, { useState } from 'react';
 import Styled from 'styled-components';
 import Button from '../../atoms/Button/index';
 
+interface Iitem {
+  name: string;
+  link: string;
+}
+
 export interface IProps {
   className?: string;
   title: string;
-  itemList: string[];
+  itemList: Iitem[];
   isEnglish: boolean;
 }
 
@@ -31,9 +37,9 @@ function HamDropDown({ title, itemList, isEnglish }: IProps): React.ReactElement
             <div className="detail__btnContainer">
               {itemList.map((value, id) => {
                 return (
-                  <Button key={id} className="detail__btn" value={value}>
-                    {value}
-                  </Button>
+                  <Link key={id} to={value.link}>
+                    <Button className="detail__btn">{value.name}</Button>
+                  </Link>
                 );
               })}
               <Button className="detail__btn--fake">_</Button>
