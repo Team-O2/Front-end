@@ -1,4 +1,4 @@
-import { getChallengeContent, writeForm } from 'libs/getChallenge';
+import { ChallengeEdit, getChallengeContent } from 'libs/getChallenge';
 import React, { useEffect, useState } from 'react';
 import { useHistory } from 'react-router-dom';
 import { useRecoilState } from 'recoil';
@@ -98,16 +98,20 @@ function EditCard({ id }: IEditCard) {
       description2: '',
       description3: '',
     });
-    const writeData = {
+    const editData = {
       good: description1,
       bad: description2,
       learn: description3,
       interest: selectedInterest,
-      generation: 2,
     };
     if (userStatusData) {
+<<<<<<< refs/remotes/origin/feat/Challenge
       const data = await writeForm(writeData, userStatusData.token);
       history.push('/challenge');
+=======
+      const data = await ChallengeEdit(editData, userStatusData.token, id);
+      data && history.push('/challenge');
+>>>>>>> Feat: 챌린지 수정 완료
     }
   };
 

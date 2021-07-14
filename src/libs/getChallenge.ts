@@ -21,6 +21,13 @@ interface WriteData {
   generation: number;
 }
 
+interface EditData {
+  good: string;
+  bad: string;
+  learn: string;
+  interest: string[];
+}
+
 interface CommentData {
   parentID?: string;
   text: string;
@@ -57,6 +64,20 @@ export const writeForm = async (writeData: WriteData, token: string) => {
   } catch (error) {
     console.log('[FAIL] POST data', error);
   }
+};
+
+export const ChallengeEdit = async (editData: EditData, token: string, id: string) => {
+  try {
+    const data = await instance.patch(`/challenge/${id}`, editData, {
+      headers: {
+        Authorization: token,
+      },
+    });
+    if (data.status === 200) return true;
+  } catch (error) {
+    console.log('[FAIL] POST data', error);
+  }
+  return false;
 };
 
 export const ChallengeListData = async (token: string) => {
