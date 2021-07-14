@@ -1,5 +1,8 @@
 import { writeForm } from 'libs/getChallenge';
 import React, { useEffect, useState } from 'react';
+import { useHistory } from 'react-router-dom';
+import { useRecoilState } from 'recoil';
+import { userStatusState } from 'stores/user';
 import Styled from 'styled-components';
 import CharacterBlack from '../../../assets/images/character_black.svg';
 import CharacterColor1 from '../../../assets/images/character_color1.svg';
@@ -62,6 +65,8 @@ type MyFormProps = {
 };
 
 function WriteCard({ onChangeForm }: MyFormProps) {
+  const [userStatusData, setUserStatusData] = useRecoilState(userStatusState);
+  const history = useHistory();
   const maxByte = 1000; //최대 1000바이트
   const [isBadgeModal, setIsBadgeModal] = useState(false); //뱃지 모달
   const [countProgressBar, setCountProgressBar] = useState(0); //프로그래스바
@@ -104,9 +109,11 @@ function WriteCard({ onChangeForm }: MyFormProps) {
       interest: selectedInterest,
       generation: 2,
     };
-    console.log('writeDate11111', writeData);
-    const getData = await writeForm(writeData);
-    console.log('getData', getData);
+    if (userStatusData) {
+      const data = await writeForm(writeData, userStatusData.token);
+      console.log('getData', data);
+      history.push('/challenge');
+    }
   };
 
   const progressBarState = () => {
@@ -331,12 +338,12 @@ function WriteCard({ onChangeForm }: MyFormProps) {
         {countProgressBar === 3 ? (
           <div className="button">
             <button className="write__button-color" onClick={handleSubmit}>
-              수정완료
+              글 올리기
             </button>
           </div>
         ) : (
           <div className="button">
-            <button className="write__button-black">수정완료</button>
+            <button className="write__button-black">글 올리기</button>
           </div>
         )}
 

@@ -10,8 +10,11 @@ import MinusIcon from '../../../assets/images/minusIcon.svg';
 import PlusIcon from '../../../assets/images/plusIcon.svg';
 import Modal from '../../atoms/Modal/index';
 import RegisterHeader from '../RegisterHeader';
+import { useRecoilState } from 'recoil';
+import { userStatusState } from 'stores/user';
 
 const ChallengeRegister = (): React.ReactElement => {
+  const [userStatusData, setUserStatusData] = useRecoilState(userStatusState);
   const [registerCount, setRegisterCount] = useState(0);
   const [isOpenModal, setIsOpenModal] = useState(false);
   const [isSubmitModal, setIsSubmitModal] = useState(false);
@@ -28,8 +31,10 @@ const ChallengeRegister = (): React.ReactElement => {
     const signData = {
       challengeCNT: registerCount,
     };
-    const getData = await SignRegister(signData);
-    console.log('getData', getData);
+    if (userStatusData) {
+      const getData = await SignRegister(signData, userStatusData.token);
+      console.log('getData', getData);
+    }
   };
   return (
     <SRegister>
