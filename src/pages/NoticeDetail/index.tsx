@@ -3,7 +3,6 @@ import DetailTitle from 'components/molecules/DetailTitle';
 import CommentList from 'components/organisms/CommentList';
 import DetailContent from 'components/organisms/DetailContent';
 import Footer from 'components/organisms/Footer';
-import Header from 'components/organisms/Header';
 import React, { useEffect, useState } from 'react';
 import { RouteComponentProps } from 'react-router';
 import Styled from 'styled-components';
@@ -53,7 +52,6 @@ function NoticeDetail({ match }: RouteComponentProps<MatchParams>): React.ReactE
 
   return (
     <>
-      <Header />
       <SNoticeDetail>
         <DetailTitle
           title={notice?.title}

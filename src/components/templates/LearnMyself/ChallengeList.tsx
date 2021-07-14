@@ -1,7 +1,6 @@
 import ViewCardList from 'components/organisms/ViewCardList';
 import React from 'react';
 import ChallengeHeader from '../../molecules/ChallengeHeader.tsx';
-import Header from '../../organisms/Header';
 // import {getChallengeData} from '../../../libs/ChallengeApi';
 
 // const [challengeData,setChallengeData] =useState("");
@@ -20,7 +19,6 @@ import Header from '../../organisms/Header';
 const ChallengeView = () => {
   return (
     <div>
-      <Header />
       <ChallengeHeader />
       <ViewCardList />
     </div>

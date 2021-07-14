@@ -20,7 +20,6 @@ import speakerBadge2 from 'assets/images/speakerBadge2.png';
 import speakerBadge3 from 'assets/images/speakerBadge3.png';
 import { Button } from 'components/atoms';
 import BadgeCard from 'components/molecules/BadgeExpCard';
-import Header from 'components/organisms/Header';
 import React from 'react';
 import { Link } from 'react-router-dom';
 import Styled from 'styled-components';
@@ -28,7 +27,6 @@ import Styled from 'styled-components';
 function Home(): React.ReactElement {
   return (
     <>
-      <Header />
       <JoinWrap>
         <div className="top">
           <h1 className="top__title--O2 ">O2</h1>
