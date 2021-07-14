@@ -33,11 +33,12 @@ function ShareTogether(): React.ReactElement {
   const [concertList, setConcertList] = useState<IConcertData[] | null>(null);
   const [selectedCategory, setSelectedCategory] = useState('전체');
   const [keyword, setKeyword] = useState('');
+  const [isClickedEntire, setISClickedEntire] = useState(false);
   useEffect(() => {
     getConcertList(
       'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoiNjBlZDg2NTZkOWM0ZTg0NzM4NzM1OTYyIn0sImlhdCI6MTYyNjE3OTI4OSwiZXhwIjoxNjI3Mzg4ODg5fQ.kmF5YDPDVAv6XyR6wNW_7JWm_3byloniqKSM7zcrDbg',
     );
-  }, []);
+  }, [isClickedEntire]);
   useEffect(() => {
     getConcertCategoryList(
       'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoiNjBlZDg2NTZkOWM0ZTg0NzM4NzM1OTYyIn0sImlhdCI6MTYyNjE3OTI4OSwiZXhwIjoxNjI3Mzg4ODg5fQ.kmF5YDPDVAv6XyR6wNW_7JWm_3byloniqKSM7zcrDbg',
@@ -54,7 +55,12 @@ function ShareTogether(): React.ReactElement {
     data && setConcertList(data);
   };
   const reRenderCategory = (category: string) => {
-    setSelectedCategory(category);
+    if (category === '전체') {
+      setSelectedCategory('');
+      setISClickedEntire(!isClickedEntire);
+    } else {
+      setSelectedCategory(category);
+    }
   };
   const reRenderKeyword = (keyword: string) => {
     setKeyword(keyword);
