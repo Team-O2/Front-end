@@ -92,7 +92,6 @@ function EditCard({ id }: IEditCard) {
   };
 
   const handleSubmit = async (e: any) => {
-    setUserData({ ...userData, interest: selectedInterest });
     e.preventDefault();
     setForm({
       description1: '',
@@ -129,32 +128,22 @@ function EditCard({ id }: IEditCard) {
   const onChange = (e: any) => {
     const text_val = e.target.value; //입력한 문자
     const target_byte_name = 'byte' + e.target.name.split('description')[1];
-
     let str = '';
-    let totalByte = 0;
-    for (let i = 0; i < text_val.length; i++) {
-      const each_char = text_val.charAt(i);
-      const uni_char = escape(each_char); //유니코드 형식으로 변환
-      if (uni_char.length > 4) {
-        totalByte += 1; //처음엔 한글 2Byte했다가 바꿈
-      } else {
-        // 영문,숫자,특수문자 : 1Byte
-        totalByte += 1;
-      }
-    }
+    let totalByte = stringtoByte(text_val);
 
     if (totalByte >= maxByte) {
       str = text_val.substring(0, maxByte);
       e.target.value = str;
-
       totalByte = maxByte;
     }
-
     onChange2(e.target);
     setByte({
       ...byte,
       [target_byte_name]: totalByte,
     });
+  };
+  const stringtoByte = (value: string) => {
+    return value.length;
   };
 
   useEffect(() => {
@@ -163,9 +152,19 @@ function EditCard({ id }: IEditCard) {
   useEffect(() => {
     getDefaultData();
   }, []);
+
   const getDefaultData = async () => {
     if (userStatusData) {
       const data = await getChallengeContent(id, userStatusData.token);
+      if (data) {
+        setForm({ description1: data.good, description2: data.bad, description3: data.learn });
+        setSelectedInterest(data.interest);
+        setByte({
+          byte1: stringtoByte(data.good),
+          byte2: stringtoByte(data.bad),
+          byte3: stringtoByte(data.learn),
+        });
+      }
     } else {
     }
   };
@@ -174,9 +173,6 @@ function EditCard({ id }: IEditCard) {
   const [isClickTag, setIsClickTag] = useState(false);
   const [isInterestModalOpen, setIsInterestModalOpen] = useState(false);
 
-  const [userData, setUserData] = useState({
-    interest: [''],
-  });
   const [selectedInterest, setSelectedInterest] = useState<string[]>([]);
   const modalInterestHandler = (interest: string) => {
     if (selectedInterest.length === 0) {
@@ -214,10 +210,6 @@ function EditCard({ id }: IEditCard) {
       </button>
     );
   };
-
-  useEffect(() => {
-    setSelectedInterest(selectedInterest);
-  }, [selectedInterest]);
 
   return (
     <>
