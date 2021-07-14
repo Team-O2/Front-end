@@ -1,67 +1,90 @@
-import React from 'react';
-import Styled from 'styled-components';
 import ViewListCard from 'components/molecules/ViewListCard';
+import { ChallengeListData } from 'libs/getChallenge';
+import React, { useState } from 'react';
+import Styled from 'styled-components';
 
-const viewData = [
-  {
-    id: '1',
-    nickname: '지브리',
-    time: '1시간 전',
-    tag: '#효인',
-    content1:
-      '오늘은 아침 일찍 일어나서 스스로 미라클 모닝을 실천해봤다. 새벽부터 열심히 발품팔아 사업 아이템을 디벨롭 시켰다^^ 많이 어쩌구된 거 같아서 좋...오늘은 아침 일찍 일어나서 스스로 미라클 모닝을 실천해봤다. 새벽부터 열심히 발품팔아 사업 아이템을 디벨롭 시켰다^^ 많이 어쩌구된 거 같아서 좋...오늘은 아침 일찍 일어나서 스스로 미라클 모닝오늘은 아침 일찍 일어나서 스스로 미라클 모닝을 실천해봤다. 새벽부터 열심히 발품팔아 사업 아이템을 디벨롭 시켰다^^ 많이 어쩌구된 거 같아서 좋...오늘은 아침 일찍 일어나서 스스로 미라클 모닝을 실천해봤다. 새벽부터 열심히 발품팔아 사업 아이템을 디벨롭 시켰다^^ 많이 어쩌구된 거 같아서 좋...오늘은 아침 일찍 일어나서 스스로 미라클 모닝을 실천해봤다. 새벽부터 열심히 발품팔아 사업 아이템을 디벨롭 시켰다^^ 많이 어쩌구된 거 같아서 좋...스로 미라클 모닝을 실천해봤다. 새벽부터 열심히 발품팔아 사업 아이템을 실천해봤다. 새벽부터 열심히 발품팔아 사업 아이템을 디벨롭 시켰다^^ 많이 어쩌구된 거 같아서 좋...스로 미라클 모닝을 실천해봤다. 새벽부터 열심히 발품팔아 사업 아이템',
-    content2:
-      '오늘은 열심히 살았다오늘은 열심히 살았다오늘은 열심히 살았다오늘은 열심히 살았다오늘은 열심히 살았다오늘은 열심히 살았다오늘은 열심히 살았다오늘은 열심히 살았다오늘은 열심히 살았다오늘은 열심히 살았다오늘은 열심히 살았다오늘은 열심히 살았다',
-    content3:
-      '오늘은 열심히 살았다오늘은 열심히 살았다오늘은 열심히 살았다오늘은 열심히 살았다오늘은 열심히 살았다오늘은 열심히 살았다오늘은 열심히 살았다오늘은 열심히 살았다오늘은 열심히 살았다오늘은 열심히 살았다오늘은 열심히 살았다오늘은 열심히 살았다오늘은 열심히 살았다오늘은 열심히 살았다오늘은 열심히 살았다',
-    countGood: 124,
-    countCommit: 48,
-    comment: '정말 멋진 회고록입니다. 너무 배울점이 많아요',
-    recomment: '감사합니다 좋은하루 보내세요.',
-  },
-  {
-    id: '2',
-    nickname: '지브리',
-    time: '1시간 전',
-    tag: '#효인',
-    content1:
-      '오늘은 아침 일찍 일어나서 스스로 미라클 모닝을 실천해봤다. 새벽부터 열심히 발품팔아 사업 아이템을 디벨롭 시켰다^^ 많이 어쩌구된 거 같아서 좋...오늘은 아침 일찍 일어나서 스스로 미라클 모닝을 실천해봤다. 새벽부터 열심히 발품팔아 사업 아이템을 디벨롭 시켰다^^ 많이 어쩌구된 거 같아서 좋...오늘은 아침 일찍 일어나서 스스로 미라클 모닝오늘은 아침 일찍 일어나서 스스로 미라클 모닝을 실천해봤다. 새벽부터 열심히 발품팔아 사업 아이템을 디벨롭 시켰다^^ 많이 어쩌구된 거 같아서 좋...오늘은 아침 일찍 일어나서 스스로 미라클 모닝을 실천해봤다. 새벽부터 열심히 발품팔아 사업 아이템을 디벨롭 시켰다^^ 많이 어쩌구된 거 같아서 좋...오늘은 아침 일찍 일어나서 스스로 미라클 모닝을 실천해봤다. 새벽부터 열심히 발품팔아 사업 아이템을 디벨롭 시켰다^^ 많이 어쩌구된 거 같아서 좋...스로 미라클 모닝을 실천해봤다. 새벽부터 열심히 발품팔아 사업 아이템을 실천해봤다. 새벽부터 열심히 발품팔아 사업 아이템을 디벨롭 시켰다^^ 많이 어쩌구된 거 같아서 좋...스로 미라클 모닝을 실천해봤다. 새벽부터 열심히 발품팔아 사업 아이템',
-    content2:
-      '오늘은 열심히 살았다오늘은 열심히 살았다오늘은 열심히 살았다오늘은 열심히 살았다오늘은 열심히 살았다오늘은 열심히 살았다오늘은 열심히 살았다오늘은 열심히 살았다오늘은 열심히 살았다오늘은 열심히 살았다오늘은 열심히 살았다오늘은 열심히 살았다',
-    content3:
-      '오늘은 열심히 살았다오늘은 열심히 살았다오늘은 열심히 살았다오늘은 열심히 살았다오늘은 열심히 살았다오늘은 열심히 살았다오늘은 열심히 살았다오늘은 열심히 살았다오늘은 열심히 살았다오늘은 열심히 살았다오늘은 열심히 살았다오늘은 열심히 살았다오늘은 열심히 살았다오늘은 열심히 살았다오늘은 열심히 살았다',
-    countGood: 124,
-    countCommit: 12,
-    comment: '정말 멋진 회고록입니다. 너무 배울점이 많아요',
-    recomment: '감사합니다 좋은하루 보내세요.',
-  },
-];
+interface IChallengeData {
+  good: string;
+  bad: string;
+  learn: string;
+  commentNum: number;
+  comments: string[];
+  generation: number;
+  createdAt: string;
+  isDeleted: boolean;
+  scrapNum: number;
+  interest: string[];
+  likes: number;
+  updatedAt: string;
+  user: { img: string; nickname: string; _id: string };
+  __v: number;
+  _id: string;
+}
 
-function ViewCardList(): React.ReactElement {
+function viewCardList(): React.ReactElement {
+  const [state, setState] = useState([]);
+  const [challenge, setChallenge] = useState<IChallengeData | null>(null);
+  const [commentList, setCommentList] = useState([]);
+  const [likes, setLikes] = useState(0);
+  const [likeClick, setLikeClick] = useState(false);
+
+  const ChallengeList = async (): Promise<void> => {
+    const data = await ChallengeListData();
+    data && setChallenge(data);
+    data && setCommentList(data.comments);
+    data && setLikes(data.likes);
+    console.log('데이터잘들어올까요?', data);
+    // setState(data);
+    // React.useEffect(() => {
+    //   setState(data);
+    // }, [state]);
+  };
+
+  React.useEffect(() => {
+    ChallengeList();
+  }, []);
+
+  console.log('데이터잘들어올까요222?', challenge);
+
+  const reLoadComment = (newComment: any) => {
+    setCommentList(commentList?.concat(newComment));
+  };
+
+  const clickLike = () => {
+    setLikeClick(!likeClick);
+    if (likeClick === true) {
+      setLikes(likes - 1);
+    } else {
+      setLikes(likes + 1);
+    }
+  };
+
   return (
     <SViewCardList>
-      {viewData.map((props) => {
-        return (
-          <ViewListCard
-            nickname={props.nickname}
-            time={props.time}
-            tag={props.tag}
-            content1={props.content1}
-            content2={props.content2}
-            content3={props.content3}
-            countGood={props.countGood}
-            countCommit={props.countCommit}
-            comment={props.comment}
-            recomment={props.recomment}
-            key={props.id}
-          />
-        );
+      {challenge?.map((data: IChallengeData) => {
+        <ViewListCard
+          nickname={challenge?.user?.nickname}
+          image={challenge?.user?.img}
+          createdAt={challenge?.createdAt}
+          interest={challenge?.interest}
+          good={challenge?.good}
+          bad={challenge?.bad}
+          learn={challenge?.learn}
+          like={likes}
+          commentlist={commentList}
+          reLoadComment={reLoadComment}
+          comments={commentList?.length}
+          scrap={challenge?.scrapNum}
+          onClickLike={clickLike}
+          likeClick={likeClick}
+          key={challenge?.user?._id}
+        />;
       })}
     </SViewCardList>
   );
 }
-const SViewCardList = Styled.div`
 
+const SViewCardList = Styled.div`
 `;
 
-export default ViewCardList;
+export default viewCardList;

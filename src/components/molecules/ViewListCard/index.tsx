@@ -1,59 +1,72 @@
-import React, { useState, useEffect } from 'react';
+import LikeIconFilled from 'assets/images/heart_filled.svg';
+import Button from 'components/atoms/Button';
+import ChallengeComment from 'components/molecules/ChallengeComment';
+import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import Styled from 'styled-components';
-import Button from 'components/atoms/Button';
-import Modal from '../../atoms/Modal/index';
-import ClickGood from '../../../assets/images/heartIcon.svg';
+import ColorScrapIcon from '../../../assets/images/color_scrapIcon.svg';
 import CommentCount from '../../../assets/images/commentIcon.svg';
 import DeleteIcon from '../../../assets/images/deleteIcon.svg';
-import EditIcon from '../../../assets/images/editIcon.svg';
-import MenuBar from '../../../assets/images/menu_bar.svg';
 import DeleteModal from '../../../assets/images/delete_modal.png';
+import EditIcon from '../../../assets/images/editIcon.svg';
+import ClickGood from '../../../assets/images/heartIcon.svg';
+import MenuBar from '../../../assets/images/menu_bar.svg';
+import ScrapIcon from '../../../assets/images/scrapIcon.svg';
+import Modal from '../../atoms/Modal/index';
 
 interface IProps {
   nickname?: string;
-  time?: string;
-  tag?: string;
-  content1?: string;
-  content2?: string;
-  content3?: string;
-  countGood?: number;
-  countCommit?: number;
   image?: string;
-  profile_image?: any;
-  comment?: string;
-  recomment?: string;
-  placeholder?: string;
-  className?: string;
-  challengeData?: any;
+  createdAt?: string;
+  interest?: string[];
+  good?: string;
+  bad?: string;
+  learn?: string;
+  like?: number;
+  comments?: number;
+  scrap?: number;
+  onClickLike?: () => void;
+  likeClick: boolean;
+  reLoadComment: (newComment: any) => void;
+  commentlist: any;
 }
 
 function ViewListCard({
   nickname,
-  time,
-  tag,
-  content1,
-  content2,
-  content3,
-  countGood,
-  countCommit,
   image,
-  profile_image,
-  comment,
-  recomment,
-  challengeData,
-}: IProps) {
+  createdAt,
+  interest,
+  good,
+  bad,
+  learn,
+  like,
+  comments,
+  commentlist,
+  scrap,
+  onClickLike,
+  reLoadComment,
+  likeClick,
+}: IProps): React.ReactElement {
   const [isOpenComment, setIsOpenComment] = useState(false);
   const [lookMoreButton, setLookMoreButton] = useState(true);
   const [IsCommentButton, setIsCommentButton] = useState(true);
   const [IsMenuBar, setIsMenuBar] = useState(true);
   const [IsFoldComment, setIsFoldComment] = useState(true);
-  const [IsFoldRecomment, setIsFoldRecomment] = useState(true);
   const [closed, setClosed] = useState(false);
+  const [scrapOpen, setScrap] = useState(false);
   const [deleteModalOpen, setDeleteModalOpen] = useState(false);
+  const [userState, setUserState] = useState(2);
+
   if (deleteModalOpen === true) {
     document.body.style.overflow = 'hidden';
   } else document.body.style.overflow = 'unset';
+
+  //user상태 :
+  // 0: 비회원,
+  // 1: 챌린지안하는유저,
+  // 2: 챌린지하는유저,
+  // 3: 챌린지하는유저&챌린지종료,
+  // 4: 관리자
 
   return (
     <>
@@ -61,15 +74,38 @@ function ViewListCard({
         <div className="container">
           <div className="detail">
             <div>
-              <img
-                className="detail__image"
-                src="https://mblogthumb-phinf.pstatic.net/MjAyMDA2MjBfMjQ5/MDAxNTkyNjIzNTA3NjIz.bTrVaHFL6fy7V4X5PWL7EFxecY-NUC497LMcP6R-bJkg.POQkqqJjuUgI6iEBMnuwTKu3TgFYvZIKm6-TnVMOgzcg.JPEG.jdawoon09/IMG_8393.JPG?type=w800"
-              />
+              <img className="detail__image" src={image} />
               <div className="profile">
                 <div className="profile__sub">
                   <div className="profile__nickname">{nickname}</div>
-                  <p className="profile__time">{time}</p>
-                  {IsMenuBar === false ? (
+                  <p className="profile__time">{createdAt}</p>
+                  {userState === 0 || userState === 1 ? (
+                    scrapOpen === false ? (
+                      <div className="menu__bar">
+                        <Button className="menuIcon">
+                          <img
+                            src={ColorScrapIcon}
+                            alt=""
+                            onClick={() => {
+                              setScrap(true);
+                            }}
+                          />
+                        </Button>
+                      </div>
+                    ) : (
+                      <div className="menu__bar">
+                        <Button className="menuIcon">
+                          <img
+                            src={ScrapIcon}
+                            alt=""
+                            onClick={() => {
+                              setScrap(false);
+                            }}
+                          />
+                        </Button>
+                      </div>
+                    )
+                  ) : IsMenuBar === false ? (
                     <div className="delete_bar">
                       <Button
                         className="delete_icon"
@@ -99,31 +135,31 @@ function ViewListCard({
                     </div>
                   )}
                 </div>
-                <div className="profile__tag">{tag}</div>
+                <div className="profile__tag">{interest}</div>
               </div>
               <div className="text">
                 <div className="detail__view">
                   <h3 className="view__title">잘한점</h3>
                   {closed === true ? (
-                    <p className="view__content">{content1}</p>
+                    <p className="view__content">{good}</p>
                   ) : (
-                    <p className="view__full_content">{content1}</p>
+                    <p className="view__full_content">{good}</p>
                   )}
                 </div>
                 <div className="detail__view">
                   <h3 className="view__title">못한점</h3>
                   {closed === true ? (
-                    <p className="view__content">{content2}</p>
+                    <p className="view__content">{bad}</p>
                   ) : (
-                    <p className="view__full_content">{content2}</p>
+                    <p className="view__full_content">{bad}</p>
                   )}
                 </div>
                 <div className="detail__view">
                   <h3 className="view__title">배운점</h3>
                   {closed === true ? (
-                    <p className="view__content">{content3}</p>
+                    <p className="view__content">{learn}</p>
                   ) : (
-                    <p className="view__full_content">{content3}</p>
+                    <p className="view__full_content">{learn}</p>
                   )}
                 </div>
                 {lookMoreButton === true ? (
@@ -153,10 +189,14 @@ function ViewListCard({
                 )}
 
                 <div className="icon">
-                  <img className="icon__click" src={ClickGood} alt="" />
-                  <p className="icon__count">{countGood}</p>
+                  {likeClick ? (
+                    <img className="icon__click" src={LikeIconFilled} onClick={onClickLike} alt="" />
+                  ) : (
+                    <img className="icon__click" src={ClickGood} onClick={onClickLike} alt="" />
+                  )}
+                  <p className="icon__count">{like}</p>
                   <img className="icon__click" src={CommentCount} alt="" />
-                  <p className="icon__count">{countCommit}</p>
+                  <p className="icon__count">{comments}</p>
                 </div>
                 {isOpenComment === false ? (
                   <button
@@ -171,66 +211,7 @@ function ViewListCard({
                 ) : (
                   <div>
                     {IsFoldComment === false ? null : (
-                      <div className="comment">
-                        <div className="comment__sub">
-                          <div className="comment__text">
-                            <textarea className="comment__textarea" placeholder="ㅣ댓글을 입력해 주세요."></textarea>
-                          </div>
-                          <div className="comment__button-submit">
-                            <button className="comment__submit">댓글작성</button>
-                          </div>
-                        </div>
-                        <div className="user">
-                          <img
-                            className="user__image"
-                            src="https://mblogthumb-phinf.pstatic.net/MjAyMDA2MjBfMjQ5/MDAxNTkyNjIzNTA3NjIz.bTrVaHFL6fy7V4X5PWL7EFxecY-NUC497LMcP6R-bJkg.POQkqqJjuUgI6iEBMnuwTKu3TgFYvZIKm6-TnVMOgzcg.JPEG.jdawoon09/IMG_8393.JPG?type=w800"
-                          ></img>
-                          <h4 className="user__nickname">{nickname}</h4>
-                          <p className="user__comment">{comment}</p>
-                          {IsFoldRecomment === true ? (
-                            <button
-                              className="comment__fold2"
-                              onClick={() => {
-                                setIsFoldRecomment(false);
-                              }}
-                            >
-                              답글보기
-                            </button>
-                          ) : (
-                            <button
-                              className="comment__fold"
-                              onClick={() => {
-                                setIsFoldRecomment(true);
-                              }}
-                            >
-                              접기
-                            </button>
-                          )}
-                        </div>
-                        {IsFoldRecomment === true ? null : (
-                          <div>
-                            <div className="recomment">
-                              <div className="recomment__text">
-                                <textarea
-                                  className="recomment__textarea"
-                                  placeholder="ㅣ댓글을 입력해 주세요."
-                                ></textarea>
-                              </div>
-                              <div className="recomment__button-submit">
-                                <button className="recomment__submit">답글작성</button>
-                              </div>
-                            </div>
-                            <div className="recomment__user">
-                              <img
-                                className="recomment__user-image"
-                                src="https://mblogthumb-phinf.pstatic.net/MjAyMDA2MjBfMjQ5/MDAxNTkyNjIzNTA3NjIz.bTrVaHFL6fy7V4X5PWL7EFxecY-NUC497LMcP6R-bJkg.POQkqqJjuUgI6iEBMnuwTKu3TgFYvZIKm6-TnVMOgzcg.JPEG.jdawoon09/IMG_8393.JPG?type=w800"
-                              ></img>
-                              <h4 className="recomment__user-nickname">{nickname}</h4>
-                              <p className="recomment__user-comment">{recomment}</p>
-                            </div>
-                          </div>
-                        )}
-                      </div>
+                      <ChallengeComment commentList={commentlist} reLoadComment={reLoadComment}></ChallengeComment>
                     )}
                     <button
                       className="comment__card-fold"
@@ -274,10 +255,11 @@ function ViewListCard({
 }
 
 const SViewListCard = Styled.div`
-
 .container{
-    padding-top: 96px;
+  padding-bottom:60px;
+
 }
+
 .detail{
     padding-top:40px;
     position: relative;
@@ -416,7 +398,7 @@ const SViewListCard = Styled.div`
     padding: 33px 620px 0px 30px; 
     padding-bottom:50px;
     &__click{
-        display:inline-block
+        display:inline-block;
         width: 24px;
         height:24px;
     }
@@ -437,145 +419,6 @@ const SViewListCard = Styled.div`
     line-height: 22px;
     letter-spacing: -0.5px;
     color: #FFFFFF;
-}
-.comment{
-    &__sub{
-        display: flex;
-        flex-direction:column;
-        align-items: flex-end;
-    }
-    &__text{
-        text-align:center;
-        margin: 0 auto;
-    }
-    &__textarea{
-        width: 724px;
-        height: 110px;
-        margin: 0 0 8px;
-        font-size: 16px;
-        padding: 15px 15px 71px;
-        opacity: 0.5;
-    }
-    &__button-submit{
-        padding-right:54px;
-    }
-    &__submit{
-        font-weight: bold;
-        font-size: 16px;
-        line-height: 22px;
-        letter-spacing: -0.5px;
-        color: #555555;
-        border:none;
-        background-color:#FFFFFF;
-    }
-}
-.user{
-    width: 724px;
-    height: 110px;
-    align-items: center;
-    margin: 0 auto;
-    padding-top:61px;
-    &__image{
-        width: 28px;
-        height: 28px;
-        display:inline-block;
-        border-radius: 18px 18px 18px 18px;
-        margin: 5px 13px 0px 0;
-        background-color: #777777;
-    }
-    &__nickname{
-        width:81px;
-        height:22px;
-        margin: 3px 8px 24px 0px;
-        display:inline-block;
-        font-weight: bold;
-        font-size: 16px;
-        line-height: 22px;
-        letter-spacing: -0.5px;
-        color: #0D0D0D;
-    }
-    &__comment{
-        display:inline-block;
-        width: 527px;
-        height:48px;
-        font-size: 16px;
-        line-height: 24px;
-        letter-spacing: -0.5px;
-        color: #6F6F6F;
-    }
-}
-.comment__fold{
-    font-weight: bold;
-    padding-left:34px;
-    font-size: 14px;
-    letter-spacing: -0.5px;
-    color: #36C8F5;
-    border:none;
-    background-color: #FFFFFF;
-}
-.comment__fold2{
-    display:inline-block;
-    font-weight: bold;
-    font-size: 14px;
-    letter-spacing: -0.5px;
-    color: #36C8F5;
-    border:none;
-    background-color: #FFFFFF;
-}
-.recomment{
-    display: flex;
-    flex-direction:column;
-    align-items: flex-end;
-    padding-right: 60px;
-    
-    &__text{
-        text-align:center;
-        padding-left:140px;
-    }
-    &__textarea{
-        width: 594px;
-        height: 54px;
-        font-size: 16px;
-        padding: 15px;
-        opacity: 0.5;
-        margin: 0 0 8px;
-    }
-    &__submit{
-        font-weight: bold;
-        font-size: 14px;
-        line-height: 20px;
-        letter-spacing: -0.5px;
-        color: #555555;
-        border: none;
-        background-color: #FFFFFF;
-    }
-    &__user{
-        padding-left: 190px;
-        padding-bottom:40px;
-
-        &-image{
-            display:inline-block;
-            width: 26px;
-            height: 26px; 
-            border-radius: 18px 18px 18px 18px;
-        }
-        &-nickname{
-            display:inline-block;
-            padding: 30px 22px 20px 10px;
-            font-weight: bold;
-            font-size: 16px;
-            line-height: 22px;
-            letter-spacing: -0.5px;
-            color: #0D0D0D;
-        }
-        &-comment{
-            display: inline-block;
-            font-size: 16px;
-            line-height: 24px;
-            letter-spacing: -0.5px;
-            color: #6F6F6F;
-        }
-    }
 }
 
 .delete{
