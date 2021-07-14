@@ -32,7 +32,7 @@ function MyPageHeader({ userInfo }: IProps): React.ReactElement {
           <Icon className="userInfo__editIcon" src={Edit} />
         </Link>
         <div className="userInfo__tag body3">
-          {globalUserInfo.interest?.map((tag, idx) => (
+          {globalUserInfo?.interest?.map((tag, idx) => (
             <span key={idx}>#{tag} </span>
           ))}
         </div>

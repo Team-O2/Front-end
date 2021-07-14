@@ -10,7 +10,7 @@ import { LearnMyselfCard, MyPageSection, ShareTogetherCard } from 'components/mo
 import { MyCommentList, MyPageHeader } from 'components/organisms';
 import React, { useEffect, useState } from 'react';
 import { useRecoilValue } from 'recoil';
-import { userState } from 'stores/user';
+import { userState, userStatusState } from 'stores/user';
 import Styled from 'styled-components';
 import { palette } from 'styled-tools';
 import {
@@ -24,7 +24,6 @@ import {
 import { IShareTogether } from 'types/shareTogether';
 import { changeDateFormat } from 'utils';
 
-
 function MyPage(): React.ReactElement {
   const [selectedSection, setSelectedSection] = useState('scrap');
   const [userInfo, setUserInfo] = useState<IMyPageHeader | null>(null);
@@ -36,35 +35,36 @@ function MyPage(): React.ReactElement {
   const [reRenderFlag, setReRenderFlag] = useState(false);
   const [currentPage, setCurrentPage] = useState(1);
   const globalUserInfo = useRecoilValue(userState);
+  const globalUserStatusInfo = useRecoilValue(userStatusState);
 
   const onChangeSection = (e: React.ChangeEvent<HTMLInputElement>) => {
     setSelectedSection(e.target.id);
   };
 
   const fetchMyPageUserInfo = async () => {
-    const data = await getMyPageUserInfo(TOKEN);
+    const data = await getMyPageUserInfo(globalUserStatusInfo?.token);
     setUserInfo(data);
   };
 
   const fetchScrappedShareTogetherData = async () => {
-    const data = await getShareTogetherListData({ token: TOKEN });
+    const data = await getShareTogetherListData({ token: globalUserStatusInfo?.token });
     setShareTogetherData(data);
   };
 
   const fetchScrappedLearnMyselfData = async () => {
-    const data = await getLearnMyselfListData({ token: TOKEN });
+    const data = await getLearnMyselfListData({ token: globalUserStatusInfo?.token });
     setLearnMyselfData(data);
   };
 
   const fetchUserLearnMyselfData = async () => {
-    const data = await getUserLearnMyselfListData({ token: TOKEN });
+    const data = await getUserLearnMyselfListData({ token: globalUserStatusInfo?.token });
     setUserLearnMyselfData(data);
   };
 
   const fetchUserCommentListData = async (selectedCategory: string, pageIndex: number) => {
     const LIMIT_PER_PAGE = 5;
     const data = await getUserCommentListData({
-      token: TOKEN,
+      token: globalUserStatusInfo?.token,
       category: selectedCategory,
       offset: (pageIndex - 1) * LIMIT_PER_PAGE,
     });
@@ -140,7 +140,7 @@ function MyPage(): React.ReactElement {
           {selectedSection === 'scrap' ? (
             <MyPageSection
               title="Share Together"
-              subTitle={`${globalUserInfo.nickname}님이 스크랩한 강연들이에요`}
+              subTitle={`${globalUserInfo?.nickname}님이 스크랩한 강연들이에요`}
               column={2}
               gap={30}
               path="/mypage/share-together/scrap/more"
@@ -150,7 +150,7 @@ function MyPage(): React.ReactElement {
           ) : (
             <MyPageSection
               title="작성한 글"
-              subTitle={`${globalUserInfo.nickname}님이 작성한 런마셀들이에요`}
+              subTitle={`${globalUserInfo?.nickname}님이 작성한 런마셀들이에요`}
               column={4}
               gap={15}
               path="/mypage/learn-myself/scrap/more"
@@ -163,7 +163,7 @@ function MyPage(): React.ReactElement {
           {selectedSection === 'scrap' ? (
             <MyPageSection
               title="Learn Myself"
-              subTitle={`${globalUserInfo.nickname}님이 스크랩한 런마셀들이에요`}
+              subTitle={`${globalUserInfo?.nickname}님이 스크랩한 런마셀들이에요`}
               column={4}
               gap={15}
               path="/mypage/learn-myself/mine/more"
