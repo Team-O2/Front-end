@@ -158,7 +158,7 @@ export const getNoticeSearchData = async (token: string, keyword: string) => {
       },
     });
     if (data.data.status === 200) {
-      return data.data.data.notices;
+      return data.data.data.searchData;
     } else {
       return null;
     }
