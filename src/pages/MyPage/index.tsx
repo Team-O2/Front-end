@@ -3,7 +3,7 @@ import {
   getMyPageUserInfo,
   getShareTogetherListData,
   getUserCommentListData,
-  getUserLearnMyselfListData,
+  getUserLearnMyselfListData
 } from 'apis/myPage';
 import { Logo } from 'assets/images';
 import { LearnMyselfCard, MyPageSection, ShareTogetherCard } from 'components/molecules';
@@ -19,7 +19,7 @@ import {
   IMyScrappedLearnMyself,
   IMyScrappedShareTogether,
   IMyUserCommentResponse,
-  IMyUserLearnMyself,
+  IMyUserLearnMyself
 } from 'types/myPage';
 import { IShareTogether } from 'types/shareTogether';
 import { changeDateFormat } from 'utils';
