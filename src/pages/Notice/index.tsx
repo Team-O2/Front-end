@@ -1,6 +1,5 @@
 import { getNoticeListData, getNoticeSearchData } from 'apis/ShareTogether';
 import ConcertList from 'components/organisms/ConcertList';
-import Footer from 'components/organisms/Footer';
 import NoticeHeader from 'components/organisms/NoticeHeader';
 import SeachForm from 'components/organisms/SearchForm';
 import React, { useEffect, useState } from 'react';
@@ -63,7 +62,6 @@ function Notice(): React.ReactElement {
         ></SeachForm>
         <ConcertList concertData={noticeList}></ConcertList>
       </SNotice>
-      <Footer />
     </>
   );
 }

@@ -2,7 +2,6 @@ import { getNoticeData } from 'apis/ShareTogether';
 import DetailTitle from 'components/molecules/DetailTitle';
 import CommentList from 'components/organisms/CommentList';
 import DetailContent from 'components/organisms/DetailContent';
-import Footer from 'components/organisms/Footer';
 import React, { useEffect, useState } from 'react';
 import { RouteComponentProps } from 'react-router';
 import Styled from 'styled-components';
@@ -51,25 +50,22 @@ function NoticeDetail({ match }: RouteComponentProps<MatchParams>): React.ReactE
   };
 
   return (
-    <>
-      <SNoticeDetail>
-        <DetailTitle
-          title={notice?.title}
-          speaker={notice?.authorNickname}
-          createdAt={notice?.createdAt}
-          interest={notice?.interest}
-        ></DetailTitle>
-        <DetailContent
-          video={notice?.videoLink}
-          desc={notice?.text}
-          hashtag={notice?.hashtag}
-          comments={notice?.commentNum}
-          scrap={notice?.scrapNum}
-        ></DetailContent>
-        <CommentList commentList={commentList} concertID={notice?._id} reLoadComment={reLoadComment}></CommentList>
-      </SNoticeDetail>
-      <Footer />
-    </>
+    <SNoticeDetail>
+      <DetailTitle
+        title={notice?.title}
+        speaker={notice?.authorNickname}
+        createdAt={notice?.createdAt}
+        interest={notice?.interest}
+      ></DetailTitle>
+      <DetailContent
+        video={notice?.videoLink}
+        desc={notice?.text}
+        hashtag={notice?.hashtag}
+        comments={notice?.commentNum}
+        scrap={notice?.scrapNum}
+      ></DetailContent>
+      <CommentList commentList={commentList} concertID={notice?._id} reLoadComment={reLoadComment}></CommentList>
+    </SNoticeDetail>
   );
 }
 
