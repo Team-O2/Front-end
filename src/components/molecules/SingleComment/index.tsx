@@ -1,10 +1,11 @@
 import { postConcertComment } from 'apis/ShareTogether';
 import React, { useState } from 'react';
-import { useRecoilValue } from 'recoil';
-import { userState } from 'stores/user';
+import { useRecoilState, useRecoilValue } from 'recoil';
+import { userState, userStatusState } from 'stores/user';
 import Styled from 'styled-components';
 import CommentWrite from '../CommentWrite';
 import ReplyComment from '../ReplyComment';
+
 interface IProps {
   childrenComment: {
     _id?: string;
@@ -34,7 +35,8 @@ function SingleComment({ _id, userID, childrenComment, text, concertID }: IProps
   const [openReply, setOpenReply] = useState(false);
   const [replyValue, setReplyValue] = useState('');
   const [replyList, setReplyList] = useState(childrenComment);
-  const user = useRecoilValue(userState);
+  const [userStatusData, setUserStausData] = useRecoilState(userStatusState);
+  const userData = useRecoilValue(userState);
 
   const onClickReplyOpen = () => {
     setOpenReply(!openReply);
@@ -45,21 +47,16 @@ function SingleComment({ _id, userID, childrenComment, text, concertID }: IProps
   const onSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     const variables = {
-      /*
-      _id: concertID,
-      userID: {
-        img: user.img,
-        _id: user._id,
-        nickname: user.nickname,
-      },*/
       parentID: _id,
       text: replyValue,
     };
-    const token =
-      'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoiNjBlZDg2NTZkOWM0ZTg0NzM4NzM1OTYyIn0sImlhdCI6MTYyNjE3OTI4OSwiZXhwIjoxNjI3Mzg4ODg5fQ.kmF5YDPDVAv6XyR6wNW_7JWm_3byloniqKSM7zcrDbg';
-    const postData = await postConcertComment(token, concertID, variables);
-    setReplyList(replyList.concat(variables));
-    setReplyValue('');
+    if (userStatusData) {
+      const postData = await postConcertComment(userStatusData.token, concertID, variables);
+      setReplyList(replyList.concat(variables));
+      setReplyValue('');
+    } else {
+      alert('로그인 후 이용하세요');
+    }
     /*
     const replyListLength = replyList?.length;
     const nextId = String(replyListLength && replyListLength + 1);
@@ -113,7 +110,8 @@ function SingleComment({ _id, userID, childrenComment, text, concertID }: IProps
               <ReplyComment
                 className="reply__comment"
                 key={data._id}
-                nickname={data.nickname}
+                profile={userData?.img}
+                nickname={userData?.nickname}
                 text={data.text}
               ></ReplyComment>
             ))}

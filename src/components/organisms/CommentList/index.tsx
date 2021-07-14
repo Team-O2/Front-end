@@ -2,8 +2,8 @@ import { postConcertComment } from 'apis/ShareTogether';
 import CommentWrite from 'components/molecules/CommentWrite';
 import SingleComment from 'components/molecules/SingleComment';
 import React, { useState } from 'react';
-import { useRecoilValue } from 'recoil';
-import { userState } from 'stores/user';
+import { useRecoilState } from 'recoil';
+import { userStatusState } from 'stores/user';
 import Styled from 'styled-components';
 
 interface IData {
@@ -36,27 +36,23 @@ interface IProps {
 
 function CommentList({ commentList, concertID, reLoadComment }: IProps): React.ReactElement {
   const [commentValue, setCommentValue] = useState('');
-  const user = useRecoilValue(userState);
+  const [userStatusData, setUserStausData] = useRecoilState(userStatusState);
+
   const handleChange = (event: React.ChangeEvent<HTMLTextAreaElement>) => {
     setCommentValue(event.currentTarget.value);
   };
   const onSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     const variables = {
-      /*
-      _id: concertID,
-      userID: {
-        img: user.img,
-        _id: user._id,
-        nickname: user.nickname,
-      },*/
       text: commentValue,
     };
-    const token =
-      'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoiNjBlZDg2NTZkOWM0ZTg0NzM4NzM1OTYyIn0sImlhdCI6MTYyNjE3OTI4OSwiZXhwIjoxNjI3Mzg4ODg5fQ.kmF5YDPDVAv6XyR6wNW_7JWm_3byloniqKSM7zcrDbg';
-    const postData = await postConcertComment(token, concertID, variables);
-    reLoadComment(variables);
-    setCommentValue('');
+    if (userStatusData) {
+      const postData = await postConcertComment(userStatusData.token, concertID, variables);
+      reLoadComment(variables);
+      setCommentValue('');
+    } else {
+      alert('로그인 후 이용하세요');
+    }
   };
   return (
     <SCommentList>
