@@ -34,6 +34,7 @@ interface SignData {
   challengeCNT: number;
 }
 
+<<<<<<< refs/remotes/origin/feat/Challenge
 interface ChallengeID {
   id: number;
 }
@@ -43,6 +44,8 @@ interface IChallengeCommentData {
   text: string;
 }
 
+=======
+>>>>>>> Feat: 삭제 api 연결
 export const writeForm = async (writeData: WriteData, token: string) => {
   try {
     const data = await instance.post('/challenge', writeData, {
@@ -139,15 +142,22 @@ export const SignRegister = async (signData: SignData, token: string) => {
   }
 };
 
-export const DeleteChallenge = async (challengeID: ChallengeID) => {
+export const DeleteChallenge = async (challengeID: string, token: string) => {
   try {
     const data = await instance.delete(`/challenge/${challengeID}`, {
+      headers: {
+        Authorization: token,
+      },
       params: {
         challengeID: challengeID,
       },
     });
+    console.log(data.status);
+    if (data.status === 200) {
+      return true;
+    }
   } catch (error) {
     console.log('FAIL DELETE DATA');
-    return null;
   }
+  return false;
 };

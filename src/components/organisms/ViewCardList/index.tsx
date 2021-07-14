@@ -1,6 +1,6 @@
 import ViewListCard from 'components/molecules/ViewListCard';
 import { ChallengeListData } from 'libs/getChallenge';
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useRecoilState } from 'recoil';
 import { userStatusState } from 'stores/user';
 import Styled from 'styled-components';
@@ -47,6 +47,11 @@ interface IProps {
 function ViewCardList({ challengeData }: IProps): React.ReactElement {
   const [userStatusData, setUserStatusData] = useRecoilState(userStatusState);
   const [challenge, setChallenge] = useState<IData[] | null>(null);
+<<<<<<< refs/remotes/origin/feat/Challenge
+=======
+  const [commentList, setCommentList] = useState([]);
+  const [reRenderFlag, setReRenderFlag] = useState(false);
+>>>>>>> Feat: 삭제 api 연결
 
   const ChallengeList = async (): Promise<void> => {
     if (userStatusData) {
@@ -55,9 +60,12 @@ function ViewCardList({ challengeData }: IProps): React.ReactElement {
     }
   };
 
-  React.useEffect(() => {
+  useEffect(() => {
     ChallengeList();
   }, []);
+  useEffect(() => {
+    ChallengeList();
+  }, [reRenderFlag]);
 
   const [commentList, setCommentList] = useState<IData[] | []>([]);
   const reLoadComment = (newComment: any) => {
@@ -68,8 +76,7 @@ function ViewCardList({ challengeData }: IProps): React.ReactElement {
 
   return (
     <SViewCardList>
-      {challenge?.map((data: IData) => {
-        console.log(data);
+      {challenge?.map((data: IData, id) => {
         return (
           <ViewListCard
             id={data?._id}
@@ -85,7 +92,10 @@ function ViewCardList({ challengeData }: IProps): React.ReactElement {
             reLoadComment={reLoadComment}
             comments={data?.comments.length}
             scrap={data?.scrapNum}
-            key={data?._id}
+            id={data?._id}
+            reRenderFlag={reRenderFlag}
+            setReRenderFlag={setReRenderFlag}
+            key={id}
           />
         );
       })}

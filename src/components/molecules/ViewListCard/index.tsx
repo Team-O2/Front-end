@@ -2,8 +2,11 @@ import LikeIconFilled from 'assets/images/heart_filled.svg';
 import Button from 'components/atoms/Button';
 import { ICommentData } from 'components/organisms/ViewCardList';
 import dayjs from 'dayjs';
-import React, { useState } from 'react';
-import { Link, RouteComponentProps, withRouter } from 'react-router-dom';
+import { DeleteChallenge } from 'libs/getChallenge';
+import React, { useEffect, useState } from 'react';
+import { Link } from 'react-router-dom';
+import { useRecoilState } from 'recoil';
+import { userStatusState } from 'stores/user';
 import Styled from 'styled-components';
 import ColorScrapIcon from '../../../assets/images/color_scrapIcon.svg';
 import CommentCount from '../../../assets/images/commentIcon.svg';
@@ -15,7 +18,7 @@ import MenuBar from '../../../assets/images/menu_bar.svg';
 import ScrapIcon from '../../../assets/images/scrapIcon.svg';
 import Modal from '../../atoms/Modal/index';
 
-interface IProps extends RouteComponentProps<MatchParams> {
+interface IProps {
   nickname?: string;
   image?: string;
   createdAt?: string;
@@ -24,6 +27,7 @@ interface IProps extends RouteComponentProps<MatchParams> {
   bad?: string;
   learn?: string;
   like?: number;
+<<<<<<< refs/remotes/origin/feat/Challenge
   comments: number;
   scrap?: number;
   id: string;
@@ -32,7 +36,15 @@ interface IProps extends RouteComponentProps<MatchParams> {
 }
 
 interface MatchParams {
+=======
+  commentlist: ICommentData[];
+  reLoadComment: (newComment: any) => void;
+  comments?: number;
+  scrap?: number;
+>>>>>>> Feat: 삭제 api 연결
   id: string;
+  reRenderFlag: boolean;
+  setReRenderFlag: (value: boolean) => void;
 }
 
 function ViewListCard({
@@ -48,9 +60,15 @@ function ViewListCard({
   commentlist,
   scrap,
   id,
+<<<<<<< refs/remotes/origin/feat/Challenge
   match,
+=======
+  reRenderFlag,
+  setReRenderFlag,
+>>>>>>> Feat: 삭제 api 연결
   reLoadComment,
 }: IProps): React.ReactElement {
+  const [userStatusData, setUserStatusData] = useRecoilState(userStatusState);
   const [isOpenComment, setIsOpenComment] = useState(false);
   const [lookMoreButton, setLookMoreButton] = useState(true);
   const [IsCommentButton, setIsCommentButton] = useState(true);
@@ -59,15 +77,27 @@ function ViewListCard({
   const [closed, setClosed] = useState(false);
   const [scrapOpen, setScrap] = useState(false);
   const [deleteModalOpen, setDeleteModalOpen] = useState(false);
-  const [userState, setUserState] = useState(2);
+  const [userState, setUserState] = useState(userStatusData ? userStatusData.userType : 0);
   const [likes, setLikes] = useState<number | null>(like || null);
   const [likeClick, setLikeClick] = useState(false);
   // const [commentState, setCommentState] = useState(commentlist);
 
   // const { id } = match.params;
 
+<<<<<<< refs/remotes/origin/feat/Challenge
   const fetchChallengeData = async () => {
     // const data = await GetChallengeOne() 요런 함수 만들음 그래서 챌린지 하나의 정보를 가져온다
+=======
+  const deleteClickHandler = async () => {
+    if (userStatusData) {
+      const token = await userStatusData?.token;
+      const data = await DeleteChallenge(id, token);
+      data && setDeleteModalOpen(false);
+      setReRenderFlag(!reRenderFlag);
+    } else {
+      alert('네트워크가 좋지 않습니다');
+    }
+>>>>>>> Feat: 삭제 api 연결
   };
 
   const onClickLike = () => {
@@ -80,6 +110,9 @@ function ViewListCard({
       }
     }
   };
+  useEffect(() => {
+    console.log('');
+  }, [reRenderFlag]);
 
   // const handleDelete = async () => {
   //   const data = await DeleteChallenge(id);
@@ -273,7 +306,9 @@ function ViewListCard({
               >
                 취소
               </Button>
-              <Button className="delete__delete">삭제</Button>
+              <Button className="delete__delete" onClick={deleteClickHandler}>
+                삭제
+              </Button>
             </div>
           </div>
         </Modal>
@@ -498,18 +533,16 @@ const SViewListCard = Styled.div`
     font-weight: bold;
     line-height: 1.33;
     letter-spacing: -0.5px;
-    color: #C1C1C1;;
-
+    color: #E04747;
   }
   &__cancel{
     font-size: 18px;
     font-weight: bold;
     line-height: 1.33;
     letter-spacing: -0.5px;
-    color: #E04747;
-
+    color: #C1C1C1;;
   }
 }
 `;
 
-export default withRouter(ViewListCard);
+export default ViewListCard;
