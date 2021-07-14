@@ -1,36 +1,39 @@
+import challengeIcon from 'assets/images/hamChallengeicon.svg';
+import unChallengeIcon from 'assets/images/hamUnchallengeicon.svg';
+import loginIcon from 'assets/images/loginIcon.svg';
+import userImage from 'assets/images/userImage.png';
 import React, { useState } from 'react';
+import { useRecoilState } from 'recoil';
+import { userState, userStatusState } from 'stores/user';
 import Styled from 'styled-components';
 import Button from '../../atoms/Button/index';
 import HamDropDown from '../../molecules/HamDropDown';
 
-import userImage from 'assets/images/userImage.png';
-import loginIcon from 'assets/images/loginIcon.svg';
-import challengeIcon from 'assets/images/hamChallengeicon.svg';
-import unChallengeIcon from 'assets/images/hamUnchallengeicon.svg';
-
 function Hamburger(): React.ReactElement {
   //user상태 :
   // 0: 비회원,
-  // 1: 챌린지안하는유저,
-  // 2: 챌린지하는유저,
-  // 3: 챌린지하는유저&챌린지종료,
+  // 1: 챌린지안하는유저 (기간은 챌린지 중)
+  // 2: 챌린지 안하는 유저 (기간은 챌린지 없음)
+  // 3: 챌린지 하는 유저 (기간은 챌린지 중)
   // 4: 관리자
+  const [userStatusData, setUserStatusData] = useRecoilState(userStatusState);
+  const [userData, setUserData] = useRecoilState(userState);
   const [userImg, setUserImg] = useState(userImage); //유저&사진이 존재 하면 이미지변경
-  const [userState, setUserState] = useState(1);
-  const [userName, setUserName] = useState('이은솔');
+  const [userStateNum, setUserState] = useState(userStatusData ? userStatusData.userType : 0);
+  const [userName, setUserName] = useState(userData?.nickname);
 
   return (
     <HamburgerWrap>
       <div className="top">
         <img className="top__image--usericon" src={userImg}></img>
-        {(userState === 0 || userState === 4) && (
+        {(userStateNum === 0 || userStateNum === 4) && (
           <div className="top__subtitle top__subtitle--nologin">
             함께 성장하는 공간
             <br />
             창업가들이 마시는 산소
           </div>
         )}
-        {userState === 0 && (
+        {userStateNum === 0 && (
           <Button className="loginBtn">
             <>
               <img className="loginBtn_icon" src={loginIcon}></img>
@@ -38,7 +41,7 @@ function Hamburger(): React.ReactElement {
             </>
           </Button>
         )}
-        {userState === 4 && (
+        {userStateNum === 4 && (
           <Button className="loginBtn">
             <>
               <img className="loginBtn_icon" src={loginIcon}></img>
@@ -46,12 +49,12 @@ function Hamburger(): React.ReactElement {
             </>
           </Button>
         )}
-        {(userState === 1 || userState === 2 || userState === 3) && (
+        {(userStateNum === 1 || userStateNum === 2 || userStateNum === 3) && (
           <div className="top__label--userName">
             <span>{userName}</span> CEO님
           </div>
         )}
-        {userState === 1 && (
+        {userStateNum === 1 && (
           <Button className="top__subtitle top__subtitle--unchallengeUser">
             <>
               <img className="top__icon--subtitle" src={unChallengeIcon}></img>
@@ -59,7 +62,7 @@ function Hamburger(): React.ReactElement {
             </>
           </Button>
         )}
-        {userState === 2 && (
+        {userStateNum === 3 && (
           <Button className="top__subtitle top__subtitle--unchallengeUser">
             <>
               <img className="top__icon--subtitle" src={challengeIcon}></img>
@@ -67,7 +70,7 @@ function Hamburger(): React.ReactElement {
             </>
           </Button>
         )}
-        {userState === 3 && (
+        {userStateNum === 2 && (
           <Button className="top__subtitle top__subtitle--challengeEndUser">
             <div style={{ color: '#03b6ce' }}>
               <span>Next Learn Myself</span> <br />
@@ -77,7 +80,7 @@ function Hamburger(): React.ReactElement {
         )}
       </div>
       <div className="middle">
-        {(userState === 0 || userState === 1 || userState === 2 || userState === 3) && (
+        {(userStateNum === 0 || userStateNum === 1 || userStateNum === 2 || userStateNum === 3) && (
           <>
             <HamDropDown
               title="Learn Myself"
@@ -85,24 +88,14 @@ function Hamburger(): React.ReactElement {
             />
             <div style={{ marginBottom: '10px' }}></div>
             <Button className="middle__button--title">Share Together</Button>
-          </>
-        )}
-        {userState === 2 && (
-          <>
-            <div style={{ marginBottom: '10px' }}></div>
-            <HamDropDown title="아카이빙" itemList={['1st', '2nd', '3rd']} />
-          </>
-        )}
-        {(userState === 0 || userState === 1 || userState === 2 || userState === 3) && (
-          <>
             <div className="middle__line"></div>
             <Button className="middle__button--title">공지사항</Button>
           </>
         )}
-        {(userState === 1 || userState === 2 || userState === 3) && (
+        {(userStateNum === 1 || userStateNum === 2 || userStateNum === 3) && (
           <Button className="middle__button--title">나의 O2</Button>
         )}
-        {userState === 4 && (
+        {userStateNum === 4 && (
           <>
             <Button className="middle__button--title">챌린지 오픈하기</Button>
             <Button className="middle__button--title">챌린지 정보</Button>
@@ -114,14 +107,14 @@ function Hamburger(): React.ReactElement {
       </div>
       <div className="bottom">
         <div className="middle--forHide"></div>
-        {(userState === 1 || userState === 2 || userState === 3) && (
+        {(userStateNum === 1 || userStateNum === 2 || userStateNum === 3) && (
           <Button>
             <div className="bottom__button" style={{ color: '#3d3d3d' }}>
               설정
             </div>
           </Button>
         )}
-        {(userState === 1 || userState === 2 || userState === 3 || userState === 4) && (
+        {(userStateNum === 1 || userStateNum === 2 || userStateNum === 3 || userStateNum === 4) && (
           <Button>
             <div className="bottom__button" style={{ color: '#8b8b8b', marginLeft: '8px', marginRight: '24px' }}>
               로그아웃
