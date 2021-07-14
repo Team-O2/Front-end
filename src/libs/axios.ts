@@ -222,3 +222,58 @@ export const sendVerifinum = async (email: string, verifiNum: string) => {
     return null;
   }
 };
+
+export const postNewPw = async (password: string, newPassword: string) => {
+  const data = await serverAxios.post('user/password', { password, newPassword });
+  try {
+    if (data.data.status === 200) {
+      alert(data.data.message);
+      return data.data.data.isOkay;
+    }
+  } catch (e) {
+    alert(e?.response?.data?.message);
+    return null;
+  }
+};
+
+export const getUserInfo = async (token: string) => {
+  try {
+    const data = await serverAxios.get('/user/userInfo', { headers: { Authorization: token } });
+    if (data.data.status === 200) {
+      alert(data.data.message);
+      return data.data.data;
+    }
+  } catch (e) {
+    alert(e?.response?.data?.message);
+    return null;
+  }
+};
+
+export const updateUserInfo = async (
+  token?: string,
+  img?: any,
+  nickname: string,
+  interest: string[],
+  gender: number,
+  marpolicy: boolean,
+) => {
+  try {
+    const body = new FormData();
+    if (img) {
+      body.append('img', img);
+    }
+    body.append('nickname', nickname);
+    body.append('interest', String(interest));
+    body.append('gender', String(gender));
+    body.append('marpolicy', String(marpolicy));
+
+    const data = await serverAxios.patch('/user/userInfo', body, { headers: { Authorization: token } });
+    if (data.data.status === 200) {
+      alert(data.data.message);
+      return data.data;
+    }
+  } catch (e) {
+    alert(e?.response?.data?.message);
+    return null;
+  }
+};

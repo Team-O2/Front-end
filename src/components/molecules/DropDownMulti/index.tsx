@@ -6,14 +6,12 @@ import Styled from 'styled-components';
 export interface IProps {
   className?: string;
   setState: (value: string) => void;
-  state: string;
+  state: string[];
   defaultMsg: string;
   itemList: string[];
-  page: string;
-  isSetting?: boolean;
 }
 
-function DropDown({ setState, state, defaultMsg, itemList, page, isSetting }: IProps): React.ReactElement {
+function DropDown({ setState, state, defaultMsg, itemList }: IProps): React.ReactElement {
   const [isOpen, setIsOpen] = useState<boolean>(false); //드롭다운이 열렸는지
   const [isChecked, setIsChecked] = useState<boolean>(false); //값이 선택이 되었는지
   const radioClickListener = (e: React.ChangeEvent<HTMLInputElement>): void => {
@@ -25,21 +23,18 @@ function DropDown({ setState, state, defaultMsg, itemList, page, isSetting }: IP
   };
 
   useEffect(() => {
-    if (state !== defaultMsg) {
+    if (state.length !== 0) {
       setIsChecked(true);
     } else {
       setIsChecked(false);
     }
   }, [state]);
-  useEffect(() => {
-    setState(defaultMsg);
-  }, []);
 
   return (
-    <SDropDown isOpen={isOpen} isChecked={isChecked} page={page} isSetting={isSetting}>
+    <SDropDown isOpen={isOpen} isChecked={isChecked} state={state}>
       <div className="summary__container--outer">
         <div className="summary__container--inner" onClick={openClickListener}>
-          <div className="summary_value">{state}</div>
+          <div className="summary_value">{state.length === 0 ? defaultMsg : state.join(', ')}</div>
           <img className="arrow" src={isOpen ? arrowUp : arrowDown}></img>
         </div>
       </div>
@@ -62,7 +57,7 @@ function DropDown({ setState, state, defaultMsg, itemList, page, isSetting }: IP
   );
 }
 
-const SDropDown = Styled.div<{ isOpen?: boolean; isChecked: boolean; page: string; isSetting?: boolean }>`
+const SDropDown = Styled.div<{ isOpen?: boolean; isChecked: boolean; state: string[] }>`
   input {
     -webkit-appearance: none;
     appearance: none;
@@ -82,8 +77,8 @@ const SDropDown = Styled.div<{ isOpen?: boolean; isChecked: boolean; page: strin
     &__container{
       &--outer{
         cursor : pointer;
-        width:${(props) => (props.isSetting ? '844px' : props.page === 'adminwrite' ? '412px' : '406px')};
-        height:${(props) => (props.page === 'adminwrite' ? '60px' : '62.6px')};
+        width:844px;
+        height:62.6px;
         margin-top: 5px;
         border-radius: 4px;
         display : flex;
@@ -98,13 +93,13 @@ const SDropDown = Styled.div<{ isOpen?: boolean; isChecked: boolean; page: strin
         ${(props) => (props.isOpen || props.isChecked ? 'border-box' : undefined)};
         background-clip : 
         ${(props) => (props.isOpen || props.isChecked ? 'content-box, border-box' : undefined)};       
-        position:${(props) => (props.page === 'adminwrite' ? 'relative' : undefined)};
       }
       &--inner{
         display : flex;
         justify-content : space-between;
         align-items : center;
         width : 100%;
+        height: 100%;
         padding : 0 15px 0 20px;
       }
     }
@@ -116,29 +111,46 @@ const SDropDown = Styled.div<{ isOpen?: boolean; isChecked: boolean; page: strin
       font-style: normal;
       line-height: 1.5;
       letter-spacing: -0.5px;
+      color: ${(props) => props.state.length === 0 && '#c1c1c1'};
     }
   }
 
   .line{
     padding : 0;
-    width:${(props) => (props.isSetting ? '804px' : props.page === 'adminwrite' ? '100%' : '370px')};
+    width:804px;
     height : 1px;
     background-color : #dfdfdf;
     margin : 13px 0 14px 0 ;
   }
   .container{
-    width:${(props) => (props.isSetting ? '844px' : props.page === 'adminwrite' ? '412px' : '406px')};
-    max-height:${(props) => (props.page === 'adminwrite' ? '220px' : undefined)};
-    overflow:${(props) => (props.page === 'adminwrite' ? 'scroll' : undefined)};
+    width:844px;
+    height: 212px;
     margin-top: 5px;
     border: 1px solid #c1c1c1;
     border-radius: 4px;
     display: flex;
     flex-direction: column;
     padding: 20px 18px;
-    position:${(props) => (props.page === 'adminwrite' ? 'absolute' : undefined)};
     z-index : 10;
     background-color : #ffffff;
+    overflow-y: scroll;
+    ::-webkit-scrollbar {    
+        width: 4px;  
+        height: 38px;
+    }  
+    /* Track */  
+    ::-webkit-scrollbar-track {    
+        background: none;  
+    }  
+    /* Handle */  
+    ::-webkit-scrollbar-thumb {   
+        background: #dfdfdf;    
+        border-radius: 20px;  
+    }  
+    /* Handle on hover */  
+    ::-webkit-scrollbar-thumb:hover {    
+        background: #c1c1c1;  
+    }
   }
   label {
     position: relative;
@@ -154,12 +166,9 @@ const SDropDown = Styled.div<{ isOpen?: boolean; isChecked: boolean; page: strin
     font-style: normal;
     line-height: 1.5;
     letter-spacing: -0.5px;
-    color:${(props) => (props.page === 'adminwrite' ? '#0d0d0d' : '#8b8b8b')};
+    color: '#8b8b8b';
   }  
 }
-
-
-
 `;
 
 export default DropDown;

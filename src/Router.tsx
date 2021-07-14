@@ -4,11 +4,12 @@ import EditLearnMyself from 'components/templates/LearnMyself/ChallengeEdit';
 import LearnMyself from 'components/templates/LearnMyself/ChallengeList';
 import ChallengeRegister from 'components/templates/LearnMyself/ChallengeRegister';
 import WriteLearnMyself from 'components/templates/LearnMyself/ChallengeWrite';
-import { MyPage } from 'pages';
+import { MyPage, Setting } from 'pages';
 import AdminChallengeList from 'pages/AdminChallengeList';
 import FindPwd from 'pages/FindPwd';
 import Notice from 'pages/Notice';
 import NoticeDetail from 'pages/NoticeDetail';
+import SetPwd from 'pages/SetPwd';
 import ShareTogether from 'pages/ShareTogether';
 import ShareTogetherDetail from 'pages/ShareTogetherDetail';
 import React from 'react';
@@ -33,6 +34,7 @@ function Router(): React.ReactElement {
         <Route exact path="/adminchallengelist" component={AdminChallengeList} />
         <Route exact path="/join" component={Join} />
         <Route exact path="/findPwd" component={FindPwd} />
+        <Route exact path="/setPwd" component={SetPwd} />
         <Route exact path="/challenge" component={LearnMyself} />
         <Route exact path="/challengeRegister" component={ChallengeRegister} />
         <Route exact path="/write" component={WriteLearnMyself} />
@@ -40,6 +42,7 @@ function Router(): React.ReactElement {
         <Route exact path="/notice" component={Notice} />
         <Route exact path="/mypage" component={MyPage} />
         <Route exact path="/notice/:id" component={NoticeDetail} />
+        <Route exact path="/setting" component={Setting} />
         <Route component={() => <div>404 Not Found</div>} />
       </Switch>
       <Footer />
