@@ -14,7 +14,6 @@ function Button({ children, ...props }: IProps): React.ReactElement {
 }
 
 const SButton = Styled.button`
-  display: flex;
   border: 0;
   background-color: inherit;
   padding : 0;
