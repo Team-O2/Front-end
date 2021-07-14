@@ -129,6 +129,27 @@ export const getNoticeListData = async (token: string) => {
   }
 };
 
+export const getNoticeData = async (token: string, noticeID: string) => {
+  try {
+    const data = await serverAxios.get(`/notice/${noticeID}`, {
+      headers: {
+        Authorization: token,
+      },
+      params: {
+        noticeID: noticeID,
+      },
+    });
+    if (data.data.status === 200) {
+      return data.data.data;
+    } else {
+      return null;
+    }
+  } catch (e) {
+    alert(e.response.data.message);
+    return undefined;
+  }
+};
+
 export const getNoticeSearchData = async (token: string, keyword: string) => {
   try {
     const data = await serverAxios.get(`/notice/search?keyword=${keyword}`, {

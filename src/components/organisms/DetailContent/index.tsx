@@ -14,7 +14,7 @@ interface IProps {
   comments?: number;
   scrap?: number;
   onLike?: () => void;
-  likeClick: boolean;
+  likeClick?: boolean;
 }
 
 function DetailContent({ video, desc, hashtag, like, comments, scrap, onLike, likeClick }: IProps): React.ReactElement {
