@@ -4,6 +4,8 @@ import CommentList from 'components/organisms/CommentList';
 import NoticeDetailContent from 'components/organisms/NoticeDetailContent';
 import React, { useEffect, useState } from 'react';
 import { RouteComponentProps } from 'react-router';
+import { useRecoilValue } from 'recoil';
+import { userStatusState } from 'stores/user';
 import Styled from 'styled-components';
 
 interface MatchParams {
@@ -34,19 +36,20 @@ function NoticeDetail({ match }: RouteComponentProps<MatchParams>): React.ReactE
   const { id } = match.params;
   const [notice, setNotice] = useState<INoticeData | null>(null);
   const [commentList, setCommentList] = useState([]);
+  const userStatusData = useRecoilValue(userStatusState);
   useEffect(() => {
-    getNotice(
-      'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoiNjBlZDg2NTZkOWM0ZTg0NzM4NzM1OTYyIn0sImlhdCI6MTYyNjE3OTI4OSwiZXhwIjoxNjI3Mzg4ODg5fQ.kmF5YDPDVAv6XyR6wNW_7JWm_3byloniqKSM7zcrDbg',
-      id,
-    );
-  }, []);
-  const getNotice = async (token: string, noticeID: string): Promise<void> => {
-    const data = await getNoticeData(token, noticeID);
-    data[0] && setNotice(data[0]);
-    console.log(data);
-    data[0] && setCommentList(data[0].comments);
-    console.log(notice);
-  };
+    const getConcertList = async () => {
+      if (userStatusData) {
+        const data = await getNoticeData(userStatusData.token, id);
+        data[0] && setNotice(data[0]);
+        data[0] && setCommentList(data[0].comments);
+      } else {
+        alert('로그인 후 이용하세요');
+      }
+    };
+    getConcertList();
+  }, [commentList]);
+
   const reLoadComment = (newComment: any) => {
     setCommentList(commentList?.concat(newComment));
   };
