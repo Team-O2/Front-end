@@ -47,6 +47,8 @@ function Loginform(): React.ReactElement {
           token: data.token,
           userType: data.data.userState,
           totalGeneration: data.data.totalGeneration,
+          registGeneration: data.data.registGeneration,
+          progressGeneration: data.data.progressGeneration,
         });
         return data.token;
       } else {

@@ -7,6 +7,8 @@ interface IUserStatusState {
   token: string;
   userType: number;
   totalGeneration: number;
+  registGeneration: number | null;
+  progressGeneration: number;
 }
 interface IUserState {
   interest: string[];
