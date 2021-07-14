@@ -164,8 +164,7 @@ function Hamburger(): React.ReactElement {
           </>
         )}
         {(userStateNum === 1 || userStateNum === 2 || userStateNum === 3) && (
-          <Link to="/">
-            {/* TODO: 마이페이지 연결해야함 */}
+          <Link to="/mypage">
             <Button className="middle__button--title">나의 O2</Button>
           </Link>
         )}
@@ -216,15 +215,15 @@ function Hamburger(): React.ReactElement {
 }
 
 const HamburgerWrap = Styled.div`
+  display : flex;
   position : fixed;
   top :0;
-  width: 282px;
-  height : 100vh;
+  flex-direction:column;
+  z-index : 999;
   box-shadow: 0 4px 40px 0 rgba(30, 37, 98, 0.1);
   background-color : #ffffff;
-  z-index : 999;
-  display : flex;
-  flex-direction:column;
+  width: 282px;
+  height : 100vh;
   animation : slideIn 0.5s;
   @keyframes slideIn {
     from {
@@ -240,64 +239,64 @@ const HamburgerWrap = Styled.div`
   }
 
   .top{
-    background-color: #edfeff;
-    height : 376px;
-    flex:none;
     display : flex;
+    flex:none;
     flex-direction : column;
     align-items : center;
+    background-color: #edfeff;
+    height : 376px;
     &__icon--subtitle{
+      margin-right : 6px;
       width : 20px;
       height : 20px;
-      margin-right : 6px;
     }
     &__label{
       &--userName{
         margin-top : 28px;
-        font-size: 16px;
-        font-weight: normal;
-        font-stretch: normal;
-        font-style: normal;
         line-height: 1.5;
         letter-spacing: -0.5px;
         color : #3d3d3d;
+        font-size: 16px;
+        font-stretch: normal;
+        font-weight: normal;
+        font-style: normal;
       }
     }
     &__image{
       &--usericon{
         margin : 120px 91px 0 91px;
+        border : 1px solid #dfdfdf;
+        border-radius:50px;
         width : 100px;
         height : 100px;
         object-fit:cover;
-        border-radius:50px;
-        border : 1px solid #dfdfdf;
       }
     }
     &__subtitle{
-      font-size: 16px;
-      font-weight: normal;
-      font-stretch: normal;
-      font-style: normal;
       line-height: 1.25;
       letter-spacing: normal;
       font-family: HomepageBaukasten;
+      font-size: 16px;
+      font-stretch: normal;
+      font-weight: normal;
+      font-style: normal;
       &--nologin{
         margin-top : 16px;
         margin-bottom : 30px;
-        line-height: 1.5;
-        letter-spacing: -0.5px;
-        text-align : center;
-        background-image:linear-gradient(to right, #34caf4, #13e2dd);
         -webkit-background-clip: text;
         background-clip: text;
+        background-image:linear-gradient(to right, #34caf4, #13e2dd);
+        text-align : center;
+        line-height: 1.5;
+        letter-spacing: -0.5px;
         -webkit-text-fill-color: transparent;
       }
       &--unchallengeUser{
         display : flex;
         align-items : center;
+        margin-top : 30px;
         line-height: 1.5;
         letter-spacing: -0.5px;
-        margin-top : 30px;
       }
       &--challengeEndUser{
         margin-top : 30px;
@@ -308,38 +307,38 @@ const HamburgerWrap = Styled.div`
   .loginBtn{
       display : flex;
       align-items : center;
-      width : 100%;
       justify-content : center;
+      width : 100%;
       &_icon{
+        margin-right : 6px;
         width : 20px;
         height : 20px;
-        margin-right : 6px;
       }
       &_login{
         height: 18px;
-        font-size : 16px;
-        font-weight: bold;
-        font-stretch: normal;
-        font-style: normal;
         line-height: 1.38;
         letter-spacing: -0.5px;
         color : #3d3d3d;
+        font-size : 16px;
+        font-stretch: normal;
+        font-weight: bold;
+        font-style: normal;
       }
   }
   .middle{
     display : flex;
+    flex:1;
     flex-direction : column;
     align-items : center;
     padding-top : 70px;
     overflow : scroll;
-    flex:1;
     &__button{
       &--title{
-        color : #3d3d3d;
         margin : 10px 0;
-        font-size : 16px;
-        font-family : AppleSDGothicNeo;
         height : 20px;
+        color : #3d3d3d;
+        font-family : AppleSDGothicNeo;
+        font-size : 16px;
         :hover {
           font-weight: bold;
         }
@@ -349,17 +348,17 @@ const HamburgerWrap = Styled.div`
       }
     }
     &__line{
+      margin : 20px 0;
+      background-color: #c1c1c1;
       width :164px;
       height: 1px;
-      background-color: #c1c1c1;
-      margin : 20px 0;
     }
     &--forHide{
-      width : 100%;
-      height : 50px;
-      background-image: linear-gradient(to bottom, rgba(255, 255, 255, 0), #ffffff);
       position : absolute;
       top:-50px;
+      background-image: linear-gradient(to bottom, rgba(255, 255, 255, 0), #ffffff);
+      width : 100%;
+      height : 50px;
     }
     &__padding--forHide{
       line-height : 60px;
@@ -368,20 +367,20 @@ const HamburgerWrap = Styled.div`
   }
   .bottom{
     display: flex;
-    height : 84px;
+    position:relative;
     flex:none;
     align-items:flex-start;
     justify-content:flex-end;
-    position:relative;
+    height : 84px;
     &__button{
-      font-family: AppleSDGothicNeo;
-      font-size: 16px;
-      font-weight: normal;
-      font-stretch: normal;
-      font-style: normal;
       line-height: 1.5;
       letter-spacing: -0.5px;
+      font-family: AppleSDGothicNeo;
+      font-size: 16px;
       font-size : 16px;
+      font-stretch: normal;
+      font-weight: normal;
+      font-style: normal;
     }
   }
 `;
