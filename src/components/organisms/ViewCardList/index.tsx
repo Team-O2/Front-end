@@ -1,6 +1,8 @@
 import ViewListCard from 'components/molecules/ViewListCard';
 import { ChallengeListData } from 'libs/getChallenge';
 import React, { useState } from 'react';
+import { useRecoilState } from 'recoil';
+import { userStatusState } from 'stores/user';
 import Styled from 'styled-components';
 
 export interface ICommentData {
@@ -43,13 +45,17 @@ interface IProps {
 }
 
 function viewCardList({ challengeData }: IProps): React.ReactElement {
+  const [userStatusData, setUserStatusData] = useRecoilState(userStatusState);
   const [challenge, setChallenge] = useState<IData[] | null>(null);
   const [commentList, setCommentList] = useState([]);
 
   const ChallengeList = async (): Promise<void> => {
-    const data = await ChallengeListData();
-    data && setChallenge(data);
-    data && setCommentList(data.comments);
+    if (userStatusData) {
+      const data = await ChallengeListData(userStatusData.token);
+      data && setChallenge(data);
+      data && setCommentList(data.comments);
+    }
+    console.log('아아');
   };
 
   React.useEffect(() => {
@@ -63,6 +69,7 @@ function viewCardList({ challengeData }: IProps): React.ReactElement {
   return (
     <SViewCardList>
       {challenge?.map((data: IData) => {
+        console.log(data);
         return (
           <ViewListCard
             nickname={data?.user?.nickname}
