@@ -1,18 +1,15 @@
 import { Button } from 'components/atoms';
 import TextArea from 'components/atoms/TextArea';
 import { postChallengeComment } from 'libs/getChallenge';
-import React from 'react';
+import React, { useState } from 'react';
 import { useRecoilState } from 'recoil';
 import { userStatusState } from 'stores/user';
 import Styled from 'styled-components';
 
 export interface IProps {
   className?: string;
-  value: string;
-  setValue: (value: string) => void;
   isComment: boolean;
   challengeID: string;
-  onChange?: (e: React.ChangeEvent<HTMLTextAreaElement>) => void;
   commentListFlag: boolean;
   setCommentListFlag: (value: boolean) => void;
   parentCommentId?: string;
@@ -20,16 +17,18 @@ export interface IProps {
 
 function ChallengeCommentWrite({
   className,
-  value,
-  setValue,
   isComment,
-  onChange,
   challengeID,
   commentListFlag,
   setCommentListFlag,
   parentCommentId,
 }: IProps): React.ReactElement {
   const [userStatusData, setUserStatusData] = useRecoilState(userStatusState);
+  const [value, setValue] = useState('');
+
+  const handleChange = (event: React.ChangeEvent<HTMLTextAreaElement>) => {
+    setValue(event.currentTarget.value);
+  };
 
   const btnHandler = async (e: React.MouseEvent<HTMLButtonElement>) => {
     e.preventDefault();
@@ -59,7 +58,7 @@ function ChallengeCommentWrite({
         <TextArea
           className="input"
           name="comment"
-          onChange={onChange}
+          onChange={handleChange}
           value={value}
           placeholder="댓글을 입력해 주세요"
         ></TextArea>

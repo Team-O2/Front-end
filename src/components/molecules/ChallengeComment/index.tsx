@@ -2,7 +2,7 @@ import ChallengeCommentWrite from 'components/molecules/ChallengeCommentWrite';
 import ChallengeSingleComment from 'components/molecules/ChallengeSingleWrite';
 import { ICommentData } from 'components/molecules/ViewListCard';
 // import { ICommentData } from 'components/organisms/ViewCardList';
-import React, { useState } from 'react';
+import React from 'react';
 import Styled from 'styled-components';
 
 interface IProps {
@@ -18,19 +18,11 @@ function ChallengeComment({
   commentListFlag,
   setCommentListFlag,
 }: IProps): React.ReactElement {
-  const [commentValue, setCommentValue] = useState('');
-  const handleChange = (event: React.ChangeEvent<HTMLTextAreaElement>) => {
-    setCommentValue(event.currentTarget.value);
-  };
-
   return (
     <SCommentList>
       <ChallengeCommentWrite
         className="comment__write"
-        value={commentValue}
-        setValue={setCommentValue}
         isComment={true} //댓글부분
-        onChange={handleChange}
         challengeID={challengeID}
         commentListFlag={commentListFlag}
         setCommentListFlag={setCommentListFlag}
@@ -51,8 +43,8 @@ const SCommentList = Styled.div`
 display : flex;
 flex-direction : column;
 align-items : flex-end;
-width : 724px;
 margin : 0 auto;
+width : 724px;
   .comment__write{
     margin-bottom:30px;
   }
