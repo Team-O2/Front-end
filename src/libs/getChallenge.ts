@@ -134,7 +134,6 @@ export const DeleteChallenge = async (challengeID: string, token: string) => {
         challengeID: challengeID,
       },
     });
-    console.log(data.status);
     if (data.status === 200) {
       return true;
     }
@@ -157,7 +156,6 @@ export const getChallengeContent = async (id: string, token: string) => {
     if (data.status === 200) {
       return data.data.data;
     }
-    console.log(data);
   } catch (error) {
     console.log('[FAIL] GET data', error);
   }
@@ -194,6 +192,7 @@ export const ChallengeLike = async (token: string, challengeID: string) => {
     });
     if (data.data.status === 200) {
       console.log(data.data.message);
+      alert('좋아요 성공');
     } else {
       return null;
     }
@@ -209,7 +208,6 @@ export const ChallengeLike = async (token: string, challengeID: string) => {
 
 export const CancelChallengeLike = async (token: string, challengeID: string) => {
   try {
-    console.log(token, challengeID);
     const data = await instance.delete(`/challenge/like/${challengeID}`, {
       headers: {
         Authorization: token,

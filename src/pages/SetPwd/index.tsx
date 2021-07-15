@@ -28,7 +28,6 @@ function SetPwd({ history }: any): React.ReactElement {
 
   const handleClickBtn = async () => {
     const res = await postNewPw(userStatusData?.token, oldPw, pw.pw);
-    console.log(res);
     if (res) {
       // 모달 오픈
       setIsOldPwOkay(true);
@@ -120,7 +119,7 @@ function SetPwd({ history }: any): React.ReactElement {
             isOkay.pw && isOkay.pwCheck
               ? handleClickBtn
               : () => {
-                  console.log('hi');
+                  console.log('');
                 }
           }
         >

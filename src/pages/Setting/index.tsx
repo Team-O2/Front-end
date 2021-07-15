@@ -97,7 +97,6 @@ function Setting({ history }: any): React.ReactElement {
   }, []);
 
   useEffect(() => {
-    console.log(userInfo);
     userInfo.nickname.length === 0 || userInfo.interest.length === 0 ? setIsBtnAtv(false) : setIsBtnAtv(true);
   }, [userInfo]);
 
@@ -200,7 +199,7 @@ function Setting({ history }: any): React.ReactElement {
             isBtnAtv
               ? handleClickEdit
               : () => {
-                  console.log('hi');
+                  console.log('');
                 }
           }
         >
