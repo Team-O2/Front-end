@@ -7,7 +7,9 @@ import ChallengeCommentWrite from '../ChallengeCommentWrite';
 import ChallengeReplyComment from '../ReplyComment';
 interface IProps {
   commentData: ICommentData;
-  challengeID: string; //
+  challengeID: string;
+  commentListFlag: boolean;
+  setCommentListFlag: (value: boolean) => void;
 }
 
 interface IReply {
@@ -16,30 +18,17 @@ interface IReply {
   text?: string;
   nickname?: string;
 }
-// export interface ICommentData {
-//   childrenComment: {
-//     _id: string;
-//     userID: {
-//       _id: string;
-//       nickname: string;
-//     };
-//     text: string;
-//   }[];
-//   _id: string;
-//   userID: {
-//     img: string;
-//     _id: string;
-//     nickname: string;
-//   };
-//   text: string;
-// }
 
-function ChallengeSingleComment({ commentData, challengeID }: IProps): React.ReactElement {
+function ChallengeSingleComment({
+  commentData,
+  challengeID,
+  commentListFlag,
+  setCommentListFlag,
+}: IProps): React.ReactElement {
   const { childrenComment, _id, userID, text } = commentData;
   const [openReply, setOpenReply] = useState(false);
   const [replyValue, setReplyValue] = useState('');
   const [replyList, setReplyList] = useState(childrenComment);
-  const user = useRecoilValue(userState);
 
   const onClickReplyOpen = () => {
     setOpenReply(!openReply);
@@ -68,6 +57,8 @@ function ChallengeSingleComment({ commentData, challengeID }: IProps): React.Rea
               onChange={handleChange}
               isComment={false}
               challengeID={challengeID}
+              commentListFlag={commentListFlag}
+              setCommentListFlag={setCommentListFlag}
             ></ChallengeCommentWrite>
             {replyList.map((data: IReply) => (
               <ChallengeReplyComment
