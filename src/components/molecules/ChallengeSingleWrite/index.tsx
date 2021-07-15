@@ -62,7 +62,7 @@ function ChallengeSingleComment({
                 img={data.userID.img}
                 nickname={data.userID.nickname}
                 text={data.text}
-              ></ChallengeReplyComment>
+              />
             ))}
           </>
         )}
@@ -75,41 +75,39 @@ const SSingleComment = Styled.div`
   flex-direction: column;
   .comment {
     display: flex;
-    justify-content: space-between;
-    font-family: 'AppleSDGothicNeo';
-    line-height: 1.43;
     align-items:flex-start;
+    justify-content: space-between;
     margin: 0 auto ;
-    width: 724px;   
+    width: 724px;
+    line-height: 1.43;
+    font-family: 'AppleSDGothicNeo';   
     &__profile {
+      border-radius : 100%;
       width: 28px;
       height: 28px;
-      border-radius : 100%;
     }
     &__writer {
       margin: 0 13px;
+      width : 86px;
       font-size: 16px;
       font-weight: bold;
-      width : 86px;
     }
     &__text {
-      /* flex : auto; */
-      /* background-color : beige; */
-      width : 585px;
-      font-size: 16px;
-      color: #6f6f6f;
       margin-right : 8px;
+      width : 585px;
       white-space : normal;
       word-break:break-all;
+      color: #6f6f6f;
+      font-size: 16px;
     }
     &__toggle {
+      cursor : pointer;
       width: 50px;
       text-align : right;
+      white-space : nowrap;
+      color: #36c8f5;
       font-size: 14px;
       font-weight: bold;
-      color: #36c8f5;
-      white-space : nowrap;
-      cursor : pointer;
     }
   }
   .reply {
@@ -121,8 +119,6 @@ const SSingleComment = Styled.div`
       margin-bottom:20px;
     }
   }
-
-  
-
 `;
+
 export default ChallengeSingleComment;

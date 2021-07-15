@@ -22,28 +22,28 @@ const SReplyComment = Styled.div`
     display: flex;
     justify-content: flex-end;
     margin:13px 0;
-    line-height: 1.43;
     width : 585px;
+    line-height: 1.43;
     font-family: 'AppleSDGothicNeo';
     .profile {
       margin-right: 10px;
+      border-radius: 100%;
       width: 26px;
       height: 26px;
-      border-radius: 100%;
     }
     .writer {
       margin-right: 10px;
+      width : 90px;
       color:#0d0d0d;
       font-size: 16px;
       font-weight: bold;
-      width : 90px;
     }
     .text {
       width: 100%;
-      color: #6f6f6f;
-      font-size: 16px;
       white-space : normal;
       word-break:break-all;
+      color: #6f6f6f;
+      font-size: 16px;
     }
 `;
-export default Replycomment;
+export default React.memo(Replycomment);
