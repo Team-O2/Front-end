@@ -28,20 +28,26 @@ interface INoticeData {
   __v: number;
 }
 function Notice(): React.ReactElement {
-  const [noticeList, setnoticeList] = useState<INoticeData[] | undefined>(undefined);
+  const [noticeList, setnoticeList] = useState<INoticeData[] | null>(null);
   const [keyword, setKeyword] = useState('');
+  const [currentPage, setCurrentPage] = useState(1);
   const userStatusData = useRecoilValue(userStatusState);
+  const [totalNoticeNum, setTotalNoticeNum] = useState(0);
   useEffect(() => {
-    const getNoticeList = async () => {
+    const getNoticeList = async (pageIndex: number) => {
+      const LIMIT_PER_PAGE = 8;
       if (userStatusData) {
-        const data = await getNoticeListData(userStatusData.token);
-        data && setnoticeList(data);
+        const data = await getNoticeListData({ token: userStatusData.token, offset: (pageIndex - 1) * LIMIT_PER_PAGE });
+        console.log(data);
+        data && setnoticeList(data.notices);
+        data && setTotalNoticeNum(data.totalNoticeNum);
       } else {
         alert('로그인 후 이용하세요');
       }
     };
-    getNoticeList();
-  }, [userStatusData]);
+    getNoticeList(currentPage);
+  }, [userStatusData, currentPage]);
+
   useEffect(() => {
     const getNoticeSearchList = async () => {
       if (userStatusData) {
@@ -67,7 +73,14 @@ function Notice(): React.ReactElement {
           concertListNum={noticeListNum}
           selectedCategory="공지사항"
         ></SeachForm>
-        <NoticeList noticeList={noticeList}></NoticeList>
+        {noticeList && (
+          <NoticeList
+            noticeList={noticeList}
+            totalNoticeNum={totalNoticeNum}
+            currentPage={currentPage}
+            setCurrentPage={setCurrentPage}
+          ></NoticeList>
+        )}
       </SNotice>
     </>
   );

@@ -51,7 +51,7 @@ function ShareTogether(): React.ReactElement {
     const getConcertCategoryList = async () => {
       if (userStatusData) {
         const data = await getConcertSearchData(userStatusData.token, selectedCategory, keyword);
-        data && setConcertList(data);
+        data && setConcertList(data.concerts);
       } else {
         alert('로그인 후 이용하세요');
       }
