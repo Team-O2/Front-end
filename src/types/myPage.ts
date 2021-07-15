@@ -101,3 +101,8 @@ export interface IGetMyPageUserInfoParameter {
   token?: string;
   commentIdList: string[];
 }
+
+export interface IDeleteMyPageUserLearnMyselfParameter {
+  token?: string;
+  learnMyselfId: string;
+}
