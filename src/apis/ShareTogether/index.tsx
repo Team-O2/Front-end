@@ -92,7 +92,6 @@ export const postConcertComment = async (
 
 export const postConcertLike = async (token: string, concertID: string) => {
   try {
-    console.log(token, concertID);
     const data = await serverAxios.post(`/concert/like/${concertID}`, '', {
       headers: {
         Authorization: token,
@@ -113,7 +112,6 @@ export const postConcertLike = async (token: string, concertID: string) => {
 
 export const deleteConcertLike = async (token: string, concertID: string) => {
   try {
-    console.log(token, concertID);
     const data = await serverAxios.delete(`/concert/like/${concertID}`, {
       headers: {
         Authorization: token,
@@ -151,7 +149,6 @@ export const postConcertScrap = async (token: string, concertID: string) => {
 
 export const deleteConcertScrap = async (token: string, concertID: string) => {
   try {
-    console.log(token, concertID);
     const data = await serverAxios.delete(`/concert/scrap/${concertID}`, {
       headers: {
         Authorization: token,

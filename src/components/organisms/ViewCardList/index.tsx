@@ -18,7 +18,6 @@ function ViewCardList({ challengeList, setChallengeList }: IProps): React.ReactE
   const ChallengeList = async (): Promise<void> => {
     if (userStatusData) {
       const data = await ChallengeListData(userStatusData.token);
-      console.log(data);
       data && setChallengeList(data);
     }
   };
