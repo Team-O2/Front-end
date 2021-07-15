@@ -223,16 +223,20 @@ export const sendVerifinum = async (email: string, verifiNum: string) => {
   }
 };
 
-export const postNewPw = async (password: string, newPassword: string) => {
-  const data = await serverAxios.post('user/password', { password, newPassword });
+export const postNewPw = async (token: string | undefined, password: string, newPassword: string) => {
   try {
+    const data = await serverAxios.patch(
+      'user/password',
+      { password, newPassword },
+      { headers: { Authorization: token } },
+    );
     if (data.data.status === 200) {
-      alert(data.data.message);
-      return data.data.data.isOkay;
+      // alert(data.data.message);
+      return true;
     }
   } catch (e) {
-    alert(e?.response?.data?.message);
-    return null;
+    // alert(e?.response?.data?.message);
+    return false;
   }
 };
 
@@ -250,8 +254,8 @@ export const getUserInfo = async (token: string) => {
 };
 
 export const updateUserInfo = async (
-  token?: string,
-  img?: any,
+  token: string | undefined,
+  img: any,
   nickname: string,
   interest: string[],
   gender: number,
@@ -259,11 +263,12 @@ export const updateUserInfo = async (
 ) => {
   try {
     const body = new FormData();
+    // console.log(img);
     if (img) {
       body.append('img', img);
     }
     body.append('nickname', nickname);
-    body.append('interest', String(interest));
+    body.append('interest', `[${interest.join()}]`);
     body.append('gender', String(gender));
     body.append('marpolicy', String(marpolicy));
 
