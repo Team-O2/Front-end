@@ -3,7 +3,7 @@ import Button from 'components/atoms/Button';
 import ChallengeComment from 'components/molecules/ChallengeComment';
 import dayjs from 'dayjs';
 import { DeleteChallenge, getChallengeContent } from 'libs/getChallenge';
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useHistory } from 'react-router';
 import { useRecoilState } from 'recoil';
 import { userStatusState } from 'stores/user';
@@ -83,6 +83,7 @@ function ViewListCard({
   const [likes, setLikes] = useState<number | null>(like || null);
   const [likeClick, setLikeClick] = useState(false);
   const [myCommentList, setMyCommentList] = useState<ICommentData[] | null>(null);
+  const [commentListFlag, setCommentListFlag] = useState<boolean>(false);
 
   const getCommentList = async () => {
     if (userStatusData) {
@@ -93,8 +94,9 @@ function ViewListCard({
     } else {
     }
   };
-
-  // const { id } = match.params;
+  useEffect(() => {
+    getCommentList();
+  }, [commentListFlag]);
 
   const deleteClickHandler = async () => {
     if (userStatusData) {
@@ -276,7 +278,12 @@ function ViewListCard({
                 ) : (
                   <div>
                     {IsFoldComment === false ? null : (
-                      <ChallengeComment commentList={myCommentList} challengeID={id}></ChallengeComment>
+                      <ChallengeComment
+                        commentList={myCommentList}
+                        challengeID={id}
+                        commentListFlag={commentListFlag}
+                        setCommentListFlag={setCommentListFlag}
+                      ></ChallengeComment>
                     )}
                     <button
                       className="comment__card-fold"
