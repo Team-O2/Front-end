@@ -18,12 +18,12 @@ import Styled from 'styled-components';
 import ColorScrapIcon from '../../../assets/images/color_scrapIcon.svg';
 import CommentCount from '../../../assets/images/commentIcon.svg';
 import DeleteIcon from '../../../assets/images/deleteIcon.svg';
-import DeleteModal from '../../../assets/images/delete_modal.png';
+// import DeleteModal from '../../../assets/images/delete_modal.png';
 import EditIcon from '../../../assets/images/editIcon.svg';
 import ClickGood from '../../../assets/images/heartIcon.svg';
 import MenuBar from '../../../assets/images/menu_bar.svg';
 import ScrapIcon from '../../../assets/images/scrapIcon.svg';
-import Modal from '../../atoms/Modal/index';
+import DeleteModal from '../DeleteModal';
 
 export interface ICommentData {
   childrenComment: {
@@ -338,29 +338,14 @@ function ViewListCard({
             </div>
           </div>
         </div>
-        <Modal isOpen={deleteModalOpen} setIsOpen={setDeleteModalOpen} isBlur={true}>
-          <div className="delete">
-            <div className="delete__notice">
-              <img className="delete__img" src={DeleteModal} alt=""></img>
-              <div className="delete__title">잠깐!</div>
-              <div className="delete__detail">삭제된 글은 복구가 불가능합니다.</div>
-              <div className="delete__detail">글을 삭제하시겠어요?</div>
-            </div>
-            <div className="delete__button">
-              <Button
-                className="delete__cancel"
-                onClick={() => {
-                  setDeleteModalOpen(false);
-                }}
-              >
-                취소
-              </Button>
-              <Button className="delete__delete" onClick={deleteClickHandler}>
-                삭제
-              </Button>
-            </div>
-          </div>
-        </Modal>
+        <DeleteModal
+          isDeleteModalOpen={deleteModalOpen}
+          setIsDeleteModalOpen={setDeleteModalOpen}
+          onClickDeleteButton={() => {
+            alert('글삭제 완료');
+            setDeleteModalOpen(false);
+          }}
+        />
       </SViewListCard>
     </>
   );
@@ -371,21 +356,21 @@ const SViewListCard = Styled.div`
   padding-bottom:60px;
 }
 .detail{
-    padding-top:40px;
     position: relative;
-    margin: 0 auto;
     align-items: center;
-    width : 844px;
-    background: #FFFFFF;
-    box-shadow: 0px 0px 24px rgba(13, 12, 63, 0.1);
+    margin: 0 auto;
     border-radius: 18px;
+    box-shadow: 0px 0px 24px rgba(13, 12, 63, 0.1);
+    background: #FFFFFF;
+    padding-top:40px;
+    width : 844px;
     &__image{
-        width: 80px;
-        height: 80px;
-        border-radius: 40px 40px 40px 40px;
         margin: 0 15px 0px 30px;
         border: solid 1px var(--colors-grayscale-df-light-gray-1);
+        border-radius: 40px 40px 40px 40px;
         background-color: var(--colors-grayscale-ff);
+        width: 80px;
+        height: 80px;
     }
 }
 .menu__bar{
@@ -401,43 +386,42 @@ const SViewListCard = Styled.div`
     padding-left: 480px;
 }
 .delete_icon{
-    border:none;
     display:inline-block;
+    border:none;
     background-color:#FFFFFF;
 }
 .edit_icon{
-    border:none;
     display:inline-block;
+    border:none;
     background-color:#FFFFFF;
 }
 .profile{
     display:inline-block;
     &__nickname{
-        margin-bottom: 10px;
         display:inline-block;
-        font-size: 24px;
-        font-weight: bold;
+        margin-bottom: 10px;
+        text-align: left;
         line-height: 1.33;
         letter-spacing: -0.5px;
-        text-align: left;
+        font-size: 24px;
+        font-weight: bold;
     }
     &__time{
         display:inline-block;
-        padding-left:10px;
-        font-size: 14px;
-        line-height: 21px;
         align-items: center;
+        padding-left:10px;
+        line-height: 21px;
         letter-spacing: -0.5px;
         color: #8B8B8B;
-    }
-    &__tag{
-        font-weight: bold;
         font-size: 14px;
-        line-height: 20px;
-        align-items: center;
-        color: #6F6F6F;
-        display : inline-block;
-        margin-right : 5px;
+    }
+    &__tag{display
+        align-items: center;margin-right
+        line-height: 20px;line-height
+        color: #6F6F6F;font-size
+        font-weight: bold;font-weight
+        display : inline-block;font-weightHEADdisplay
+        margin-right : 5px;margin-right
     }
 }
 .button{
@@ -447,63 +431,63 @@ const SViewListCard = Styled.div`
 
 }
 .more_button{
-    font-weight: bold;
-    font-size: 18px;
+    border:0;
+    background: #FFFFFF;
     letter-spacing: -0.5px;
     color: #03B6CE;
-    background: #FFFFFF;
-    border:0;
+    font-size: 18px;
+    font-weight: bold;
 }
 .fold_button{
-    font-weight: bold;
-    font-size: 18px;
+    border:0;
+    background: #FFFFFF;
     letter-spacing: -0.5px;
     color: #03B6CE;
-    background: #FFFFFF;
-    border:0;
+    font-size: 18px;
+    font-weight: bold;
 }
 .comment_button{
+    top: 544px;
+    left: 0px;
+    align-items: center;
+    border-radius: 0px 0px 18px 18px;
+    background: #3D3D3D;
     width: 844px;
     height: 63px;
-    left: 0px;
-    top: 544px;
-    background: #3D3D3D;
-    border-radius: 0px 0px 18px 18px;
-    font-weight: bold;
-    font-size: 16px;
-    line-height: 22px;
-    align-items: center;
     text-align: center;
+    line-height: 22px;
     letter-spacing: -0.5px;
     color: #FFFFFF;
+    font-size: 16px;
+    font-weight: bold;
 }
 .detail__view{
     padding: 30px 30px 0 60px;
 }
 .view__title{
-    font-size: 16px;
-    font-weight: bold;
+    text-align: left;
     line-height: 1.38;
     letter-spacing: -0.5px;
-    text-align: left;
+    font-size: 16px;
+    font-weight: bold;
 }
 .view__content{
-    max-height: 100%;
     width:724px;
-    font-size: 16px;
+    max-height: 100%;
+    text-align: left;
     line-height: 1.5;
     letter-spacing: -0.5px;
-    text-align: left;
+    font-size: 16px;
 }
 .view__full_content{
     width:724px;
-    font-size: 16px;
+    overflow:hidden;
+    text-align: left;
+    text-overflow:ellipsis;
     line-height: 1.5;
     letter-spacing: -0.5px;
-    text-align: left;
-    overflow:hidden;
-    text-overflow:ellipsis;
     white-space:nowrap;
+    font-size: 16px;
     
 }
 .icon{
@@ -516,81 +500,32 @@ const SViewListCard = Styled.div`
     }
     &__count{
         display:inline-block;
-        width: 60px;
         margin: 4px 0 3.2px 8px;
+        width: 60px;
         font-size: 18px;
     }
 }
 .comment__card-fold{
-    background: #3D3D3D;
     border-radius: 0px 0px 18px 18px;
+    background: #3D3D3D;
     width: 844px;
     height: 63px;
-    font-weight: bold;
-    font-size: 16px;
     line-height: 22px;
-    letter-spacing: -0.5px;
-    color: #FFFFFF;
-}
-
-.delete{
-  position: fixed;
-  top:0;
-  left:0;
-  right:0;
-  bottom:0;
-  margin:auto;
-  width: 500px;
-  height: 312px;
-  border-radius: 16px;
-  background-color: #FFFFFF;
-
-  &__notice{
-    padding: 0px 80px 0px 80px;
-  }
-
-  &__img{
-    display:flex;
-    margin:auto;
-    margin-top:-40px;
-
-  }
-  &__title{
-    font-size: 48px;
-    font-weight: bold;
-    line-height: 1.42;
-    letter-spacing: -0.5px;
-    text-align: center;
-    color: #000000;
-    padding:20px 0px 20px 0px;
-  }
-  &__detail{
-    font-size: 16px;
-    line-height: 1.5;
-    letter-spacing: -0.5px;
-    text-align: center;
-    color: var(--colors-grayscale-0-d-black);
-  }
-  &__button{
-    padding-top:50px;
-    text-align: center;
-
-  }
-  &__delete{
-    padding-left:170px;
-    font-size: 18px;
-    font-weight: bold;
     line-height: 1.33;
-    letter-spacing: -0.5px;
+    letter-spacing: -0.5px;letter-spacing
+    color: #FFFFFF;color
     color: #E04747;
+    font-size: 16px;
+    font-weight: bold;HEADline-height
+    letter-spacing: -0.5px;letter-spacing
   }
   &__cancel{
-    font-size: 18px;
-    font-weight: bold;
     line-height: 1.33;
     letter-spacing: -0.5px;
-    color: #C1C1C1;;
-  }
+    color: #C1C1C1;
+    font-size: 18px;
+    font-weight: bold;;
+  }Style
 }
 `;
 
