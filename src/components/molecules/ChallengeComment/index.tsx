@@ -29,7 +29,7 @@ function ChallengeComment({
         className="comment__write"
         value={commentValue}
         setValue={setCommentValue}
-        isComment={true}
+        isComment={true} //댓글부분
         onChange={handleChange}
         challengeID={challengeID}
         commentListFlag={commentListFlag}

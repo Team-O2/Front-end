@@ -22,6 +22,7 @@ export interface ICommentData {
   childrenComment: {
     _id: string;
     userID: {
+      img: string;
       _id: string;
       nickname: string;
     };
