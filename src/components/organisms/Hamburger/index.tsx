@@ -70,17 +70,19 @@ function Hamburger(): React.ReactElement {
 
   useEffect(() => {
     userData ? setUserName(userData.nickname) : setUserName('');
-    if (userStatusData) {
+    if (userStatusData && userData) {
       setUserState(userStatusData.userType);
       setGenerationNum({
         progressGeneration: userStatusData.progressGeneration,
         registGeneration: userStatusData.registGeneration,
       });
       getChallengeList();
+      setUserImg(userData.img);
     } else {
       setUserState(0);
       getGenerationNum();
       getChallengeList();
+      setUserImg(userImage);
     }
   }, [userStatusData]);
 
@@ -129,7 +131,9 @@ function Hamburger(): React.ReactElement {
             <Button className="top__subtitle top__subtitle--unchallengeUser">
               <>
                 <img className="top__icon--subtitle" src={unChallengeIcon}></img>
-                <div style={{ color: '#36c8f5', fontWeight: 'bold' }}>1st Learn Myself 신청</div>
+                <div style={{ color: '#36c8f5', fontWeight: 'bold' }}>
+                  {userStatusData?.registGeneration && indextoName(userStatusData.registGeneration)} Learn Myself 신청
+                </div>
               </>
             </Button>
           </Link>
