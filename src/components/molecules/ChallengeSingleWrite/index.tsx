@@ -1,35 +1,40 @@
-import Profile from 'assets/images/Profile.svg';
+import { ChallengeComment } from 'libs/getChallenge';
 import React, { useState } from 'react';
+import { useRecoilValue } from 'recoil';
+import { userState } from 'stores/user';
 import Styled from 'styled-components';
 import ChallengeCommentWrite from '../ChallengeCommentWrite';
-import ChallengeReplyComment from '../ChallengeReplyComment';
-
+import ChallengeReplyComment from '../ReplyComment';
 interface IProps {
   childrenComment: {
-    _id: string;
-    userID: {
-      _id: string;
-      nickname: string;
-    };
-    text: string;
+    _id?: string;
+    nickname?: string;
+    text?: string;
+    createdAt?: string;
   }[];
-  nickname: string;
-  text: string;
-}
-
-interface IReply {
+  isDeleted?: boolean;
   _id: string;
   userID: {
+    img: string;
     _id: string;
     nickname: string;
   };
   text: string;
+  challengeID?: string;
 }
 
-function ChallengeSingleComment({ nickname, childrenComment, text }: IProps): React.ReactElement {
+interface IReply {
+  _id?: string;
+  parentID?: string;
+  text?: string;
+  nickname?: string;
+}
+
+function ChallengeSingleComment({ _id, userID, childrenComment, text, challengeID }: IProps): React.ReactElement {
   const [openReply, setOpenReply] = useState(false);
   const [replyValue, setReplyValue] = useState('');
-  const [reply, setReply] = useState(childrenComment);
+  const [replyList, setReplyList] = useState(childrenComment);
+  const user = useRecoilValue(userState);
 
   const onClickReplyOpen = () => {
     setOpenReply(!openReply);
@@ -37,27 +42,24 @@ function ChallengeSingleComment({ nickname, childrenComment, text }: IProps): Re
   const handleChange = (event: React.ChangeEvent<HTMLTextAreaElement>) => {
     setReplyValue(event.currentTarget.value);
   };
-  const onSubmit = (event: React.FormEvent<HTMLFormElement>) => {
+  const onSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-    const replyListLength = reply?.length;
-    const nextId = String(replyListLength && replyListLength + 1);
     const variables = {
-      _id: nextId,
-      userID: {
-        _id: '1',
-        nickname: '대댓글임다',
-      },
+      parentID: _id,
       text: replyValue,
     };
-    setReply(reply.concat(variables));
+    const token =
+      'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoiNjBlZDg2NTZkOWM0ZTg0NzM4NzM1OTYyIn0sImlhdCI6MTYyNjE3OTI4OSwiZXhwIjoxNjI3Mzg4ODg5fQ.kmF5YDPDVAv6XyR6wNW_7JWm_3byloniqKSM7zcrDbg';
+    const postData = await ChallengeComment(token, challengeID, variables);
+    setReplyList(replyList.concat(variables));
     setReplyValue('');
   };
 
   return (
     <SSingleComment>
       <div className="comment">
-        <img className="comment__profile" src={Profile} alt="" />
-        <div className="comment__writer">{nickname}</div>
+        <img className="comment__profile" src={userID?.img} alt="" />
+        <div className="comment__writer">{userID?.nickname}</div>
         <div className="comment__text">{text}</div>
         <div className="comment__toggle" onClick={onClickReplyOpen}>
           {openReply ? '접기' : '답글보기'}
@@ -74,15 +76,14 @@ function ChallengeSingleComment({ nickname, childrenComment, text }: IProps): Re
               onSubmit={onSubmit}
               isComment={false}
             ></ChallengeCommentWrite>
-            {reply &&
-              reply.map((data: IReply) => (
-                <ChallengeReplyComment
-                  className="reply__comment"
-                  key={data._id}
-                  nickname={data.userID.nickname}
-                  text={data.text}
-                ></ChallengeReplyComment>
-              ))}
+            {replyList.map((data: IReply) => (
+              <ChallengeReplyComment
+                className="reply__comment"
+                key={data._id}
+                nickname={data.nickname}
+                text={data.text}
+              ></ChallengeReplyComment>
+            ))}
           </>
         )}
       </div>

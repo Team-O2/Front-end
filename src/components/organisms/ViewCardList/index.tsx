@@ -47,22 +47,23 @@ interface IProps {
 function ViewCardList({ challengeData }: IProps): React.ReactElement {
   const [userStatusData, setUserStatusData] = useRecoilState(userStatusState);
   const [challenge, setChallenge] = useState<IData[] | null>(null);
-  const [commentList, setCommentList] = useState([]);
 
   const ChallengeList = async (): Promise<void> => {
     if (userStatusData) {
       const data = await ChallengeListData(userStatusData.token);
       data && setChallenge(data);
-      data && setCommentList(data.comments);
+      // data && setCommentList(data?.comments);
     }
   };
-
   React.useEffect(() => {
     ChallengeList();
   }, []);
 
+  const [commentList, setCommentList] = useState<IData[] | []>([]);
   const reLoadComment = (newComment: any) => {
+    console.log('reload', newComment);
     setCommentList(commentList?.concat(newComment));
+    console.log('아아', commentList);
   };
 
   return (
@@ -70,6 +71,7 @@ function ViewCardList({ challengeData }: IProps): React.ReactElement {
       {challenge?.map((data: IData) => {
         return (
           <ViewListCard
+            id={data?._id}
             nickname={data?.user?.nickname}
             image={data?.user?.img}
             createdAt={data?.createdAt}

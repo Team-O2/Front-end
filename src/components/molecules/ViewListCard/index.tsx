@@ -1,6 +1,5 @@
 import LikeIconFilled from 'assets/images/heart_filled.svg';
 import Button from 'components/atoms/Button';
-import ChallengeComment from 'components/molecules/ChallengeComment';
 import { ICommentData } from 'components/organisms/ViewCardList';
 import dayjs from 'dayjs';
 import React, { useState } from 'react';
@@ -25,9 +24,10 @@ interface IProps extends RouteComponentProps<MatchParams> {
   bad?: string;
   learn?: string;
   like?: number;
-  comments?: number;
+  comments: number;
   scrap?: number;
-  reLoadComment: (newComment: any) => void;
+  id: string;
+  reLoadComment?: (newComment: any) => void;
   commentlist: ICommentData[];
 }
 
@@ -47,6 +47,7 @@ function ViewListCard({
   comments,
   commentlist,
   scrap,
+  id,
   match,
   reLoadComment,
 }: IProps): React.ReactElement {
@@ -61,8 +62,13 @@ function ViewListCard({
   const [userState, setUserState] = useState(2);
   const [likes, setLikes] = useState<number | null>(like || null);
   const [likeClick, setLikeClick] = useState(false);
+  // const [commentState, setCommentState] = useState(commentlist);
 
-  const { id } = match.params;
+  // const { id } = match.params;
+
+  const fetchChallengeData = async () => {
+    // const data = await GetChallengeOne() 요런 함수 만들음 그래서 챌린지 하나의 정보를 가져온다
+  };
 
   const onClickLike = () => {
     setLikeClick(!likeClick);
@@ -232,9 +238,9 @@ function ViewListCard({
                   </button>
                 ) : (
                   <div>
-                    {IsFoldComment === false ? null : (
+                    {/* {IsFoldComment === false ? null : (
                       <ChallengeComment commentList={commentlist} reLoadComment={reLoadComment}></ChallengeComment>
-                    )}
+                    )} */}
                     <button
                       className="comment__card-fold"
                       onClick={() => {
