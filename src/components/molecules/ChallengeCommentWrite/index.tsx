@@ -24,7 +24,8 @@ function ChallengeCommentWrite({
 }: IProps): React.ReactElement {
   const [userStatusData, setUserStatusData] = useRecoilState(userStatusState);
 
-  const btnHandler = async () => {
+  const btnHandler = async (e: React.MouseEvent<HTMLButtonElement>) => {
+    e.preventDefault();
     if (isComment) await postComment();
     else await postReComment();
   };
