@@ -2,7 +2,14 @@ import LikeIconFilled from 'assets/images/heart_filled.svg';
 import Button from 'components/atoms/Button';
 import ChallengeComment from 'components/molecules/ChallengeComment';
 import dayjs from 'dayjs';
-import { DeleteChallenge, getChallengeContent } from 'libs/getChallenge';
+import {
+  CancelChallengeLike,
+  CancelChallengeScrap,
+  ChallengeLike,
+  ChallengeScrap,
+  DeleteChallenge,
+  getChallengeContent,
+} from 'libs/getChallenge';
 import React, { useEffect, useState } from 'react';
 import { useHistory } from 'react-router';
 import { useRecoilState } from 'recoil';
@@ -81,10 +88,11 @@ function ViewListCard({
   const [scrapOpen, setScrap] = useState(false);
   const [deleteModalOpen, setDeleteModalOpen] = useState(false);
   const [userState, setUserState] = useState(userStatusData ? userStatusData.userType : 0);
-  const [likes, setLikes] = useState<number | null>(like || null);
+  const [likes, setLikes] = useState(0);
   const [likeClick, setLikeClick] = useState(false);
   const [myCommentList, setMyCommentList] = useState<ICommentData[] | null>(null);
   const [commentListFlag, setCommentListFlag] = useState<boolean>(false);
+  const [countScraps, setCountScraps] = useState(0);
 
   const getCommentList = async () => {
     if (userStatusData) {
@@ -110,15 +118,35 @@ function ViewListCard({
     }
   };
 
-  const onClickLike = () => {
+  const onClickLike = async () => {
     setLikeClick(!likeClick);
-    if (likes) {
-      if (likeClick === true) {
-        setLikes(likes - 1);
-      } else {
-        setLikes(likes + 1);
-      }
+    if (likeClick === true) {
+      setLikes(likes - 1);
+      const token =
+        'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoiNjBlZDg2NTZkOWM0ZTg0NzM4NzM1OTYyIn0sImlhdCI6MTYyNjE3OTI4OSwiZXhwIjoxNjI3Mzg4ODg5fQ.kmF5YDPDVAv6XyR6wNW_7JWm_3byloniqKSM7zcrDbg';
+      const data = await CancelChallengeLike(token, id);
+    } else {
+      setLikes(likes + 1);
+      const token =
+        'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoiNjBlZDg2NTZkOWM0ZTg0NzM4NzM1OTYyIn0sImlhdCI6MTYyNjE3OTI4OSwiZXhwIjoxNjI3Mzg4ODg5fQ.kmF5YDPDVAv6XyR6wNW_7JWm_3byloniqKSM7zcrDbg';
+      const data = await ChallengeLike(token, id);
     }
+  };
+
+  const submitScarp = async () => {
+    setScrap(true);
+    setCountScraps(countScraps + 1);
+    const token =
+      'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoiNjBlZDg2NTZkOWM0ZTg0NzM4NzM1OTYyIn0sImlhdCI6MTYyNjE3OTI4OSwiZXhwIjoxNjI3Mzg4ODg5fQ.kmF5YDPDVAv6XyR6wNW_7JWm_3byloniqKSM7zcrDbg';
+    const data = await ChallengeScrap(token, id);
+  };
+
+  const cancelScrap = async () => {
+    setScrap(false);
+    setCountScraps(countScraps - 1);
+    const token =
+      'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoiNjBlZDg2NTZkOWM0ZTg0NzM4NzM1OTYyIn0sImlhdCI6MTYyNjE3OTI4OSwiZXhwIjoxNjI3Mzg4ODg5fQ.kmF5YDPDVAv6XyR6wNW_7JWm_3byloniqKSM7zcrDbg';
+    const data = await CancelChallengeScrap(token, id);
   };
 
   if (deleteModalOpen === true) {
@@ -148,10 +176,10 @@ function ViewListCard({
                       <div className="menu__bar">
                         <Button className="menuIcon">
                           <img
-                            src={ColorScrapIcon}
+                            src={ScrapIcon}
                             alt=""
                             onClick={() => {
-                              setScrap(true);
+                              submitScarp();
                             }}
                           />
                         </Button>
@@ -160,10 +188,10 @@ function ViewListCard({
                       <div className="menu__bar">
                         <Button className="menuIcon">
                           <img
-                            src={ScrapIcon}
+                            src={ColorScrapIcon}
                             alt=""
                             onClick={() => {
-                              setScrap(false);
+                              cancelScrap();
                             }}
                           />
                         </Button>
