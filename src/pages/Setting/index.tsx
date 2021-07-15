@@ -93,6 +93,7 @@ function Setting({ history }: any): React.ReactElement {
         setUserInfo(userInfo);
       }
     })();
+    window.scroll(0, 0);
   }, []);
 
   useEffect(() => {
