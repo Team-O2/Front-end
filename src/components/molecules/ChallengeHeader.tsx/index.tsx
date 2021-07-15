@@ -80,6 +80,9 @@ function ChallengeHeader() {
   const reRenderKeyword = (keyword: string) => {
     setKeyword(keyword);
   };
+  const reRenderIsMine = (ismine: boolean) => {
+    setIsmine(false);
+  };
 
   const challengeListNum = learnMySelfList?.length;
 

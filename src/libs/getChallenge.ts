@@ -90,28 +90,6 @@ export const ChallengeListData = async (token: string) => {
   }
 };
 
-export const getChallengeSearchData = async (token: string, tag: string, keyword: string, ismine: boolean) => {
-  try {
-    const data = await instance.get(`/challenge/search?tag=${tag}?ismine=${ismine}&keyword=${keyword}`, {
-      headers: {
-        Authorization: token,
-      },
-      params: {
-        offset: 0,
-        limit: 10,
-      },
-    });
-    if (data.data.status === 200) {
-      return data.data.data;
-    } else {
-      return null;
-    }
-  } catch (error) {
-    console.log(error);
-    return null;
-  }
-};
-
 export const ChallengeLike = async (likeData: LikeData, token: string) => {
   try {
     const data = await instance.post('/challenge/like', likeData, {
@@ -195,5 +173,27 @@ export const getChallengeContent = async (id: string, token: string) => {
     console.log(data);
   } catch (error) {
     console.log('[FAIL] GET data', error);
+  }
+};
+
+export const getChallengeSearchData = async (token: string, tag: string, keyword: string, ismine: boolean) => {
+  try {
+    const data = await instance.get(`/challenge/search?tag=${tag}&ismine=${ismine}&keyword=${keyword}`, {
+      headers: {
+        Authorization: token,
+      },
+      params: {
+        offset: 0,
+        limit: 10,
+      },
+    });
+    if (data.data.status === 200) {
+      return data.data.data;
+    } else {
+      return null;
+    }
+  } catch (error) {
+    console.log(error);
+    return null;
   }
 };
