@@ -184,7 +184,7 @@ export const getNoticeListData = async ({ token, limit = 8, offset = 0 }: IFetch
       },
     });
     if (data.data.status === 200) {
-      return data.data.data.notices;
+      return data.data.data;
     } else {
       return null;
     }
