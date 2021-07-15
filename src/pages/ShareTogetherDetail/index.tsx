@@ -1,4 +1,10 @@
-import { getConcertData } from 'apis/ShareTogether';
+import {
+  deleteConcertLike,
+  deleteConcertScrap,
+  getConcertData,
+  postConcertLike,
+  postConcertScrap,
+} from 'apis/ShareTogether';
 import DetailTitle from 'components/molecules/DetailTitle';
 import CommentList from 'components/organisms/CommentList';
 import DetailContent from 'components/organisms/DetailContent';
@@ -38,6 +44,8 @@ function ShareTogetherDetail({ match }: RouteComponentProps<MatchParams>): React
   const [commentList, setCommentList] = useState([]);
   const [Likes, setLikes] = useState(0);
   const [likeClick, setLikeClick] = useState(false);
+  const [scrap, setScrap] = useState(0);
+  const [scrapClick, setScrapClick] = useState(false);
   const [userStatusData, setUserStausData] = useRecoilState(userStatusState);
 
   useEffect(() => {
@@ -47,23 +55,38 @@ function ShareTogetherDetail({ match }: RouteComponentProps<MatchParams>): React
         data && setConcert(data);
         data && setCommentList(data.comments);
         data && setLikes(data.likes);
+        data && setScrap(data.scrapNum);
       } else {
         alert('로그인 후 이용하세요');
       }
     };
     getConcertList();
-  }, [commentList]);
+  }, [commentList, Likes, scrap]);
 
   const reLoadComment = (newComment: any) => {
     setCommentList(commentList?.concat(newComment));
   };
 
-  const onLike = () => {
-    setLikeClick(!likeClick);
-    if (likeClick == true) {
-      setLikes(Likes - 1);
+  const onLike = async () => {
+    if (userStatusData) {
+      const postLike = await postConcertLike(userStatusData.token, id);
+      setLikeClick(!likeClick);
+      if (postLike === true) {
+        const deleteLike = await deleteConcertLike(userStatusData.token, id);
+      }
     } else {
-      setLikes(Likes + 1);
+      alert('로그인 후 이용하세요');
+    }
+  };
+  const onScrap = async () => {
+    if (userStatusData) {
+      const postScrap = await postConcertScrap(userStatusData.token, id);
+      setScrapClick(!scrapClick);
+      if (postScrap === true) {
+        const deleteSrap = await deleteConcertScrap(userStatusData.token, id);
+      }
+    } else {
+      alert('로그인 후 이용하세요');
     }
   };
 
@@ -84,6 +107,8 @@ function ShareTogetherDetail({ match }: RouteComponentProps<MatchParams>): React
         scrap={concert?.scrapNum}
         onLike={onLike}
         likeClick={likeClick}
+        onScrap={onScrap}
+        scrapClick={scrapClick}
       ></DetailContent>
       <CommentList commentList={commentList} concertID={concert?._id} reLoadComment={reLoadComment}></CommentList>
     </SShareTogetherDetail>

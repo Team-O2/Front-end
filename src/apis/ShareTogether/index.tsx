@@ -92,7 +92,72 @@ export const postConcertComment = async (
 
 export const postConcertLike = async (token: string, concertID: string) => {
   try {
-    const data = await serverAxios.post(`/concert/like/${concertID}`, {
+    console.log(token, concertID);
+    const data = await serverAxios.post(`/concert/like/${concertID}`, '', {
+      headers: {
+        Authorization: token,
+      },
+    });
+    if (data.data.status === 200) {
+      alert(data.data.message);
+    } else {
+      return null;
+    }
+  } catch (e) {
+    if (e.response.data.status === 400) {
+      alert(e.response.data.message);
+      return true;
+    }
+    alert(e.response.data.message);
+    return undefined;
+  }
+};
+
+export const deleteConcertLike = async (token: string, concertID: string) => {
+  try {
+    console.log(token, concertID);
+    const data = await serverAxios.delete(`/concert/like/${concertID}`, {
+      headers: {
+        Authorization: token,
+      },
+    });
+    if (data.data.status === 200) {
+      alert(data.data.message);
+    } else {
+      return null;
+    }
+  } catch (e) {
+    alert(e.response.data.message);
+    return undefined;
+  }
+};
+
+export const postConcertScrap = async (token: string, concertID: string) => {
+  try {
+    const data = await serverAxios.post(`/concert/scrap/${concertID}`, '', {
+      headers: {
+        Authorization: token,
+      },
+    });
+    if (data.data.status === 200) {
+      alert(data.data.message);
+    } else {
+      return null;
+    }
+  } catch (e) {
+    if (e.response.data.message === '이미 스크랩 된 글입니다') {
+      alert(e.response.data.message);
+      return true;
+    }
+    alert(e.response.data.message);
+    return undefined;
+  }
+};
+
+export const deleteConcertScrap = async (token: string, concertID: string) => {
+  try {
+    console.log(token, concertID);
+    const data = await serverAxios.delete(`/concert/scrap/${concertID}`, {
       headers: {
         Authorization: token,
       },

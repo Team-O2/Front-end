@@ -2,6 +2,7 @@ import CommentIcon from 'assets/images/comment.svg';
 import LikeIcon from 'assets/images/heart.svg';
 import LikeIconFilled from 'assets/images/heart_filled.svg';
 import ScrapIcon from 'assets/images/scrap.svg';
+import ScrapFilledIcon from 'assets/images/scrap_filled.svg';
 import HashTag from 'components/atoms/HashTag';
 import React from 'react';
 import Styled from 'styled-components';
@@ -15,9 +16,22 @@ interface IProps {
   scrap?: number;
   onLike?: () => void;
   likeClick?: boolean;
+  onScrap?: () => void;
+  scrapClick?: boolean;
 }
 
-function DetailContent({ video, desc, hashtag, like, comments, scrap, onLike, likeClick }: IProps): React.ReactElement {
+function DetailContent({
+  video,
+  desc,
+  hashtag,
+  like,
+  comments,
+  scrap,
+  onLike,
+  likeClick,
+  onScrap,
+  scrapClick,
+}: IProps): React.ReactElement {
   return (
     <SDetailContent>
       <div className="image">
@@ -31,11 +45,7 @@ function DetailContent({ video, desc, hashtag, like, comments, scrap, onLike, li
       </div>
       <div className="icons">
         <div className="like">
-          {likeClick ? (
-            <img className="like__img" src={LikeIconFilled} onClick={onLike} alt="" />
-          ) : (
-            <img className="like__img" src={LikeIcon} onClick={onLike} alt="" />
-          )}
+          <img className="like__img" src={likeClick ? LikeIconFilled : LikeIcon} onClick={onLike} alt="" />
           {like}
         </div>
         <div className="comments">
@@ -43,7 +53,7 @@ function DetailContent({ video, desc, hashtag, like, comments, scrap, onLike, li
           {comments}
         </div>
         <div className="scrap">
-          <img className="scrap__img" src={ScrapIcon} alt="" />
+          <img className="scrap__img" src={scrapClick ? ScrapFilledIcon : ScrapIcon} onClick={onScrap} alt="" />
           {scrap}
         </div>
       </div>
