@@ -25,6 +25,7 @@ const SSearchBar = Styled.div`
   display: flex;
   flex-direction: row;
   align-items: center;
+  margin-right: 33px;
   .input {
     border: 1px solid #dfdfdf;
     border-radius: 72px;
