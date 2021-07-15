@@ -168,7 +168,7 @@ export const getChallengeContent = async (id: string, token: string) => {
       },
     });
     if (data.status === 200) {
-      return data.data.data[0];
+      return data.data.data;
     }
     console.log(data);
   } catch (error) {
