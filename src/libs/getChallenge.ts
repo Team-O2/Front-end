@@ -28,8 +28,8 @@ interface EditData {
   interest: string[];
 }
 
-interface CommentData {
-  parentID?: string;
+interface IChallengeCommentData {
+  parentID?: string | null;
   text: string;
 }
 
@@ -133,7 +133,11 @@ export const ChallengeLike = async (likeData: LikeData, token: string) => {
   }
 };
 
+<<<<<<< refs/remotes/origin/feat/Challenge
 export const ChallengeComment = async (
+=======
+export const postChallengeComment = async (
+>>>>>>> Feat: 작성한 댓글 서버로 전송
   token: string,
   challengeID: string | undefined,
   commentData: IChallengeCommentData,
@@ -144,10 +148,17 @@ export const ChallengeComment = async (
         Authorization: token,
       },
     });
+<<<<<<< refs/remotes/origin/feat/Challenge
+=======
+    if (data.status === 200) {
+      return true;
+    }
+>>>>>>> Feat: 작성한 댓글 서버로 전송
   } catch (error) {
     console.log('[FAIL] POST data', error);
     return null;
   }
+  return false;
 };
 
 export const SignRegister = async (signData: SignData, token: string) => {

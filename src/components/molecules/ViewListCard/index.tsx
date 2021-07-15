@@ -268,9 +268,19 @@ function ViewListCard({
                   </button>
                 ) : (
                   <div>
+<<<<<<< refs/remotes/origin/feat/Challenge
                     {/* {IsFoldComment === false ? null : (
                       <ChallengeComment commentList={commentlist} reLoadComment={reLoadComment}></ChallengeComment>
                     )} */}
+=======
+                    {IsFoldComment === false ? null : (
+                      <ChallengeComment
+                        commentList={commentlist}
+                        reLoadComment={reLoadComment}
+                        challengeID={id}
+                      ></ChallengeComment>
+                    )}
+>>>>>>> Feat: 작성한 댓글 서버로 전송
                     <button
                       className="comment__card-fold"
                       onClick={() => {
