@@ -38,6 +38,11 @@ interface ChallengeID {
   id: number;
 }
 
+interface IChallengeCommentData {
+  parentID?: string;
+  text: string;
+}
+
 export const writeForm = async (writeData: WriteData, token: string) => {
   try {
     const data = await instance.post('/challenge', writeData, {
@@ -58,10 +63,32 @@ export const ChallengeListData = async (token: string) => {
       },
       params: {
         offset: 0,
-        limit: 10,
+        limit: 50,
       },
     });
     return data.data.data;
+  } catch (error) {
+    console.log(error);
+    return null;
+  }
+};
+
+export const getChallengeSearchData = async (token: string, tag: string, keyword: string, ismine: boolean) => {
+  try {
+    const data = await instance.get(`/challenge/search?tag=${tag}?ismine=${ismine}&keyword=${keyword}`, {
+      headers: {
+        Authorization: token,
+      },
+      params: {
+        offset: 0,
+        limit: 10,
+      },
+    });
+    if (data.data.status === 200) {
+      return data.data.data;
+    } else {
+      return null;
+    }
   } catch (error) {
     console.log(error);
     return null;
@@ -80,15 +107,20 @@ export const ChallengeLike = async (likeData: LikeData, token: string) => {
   }
 };
 
-export const ChallengeComment = async (commentData: CommentData, token: string) => {
+export const ChallengeComment = async (
+  token: string,
+  challengeID: string | undefined,
+  commentData: IChallengeCommentData,
+) => {
   try {
-    const data = await instance.post('/challenge/comment', commentData, {
+    const data = await instance.post(`/challenge/comment/${challengeID}`, commentData, {
       headers: {
         Authorization: token,
       },
     });
   } catch (error) {
     console.log('[FAIL] POST data', error);
+    return null;
   }
 };
 
