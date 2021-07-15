@@ -6,8 +6,7 @@ import Styled from 'styled-components';
 import { ifProp, palette } from 'styled-tools';
 import { IMyUserCommentResponse } from 'types/myPage';
 import { changeDateFormat } from 'utils';
-import { deleteUserCommentList } from '../../../apis/myPage';
-import { userState, userStatusState } from '../../../stores/user';
+import { userState } from '../../../stores/user';
 import { IMyUserComment } from '../../../types/myPage';
 import CommentedBoardRow from '../../molecules/CommentedBoardRow/index';
 
@@ -15,10 +14,13 @@ export interface IProps {
   userCommentData: IMyUserCommentResponse;
   selectedCategory: string;
   currentPage: number;
-  reRenderFlag: boolean;
-  setReRenderFlag: (value: boolean) => void;
   setSelectedCategory: (value: string) => void;
   setCurrentPage: (value: number) => void;
+  handleModalOpen: () => void;
+  checkedCommentList: string[];
+  setCheckedCommentList: (value: string[]) => void;
+  isSelectAll: boolean;
+  setIsSelectAll: (value: boolean) => void;
 }
 
 function MyCommentList({
@@ -27,16 +29,16 @@ function MyCommentList({
   setSelectedCategory,
   currentPage,
   setCurrentPage,
-  reRenderFlag,
-  setReRenderFlag,
+  handleModalOpen,
+  checkedCommentList,
+  setCheckedCommentList,
+  isSelectAll,
+  setIsSelectAll,
 }: IProps): React.ReactElement {
   const [startPage, setStartPage] = useState(0);
   const [endPage, setEndPage] = useState(5);
-  const [checkedCommentList, setCheckedCommentList] = useState<string[]>([]);
   const [allCommentIdList, setAllCommentIdList] = useState<string[]>([]);
-  const [isSelectAll, setIsSelectAll] = useState(false);
   const globalUserInfo = useRecoilValue(userState);
-  const globalUserStatusInfo = useRecoilValue(userStatusState);
 
   const commentsOfPage = 5;
   const totalPage = Math.ceil(userCommentData.commentNum / commentsOfPage);
@@ -46,7 +48,7 @@ function MyCommentList({
   useEffect(() => {
     setCheckedCommentList([]);
     setAllCommentIdList([]);
-  }, [selectedCategory]);
+  }, [selectedCategory, setCheckedCommentList]);
 
   useEffect(() => {
     setAllCommentIdList(userCommentData.comments.map((item) => item._id));
@@ -54,13 +56,7 @@ function MyCommentList({
 
   useEffect(() => {
     setIsSelectAll(allCommentIdList.includes(checkedCommentList[checkedCommentList.length - 1]));
-  }, [allCommentIdList, checkedCommentList]);
-
-  const deleteSelectedCommentList = async () => {
-    await deleteUserCommentList({ token: globalUserStatusInfo?.token, commentIdList: checkedCommentList });
-    setIsSelectAll(false);
-    setReRenderFlag(!reRenderFlag);
-  };
+  }, [allCommentIdList, checkedCommentList, setIsSelectAll]);
 
   const handleAllSelectClick = () => {
     setCheckedCommentList([...checkedCommentList, ...allCommentIdList]);
@@ -151,7 +147,7 @@ function MyCommentList({
         <Button className="body4" onClick={isSelectAll ? handleAllUnselectClick : handleAllSelectClick}>
           {isSelectAll ? '선택해제' : '전체선택'}
         </Button>
-        <Button className="subhead4" onClick={deleteSelectedCommentList}>
+        <Button className="subhead4" onClick={handleModalOpen}>
           삭제
         </Button>
       </div>
