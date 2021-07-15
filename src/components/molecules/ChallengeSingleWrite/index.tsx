@@ -1,10 +1,9 @@
 import { ICommentData } from 'components/molecules/ViewListCard';
 import React, { useState } from 'react';
-import { useRecoilValue } from 'recoil';
-import { userState } from 'stores/user';
 import Styled from 'styled-components';
 import ChallengeCommentWrite from '../ChallengeCommentWrite';
 import ChallengeReplyComment from '../ReplyComment';
+
 interface IProps {
   commentData: ICommentData;
   challengeID: string;
@@ -13,10 +12,13 @@ interface IProps {
 }
 
 interface IReply {
-  _id?: string;
-  parentID?: string;
-  text?: string;
-  nickname?: string;
+  _id: string;
+  userID: {
+    img: string;
+    _id: string;
+    nickname: string;
+  };
+  text: string;
 }
 
 function ChallengeSingleComment({
@@ -55,16 +57,18 @@ function ChallengeSingleComment({
               value={replyValue}
               setValue={setReplyValue}
               onChange={handleChange}
-              isComment={false}
+              isComment={false} //답글부분
               challengeID={challengeID}
               commentListFlag={commentListFlag}
               setCommentListFlag={setCommentListFlag}
+              parentCommentId={_id}
             ></ChallengeCommentWrite>
             {replyList.map((data: IReply) => (
               <ChallengeReplyComment
                 className="reply__comment"
                 key={data._id}
-                nickname={data.nickname}
+                img={data.userID.img}
+                nickname={data.userID.nickname}
                 text={data.text}
               ></ChallengeReplyComment>
             ))}

@@ -6,12 +6,13 @@ interface IProps {
   nickname?: string;
   text?: string;
   className?: string;
+  img?: string;
 }
 
-function Replycomment({ profile, nickname, text }: IProps): React.ReactElement {
+function Replycomment({ nickname, text, img }: IProps): React.ReactElement {
   return (
     <SReplyComment>
-      <img className="profile" src={profile} alt="" />
+      <img className="profile" src={img} alt="" />
       <div className="writer">{nickname}</div>
       <div className="text">{text}</div>
     </SReplyComment>

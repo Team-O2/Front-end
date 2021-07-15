@@ -14,6 +14,7 @@ export interface IProps {
   onChange?: (e: React.ChangeEvent<HTMLTextAreaElement>) => void;
   commentListFlag: boolean;
   setCommentListFlag: (value: boolean) => void;
+  parentCommentId?: string;
 }
 
 function ChallengeCommentWrite({
@@ -25,6 +26,7 @@ function ChallengeCommentWrite({
   challengeID,
   commentListFlag,
   setCommentListFlag,
+  parentCommentId,
 }: IProps): React.ReactElement {
   const [userStatusData, setUserStatusData] = useRecoilState(userStatusState);
 
@@ -45,7 +47,7 @@ function ChallengeCommentWrite({
   const postReComment = async () => {
     setValue('');
     if (userStatusData) {
-      await postChallengeComment(userStatusData.token, challengeID, { parentID: null, text: value });
+      await postChallengeComment(userStatusData.token, challengeID, { parentID: parentCommentId, text: value });
     }
     setCommentListFlag(!commentListFlag);
   };
