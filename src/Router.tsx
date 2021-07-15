@@ -20,6 +20,8 @@ import AdminWrite from './pages/AdminWrite';
 import Home from './pages/Home';
 import Join from './pages/Join/index';
 import Login from './pages/Login';
+import ScrappedLearnMyself from './pages/MyPage/ScrappedLearnMyself/index';
+import ScrappedShareTogether from './pages/MyPage/ScrappedShareTogether/index';
 
 function Router(): React.ReactElement {
   return (
@@ -44,6 +46,8 @@ function Router(): React.ReactElement {
         <Route exact path="/mypage" component={MyPage} />
         <Route exact path="/notice/:id" component={NoticeDetail} />
         <Route exact path="/setting" component={Setting} />
+        <Route exact path="/mypage/challenge/scrap" component={ScrappedLearnMyself} />
+        <Route exact path="/mypage/concert/scrap" component={ScrappedShareTogether} />
         <Route
           component={() => (
             <ForbiddenComponent>

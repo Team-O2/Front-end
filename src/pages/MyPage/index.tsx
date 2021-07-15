@@ -158,7 +158,7 @@ function MyPage(): React.ReactElement {
               subTitle={`${globalUserInfo?.nickname}님이 스크랩한 강연들이에요`}
               column={2}
               gap={30}
-              path="/mypage/share-together/scrap/more"
+              path="/mypage/concert/scrap"
               data={shareTogetherData?.mypageConcertScrap}
               renderItemList={renderScrappedShareTogether}
             />
@@ -168,7 +168,7 @@ function MyPage(): React.ReactElement {
               subTitle={`${globalUserInfo?.nickname}님이 작성한 런마셀들이에요`}
               column={4}
               gap={15}
-              path="/mypage/learn-myself/scrap/more"
+              path="/mypage/challenge/mine"
               data={userLearnMyselfData?.mypageChallengeScrap}
               renderItemList={renderLearnMyself}
             />
@@ -181,7 +181,7 @@ function MyPage(): React.ReactElement {
               subTitle={`${globalUserInfo?.nickname}님이 스크랩한 런마셀들이에요`}
               column={4}
               gap={15}
-              path="/mypage/learn-myself/mine/more"
+              path="/mypage/challenge/scrap"
               data={learnMyselfData?.mypageChallengeScrap}
               renderItemList={renderLearnMyself}
             />
