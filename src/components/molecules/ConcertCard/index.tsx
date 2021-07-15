@@ -10,6 +10,7 @@ interface IProps {
 }
 
 function ConcertCard({ imgThumbnail, title, authorNickname, interestList, onClickFunc }: IProps): React.ReactElement {
+  const interestDivide = interestList?.join(' | ');
   return (
     <>
       <SConcertCard>
@@ -19,7 +20,7 @@ function ConcertCard({ imgThumbnail, title, authorNickname, interestList, onClic
         </div>
         <div className="card__detail" onClick={onClickFunc}>
           <p>{authorNickname}</p>
-          <p>{interestList}</p>
+          <p>{interestDivide}</p>
         </div>
       </SConcertCard>
     </>

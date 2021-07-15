@@ -1,4 +1,5 @@
 import CommentIcon from 'assets/images/thumnailComment.svg';
+import dayjs from 'dayjs';
 import React from 'react';
 import Styled from 'styled-components';
 
@@ -22,16 +23,16 @@ function Notice({
   title,
   text,
   commentNum,
-  likes,
   onClickFunc,
 }: IProps): React.ReactElement {
+  const interestDivide = interestList?.join(' | ');
   return (
     <>
       <SNotice>
         <div className="content__left">
           <p>{authorNickname}</p>
-          <p>{interestList}</p>
-          <p>{createdAt}</p>
+          <p>{interestDivide}</p>
+          <p>{`${dayjs(createdAt).format('YY.MM.DD')}`}</p>
         </div>
         <div className="content__middle" onClick={onClickFunc}>
           <p>{title}</p>
