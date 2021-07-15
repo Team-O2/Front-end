@@ -48,27 +48,27 @@ function NoticeDetail({ match }: RouteComponentProps<MatchParams>): React.ReactE
       }
     };
     getConcertList();
-  }, [commentList]);
+  }, [commentList, userStatusData, id]);
 
   const reLoadComment = (newComment: any) => {
     setCommentList(commentList?.concat(newComment));
   };
 
   return (
-      <SNoticeDetail>
-        <NoticeDetailTitle
-          title={notice?.title}
-          createdAt={notice?.createdAt}
-          speaker={notice?.user.nickname}
-          interest={notice?.interest}
-        ></NoticeDetailTitle>
-        <NoticeDetailContent
-          imgThumbnail={notice?.imgThumbnail}
-          desc={notice?.text}
-          comments={notice?.commentNum}
-        ></NoticeDetailContent>
-        <CommentList commentList={commentList} concertID={notice?._id} reLoadComment={reLoadComment}></CommentList>
-      </SNoticeDetail>
+    <SNoticeDetail>
+      <NoticeDetailTitle
+        title={notice?.title}
+        createdAt={notice?.createdAt}
+        speaker={notice?.user.nickname}
+        interest={notice?.interest}
+      ></NoticeDetailTitle>
+      <NoticeDetailContent
+        imgThumbnail={notice?.imgThumbnail}
+        desc={notice?.text}
+        comments={notice?.commentNum}
+      ></NoticeDetailContent>
+      <CommentList commentList={commentList} concertID={notice?._id} reLoadComment={reLoadComment}></CommentList>
+    </SNoticeDetail>
   );
 }
 

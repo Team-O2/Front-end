@@ -3,7 +3,7 @@ import NoticeHeader from 'components/organisms/NoticeHeader';
 import NoticeList from 'components/organisms/NoticeList';
 import SeachForm from 'components/organisms/SearchForm';
 import React, { useEffect, useState } from 'react';
-import { useRecoilState } from 'recoil';
+import { useRecoilValue } from 'recoil';
 import { userStatusState } from 'stores/user';
 import Styled from 'styled-components';
 
@@ -30,7 +30,7 @@ interface INoticeData {
 function Notice(): React.ReactElement {
   const [noticeList, setnoticeList] = useState<INoticeData[] | undefined>(undefined);
   const [keyword, setKeyword] = useState('');
-  const [userStatusData, setUserStausData] = useRecoilState(userStatusState);
+  const userStatusData = useRecoilValue(userStatusState);
   useEffect(() => {
     const getNoticeList = async () => {
       if (userStatusData) {
@@ -41,7 +41,7 @@ function Notice(): React.ReactElement {
       }
     };
     getNoticeList();
-  }, []);
+  }, [userStatusData]);
   useEffect(() => {
     const getNoticeSearchList = async () => {
       if (userStatusData) {
@@ -52,7 +52,7 @@ function Notice(): React.ReactElement {
       }
     };
     getNoticeSearchList();
-  }, [keyword]);
+  }, [keyword, userStatusData]);
 
   const reRenderKeyword = (keyword: string) => {
     setKeyword(keyword);

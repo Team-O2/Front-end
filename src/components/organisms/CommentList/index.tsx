@@ -2,7 +2,7 @@ import { postConcertComment } from 'apis/ShareTogether';
 import CommentWrite from 'components/molecules/CommentWrite';
 import SingleComment from 'components/molecules/SingleComment';
 import React, { useState } from 'react';
-import { useRecoilState } from 'recoil';
+import { useRecoilValue } from 'recoil';
 import { userStatusState } from 'stores/user';
 import Styled from 'styled-components';
 
@@ -36,7 +36,7 @@ interface IProps {
 
 function CommentList({ commentList, concertID, reLoadComment }: IProps): React.ReactElement {
   const [commentValue, setCommentValue] = useState('');
-  const [userStatusData, setUserStausData] = useRecoilState(userStatusState);
+  const userStatusData = useRecoilValue(userStatusState);
 
   const handleChange = (event: React.ChangeEvent<HTMLTextAreaElement>) => {
     setCommentValue(event.currentTarget.value);
