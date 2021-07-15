@@ -415,13 +415,12 @@ const SViewListCard = Styled.div`
         color: #8B8B8B;
         font-size: 14px;
     }
-    &__tag{display
-        align-items: center;margin-right
-        line-height: 20px;line-height
-        color: #6F6F6F;font-size
-        font-weight: bold;font-weight
-        display : inline-block;font-weightHEADdisplay
-        margin-right : 5px;margin-right
+    &__tag{
+        display : inline-block;
+        align-items: center;
+        margin-right : 5px;
+        line-height: 20px;
+        color: #6F6F6F;
     }
 }
 .button{
@@ -511,21 +510,10 @@ const SViewListCard = Styled.div`
     width: 844px;
     height: 63px;
     line-height: 22px;
-    line-height: 1.33;
-    letter-spacing: -0.5px;letter-spacing
-    color: #FFFFFF;color
-    color: #E04747;
-    font-size: 16px;
-    font-weight: bold;HEADline-height
-    letter-spacing: -0.5px;letter-spacing
-  }
-  &__cancel{
-    line-height: 1.33;
     letter-spacing: -0.5px;
-    color: #C1C1C1;
-    font-size: 18px;
-    font-weight: bold;;
-  }Style
+    color: #FFFFFF;
+    font-size: 16px;
+    font-weight: bold;
 }
 `;
 
