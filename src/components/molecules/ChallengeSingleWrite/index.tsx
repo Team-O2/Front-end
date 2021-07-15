@@ -55,6 +55,8 @@ function ChallengeSingleComment({
               setCommentListFlag={setCommentListFlag}
               parentCommentId={_id}
             />
+            {childrenComment.map((data: IReply) => (
+              <ChallengeReplyComment // 답글
                 className="reply__comment"
                 key={data._id}
                 img={data.userID.img}
