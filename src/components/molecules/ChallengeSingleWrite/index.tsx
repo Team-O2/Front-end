@@ -86,43 +86,47 @@ const SSingleComment = Styled.div`
     justify-content: space-between;
     font-family: 'AppleSDGothicNeo';
     line-height: 1.43;
-    align-items:center;
-    margin: 0 auto;
-
-    width: 724px;
-    
+    align-items:flex-start;
+    margin: 0 auto ;
+    width: 724px;   
     &__profile {
       width: 28px;
       height: 28px;
+      border-radius : 100%;
     }
     &__writer {
-      padding-left: 13px;
+      margin: 0 13px;
       font-size: 16px;
       font-weight: bold;
+      width : 86px;
     }
     &__text {
-      width: 550px;
+      /* flex : auto; */
+      /* background-color : beige; */
+      width : 585px;
       font-size: 16px;
       color: #6f6f6f;
-      padding-left:8px;
+      margin-right : 8px;
+      white-space : normal;
+      word-break:break-all;
     }
     &__toggle {
       width: 50px;
+      text-align : right;
       font-size: 14px;
       font-weight: bold;
       color: #36c8f5;
-      text-align: right;
+      white-space : nowrap;
+      cursor : pointer;
     }
   }
   .reply {
     display: flex;
     flex-direction: column;
-    margin: 16px 0 31px;
+    align-items : flex-end;
+    margin: 8px 0 31px;
     &__write {
-      margin-left:130px;
-    }
-    &__comment {
-      width: 724px;
+      margin-bottom:20px;
     }
   }
 

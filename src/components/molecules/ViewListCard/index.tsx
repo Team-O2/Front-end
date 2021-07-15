@@ -120,33 +120,35 @@ function ViewListCard({
 
   const onClickLike = async () => {
     setLikeClick(!likeClick);
-    if (likeClick === true) {
-      setLikes(likes - 1);
-      const token =
-        'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoiNjBlZDg2NTZkOWM0ZTg0NzM4NzM1OTYyIn0sImlhdCI6MTYyNjE3OTI4OSwiZXhwIjoxNjI3Mzg4ODg5fQ.kmF5YDPDVAv6XyR6wNW_7JWm_3byloniqKSM7zcrDbg';
-      const data = await CancelChallengeLike(token, id);
-    } else {
-      setLikes(likes + 1);
-      const token =
-        'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoiNjBlZDg2NTZkOWM0ZTg0NzM4NzM1OTYyIn0sImlhdCI6MTYyNjE3OTI4OSwiZXhwIjoxNjI3Mzg4ODg5fQ.kmF5YDPDVAv6XyR6wNW_7JWm_3byloniqKSM7zcrDbg';
-      const data = await ChallengeLike(token, id);
+    if (userStatusData) {
+      if (likeClick === true) {
+        setLikes(likes - 1);
+        const token = userStatusData.token;
+        const data = await CancelChallengeLike(token, id);
+      } else {
+        setLikes(likes + 1);
+        const token = userStatusData.token;
+        const data = await ChallengeLike(token, id);
+      }
     }
   };
 
   const submitScarp = async () => {
-    setScrap(true);
-    setCountScraps(countScraps + 1);
-    const token =
-      'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoiNjBlZDg2NTZkOWM0ZTg0NzM4NzM1OTYyIn0sImlhdCI6MTYyNjE3OTI4OSwiZXhwIjoxNjI3Mzg4ODg5fQ.kmF5YDPDVAv6XyR6wNW_7JWm_3byloniqKSM7zcrDbg';
-    const data = await ChallengeScrap(token, id);
+    if (userStatusData) {
+      setScrap(true);
+      setCountScraps(countScraps + 1);
+      const token = userStatusData.token;
+      const data = await ChallengeScrap(token, id);
+    }
   };
 
   const cancelScrap = async () => {
-    setScrap(false);
-    setCountScraps(countScraps - 1);
-    const token =
-      'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoiNjBlZDg2NTZkOWM0ZTg0NzM4NzM1OTYyIn0sImlhdCI6MTYyNjE3OTI4OSwiZXhwIjoxNjI3Mzg4ODg5fQ.kmF5YDPDVAv6XyR6wNW_7JWm_3byloniqKSM7zcrDbg';
-    const data = await CancelChallengeScrap(token, id);
+    if (userStatusData) {
+      setScrap(false);
+      setCountScraps(countScraps - 1);
+      const token = userStatusData.token;
+      const data = await CancelChallengeScrap(token, id);
+    }
   };
 
   if (deleteModalOpen === true) {
@@ -230,7 +232,14 @@ function ViewListCard({
                     </div>
                   )}
                 </div>
-                <div className="profile__tag">{interest}</div>
+                {interest &&
+                  interest.map((item, id) => {
+                    return (
+                      <p className="profile__tag" key={id}>
+                        #{item}
+                      </p>
+                    );
+                  })}
               </div>
               <div className="text">
                 <div className="detail__view">
@@ -360,9 +369,7 @@ function ViewListCard({
 const SViewListCard = Styled.div`
 .container{
   padding-bottom:60px;
-
 }
-
 .detail{
     padding-top:40px;
     position: relative;
@@ -429,6 +436,8 @@ const SViewListCard = Styled.div`
         line-height: 20px;
         align-items: center;
         color: #6F6F6F;
+        display : inline-block;
+        margin-right : 5px;
     }
 }
 .button{
