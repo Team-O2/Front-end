@@ -14,6 +14,7 @@ import ShareTogether from 'pages/ShareTogether';
 import ShareTogetherDetail from 'pages/ShareTogetherDetail';
 import React from 'react';
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
+import Styled from 'styled-components';
 import AdminChallengeOpen from './pages/AdminChallengeOpen';
 import AdminWrite from './pages/AdminWrite';
 import Home from './pages/Home';
@@ -43,11 +44,25 @@ function Router(): React.ReactElement {
         <Route exact path="/mypage" component={MyPage} />
         <Route exact path="/notice/:id" component={NoticeDetail} />
         <Route exact path="/setting" component={Setting} />
-        <Route component={() => <div>404 Not Found</div>} />
+        <Route
+          component={() => (
+            <ForbiddenComponent>
+              <p>404 Not Found</p>
+            </ForbiddenComponent>
+          )}
+        />
       </Switch>
       <Footer />
     </BrowserRouter>
   );
 }
+
+const ForbiddenComponent = Styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100vw;
+  height: 80vw;
+`;
 
 export default Router;
