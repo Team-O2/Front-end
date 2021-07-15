@@ -1,4 +1,5 @@
 import CategoryList from 'components/organisms/CategoryList';
+import { ChallengeListData, getChallengeSearchData } from 'libs/getChallenge';
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import Styled from 'styled-components';
@@ -7,8 +8,22 @@ import MyFeedIcon from '../../../assets/images/myfeedIcon.svg';
 import WriteIcon from '../../../assets/images/writeIcon.svg';
 import SearchForm from '../../organisms/SearchForm';
 
-export interface IProps {
-  className?: string;
+interface IChallengeDataList {
+  good: string;
+  bad: string;
+  learn: string;
+  commentNum: number;
+  comments: string[];
+  generation: number;
+  createdAt: string;
+  isDeleted: boolean;
+  scrapNum: number;
+  interest: string[];
+  likes: number;
+  updatedAt: string;
+  user: { img: string; nickname: string; _id: string };
+  __v: number;
+  _id: string;
 }
 
 //user상태 :
@@ -18,15 +33,67 @@ export interface IProps {
 // 3: 챌린지하는유저&챌린지종료,
 // 4: 관리자
 
-function ChallengeHeader({ ...props }: IProps) {
+function ChallengeHeader() {
   const [userState, setUserState] = useState(2);
+
+  const [learnMySelfList, setlearnMySelfList] = useState<IChallengeDataList[] | null>(null);
+  const [selectedCategory, setSelectedCategory] = useState('전체');
+  const [keyword, setKeyword] = useState('');
+  const [isClickedEntire, setISClickedEntire] = useState(false);
+  const [ismine, setIsmine] = useState(false);
+  React.useEffect(() => {
+    getChallengeList(
+      'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoiNjBlZDg2NTZkOWM0ZTg0NzM4NzM1OTYyIn0sImlhdCI6MTYyNjE3OTI4OSwiZXhwIjoxNjI3Mzg4ODg5fQ.kmF5YDPDVAv6XyR6wNW_7JWm_3byloniqKSM7zcrDbg',
+    );
+  }, [isClickedEntire]);
+  React.useEffect(() => {
+    getChallengeCategoryData(
+      'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoiNjBlZDg2NTZkOWM0ZTg0NzM4NzM1OTYyIn0sImlhdCI6MTYyNjE3OTI4OSwiZXhwIjoxNjI3Mzg4ODg5fQ.kmF5YDPDVAv6XyR6wNW_7JWm_3byloniqKSM7zcrDbg',
+      selectedCategory,
+      keyword,
+      ismine,
+    );
+  }, [selectedCategory, keyword]);
+  const getChallengeList = async (token: string): Promise<void> => {
+    const data = await ChallengeListData(token);
+    data && setlearnMySelfList(data);
+  };
+
+  const getChallengeCategoryData = async (
+    token: string,
+    selectedCategory: string,
+    keyword: string,
+    ismine: boolean,
+  ): Promise<void> => {
+    const data = await getChallengeSearchData(token, selectedCategory, keyword, ismine);
+    data && setlearnMySelfList(data);
+  };
+
+  const reRenderCategory = (category: string) => {
+    if (category === '전체') {
+      setSelectedCategory('');
+      setISClickedEntire(!isClickedEntire);
+    } else {
+      setSelectedCategory(category);
+    }
+  };
+  const reRenderKeyword = (keyword: string) => {
+    setKeyword(keyword);
+  };
+
+  const challengeListNum = learnMySelfList?.length;
+
   return (
-    <SChallengeHeader {...props}>
+    <SChallengeHeader>
       <div className="title">
         <p className="title__text">Learn Myself 2nd</p>
       </div>
-      <CategoryList />
-      <SearchForm />
+      <CategoryList reRenderCategory={reRenderCategory} selectedCategory={selectedCategory} />
+      <SearchForm
+        reRenderKeyword={reRenderKeyword}
+        selectedCategory={selectedCategory}
+        concertListNum={challengeListNum}
+      />
       {userState === 1 || userState === 0 ? null : (
         <div>
           <button className="button__icon">
