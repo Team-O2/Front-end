@@ -149,15 +149,15 @@ export const getChallengeContent = async (id: string, token: string) => {
       headers: {
         Authorization: token,
       },
-      params: {
-        challengeID: id,
-      },
     });
     if (data.status === 200) {
       return data.data.data;
+    } else {
+      throw new Error('서버오류');
     }
   } catch (error) {
     console.log('[FAIL] GET data', error);
+    return null;
   }
 };
 
