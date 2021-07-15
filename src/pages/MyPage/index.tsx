@@ -1,4 +1,5 @@
 import {
+  deleteUserLearnMyselfBookmark,
   getLearnMyselfListData,
   getMyPageUserInfo,
   getShareTogetherListData,
@@ -59,6 +60,12 @@ function MyPage(): React.ReactElement {
   const fetchUserLearnMyselfData = async () => {
     const data = await getUserLearnMyselfListData({ token: globalUserStatusInfo?.token });
     setUserLearnMyselfData(data);
+  }, [globalUserStatusInfo?.token]);
+
+  const cancelLearnMyselfBookmark = async (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
+    const id = e.currentTarget.value;
+    await deleteUserLearnMyselfBookmark({ token: globalUserStatusInfo?.token, learnMyselfId: id });
+    setReRenderFlag(!reRenderFlag);
   };
 
   const fetchUserCommentListData = async (selectedCategory: string, pageIndex: number) => {
@@ -69,7 +76,10 @@ function MyPage(): React.ReactElement {
       offset: (pageIndex - 1) * LIMIT_PER_PAGE,
     });
     setUserCommentData(data);
-  };
+  // FIXME: 리렌더플래그를 두개의 useEffect에 넣어둬서 같이 리렌더링 되는 문제가 생김.
+  useEffect(() => {
+    fetchScrappedLearnMyselfData();
+  }, [reRenderFlag, fetchScrappedLearnMyselfData]);
 
   useEffect(() => {
     fetchMyPageUserInfo();
@@ -107,6 +117,7 @@ function MyPage(): React.ReactElement {
         key={item._id}
         name={item.user?.nickname}
         content={`잘한 점: ${item.good} 못한 점: ${item.bad} 배운 점: ${item.learn}`}
+        onClick={cancelLearnMyselfBookmark}
       />
     ));
   };

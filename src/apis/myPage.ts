@@ -1,5 +1,6 @@
 import { serverAxios } from 'libs/axios';
 import {
+  IDeleteMyPageUserLearnMyselfParameter,
   IGetMyPageUserInfoParameter,
   IMyPageHeader,
   IMyScrappedLearnMyself,
@@ -130,7 +131,27 @@ export const deleteUserCommentList = async ({ token, commentIdList }: IGetMyPage
     });
 
     if (data.status === 200) {
-      return data.data.data;
+      return null;
+    } else {
+      throw new Error('통신성공 데이터 없음');
+    }
+  } catch (err) {
+    console.log(err.message);
+    return null;
+  }
+};
+
+export const deleteUserLearnMyselfBookmark = async ({
+  token,
+  learnMyselfId,
+}: IDeleteMyPageUserLearnMyselfParameter): Promise<null> => {
+  try {
+    const data = await serverAxios.delete(`${MY_PAGE_URL_PREFIX}/challenge/${learnMyselfId}`, {
+      headers: { Accept: 'application/json', Authorization: token },
+    });
+
+    if (data.status === 200) {
+      return null;
     } else {
       throw new Error('통신성공 데이터 없음');
     }
