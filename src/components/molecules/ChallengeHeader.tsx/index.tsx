@@ -2,6 +2,8 @@ import CategoryList from 'components/organisms/CategoryList';
 import { ChallengeListData, getChallengeSearchData } from 'libs/getChallenge';
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
+import { useRecoilValue } from 'recoil';
+import { userStatusState } from 'stores/user';
 import Styled from 'styled-components';
 import AllFeedIcon from '../../../assets/images/allfeedIcon.svg';
 import MyFeedIcon from '../../../assets/images/myfeedIcon.svg';
@@ -39,23 +41,16 @@ interface IProps {
 
 function ChallengeHeader({ challengeList, setChallengeList }: IProps) {
   const [userState, setUserState] = useState(2);
-
+  const userStatusData = useRecoilValue(userStatusState);
   const [selectedCategory, setSelectedCategory] = useState('전체');
   const [keyword, setKeyword] = useState('');
   const [isClickedEntire, setISClickedEntire] = useState(false);
   const [ismine, setIsmine] = useState(false);
   React.useEffect(() => {
-    getChallengeList(
-      'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoiNjBlZDg2NTZkOWM0ZTg0NzM4NzM1OTYyIn0sImlhdCI6MTYyNjE3OTI4OSwiZXhwIjoxNjI3Mzg4ODg5fQ.kmF5YDPDVAv6XyR6wNW_7JWm_3byloniqKSM7zcrDbg',
-    );
+    if (userStatusData) getChallengeList(userStatusData.token);
   }, [isClickedEntire]);
   React.useEffect(() => {
-    getChallengeCategoryData(
-      'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoiNjBlZDg2NTZkOWM0ZTg0NzM4NzM1OTYyIn0sImlhdCI6MTYyNjE3OTI4OSwiZXhwIjoxNjI3Mzg4ODg5fQ.kmF5YDPDVAv6XyR6wNW_7JWm_3byloniqKSM7zcrDbg',
-      selectedCategory,
-      keyword,
-      ismine,
-    );
+    if (userStatusData) getChallengeCategoryData(userStatusData.token, selectedCategory, keyword, ismine);
   }, [selectedCategory, keyword]);
   const getChallengeList = async (token: string): Promise<void> => {
     const data = await ChallengeListData(token);
