@@ -48,8 +48,13 @@ function ChallengeComment({
   );
 }
 const SCommentList = Styled.div`
+display : flex;
+flex-direction : column;
+align-items : flex-end;
+width : 724px;
+margin : 0 auto;
   .comment__write{
-    margin-bottom:68px;
+    margin-bottom:30px;
   }
 `;
 export default ChallengeComment;

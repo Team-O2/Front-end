@@ -1,3 +1,4 @@
+import { Button } from 'components/atoms';
 import TextArea from 'components/atoms/TextArea';
 import { postChallengeComment } from 'libs/getChallenge';
 import React from 'react';
@@ -63,9 +64,9 @@ function ChallengeCommentWrite({
           placeholder="댓글을 입력해 주세요"
         ></TextArea>
         <div className="comment__button-submit">
-          <button onClick={btnHandler} className="comment__submit">
+          <Button onClick={btnHandler} className="comment__submit">
             {isComment ? '댓글 작성' : '답글 작성'}
-          </button>
+          </Button>
         </div>
       </form>
     </SCommentWrite>
@@ -76,18 +77,18 @@ const SCommentWrite = Styled.div<{ isCommentt: boolean }>`
   .form{
     display: flex;
     flex-direction: column;
+    align-items : flex-end;
   }
     font-family: 'AppleSDGothicNeo';
   .input {
-    width: ${({ isCommentt }) => (isCommentt ? '724px' : '594px')};
-    height: ${({ isCommentt }) => (isCommentt ? '110px' : '4px')};
-    margin-right: ${({ isCommentt }) => (isCommentt ? '0px' : '54px')};
+    width: ${({ isCommentt }) => (isCommentt ? '724px' : '591px')};
+    height: ${({ isCommentt }) => (isCommentt ? '110px' : '54px')};
     margin: 0 0 8px;
     font-size: 16px;
-    padding: 15px 15px 41px;
+    padding: 15px 15px;
     opacity: 0.5;
     align-items:center;
-    margin: 0 auto;
+    /* margin: 0 auto; */
 
   } 
   .comment__submit{
@@ -98,9 +99,6 @@ const SCommentWrite = Styled.div<{ isCommentt: boolean }>`
       color: #555555;
       border:none;
       background-color:#FFFFFF;
-      padding-top:8px;
-      float:right;
-      padding-right:58px;
   }
   .button {
     font-size: ${({ isCommentt }) => (isCommentt ? '16px' : '14px')};
