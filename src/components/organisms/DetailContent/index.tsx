@@ -37,7 +37,7 @@ function DetailContent({
       <div className="image">
         <video className="image__video" src={video} controls></video>
       </div>
-      <div className="text">{desc}</div>
+      <div className="text" dangerouslySetInnerHTML={{ __html: `${desc}` }} />
       <div className="hashtag">
         {hashtag?.map((tag, index) => (
           <HashTag key={index}>{tag}</HashTag>

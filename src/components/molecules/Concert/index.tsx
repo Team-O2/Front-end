@@ -38,7 +38,7 @@ function Concert({
         </div>
         <div className="content__middle" onClick={onClickFunc}>
           <p>{title}</p>
-          <p>{text}</p>
+          <p dangerouslySetInnerHTML={{ __html: `${text}` }} />
         </div>
         <div className="content__right">
           <img className="content__right--img" src={imgThumbnail} alt="" />
