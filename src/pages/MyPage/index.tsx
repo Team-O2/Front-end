@@ -112,7 +112,7 @@ function MyPage(): React.ReactElement {
     return data?.map((item: ILearnMySelf) => (
       <LearnMyselfCard
         imagePath={item.user?.img || Logo}
-        isBookmarked={true}
+        isBookmarked={globalUserInfo?._id !== item?.user?._id}
         id={item._id}
         key={item._id}
         name={item.user?.nickname}
