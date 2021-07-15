@@ -201,10 +201,7 @@ export const challengeOpen = async (token: string, challengeOpenData: IChallenge
 
 export const sendEmail = async (email: string) => {
   try {
-    const data = await serverAxios.post('/auth/email', { email: email });
-    if (data.data.status === 200) {
-      alert(data.data.message);
-    }
+    await serverAxios.post('/auth/email', { email: email });
   } catch (e) {
     alert(e?.response?.data?.message);
   }
@@ -214,7 +211,6 @@ export const sendVerifinum = async (email: string, verifiNum: string) => {
   try {
     const data = await serverAxios.post('/auth/code', { email: email, emailCode: verifiNum });
     if (data.data.status === 200) {
-      alert(data.data.message);
       return data.data.data.isOkay;
     }
   } catch (e) {
@@ -231,7 +227,6 @@ export const postNewPw = async (token: string | undefined, password: string, new
       { headers: { Authorization: token } },
     );
     if (data.data.status === 200) {
-      alert(data.data.message);
       return true;
     }
   } catch (e) {
@@ -244,7 +239,6 @@ export const getUserInfo = async (token: string) => {
   try {
     const data = await serverAxios.get('/user/userInfo', { headers: { Authorization: token } });
     if (data.data.status === 200) {
-      alert(data.data.message);
       return data.data.data;
     }
   } catch (e) {
@@ -273,7 +267,6 @@ export const updateUserInfo = async (
 
     const data = await serverAxios.patch('/user/userInfo', body, { headers: { Authorization: token } });
     if (data.data.status === 200) {
-      alert(data.data.message);
       return data.data;
     }
   } catch (e) {
