@@ -9,7 +9,7 @@ import {
 import { Logo } from 'assets/images';
 import { LearnMyselfCard, MyPageSection, ShareTogetherCard } from 'components/molecules';
 import { MyCommentList, MyPageHeader } from 'components/organisms';
-import React, { useEffect, useState } from 'react';
+import React, { useCallback, useEffect, useState } from 'react';
 import { useRecoilValue } from 'recoil';
 import { userState, userStatusState } from 'stores/user';
 import Styled from 'styled-components';
@@ -42,22 +42,22 @@ function MyPage(): React.ReactElement {
     setSelectedSection(e.target.id);
   };
 
-  const fetchMyPageUserInfo = async () => {
+  const fetchMyPageUserInfo = useCallback(async () => {
     const data = await getMyPageUserInfo(globalUserStatusInfo?.token);
     setUserInfo(data);
-  };
+  }, [globalUserStatusInfo?.token]);
 
-  const fetchScrappedShareTogetherData = async () => {
+  const fetchScrappedShareTogetherData = useCallback(async () => {
     const data = await getShareTogetherListData({ token: globalUserStatusInfo?.token });
     setShareTogetherData(data);
-  };
+  }, [globalUserStatusInfo?.token]);
 
-  const fetchScrappedLearnMyselfData = async () => {
+  const fetchScrappedLearnMyselfData = useCallback(async () => {
     const data = await getLearnMyselfListData({ token: globalUserStatusInfo?.token });
     setLearnMyselfData(data);
-  };
+  }, [globalUserStatusInfo?.token]);
 
-  const fetchUserLearnMyselfData = async () => {
+  const fetchUserLearnMyselfData = useCallback(async () => {
     const data = await getUserLearnMyselfListData({ token: globalUserStatusInfo?.token });
     setUserLearnMyselfData(data);
   }, [globalUserStatusInfo?.token]);
@@ -68,14 +68,19 @@ function MyPage(): React.ReactElement {
     setReRenderFlag(!reRenderFlag);
   };
 
-  const fetchUserCommentListData = async (selectedCategory: string, pageIndex: number) => {
-    const LIMIT_PER_PAGE = 5;
-    const data = await getUserCommentListData({
-      token: globalUserStatusInfo?.token,
-      category: selectedCategory,
-      offset: (pageIndex - 1) * LIMIT_PER_PAGE,
-    });
-    setUserCommentData(data);
+  const fetchUserCommentListData = useCallback(
+    async (selectedCategory: string, pageIndex: number) => {
+      const LIMIT_PER_PAGE = 5;
+      const data = await getUserCommentListData({
+        token: globalUserStatusInfo?.token,
+        category: selectedCategory,
+        offset: (pageIndex - 1) * LIMIT_PER_PAGE,
+      });
+      setUserCommentData(data);
+    },
+    [globalUserStatusInfo?.token],
+  );
+
   // FIXME: 리렌더플래그를 두개의 useEffect에 넣어둬서 같이 리렌더링 되는 문제가 생김.
   useEffect(() => {
     fetchScrappedLearnMyselfData();
@@ -84,13 +89,12 @@ function MyPage(): React.ReactElement {
   useEffect(() => {
     fetchMyPageUserInfo();
     fetchScrappedShareTogetherData();
-    fetchScrappedLearnMyselfData();
     fetchUserLearnMyselfData();
-  }, []);
+  }, [fetchMyPageUserInfo, fetchScrappedShareTogetherData, fetchUserLearnMyselfData]);
 
   useEffect(() => {
     fetchUserCommentListData(selectedCategory, currentPage);
-  }, [selectedCategory, currentPage, reRenderFlag]);
+  }, [selectedCategory, currentPage, reRenderFlag, fetchUserCommentListData]);
 
   const renderScrappedShareTogether = (data: IShareTogether[]) => {
     return data?.map((item: IShareTogether) => {
