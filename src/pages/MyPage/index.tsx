@@ -1,4 +1,5 @@
 import {
+  deleteUserCommentList,
   deleteUserLearnMyselfBookmark,
   getLearnMyselfListData,
   getMyPageUserInfo,
@@ -8,6 +9,7 @@ import {
 } from 'apis/myPage';
 import { Logo } from 'assets/images';
 import { LearnMyselfCard, MyPageSection, ShareTogetherCard } from 'components/molecules';
+import DeleteModal from 'components/molecules/DeleteModal';
 import { MyCommentList, MyPageHeader } from 'components/organisms';
 import React, { useCallback, useEffect, useState } from 'react';
 import { useRecoilValue } from 'recoil';
@@ -35,11 +37,25 @@ function MyPage(): React.ReactElement {
   const [selectedCategory, setSelectedCategory] = useState('Concert');
   const [reRenderFlag, setReRenderFlag] = useState(false);
   const [currentPage, setCurrentPage] = useState(1);
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [checkedCommentList, setCheckedCommentList] = useState<string[]>([]);
+  const [isSelectAll, setIsSelectAll] = useState(false);
   const globalUserInfo = useRecoilValue(userState);
   const globalUserStatusInfo = useRecoilValue(userStatusState);
 
   const onChangeSection = (e: React.ChangeEvent<HTMLInputElement>) => {
     setSelectedSection(e.target.id);
+  };
+
+  const handleModalOpen = () => {
+    setIsModalOpen(true);
+  };
+
+  const deleteSelectedCommentList = async () => {
+    await deleteUserCommentList({ token: globalUserStatusInfo?.token, commentIdList: checkedCommentList });
+    setIsSelectAll(false);
+    setReRenderFlag(!reRenderFlag);
+    setIsModalOpen(false);
   };
 
   const fetchMyPageUserInfo = useCallback(async () => {
@@ -193,13 +209,21 @@ function MyPage(): React.ReactElement {
                 setSelectedCategory={setSelectedCategory}
                 currentPage={currentPage}
                 setCurrentPage={setCurrentPage}
-                reRenderFlag={reRenderFlag}
-                setReRenderFlag={setReRenderFlag}
+                handleModalOpen={handleModalOpen}
+                checkedCommentList={checkedCommentList}
+                setCheckedCommentList={setCheckedCommentList}
+                isSelectAll={isSelectAll}
+                setIsSelectAll={setIsSelectAll}
               />
             )
           )}
         </div>
       </div>
+      <DeleteModal
+        isDeleteModalOpen={isModalOpen}
+        setIsDeleteModalOpen={setIsModalOpen}
+        onClickDeleteButton={deleteSelectedCommentList}
+      />
     </Wrapper>
   );
 }
