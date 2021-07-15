@@ -41,7 +41,7 @@ function Setting({ history }: any): React.ReactElement {
   });
 
   // for img input
-  const imgInput = useRef(null);
+  const imgInput = useRef<HTMLInputElement>(null);
   const [img, setImg] = useState({});
   const [isEmpty, setIsEmpty] = useState(true);
   const handleInputImg = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -53,9 +53,7 @@ function Setting({ history }: any): React.ReactElement {
       setImg(e.target.files[0]);
       setIsEmpty(false);
     }
-    // if (imgInput.current !== null) {
-    //   imgInput.current.value = '';
-    // }
+    imgInput.current && imgInput.current.value;
   };
 
   const handleClickDel = (e: string) => {
@@ -67,7 +65,6 @@ function Setting({ history }: any): React.ReactElement {
 
   const handleClickEdit = async () => {
     if (!isEmpty) {
-      console.log('hi');
       await updateUserInfo(
         userStatusData?.token,
         img,
@@ -77,7 +74,6 @@ function Setting({ history }: any): React.ReactElement {
         userInfo.marpolicy,
       );
     } else {
-      console.log('f');
       await updateUserInfo(
         userStatusData?.token,
         undefined,
@@ -217,8 +213,6 @@ function Setting({ history }: any): React.ReactElement {
 export default withRouter(Setting);
 
 const Container = styled.div`
-  /* position: relative; */
-  /* top: -60px; */
   width: 100%;
   padding: 100px 0 400px 0;
 
@@ -259,9 +253,6 @@ const Txt = styled.div`
 `;
 
 const TxtSmall = styled.div`
-  /* width: 844px; */
-  /* margin-bottom: 60px; */
-
   font-size: 16px;
   font-weight: 400;
   letter-spacing: -0.5px;
@@ -278,7 +269,6 @@ const Email = styled.div`
 
   display: flex;
   align-items: center;
-  /* justify-content: center; */
 
   font-size: 16px;
   font-weight: 400;
@@ -342,7 +332,7 @@ const Btn = styled.div<IBtn>`
   color: #ffffff;
 `;
 
-const InterestTag = ({ setList, text }: { setList: any; text: string }) => {
+const InterestTag = ({ setList, text }: { setList: (e: string) => void; text: string }) => {
   return (
     <InterestTagCntnr>
       <div style={{ marginRight: '10px' }}>{text}</div>

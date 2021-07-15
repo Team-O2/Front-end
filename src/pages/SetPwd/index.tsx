@@ -169,7 +169,7 @@ const Btn = styled.div<IBtn>`
   color: #ffffff;
 `;
 
-const Modal = ({ setIsOpen, history }: { setIsOpen: any; history: any }) => {
+const Modal = ({ setIsOpen, history }: { setIsOpen: React.Dispatch<React.SetStateAction<boolean>>; history: any }) => {
   return (
     <>
       <Background

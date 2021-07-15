@@ -231,11 +231,11 @@ export const postNewPw = async (token: string | undefined, password: string, new
       { headers: { Authorization: token } },
     );
     if (data.data.status === 200) {
-      // alert(data.data.message);
+      alert(data.data.message);
       return true;
     }
   } catch (e) {
-    // alert(e?.response?.data?.message);
+    alert(e?.response?.data?.message);
     return false;
   }
 };
@@ -263,7 +263,6 @@ export const updateUserInfo = async (
 ) => {
   try {
     const body = new FormData();
-    // console.log(img);
     if (img) {
       body.append('img', img);
     }
