@@ -23,7 +23,7 @@ function ShareTogetherCard({
   id,
 }: IProps): React.ReactElement {
   return (
-    <LinkWrapper to={`${id}`}>
+    <LinkWrapper to={`ShareTogether/${id}`}>
       <span>
         <div className="card">
           <div className="card__img-wrapper">
