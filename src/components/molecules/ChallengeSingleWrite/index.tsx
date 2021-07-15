@@ -29,14 +29,9 @@ function ChallengeSingleComment({
 }: IProps): React.ReactElement {
   const { childrenComment, _id, userID, text } = commentData;
   const [openReply, setOpenReply] = useState(false);
-  const [replyValue, setReplyValue] = useState('');
-  const [replyList, setReplyList] = useState(childrenComment);
 
   const onClickReplyOpen = () => {
     setOpenReply(!openReply);
-  };
-  const handleChange = (event: React.ChangeEvent<HTMLTextAreaElement>) => {
-    setReplyValue(event.currentTarget.value);
   };
 
   return (
@@ -52,19 +47,14 @@ function ChallengeSingleComment({
       <div className="reply">
         {openReply && (
           <>
-            <ChallengeCommentWrite
+            <ChallengeCommentWrite // 답글 작성부분
               className="reply__write"
-              value={replyValue}
-              setValue={setReplyValue}
-              onChange={handleChange}
               isComment={false} //답글부분
               challengeID={challengeID}
               commentListFlag={commentListFlag}
               setCommentListFlag={setCommentListFlag}
               parentCommentId={_id}
-            ></ChallengeCommentWrite>
-            {replyList.map((data: IReply) => (
-              <ChallengeReplyComment
+            />
                 className="reply__comment"
                 key={data._id}
                 img={data.userID.img}
