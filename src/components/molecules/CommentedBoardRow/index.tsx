@@ -1,19 +1,20 @@
 import { EmptyCheckBox, FilledCheckBox } from 'assets/images';
-import { CheckBox, Label, Link } from 'components/atoms';
+import { Button, CheckBox, Label, Link } from 'components/atoms';
 import React from 'react';
 import Styled from 'styled-components';
 import { palette } from 'styled-tools';
 
 export interface IProps {
-  isChecked?: boolean;
-  id?: string;
+  isChecked: boolean;
+  id: string;
   content?: string;
-  date?: string;
-  boardId?: string;
+  date: string;
+  boardId: string;
+  category: string;
   onChange?: (e: React.ChangeEvent<HTMLInputElement>) => void;
 }
 
-function CommentedBoardRow({ content, date, boardId, id, onChange, isChecked }: IProps): React.ReactElement {
+function CommentedBoardRow({ content, date, boardId, id, onChange, isChecked, category }: IProps): React.ReactElement {
   return (
     <Wrapper>
       {content && (
@@ -25,9 +26,23 @@ function CommentedBoardRow({ content, date, boardId, id, onChange, isChecked }: 
           <div className="row__infoWrapper">
             <span className="row__date body3_eng">{date}</span>
             <span className="row__date--bar"></span>
-            <Link className="row__link" to={`${boardId}`}>
-              <span className="body3">원문보기</span>
-            </Link>
+            {category === 'Challenge' ? (
+              <Button
+                className="row__link body3"
+                onClick={() => {
+                  alert('런마셀 상세보기'); // TODO: 런마셀 모달 띄워주기
+                }}
+              >
+                <div>원문보기</div>
+              </Button>
+            ) : (
+              <Link
+                className="row__link"
+                to={category === 'Concert' ? `ShareTogether/${boardId}` : `notice/${boardId}`}
+              >
+                <span className="body3">원문보기</span>
+              </Link>
+            )}
           </div>
         </div>
       )}
@@ -80,13 +95,13 @@ const Wrapper = Styled.div`
       right: 0px;
       display: flex;
       align-items: center;
+      color: ${palette('grayscale', -5)};
     }
 
     &__date {
       width: 95px;
       height: 20px;
       text-align: right;
-      color: ${palette('grayscale', -5)};
       margin-right: 10px;
 
       &--bar {
@@ -96,14 +111,10 @@ const Wrapper = Styled.div`
       }
     }
 
-    &__link {
+    &__link{
       width: 54px;
       height: 24px;
-      margin-left: 9px;
-
-      span {
-        color: ${palette('grayscale', -5)};
-      }
+      margin: auto 0 auto 9px;
     }
   }
 `;

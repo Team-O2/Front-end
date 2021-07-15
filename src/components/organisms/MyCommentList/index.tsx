@@ -166,6 +166,7 @@ function MyCommentList({
               boardId={item.post}
               isChecked={checkedCommentList.includes(item._id)}
               onChange={handleCommentSelect}
+              category={selectedCategory}
             />
           );
         })}
