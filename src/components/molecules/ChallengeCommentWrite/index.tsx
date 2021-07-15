@@ -28,7 +28,7 @@ function ChallengeCommentWrite({
           name="comment"
           onChange={onChange}
           value={value}
-          placeholder=" | 댓글을 입력해 주세요"
+          placeholder="댓글을 입력해 주세요"
         ></TextArea>
         <div className="comment__button-submit">
           <button onClick={onClick} className="comment__submit">
