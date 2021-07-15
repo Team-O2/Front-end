@@ -1,3 +1,4 @@
+import dayjs from 'dayjs';
 import React from 'react';
 import Styled from 'styled-components';
 
@@ -9,6 +10,7 @@ interface IProps {
 }
 
 function DetailTitle({ title, speaker, createdAt, interest }: IProps): React.ReactElement {
+  const interestDivide = interest?.join(' | ');
   return (
     <>
       <SDetailTitle>
@@ -16,12 +18,12 @@ function DetailTitle({ title, speaker, createdAt, interest }: IProps): React.Rea
           <p>Share Together</p>
         </div>
         <div className="title__middle">
-          <p>{title && title}</p>
+          <p>{title}</p>
         </div>
         <div className="title__bottom">
           <p>{speaker}</p>
-          <p>{createdAt}</p>
-          <p>{interest}</p>
+          <p>{`${dayjs(createdAt).format('YY.MM.DD')}`}</p>
+          <p>{interestDivide}</p>
         </div>
       </SDetailTitle>
     </>

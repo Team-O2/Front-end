@@ -1,3 +1,4 @@
+import dayjs from 'dayjs';
 import React from 'react';
 import Styled from 'styled-components';
 
@@ -9,6 +10,7 @@ interface IProps {
 }
 
 function NoticeDetailTitle({ title, speaker, createdAt, interest }: IProps): React.ReactElement {
+  const interestDivide = interest?.join(' | ');
   return (
     <>
       <SNoticeDetailTitle>
@@ -20,8 +22,8 @@ function NoticeDetailTitle({ title, speaker, createdAt, interest }: IProps): Rea
         </div>
         <div className="title__bottom">
           <p>{speaker && speaker}</p>
-          <p>{createdAt && createdAt}</p>
-          <p>{interest && interest}</p>
+          <p>{`${dayjs(createdAt).format('YY.MM.DD')}`}</p>
+          <p>{interestDivide && interestDivide}</p>
         </div>
       </SNoticeDetailTitle>
     </>
