@@ -41,18 +41,10 @@ interface SignData {
   challengeCNT: number;
 }
 
-<<<<<<< refs/remotes/origin/feat/Challenge
 interface ChallengeID {
   id: number;
 }
 
-interface IChallengeCommentData {
-  parentID?: string;
-  text: string;
-}
-
-=======
->>>>>>> Feat: 삭제 api 연결
 export const writeForm = async (writeData: WriteData, token: string) => {
   try {
     const data = await instance.post('/challenge', writeData, {
@@ -133,11 +125,7 @@ export const ChallengeLike = async (likeData: LikeData, token: string) => {
   }
 };
 
-<<<<<<< refs/remotes/origin/feat/Challenge
-export const ChallengeComment = async (
-=======
 export const postChallengeComment = async (
->>>>>>> Feat: 작성한 댓글 서버로 전송
   token: string,
   challengeID: string | undefined,
   commentData: IChallengeCommentData,
@@ -148,12 +136,9 @@ export const postChallengeComment = async (
         Authorization: token,
       },
     });
-<<<<<<< refs/remotes/origin/feat/Challenge
-=======
     if (data.status === 200) {
       return true;
     }
->>>>>>> Feat: 작성한 댓글 서버로 전송
   } catch (error) {
     console.log('[FAIL] POST data', error);
     return null;

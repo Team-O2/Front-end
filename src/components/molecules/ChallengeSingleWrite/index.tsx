@@ -1,4 +1,4 @@
-import { ChallengeComment } from 'libs/getChallenge';
+import { ICommentData } from 'components/organisms/ViewCardList';
 import React, { useState } from 'react';
 import { useRecoilValue } from 'recoil';
 import { userState } from 'stores/user';
@@ -6,21 +6,22 @@ import Styled from 'styled-components';
 import ChallengeCommentWrite from '../ChallengeCommentWrite';
 import ChallengeReplyComment from '../ReplyComment';
 interface IProps {
-  childrenComment: {
-    _id?: string;
-    nickname?: string;
-    text?: string;
-    createdAt?: string;
-  }[];
-  isDeleted?: boolean;
-  _id: string;
-  userID: {
-    img: string;
-    _id: string;
-    nickname: string;
-  };
-  text: string;
-  challengeID?: string;
+  commentData: ICommentData;
+  // childrenComment: {
+  //   _id?: string;
+  //   nickname?: string;
+  //   text?: string;
+  //   createdAt?: string;
+  // }[]; //
+  // isDeleted?: boolean;
+  // _id: string; //
+  // userID: {
+  //   img: string;
+  //   _id: string;
+  //   nickname: string;
+  // }; //
+  // text: string; ///
+  challengeID: string; //
 }
 
 interface IReply {
@@ -29,8 +30,26 @@ interface IReply {
   text?: string;
   nickname?: string;
 }
+// export interface ICommentData {
+//   childrenComment: {
+//     _id: string;
+//     userID: {
+//       _id: string;
+//       nickname: string;
+//     };
+//     text: string;
+//   }[];
+//   _id: string;
+//   userID: {
+//     img: string;
+//     _id: string;
+//     nickname: string;
+//   };
+//   text: string;
+// }
 
-function ChallengeSingleComment({ _id, userID, childrenComment, text, challengeID }: IProps): React.ReactElement {
+function ChallengeSingleComment({ commentData, challengeID }: IProps): React.ReactElement {
+  const { childrenComment, _id, userID, text } = commentData;
   const [openReply, setOpenReply] = useState(false);
   const [replyValue, setReplyValue] = useState('');
   const [replyList, setReplyList] = useState(childrenComment);
@@ -41,18 +60,6 @@ function ChallengeSingleComment({ _id, userID, childrenComment, text, challengeI
   };
   const handleChange = (event: React.ChangeEvent<HTMLTextAreaElement>) => {
     setReplyValue(event.currentTarget.value);
-  };
-  const onSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
-    event.preventDefault();
-    const variables = {
-      parentID: _id,
-      text: replyValue,
-    };
-    const token =
-      'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoiNjBlZDg2NTZkOWM0ZTg0NzM4NzM1OTYyIn0sImlhdCI6MTYyNjE3OTI4OSwiZXhwIjoxNjI3Mzg4ODg5fQ.kmF5YDPDVAv6XyR6wNW_7JWm_3byloniqKSM7zcrDbg';
-    const postData = await ChallengeComment(token, challengeID, variables);
-    setReplyList(replyList.concat(variables));
-    setReplyValue('');
   };
 
   return (
@@ -71,10 +78,10 @@ function ChallengeSingleComment({ _id, userID, childrenComment, text, challengeI
             <ChallengeCommentWrite
               className="reply__write"
               value={replyValue}
+              setValue={setReplyValue}
               onChange={handleChange}
-              onClick={onSubmit}
-              onSubmit={onSubmit}
               isComment={false}
+              challengeID={challengeID}
             ></ChallengeCommentWrite>
             {replyList.map((data: IReply) => (
               <ChallengeReplyComment

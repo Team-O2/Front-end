@@ -16,6 +16,7 @@ export interface ICommentData {
   }[];
   _id: string;
   userID: {
+    img: string;
     _id: string;
     nickname: string;
   };
@@ -47,32 +48,18 @@ interface IProps {
 function ViewCardList({ challengeData }: IProps): React.ReactElement {
   const [userStatusData, setUserStatusData] = useRecoilState(userStatusState);
   const [challenge, setChallenge] = useState<IData[] | null>(null);
-<<<<<<< refs/remotes/origin/feat/Challenge
-=======
-  const [commentList, setCommentList] = useState([]);
   const [reRenderFlag, setReRenderFlag] = useState(false);
->>>>>>> Feat: 삭제 api 연결
 
   const ChallengeList = async (): Promise<void> => {
     if (userStatusData) {
       const data = await ChallengeListData(userStatusData.token);
-      data && setCommentList(data.comments);
+      console.log(data);
+      data && setChallenge(data);
     }
   };
-
-  useEffect(() => {
-    ChallengeList();
-  }, []);
   useEffect(() => {
     ChallengeList();
   }, [reRenderFlag]);
-
-  const [commentList, setCommentList] = useState<IData[] | []>([]);
-  const reLoadComment = (newComment: any) => {
-    console.log('reload', newComment);
-    setCommentList(commentList?.concat(newComment));
-    console.log('아아', commentList);
-  };
 
   return (
     <SViewCardList>
@@ -89,10 +76,8 @@ function ViewCardList({ challengeData }: IProps): React.ReactElement {
             learn={data?.learn}
             like={data?.likes}
             commentlist={data?.comments}
-            reLoadComment={reLoadComment}
             comments={data?.comments.length}
             scrap={data?.scrapNum}
-            id={data?._id}
             reRenderFlag={reRenderFlag}
             setReRenderFlag={setReRenderFlag}
             key={id}
