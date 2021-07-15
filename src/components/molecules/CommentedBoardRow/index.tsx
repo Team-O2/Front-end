@@ -33,7 +33,7 @@ function CommentedBoardRow({ content, date, boardId, id, onChange, isChecked, ca
                   alert('런마셀 상세보기'); // TODO: 런마셀 모달 띄워주기
                 }}
               >
-                <div>원문보기</div>
+                <span>원문보기</span>
               </Button>
             ) : (
               <Link
