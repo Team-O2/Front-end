@@ -90,19 +90,6 @@ export const ChallengeListData = async (token: string) => {
   }
 };
 
-export const ChallengeLike = async (likeData: LikeData, token: string) => {
-  try {
-    const data = await instance.post('/challenge/like', likeData, {
-      headers: {
-        Authorization: token,
-      },
-    });
-    console.log('[SUCCESS] POST data', data);
-  } catch (error) {
-    console.log('[FAIL] POST data', error);
-  }
-};
-
 export const postChallengeComment = async (
   token: string,
   challengeID: string | undefined,
@@ -195,5 +182,86 @@ export const getChallengeSearchData = async (token: string, tag: string, keyword
   } catch (error) {
     console.log(error);
     return null;
+  }
+};
+
+export const ChallengeLike = async (token: string, challengeID: string) => {
+  try {
+    const data = await instance.post(`/challenge/like/${challengeID}`, [], {
+      headers: {
+        Authorization: token,
+      },
+    });
+    if (data.data.status === 200) {
+      console.log(data.data.message);
+    } else {
+      return null;
+    }
+  } catch (error) {
+    if (error.response.data.status === 400) {
+      console.log('[FAIL] POST data', error);
+      return true;
+    }
+    alert(error.response.data.message);
+    return undefined;
+  }
+};
+
+export const CancelChallengeLike = async (token: string, challengeID: string) => {
+  try {
+    console.log(token, challengeID);
+    const data = await instance.delete(`/challenge/like/${challengeID}`, {
+      headers: {
+        Authorization: token,
+      },
+    });
+    if (data.data.status === 200) {
+      alert(data.data.message);
+    } else {
+      return null;
+    }
+  } catch (e) {
+    alert(e.response.data.message);
+    return undefined;
+  }
+};
+
+export const ChallengeScrap = async (token: string, challengeID: string) => {
+  try {
+    const data = await instance.post(`/challenge/scrap/${challengeID}`, [], {
+      headers: {
+        Authorization: token,
+      },
+    });
+    if (data.data.status === 200) {
+      alert(data.data.message);
+    } else {
+      return null;
+    }
+  } catch (e) {
+    if (e.response.data.message === '이미 스크랩 된 글입니다') {
+      alert(e.response.data.message);
+      return true;
+    }
+    alert(e.response.data.message);
+    return undefined;
+  }
+};
+
+export const CancelChallengeScrap = async (token: string, challengeID: string) => {
+  try {
+    const data = await instance.delete(`/challenge/scrap/${challengeID}`, {
+      params: {
+        challengeID: challengeID,
+      },
+    });
+    if (data.data.status === 200) {
+      alert(data.data.message);
+    } else {
+      return null;
+    }
+  } catch (e) {
+    alert(e.response.data.message);
+    return undefined;
   }
 };
