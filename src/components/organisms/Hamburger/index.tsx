@@ -97,8 +97,7 @@ function Hamburger(): React.ReactElement {
           </Link>
         )}
         {userStateNum === 4 && (
-          <Link to="/">
-            {/* TODO: 마이페이지 연결해야함 */}
+          <Link to="/mypage">
             <Button className="loginBtn">
               <>
                 <img className="loginBtn_icon" src={loginIcon}></img>
@@ -156,8 +155,7 @@ function Hamburger(): React.ReactElement {
               <Button className="middle__button--title middle__button--engTitle">Share Together</Button>
             </Link>
             <div className="middle__line"></div>
-            <Link to="/">
-              {/* TODO: 공지사항 연결해야함 */}
+            <Link to="/notice">
               <Button className="middle__button--title">공지사항</Button>
             </Link>
           </>
@@ -192,8 +190,7 @@ function Hamburger(): React.ReactElement {
       <div className="bottom">
         <div className="middle--forHide"></div>
         {(userStateNum === 1 || userStateNum === 2 || userStateNum === 3) && (
-          <Link to="/">
-            {/* TODO: 세팅 페이지 연결해야함 */}
+          <Link to="/setting">
             <Button>
               <div className="bottom__button" style={{ color: '#3d3d3d' }}>
                 설정

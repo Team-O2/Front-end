@@ -28,7 +28,7 @@ function MyPageHeader({ userInfo }: IProps): React.ReactElement {
         />
         <p className="dp1">{globalUserInfo?.nickname}님의</p>
         <span className="dp1_eng">MY O2</span>
-        <Link to="/mypage/setting">
+        <Link to="/setting">
           <Icon className="userInfo__editIcon" src={Edit} />
         </Link>
         <div className="userInfo__tag body3">
