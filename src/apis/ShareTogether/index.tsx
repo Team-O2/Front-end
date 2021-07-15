@@ -4,7 +4,15 @@ interface IConcertCommentData {
   parentID?: string;
   text: string;
 }
-
+interface INoticeCommentData {
+  parentID?: string;
+  text: string;
+}
+interface IFetchParameter {
+  token?: string;
+  limit?: number;
+  offset?: number;
+}
 export const getConcertListData = async (token: string) => {
   try {
     const data = await serverAxios.get('/concert', {
@@ -164,14 +172,15 @@ export const deleteConcertScrap = async (token: string, concertID: string) => {
   }
 };
 
-export const getNoticeListData = async (token: string) => {
+export const getNoticeListData = async ({ token, limit = 8, offset = 0 }: IFetchParameter) => {
   try {
     const data = await serverAxios.get('/notice', {
       headers: {
         Authorization: token,
       },
       params: {
-        limit: 40,
+        offset,
+        limit,
       },
     });
     if (data.data.status === 200) {
@@ -215,6 +224,28 @@ export const getNoticeSearchData = async (token: string, keyword: string) => {
     });
     if (data.data.status === 200) {
       return data.data.data.searchData;
+    } else {
+      return null;
+    }
+  } catch (e) {
+    alert(e.response.data.message);
+    return undefined;
+  }
+};
+
+export const postNoticeComment = async (
+  token: string,
+  noticeID: string | undefined,
+  commentData: INoticeCommentData,
+) => {
+  try {
+    const data = await serverAxios.post(`/notice/comment/${noticeID}`, commentData, {
+      headers: {
+        Authorization: token,
+      },
+    });
+    if (data.data.status === 200) {
+      alert(data.data.message);
     } else {
       return null;
     }

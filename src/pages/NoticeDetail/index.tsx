@@ -1,6 +1,6 @@
 import { getNoticeData } from 'apis/ShareTogether';
 import NoticeDetailTitle from 'components/molecules/NoticeDetailTitle';
-import CommentList from 'components/organisms/CommentList';
+import NoticeCommentList from 'components/organisms/NoticeCommentList';
 import NoticeDetailContent from 'components/organisms/NoticeDetailContent';
 import React, { useEffect, useState } from 'react';
 import { RouteComponentProps } from 'react-router';
@@ -67,7 +67,11 @@ function NoticeDetail({ match }: RouteComponentProps<MatchParams>): React.ReactE
         desc={notice?.text}
         comments={notice?.commentNum}
       ></NoticeDetailContent>
-      <CommentList commentList={commentList} concertID={notice?._id} reLoadComment={reLoadComment}></CommentList>
+      <NoticeCommentList
+        commentList={commentList}
+        noticeID={notice?._id}
+        reLoadComment={reLoadComment}
+      ></NoticeCommentList>
     </SNoticeDetail>
   );
 }
