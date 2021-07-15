@@ -1,12 +1,12 @@
 import ChallengeCommentWrite from 'components/molecules/ChallengeCommentWrite';
 import ChallengeSingleComment from 'components/molecules/ChallengeSingleWrite';
-import { ICommentData } from 'components/organisms/ViewCardList';
+import { ICommentData } from 'components/molecules/ViewListCard';
 // import { ICommentData } from 'components/organisms/ViewCardList';
 import React, { useEffect, useState } from 'react';
 import Styled from 'styled-components';
 
 interface IProps {
-  commentList?: Array<ICommentData>;
+  commentList: Array<ICommentData> | null;
   challengeID: string;
 }
 

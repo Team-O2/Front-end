@@ -25,6 +25,10 @@ interface IChallengeDataList {
   __v: number;
   _id: string;
 }
+interface IProps {
+  challengeList: IChallengeDataList[] | null;
+  setChallengeList: (value: IChallengeDataList[]) => void;
+}
 
 //user상태 :
 // 0: 비회원,
@@ -33,10 +37,9 @@ interface IChallengeDataList {
 // 3: 챌린지하는유저&챌린지종료,
 // 4: 관리자
 
-function ChallengeHeader() {
+function ChallengeHeader({ challengeList, setChallengeList }: IProps) {
   const [userState, setUserState] = useState(2);
 
-  const [learnMySelfList, setlearnMySelfList] = useState<IChallengeDataList[] | null>(null);
   const [selectedCategory, setSelectedCategory] = useState('전체');
   const [keyword, setKeyword] = useState('');
   const [isClickedEntire, setISClickedEntire] = useState(false);
@@ -56,7 +59,7 @@ function ChallengeHeader() {
   }, [selectedCategory, keyword]);
   const getChallengeList = async (token: string): Promise<void> => {
     const data = await ChallengeListData(token);
-    data && setlearnMySelfList(data);
+    data && setChallengeList(data);
   };
 
   const getChallengeCategoryData = async (
@@ -66,7 +69,7 @@ function ChallengeHeader() {
     ismine: boolean,
   ): Promise<void> => {
     const data = await getChallengeSearchData(token, selectedCategory, keyword, ismine);
-    data && setlearnMySelfList(data);
+    data && setChallengeList(data);
   };
 
   const reRenderCategory = (category: string) => {
@@ -84,7 +87,7 @@ function ChallengeHeader() {
     setIsmine(false);
   };
 
-  const challengeListNum = learnMySelfList?.length;
+  const challengeListNum = challengeList?.length;
 
   return (
     <SChallengeHeader>

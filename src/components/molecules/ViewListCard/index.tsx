@@ -1,9 +1,8 @@
 import LikeIconFilled from 'assets/images/heart_filled.svg';
 import Button from 'components/atoms/Button';
 import ChallengeComment from 'components/molecules/ChallengeComment';
-import { ICommentData } from 'components/organisms/ViewCardList';
 import dayjs from 'dayjs';
-import { DeleteChallenge } from 'libs/getChallenge';
+import { DeleteChallenge, getChallengeContent } from 'libs/getChallenge';
 import React, { useState } from 'react';
 import { useHistory } from 'react-router';
 import { useRecoilState } from 'recoil';
@@ -19,6 +18,24 @@ import MenuBar from '../../../assets/images/menu_bar.svg';
 import ScrapIcon from '../../../assets/images/scrapIcon.svg';
 import Modal from '../../atoms/Modal/index';
 
+export interface ICommentData {
+  childrenComment: {
+    _id: string;
+    userID: {
+      _id: string;
+      nickname: string;
+    };
+    text: string;
+  }[];
+  _id: string;
+  userID: {
+    img: string;
+    _id: string;
+    nickname: string;
+  };
+  text: string;
+}
+
 interface IProps {
   nickname?: string;
   image?: string;
@@ -28,7 +45,7 @@ interface IProps {
   bad?: string;
   learn?: string;
   like?: number;
-  commentlist: ICommentData[];
+  commentlist: string[];
   comments?: number;
   scrap?: number;
   id: string;
@@ -65,7 +82,17 @@ function ViewListCard({
   const [userState, setUserState] = useState(userStatusData ? userStatusData.userType : 0);
   const [likes, setLikes] = useState<number | null>(like || null);
   const [likeClick, setLikeClick] = useState(false);
-  // const [commentState, setCommentState] = useState(commentlist);
+  const [myCommentList, setMyCommentList] = useState<ICommentData[] | null>(null);
+
+  const getCommentList = async () => {
+    if (userStatusData) {
+      const data = await getChallengeContent(id, userStatusData.token);
+      if (data) {
+        setMyCommentList(data.comments);
+      }
+    } else {
+    }
+  };
 
   // const { id } = match.params;
 
@@ -241,6 +268,7 @@ function ViewListCard({
                     onClick={() => {
                       setIsOpenComment(true);
                       setIsCommentButton(false);
+                      getCommentList();
                     }}
                   >
                     댓글 펼치기
@@ -248,7 +276,7 @@ function ViewListCard({
                 ) : (
                   <div>
                     {IsFoldComment === false ? null : (
-                      <ChallengeComment commentList={commentlist} challengeID={id}></ChallengeComment>
+                      <ChallengeComment commentList={myCommentList} challengeID={id}></ChallengeComment>
                     )}
                     <button
                       className="comment__card-fold"
