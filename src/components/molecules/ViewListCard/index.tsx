@@ -10,7 +10,7 @@ import {
   DeleteChallenge,
   getChallengeContent,
 } from 'libs/getChallenge';
-import React, { useEffect, useState } from 'react';
+import React, { useCallback, useEffect, useState } from 'react';
 import { useHistory } from 'react-router';
 import { useRecoilState } from 'recoil';
 import { userStatusState } from 'stores/user';
@@ -18,7 +18,6 @@ import Styled from 'styled-components';
 import ColorScrapIcon from '../../../assets/images/color_scrapIcon.svg';
 import CommentCount from '../../../assets/images/commentIcon.svg';
 import DeleteIcon from '../../../assets/images/deleteIcon.svg';
-// import DeleteModal from '../../../assets/images/delete_modal.png';
 import EditIcon from '../../../assets/images/editIcon.svg';
 import ClickGood from '../../../assets/images/heartIcon.svg';
 import MenuBar from '../../../assets/images/menu_bar.svg';
@@ -94,18 +93,16 @@ function ViewListCard({
   const [commentListFlag, setCommentListFlag] = useState<boolean>(false);
   const [countScraps, setCountScraps] = useState(0);
 
-  const getCommentList = async () => {
+  const getCommentList = useCallback(async () => {
     if (userStatusData) {
       const data = await getChallengeContent(id, userStatusData.token);
-      if (data) {
-        setMyCommentList(data.comments);
-      }
-    } else {
+      data && setMyCommentList(data.comments);
     }
-  };
+  }, [id, userStatusData]);
+
   useEffect(() => {
     getCommentList();
-  }, [commentListFlag]);
+  }, [commentListFlag, getCommentList]);
 
   const deleteClickHandler = async () => {
     if (userStatusData) {
@@ -291,7 +288,6 @@ function ViewListCard({
                     </button>
                   </div>
                 )}
-
                 <div className="icon">
                   {likeClick ? (
                     <img className="icon__click" src={LikeIconFilled} onClick={onClickLike} alt="" />
@@ -321,7 +317,7 @@ function ViewListCard({
                         challengeID={id}
                         commentListFlag={commentListFlag}
                         setCommentListFlag={setCommentListFlag}
-                      ></ChallengeComment>
+                      />
                     )}
                     <button
                       className="comment__card-fold"
