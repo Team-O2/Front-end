@@ -1,6 +1,6 @@
 import { postConcertComment } from 'apis/ShareTogether';
 import React, { useState } from 'react';
-import { useRecoilState, useRecoilValue } from 'recoil';
+import { useRecoilValue } from 'recoil';
 import { userState, userStatusState } from 'stores/user';
 import Styled from 'styled-components';
 import CommentWrite from '../CommentWrite';
@@ -35,7 +35,7 @@ function SingleComment({ _id, userID, childrenComment, text, concertID }: IProps
   const [openReply, setOpenReply] = useState(false);
   const [replyValue, setReplyValue] = useState('');
   const [replyList, setReplyList] = useState(childrenComment);
-  const [userStatusData, setUserStausData] = useRecoilState(userStatusState);
+  const userStatusData = useRecoilValue(userStatusState);
   const userData = useRecoilValue(userState);
 
   const onClickReplyOpen = () => {
@@ -57,34 +57,8 @@ function SingleComment({ _id, userID, childrenComment, text, concertID }: IProps
     } else {
       alert('로그인 후 이용하세요');
     }
-    /*
-    const replyListLength = replyList?.length;
-    const nextId = String(replyListLength && replyListLength + 1);
-    const variables = {
-      _id: nextId,
-      nickname: '대댓글임다',
-      text: replyValue,
-    };
-    setReplyList(replyList.concat(variables));
-    setReplyValue('');
-    */
   };
-  /*
-    FIX ME : 코드 수정 후 서버연결 필요
-    const variables = {
-      author: 로그인한 유저,
-      text: commentValue,
-      parentId: 부모 댓글 아이디,
-    }
-    Axios.post('api/concert/comment',variables)
-    .then(response =>{
-        if(response.data.success){
-           console.log(response.data.result)
-        }else{
-            alert('FAIL')
-        }
-    })
-    */
+
   return (
     <SSingleComment>
       <div className="comment">

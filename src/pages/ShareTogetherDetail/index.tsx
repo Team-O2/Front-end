@@ -10,7 +10,7 @@ import CommentList from 'components/organisms/CommentList';
 import DetailContent from 'components/organisms/DetailContent';
 import React, { useEffect, useState } from 'react';
 import { RouteComponentProps } from 'react-router';
-import { useRecoilState } from 'recoil';
+import { useRecoilValue } from 'recoil';
 import { userStatusState } from 'stores/user';
 import Styled from 'styled-components';
 
@@ -46,7 +46,7 @@ function ShareTogetherDetail({ match }: RouteComponentProps<MatchParams>): React
   const [likeClick, setLikeClick] = useState(false);
   const [scrap, setScrap] = useState(0);
   const [scrapClick, setScrapClick] = useState(false);
-  const [userStatusData, setUserStausData] = useRecoilState(userStatusState);
+  const userStatusData = useRecoilValue(userStatusState);
 
   useEffect(() => {
     const getConcertList = async () => {
@@ -61,7 +61,7 @@ function ShareTogetherDetail({ match }: RouteComponentProps<MatchParams>): React
       }
     };
     getConcertList();
-  }, [commentList, Likes, scrap]);
+  }, [commentList, Likes, scrap, userStatusData, id]);
 
   const reLoadComment = (newComment: any) => {
     setCommentList(commentList?.concat(newComment));

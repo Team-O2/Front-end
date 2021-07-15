@@ -5,7 +5,7 @@ import ConcertCardList from 'components/organisms/ConcertCardList';
 import ConcertList from 'components/organisms/ConcertList';
 import SeachForm from 'components/organisms/SearchForm';
 import React, { useEffect, useState } from 'react';
-import { useRecoilState } from 'recoil';
+import { useRecoilValue } from 'recoil';
 import { userStatusState } from 'stores/user';
 import Styled from 'styled-components';
 
@@ -34,7 +34,7 @@ function ShareTogether(): React.ReactElement {
   const [selectedCategory, setSelectedCategory] = useState('전체');
   const [keyword, setKeyword] = useState('');
   const [isClickedEntire, setISClickedEntire] = useState(false);
-  const [userStatusData, setUserStausData] = useRecoilState(userStatusState);
+  const userStatusData = useRecoilValue(userStatusState);
   useEffect(() => {
     const getConcertList = async () => {
       if (userStatusData) {
@@ -45,7 +45,7 @@ function ShareTogether(): React.ReactElement {
       }
     };
     getConcertList();
-  }, [isClickedEntire]);
+  }, [isClickedEntire, userStatusData]);
 
   useEffect(() => {
     const getConcertCategoryList = async () => {
@@ -57,7 +57,7 @@ function ShareTogether(): React.ReactElement {
       }
     };
     getConcertCategoryList();
-  }, [selectedCategory, keyword]);
+  }, [selectedCategory, keyword, userStatusData]);
 
   const reRenderCategory = (category: string) => {
     if (category === '전체') {
