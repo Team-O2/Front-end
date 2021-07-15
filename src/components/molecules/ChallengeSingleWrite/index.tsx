@@ -1,4 +1,4 @@
-import { ICommentData } from 'components/organisms/ViewCardList';
+import { ICommentData } from 'components/molecules/ViewListCard';
 import React, { useState } from 'react';
 import { useRecoilValue } from 'recoil';
 import { userState } from 'stores/user';
@@ -7,20 +7,6 @@ import ChallengeCommentWrite from '../ChallengeCommentWrite';
 import ChallengeReplyComment from '../ReplyComment';
 interface IProps {
   commentData: ICommentData;
-  // childrenComment: {
-  //   _id?: string;
-  //   nickname?: string;
-  //   text?: string;
-  //   createdAt?: string;
-  // }[]; //
-  // isDeleted?: boolean;
-  // _id: string; //
-  // userID: {
-  //   img: string;
-  //   _id: string;
-  //   nickname: string;
-  // }; //
-  // text: string; ///
   challengeID: string; //
 }
 

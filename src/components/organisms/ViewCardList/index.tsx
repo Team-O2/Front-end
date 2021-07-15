@@ -4,57 +4,22 @@ import React, { useEffect, useState } from 'react';
 import { useRecoilState } from 'recoil';
 import { userStatusState } from 'stores/user';
 import Styled from 'styled-components';
-
-export interface ICommentData {
-  childrenComment: {
-    _id: string;
-    userID: {
-      _id: string;
-      nickname: string;
-    };
-    text: string;
-  }[];
-  _id: string;
-  userID: {
-    img: string;
-    _id: string;
-    nickname: string;
-  };
-  text: string;
-}
-
-export interface IData {
-  good: string;
-  bad: string;
-  learn: string;
-  commentNum: number;
-  comments: ICommentData[];
-  generation: number;
-  createdAt: string;
-  isDeleted: boolean;
-  scrapNum: number;
-  interest: string[];
-  likes: number;
-  updatedAt: string;
-  user: { img: string; nickname: string; _id: string };
-  __v: number;
-  _id: string;
-}
+import { IChallengeData } from '../../templates/LearnMyself/ChallengeList';
 
 interface IProps {
-  challengeData?: Array<IData>;
+  challengeList: IChallengeData[] | null;
+  setChallengeList: (value: IChallengeData[]) => void;
 }
 
-function ViewCardList({ challengeData }: IProps): React.ReactElement {
+function ViewCardList({ challengeList, setChallengeList }: IProps): React.ReactElement {
   const [userStatusData, setUserStatusData] = useRecoilState(userStatusState);
-  const [challenge, setChallenge] = useState<IData[] | null>(null);
   const [reRenderFlag, setReRenderFlag] = useState(false);
 
   const ChallengeList = async (): Promise<void> => {
     if (userStatusData) {
       const data = await ChallengeListData(userStatusData.token);
       console.log(data);
-      data && setChallenge(data);
+      data && setChallengeList(data);
     }
   };
   useEffect(() => {
@@ -63,7 +28,7 @@ function ViewCardList({ challengeData }: IProps): React.ReactElement {
 
   return (
     <SViewCardList>
-      {challenge?.map((data: IData, id) => {
+      {challengeList?.map((data: IChallengeData, id) => {
         return (
           <ViewListCard
             id={data?._id}
