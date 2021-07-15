@@ -14,7 +14,7 @@ function NoticeDetailContent({ imgThumbnail, desc, comments }: IProps): React.Re
       <div className="image">
         <img className="image__video" src={imgThumbnail} />
       </div>
-      <div className="text">{desc}</div>
+      <div className="text" dangerouslySetInnerHTML={{ __html: `${desc}` }} />
       <div className="icons">
         <div className="comments">
           <img className="comments__img" src={CommentIcon} alt="" />
