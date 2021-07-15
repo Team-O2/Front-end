@@ -105,13 +105,8 @@ function EditCard({ id }: IEditCard) {
       interest: selectedInterest,
     };
     if (userStatusData) {
-<<<<<<< refs/remotes/origin/feat/Challenge
-      const data = await writeForm(writeData, userStatusData.token);
-      history.push('/challenge');
-=======
       const data = await ChallengeEdit(editData, userStatusData.token, id);
       data && history.push('/challenge');
->>>>>>> Feat: 챌린지 수정 완료
     }
   };
 

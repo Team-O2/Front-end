@@ -1,28 +1,51 @@
 import TextArea from 'components/atoms/TextArea';
+import { postChallengeComment } from 'libs/getChallenge';
 import React from 'react';
+import { useRecoilState } from 'recoil';
+import { userStatusState } from 'stores/user';
 import Styled from 'styled-components';
 
 export interface IProps {
   className?: string;
-  value?: string;
-  isComment?: boolean;
-  isCommentt?: boolean;
+  value: string;
+  setValue: (value: string) => void;
+  isComment: boolean;
+  challengeID: string;
   onChange?: (e: React.ChangeEvent<HTMLTextAreaElement>) => void;
-  onClick?: (event: any) => void;
-  onSubmit?: (event: React.FormEvent<HTMLFormElement>) => void;
 }
 
 function ChallengeCommentWrite({
   className,
   value,
+  setValue,
   isComment,
   onChange,
-  onClick,
-  onSubmit,
+  challengeID,
 }: IProps): React.ReactElement {
+  const [userStatusData, setUserStatusData] = useRecoilState(userStatusState);
+
+  const btnHandler = async () => {
+    if (isComment) await postComment();
+    else await postReComment();
+  };
+
+  const postComment = async () => {
+    if (userStatusData) {
+      await postChallengeComment(userStatusData.token, challengeID, { parentID: null, text: value });
+    }
+    setValue('');
+  };
+
+  const postReComment = async () => {
+    if (userStatusData) {
+      await postChallengeComment(userStatusData.token, challengeID, { parentID: null, text: value });
+    }
+    setValue('');
+  };
+
   return (
     <SCommentWrite isCommentt={isComment} className={className}>
-      <form className="form" onSubmit={onSubmit}>
+      <form className="form">
         <TextArea
           className="input"
           name="comment"
@@ -31,7 +54,7 @@ function ChallengeCommentWrite({
           placeholder="댓글을 입력해 주세요"
         ></TextArea>
         <div className="comment__button-submit">
-          <button onClick={onClick} className="comment__submit">
+          <button onClick={btnHandler} className="comment__submit">
             {isComment ? '댓글 작성' : '답글 작성'}
           </button>
         </div>
@@ -40,16 +63,16 @@ function ChallengeCommentWrite({
   );
 }
 
-const SCommentWrite = Styled.div`
+const SCommentWrite = Styled.div<{ isCommentt: boolean }>`
   .form{
     display: flex;
     flex-direction: column;
   }
     font-family: 'AppleSDGothicNeo';
   .input {
-    width: ${({ isCommentt }: IProps) => (isCommentt ? '724px' : '594px')};
-    height: ${({ isCommentt }: IProps) => (isCommentt ? '110px' : '4px')};
-    margin-right: ${({ isCommentt }: IProps) => (isCommentt ? '0px' : '54px')};
+    width: ${({ isCommentt }) => (isCommentt ? '724px' : '594px')};
+    height: ${({ isCommentt }) => (isCommentt ? '110px' : '4px')};
+    margin-right: ${({ isCommentt }) => (isCommentt ? '0px' : '54px')};
     margin: 0 0 8px;
     font-size: 16px;
     padding: 15px 15px 41px;
@@ -71,7 +94,7 @@ const SCommentWrite = Styled.div`
       padding-right:58px;
   }
   .button {
-    font-size: ${({ isCommentt }: IProps) => (isCommentt ? '16px' : '14px')};
+    font-size: ${({ isCommentt }) => (isCommentt ? '16px' : '14px')};
     font-weight: bold;
     color:#555555;
     margin-top: 8px;

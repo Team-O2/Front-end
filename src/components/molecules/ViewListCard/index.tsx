@@ -1,5 +1,6 @@
 import LikeIconFilled from 'assets/images/heart_filled.svg';
 import Button from 'components/atoms/Button';
+import ChallengeComment from 'components/molecules/ChallengeComment';
 import { ICommentData } from 'components/organisms/ViewCardList';
 import dayjs from 'dayjs';
 import { DeleteChallenge } from 'libs/getChallenge';
@@ -27,21 +28,9 @@ interface IProps {
   bad?: string;
   learn?: string;
   like?: number;
-<<<<<<< refs/remotes/origin/feat/Challenge
-  comments: number;
-  scrap?: number;
-  id: string;
-  reLoadComment?: (newComment: any) => void;
   commentlist: ICommentData[];
-}
-
-interface MatchParams {
-=======
-  commentlist: ICommentData[];
-  reLoadComment: (newComment: any) => void;
   comments?: number;
   scrap?: number;
->>>>>>> Feat: 삭제 api 연결
   id: string;
   reRenderFlag: boolean;
   setReRenderFlag: (value: boolean) => void;
@@ -60,13 +49,8 @@ function ViewListCard({
   commentlist,
   scrap,
   id,
-<<<<<<< refs/remotes/origin/feat/Challenge
-  match,
-=======
   reRenderFlag,
   setReRenderFlag,
->>>>>>> Feat: 삭제 api 연결
-  reLoadComment,
 }: IProps): React.ReactElement {
   const history = useHistory();
   const [userStatusData, setUserStatusData] = useRecoilState(userStatusState);
@@ -85,10 +69,6 @@ function ViewListCard({
 
   // const { id } = match.params;
 
-<<<<<<< refs/remotes/origin/feat/Challenge
-  const fetchChallengeData = async () => {
-    // const data = await GetChallengeOne() 요런 함수 만들음 그래서 챌린지 하나의 정보를 가져온다
-=======
   const deleteClickHandler = async () => {
     if (userStatusData) {
       const token = await userStatusData?.token;
@@ -98,7 +78,6 @@ function ViewListCard({
     } else {
       alert('네트워크가 좋지 않습니다');
     }
->>>>>>> Feat: 삭제 api 연결
   };
 
   const onClickLike = () => {
@@ -268,19 +247,9 @@ function ViewListCard({
                   </button>
                 ) : (
                   <div>
-<<<<<<< refs/remotes/origin/feat/Challenge
-                    {/* {IsFoldComment === false ? null : (
-                      <ChallengeComment commentList={commentlist} reLoadComment={reLoadComment}></ChallengeComment>
-                    )} */}
-=======
                     {IsFoldComment === false ? null : (
-                      <ChallengeComment
-                        commentList={commentlist}
-                        reLoadComment={reLoadComment}
-                        challengeID={id}
-                      ></ChallengeComment>
+                      <ChallengeComment commentList={commentlist} challengeID={id}></ChallengeComment>
                     )}
->>>>>>> Feat: 작성한 댓글 서버로 전송
                     <button
                       className="comment__card-fold"
                       onClick={() => {
