@@ -9,9 +9,11 @@ import {
   IMyUserLearnMyself,
 } from '../types/myPage';
 
+const MY_PAGE_URL_PREFIX = '/user/mypage';
+
 export const getMyPageUserInfo = async (token?: string): Promise<IMyPageHeader | null> => {
   try {
-    const data = await serverAxios.get('/user/mypage/info', {
+    const data = await serverAxios.get(`${MY_PAGE_URL_PREFIX}/info`, {
       headers: { Accept: 'application/json', Authorization: token },
     });
     if (data.status === 200) {
@@ -41,7 +43,7 @@ export const getShareTogetherListData = async ({
   offset = 0,
 }: IFetchParameter): Promise<IMyScrappedShareTogether | null> => {
   try {
-    const data = await serverAxios.get('/user/mypage/concert', {
+    const data = await serverAxios.get(`${MY_PAGE_URL_PREFIX}/concert`, {
       headers: { Accept: 'application/json', Authorization: token },
       params: { limit, offset },
     });
@@ -62,7 +64,7 @@ export const getLearnMyselfListData = async ({
   offset = 0,
 }: IFetchParameter): Promise<IMyScrappedLearnMyself | null> => {
   try {
-    const data = await serverAxios.get('/user/mypage/challenge', {
+    const data = await serverAxios.get(`${MY_PAGE_URL_PREFIX}/challenge`, {
       headers: { Accept: 'application/json', Authorization: token },
       params: { limit, offset },
     });
@@ -83,7 +85,7 @@ export const getUserLearnMyselfListData = async ({
   offset = 0,
 }: IFetchParameter): Promise<IMyUserLearnMyself | null> => {
   try {
-    const data = await serverAxios.get('/user/mypage/challenge', {
+    const data = await serverAxios.get(`${MY_PAGE_URL_PREFIX}/challenge`, {
       headers: { Accept: 'application/json', Authorization: token },
       params: { limit, offset },
     });
@@ -105,7 +107,7 @@ export const getUserCommentListData = async ({
   category,
 }: IFetchCommentParameter): Promise<IMyUserCommentResponse | null> => {
   try {
-    const data = await serverAxios.get('/user/mypage/comment', {
+    const data = await serverAxios.get(`${MY_PAGE_URL_PREFIX}/comment`, {
       headers: { Accept: 'application/json', Authorization: token },
       params: { limit, offset, postModel: category },
     });
@@ -123,7 +125,7 @@ export const getUserCommentListData = async ({
 
 export const deleteUserCommentList = async ({ token, commentIdList }: IGetMyPageUserInfoParameter): Promise<null> => {
   try {
-    const data = await serverAxios.delete('/user/mypage/comment', {
+    const data = await serverAxios.delete(`${MY_PAGE_URL_PREFIX}/comment`, {
       headers: { Accept: 'application/json', Authorization: token },
       data: {
         commentID: commentIdList,
