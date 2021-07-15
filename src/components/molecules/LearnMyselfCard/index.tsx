@@ -1,27 +1,25 @@
-import { EmptyBookmark, FilledBookmark } from 'assets/images';
+import { FilledBookmark } from 'assets/images';
 import { Button, Icon, Img, Link } from 'components/atoms';
 import React from 'react';
 import Styled from 'styled-components';
 
 export interface IProps {
   imagePath: string;
-  isBookmarked: boolean;
+  isBookmarked?: boolean;
   id: string;
   name: string;
   content: string;
+  onClick: (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => void;
 }
 
-function LearnMyselfCard({ imagePath, isBookmarked, id, name, content }: IProps): React.ReactElement {
+function LearnMyselfCard({ imagePath, isBookmarked, id, name, content, onClick }: IProps): React.ReactElement {
   return (
     <Wrapper>
-      <Button
-        className="card__icon-wrapper"
-        onClick={() => {
-          alert('북마크 누르기');
-        }}
-      >
-        <Icon className="card__icon" src={isBookmarked ? FilledBookmark : EmptyBookmark} height="2.4rem" />
-      </Button>
+      {isBookmarked && (
+        <Button className="card__icon-wrapper" value={id} onClick={onClick}>
+          <Icon className="card__icon" src={FilledBookmark} height="2.4rem" />
+        </Button>
+      )}
       <Link to={`${id}`}>
         <span className="card">
           <Img className="card__img" src={imagePath} />
