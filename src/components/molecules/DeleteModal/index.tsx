@@ -85,7 +85,7 @@ const Wrapper = Styled.div`
       padding-left:170px;
       line-height: 1.33;
       letter-spacing: -0.5px;
-      color: #C1C1C1;
+      color: #E04747;
       font-size: 18px;
       font-weight: bold;;
 
@@ -93,7 +93,7 @@ const Wrapper = Styled.div`
     &__cancel{
       line-height: 1.33;
       letter-spacing: -0.5px;
-      color: #E04747;
+      color: #C1C1C1;
       font-size: 18px;
       font-weight: bold;
     }
