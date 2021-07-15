@@ -34,7 +34,7 @@ import {
 import { ReactComponent as LeftArrow } from 'assets/images/largeLeftArrow.svg';
 import { ReactComponent as RightArrow } from 'assets/images/largeRightArrow.svg';
 import { fadeIn, fadeOut } from 'assets/styles/animation';
-import { Button, DotText, Img, Label, MyPageCard } from 'components/atoms';
+import { Button, DotText, Img, Label, Link, MyPageCard } from 'components/atoms';
 import dayjs from 'dayjs';
 import React, { useEffect, useRef, useState } from 'react';
 import { useRecoilValue } from 'recoil';
@@ -99,21 +99,25 @@ function MyPageSlider({ userInfo }: IProps): React.ReactElement {
         <div className="slider__box" ref={slideRef}>
           <MyPageCard title="Learn Myself" width="350">
             {userInfo?.learnMyselfAchieve ? (
-              <div className="slider__learnMyself">
-                <p className="slider__learnMyself--date subhead3_eng">
-                  {`${dayjs(userInfo.learnMyselfAchieve.startDT).format('YY.MM.DD')} - ${dayjs(
-                    userInfo.learnMyselfAchieve.endDT,
-                  ).format('YY.MM.DD')}`}
-                </p>
-                <div className="slider__learnMyself--img">
-                  <Img src={getLevelIcon(userInfo.learnMyselfAchieve.percent)} />
+              <Link to={`challenge/${userInfo.learnMyselfAchieve.generation}`}>
+                <div className="slider__learnMyself">
+                  <p className="slider__learnMyself--date subhead3_eng">
+                    {`${dayjs(userInfo.learnMyselfAchieve.startDT).format('YY.MM.DD')} - ${dayjs(
+                      userInfo.learnMyselfAchieve.endDT,
+                    ).format('YY.MM.DD')}`}
+                  </p>
+                  <div className="slider__learnMyself--img">
+                    <Img src={getLevelIcon(userInfo.learnMyselfAchieve.percent)} />
+                  </div>
+                  <p className="slider__learnMyself--percent subhead5_eng">
+                    {userInfo.learnMyselfAchieve.percent}% 달성
+                  </p>
+                  <p className="slider__learnMyself--count body2">
+                    내가 쓴 개수 &nbsp; &nbsp;<span>{userInfo.learnMyselfAchieve.completeNum}</span> &nbsp;/ &nbsp;
+                    {userInfo.learnMyselfAchieve.totalNum}
+                  </p>
                 </div>
-                <p className="slider__learnMyself--percent subhead5_eng">{userInfo.learnMyselfAchieve.percent}% 달성</p>
-                <p className="slider__learnMyself--count body2">
-                  내가 쓴 개수 &nbsp; &nbsp;<span>{userInfo.learnMyselfAchieve.completeNum}</span> &nbsp;/ &nbsp;
-                  {userInfo.learnMyselfAchieve.totalNum}
-                </p>
-              </div>
+              </Link>
             ) : (
               <div className="slider__noContents">
                 <p className="body2">현재 참여한 챌린지가 없어요!</p>

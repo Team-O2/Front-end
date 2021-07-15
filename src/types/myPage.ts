@@ -12,6 +12,7 @@ export interface IMyPageHeader {
     completeNum: number;
     startDT: string;
     endDT: string;
+    generation: number;
   };
   shareTogether: IMyPageShareTogether[];
   couponBook: {
