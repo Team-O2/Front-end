@@ -1,3 +1,4 @@
+import { keyframes } from '@emotion/react';
 import {
   CommunicationKingFill,
   EmpathizingFill,
@@ -21,32 +22,49 @@ import speakerBadge3 from 'assets/images/speakerBadge3.png';
 import { Button } from 'components/atoms';
 import BadgeCard from 'components/molecules/BadgeExpCard';
 import React from 'react';
+import Reveal from 'react-awesome-reveal';
 import { Link } from 'react-router-dom';
 import Styled from 'styled-components';
+
+const moveUp = keyframes`
+  from {
+    transform: translateY(30px);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+`;
 
 function Home(): React.ReactElement {
   return (
     <>
       <JoinWrap>
-        <div className="top">
-          <h1 className="top__title--O2 ">O2</h1>
-          <h2 className="dp2 top__title--subtitle">
-            함께 성장하는 공간, <br />
-            창업가들이 마시는 산소
-          </h2>
-          <p className="top__exp body4">답답한 창업 여정에 시원한 산소 한 모금</p>
-          <Link to="/challenge">
-            <Button className="top__button subhead2">챌린지 보러가기</Button>
-          </Link>
-        </div>
+        <Reveal keyframes={moveUp} cascade>
+          <div className="top">
+            <h1 className="top__title--O2 ">O2</h1>
+            <h2 className="dp2 top__title--subtitle">
+              함께 성장하는 공간, <br />
+              창업가들이 마시는 산소
+            </h2>
+            <p className="top__exp body4">답답한 창업 여정에 시원한 산소 한 모금</p>
+            <Link to="/challenge">
+              <Button className="top__button subhead2">챌린지 보러가기</Button>
+            </Link>
+          </div>
+        </Reveal>
         <div className="learnMyself">
-          <h2 className="middle__title--title dp1_eng">Learn Myself</h2>
-          <h3 className="middle__title--subtitle h1">나에게 배우다, 나를 배우다.</h3>
-          <p className="middle__exp body4">
-            오늘의 잘한 점과 못한 점, 배운 점을 기록해요.
-            <br />
-            배운 점을 적용하며 더 성장한 내일의 나를 만들어요.
-          </p>
+          <Reveal keyframes={moveUp}>
+            <h2 className="middle__title--title dp1_eng">Learn Myself</h2>
+            <h3 className="middle__title--subtitle h1">나에게 배우다, 나를 배우다.</h3>
+            <p className="middle__exp body4">
+              오늘의 잘한 점과 못한 점, 배운 점을 기록해요.
+              <br />
+              배운 점을 적용하며 더 성장한 내일의 나를 만들어요.
+            </p>
+          </Reveal>
+
           <div className="learnMyself__container--card">
             <img className="learnMyself__img--card" src={mainCard1} />
             <img className="learnMyself__img--card" src={mainCard2} />
@@ -55,54 +73,62 @@ function Home(): React.ReactElement {
           </div>
         </div>
         <div className="shareTogether">
-          <h2 className="middle__title--title dp1_eng">Share Together</h2>
-          <h3 className="middle__title--subtitle h1">경험을 나누다, 함께 성장하다.</h3>
-          <p className="middle__exp body4">
-            누구나 O2 Speaker가 될 수 있어요.
-            <br />
-            O2 People 앞에서 당신의 이야기를 나눠주세요.
-          </p>
+          <Reveal keyframes={moveUp}>
+            <h2 className="middle__title--title dp1_eng">Share Together</h2>
+            <h3 className="middle__title--subtitle h1">경험을 나누다, 함께 성장하다.</h3>
+            <p className="middle__exp body4">
+              누구나 O2 Speaker가 될 수 있어요.
+              <br />
+              O2 People 앞에서 당신의 이야기를 나눠주세요.
+            </p>
+          </Reveal>
           <div className="shareTogether__container--photo1">
             <img className="shareTogether__image1" src={sharePhoto1}></img>
             <div className="shareTogether__container--exp1">
-              <p className="body3 shareTogether__exp--type">Share Together 인기글</p>
-              <h1 className="h1 shareTogether__title">
-                내가 힘들 때 버틸 수 있었던 <br />
-                3가지
-              </h1>
-              <p className="shareTogether__content">
-                창업을 하다보면 정말 생각하지 못했던 어려운 일들이 <br />
-                많이 일어나는건 누구나 알고계실거라 생각합니다. <br />
-                중간에 포기하고 싶어지는 순간에 앵엘님의
-                <br />
-                [내가 힘들 때 버틸 수 있었던 3가지] 강연으로 나만의 <br />
-                버팀목도 한번 만들어보세요.
-              </p>
+              <Reveal keyframes={moveUp}>
+                <p className="body3 shareTogether__exp--type">Share Together 인기글</p>
+                <h1 className="h1 shareTogether__title">
+                  내가 힘들 때 버틸 수 있었던 <br />
+                  3가지
+                </h1>
+                <p className="shareTogether__content">
+                  창업을 하다보면 정말 생각하지 못했던 어려운 일들이 <br />
+                  많이 일어나는건 누구나 알고계실거라 생각합니다. <br />
+                  중간에 포기하고 싶어지는 순간에 앵엘님의
+                  <br />
+                  [내가 힘들 때 버틸 수 있었던 3가지] 강연으로 나만의 <br />
+                  버팀목도 한번 만들어보세요.
+                </p>
+              </Reveal>
             </div>
           </div>
           <div className="shareTogether__container--photo2">
             <div className="shareTogether__container--exp2">
-              <p className="body3 shareTogether__exp--type">Share Together 인기글</p>
-              <h1 className="h1 shareTogether__title">
-                CEO라는 꿈. <br />
-                정말 나를 위한 유일한 길일까?
-              </h1>
-              <p className="shareTogether__content">
-                여러분은 자신의 꿈에 얼마나 큰 확신을 가지고있나요? <br />
-                아마 꿈을 향해 나아가면서도 끊임없이 ‘내가 잘 하고 있는 것인가?‘, <br />
-                ‘이게 정말 나를 위한 길인가?’ 이런 생각이 드실거라 생각합니다. <br />
-                깡토님의 [CEO라는 꿈. 정말 나를 위한 유일한 길일까?] 강연에서는 불안
-                <br />
-                하기만 CEO라는 꿈을 어떻게 이룰 수 있었는지, <br />
-                깡토님의 실제 스토리를 여러분들께 들려드립니다.
-              </p>
+              <Reveal keyframes={moveUp}>
+                <p className="body3 shareTogether__exp--type">Share Together 인기글</p>
+                <h1 className="h1 shareTogether__title">
+                  CEO라는 꿈. <br />
+                  정말 나를 위한 유일한 길일까?
+                </h1>
+                <p className="shareTogether__content">
+                  여러분은 자신의 꿈에 얼마나 큰 확신을 가지고있나요? <br />
+                  아마 꿈을 향해 나아가면서도 끊임없이 ‘내가 잘 하고 있는 것인가?‘, <br />
+                  ‘이게 정말 나를 위한 길인가?’ 이런 생각이 드실거라 생각합니다. <br />
+                  깡토님의 [CEO라는 꿈. 정말 나를 위한 유일한 길일까?] 강연에서는 불안
+                  <br />
+                  하기만 CEO라는 꿈을 어떻게 이룰 수 있었는지, <br />
+                  깡토님의 실제 스토리를 여러분들께 들려드립니다.
+                </p>
+              </Reveal>
             </div>
             <img className="shareTogether__image2" src={sharePhoto2}></img>
           </div>
         </div>
         <div className="o2speaker">
-          <h1 className="dp1_eng o2speaker__title">To Be an O2 Speaker</h1>
-          <h2 className="subhead4 o2speaker__subtitle">뱃지를 모아 O2 Speaker가 되어보세요!</h2>
+          <Reveal keyframes={moveUp}>
+            <h1 className="dp1_eng o2speaker__title">To Be an O2 Speaker</h1>
+            <h2 className="subhead4 o2speaker__subtitle">뱃지를 모아 O2 Speaker가 되어보세요!</h2>
+          </Reveal>
           <div className="o2speaker__container--outer">
             <div className="o2speaker__container--inner">
               <img className="o2speaker__image--badge" src={speakerBadge1} />
@@ -128,8 +154,10 @@ function Home(): React.ReactElement {
           </div>
         </div>
         <div className="o2badge">
-          <h1 className="o2badge__title dp1_eng">O2 Badge</h1>
-          <h2 className="o2badge__subtitle subhead4">열심히 활동하면 멋진 오투의 뱃지들을 받을 수 있어요.</h2>
+          <Reveal keyframes={moveUp}>
+            <h1 className="o2badge__title dp1_eng">O2 Badge</h1>
+            <h2 className="o2badge__subtitle subhead4">열심히 활동하면 멋진 오투의 뱃지들을 받을 수 있어요.</h2>
+          </Reveal>
           <div className="o2badge__container--badge">
             <BadgeCard
               img={WelcomeToO2Fill}
@@ -224,7 +252,9 @@ function Home(): React.ReactElement {
               Learn Myself에 <br />
               참여해 보세요!
             </p>
-            <Button className="subhead4_eng linkTo__button">More</Button>
+            <Reveal keyframes={moveUp}>
+              <Button className="subhead4_eng linkTo__button">More</Button>
+            </Reveal>
           </div>
           <div className="linkTo__container--card">
             <h1 className="h1_eng linkTo__title">Learn Myself</h1>
@@ -233,9 +263,11 @@ function Home(): React.ReactElement {
               <br />
               챌린지를 시작해 보세요
             </p>
-            <Link to="/challenge">
-              <Button className="subhead4_eng linkTo__button">More</Button>
-            </Link>
+            <Reveal keyframes={moveUp}>
+              <Link to="/challenge">
+                <Button className="subhead4_eng linkTo__button">More</Button>
+              </Link>
+            </Reveal>
           </div>
           <div className="linkTo__container--card">
             <h1 className="h1_eng linkTo__title">Share Together</h1>
@@ -244,9 +276,11 @@ function Home(): React.ReactElement {
               <br />
               들어보세요!
             </p>
-            <Link to="/ShareTogether">
-              <Button className="subhead4_eng linkTo__button">More</Button>
-            </Link>
+            <Reveal keyframes={moveUp}>
+              <Link to="/ShareTogether">
+                <Button className="subhead4_eng linkTo__button">More</Button>
+              </Link>
+            </Reveal>
           </div>
         </div>
       </JoinWrap>
@@ -268,7 +302,7 @@ const JoinWrap = Styled.div`
     margin : 0;
     padding : 0;
   }
-  @keyframes moveUp {
+  /* @keyframes moveUp {
     from {
       transform: translateY(8%);
       opacity: 0;
@@ -277,7 +311,7 @@ const JoinWrap = Styled.div`
       transform: translateY(0);
       opacity: 1;
     }
-  }
+  } */
   .linkTo{
     width : 100%;
     padding-top : 208px;
@@ -368,8 +402,8 @@ const JoinWrap = Styled.div`
   .top{
     padding-top : 178px;
     width : 1109px;
-    animation-name: moveUp;
-    animation-duration: 1.5s;
+    /* animation-name: moveUp;
+    animation-duration: 1.5s; */
     &__title{
       &--O2{
         font-size: 90px;
