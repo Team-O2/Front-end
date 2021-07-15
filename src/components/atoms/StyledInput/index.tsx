@@ -11,6 +11,7 @@ export interface IProps {
   isConditionMet: boolean;
   width: string;
   height: string;
+  isPw?: boolean;
 }
 const conditionMetStyle = {
   border: 'double 1px transparent',
@@ -33,6 +34,7 @@ function StyledInput({
   onChange,
   width,
   height,
+  isPw,
 }: IProps): React.ReactElement {
   const [isFocused, setIsfocused] = useState(false);
 
@@ -49,9 +51,13 @@ function StyledInput({
           onChange={(e) => {
             onChange(e.target.value);
           }}
-          onFocus={() => {
+          onFocus={(e) => {
             setIsfocused(true);
           }}
+          // onBlur={(e) => {
+          //   setIsfocused(false);
+          // }}
+          type={isPw ? 'password' : 'text'}
         />
         {isFocused && !isConditionMet && <img className="input__image--error" src={errIcon}></img>}
       </div>
@@ -73,6 +79,7 @@ const SStyledInput = Styled.div<{ isConditionMet: boolean; isFocused: boolean; w
         height : 100%;
         padding: 18px 20px;
         border-radius: 4px;
+        font-style: AppleSDGothicNeo;
         
         :placeholder{
         color : #c1c1c1;

@@ -5,11 +5,10 @@ import xIcon from 'assets/images/xIcon.svg';
 import StyledInput from 'components/atoms/StyledInput';
 import DropDown from 'components/molecules/DropDown';
 import DropDownMulti from 'components/molecules/DropDownMulti';
-import Footer from 'components/organisms/Footer';
 import Header from 'components/organisms/Header';
 import { getUserInfo, updateUserInfo } from 'libs/axios';
 import React, { useEffect, useRef, useState } from 'react';
-import { useLocation, withRouter } from 'react-router-dom';
+import { withRouter } from 'react-router-dom';
 import { useRecoilValue } from 'recoil';
 import { interestList } from 'resources/string';
 import { userStatusState } from 'stores/user';
@@ -26,9 +25,6 @@ interface IUserInfo {
 }
 
 function Setting({ history }: any): React.ReactElement {
-  // for router
-  const location = useLocation();
-
   // for edit btn
   const [isBtnAtv, setIsBtnAtv] = useState(true);
 
@@ -47,6 +43,7 @@ function Setting({ history }: any): React.ReactElement {
   // for img input
   const imgInput = useRef(null);
   const [img, setImg] = useState({});
+  const [isEmpty, setIsEmpty] = useState(true);
   const handleInputImg = (e: React.ChangeEvent<HTMLInputElement>) => {
     if (e.target.files) {
       setUserInfo({
@@ -54,7 +51,11 @@ function Setting({ history }: any): React.ReactElement {
         img: URL.createObjectURL(e.target.files[0]),
       });
       setImg(e.target.files[0]);
+      setIsEmpty(false);
     }
+    // if (imgInput.current !== null) {
+    //   imgInput.current.value = '';
+    // }
   };
 
   const handleClickDel = (e: string) => {
@@ -65,7 +66,8 @@ function Setting({ history }: any): React.ReactElement {
   };
 
   const handleClickEdit = async () => {
-    if (Object.keys(img).length !== 0) {
+    if (!isEmpty) {
+      console.log('hi');
       await updateUserInfo(
         userStatusData?.token,
         img,
@@ -75,6 +77,7 @@ function Setting({ history }: any): React.ReactElement {
         userInfo.marpolicy,
       );
     } else {
+      console.log('f');
       await updateUserInfo(
         userStatusData?.token,
         undefined,
@@ -120,7 +123,7 @@ function Setting({ history }: any): React.ReactElement {
           />
         </div>
         <Txt>아이디</Txt>
-        <Email>{'email'}</Email>
+        <Email>{userInfo.email}</Email>
         <Txt>닉네임</Txt>
         <div style={{ marginBottom: '50px' }}>
           <StyledInput
@@ -144,6 +147,7 @@ function Setting({ history }: any): React.ReactElement {
             state={userInfo.interest}
             setState={(e) => {
               !userInfo.interest.includes(String(e)) &&
+                userInfo.interest.length < 5 &&
                 setUserInfo({
                   ...userInfo,
                   interest: userInfo.interest.concat([String(e)]),
@@ -176,7 +180,7 @@ function Setting({ history }: any): React.ReactElement {
           />
         </div>
         <Txt>비밀번호 변경</Txt>
-        <PwBtn>비밀번호 변경하기</PwBtn>
+        <PwBtn onClick={() => history.push('/setPwd')}>비밀번호 변경하기</PwBtn>
         <PolicyCntnr>
           <div style={{ display: 'flex', flexDirection: 'column' }}>
             <Txt style={{ width: 'auto' }}>이메일 수신 설정</Txt>
@@ -206,7 +210,6 @@ function Setting({ history }: any): React.ReactElement {
           수정완료
         </Btn>
       </Container>
-      <Footer />
     </div>
   );
 }

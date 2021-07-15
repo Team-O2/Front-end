@@ -55,7 +55,8 @@
       "warn", {
         "additionalHooks": "useRecoilCallback"
       }
-    ]
+    ],
+    "react/no-children-prop": "off"
   },
   "settings": {
     "react": {
