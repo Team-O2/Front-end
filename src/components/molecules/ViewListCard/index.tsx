@@ -175,8 +175,10 @@ function ViewListCard({
               <img className="detail__image" src={image} />
               <div className="profile">
                 <div className="profile__sub">
-                  <div className="profile__nickname">{nickname}</div>
-                  <p className="profile__time">{dayjs(createdAt).format('MM.DD')}</p>
+                  <div className="profile__detail">
+                    <div className="profile__nickname">{nickname}</div>
+                    <p className="profile__time">{dayjs(createdAt).format('MM.DD')}</p>
+                  </div>
                   {userStateNum === 0 || userStateNum === 1 || isMine === false ? (
                     scrapOpen === false ? (
                       <div className="menu__bar">
@@ -406,7 +408,7 @@ const SViewListCard = Styled.div`
 }
 .menu__bar{
     display:inline-block;
-    padding-left: 520px;
+    padding-left: 0px;
 }
 .menuIcon{
     border:none;
@@ -428,6 +430,7 @@ const SViewListCard = Styled.div`
 }
 .profile{
     display:inline-block;
+    width: calc( 100% - 140px);
     &__nickname{
         display:inline-block;
         margin-bottom: 10px;
@@ -452,6 +455,8 @@ const SViewListCard = Styled.div`
         margin-right : 5px;
         line-height: 20px;
         color: #6F6F6F;
+        font-size: 14px;
+        font-weight: bold;
     }
 }
 .button{
@@ -605,8 +610,10 @@ const SViewListCard = Styled.div`
 .login__button{
   padding-top:70px;
   text-align: center;
-
-
+}
+.profile__detail{
+  display:inline-block;
+  width: calc(100% - 100px);
 }
 `;
 
