@@ -9,9 +9,9 @@ import Header from 'components/organisms/Header';
 import { getUserInfo, updateUserInfo } from 'libs/axios';
 import React, { useEffect, useRef, useState } from 'react';
 import { useHistory, withRouter } from 'react-router-dom';
-import { useRecoilValue } from 'recoil';
+import { useRecoilState, useRecoilValue } from 'recoil';
 import { interestList } from 'resources/string';
-import { userStatusState } from 'stores/user';
+import { userState, userStatusState } from 'stores/user';
 import styled, { css } from 'styled-components';
 
 interface IUserInfo {
@@ -30,6 +30,7 @@ function Setting({}: any): React.ReactElement {
   const history = useHistory();
 
   // for user info
+  const [userData, setUserData] = useRecoilState(userState);
   const userStatusData = useRecoilValue(userStatusState);
   const [userInfo, setUserInfo] = useState<IUserInfo>({
     nickname: '',
@@ -65,8 +66,9 @@ function Setting({}: any): React.ReactElement {
   };
 
   const handleClickEdit = async () => {
+    let data = null;
     if (!isEmpty) {
-      const data = await updateUserInfo(
+      data = await updateUserInfo(
         userStatusData?.token,
         img,
         userInfo.nickname,
@@ -74,9 +76,8 @@ function Setting({}: any): React.ReactElement {
         userInfo.gender,
         userInfo.marpolicy,
       );
-      data && history.goBack();
     } else {
-      const data = await updateUserInfo(
+      data = await updateUserInfo(
         userStatusData?.token,
         undefined,
         userInfo.nickname,
@@ -84,7 +85,10 @@ function Setting({}: any): React.ReactElement {
         userInfo.gender,
         userInfo.marpolicy,
       );
-      data && history.goBack();
+    }
+    if (data) {
+      history.goBack();
+      setUserData(userInfo);
     }
   };
 
