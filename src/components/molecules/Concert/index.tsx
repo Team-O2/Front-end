@@ -40,7 +40,7 @@ function Concert({
           <p>{title}</p>
           <p dangerouslySetInnerHTML={{ __html: `${text}` }} />
         </div>
-        <div className="content__right">
+        <div className="content__right" onClick={onClickFunc}>
           <img className="content__right--img" src={imgThumbnail} alt="" />
           <div className="overlay overlayFade">
             <div className="content">
