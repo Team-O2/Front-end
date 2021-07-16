@@ -257,8 +257,8 @@ export const ChallengeScrap = async (token: string, challengeID: string) => {
 export const CancelChallengeScrap = async (token: string, challengeID: string) => {
   try {
     const data = await serverAxios.delete(`/challenge/scrap/${challengeID}`, {
-      params: {
-        challengeID: challengeID,
+      headers: {
+        Authorization: token,
       },
     });
     if (data.data.status === 200) {
