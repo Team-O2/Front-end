@@ -207,7 +207,7 @@ function WriteCard({ onChangeForm }: MyFormProps) {
     setSelectedInterest(selectedInterest);
   }, [selectedInterest]);
 
-  const indextoName = (index: string | number) => {
+  const indextoName = (index: undefined | number) => {
     switch (index) {
       case 1:
         return '1st';
@@ -223,7 +223,7 @@ function WriteCard({ onChangeForm }: MyFormProps) {
   return (
     <>
       <SWriteCard>
-        <div className="header">Learn Myself</div>
+        <div className="header">Learn Myself {indextoName(userStatusData?.progressGeneration)}</div>
         {countProgressBar === 0 ? (
           <div className="character">
             <div className="character__color0">
