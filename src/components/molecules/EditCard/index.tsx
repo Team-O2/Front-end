@@ -314,6 +314,7 @@ function EditCard({ id }: IEditCard) {
                 return setInterestButton(id, interest);
               }
             })}
+
             <Button
               onClick={() => {
                 setIsOpenTag(!isOpenTag);
@@ -321,13 +322,19 @@ function EditCard({ id }: IEditCard) {
             >
               <img className="tag__moreIcon" src={MoreIcon} alt=""></img>
             </Button>
-            {isOpenTag === true ? (
-              interestList.map((interest, id) => {
-                return setInterestButton(id, interest);
-              })
-            ) : (
-              <div className="modal__base"></div>
-            )}
+            <div className="tag__group1">
+              {isOpenTag === true ? (
+                <button className="tag__group2">
+                  {isOpenTag === true ? (
+                    interestList.map((interest, id) => {
+                      return setInterestButton(id, interest);
+                    })
+                  ) : (
+                    <div className="modal__base"></div>
+                  )}
+                </button>
+              ) : null}
+            </div>
           </div>
         </div>
 
@@ -443,9 +450,11 @@ const SWriteCard = Styled.div`
         }
         &__black{
             padding-right:50px;
+            padding-top:29px;
         }
         &__color1{
             padding-left:200px;
+            padding-top:29px;
         }
         &__color2{
             padding-left:450px;
@@ -525,6 +534,20 @@ const SWriteCard = Styled.div`
           color : #8b8b8b;
           font-size: 18px;
           font-weight: bold;
+        }
+
+        .tag__group1{
+          padding-top:20px;
+
+        }
+        .tag__group2{
+          background: #FFFFFF;
+          padding: 20px 30px 30px 30px;
+          border: 1px solid rgba(223, 223, 223, 0.5);
+          box-sizing: border-box;
+          box-shadow: 0px 0px 15px rgba(23, 22, 91, 0.08);
+          border-radius: 16px
+          
         }
 
 }`;
