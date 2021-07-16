@@ -109,6 +109,7 @@ export const postConcertComment = async (
     });
     if (data.data.status === 200) {
       alert(data.data.message);
+      return data.data.data;
     } else {
       return null;
     }
