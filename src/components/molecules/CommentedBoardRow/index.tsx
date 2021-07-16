@@ -12,9 +12,19 @@ export interface IProps {
   boardId: string;
   category: string;
   onChange?: (e: React.ChangeEvent<HTMLInputElement>) => void;
+  handleDetailModal: (id: string) => void;
 }
 
-function CommentedBoardRow({ content, date, boardId, id, onChange, isChecked, category }: IProps): React.ReactElement {
+function CommentedBoardRow({
+  content,
+  date,
+  boardId,
+  id,
+  onChange,
+  isChecked,
+  category,
+  handleDetailModal,
+}: IProps): React.ReactElement {
   return (
     <Wrapper>
       {content && (
@@ -30,7 +40,7 @@ function CommentedBoardRow({ content, date, boardId, id, onChange, isChecked, ca
               <Button
                 className="row__link"
                 onClick={() => {
-                  alert('런마셀 상세보기'); // TODO: 런마셀 모달 띄워주기
+                  handleDetailModal(boardId);
                 }}
               >
                 <span className="body3">원문보기</span>

@@ -8,14 +8,19 @@ import {
   getUserLearnMyselfListData,
 } from 'apis/myPage';
 import { Logo } from 'assets/images';
-import { LearnMyselfCard, MyPageSection, ShareTogetherCard } from 'components/molecules';
+import { Button, Img } from 'components/atoms';
+import Modal from 'components/atoms/Modal';
+import { ChallengeModalComment, LearnMyselfCard, MyPageSection, ShareTogetherCard } from 'components/molecules';
 import DeleteModal from 'components/molecules/DeleteModal';
 import { MyCommentList, MyPageHeader } from 'components/organisms';
+import dayjs from 'dayjs';
+import { getChallengeContent } from 'libs/getChallenge';
 import React, { useCallback, useEffect, useState } from 'react';
 import { useRecoilValue } from 'recoil';
 import { userState, userStatusState } from 'stores/user';
 import Styled from 'styled-components';
-import { palette } from 'styled-tools';
+import { ifProp, palette } from 'styled-tools';
+import { IChallenge } from 'types/learnMySelf';
 import {
   ILearnMySelf,
   IMyPageHeader,
@@ -40,6 +45,9 @@ function MyPage(): React.ReactElement {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [checkedCommentList, setCheckedCommentList] = useState<string[]>([]);
   const [isSelectAll, setIsSelectAll] = useState(false);
+  const [challengeData, setChallengeData] = useState<IChallenge | null>(null);
+  const [isChallengeModalOpen, setIsChallengeModalOpen] = useState(false);
+  const [isFolded, setIsFolded] = useState(true);
   const globalUserInfo = useRecoilValue(userState);
   const globalUserStatusInfo = useRecoilValue(userStatusState);
 
@@ -77,6 +85,19 @@ function MyPage(): React.ReactElement {
     const data = await getUserLearnMyselfListData({ token: globalUserStatusInfo?.token });
     setUserLearnMyselfData(data);
   }, [globalUserStatusInfo?.token]);
+
+  const fetchLearnMyselfData = useCallback(
+    async (id: string) => {
+      const data = await getChallengeContent(id, globalUserStatusInfo?.token);
+      if (data) {
+        setChallengeData(data);
+        setIsChallengeModalOpen(true);
+      } else {
+        alert('네트워크 오류');
+      }
+    },
+    [globalUserStatusInfo?.token],
+  );
 
   const cancelLearnMyselfBookmark = async (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
     const id = e.currentTarget.value;
@@ -138,6 +159,7 @@ function MyPage(): React.ReactElement {
         name={item.user?.nickname}
         content={`잘한 점: ${item.good} 못한 점: ${item.bad} 배운 점: ${item.learn}`}
         onClick={cancelLearnMyselfBookmark}
+        onButtonClick={fetchLearnMyselfData}
       />
     ));
   };
@@ -214,6 +236,7 @@ function MyPage(): React.ReactElement {
                 setCheckedCommentList={setCheckedCommentList}
                 isSelectAll={isSelectAll}
                 setIsSelectAll={setIsSelectAll}
+                handleDetailModal={fetchLearnMyselfData}
               />
             )
           )}
@@ -224,9 +247,153 @@ function MyPage(): React.ReactElement {
         setIsDeleteModalOpen={setIsModalOpen}
         onClickDeleteButton={deleteSelectedCommentList}
       />
+      <Modal isOpen={isChallengeModalOpen} setIsOpen={setIsChallengeModalOpen} isBlur={true}>
+        <LearnMyselfModalWrapper isFolded={isFolded}>
+          <div className="wrapper">
+            <div className="userInfo">
+              <Img className="userInfo__img" src={challengeData?.user?.img} />
+              <div className="userInfo__infoWrapper">
+                <div className="userInfo__infoWrapper--top subhead5">
+                  <div>{challengeData?.user?.nickname}</div>
+                  <div className="userInfo__infoWrapper--date body2">{dayjs().format('MM.DD')}</div>
+                </div>
+                <div className="userInfo__infoWrapper--tags subhead2">
+                  {challengeData?.interest?.map((item: string) => `#${item} `)}
+                </div>
+              </div>
+            </div>
+            <div className="textArea">
+              <h3 className="textArea__title subhead3">잘한 점</h3>
+              <p className="textArea__contents body3">{challengeData?.good}</p>
+              <h3 className="textArea__title subhead3">못한 점</h3>
+              <p className="textArea__contents body3">{challengeData?.bad}</p>
+              <h3 className="textArea__title subhead3">배운 점</h3>
+              <p className="textArea__contents body3">{challengeData?.learn}</p>
+            </div>
+            <Button
+              className="button__more subhead4"
+              onClick={() => {
+                setIsFolded(!isFolded);
+              }}
+            >
+              {isFolded ? '더보기' : '접기'}
+            </Button>
+            <div className="comment">
+              {challengeData?.comments.map((comment) => (
+                <ChallengeModalComment key={comment._id} commentData={comment} />
+              ))}
+            </div>
+          </div>
+
+          <Button
+            className="button__close subhead3"
+            onClick={() => {
+              setIsChallengeModalOpen(false);
+              setIsFolded(true);
+            }}
+          >
+            닫기
+          </Button>
+        </LearnMyselfModalWrapper>
+      </Modal>
     </Wrapper>
   );
 }
+
+const LearnMyselfModalWrapper = Styled.div<{ isFolded: boolean }>`
+  position: fixed;
+  top:0;
+  right:0;
+  bottom:0;
+  left:0;
+  margin:auto;
+  border-radius: 18px;
+  width: 844px;
+  height: 607px;
+
+  .wrapper {
+    width: 100%;
+    height: 544px;
+    border-radius: 18px 18px 0 0;
+    overflow: auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: #fff;
+  }
+
+  .userInfo {
+    display: flex;
+    margin: 40px 30px 20px 30px;
+    width: calc(100% - 60px);
+    height: 80px;
+    &__img {
+      margin-right: 15px;
+      border-radius: 50%;
+      width: 80px;
+      height: 80px;
+    }
+    &__infoWrapper {
+      display: flex;
+      justify-content: center;
+      flex-direction: column;
+
+      &--top {
+        display: flex;
+        align-items: center;
+        color: ${palette('grayscale', 7)};
+      }
+
+      &--date {
+        margin: auto 10px;
+        color: ${palette('grayscale', 4)};
+      }
+
+      &--tags {
+        color: ${palette('grayscale', 5)}
+      }
+    }
+  }
+  
+  .textArea {
+    margin: 0 60px;
+    width: calc(100% - 120px);
+    h3 {
+      margin: 30px 0 6px 0;
+      color: ${palette('grayscale', 7)};
+    }
+    p {
+      color: ${palette('grayscale', 6)};
+      word-wrap: break-word;
+      overflow: ${ifProp('isFolded', 'hidden')};
+      text-overflow: ${ifProp('isFolded', 'ellipsis')};
+      white-space: ${ifProp('isFolded', 'nowrap')};
+    }
+  }
+
+  .comment {
+    margin: 0 60px;
+    width: calc(100% - 120px);
+  }
+
+  .button {
+    &__more {
+      color: ${palette('primary', 5)};
+      margin: 50px 0;
+    }
+
+    &__close {
+      position: absolute;
+      bottom: 0px;
+      width: 100%;
+      height: 63px;
+      color: #fff;
+      background-color: ${palette('grayscale', 7)};
+      border-radius: 0 0 18px 18px;
+      
+    }
+  }
+`;
 
 const SwitchRadio = Styled.input`
   display: none;

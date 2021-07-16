@@ -139,7 +139,7 @@ export const DeleteChallenge = async (challengeID: string, token: string) => {
   return false;
 };
 
-export const getChallengeContent = async (id: string, token: string) => {
+export const getChallengeContent = async (id: string, token?: string) => {
   try {
     const data = await serverAxios.get(`/challenge/${id}`, {
       headers: {

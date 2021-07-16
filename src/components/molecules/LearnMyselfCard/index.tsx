@@ -1,5 +1,5 @@
 import { FilledBookmark } from 'assets/images';
-import { Button, Icon, Img, Link } from 'components/atoms';
+import { Button, Icon, Img } from 'components/atoms';
 import React from 'react';
 import Styled from 'styled-components';
 
@@ -10,9 +10,18 @@ export interface IProps {
   name: string;
   content: string;
   onClick: (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => void;
+  onButtonClick: (id: string) => void;
 }
 
-function LearnMyselfCard({ imagePath, isBookmarked, id, name, content, onClick }: IProps): React.ReactElement {
+function LearnMyselfCard({
+  imagePath,
+  isBookmarked,
+  id,
+  name,
+  content,
+  onClick,
+  onButtonClick,
+}: IProps): React.ReactElement {
   return (
     <Wrapper>
       {isBookmarked && (
@@ -20,13 +29,13 @@ function LearnMyselfCard({ imagePath, isBookmarked, id, name, content, onClick }
           <Icon className="card__icon" src={FilledBookmark} height="2.4rem" />
         </Button>
       )}
-      <Link to={`${id}`}>
+      <Button onClick={() => onButtonClick(id)}>
         <span className="card">
           <Img className="card__img" src={imagePath} />
           <h3 className="card__name subhead3">{name}</h3>
           <p className="card__content body2">{content}</p>
         </span>
-      </Link>
+      </Button>
     </Wrapper>
   );
 }
