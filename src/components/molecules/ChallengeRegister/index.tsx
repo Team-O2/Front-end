@@ -94,26 +94,28 @@ const ChallengeRegister = (): React.ReactElement => {
             </div>
             <div className="challenge__setting">
               <div className="challenge__count-set">챌린지 개수 설정</div>
-              <p className="challenge__notice">2개 이상부터 뱃지 획득 가능</p>
+              <div className="challenge__notice">2개 이상부터 뱃지 획득 가능</div>
             </div>
-            <div className="challenge__box">
-              <button
-                className="challenge__minus-plus"
-                onClick={() => {
-                  minusCount();
-                }}
-              >
-                <img src={MinusIcon} />
-              </button>
-              {registerCount}
-              <button
-                className="challenge__minus-plus"
-                onClick={() => {
-                  setRegisterCount(registerCount + 1);
-                }}
-              >
-                <img src={PlusIcon} />
-              </button>
+            <div className="challenge__mainbox">
+              <div className="challenge__box">
+                <button
+                  className="challenge__minus-plus"
+                  onClick={() => {
+                    minusCount();
+                  }}
+                >
+                  <img src={MinusIcon} />
+                </button>
+                {registerCount}
+                <button
+                  className="challenge__minus-plus"
+                  onClick={() => {
+                    setRegisterCount(registerCount + 1);
+                  }}
+                >
+                  <img src={PlusIcon} />
+                </button>
+              </div>
             </div>
 
             <div className="button">
@@ -134,20 +136,22 @@ const ChallengeRegister = (): React.ReactElement => {
                       <div>
                         <div className="modal__title">챌린지 기간</div>
                         <div className="modal__content">
-                          {datetoString(periodData.challengeStartDT)} ~ {datetoString(periodData.challengeEndDT)}
+                          {datetoString(periodData.challengeStartDT)}~{datetoString(periodData.challengeEndDT)}
                         </div>
                       </div>
                       <div>
                         <div className="modal__title">신청자</div>
-                        <div className="modal__content">{userData?.nickname} 님</div>
+                        <div className="modal__content">{userData?.nickname}님</div>
                       </div>
                       <div>
                         <div className="modal__title">챌린지 개수</div>
                         <div className="modal__content">{registerCount}개</div>
                       </div>
                     </div>
-                    <img className="modal__icon" src={CautionIcon} alt=""></img>
-                    <div className="modal__caution">주의사항</div>
+                    <div className="modal__iconlist">
+                      <img className="modal__icon" src={CautionIcon} alt=""></img>
+                      <div className="modal__caution">주의사항</div>
+                    </div>
                     <div className="modal__caution-detail">
                       챌린지 개수 2개를 선택하시면 최종 달성률 80%를 넘더라도 배지를 받을 수 없어요!
                     </div>
@@ -214,7 +218,7 @@ const SRegister = Styled.div`
   }
   &__fixed{
       position: sticky;
-      top: 80px;
+      top: 60px;
       background-color: #FFFFFF;
       width: 100%;
   }
@@ -287,18 +291,25 @@ const SRegister = Styled.div`
         &__setting{
           display:inline-block;
         }
+        &__mainbox{
+          display:inline-block;
+          padding-top:30px;
+          padding-left:25px;
+        }
         &__box{
           display:inline-block;
           float:right;
-          border: solid 1px var(--colors-grayscale-df-light-gray-1);
+          border: 1px solid #DFDFDF;
           border-radius: 4px;
-          padding-top:65px;
+          padding-top:5px;
           width: 119px;
           height: 36px;
           line-height: 1.25;
           font-family: HomepageBaukasten;
           font-size: 16px;
           font-weight: bold;
+          box-sizing: border-box;
+          border-radius: 4px;
         }
         &__detail{
             margin: 4px 0 0;
@@ -325,13 +336,21 @@ const SRegister = Styled.div`
             font-size: 14px;
         }
         &__notice{
-            width: 126px;
-            height: 18px;
-            line-height: 1.5;
-            letter-spacing: -0.5px;
-            color: var(--colors-grayscale-c-1-light-gray-2);
-            font-family: AppleSDGothicNeo;
-            font-size: 12px;
+          font-family: Apple SD Gothic Neo;
+          font-style: normal;
+          font-weight: normal;
+          font-size: 12px;
+          line-height: 18px;
+          /* identical to box height, or 150% */
+          
+          display: flex;
+          align-items: center;
+          text-align: center;
+          letter-spacing: -0.5px;
+          
+          /* LightGray2 */
+          
+          color: #C1C1C1;
         }
     }
     .card{

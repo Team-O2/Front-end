@@ -30,8 +30,8 @@ const SReplyComment = Styled.div`
     .profile {
       margin-right: 10px;
       border-radius: 100%;
-      width: 26px;
-      height: 26px;
+      width: 26px !important;
+      height: 26px !important;
     }
     .writer {
       margin-right: 10px;
