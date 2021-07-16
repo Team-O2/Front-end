@@ -1,7 +1,10 @@
+import ChallengeHeader from 'components/molecules/ChallengeHeader.tsx';
 import ViewCardList from 'components/organisms/ViewCardList';
-import React, { useState } from 'react';
+import { ChallengeListData } from 'libs/getChallenge';
+import React, { useCallback, useState } from 'react';
 import { RouteComponentProps } from 'react-router';
-import ChallengeHeader from '../../molecules/ChallengeHeader.tsx';
+import { useRecoilValue } from 'recoil';
+import { userStatusState } from 'stores/user';
 
 interface MatchParams {
   generationNum: string;
@@ -28,12 +31,29 @@ export interface IChallengeData {
 function ChallengeView({ match }: RouteComponentProps<MatchParams>): React.ReactElement {
   const { generationNum } = match.params;
   const [challengeList, setChallengeList] = useState<IChallengeData[] | null>(null);
+  const userStatusData = useRecoilValue(userStatusState);
+  const [isClickedEntire, setIsClickedEntire] = useState(false);
+
+  const getChallengeList = useCallback(
+    async (token: string | null, offset: number, limit: number): Promise<void> => {
+      const data = await ChallengeListData(token, generationNum, offset, limit);
+      setChallengeList(data);
+    },
+    [generationNum],
+  );
+
+  React.useEffect(() => {
+    getChallengeList(userStatusData && userStatusData.token, 0, 1);
+  }, [getChallengeList, isClickedEntire, userStatusData]);
+
   return (
     <div>
       <ChallengeHeader
         challengeList={challengeList}
         setChallengeList={setChallengeList}
         generationNum={generationNum}
+        isClickedEntire={isClickedEntire}
+        setIsClickedEntire={setIsClickedEntire}
       />
       <ViewCardList challengeList={challengeList} setChallengeList={setChallengeList} generationNum={generationNum} />
     </div>
