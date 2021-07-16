@@ -21,7 +21,8 @@ import speakerBadge2 from 'assets/images/speakerBadge2.png';
 import speakerBadge3 from 'assets/images/speakerBadge3.png';
 import { Button } from 'components/atoms';
 import BadgeCard from 'components/molecules/BadgeExpCard';
-import React from 'react';
+import { getGeneration } from 'libs/axios';
+import React, { useEffect, useState } from 'react';
 import Reveal from 'react-awesome-reveal';
 import { Link } from 'react-router-dom';
 import Styled from 'styled-components';
@@ -37,7 +38,22 @@ const moveUp = keyframes`
   }
 `;
 
+interface IHamDrop {
+  name: string;
+  link: string;
+}
+
 function Home(): React.ReactElement {
+  const [generationNum, setGenerationNum] = useState<number>(0);
+  const getGenerationNum = async () => {
+    //비로그인 유저일 시 런마셀 기수 가져오기
+    const data = await getGeneration();
+    setGenerationNum(data.progressGeneration);
+  };
+  useEffect(() => {
+    getGenerationNum();
+  }, []);
+
   return (
     <>
       <JoinWrap>
@@ -49,7 +65,7 @@ function Home(): React.ReactElement {
               창업가들이 마시는 산소
             </h2>
             <p className="top__exp body4">답답한 창업 여정에 시원한 산소 한 모금</p>
-            <Link to="/challenge">
+            <Link to={`/challenge/${generationNum}`}>
               <Button className="top__button subhead2">챌린지 보러가기</Button>
             </Link>
           </div>
@@ -252,9 +268,11 @@ function Home(): React.ReactElement {
               Learn Myself에 <br />
               참여해 보세요!
             </p>
-            <Reveal keyframes={moveUp}>
-              <Button className="subhead4_eng linkTo__button">More</Button>
-            </Reveal>
+            <Link to="/challengeRegister">
+              <Reveal keyframes={moveUp}>
+                <Button className="subhead4_eng linkTo__button">More</Button>
+              </Reveal>
+            </Link>
           </div>
           <div className="linkTo__container--card">
             <h1 className="h1_eng linkTo__title">Learn Myself</h1>
@@ -264,7 +282,7 @@ function Home(): React.ReactElement {
               챌린지를 시작해 보세요
             </p>
             <Reveal keyframes={moveUp}>
-              <Link to="/challenge">
+              <Link to={`/challenge/${generationNum}`}>
                 <Button className="subhead4_eng linkTo__button">More</Button>
               </Link>
             </Reveal>
