@@ -1,6 +1,5 @@
 import LikeIconFilled from 'assets/images/heart_filled.svg';
 import Button from 'components/atoms/Button';
-import ChallengeComment from 'components/molecules/ChallengeComment';
 import dayjs from 'dayjs';
 import {
   CancelChallengeLike,
@@ -24,6 +23,7 @@ import LoginAlert from '../../../assets/images/loginAlert.svg';
 import MenuBar from '../../../assets/images/menu_bar.svg';
 import ScrapIcon from '../../../assets/images/scrapIcon.svg';
 import Modal from '../../atoms/Modal';
+import ChallengeComment from '../ChallengeComment';
 import DeleteModal from '../DeleteModal';
 
 export interface ICommentData {
@@ -146,7 +146,7 @@ function ViewListCard({
       setScrap(true);
       setCountScraps(countScraps + 1);
       const token = userStatusData.token;
-      const data = await ChallengeScrap(token, id);
+      await ChallengeScrap(token, id);
     }
   };
 
@@ -155,7 +155,7 @@ function ViewListCard({
       setScrap(false);
       setCountScraps(countScraps - 1);
       const token = userStatusData.token;
-      const data = await CancelChallengeScrap(token, id);
+      await CancelChallengeScrap(token, id);
     }
   };
 
