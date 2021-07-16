@@ -613,7 +613,7 @@ const SViewListCard = Styled.div`
 }
 .profile__detail{
   display:inline-block;
-  width: calc(100% - 100px);
+  width: calc(100% - 70px);
 }
 `;
 
