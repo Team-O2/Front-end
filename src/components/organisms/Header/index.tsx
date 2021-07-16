@@ -40,12 +40,12 @@ const HeaderWrap = Styled.div`
   top:0;
   left:0;
   z-index:999;
-    height : 80px;
+    height : 60px;
     width : 100vw;
     background-color : #242424;
     .header_buttons{
         display : flex;
-        height : 80px;
+        height : 60px;
         margin-left : 50px;
         align-items : center;
     }  
@@ -56,7 +56,7 @@ const HeaderWrap = Styled.div`
 `;
 
 const HideWrap = Styled.div`
-  height : 80px;
+  height : 60px;
   width : 100vw;
 `;
 
