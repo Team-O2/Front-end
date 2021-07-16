@@ -1,4 +1,5 @@
 import Line from 'assets/images/line.svg';
+import { Link } from 'components/atoms';
 import Button from 'components/atoms/Button';
 import Label from 'components/atoms/Label';
 import React from 'react';
@@ -11,9 +12,13 @@ function CLogin(): React.ReactElement {
       <Label className="login__label">로그인</Label>
       <Loginform />
       <div className="etc__buttons">
-        <Button className="etc__leftbtn">비밀번호 찾기</Button>
+        <Link to="/findPwd">
+          <Button className="etc__leftbtn">비밀번호 찾기</Button>
+        </Link>
         <img className="etc__line" src={Line}></img>
-        <Button className="etc__rightbtn">회원가입</Button>
+        <Link to="/join">
+          <Button className="etc__rightbtn">회원가입</Button>
+        </Link>
       </div>
     </LoginWrap>
   );
@@ -23,6 +28,8 @@ const LoginWrap = Styled.div`
   display : flex;
   flex-direction : column;
   align-items : center;
+  margin-top : 230px;
+  margin-bottom : 250px;
   .login{
     &__label{
       font-size: 40px;

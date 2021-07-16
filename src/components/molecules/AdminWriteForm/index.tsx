@@ -396,9 +396,13 @@ const SAdminWriteForm = Styled.div<{
       }
       &--title{
         width : 600px;
+        display : flex;
+        flex-direction : column;
       }
       &--nickname{
         width : 224px;
+        display : flex;
+        flex-direction : column;
       }
       &--hastagList{
         width : 100%;
