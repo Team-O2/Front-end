@@ -17,6 +17,7 @@ function ConcertCard({ imgThumbnail, title, authorNickname, interestList, onClic
         <div className="card__main" onClick={onClickFunc}>
           <img className="card__main--img" src={imgThumbnail} alt="" />
           <p>{title}</p>
+          <div className="overlay"></div>
         </div>
         <div className="card__detail" onClick={onClickFunc}>
           <p>{authorNickname}</p>
@@ -45,11 +46,25 @@ const SConcertCard = Styled.div`
       height: 220px;
     }
     & p{
-        position: absolute;
-        bottom: 29px;
-        margin: auto 16px;
-        font-family: 'AppleSDGothicNeo';
+      position: absolute;
+      bottom: 29px;
+      z-index: 2;
+      margin: auto 16px;
+      font-family: 'AppleSDGothicNeo';
+      font-weight: bold;
     }
+    .overlay {
+      position: absolute;
+      top: 0;
+      left: 0;
+      opacity: 0.5;
+      z-index: 1;
+      border-radius: 7px 7px 0px 0px;
+      background-color: #000;
+      width: 100%;
+      height: 220px;
+    }
+
   }
   .card__detail {
     margin : 16px;
