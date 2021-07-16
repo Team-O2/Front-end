@@ -20,6 +20,7 @@ interface IPeriodData {
   registerStartDT: string;
   challengeEndDT: string;
   challengeStartDT: string;
+  img: string;
 }
 
 const ChallengeRegister = (): React.ReactElement => {
@@ -74,7 +75,7 @@ const ChallengeRegister = (): React.ReactElement => {
 
   return periodData ? (
     <SRegister>
-      <RegisterHeader title={periodData.title} generation={periodData.generation} />
+      <RegisterHeader title={periodData.title} generation={periodData.generation} img={periodData.img} />
       <div className="container">
         <div className="header__fixed">
           <p className="header__title">챌린지 설명</p>
