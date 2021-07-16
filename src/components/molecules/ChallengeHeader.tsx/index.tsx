@@ -52,7 +52,8 @@ function ChallengeHeader({
   const userStatusData = useRecoilValue(userStatusState);
   const [selectedCategory, setSelectedCategory] = useState('전체');
   const [keyword, setKeyword] = useState('');
-  const [ismine, setIsmine] = useState(false);
+  const [booleanMine, setBooleanMine] = useState(false);
+  const [ismine, setIsmine] = useState(0);
   const [userStateNum, setUserState] = useState(userStatusData ? userStatusData.userType : 0);
 
   const getChallengeCategoryData = useCallback(
@@ -60,7 +61,7 @@ function ChallengeHeader({
       token: string | null,
       selectedCategory: string,
       keyword: string,
-      ismine: boolean,
+      ismine: number,
       offset: number,
       limit: number,
       generationNum: string,
@@ -109,8 +110,13 @@ function ChallengeHeader({
   };
 
   const setMine = () => {
-    setIsmine(!ismine);
-  }
+    setBooleanMine(!booleanMine);
+    if (booleanMine === true) {
+      setIsmine(1);
+    } else if (booleanMine === false) {
+      setIsmine(0);
+    }
+  };
 
   const challengeListNum = challengeList?.length;
 
@@ -137,7 +143,7 @@ function ChallengeHeader({
               <img className="write__icon" src={WriteIcon}></img>
             </Link>
           </button>
-          {ismine === true ? (
+          {booleanMine === true ? (
             <button className="button__icon2" onClick={setMine}>
               <img className="allfeed__icon" src={AllFeedIcon}></img>
             </button>
