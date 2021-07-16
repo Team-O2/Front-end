@@ -111,7 +111,7 @@ const Wrapper = Styled.div`
       }
     }
 
-    &__link{
+    &__link {
       width: 54px;
       height: 24px;
       margin: auto 0 auto 9px;
