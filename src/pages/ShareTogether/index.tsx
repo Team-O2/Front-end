@@ -1,4 +1,4 @@
-import { getConcertListData, getConcertSearchData } from 'apis/ShareTogether';
+import { getConcertSearchData } from 'apis/ShareTogether';
 import ConcertTitle from 'components/molecules/ConcertTitle';
 import CategoryList from 'components/organisms/CategoryList';
 import ConcertCardList from 'components/organisms/ConcertCardList';
@@ -33,42 +33,40 @@ function ShareTogether(): React.ReactElement {
   const [concertList, setConcertList] = useState<IConcertData[] | null>(null);
   const [selectedCategory, setSelectedCategory] = useState('전체');
   const [keyword, setKeyword] = useState('');
-  const [isClickedEntire, setISClickedEntire] = useState(false);
+  const [currentPage, setCurrentPage] = useState(1);
+  const [totalConcertNum, setTotalConcertNum] = useState(0);
   const userStatusData = useRecoilValue(userStatusState);
-  useEffect(() => {
-    const getConcertList = async () => {
-      if (userStatusData) {
-        const data = await getConcertListData(userStatusData.token);
-        data && setConcertList(data);
-      } else {
-        alert('로그인 후 이용하세요');
-      }
-    };
-    getConcertList();
-  }, [isClickedEntire, userStatusData]);
 
   useEffect(() => {
-    const getConcertCategoryList = async () => {
+    const getConcertCategoryList = async (pageIndex: number) => {
+      const LIMIT_PER_PAGE = 11;
       if (userStatusData) {
-        const data = await getConcertSearchData(userStatusData.token, selectedCategory, keyword);
+        const data = await getConcertSearchData({
+          token: userStatusData.token,
+          keyword: keyword,
+          offset: (pageIndex - 1) * LIMIT_PER_PAGE,
+          tag: selectedCategory,
+        });
         data && setConcertList(data.concerts);
+        data && setTotalConcertNum(data.totalConcertNum);
       } else {
         alert('로그인 후 이용하세요');
       }
     };
-    getConcertCategoryList();
-  }, [selectedCategory, keyword, userStatusData]);
+    getConcertCategoryList(currentPage);
+  }, [selectedCategory, keyword, userStatusData, currentPage]);
 
   const reRenderCategory = (category: string) => {
-    if (category === '전체') {
-      setSelectedCategory('');
-      setISClickedEntire(!isClickedEntire);
-    } else {
-      setSelectedCategory(category);
-    }
+    setSelectedCategory(category);
   };
   const reRenderKeyword = (keyword: string) => {
     setKeyword(keyword);
+  };
+  const categoryChange = () => {
+    setCurrentPage(1);
+  };
+  const keywordChange = () => {
+    setCurrentPage(1);
   };
   const concertCardData = concertList?.slice(undefined, 3);
   const concertData = concertList?.slice(3);
@@ -77,14 +75,24 @@ function ShareTogether(): React.ReactElement {
   return (
     <SShareTogether>
       <ConcertTitle></ConcertTitle>
-      <CategoryList reRenderCategory={reRenderCategory} selectedCategory={selectedCategory}></CategoryList>
+      <CategoryList
+        reRenderCategory={reRenderCategory}
+        selectedCategory={selectedCategory}
+        categoryChange={categoryChange}
+      ></CategoryList>
       <SeachForm
         reRenderKeyword={reRenderKeyword}
+        keywordChange={keywordChange}
         selectedCategory={selectedCategory}
         concertListNum={concertListNum}
       ></SeachForm>
       <ConcertCardList concertCardData={concertCardData} />
-      <ConcertList concertData={concertData}></ConcertList>
+      <ConcertList
+        concertData={concertData}
+        totalConcertNum={totalConcertNum}
+        currentPage={currentPage}
+        setCurrentPage={setCurrentPage}
+      ></ConcertList>
     </SShareTogether>
   );
 }

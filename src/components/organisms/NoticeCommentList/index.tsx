@@ -6,7 +6,7 @@ import React, { useState } from 'react';
 import { useRecoilValue } from 'recoil';
 import { userStatusState } from 'stores/user';
 import Styled from 'styled-components';
-import DeleteModal from '../../../assets/images/delete_modal.png';
+import LoginModal from '../../../assets/images/loginAlert.svg';
 import Modal from '../../atoms/Modal/index';
 interface IData {
   childrenComment: {
@@ -83,7 +83,7 @@ function NoticeCommentList({ commentList, noticeID, reLoadComment }: IProps): Re
       <Modal isOpen={loginModalOpen} setIsOpen={setLoginModalOpen} isBlur={true}>
         <div className="login">
           <div className="login__notice">
-            <img className="login__img" src={DeleteModal} alt=""></img>
+            <img className="login__img" src={LoginModal} alt=""></img>
             <div className="login__title">앗!</div>
             <div className="login__detail">로그인이 필요한 서비스입니다</div>
           </div>

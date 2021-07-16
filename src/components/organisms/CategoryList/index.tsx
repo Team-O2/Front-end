@@ -8,8 +8,9 @@ import Styled from 'styled-components';
 interface IProps {
   reRenderCategory?: (interest: string) => void;
   selectedCategory?: string;
+  categoryChange?: () => void;
 }
-function CategoryList({ reRenderCategory, selectedCategory }: IProps): React.ReactElement {
+function CategoryList({ reRenderCategory, selectedCategory, categoryChange }: IProps): React.ReactElement {
   const totalSlide = 6;
   const [currentSlide, setCurrentSlide] = useState(0);
   const slideRef = useRef<HTMLInputElement>(null);
@@ -22,6 +23,7 @@ function CategoryList({ reRenderCategory, selectedCategory }: IProps): React.Rea
   };
   const onClickInterest = (category: string) => {
     reRenderCategory && reRenderCategory(category);
+    categoryChange && categoryChange();
   };
 
   const nextSlide = () => {
