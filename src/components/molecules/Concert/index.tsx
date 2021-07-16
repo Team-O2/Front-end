@@ -74,6 +74,7 @@ const SConcert = Styled.div`
     font-size: 12px;
     & p:nth-of-type(1) {
         margin: 0 38px 12px 0;
+        width: 100px;
         line-height: 1.38;
         font-size: 16px;
         font-weight: bold;
