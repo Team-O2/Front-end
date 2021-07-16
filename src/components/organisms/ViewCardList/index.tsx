@@ -1,7 +1,7 @@
 import ViewListCard from 'components/molecules/ViewListCard';
 import { ChallengeListData } from 'libs/getChallenge';
-import React, { useEffect, useState } from 'react';
-import { useRecoilState } from 'recoil';
+import React, { useCallback, useEffect, useState } from 'react';
+import { useRecoilValue } from 'recoil';
 import { userStatusState } from 'stores/user';
 import Styled from 'styled-components';
 import { IChallengeData } from '../../templates/LearnMyself/ChallengeList';
@@ -13,21 +13,17 @@ interface IProps {
 }
 
 function ViewCardList({ challengeList, setChallengeList, generationNum }: IProps): React.ReactElement {
-  const [userStatusData, setUserStatusData] = useRecoilState(userStatusState);
+  const userStatusData = useRecoilValue(userStatusState);
   const [reRenderFlag, setReRenderFlag] = useState(false);
 
-  const ChallengeList = async (): Promise<void> => {
-    if (userStatusData) {
-      const data = await ChallengeListData(userStatusData.token, generationNum, 0, 10);
-      setChallengeList(data);
-    } else {
-      const data = await ChallengeListData(null, generationNum, 0, 10);
-      setChallengeList(data);
-    }
-  };
+  const ChallengeList = useCallback(async (): Promise<void> => {
+    const data = await ChallengeListData(userStatusData ? userStatusData.token : null, generationNum, 0, 10);
+    setChallengeList(data);
+  }, [generationNum, setChallengeList, userStatusData]);
+
   useEffect(() => {
     ChallengeList();
-  }, [reRenderFlag, generationNum]);
+  }, [reRenderFlag, generationNum, ChallengeList]);
 
   return (
     <SViewCardList>

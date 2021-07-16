@@ -1,6 +1,6 @@
 import CategoryList from 'components/organisms/CategoryList';
-import { ChallengeListData, getChallengeSearchData } from 'libs/getChallenge';
-import React, { useState } from 'react';
+import { getChallengeSearchData } from 'libs/getChallenge';
+import React, { useCallback, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { useRecoilValue } from 'recoil';
 import { userStatusState } from 'stores/user';
@@ -31,6 +31,8 @@ interface IProps {
   challengeList: IChallengeDataList[] | null;
   setChallengeList: (value: IChallengeDataList[]) => void;
   generationNum: string;
+  isClickedEntire: boolean;
+  setIsClickedEntire: (value: boolean) => void;
 }
 
 //user상태 :
@@ -53,19 +55,34 @@ function ChallengeHeader({
   const [ismine, setIsmine] = useState(false);
   const [userStateNum, setUserState] = useState(userStatusData ? userStatusData.userType : 0);
 
+  const getChallengeCategoryData = useCallback(
+    async (
+      token: string | null,
+      selectedCategory: string,
+      keyword: string,
+      ismine: boolean,
+      offset: number,
+      limit: number,
+      generationNum: string,
+    ): Promise<void> => {
+      const data = await getChallengeSearchData(generationNum, token, selectedCategory, keyword, ismine, offset, limit);
+      setChallengeList(data);
+    },
+    [setChallengeList],
+  );
+
   React.useEffect(() => {
-    if (userStatusData) getChallengeList(userStatusData.token, 0, 10);
-    else getChallengeList(null, 0, 10);
-  }, [isClickedEntire]);
-  React.useEffect(() => {
-    if (userStatusData)
-      getChallengeCategoryData(userStatusData.token, selectedCategory, keyword, ismine, 0, 50, generationNum);
-    else getChallengeCategoryData(null, selectedCategory, keyword, ismine, 0, 50, generationNum);
-  }, [selectedCategory, keyword]);
-  const getChallengeList = async (token: string | null, offset: number, limit: number): Promise<void> => {
-    const data = await ChallengeListData(token, generationNum, offset, limit);
-    setChallengeList(data);
-  };
+    getChallengeCategoryData(
+      userStatusData && userStatusData.token,
+      selectedCategory,
+      keyword,
+      ismine,
+      0,
+      10,
+      generationNum,
+    );
+  }, [selectedCategory, keyword, userStatusData, getChallengeCategoryData, ismine, generationNum]);
+
   const indextoName = (index: string | number) => {
     switch (+index) {
       case 1:
@@ -79,23 +96,10 @@ function ChallengeHeader({
     }
   };
 
-  const getChallengeCategoryData = async (
-    token: string | null,
-    selectedCategory: string,
-    keyword: string,
-    ismine: boolean,
-    offset: number,
-    limit: number,
-    generationNum: string,
-  ): Promise<void> => {
-    const data = await getChallengeSearchData(generationNum, token, selectedCategory, keyword, ismine, offset, limit);
-    setChallengeList(data);
-  };
-
   const reRenderCategory = (category: string) => {
     if (category === '전체') {
       setSelectedCategory('');
-      setISClickedEntire(!isClickedEntire);
+      setIsClickedEntire(!isClickedEntire);
     } else {
       setSelectedCategory(category);
     }
@@ -104,7 +108,7 @@ function ChallengeHeader({
     setKeyword(keyword);
   };
 
-  function setMine() {
+  const setMine = () => {
     setIsmine(!ismine);
   }
 
@@ -149,15 +153,15 @@ function ChallengeHeader({
 }
 
 const SChallengeHeader = Styled.div`
-    width: 844px;
     margin:0 auto;
+    width: 844px;
 
     .title{
-      font-size: 46px;
-      font-family: 'HomepageBaukasten';
-      font-weight: bold;
-      color: #3d3d3d;
       margin: 100px auto 110px;
+      color: #3d3d3d;
+      font-family: 'HomepageBaukasten';
+      font-size: 46px;
+      font-weight: bold;
       &__text{
         text-align:center;
       }
@@ -166,18 +170,18 @@ const SChallengeHeader = Styled.div`
         display: inline-block;
 
         &__icon{
-            padding-top:300px;
             display:inline-block;
+            padding-top:300px;
         }
 
         &__category{
             display: inline-block;
+            padding-left:10px;
+            line-height: 1.31;
+            letter-spacing: -0.5px;
             font-family: AppleSDGothicNeo;
             font-size: 32px;
             font-weight: bold;
-            line-height: 1.31;
-            letter-spacing: -0.5px;
-            padding-left:10px;
         }
     }
     .icon{
@@ -186,111 +190,111 @@ const SChallengeHeader = Styled.div`
     }
     .button__icon{
         position: fixed;
-        margin-top:60px;
         right: 40px;
-        border-radius:100%;
-        height:64px;
-        background-color:#FFFFFF;
+        margin-top:60px;
         border:none;
+        border-radius:100%;
+        background-color:#FFFFFF;
+        height:64px;
     }
 
     .button__icon2{
         position: fixed;
-        padding-bottom: 40px;
         right: 40px;
-        border-radius:100%;
-        height:64px;
-        background-color:#FFFFFF;
         border:none;
+        border-radius:100%;
+        background-color:#FFFFFF;
+        padding-bottom: 40px;
+        height:64px;
 
     }
     .button__icon3{
         position: fixed;
         right: 40px;
-        border-radius:100%;
-        height:64px;
-        background-color:#FFFFFF;
         border:none;
+        border-radius:100%;
+        background-color:#FFFFFF;
+        height:64px;
 
     }
     
     .write__icon{
+        align-items:center;
         width:64px;
         height:64px;
-        align-items:center;
     }
     .allfeed__icon{
+        align-items:center;
         width:64px;
         height:64px;
-        align-items:center;
     }
     .myfeed__icon{
+        align-items:center;
         width:64px;
         height:64px;
-        align-items:center;
     }
     .circle__ani1{
       position: fixed;
+      top: 27px;
+      left: 288px;
+      opacity: 0.1;
+      border-radius: 100%;
+      background: #58E2FF;
       width: 206px;
       height: 206px;
-      left: 288px;
-      top: 27px;
-      background: #58E2FF;
-      border-radius: 100%;
-      opacity: 0.1;
     }
     
     .circle__ani2{
       position: fixed;
-      width: 261px;
-      height: 261px;
-      left: 1505px;
       top: 258px;
+      left: 1505px;
+      opacity: 0.1;
       border-radius: 100%;
       background: #03B6CE;
-      opacity: 0.1;
+      width: 261px;
+      height: 261px;
     }
 
     .circle__ani3{
       position: fixed;
-      width: 62px;
-      height: 62px;
-      left: 153px;
       top: 445px;
+      left: 153px;
+      opacity: 0.1;
       border-radius: 100%;
       background: #03B6CE;
-      opacity: 0.1;
+      width: 62px;
+      height: 62px;
     }
     .circle__ani4{
       position: fixed;
-      width: 302px;
-      height: 302px;
-      left: 1206px;
       top: 783px;
+      left: 1206px;
+      opacity: 0.07;
       border-radius:100%;
       background: #03B6CE;
-      opacity: 0.07;
+      width: 302px;
+      height: 302px;
     }
     .circle__ani5{
       position: fixed;
-      width: 200px;
-      height: 200px;
-      left: 180px;
       top: 807px;
+      left: 180px;
       border-radius:100%;
 
 
       background: rgba(3, 182, 206, 0.07);
+      width: 200px;
+      height: 200px;
     }
     .circle__ani6{
       position: absolute;
+      top: 1590px;
+      left: 1600px;
+      transform: matrix(1, 0, 0, -1, 0, 0);
+      opacity: 0.1;
+      background: rgba(3, 182, 206, 0.5);
       width: 99px;
       height: 99px;
-      left: 1600px;
-      top: 1590px;
-      background: rgba(3, 182, 206, 0.5);
-      opacity: 0.1;
-      transform: matrix(1, 0, 0, -1, 0, 0);
     }
 
 
