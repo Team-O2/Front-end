@@ -27,7 +27,7 @@ function ViewCardList({ challengeList, setChallengeList, generationNum }: IProps
   };
   useEffect(() => {
     ChallengeList();
-  }, [reRenderFlag]);
+  }, [reRenderFlag, generationNum]);
 
   return (
     <SViewCardList>
