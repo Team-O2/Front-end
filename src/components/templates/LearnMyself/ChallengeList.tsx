@@ -1,5 +1,5 @@
 import ViewCardList from 'components/organisms/ViewCardList';
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { RouteComponentProps } from 'react-router';
 import ChallengeHeader from '../../molecules/ChallengeHeader.tsx';
 
@@ -28,6 +28,9 @@ export interface IChallengeData {
 function ChallengeView({ match }: RouteComponentProps<MatchParams>): React.ReactElement {
   const { generationNum } = match.params;
   const [challengeList, setChallengeList] = useState<IChallengeData[] | null>(null);
+  useEffect(() => {
+    console.log(challengeList);
+  }, [challengeList]);
   return (
     <div>
       <ChallengeHeader
