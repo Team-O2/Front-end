@@ -163,8 +163,6 @@ export const getChallengeSearchData = async (
 ) => {
   try {
     let data = undefined;
-    console.log(ismine);
-    console.log(data);
     if (token) {
       data = await serverAxios.get(
         `/challenge/search?generation=${generation}&tag=${tag}&ismine=${ismine}&keyword=${keyword}&offset=${offset}&limit=${limit}`,
