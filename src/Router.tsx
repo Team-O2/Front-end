@@ -32,7 +32,7 @@ function Router(): React.ReactElement {
         <Route exact path="/ShareTogether" component={ShareTogether} />
         <Route exact path="/ShareTogether/:id" component={ShareTogetherDetail} />
         <Route exact path="/login" component={Login} />
-        <Route exact path="/adminwrite" component={AdminWrite} />
+        <Route exact path="/adminwrite/:menu" component={AdminWrite} />
         <Route exact path="/adminchallengeopen" component={AdminChallengeOpen} />
         <Route exact path="/adminchallengelist" component={AdminChallengeList} />
         <Route exact path="/join" component={Join} />

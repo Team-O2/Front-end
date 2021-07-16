@@ -34,11 +34,12 @@ export interface IProps {
   setIsConditionMet: (value: IConditionMet) => void;
   writeData: IUserData;
   setWriteData: (value: IUserData) => void;
+  menuProps: string;
 }
 
-function AdminWriteForm({ setIsConditionMet, writeData, setWriteData }: IProps): React.ReactElement {
+function AdminWriteForm({ setIsConditionMet, writeData, setWriteData, menuProps }: IProps): React.ReactElement {
   const [category, setCategory] = useState('카테고리를 선택하세요');
-  const [menu, setMenu] = useState('메뉴를 선택하세요');
+  const [menu, setMenu] = useState('');
   const [content, setContent] = useState('');
   const [currentHashtag, setCurrentHashtag] = useState('');
   const [videoFile, setVideoFile] = useState<File | null>(null);
@@ -71,6 +72,10 @@ function AdminWriteForm({ setIsConditionMet, writeData, setWriteData }: IProps):
       setCurrentHashtag('');
     }
   };
+  useEffect(() => {
+    if (menuProps === 'sharetogether') setMenu('Share Together');
+    else setMenu('공지사항');
+  }, []);
   useEffect(() => {
     setIsConditionMet(isValueExist);
   }, [isValueExist]);

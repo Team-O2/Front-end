@@ -189,8 +189,8 @@ function Hamburger(): React.ReactElement {
               isEnglish={false}
               title="글 올리기"
               itemList={[
-                { name: 'Share Together', link: '/adminwrite' },
-                { name: '공지사항', link: '/adminwrite' },
+                { name: 'Share Together', link: '/adminwrite/sharetogether' },
+                { name: '공지사항', link: '/adminwrite/notice' },
               ]}
             />
           </>
