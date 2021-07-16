@@ -50,18 +50,14 @@ function ShareTogetherDetail({ match }: RouteComponentProps<MatchParams>): React
 
   useEffect(() => {
     const getConcertList = async () => {
-      if (userStatusData) {
-        const data = await getConcertData(userStatusData.token, id);
-        data && setConcert(data);
-        data && setCommentList(data.comments);
-        data && setLikes(data.likes);
-        data && setScrap(data.scrapNum);
-      } else {
-        alert('로그인 후 이용하세요');
-      }
+      const data = await getConcertData(id);
+      data && setConcert(data);
+      data && setCommentList(data.comments);
+      data && setLikes(data.likes);
+      data && setScrap(data.scrapNum);
     };
     getConcertList();
-  }, [commentList, Likes, scrap, userStatusData, id]);
+  }, [commentList, Likes, scrap, id]);
 
   const reLoadComment = (newComment: any) => {
     setCommentList(commentList?.concat(newComment));

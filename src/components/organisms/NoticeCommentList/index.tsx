@@ -3,6 +3,7 @@ import Button from 'components/atoms/Button';
 import CommentWrite from 'components/molecules/CommentWrite';
 import NoticeSingleComment from 'components/molecules/NoticeSingleComment';
 import React, { useState } from 'react';
+import { Link } from 'react-router-dom';
 import { useRecoilValue } from 'recoil';
 import { userStatusState } from 'stores/user';
 import Styled from 'styled-components';
@@ -96,7 +97,9 @@ function NoticeCommentList({ commentList, noticeID, reLoadComment }: IProps): Re
             >
               취소
             </Button>
-            <Button className="login_login">로그인하기</Button>
+            <Link to="/login">
+              <Button className="login__login">로그인하기</Button>
+            </Link>
           </div>
         </div>
       </Modal>
@@ -118,16 +121,13 @@ const SCommentList = Styled.div`
   background-color: #FFFFFF;
   width: 500px;
   height: 312px;
-
   &__notice{
     padding: 0px 80px 0px 80px;
   }
-
   &__img{
     display:flex;
     margin:auto;
     margin-top:-40px;
-
   }
   &__title{
     padding:20px 0px 20px 0px;
@@ -148,24 +148,21 @@ const SCommentList = Styled.div`
   &__button{
     padding-top:50px;
     text-align: center;
-
+  }
+  &__cancel{
+    line-height: 1.33;
+    letter-spacing: -0.5px;
+    color:#c1c1c1;
+    font-size: 18px;
+    font-weight: bold;
   }
   &__login{
     padding-left:170px;
     line-height: 1.33;
     letter-spacing: -0.5px;
-    color: #C1C1C1;
+    color: #03b6ce;
     font-size: 18px;
     font-weight: bold;;
-
-  }
-  &__cancel{
-    line-height: 1.33;
-    letter-spacing: -0.5px;
-    color: #E04747;
-    font-size: 18px;
-    font-weight: bold;
-
   }
 }
 `;

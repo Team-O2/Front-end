@@ -37,34 +37,25 @@ function Notice(): React.ReactElement {
   useEffect(() => {
     const getNoticeList = async (pageIndex: number) => {
       const LIMIT_PER_PAGE = 8;
-      if (userStatusData) {
-        const data = await getNoticeListData({ token: userStatusData.token, offset: (pageIndex - 1) * LIMIT_PER_PAGE });
-        data && setnoticeList(data.notices);
-        data && setTotalNoticeNum(data.totalNoticeNum);
-      } else {
-        alert('로그인 후 이용하세요');
-      }
+      const data = await getNoticeListData({ offset: (pageIndex - 1) * LIMIT_PER_PAGE });
+      data && setnoticeList(data.notices);
+      data && setTotalNoticeNum(data.totalNoticeNum);
     };
     getNoticeList(currentPage);
-  }, [userStatusData, currentPage]);
+  }, [currentPage]);
 
   useEffect(() => {
     const getNoticeSearchList = async (pageIndex: number) => {
       const LIMIT_PER_PAGE = 8;
-      if (userStatusData) {
-        const data = await getNoticeSearchData({
-          token: userStatusData.token,
-          keyword: keyword,
-          offset: (pageIndex - 1) * LIMIT_PER_PAGE,
-        });
-        data && setnoticeList(data.searchData);
-        data && setTotalNoticeNum(data.totalNoticeSearchNum);
-      } else {
-        alert('로그인 후 이용하세요');
-      }
+      const data = await getNoticeSearchData({
+        keyword: keyword,
+        offset: (pageIndex - 1) * LIMIT_PER_PAGE,
+      });
+      data && setnoticeList(data.searchData);
+      data && setTotalNoticeNum(data.totalNoticeSearchNum);
     };
     getNoticeSearchList(currentPage);
-  }, [keyword, userStatusData, currentPage]);
+  }, [keyword, currentPage]);
 
   const reRenderKeyword = (keyword: string) => {
     setKeyword(keyword);

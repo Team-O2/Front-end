@@ -36,12 +36,9 @@ export const getConcertListData = async (token: string) => {
   }
 };
 
-export const getConcertData = async (token: string, concertID: string) => {
+export const getConcertData = async (concertID: string) => {
   try {
     const data = await serverAxios.get(`/concert/${concertID}`, {
-      headers: {
-        Authorization: token,
-      },
       params: {
         concertID: concertID,
       },
@@ -57,12 +54,9 @@ export const getConcertData = async (token: string, concertID: string) => {
   }
 };
 
-export const getConcertSearchData = async ({ token, limit = 11, offset = 0, keyword, tag }: IFetchParameter) => {
+export const getConcertSearchData = async ({ limit = 11, offset = 0, keyword, tag }: IFetchParameter) => {
   try {
     const data = await serverAxios.get(`/concert/search?tag=${tag}&keyword=${keyword}`, {
-      headers: {
-        Authorization: token,
-      },
       params: {
         offset,
         limit,
@@ -175,12 +169,9 @@ export const deleteConcertScrap = async (token: string, concertID: string) => {
   }
 };
 
-export const getNoticeListData = async ({ token, limit = 8, offset = 0 }: IFetchParameter) => {
+export const getNoticeListData = async ({ limit = 8, offset = 0 }: IFetchParameter) => {
   try {
     const data = await serverAxios.get('/notice', {
-      headers: {
-        Authorization: token,
-      },
       params: {
         offset,
         limit,
@@ -197,13 +188,9 @@ export const getNoticeListData = async ({ token, limit = 8, offset = 0 }: IFetch
   }
 };
 
-export const getNoticeData = async (token: string, noticeID: string) => {
+export const getNoticeData = async (noticeID: string) => {
   try {
-    const data = await serverAxios.get(`/notice/${noticeID}`, {
-      headers: {
-        Authorization: token,
-      },
-    });
+    const data = await serverAxios.get(`/notice/${noticeID}`, {});
     if (data.data.status === 200) {
       return data.data.data;
     } else {
@@ -215,12 +202,9 @@ export const getNoticeData = async (token: string, noticeID: string) => {
   }
 };
 
-export const getNoticeSearchData = async ({ token, limit = 8, offset = 0, keyword }: IFetchParameter) => {
+export const getNoticeSearchData = async ({ limit = 8, offset = 0, keyword }: IFetchParameter) => {
   try {
     const data = await serverAxios.get(`/notice/search?keyword=${keyword}`, {
-      headers: {
-        Authorization: token,
-      },
       params: {
         offset,
         limit,
