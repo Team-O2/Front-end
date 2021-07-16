@@ -205,9 +205,7 @@ export const sendEmail = async (email: string) => {
     if (data.data.status === 200) {
       return true;
     }
-  } catch (e) {
-    alert(e?.response?.data?.message);
-  }
+  } catch (e) {}
   return false;
 };
 
@@ -218,7 +216,6 @@ export const sendVerifinum = async (email: string, verifiNum: string) => {
       return data.data.data.isOkay;
     }
   } catch (e) {
-    alert(e?.response?.data?.message);
     return null;
   }
 };
