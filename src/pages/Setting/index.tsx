@@ -8,7 +8,7 @@ import DropDownMulti from 'components/molecules/DropDownMulti';
 import Header from 'components/organisms/Header';
 import { getUserInfo, updateUserInfo } from 'libs/axios';
 import React, { useEffect, useRef, useState } from 'react';
-import { withRouter } from 'react-router-dom';
+import { useHistory, withRouter } from 'react-router-dom';
 import { useRecoilValue } from 'recoil';
 import { interestList } from 'resources/string';
 import { userStatusState } from 'stores/user';
@@ -24,9 +24,10 @@ interface IUserInfo {
   interest: string[];
 }
 
-function Setting({ history }: any): React.ReactElement {
+function Setting({}: any): React.ReactElement {
   // for edit btn
   const [isBtnAtv, setIsBtnAtv] = useState(true);
+  const history = useHistory();
 
   // for user info
   const userStatusData = useRecoilValue(userStatusState);
@@ -65,7 +66,7 @@ function Setting({ history }: any): React.ReactElement {
 
   const handleClickEdit = async () => {
     if (!isEmpty) {
-      await updateUserInfo(
+      const data = await updateUserInfo(
         userStatusData?.token,
         img,
         userInfo.nickname,
@@ -73,8 +74,9 @@ function Setting({ history }: any): React.ReactElement {
         userInfo.gender,
         userInfo.marpolicy,
       );
+      data && history.goBack();
     } else {
-      await updateUserInfo(
+      const data = await updateUserInfo(
         userStatusData?.token,
         undefined,
         userInfo.nickname,
@@ -82,6 +84,7 @@ function Setting({ history }: any): React.ReactElement {
         userInfo.gender,
         userInfo.marpolicy,
       );
+      data && history.goBack();
     }
   };
 
