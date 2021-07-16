@@ -110,6 +110,11 @@ function ViewListCard({
     getCommentList();
   }, [commentListFlag, getCommentList]);
 
+  useEffect(() => {
+    setIsMine(nickname === userStateNickname);
+    document.body.style.overflow = deleteModalOpen === true ? 'hidden' : 'unset';
+  }, [deleteModalOpen, nickname, userStateNickname]);
+
   const deleteClickHandler = async () => {
     if (userStatusData) {
       const token = await userStatusData?.token;
@@ -153,16 +158,6 @@ function ViewListCard({
       const data = await CancelChallengeScrap(token, id);
     }
   };
-
-  if (nickname === userStateNickname) {
-    setIsMine(true);
-  } else {
-    setIsMine(false);
-  }
-
-  if (deleteModalOpen === true) {
-    document.body.style.overflow = 'hidden';
-  } else document.body.style.overflow = 'unset';
 
   //user상태 :
   // 0: 비회원,
