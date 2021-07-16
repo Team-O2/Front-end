@@ -22,6 +22,8 @@ const SReplyComment = Styled.div`
     display: flex;
     justify-content: flex-end;
     margin:13px 0;
+    margin-left: 133px;
+    
     width : 585px;
     line-height: 1.43;
     font-family: 'AppleSDGothicNeo';
