@@ -45,7 +45,7 @@ function ChallengeView({ match }: RouteComponentProps<MatchParams>): React.React
   );
 
   React.useEffect(() => {
-    getChallengeList(userStatusData && userStatusData.token, 0, 1);
+    getChallengeList(userStatusData && userStatusData.token, 0, 10);
   }, [getChallengeList, isClickedEntire, userStatusData]);
 
   return (
