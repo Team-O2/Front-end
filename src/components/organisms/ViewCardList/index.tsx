@@ -18,10 +18,10 @@ function ViewCardList({ challengeList, setChallengeList, generationNum }: IProps
 
   const ChallengeList = async (): Promise<void> => {
     if (userStatusData) {
-      const data = await ChallengeListData(userStatusData.token, generationNum, 0, 50);
+      const data = await ChallengeListData(userStatusData.token, generationNum, 0, 10);
       setChallengeList(data);
     } else {
-      const data = await ChallengeListData(null, generationNum, 0, 50);
+      const data = await ChallengeListData(null, generationNum, 0, 10);
       setChallengeList(data);
     }
   };

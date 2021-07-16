@@ -41,15 +41,17 @@ interface IProps {
 // 4: 관리자
 
 function ChallengeHeader({ challengeList, setChallengeList, generationNum }: IProps) {
-  const [userState, setUserState] = useState(2);
   const userStatusData = useRecoilValue(userStatusState);
   const [selectedCategory, setSelectedCategory] = useState('전체');
   const [keyword, setKeyword] = useState('');
   const [isClickedEntire, setISClickedEntire] = useState(false);
   const [ismine, setIsmine] = useState(false);
+
+  const [userStateNum, setUserState] = useState(userStatusData ? userStatusData.userType : 0);
+
   React.useEffect(() => {
-    if (userStatusData) getChallengeList(userStatusData.token, 0, 50);
-    else getChallengeList(null, 0, 50);
+    if (userStatusData) getChallengeList(userStatusData.token, 0, 10);
+    else getChallengeList(null, 0, 10);
   }, [isClickedEntire]);
   React.useEffect(() => {
     if (userStatusData)
@@ -97,9 +99,10 @@ function ChallengeHeader({ challengeList, setChallengeList, generationNum }: IPr
   const reRenderKeyword = (keyword: string) => {
     setKeyword(keyword);
   };
-  const reRenderIsMine = (ismine: boolean) => {
-    setIsmine(false);
-  };
+
+  function setMine() {
+    setIsmine(!ismine);
+  }
 
   const challengeListNum = challengeList?.length;
 
@@ -107,6 +110,11 @@ function ChallengeHeader({ challengeList, setChallengeList, generationNum }: IPr
     <SChallengeHeader>
       <div className="title">
         <p className="title__text">Learn Myself {indextoName(generationNum)}</p>
+        <p className="circle__ani1"></p>
+        <p className="circle__ani2"></p>
+        <p className="circle__ani3"></p>
+        <p className="circle__ani4"></p>
+        <p className="circle__ani5"></p>
       </div>
       <CategoryList reRenderCategory={reRenderCategory} selectedCategory={selectedCategory} />
       <SearchForm
@@ -114,19 +122,22 @@ function ChallengeHeader({ challengeList, setChallengeList, generationNum }: IPr
         selectedCategory={selectedCategory}
         concertListNum={challengeListNum}
       />
-      {userState === 1 || userState === 0 ? null : (
+      {userStateNum === 1 || userStateNum === 0 ? null : (
         <div>
           <button className="button__icon">
             <Link to="/write">
               <img className="write__icon" src={WriteIcon}></img>
             </Link>
           </button>
-          <button className="button__icon2">
-            <img className="allfeed__icon" src={AllFeedIcon}></img>
-          </button>
-          <button className="button__icon3">
-            <img className="myfeed__icon" src={MyFeedIcon}></img>
-          </button>
+          {ismine === true ? (
+            <button className="button__icon2" onClick={setMine}>
+              <img className="allfeed__icon" src={AllFeedIcon}></img>
+            </button>
+          ) : (
+            <button className="button__icon3" onClick={setMine}>
+              <img className="myfeed__icon" src={MyFeedIcon}></img>
+            </button>
+          )}
         </div>
       )}
     </SChallengeHeader>
@@ -214,6 +225,72 @@ const SChallengeHeader = Styled.div`
         height:64px;
         align-items:center;
     }
+    .circle__ani1{
+      position: fixed;
+      width: 206px;
+      height: 206px;
+      left: 288px;
+      top: 27px;
+      background: #58E2FF;
+      border-radius: 100%;
+      opacity: 0.1;
+    }
+    
+    .circle__ani2{
+      position: fixed;
+      width: 261px;
+      height: 261px;
+      left: 1505px;
+      top: 258px;
+      border-radius: 100%;
+      background: #03B6CE;
+      opacity: 0.1;
+    }
+
+    .circle__ani3{
+      position: fixed;
+      width: 62px;
+      height: 62px;
+      left: 153px;
+      top: 445px;
+      border-radius: 100%;
+      background: #03B6CE;
+      opacity: 0.1;
+    }
+    .circle__ani4{
+      position: fixed;
+      width: 302px;
+      height: 302px;
+      left: 1206px;
+      top: 783px;
+      border-radius:100%;
+      background: #03B6CE;
+      opacity: 0.07;
+    }
+    .circle__ani5{
+      position: fixed;
+      width: 200px;
+      height: 200px;
+      left: 180px;
+      top: 807px;
+      border-radius:100%;
+
+
+      background: rgba(3, 182, 206, 0.07);
+    }
+    .circle__ani6{
+      position: absolute;
+      width: 99px;
+      height: 99px;
+      left: 1600px;
+      top: 1590px;
+      background: rgba(3, 182, 206, 0.5);
+      opacity: 0.1;
+      transform: matrix(1, 0, 0, -1, 0, 0);
+    }
+
+
+
 
 `;
 
