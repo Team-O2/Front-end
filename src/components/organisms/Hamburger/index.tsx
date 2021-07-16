@@ -181,8 +181,7 @@ function Hamburger(): React.ReactElement {
             <Link to="/adminchallengeopen">
               <Button className="middle__button--title body3">챌린지 오픈하기</Button>
             </Link>
-            <Link to="/">
-              {/* TODO: 어느페이지로 이동하는지 물어보고 링크 연결해야함 */}
+            <Link to="/adminchallengelist">
               <Button className="middle__button--title body3">챌린지 정보</Button>
             </Link>
             <div style={{ marginBottom: '10px' }}></div>

@@ -98,15 +98,15 @@ export const getUserData = async (token: string) => {
   }
 };
 
-export const getChallengeList = async (token: string) => {
+export const getChallengeList = async (token: string, limit: number, offset: number) => {
   try {
     const data = await serverAxios.get('/admin', {
       headers: {
         Authorization: token,
       },
       params: {
-        limit: 6,
-        offset: 0,
+        limit: limit,
+        offset: offset,
       },
     });
     if (data.data.status === 200) {

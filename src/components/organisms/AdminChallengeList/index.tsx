@@ -25,11 +25,11 @@ function AdminChallengeList(): React.ReactElement {
   const [userStatusData, setUserStatusData] = useRecoilState(userStatusState);
   const [challengeDataList, setChallengeDataList] = useState<IChallengeData[] | null>(null);
   useEffect(() => {
-    if (userStatusData) getChallengeDataList(userStatusData.token);
+    if (userStatusData) getChallengeDataList(userStatusData.token, 30, 0);
     else alert('로그인 후 이용하세요');
   }, []);
-  const getChallengeDataList = async (token: string): Promise<void> => {
-    const data = await getChallengeList(token);
+  const getChallengeDataList = async (token: string, limit: number, offset: number): Promise<void> => {
+    const data = await getChallengeList(token, limit, offset);
     data && setChallengeDataList(data);
   };
 
@@ -45,7 +45,13 @@ function AdminChallengeList(): React.ReactElement {
           </div>
         </Link>
         {challengeDataList?.map((data, id) => {
-          return data && <AdminChallengeCard key={id} challengeData={data} />;
+          return (
+            data && (
+              <Link to={`/challenge/${data.generation}`}>
+                <AdminChallengeCard key={id} challengeData={data} />
+              </Link>
+            )
+          );
         })}
       </div>
     </SAdminChallengeList>
