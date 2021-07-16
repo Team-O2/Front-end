@@ -53,7 +53,7 @@ interface IProps {
   good?: string;
   bad?: string;
   learn?: string;
-  like?: number;
+  like: number;
   commentlist: string[];
   comments?: number;
   isLike?: boolean;
@@ -97,6 +97,7 @@ function ViewListCard({
   const [confirmLoginModal, setConfirmLoginModal] = useState(false);
   const [userStateNickname, setUserStateNickname] = useState(userData ? userData.nickname : 0);
   const [isMine, setIsMine] = useState(false);
+  const [likeRender, setLikeRender] = useState(isLike);
 
   const getCommentList = useCallback(async () => {
     if (userStatusData) {
@@ -128,14 +129,22 @@ function ViewListCard({
   const submitLike = async () => {
     if (userStatusData) {
       const token = userStatusData.token;
-      await ChallengeLike(token, id);
+      const submitSuccess = await ChallengeLike(token, id);
+      if (submitSuccess) {
+        setLikeRender(true);
+        setCountLikes(countLikes + 1);
+      }
     }
   };
 
   const cancelLike = async () => {
     if (userStatusData) {
       const token = userStatusData.token;
-      await CancelChallengeLike(token, id);
+      const cancelSuccess = await CancelChallengeLike(token, id);
+      if (cancelSuccess) {
+        setLikeRender(false);
+        setCountLikes(countLikes - 1);
+      }
     }
   };
 
@@ -295,7 +304,7 @@ function ViewListCard({
                   </div>
                 )}
                 <div className="icon">
-                  {isLike ? (
+                  {likeRender ? (
                     <img
                       className="icon__click"
                       src={LikeIconFilled}
