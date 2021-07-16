@@ -21,6 +21,7 @@ export interface IProps {
   setCheckedCommentList: (value: string[]) => void;
   isSelectAll: boolean;
   setIsSelectAll: (value: boolean) => void;
+  handleDetailModal: (id: string) => void;
 }
 
 function MyCommentList({
@@ -34,6 +35,7 @@ function MyCommentList({
   setCheckedCommentList,
   isSelectAll,
   setIsSelectAll,
+  handleDetailModal,
 }: IProps): React.ReactElement {
   const [startPage, setStartPage] = useState(0);
   const [endPage, setEndPage] = useState(5);
@@ -163,6 +165,7 @@ function MyCommentList({
               isChecked={checkedCommentList.includes(item._id)}
               onChange={handleCommentSelect}
               category={selectedCategory}
+              handleDetailModal={handleDetailModal}
             />
           );
         })}
