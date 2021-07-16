@@ -106,7 +106,7 @@ function EditCard({ id }: IEditCard) {
     };
     if (userStatusData) {
       const data = await ChallengeEdit(editData, userStatusData.token, id);
-      data && history.push('/challenge');
+      data && history.goBack();
     }
   };
 

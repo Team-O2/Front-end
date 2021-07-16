@@ -105,7 +105,7 @@ function WriteCard({ onChangeForm }: MyFormProps) {
     };
     if (userStatusData) {
       const data = await writeForm(writeData, userStatusData.token);
-      history.push('/challenge');
+      history.goBack();
     }
   };
 
