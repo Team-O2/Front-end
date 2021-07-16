@@ -274,3 +274,8 @@ export const updateUserInfo = async (
     return null;
   }
 };
+
+export const getGeneration = async () => {
+  const data = await serverAxios.get('auth/hamburger');
+  return data.data.data;
+};

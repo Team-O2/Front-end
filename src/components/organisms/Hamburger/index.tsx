@@ -2,6 +2,7 @@ import challengeIcon from 'assets/images/hamChallengeicon.svg';
 import unChallengeIcon from 'assets/images/hamUnchallengeicon.svg';
 import loginIcon from 'assets/images/loginIcon.svg';
 import userImage from 'assets/images/userImage.png';
+import { getGeneration } from 'libs/axios';
 import React, { useEffect, useState } from 'react';
 import { Link, useHistory } from 'react-router-dom';
 import { useRecoilState } from 'recoil';
@@ -25,10 +26,9 @@ function Hamburger(): React.ReactElement {
   const history = useHistory();
   const [userStatusData, setUserStatusData] = useRecoilState(userStatusState);
   const [userData, setUserData] = useRecoilState(userState);
-
   const [userImg, setUserImg] = useState(userData ? userData.img : userImage); //유저&사진이 존재 하면 이미지변경
   const [userStateNum, setUserState] = useState(userStatusData ? userStatusData.userType : 0);
-  // const [userStateNum, setUserState] = useState(1);
+  const [generationNum, setGenerationNum] = useState<{ registGeneration: number | null; progressGeneration: number }>();
   const [userName, setUserName] = useState(userData?.nickname);
   const [challengeList, setChallengeList] = useState<IHamDrop[]>([{ name: '', link: '' }]);
   const indextoName = (index: number) => {
@@ -46,13 +46,12 @@ function Hamburger(): React.ReactElement {
 
   const getChallengeList = () => {
     const arr: IHamDrop[] = [];
-    if (userStatusData) {
-      for (let i = 1; i <= userStatusData.progressGeneration; i++) {
-        //TODO: 링크 연결
-        arr.push({ name: indextoName(i), link: '/' });
+    if (generationNum) {
+      for (let i = 1; i <= generationNum.progressGeneration; i++) {
+        arr.push({ name: indextoName(i), link: `/challenge/${i}` });
       }
-      if (userStatusData.registGeneration) {
-        arr.push({ name: indextoName(userStatusData.registGeneration), link: '/challengeRegister' });
+      if (generationNum.registGeneration) {
+        arr.push({ name: indextoName(generationNum.registGeneration), link: '/challengeRegister' });
       }
     }
     setChallengeList(arr);
@@ -63,17 +62,31 @@ function Hamburger(): React.ReactElement {
     alert('로그아웃 되었습니다');
     history.push('/');
   };
+  const getGenerationNum = async () => {
+    //비로그인 유저일 시 런마셀 기수 가져오기
+    const data = await getGeneration();
+    setGenerationNum(data);
+  };
 
   useEffect(() => {
     userData ? setUserName(userData.nickname) : setUserName('');
     if (userStatusData) {
       setUserState(userStatusData.userType);
+      setGenerationNum({
+        progressGeneration: userStatusData.progressGeneration,
+        registGeneration: userStatusData.registGeneration,
+      });
       getChallengeList();
     } else {
       setUserState(0);
+      getGenerationNum();
       getChallengeList();
     }
   }, [userStatusData]);
+
+  useEffect(() => {
+    getChallengeList();
+  }, [generationNum]);
 
   return (
     <HamburgerWrap>
@@ -143,13 +156,7 @@ function Hamburger(): React.ReactElement {
       <div className="middle">
         {(userStateNum === 0 || userStateNum === 1 || userStateNum === 2 || userStateNum === 3) && (
           <>
-            <HamDropDown
-              isEnglish={true}
-              title="Learn Myself"
-              // TODO: 아이템리스트 1st, 2nd 이런거로 수정하고
-              // 링크도 연결해줘야함
-              itemList={challengeList}
-            />
+            <HamDropDown isEnglish={true} title="Learn Myself" itemList={challengeList} />
             <div style={{ marginBottom: '10px' }}></div>
             <Link to="/ShareTogether">
               <Button className="middle__button--title middle__button--engTitle">Share Together</Button>

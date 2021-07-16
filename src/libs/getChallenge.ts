@@ -73,7 +73,6 @@ export const ChallengeEdit = async (editData: EditData, token: string, id: strin
 };
 
 export const ChallengeListData = async (token: string | null, generation: string, offset: number, limit: number) => {
-  console.log('dfknsldkf');
   try {
     if (token) {
       const data = await instance.get(`/challenge/?generation=${generation}&offset=${offset}&limit=${limit}`, {
@@ -81,11 +80,9 @@ export const ChallengeListData = async (token: string | null, generation: string
           Authorization: token,
         },
       });
-      console.log(data.data.data);
       return data.data.data;
     } else {
-      const data = await instance.get(`/challenge/?generation=${generation}&offset=${offset}&limit=${limit}`, {});
-      console.log(data.data.data);
+      const data = await instance.get(`/challenge/?generation=${generation}&offset=${offset}&limit=${limit}`);
       return data.data.data;
     }
   } catch (error) {
@@ -166,6 +163,7 @@ export const getChallengeContent = async (id: string, token: string) => {
 };
 
 export const getChallengeSearchData = async (
+  generation: string,
   token: string | null,
   tag: string,
   keyword: string,
@@ -177,7 +175,7 @@ export const getChallengeSearchData = async (
     let data = undefined;
     if (token) {
       data = await instance.get(
-        `/challenge/search?tag=${tag}&ismine=${ismine}&keyword=${keyword}&offset=${offset}&limit=${limit}`,
+        `/challenge/search?generation=${generation}&tag=${tag}&ismine=${ismine}&keyword=${keyword}&offset=${offset}&limit=${limit}`,
         {
           headers: {
             Authorization: token,
@@ -186,18 +184,16 @@ export const getChallengeSearchData = async (
       );
     } else {
       data = await instance.get(
-        `/challenge/search?tag=${tag}&ismine=${ismine}&keyword=${keyword}&offset=${offset}&limit=${limit}`,
+        `/challenge/search?generation=${generation}&tag=${tag}&ismine=${ismine}&keyword=${keyword}&offset=${offset}&limit=${limit}`,
       );
     }
     if (data?.data.status === 200) {
       return data.data.data;
-    } else {
-      return null;
     }
   } catch (error) {
     console.log(error);
-    return null;
   }
+  return null;
 };
 
 export const ChallengeLike = async (token: string, challengeID: string) => {

@@ -52,12 +52,13 @@ function ChallengeHeader({ challengeList, setChallengeList, generationNum }: IPr
     else getChallengeList(null, 0, 50);
   }, [isClickedEntire]);
   React.useEffect(() => {
-    if (userStatusData) getChallengeCategoryData(userStatusData.token, selectedCategory, keyword, ismine);
-    else getChallengeCategoryData(null, selectedCategory, keyword, ismine);
+    if (userStatusData)
+      getChallengeCategoryData(userStatusData.token, selectedCategory, keyword, ismine, 0, 50, generationNum);
+    else getChallengeCategoryData(null, selectedCategory, keyword, ismine, 0, 50, generationNum);
   }, [selectedCategory, keyword]);
   const getChallengeList = async (token: string | null, offset: number, limit: number): Promise<void> => {
     const data = await ChallengeListData(token, generationNum, offset, limit);
-    data && setChallengeList(data);
+    setChallengeList(data);
   };
   const indextoName = (index: string | number) => {
     switch (+index) {
@@ -77,9 +78,12 @@ function ChallengeHeader({ challengeList, setChallengeList, generationNum }: IPr
     selectedCategory: string,
     keyword: string,
     ismine: boolean,
+    offset: number,
+    limit: number,
+    generationNum: string,
   ): Promise<void> => {
-    const data = await getChallengeSearchData(token, selectedCategory, keyword, ismine, 0, 50);
-    data && setChallengeList(data);
+    const data = await getChallengeSearchData(generationNum, token, selectedCategory, keyword, ismine, offset, limit);
+    setChallengeList(data);
   };
 
   const reRenderCategory = (category: string) => {

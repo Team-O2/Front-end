@@ -1,5 +1,5 @@
 import ViewCardList from 'components/organisms/ViewCardList';
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import { RouteComponentProps } from 'react-router';
 import ChallengeHeader from '../../molecules/ChallengeHeader.tsx';
 
