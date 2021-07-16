@@ -1,10 +1,10 @@
 import React from 'react';
 import Styled from 'styled-components';
-import registerHeaderImg from '../../../assets/images/registerHeaderImg.png';
 
 interface IProps {
   generation: number;
   title: string;
+  img: string;
 }
 const indextoName = (index: number) => {
   switch (index) {
@@ -19,12 +19,14 @@ const indextoName = (index: number) => {
   }
 };
 
-const RegisterHeader = ({ generation, title }: IProps) => {
+const RegisterHeader = ({ generation, title, img }: IProps) => {
   return (
     <SHeader>
       <div className="header">
-        <img className="header__img" src={registerHeaderImg} alt="" />
-        <span className="header__text">Learn Myself {indextoName(generation)} 모집</span>
+        <img className="header__img" src={img} alt="" />
+        <span className="header__text">
+          {title} {indextoName(generation)} 모집
+        </span>
       </div>
     </SHeader>
   );
