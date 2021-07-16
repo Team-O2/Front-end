@@ -551,6 +551,9 @@ const SRegister = Styled.div`
           font-family: AppleSDGothicNeo;
           font-size: 48px;
           font-weight: bold;
+          background: linear-gradient(to right, #36c8f5, #13e2dd);
+          -webkit-background-clip: text;
+          -webkit-text-fill-color: transparent;
           
         }
         &__detail{
