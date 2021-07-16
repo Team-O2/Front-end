@@ -37,13 +37,17 @@ const ChallengeRegister = (): React.ReactElement => {
     }
   }
   const handleSubmit = async () => {
-    setRegisterSubmit(true);
-    setIsOpenModal(false);
     const signData = {
       challengeCNT: registerCount,
     };
     if (userStatusData) {
       const getData = await SignRegister(signData, userStatusData.token);
+      if (getData) {
+        setRegisterSubmit(true);
+        setIsOpenModal(false);
+      } else {
+        setIsOpenModal(false);
+      }
     }
   };
 

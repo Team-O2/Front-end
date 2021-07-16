@@ -110,9 +110,14 @@ export const SignRegister = async (signData: SignData, token: string) => {
       },
     });
     console.log('[SUCCESS] POST data', data);
+    return true;
   } catch (error) {
-    console.log('[FAIL] POST data', error);
+    if (error.response.data) {
+      alert(error.response.data.message);
+    }
+    console.log('[FAIL] POST data', error.response.data);
   }
+  return false;
 };
 
 export const DeleteChallenge = async (challengeID: string, token: string) => {
