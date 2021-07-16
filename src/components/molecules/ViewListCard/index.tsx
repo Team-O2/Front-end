@@ -191,9 +191,7 @@ function ViewListCard({
                             alt=""
                             onClick={() => {
                               submitScarp();
-                              {
-                                userStateNum === 0 ? setConfirmLoginModal(true) : setConfirmLoginModal(false);
-                              }
+                              userStateNum === 0 ? setConfirmLoginModal(true) : setConfirmLoginModal(false);
                             }}
                           />
                         </Button>
@@ -206,6 +204,7 @@ function ViewListCard({
                             alt=""
                             onClick={() => {
                               cancelScrap();
+                              userStateNum === 0 ? setConfirmLoginModal(true) : setConfirmLoginModal(false);
                             }}
                           />
                         </Button>
@@ -372,10 +371,7 @@ function ViewListCard({
         <DeleteModal
           isDeleteModalOpen={deleteModalOpen}
           setIsDeleteModalOpen={setDeleteModalOpen}
-          onClickDeleteButton={() => {
-            alert('글삭제 완료');
-            setDeleteModalOpen(false);
-          }}
+          onClickDeleteButton={deleteClickHandler}
         />
         <Modal isOpen={confirmLoginModal} setIsOpen={setConfirmLoginModal} isBlur={true}>
           <div className="delete">
