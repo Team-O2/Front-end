@@ -39,13 +39,9 @@ function NoticeDetail({ match }: RouteComponentProps<MatchParams>): React.ReactE
   const userStatusData = useRecoilValue(userStatusState);
   useEffect(() => {
     const getConcertList = async () => {
-      if (userStatusData) {
-        const data = await getNoticeData(userStatusData.token, id);
-        data[0] && setNotice(data[0]);
-        data[0] && setCommentList(data[0].comments);
-      } else {
-        alert('로그인 후 이용하세요');
-      }
+      const data = await getNoticeData(id);
+      data[0] && setNotice(data[0]);
+      data[0] && setCommentList(data[0].comments);
     };
     getConcertList();
   }, [commentList, userStatusData, id]);

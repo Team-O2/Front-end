@@ -40,21 +40,16 @@ function ShareTogether(): React.ReactElement {
   useEffect(() => {
     const getConcertCategoryList = async (pageIndex: number) => {
       const LIMIT_PER_PAGE = 11;
-      if (userStatusData) {
-        const data = await getConcertSearchData({
-          token: userStatusData.token,
-          keyword: keyword,
-          offset: (pageIndex - 1) * LIMIT_PER_PAGE,
-          tag: selectedCategory,
-        });
-        data && setConcertList(data.concerts);
-        data && setTotalConcertNum(data.totalConcertNum);
-      } else {
-        alert('로그인 후 이용하세요');
-      }
+      const data = await getConcertSearchData({
+        keyword: keyword,
+        offset: (pageIndex - 1) * LIMIT_PER_PAGE,
+        tag: selectedCategory,
+      });
+      data && setConcertList(data.concerts);
+      data && setTotalConcertNum(data.totalConcertNum);
     };
     getConcertCategoryList(currentPage);
-  }, [selectedCategory, keyword, userStatusData, currentPage]);
+  }, [selectedCategory, keyword, currentPage]);
 
   const reRenderCategory = (category: string) => {
     setSelectedCategory(category);
