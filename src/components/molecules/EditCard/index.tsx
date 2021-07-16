@@ -385,6 +385,7 @@ const SWriteCard = Styled.div`
             color: #B1B1B1;
             font-size: 14px;
             font-weight: bold;
+            
         }
     }
     .textarea{
@@ -395,6 +396,7 @@ const SWriteCard = Styled.div`
         width: 844px;
         height:369px;
         font-size: 18px;
+        resize:none;
     }
 
     .button{
@@ -429,6 +431,9 @@ const SWriteCard = Styled.div`
         margin: 0 auto;
         padding-top:60px;
         width:844px;
+        position:sticky;
+        top:20px;
+        background-color:white;
 
         &__1{
             padding-left:60px;
