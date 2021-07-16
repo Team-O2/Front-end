@@ -2,7 +2,7 @@ import { getRegistPeriod } from 'libs/axios';
 import { SignRegister } from 'libs/getChallenge';
 import React, { useEffect, useState } from 'react';
 import { useRecoilState } from 'recoil';
-import { userStatusState } from 'stores/user';
+import { userState, userStatusState } from 'stores/user';
 import Styled from 'styled-components';
 import alertIcon from '../../../assets/images/alertIcon.svg';
 import CautionIcon from '../../../assets/images/cautionIcon.png';
@@ -23,6 +23,7 @@ interface IPeriodData {
 }
 
 const ChallengeRegister = (): React.ReactElement => {
+  const [userData, setUserData] = useRecoilState(userState);
   const [userStatusData, setUserStatusData] = useRecoilState(userStatusState);
   const [registerCount, setRegisterCount] = useState(0);
   const [isOpenModal, setIsOpenModal] = useState(false);
@@ -131,11 +132,13 @@ const ChallengeRegister = (): React.ReactElement => {
                     <div className="modal__detail">
                       <div>
                         <div className="modal__title">챌린지 기간</div>
-                        <div className="modal__content">7월1일~7월31일</div>
+                        <div className="modal__content">
+                          {datetoString(periodData.challengeStartDT)} ~ {datetoString(periodData.challengeEndDT)}
+                        </div>
                       </div>
                       <div>
                         <div className="modal__title">신청자</div>
-                        <div className="modal__content">앵그리엘모님</div>
+                        <div className="modal__content">{userData?.nickname} 님</div>
                       </div>
                       <div>
                         <div className="modal__title">챌린지 개수</div>
@@ -159,7 +162,7 @@ const ChallengeRegister = (): React.ReactElement => {
                   <div className="submit">
                     <img className="submit__icon" src={CheckCircleIcon} alt=""></img>
                     <div className="submit__title">신청완료!</div>
-                    <div className="submit__detail">앵글리엘모님 챌린지가 정상적으로</div>
+                    <div className="submit__detail">{userData?.nickname}님 챌린지가 정상적으로</div>
                     <div className="submit__detail"> 신청되었습니다.</div>
                   </div>
                 </Modal>
