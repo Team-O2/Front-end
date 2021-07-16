@@ -1,6 +1,7 @@
 import Button from 'components/atoms/Button';
 import Label from 'components/atoms/Label';
 import FindPWDForm from 'components/molecules/FindPwdForm';
+import SetNewPwd from 'components/organisms/SetNewPwd';
 import { sendVerifinum } from 'libs/axios';
 import React, { useEffect, useState } from 'react';
 import { useHistory } from 'react-router-dom';
@@ -23,19 +24,19 @@ function FindPWD(): React.ReactElement {
   const [isBtnDisabled, setIsBtnDisabled] = useState(false);
   const finishBtnHandler = async () => {
     const isSuccess = await sendVerifinum(data.email, data.certifiNum);
-    console.log(isSuccess);
-    if (isSuccess) history.push('/');
+    if (isSuccess) setIsChangePwd(true);
     else {
       setVerifiErrMsg('인증번호를 다시 확인해 주세요');
       setIsConditionMet({ ...isConditionMet, certifiNum: false });
     }
   };
   const [verifiErrMsg, setVerifiErrMsg] = useState('');
+  const [isChangePwd, setIsChangePwd] = useState(false);
   useEffect(() => {
     if (isConditionMet.email && isConditionMet.certifiNum) setIsBtnDisabled(true);
     else setIsBtnDisabled(false);
   });
-  return (
+  return !isChangePwd ? (
     <FindPWDWrap isBtnDisabled={isBtnDisabled}>
       <Label className="findPwd__label--title">비밀번호 찾기</Label>
       <FindPWDForm
@@ -53,6 +54,8 @@ function FindPWD(): React.ReactElement {
         인증완료
       </Button>
     </FindPWDWrap>
+  ) : (
+    <SetNewPwd email={data.email} />
   );
 }
 

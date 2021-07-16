@@ -236,6 +236,12 @@ export const postNewPw = async (token: string | undefined, password: string, new
   }
 };
 
+export const patchNewPwd = async (email: string, pwd: string) => {
+  const data = await serverAxios.patch('/auth/pw', { email: email, password: pwd });
+  if (data.data.status === 200) return true;
+  else return false;
+};
+
 export const getUserInfo = async (token: string) => {
   try {
     const data = await serverAxios.get('/user/userInfo', { headers: { Authorization: token } });
