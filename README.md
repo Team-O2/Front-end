@@ -15,6 +15,35 @@ Project Period : 2021.06.26 ~ 2021.07.17
 💡 O2는 타인과의 정보를 공유하여 성장하고 
 마침내 성공적인 결과를 만들어 낼 수 있는 가치를 추구합니다. 
 
+## 프로젝트 뷰
+<br />
+O2의 랜딩 페이지 입니다
+<br />
+<br />
+<img src="https://user-images.githubusercontent.com/60960130/125966502-8a363ce7-7b9a-4673-8137-e0a197b25e07.PNG" width="590" >
+<br />
+나의 창업 스토리를 기록하는 LearMySelf페이지 입니다
+<br />
+<br />
+<img src="https://user-images.githubusercontent.com/60960130/125966704-180127fa-79d7-4a5e-bc9f-6b272d49f988.PNG" width="590" >
+<br />
+창업 성장 스토리를 나누는 ShareTogether 페이지 입니다
+<br />
+<br />
+<img src="https://user-images.githubusercontent.com/60960130/125966781-056edfd0-db5b-43f4-b517-54ee1680fe3b.PNG" width="590" >
+<br />
+마이페이지 입니다
+<br />
+<br />
+<img src="https://user-images.githubusercontent.com/60960130/125966849-08f6398a-3d1f-40af-9aa4-77d359e57a20.PNG" width="590" >
+로그인 회원가입 페이지입니다
+<br />
+<br />
+<img src="https://user-images.githubusercontent.com/60960130/125967720-1e50d268-d202-464e-85fc-1ed5b9c1732b.png" width="590" >
+<img src="https://user-images.githubusercontent.com/60960130/125967776-b2fae6a0-c81b-4ddb-a019-a764b62135c0.png" width="590" >
+
+
+
 ## 개발 담당 부분
 
 🧑🏻‍💻 강영우
@@ -87,60 +116,147 @@ Project Period : 2021.06.26 ~ 2021.07.17
 ```jsx
 📦src
  ┣ 📂apis
+ ┃ ┣ 📂ShareTogether
+ ┃ ┃ ┗ 📜index.tsx
+ ┃ ┣ 📜index.ts
+ ┃ ┗ 📜myPage.ts
  ┣ 📂assets
  ┃ ┣ 📂fonts
  ┃ ┣ 📂images
+ ┃ ┃ ┣ 📂mypage
  ┃ ┗ 📂styles
+ ┃ ┃ ┣ 📜animation.ts
+ ┃ ┃ ┣ 📜GlobalStyles.ts
+ ┃ ┃ ┗ 📜theme.ts
  ┣ 📂components
  ┃ ┣ 📂atoms
  ┃ ┃ ┣ 📂Button
  ┃ ┃ ┣ 📂CheckBox
+ ┃ ┃ ┣ 📂ChipBtn
+ ┃ ┃ ┣ 📂DotText
+ ┃ ┃ ┣ 📂fileUpload
  ┃ ┃ ┣ 📂HashTag
  ┃ ┃ ┣ 📂Icon
+ ┃ ┃ ┣ 📂Img
  ┃ ┃ ┣ 📂ImgSelector
  ┃ ┃ ┣ 📂Input
  ┃ ┃ ┣ 📂Label
+ ┃ ┃ ┣ 📂Link
  ┃ ┃ ┣ 📂Modal
- ┃ ┃ ┗ 📂TextArea 
+ ┃ ┃ ┣ 📂MyPageCard
+ ┃ ┃ ┣ 📂StyledInput
+ ┃ ┃ ┣ 📂Tag
+ ┃ ┃ ┣ 📂TextArea
+ ┃ ┃ ┗ 📜index.ts
  ┃ ┣ 📂molecules
+ ┃ ┃ ┣ 📂AdminChallengeCard
+ ┃ ┃ ┣ 📂AdminChallengeOpenForm
+ ┃ ┃ ┣ 📂AdminWriteForm
+ ┃ ┃ ┣ 📂BadgeExpCard
  ┃ ┃ ┣ 📂Card
+ ┃ ┃ ┣ 📂CategoryButton
+ ┃ ┃ ┣ 📂ChallengeComment
+ ┃ ┃ ┣ 📂ChallengeCommentWrite
+ ┃ ┃ ┣ 📂ChallengeHeader.tsx
+ ┃ ┃ ┣ 📂ChallengeRegister
+ ┃ ┃ ┣ 📂ChallengeReplyComment
+ ┃ ┃ ┣ 📂ChallengeSingleWrite
+ ┃ ┃ ┣ 📂ChallengeWriteTag
+ ┃ ┃ ┣ 📂CommentedBoardRow
+ ┃ ┃ ┣ 📂CommentWrite
  ┃ ┃ ┣ 📂Concert
+ ┃ ┃ ┣ 📂ConcertCard
+ ┃ ┃ ┣ 📂ConcertTitle
+ ┃ ┃ ┣ 📂DeleteModal
  ┃ ┃ ┣ 📂DetailTitle
  ┃ ┃ ┣ 📂DropDown
+ ┃ ┃ ┣ 📂DropDownMulti
+ ┃ ┃ ┣ 📂EditCard
+ ┃ ┃ ┣ 📂EditorForm
+ ┃ ┃ ┣ 📂FindPwdForm
  ┃ ┃ ┣ 📂HamDropDown
+ ┃ ┃ ┣ 📂JoinCheck
+ ┃ ┃ ┣ 📂Joinform
+ ┃ ┃ ┣ 📂LearnMyselfCard
+ ┃ ┃ ┣ 📂Loginform
+ ┃ ┃ ┣ 📂MyPageSection
+ ┃ ┃ ┣ 📂MyPageSlider
+ ┃ ┃ ┣ 📂Notice
+ ┃ ┃ ┣ 📂NoticeDetailTitle
+ ┃ ┃ ┣ 📂NoticeSingleComment
+ ┃ ┃ ┣ 📂RegisterHeader
+ ┃ ┃ ┣ 📂ReplyComment
  ┃ ┃ ┣ 📂SearchBar
- ┃ ┃ ┗ 📂SingleComment
+ ┃ ┃ ┣ 📂ShareTogetherCard
+ ┃ ┃ ┣ 📂SingleComment
+ ┃ ┃ ┣ 📂ViewListCard
+ ┃ ┃ ┣ 📂WriteCard
+ ┃ ┃ ┗ 📜index.ts
  ┃ ┣ 📂organisms
+ ┃ ┃ ┣ 📂AdminChallengeList
+ ┃ ┃ ┣ 📂AdminChallengeOpen
+ ┃ ┃ ┣ 📂AdminWrite
+ ┃ ┃ ┣ 📂CategoryList
  ┃ ┃ ┣ 📂CommentList
+ ┃ ┃ ┣ 📂ConcertCardList
  ┃ ┃ ┣ 📂ConcertList
  ┃ ┃ ┣ 📂DetailContent
+ ┃ ┃ ┣ 📂FindPwd
  ┃ ┃ ┣ 📂Footer
  ┃ ┃ ┣ 📂Hamburger
  ┃ ┃ ┣ 📂Header
- ┃ ┃ ┗ 📂SearchForm
+ ┃ ┃ ┣ 📂Join
+ ┃ ┃ ┣ 📂Login
+ ┃ ┃ ┣ 📂MyCommentList
+ ┃ ┃ ┣ 📂MyPageHeader
+ ┃ ┃ ┣ 📂NoticeCommentList
+ ┃ ┃ ┣ 📂NoticeDetailContent
+ ┃ ┃ ┣ 📂NoticeHeader
+ ┃ ┃ ┣ 📂NoticeList
+ ┃ ┃ ┣ 📂SearchForm
+ ┃ ┃ ┣ 📂ViewCardList
+ ┃ ┃ ┗ 📜index.ts
  ┃ ┣ 📂templates
  ┃ ┃ ┣ 📂Base
  ┃ ┃ ┣ 📂Home
  ┃ ┃ ┣ 📂Join
  ┃ ┃ ┣ 📂LearnMyself
+ ┃ ┃ ┃ ┣ 📜ChallengeEdit.tsx
+ ┃ ┃ ┃ ┣ 📜ChallengeList.tsx
+ ┃ ┃ ┃ ┣ 📜ChallengeRegister.tsx
+ ┃ ┃ ┃ ┣ 📜ChallengeWrite.tsx
+ ┃ ┃ ┃ ┗ 📜index.tsx
  ┃ ┃ ┣ 📂Login
  ┃ ┃ ┣ 📂MyPage
  ┃ ┃ ┣ 📂Notice
  ┃ ┃ ┣ 📂Setting
- ┃ ┃ ┗ 📂ShareTogether
+ ┃ ┃ ┣ 📂ShareTogether
+ ┃ ┃ ┗ 📂ShareTogetherDetail
  ┃ ┗ 📜index.ts
  ┣ 📂hooks
+ ┃ ┗ 📜index.ts
  ┣ 📂libs
- ┃ ┗ 📜axios.ts
+ ┃ ┣ 📜axios.ts
+ ┃ ┗ 📜getChallenge.ts
  ┣ 📂pages
+ ┃ ┣ 📂AdminChallengeList
+ ┃ ┣ 📂AdminChallengeOpen
+ ┃ ┣ 📂AdminWrite
+ ┃ ┣ 📂FindPwd
  ┃ ┣ 📂Home
  ┃ ┣ 📂Join
  ┃ ┣ 📂LearnMyself
  ┃ ┣ 📂Login
  ┃ ┣ 📂MyPage
+ ┃ ┃ ┣ 📂ScrappedLearnMyself
+ ┃ ┃ ┣ 📂ScrappedShareTogether
+ ┃ ┃ ┗ 📜index.tsx
  ┃ ┣ 📂Notice
+ ┃ ┣ 📂NoticeDetail
+ ┃ ┣ 📂SetPwd
  ┃ ┣ 📂Setting
  ┃ ┣ 📂ShareTogether
+ ┃ ┣ 📂ShareTogetherDetail
  ┃ ┗ 📜index.ts
  ┣ 📂resources
  ┃ ┗ 📜string.ts
@@ -148,8 +264,10 @@ Project Period : 2021.06.26 ~ 2021.07.17
  ┃ ┗ 📜user.ts
  ┣ 📂types
  ┃ ┣ 📜learnMySelf.ts
+ ┃ ┣ 📜myPage.ts
  ┃ ┗ 📜shareTogether.ts
  ┣ 📂utils
+ ┃ ┗ 📜index.ts
  ┣ 📜App.tsx
  ┣ 📜index.tsx
  ┣ 📜react-app-env.d.ts
