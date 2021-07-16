@@ -19,10 +19,10 @@ function ViewCardList({ challengeList, setChallengeList, generationNum }: IProps
   const ChallengeList = async (): Promise<void> => {
     if (userStatusData) {
       const data = await ChallengeListData(userStatusData.token, generationNum, 0, 50);
-      data && setChallengeList(data);
+      setChallengeList(data);
     } else {
       const data = await ChallengeListData(null, generationNum, 0, 50);
-      data && setChallengeList(data);
+      setChallengeList(data);
     }
   };
   useEffect(() => {
@@ -31,32 +31,43 @@ function ViewCardList({ challengeList, setChallengeList, generationNum }: IProps
 
   return (
     <SViewCardList>
-      {challengeList?.map((data: IChallengeData, id) => {
-        return (
-          <ViewListCard
-            id={data?._id}
-            nickname={data?.user?.nickname}
-            image={data?.user?.img}
-            createdAt={data?.createdAt}
-            interest={data?.interest}
-            good={data?.good}
-            bad={data?.bad}
-            learn={data?.learn}
-            like={data?.likes}
-            commentlist={data?.comments}
-            comments={data?.comments.length}
-            scrap={data?.scrapNum}
-            reRenderFlag={reRenderFlag}
-            setReRenderFlag={setReRenderFlag}
-            key={id}
-          />
-        );
-      })}
+      {challengeList?.length !== 0 ? (
+        challengeList?.map((data: IChallengeData, id) => {
+          return (
+            <ViewListCard
+              id={data?._id}
+              nickname={data?.user?.nickname}
+              image={data?.user?.img}
+              createdAt={data?.createdAt}
+              interest={data?.interest}
+              good={data?.good}
+              bad={data?.bad}
+              learn={data?.learn}
+              like={data?.likes}
+              commentlist={data?.comments}
+              comments={data?.comments.length}
+              scrap={data?.scrapNum}
+              reRenderFlag={reRenderFlag}
+              setReRenderFlag={setReRenderFlag}
+              key={id}
+            />
+          );
+        })
+      ) : (
+        <div className="exp body4">회고가 존재하지 않습니다 </div>
+      )}
     </SViewCardList>
   );
 }
 
 const SViewCardList = Styled.div`
+
+.exp{
+  margin : 100px 0 100px 0;
+  width : 100%;
+  text-align  :center;
+  
+}
 `;
 
 export default ViewCardList;
