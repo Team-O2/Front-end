@@ -113,7 +113,7 @@ function ShareTogetherDetail({ match }: RouteComponentProps<MatchParams>): React
         hashtag={concert?.hashtag}
         like={Likes}
         comments={concert?.commentNum}
-        scrap={concert?.scrapNum}
+        scrap={scrap}
         onLike={onLike}
         onScrap={onScrap}
         userLike={userLike}
