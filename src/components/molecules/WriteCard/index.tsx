@@ -428,6 +428,9 @@ const SWriteCard = Styled.div`
         color: #FFFFFF;
     }
     .character{
+        position:sticky;
+        top:40px;
+        background-color:white;
         margin: 0 auto;
         padding-top:60px;
         width:844px;
