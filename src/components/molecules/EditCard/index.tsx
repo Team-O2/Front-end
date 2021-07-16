@@ -334,12 +334,12 @@ function EditCard({ id }: IEditCard) {
         {countProgressBar === 3 ? (
           <div className="button">
             <button className="write__button-color" onClick={handleSubmit}>
-              글 올리기
+              수정완료
             </button>
           </div>
         ) : (
           <div className="button">
-            <button className="write__button-black">글 올리기</button>
+            <button className="write__button-black">수정완료</button>
           </div>
         )}
 
