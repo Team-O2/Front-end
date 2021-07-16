@@ -85,18 +85,26 @@ const SConcert = Styled.div`
     flex-direction: column;
     width: 524px;
     height: 84px;
-    overflow: hidden;
-    text-overflow: ellipsis;
     line-height: 1.38;
     color: #0d0d0d;
     font-size: 16px;
     font-weight: bold; 
-    & p:nth-of-type(2) {
+    & p:nth-of-type(2) { 
+      display: -webkit-box;
       margin-top: 12px;
+      width: 524px;
+      height: 2.79em;
+      overflow: hidden;
+      text-align: left;
+      text-overflow: ellipsis;
       line-height: 1.5;
+      white-space:normal; 
+      word-wrap: break-word;
       color: #3d3d3d;
       font-size: 14px;
-      font-weight: normal;
+      font-weight: normal; 
+      -webkit-line-clamp: 3; 
+      -webkit-box-orient: vertical;
     }
   }
   .content__right {
