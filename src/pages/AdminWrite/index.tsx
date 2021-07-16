@@ -1,11 +1,16 @@
-import React from 'react';
-import Styled from 'styled-components';
 import CAdminWrite from 'components/organisms/AdminWrite';
+import React from 'react';
+import { RouteComponentProps } from 'react-router';
+import Styled from 'styled-components';
 
-function AdminWrite(): React.ReactElement {
+interface MatchParams {
+  menu: string;
+}
+function AdminWrite({ match }: RouteComponentProps<MatchParams>): React.ReactElement {
+  const menu = match.params.menu;
   return (
     <SAdminWrite>
-      <CAdminWrite />
+      <CAdminWrite menu={menu} />
     </SAdminWrite>
   );
 }

@@ -7,8 +7,11 @@ import { useHistory } from 'react-router-dom';
 import { useRecoilState } from 'recoil';
 import { userStatusState } from 'stores/user';
 import Styled from 'styled-components';
+interface IProps {
+  menu: string;
+}
 
-function AdminWrite(): React.ReactElement {
+function AdminWrite({ menu }: IProps): React.ReactElement {
   const history = useHistory();
   const [userStatusData, setUserStatusData] = useRecoilState(userStatusState);
   const [isButtonDisabled, setIsButtonDisabled] = useState(true);
@@ -113,7 +116,12 @@ function AdminWrite(): React.ReactElement {
     <SAdminWrite isButtonDisabled={isButtonDisabled}>
       <Label className="admin__label--page">관리자 페이지</Label>
       <Label className="admin__label--title">글 올리기</Label>
-      <AdminWriteForm setIsConditionMet={setIsConditionMet} writeData={writeData} setWriteData={setWriteData} />
+      <AdminWriteForm
+        setIsConditionMet={setIsConditionMet}
+        writeData={writeData}
+        setWriteData={setWriteData}
+        menuProps={menu}
+      />
       <Button className="admin__button--fin" disabled={isButtonDisabled} onClick={buttonHandler}>
         등록하기
       </Button>
