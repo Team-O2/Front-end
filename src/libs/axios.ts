@@ -202,8 +202,7 @@ export const challengeOpen = async (token: string, challengeOpenData: IChallenge
 export const sendEmail = async (email: string) => {
   try {
     const data = await serverAxios.post('/auth/email', { email: email });
-    if (data.data.statue === 200) {
-      alert(`${email}로 인증번호를 전송했습니다`);
+    if (data.data.status === 200) {
       return true;
     }
   } catch (e) {

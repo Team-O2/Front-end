@@ -31,7 +31,7 @@ function FindPWDForm({ data, setData, isConditionMet, setIsConditionMet }: IProp
   const [emailErrMsg, setEmailErrMsg] = useState('');
   const numSendBtnHandler = async () => {
     const isSuccess = await sendEmail(email);
-    // setIsModalOpen(isSuccess);
+    setIsModalOpen(isSuccess);
   };
 
   useEffect(() => {
@@ -91,8 +91,14 @@ function FindPWDForm({ data, setData, isConditionMet, setIsConditionMet }: IProp
           <div className="modal__iconBack">
             <img src={checkIcon} alt="modal__icon" />
           </div>
-          <div className="modal__title">전송완료!</div>
-          <div className="modal__exp">비밀번호 변경이 완료되었습니다</div>
+          <div className="modal__title dp4">전송완료!</div>
+          <div className="modal__exp body4">
+            <span>{email}</span>으로
+            <br />
+            인증번호를 보냈습니다.
+            <br />
+            이메일을 확인해주세요
+          </div>
         </div>
       </Modal>
     </FindPWDFormWrap>
@@ -103,6 +109,55 @@ const FindPWDFormWrap = Styled.div<{ isConditionMet: { email: boolean; certifiNu
     width : 406px;
     display :flex;
     flex-direction : column;
+    span{
+      font-weight : bold;
+    }
+    .modal{
+      &__container{
+        position : fixed;
+        top : 0;
+        left : 0;
+        right : 0;
+        bottom : 0;
+        margin : auto;
+        width: 500px;
+        height: 273px;
+        display : flex;
+        flex-direction : column;
+        align-items : center;
+        border-radius: 16px;
+        border-style: solid;
+        border-width: 1px;
+        border-image-source: linear-gradient(to right, #36c8f5, #13e2dd);
+        border-image-slice: 1;
+        background-image: linear-gradient(to right, #ffffff, #ffffff), linear-gradient(to top, #36c8f5, #13e2dd);
+        background-origin: border-box;
+        background-clip: content-box, border-box;
+      }
+      &__iconBack{
+        display:flex;
+        align-items : center;
+        justify-content : center;
+        margin-top:-40px;
+        background-image: linear-gradient(to right, #36c8f5, #13e2dd);
+        width: 90px;
+        height: 90px;
+        border-radius :50px;
+      }
+      &__title{
+        margin-top : 20px;
+        margin-bottom : 20px;
+        background-image: linear-gradient(to right, #36c8f5, #13e2dd);
+        line-height: 1.42;
+        letter-spacing: -0.5px;
+        -webkit-background-clip: text;
+        background-clip: text;
+        -webkit-text-fill-color: transparent;
+      }
+      &__exp{
+        text-align : center;
+      }
+    }
 
     .findPwd{
         &__label{
