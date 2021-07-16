@@ -213,7 +213,7 @@ const SRegister = Styled.div`
   }
   &__fixed{
       position: sticky;
-      top: 0px;
+      top: 80px;
       background-color: #FFFFFF;
       width: 100%;
   }
