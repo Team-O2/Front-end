@@ -1,6 +1,6 @@
 export interface IShareTogether {
   _id: string;
-  user: string; // 유저 객체
+  user: { _id: string; nickname: string; img: string };
   title: string;
   videoLink: string;
   imgThumbnail: string;
@@ -14,6 +14,8 @@ export interface IShareTogether {
   isDeleted: boolean;
   comments: string[]; // 코멘트 객체
   isNotice: boolean;
-  createdAt: Date;
-  updatedAt: Date;
+  createdAt: string;
+  updatedAt: string;
+  authorNickname: string;
+  __v: number;
 }

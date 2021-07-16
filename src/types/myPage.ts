@@ -81,8 +81,8 @@ export interface IMyUserComment {
   post: string;
   userID: string;
   text: string;
-  createdAt: Date;
-  updatedAt: Date;
+  createdAt: string;
+  updatedAt: string;
   __v: number;
 }
 
