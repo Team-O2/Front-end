@@ -25,11 +25,14 @@ function CLogin(): React.ReactElement {
 }
 
 const LoginWrap = Styled.div`
+  position: relative;
+  top: -60px;
+  width: 100%;
+  height: 100vh;
   display : flex;
   flex-direction : column;
   align-items : center;
-  margin-top : 230px;
-  margin-bottom : 250px;
+  justify-content: center;
   .login{
     &__label{
       font-size: 40px;
@@ -54,6 +57,7 @@ const LoginWrap = Styled.div`
       line-height : 1.5;
       color : #8b8b8b;
       margin-right : 15px;
+      font-family: AppleSDGothicNeo;
     }
     &__rightbtn{
       font-size : 16px;
@@ -61,6 +65,7 @@ const LoginWrap = Styled.div`
       line-height : 1.5;
       color : #8b8b8b;
       margin-left : 15px;
+      font-family: AppleSDGothicNeo;
     }
   }
 `;

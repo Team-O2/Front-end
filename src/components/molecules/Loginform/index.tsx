@@ -123,6 +123,53 @@ const LoginformWrap = Styled.div`
     height : 9px;
   }
   .login{
+    &_div{
+      width: 406px;
+      height: 60px;
+      border-radius: 4px;
+      border : solid 1px #c1c1c1;
+      margin-bottom : 16px;
+      &--id{
+        border : ${(props) =>
+          props.isValueExist?.email || props.isFocused.email ? 'double 1px transparent' : '1px solid #c1c1c1'};
+        background-image : ${(props) =>
+          props.isValueExist?.email || props.isFocused.email
+            ? 'linear-gradient(white, white), linear-gradient(to right, #36c8f5,#13e2dd)'
+            : undefined};
+        background-origin : ${(props) =>
+          props.isValueExist?.email || props.isFocused.email ? 'border-box' : undefined};
+        background-clip : ${(props) =>
+          props.isValueExist?.email || props.isFocused.email ? 'content-box, border-box' : undefined};        
+      }
+      &--pwd{
+        border : ${(props) =>
+          props.isValueExist?.password || props.isFocused.password ? 'double 1px transparent' : '1px solid #c1c1c1'};
+        background-image : ${(props) =>
+          props.isValueExist?.password || props.isFocused.password
+            ? 'linear-gradient(white, white), linear-gradient(to right, #36c8f5,#13e2dd)'
+            : undefined};
+        background-origin : ${(props) =>
+          props.isValueExist?.password || props.isFocused.password ? 'border-box' : undefined};
+        background-clip : ${(props) =>
+          props.isValueExist?.password || props.isFocused.password ? 'content-box, border-box' : undefined};        
+      }
+    }
+    &_input{
+      width : 100%;
+      height : 100%;
+      border : none;
+      border-radius: 4px;
+      padding: 18px 20px;
+      font-family: AppleSDGothicNeo;
+      font-size : 16px;
+      color : #0d0d0d;
+      ::placeholder{
+        color : #c1c1c1;
+      }
+      :focus{
+        outline : none;
+      }
+    }
     &_button{
       width: 406px;
       height: 60px;

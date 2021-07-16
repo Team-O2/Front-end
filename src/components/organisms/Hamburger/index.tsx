@@ -338,6 +338,22 @@ const HamburgerWrap = Styled.div`
     align-items : center;
     padding-top : 70px;
     overflow : scroll;
+    ::-webkit-scrollbar {
+      width: 0.8rem;
+      height: 1rem;
+    }
+    ::-webkit-scrollbar-track {
+      background: none;
+    }
+    ::-webkit-scrollbar-thumb {
+      background: #c1c1c1;
+      border-radius: 0.5rem;
+      box-sizing: border-box;
+    }
+    /* Handle on hover */
+    ::-webkit-scrollbar-thumb:hover {
+      background: #c1c1c1;
+    }
     &__button{
       &--title{
         margin : 10px 0;

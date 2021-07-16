@@ -96,32 +96,34 @@ const ChallengeRegister = (): React.ReactElement => {
             <div className="challenge__detail">
               {datetoString(periodData.challengeStartDT)} ~ {datetoString(periodData.challengeEndDT)}
             </div>
-            <div className="challenge__setting">
-              <div className="challenge__count-set">챌린지 개수 설정</div>
-              <div className="challenge__notice">2개 이상부터 뱃지 획득 가능</div>
-            </div>
-            <div className="challenge__mainbox">
+            <div
+              className="challenge_setting_container"
+              style={{ display: 'flex', flexDirection: 'row', justifyContent: 'space-between' }}
+            >
+              <div className="challenge__setting">
+                <div className="challenge__count-set">챌린지 개수 설정</div>
+                <p className="challenge__notice">2개 이상부터 뱃지 획득 가능</p>
+              </div>
               <div className="challenge__box">
-                <button
+                <div
                   className="challenge__minus-plus"
                   onClick={() => {
                     minusCount();
                   }}
                 >
                   <img src={MinusIcon} />
-                </button>
+                </div>
                 {registerCount}
-                <button
+                <div
                   className="challenge__minus-plus"
                   onClick={() => {
                     setRegisterCount(registerCount + 1);
                   }}
                 >
                   <img src={PlusIcon} />
-                </button>
+                </div>
               </div>
             </div>
-
             <div className="button">
               <button
                 className="button__register"
@@ -152,7 +154,15 @@ const ChallengeRegister = (): React.ReactElement => {
                         <div className="modal__content">{registerCount}개</div>
                       </div>
                     </div>
-                    <div className="modal__iconlist">
+                    <div
+                      style={{
+                        display: 'flex',
+                        flexDirection: 'row',
+                        alignItems: 'center',
+                        justifyContent: 'center',
+                        marginTop: '50px',
+                      }}
+                    >
                       <img className="modal__icon" src={CautionIcon} alt=""></img>
                       <div className="modal__caution">주의사항</div>
                     </div>
@@ -289,6 +299,7 @@ const SRegister = Styled.div`
         font-size: 14px;
         
         &__minus-plus{
+          cursor: pointer;
           border:none;
           background-color: #FFFFFF;
         }
@@ -303,12 +314,16 @@ const SRegister = Styled.div`
         &__box{
           display:inline-block;
           float:right;
-          border: 1px solid #DFDFDF;
+          border: solid 1px #dfdfdf;
           border-radius: 4px;
-          padding-top:5px;
           width: 119px;
           height: 36px;
-          line-height: 1.25;
+          margin-top: 60px;
+          padding: 0 16px;
+          display: flex;
+          flex-direction: row;
+          align-items: center;
+          justify-content: space-between;
           font-family: HomepageBaukasten;
           font-size: 16px;
           font-weight: bold;
@@ -340,21 +355,13 @@ const SRegister = Styled.div`
             font-size: 14px;
         }
         &__notice{
-          font-family: Apple SD Gothic Neo;
-          font-style: normal;
-          font-weight: normal;
-          font-size: 12px;
-          line-height: 18px;
-          /* identical to box height, or 150% */
-          
-          display: flex;
-          align-items: center;
-          text-align: center;
-          letter-spacing: -0.5px;
-          
-          /* LightGray2 */
-          
-          color: #C1C1C1;
+            width: 126px;
+            height: 18px;
+            line-height: 1.5;
+            letter-spacing: -0.5px;
+            color: #c1c1c1;
+            font-family: AppleSDGothicNeo;
+            font-size: 12px;
         }
     }
     .card{
@@ -466,10 +473,14 @@ const SRegister = Styled.div`
       background: linear-gradient(91.91deg, #36C8F5 7.34%, #13E2DD 90.35%);
       width:500px;
       height:64px;
-
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      justify-content: center;
     }
     .modal__img{
       display:inline-block;
+      margin-right: 10px;
     }
     .modal__register-button{
         display:inline-block;
@@ -515,17 +526,17 @@ const SRegister = Styled.div`
 
       }
       &__icon{
-        display:inline-block;
-        padding-top:50px;
+        /* display:inline-block;
+        padding-top:50px; */
+        margin-right: 8px;
       }
 
       &__caution{
-        display:inline-block;
-        padding-top:50px;
+        /* display:inline-block;
+        padding-top:50px; */
         text-align: center;
-        line-height: 1.5;
         letter-spacing: -0.5px;
-        color: var(--colors-grayscale-3-d-dark-gray);
+        color: #3d3d3d;
         font-family: AppleSDGothicNeo;
         font-size: 14px;
 
