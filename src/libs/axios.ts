@@ -279,3 +279,8 @@ export const getGeneration = async () => {
   const data = await serverAxios.get('auth/hamburger');
   return data.data.data;
 };
+
+export const getRegistPeriod = async () => {
+  const data = await serverAxios.get('/admin/regist');
+  return data.data.data;
+};
