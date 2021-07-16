@@ -213,7 +213,7 @@ function EditCard({ id }: IEditCard) {
   return (
     <>
       <SWriteCard>
-        <div className="header">Learn Myself 2nd</div>
+        <div className="header">Learn Myself</div>
         {countProgressBar === 0 ? (
           <div className="character">
             <img className="character__black" src={CharacterBlack} alt="" />

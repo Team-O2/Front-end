@@ -13,12 +13,6 @@ import { interestList } from '../../../resources/string';
 import Button from '../../atoms/Button';
 import Modal from '../../atoms/Modal/index';
 
-export interface IProps {
-  description?: string;
-  className?: string;
-  value?: string;
-}
-
 type selectedStyle = {
   backgroundColor: string;
   color: string;
@@ -70,6 +64,7 @@ function WriteCard({ onChangeForm }: MyFormProps) {
   const maxByte = 1000; //최대 1000바이트
   const [isBadgeModal, setIsBadgeModal] = useState(false); //뱃지 모달
   const [countProgressBar, setCountProgressBar] = useState(0); //프로그래스바
+  const [periodData, setPeriodData] = useState<MyFormProps | null>(null);
 
   const [byte, setByte] = useState({
     byte1: 0,
@@ -212,14 +207,29 @@ function WriteCard({ onChangeForm }: MyFormProps) {
     setSelectedInterest(selectedInterest);
   }, [selectedInterest]);
 
+  const indextoName = (index: string | number) => {
+    switch (index) {
+      case 1:
+        return '1st';
+      case 2:
+        return `2nd`;
+      case 3:
+        return `3rd`;
+      default:
+        return `${index}th`;
+    }
+  };
+
   return (
     <>
       <SWriteCard>
-        <div className="header">Learn Myself 2nd</div>
+        <div className="header">Learn Myself</div>
         {countProgressBar === 0 ? (
           <div className="character">
-            <img className="character__black" src={CharacterBlack} alt="" />
-            <div className="character__message">당신의 오늘을 알고싶어요!</div>
+            <div className="character__color0">
+              <img className="character__black" src={CharacterBlack} alt="" />
+              <div className="character__message">당신의 오늘을 알고싶어요!</div>
+            </div>
             <div className="bar">
               <span className="progressbar">
                 <span className="gauge__initial">.</span>
@@ -429,7 +439,7 @@ const SWriteCard = Styled.div`
     }
     .character{
         position:sticky;
-        top:40px;
+        top:30px;
         background-color:white;
         margin: 0 auto;
         padding-top:60px;
@@ -443,15 +453,22 @@ const SWriteCard = Styled.div`
         }
         &__black{
             padding-right:50px;
+
+        }
+        &__color0{
+          height:120px;
         }
         &__color1{
             padding-left:200px;
+            height:120px;
         }
         &__color2{
             padding-left:450px;
+            height:120px;
         }
         &__color3{
             text-align:end;
+            height:120px;
         }
 
         &__message{
