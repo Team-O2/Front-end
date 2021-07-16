@@ -21,7 +21,7 @@ function CommentWrite({ className, value, isComment, onChange, onClick, onSubmit
           name="comment"
           onChange={onChange}
           value={value}
-          placeholder=" | 댓글을 입력해 주세요"
+          placeholder="댓글을 입력해 주세요"
         ></TextArea>
         <p onClick={onClick} className="button">
           {isComment ? '댓글 작성' : '답글 작성'}
