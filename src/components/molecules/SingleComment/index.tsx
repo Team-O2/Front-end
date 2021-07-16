@@ -8,10 +8,14 @@ import ReplyComment from '../ReplyComment';
 
 interface IProps {
   childrenComment: {
+    isDeleted?: boolean;
     _id?: string;
-    nickname?: string;
+    userID?: {
+      img: string;
+      _id: string;
+      nickname: string;
+    };
     text?: string;
-    createdAt?: string;
   }[];
   isDeleted?: boolean;
   _id: string;
@@ -25,10 +29,14 @@ interface IProps {
 }
 
 interface IReply {
+  isDeleted?: boolean;
   _id?: string;
-  parentID?: string;
+  userID?: {
+    img: string;
+    _id: string;
+    nickname: string;
+  };
   text?: string;
-  nickname?: string;
 }
 
 function SingleComment({ _id, userID, childrenComment, text, concertID }: IProps): React.ReactElement {
@@ -51,8 +59,18 @@ function SingleComment({ _id, userID, childrenComment, text, concertID }: IProps
       text: replyValue,
     };
     if (userStatusData) {
-      const postData = await postConcertComment(userStatusData.token, concertID, variables);
-      setReplyList(replyList.concat(variables));
+      await postConcertComment(userStatusData.token, concertID, variables);
+      userData &&
+        setReplyList(
+          replyList.concat({
+            text: variables.text,
+            userID: {
+              img: userData.img,
+              _id: userData._id,
+              nickname: userData.nickname,
+            },
+          }),
+        );
       setReplyValue('');
     } else {
       alert('로그인 후 이용하세요');
@@ -84,8 +102,8 @@ function SingleComment({ _id, userID, childrenComment, text, concertID }: IProps
               <ReplyComment
                 className="reply__comment"
                 key={data._id}
-                profile={userData?.img}
-                nickname={userData?.nickname}
+                img={data.userID?.img}
+                nickname={data.userID?.nickname}
                 text={data.text}
               ></ReplyComment>
             ))}
