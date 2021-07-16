@@ -104,7 +104,7 @@ export const postChallengeComment = async (
 
 export const SignRegister = async (signData: SignData, token: string) => {
   try {
-    const data = await serverAxios.post('user/register', signData, {
+    const data = await serverAxios.post('/user/register', signData, {
       headers: {
         Authorization: token,
       },
@@ -157,12 +157,14 @@ export const getChallengeSearchData = async (
   token: string | null,
   tag: string,
   keyword: string,
-  ismine: boolean,
+  ismine: number,
   offset: number,
   limit: number,
 ) => {
   try {
     let data = undefined;
+    console.log(ismine);
+    console.log(data);
     if (token) {
       data = await serverAxios.get(
         `/challenge/search?generation=${generation}&tag=${tag}&ismine=${ismine}&keyword=${keyword}&offset=${offset}&limit=${limit}`,
