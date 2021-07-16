@@ -158,6 +158,8 @@ const JoinWrap = Styled.div<{ isButtonDisabled?: boolean; selectedInterest: stri
   display : flex;
   flex-direction : column;
   align-items : center;
+  margin-top : 100px;
+  margin-bottom : 250px;
   .join{
     &__label{
       font-size: 40px;

@@ -53,6 +53,16 @@ const FindPWDWrap = Styled.div<{ isBtnDisabled: boolean }>`
     display : flex;
     flex-direction : column;
     align-items : center;
+    margin-top : 230px;
+    margin-bottom : 250px;
+    .modal{
+      &__container{
+        
+      }
+      &__iconBack{
+
+      }
+    }
     .findPwd{
         &__label{
             &--title{
