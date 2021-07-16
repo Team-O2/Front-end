@@ -28,12 +28,12 @@ function CommentedBoardRow({ content, date, boardId, id, onChange, isChecked, ca
             <span className="row__date--bar"></span>
             {category === 'Challenge' ? (
               <Button
-                className="row__link body3"
+                className="row__link"
                 onClick={() => {
                   alert('런마셀 상세보기'); // TODO: 런마셀 모달 띄워주기
                 }}
               >
-                <span>원문보기</span>
+                <span className="body3">원문보기</span>
               </Button>
             ) : (
               <Link
