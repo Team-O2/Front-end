@@ -201,10 +201,15 @@ export const challengeOpen = async (token: string, challengeOpenData: IChallenge
 
 export const sendEmail = async (email: string) => {
   try {
-    await serverAxios.post('/auth/email', { email: email });
+    const data = await serverAxios.post('/auth/email', { email: email });
+    if (data.data.statue === 200) {
+      alert(`${email}로 인증번호를 전송했습니다`);
+      return true;
+    }
   } catch (e) {
     alert(e?.response?.data?.message);
   }
+  return false;
 };
 
 export const sendVerifinum = async (email: string, verifiNum: string) => {
