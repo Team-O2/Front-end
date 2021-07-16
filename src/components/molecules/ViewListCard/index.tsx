@@ -13,15 +13,17 @@ import {
 import React, { useCallback, useEffect, useState } from 'react';
 import { useHistory } from 'react-router';
 import { useRecoilState } from 'recoil';
-import { userStatusState } from 'stores/user';
+import { userState, userStatusState } from 'stores/user';
 import Styled from 'styled-components';
 import ColorScrapIcon from '../../../assets/images/color_scrapIcon.svg';
 import CommentCount from '../../../assets/images/commentIcon.svg';
 import DeleteIcon from '../../../assets/images/deleteIcon.svg';
 import EditIcon from '../../../assets/images/editIcon.svg';
 import ClickGood from '../../../assets/images/heartIcon.svg';
+import LoginAlert from '../../../assets/images/loginAlert.svg';
 import MenuBar from '../../../assets/images/menu_bar.svg';
 import ScrapIcon from '../../../assets/images/scrapIcon.svg';
+import Modal from '../../atoms/Modal';
 import DeleteModal from '../DeleteModal';
 
 export interface ICommentData {
@@ -78,6 +80,7 @@ function ViewListCard({
 }: IProps): React.ReactElement {
   const history = useHistory();
   const [userStatusData, setUserStatusData] = useRecoilState(userStatusState);
+  const [userData, setUserData] = useRecoilState(userState);
   const [isOpenComment, setIsOpenComment] = useState(false);
   const [lookMoreButton, setLookMoreButton] = useState(true);
   const [IsCommentButton, setIsCommentButton] = useState(true);
@@ -86,12 +89,15 @@ function ViewListCard({
   const [closed, setClosed] = useState(false);
   const [scrapOpen, setScrap] = useState(false);
   const [deleteModalOpen, setDeleteModalOpen] = useState(false);
-  const [userState, setUserState] = useState(userStatusData ? userStatusData.userType : 0);
   const [likes, setLikes] = useState(0);
   const [likeClick, setLikeClick] = useState(false);
   const [myCommentList, setMyCommentList] = useState<ICommentData[] | null>(null);
   const [commentListFlag, setCommentListFlag] = useState<boolean>(false);
   const [countScraps, setCountScraps] = useState(0);
+  const [userStateNum, setUserState] = useState(userStatusData ? userStatusData.userType : 0);
+  const [confirmLoginModal, setConfirmLoginModal] = useState(false);
+  const [userStateNickname, setUserStateNickname] = useState(userData ? userData.nickname : 0);
+  const [isMine, setIsMine] = useState(false);
 
   const getCommentList = useCallback(async () => {
     if (userStatusData) {
@@ -148,6 +154,12 @@ function ViewListCard({
     }
   };
 
+  if (nickname === userStateNickname) {
+    setIsMine(true);
+  } else {
+    setIsMine(false);
+  }
+
   if (deleteModalOpen === true) {
     document.body.style.overflow = 'hidden';
   } else document.body.style.overflow = 'unset';
@@ -170,7 +182,7 @@ function ViewListCard({
                 <div className="profile__sub">
                   <div className="profile__nickname">{nickname}</div>
                   <p className="profile__time">{dayjs(createdAt).format('MM.DD')}</p>
-                  {userState === 0 || userState === 1 ? (
+                  {userStateNum === 0 || userStateNum === 1 || isMine === false ? (
                     scrapOpen === false ? (
                       <div className="menu__bar">
                         <Button className="menuIcon">
@@ -340,8 +352,36 @@ function ViewListCard({
           onClickDeleteButton={() => {
             alert('글삭제 완료');
             setDeleteModalOpen(false);
+            setConfirmLoginModal(true);
           }}
         />
+        <Modal isOpen={confirmLoginModal} setIsOpen={setConfirmLoginModal} isBlur={true}>
+          <div className="delete">
+            <div className="delete__notice">
+              <img className="delete__img" src={LoginAlert} alt=""></img>
+              <p className="delete__title">앗!</p>
+              <p className="delete__detail">로그인이 필요한 서비스입니다</p>
+            </div>
+            <div className="login__button">
+              <Button
+                className="delete__cancel"
+                onClick={() => {
+                  setConfirmLoginModal(false);
+                }}
+              >
+                취소
+              </Button>
+              <Button
+                className="delete__delete"
+                onClick={() => {
+                  history.push('/login');
+                }}
+              >
+                로그인하기
+              </Button>
+            </div>
+          </div>
+        </Modal>
       </SViewListCard>
     </>
   );
@@ -510,6 +550,68 @@ const SViewListCard = Styled.div`
     color: #FFFFFF;
     font-size: 16px;
     font-weight: bold;
+}
+
+
+.delete {
+  position: fixed;
+  top:0;
+  right:0;
+  bottom:0;
+  left:0;
+  margin:auto;
+  border-radius: 16px;
+  background-color: #FFFFFF;
+  width: 500px;
+  height: 312px;
+  &__notice{
+    padding: 0px 80px 0px 80px;
+  }
+
+  &__img{
+    display:flex;
+    margin:auto;
+    margin-top:-40px;
+
+  }
+  &__title{
+    padding:20px 0px 20px 0px;
+    text-align: center;
+    line-height: 1.42;
+    letter-spacing: -0.5px;
+    color: #000000;
+    font-size: 48px;
+    font-weight: bold;
+  }
+  &__detail{
+    text-align: center;
+    line-height: 1.5;
+    letter-spacing: -0.5px;
+    color: var(--colors-grayscale-0-d-black);
+    font-size: 16px;
+  }
+  &__delete{
+    padding-left:170px;
+    line-height: 1.33;
+    letter-spacing: -0.5px;
+    color: #03B6CE;
+    font-size: 18px;
+    font-weight: bold;;
+
+  }
+  &__cancel{
+    line-height: 1.33;
+    letter-spacing: -0.5px;
+    color: #C1C1C1;
+    font-size: 18px;
+    font-weight: bold;
+  }
+}
+.login__button{
+  padding-top:70px;
+  text-align: center;
+
+
 }
 `;
 
