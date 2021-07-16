@@ -81,10 +81,12 @@ const SNotice = Styled.div`
     flex-direction: column;
     width: 524px;
     height: 84px;
+    overflow: hidden;
+    text-overflow: ellipsis;
     line-height: 1.38;
     color: #0d0d0d;
     font-size: 16px;
-    font-weight: bold;
+    font-weight: bold; 
     & p:nth-of-type(2) {
       margin-top: 12px;
       line-height: 1.5;
