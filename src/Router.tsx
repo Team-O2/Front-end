@@ -38,7 +38,6 @@ function Router(): React.ReactElement {
         <Route exact path="/join" component={Join} />
         <Route exact path="/findPwd" component={FindPwd} />
         <Route exact path="/setPwd" component={SetPwd} />
-        <Route exact path="/challenge" component={LearnMyself} />
         <Route exact path="/challenge/:generationNum" component={LearnMyself} />
         <Route exact path="/challengeRegister" component={ChallengeRegister} />
         <Route exact path="/write" component={WriteLearnMyself} />
