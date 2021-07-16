@@ -33,12 +33,12 @@ function Notice(): React.ReactElement {
   const [currentPage, setCurrentPage] = useState(1);
   const userStatusData = useRecoilValue(userStatusState);
   const [totalNoticeNum, setTotalNoticeNum] = useState(0);
+
   useEffect(() => {
     const getNoticeList = async (pageIndex: number) => {
       const LIMIT_PER_PAGE = 8;
       if (userStatusData) {
         const data = await getNoticeListData({ token: userStatusData.token, offset: (pageIndex - 1) * LIMIT_PER_PAGE });
-        console.log(data);
         data && setnoticeList(data.notices);
         data && setTotalNoticeNum(data.totalNoticeNum);
       } else {
@@ -49,19 +49,28 @@ function Notice(): React.ReactElement {
   }, [userStatusData, currentPage]);
 
   useEffect(() => {
-    const getNoticeSearchList = async () => {
+    const getNoticeSearchList = async (pageIndex: number) => {
+      const LIMIT_PER_PAGE = 8;
       if (userStatusData) {
-        const data = await getNoticeSearchData(userStatusData.token, keyword);
-        data && setnoticeList(data);
+        const data = await getNoticeSearchData({
+          token: userStatusData.token,
+          keyword: keyword,
+          offset: (pageIndex - 1) * LIMIT_PER_PAGE,
+        });
+        data && setnoticeList(data.searchData);
+        data && setTotalNoticeNum(data.totalNoticeSearchNum);
       } else {
         alert('로그인 후 이용하세요');
       }
     };
-    getNoticeSearchList();
-  }, [keyword, userStatusData]);
+    getNoticeSearchList(currentPage);
+  }, [keyword, userStatusData, currentPage]);
 
   const reRenderKeyword = (keyword: string) => {
     setKeyword(keyword);
+  };
+  const keywordChange = () => {
+    setCurrentPage(1);
   };
   const noticeListNum = noticeList?.length;
   return (
@@ -70,6 +79,7 @@ function Notice(): React.ReactElement {
       <SNotice>
         <SeachForm
           reRenderKeyword={reRenderKeyword}
+          keywordChange={keywordChange}
           concertListNum={noticeListNum}
           selectedCategory="공지사항"
         ></SeachForm>

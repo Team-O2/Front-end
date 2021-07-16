@@ -12,6 +12,8 @@ interface IFetchParameter {
   token?: string;
   limit?: number;
   offset?: number;
+  keyword?: string;
+  tag?: string;
 }
 export const getConcertListData = async (token: string) => {
   try {
@@ -55,14 +57,15 @@ export const getConcertData = async (token: string, concertID: string) => {
   }
 };
 
-export const getConcertSearchData = async (token: string, tag: string, keyword: string) => {
+export const getConcertSearchData = async ({ token, limit = 11, offset = 0, keyword, tag }: IFetchParameter) => {
   try {
     const data = await serverAxios.get(`/concert/search?tag=${tag}&keyword=${keyword}`, {
       headers: {
         Authorization: token,
       },
       params: {
-        limit: 8,
+        offset,
+        limit,
       },
     });
     if (data.data.status === 200) {
@@ -212,18 +215,19 @@ export const getNoticeData = async (token: string, noticeID: string) => {
   }
 };
 
-export const getNoticeSearchData = async (token: string, keyword: string) => {
+export const getNoticeSearchData = async ({ token, limit = 8, offset = 0, keyword }: IFetchParameter) => {
   try {
     const data = await serverAxios.get(`/notice/search?keyword=${keyword}`, {
       headers: {
         Authorization: token,
       },
       params: {
-        limit: 8,
+        offset,
+        limit,
       },
     });
     if (data.data.status === 200) {
-      return data.data.data.searchData;
+      return data.data.data;
     } else {
       return null;
     }

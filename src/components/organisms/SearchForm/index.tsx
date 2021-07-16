@@ -6,8 +6,9 @@ interface IProps {
   reRenderKeyword?: (keyword: string) => void;
   selectedCategory?: string;
   concertListNum?: number;
+  keywordChange?: () => void;
 }
-function SearchForm({ reRenderKeyword, selectedCategory, concertListNum }: IProps): React.ReactElement {
+function SearchForm({ reRenderKeyword, selectedCategory, concertListNum, keywordChange }: IProps): React.ReactElement {
   const [searchValue, setSearchValue] = useState('');
   const onChangeKeyword = (event: React.ChangeEvent<HTMLInputElement>) => {
     setSearchValue(event.currentTarget.value);
@@ -15,6 +16,7 @@ function SearchForm({ reRenderKeyword, selectedCategory, concertListNum }: IProp
   const onClickSearch = (event: React.MouseEvent) => {
     event.preventDefault();
     reRenderKeyword && reRenderKeyword(searchValue);
+    keywordChange && keywordChange();
   };
   if (selectedCategory === '') {
     selectedCategory = '전체';
