@@ -1,5 +1,7 @@
+import checkIcon from 'assets/images/checkIcon.svg';
 import Button from 'components/atoms/Button';
 import Label from 'components/atoms/Label';
+import Modal from 'components/atoms/Modal';
 import StyledInput from 'components/atoms/StyledInput';
 import { sendEmail } from 'libs/axios';
 import React, { useEffect, useState } from 'react';
@@ -23,11 +25,13 @@ export interface IProps {
 }
 
 function FindPWDForm({ data, setData, isConditionMet, setIsConditionMet }: IProps): React.ReactElement {
+  const [isModalOpen, setIsModalOpen] = useState(false);
   const [email, setEmail] = useState('');
   const [certifiNum, setCertifiNum] = useState('');
   const [emailErrMsg, setEmailErrMsg] = useState('');
   const numSendBtnHandler = async () => {
-    await sendEmail(email);
+    const isSuccess = await sendEmail(email);
+    // setIsModalOpen(isSuccess);
   };
 
   useEffect(() => {
@@ -82,6 +86,15 @@ function FindPWDForm({ data, setData, isConditionMet, setIsConditionMet }: IProp
         }}
         isConditionMet={isConditionMet.certifiNum}
       />
+      <Modal isOpen={isModalOpen} isBlur={true} setIsOpen={setIsModalOpen}>
+        <div className="modal__container">
+          <div className="modal__iconBack">
+            <img src={checkIcon} alt="modal__icon" />
+          </div>
+          <div className="modal__title">전송완료!</div>
+          <div className="modal__exp">비밀번호 변경이 완료되었습니다</div>
+        </div>
+      </Modal>
     </FindPWDFormWrap>
   );
 }
