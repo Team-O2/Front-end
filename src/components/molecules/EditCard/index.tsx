@@ -177,7 +177,7 @@ function EditCard({ id }: IEditCard) {
     if (selectedInterest.length === 0) {
       setSelectedInterest([interest]);
     }
-    if (selectedInterest.length < 30) {
+    if (selectedInterest.length < 3) {
       if (!selectedInterest.includes(interest)) {
         setSelectedInterest([...selectedInterest, interest]);
       } else {
