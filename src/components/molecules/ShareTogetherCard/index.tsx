@@ -32,7 +32,7 @@ function ShareTogetherCard({
           <div className="card__info">
             <Tag className="subhead2" name={tagName} color={tagColor} isSelected={false} />
             <div className="card__info--title subhead4">{title}</div>
-            <div className="card__info--content body2">{content}</div>
+            <div className="card__info--content body2" dangerouslySetInnerHTML={{ __html: `${content}` }}></div>
             <div className="card__info--date body1_eng">{date}</div>
           </div>
         </div>
