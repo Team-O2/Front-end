@@ -65,7 +65,6 @@ function ShareTogether(): React.ReactElement {
   };
   const concertCardData = concertList?.slice(undefined, 3);
   const concertData = concertList?.slice(3);
-  const concertListNum = concertList?.length;
 
   return (
     <SShareTogether>
@@ -79,7 +78,7 @@ function ShareTogether(): React.ReactElement {
         reRenderKeyword={reRenderKeyword}
         keywordChange={keywordChange}
         selectedCategory={selectedCategory}
-        concertListNum={concertListNum}
+        concertListNum={totalConcertNum}
       ></SeachForm>
       <ConcertCardList concertCardData={concertCardData} />
       <ConcertList
