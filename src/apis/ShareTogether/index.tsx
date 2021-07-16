@@ -65,7 +65,6 @@ export const getConcertUserData = async (token: string, concertID: string) => {
       },
     });
     if (data.data.status === 200) {
-      console.log(data.data.data);
       return data.data.data;
     } else {
       return null;
@@ -108,7 +107,6 @@ export const postConcertComment = async (
       },
     });
     if (data.data.status === 200) {
-      alert(data.data.message);
       return data.data.data;
     } else {
       return null;
@@ -257,7 +255,6 @@ export const postNoticeComment = async (
       },
     });
     if (data.data.status === 200) {
-      alert(data.data.message);
     } else {
       return null;
     }
