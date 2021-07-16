@@ -200,18 +200,12 @@ export const ChallengeLike = async (token: string, challengeID: string) => {
     });
     if (data.data.status === 200) {
       console.log(data.data.message);
-      alert('좋아요 성공');
-    } else {
-      return null;
-    }
-  } catch (error) {
-    if (error.response.data.status === 400) {
-      console.log('[FAIL] POST data', error);
       return true;
     }
-    alert(error.response.data.message);
-    return undefined;
+  } catch (error) {
+    console.log(error.response.data.message);
   }
+  return false;
 };
 
 export const CancelChallengeLike = async (token: string, challengeID: string) => {
@@ -222,14 +216,12 @@ export const CancelChallengeLike = async (token: string, challengeID: string) =>
       },
     });
     if (data.data.status === 200) {
-      alert(data.data.message);
-    } else {
-      return null;
+      return true;
     }
   } catch (e) {
-    alert(e.response.data.message);
-    return undefined;
+    console.log(e.response.data.message);
   }
+  return false;
 };
 
 export const ChallengeScrap = async (token: string, challengeID: string) => {
