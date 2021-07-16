@@ -43,7 +43,6 @@ export const writeForm = async (writeData: WriteData, token: string) => {
         Authorization: token,
       },
     });
-    console.log('[SUCCESS] POST data', data);
   } catch (error) {
     console.log('[FAIL] POST data', error);
   }
