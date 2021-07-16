@@ -96,7 +96,7 @@ function Joinform({ ...props }: IProps): React.ReactElement {
   }, [userData.passwordCheck]);
   useEffect(() => {
     const check = /^[ㄱ-ㅎ|가-힣|0-9|.,_,]+$/;
-    if (!check.test(userData.nickname)) {
+    if (!check.test(userData.nickname) || userData.nickname.length > 6) {
       setIsConditionMet({ ...isConditionMet, nickname: false });
     } else if (userData.nickname.length > 0) {
       setIsConditionMet({ ...isConditionMet, nickname: true });
@@ -224,7 +224,7 @@ function Joinform({ ...props }: IProps): React.ReactElement {
         {isFocused.nickname && !isConditionMet.nickname && <img className="join__image--error" src={JoinErr}></img>}
       </div>
       {isFocused.nickname && !isConditionMet.nickname && (
-        <div className="join__exp--error">닉네임에는 한글, 숫자, 밑줄 및 마침표만 사용할 수 있습니다</div>
+        <div className="join__exp--error">닉네임은 최대 6글자로 한글, 숫자, 밑줄 및 마침표만 사용할 수 있습니다</div>
       )}
       <Label className="join_subtitle">성별</Label>
       <DropDown
