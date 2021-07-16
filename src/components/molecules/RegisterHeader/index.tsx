@@ -2,12 +2,31 @@ import React from 'react';
 import Styled from 'styled-components';
 import registerHeaderImg from '../../../assets/images/registerHeaderImg.png';
 
-const RegisterHeader = () => {
+interface IProps {
+  generation: number;
+  title: string;
+}
+const indextoName = (index: number) => {
+  switch (index) {
+    case 1:
+      return '1st';
+    case 2:
+      return `2nd`;
+    case 3:
+      return `3rd`;
+    default:
+      return `${index}th`;
+  }
+};
+
+const RegisterHeader = ({ generation, title }: IProps) => {
   return (
     <SHeader>
       <div className="header">
         <img className="header__img" src={registerHeaderImg} alt="" />
-        <span className="header__text">Learn Myself 3rd 모집</span>
+        <span className="header__text">
+          {title} {indextoName(generation)} 모집
+        </span>
       </div>
     </SHeader>
   );

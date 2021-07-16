@@ -1,5 +1,6 @@
+import { getRegistPeriod } from 'libs/axios';
 import { SignRegister } from 'libs/getChallenge';
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useRecoilState } from 'recoil';
 import { userStatusState } from 'stores/user';
 import Styled from 'styled-components';
@@ -12,6 +13,14 @@ import MinusIcon from '../../../assets/images/minusIcon.svg';
 import PlusIcon from '../../../assets/images/plusIcon.svg';
 import Modal from '../../atoms/Modal/index';
 import RegisterHeader from '../RegisterHeader';
+interface IPeriodData {
+  title: string;
+  generation: number;
+  registerEndDT: string;
+  registerStartDT: string;
+  challengeEndDT: string;
+  challengeStartDT: string;
+}
 
 const ChallengeRegister = (): React.ReactElement => {
   const [userStatusData, setUserStatusData] = useRecoilState(userStatusState);
@@ -19,12 +28,12 @@ const ChallengeRegister = (): React.ReactElement => {
   const [isOpenModal, setIsOpenModal] = useState(false);
   const [isSubmitModal, setIsSubmitModal] = useState(false);
   const [registerSubmit, setRegisterSubmit] = useState(false);
+  const [periodData, setPeriodData] = useState<IPeriodData | null>(null);
   function minusCount() {
     if (registerCount > 0) {
       setRegisterCount(registerCount - 1);
     }
   }
-
   const handleSubmit = async () => {
     setRegisterSubmit(true);
     setIsOpenModal(false);
@@ -35,9 +44,36 @@ const ChallengeRegister = (): React.ReactElement => {
       const getData = await SignRegister(signData, userStatusData.token);
     }
   };
-  return (
+
+  const datetoString = (date: string): string => {
+    let month = date.substr(5, 2);
+    if (month.substr(0, 1) === '0') month = month.substr(1, 1);
+    let day = date.substr(8, 2);
+    if (day.substr(0, 1) === '0') day = day.substr(1, 1);
+    return `${month}월 ${day}일`;
+  };
+
+  const getRestDay = (dateString: string): number => {
+    const date = new Date(
+      parseInt(dateString.substr(0, 4)),
+      parseInt(dateString.substr(5, 2)) - 1,
+      parseInt(dateString.substr(8, 2)),
+    );
+    const today = new Date();
+    const rest = Math.ceil((date.getTime() - today.getTime()) / (1000 * 3600 * 24));
+    return rest;
+  };
+  const getChallengePeriod = async () => {
+    const data = await getRegistPeriod();
+    data && setPeriodData(data);
+  };
+  useEffect(() => {
+    getChallengePeriod();
+  }, []);
+
+  return periodData ? (
     <SRegister>
-      <RegisterHeader />
+      <RegisterHeader title={periodData.title} generation={periodData.generation} />
       <div className="container">
         <div className="header__fixed">
           <p className="header__title">챌린지 설명</p>
@@ -49,9 +85,11 @@ const ChallengeRegister = (): React.ReactElement => {
         <div className="card">
           <div className="register">
             <div className="register__date">신청기간</div>
-            <div className="register__remain">10일 남음</div>
+            <div className="register__remain">{getRestDay(periodData.registerEndDT)}일 남음</div>
             <div className="challenge">챌린지 기간</div>
-            <div className="challenge__detail">7월 1일 ~ 7월 31일</div>
+            <div className="challenge__detail">
+              {datetoString(periodData.challengeStartDT)} ~ {datetoString(periodData.challengeEndDT)}
+            </div>
             <div className="challenge__setting">
               <div className="challenge__count-set">챌린지 개수 설정</div>
               <p className="challenge__notice">2개 이상부터 뱃지 획득 가능</p>
@@ -146,6 +184,8 @@ const ChallengeRegister = (): React.ReactElement => {
         </div>
       </div>
     </SRegister>
+  ) : (
+    <div> 챌린지 신청기간이 아닙니다</div>
   );
 };
 
