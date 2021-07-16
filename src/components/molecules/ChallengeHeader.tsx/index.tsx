@@ -40,13 +40,17 @@ interface IProps {
 // 3: 챌린지하는유저&챌린지종료,
 // 4: 관리자
 
-function ChallengeHeader({ challengeList, setChallengeList, generationNum }: IProps) {
+function ChallengeHeader({
+  isClickedEntire,
+  setIsClickedEntire,
+  challengeList,
+  setChallengeList,
+  generationNum,
+}: IProps): React.ReactElement {
   const userStatusData = useRecoilValue(userStatusState);
   const [selectedCategory, setSelectedCategory] = useState('전체');
   const [keyword, setKeyword] = useState('');
-  const [isClickedEntire, setISClickedEntire] = useState(false);
   const [ismine, setIsmine] = useState(false);
-
   const [userStateNum, setUserState] = useState(userStatusData ? userStatusData.userType : 0);
 
   React.useEffect(() => {
