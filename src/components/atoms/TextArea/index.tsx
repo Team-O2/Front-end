@@ -18,6 +18,8 @@ function TextArea({ name, autoComplete = 'off', ...props }: IProps): React.React
   return <STextArea name={name} autoComplete={autoComplete} {...props} />;
 }
 
-const STextArea = Styled.textarea``;
+const STextArea = Styled.textarea`
+  resize:none;
+`;
 
 export default TextArea;
