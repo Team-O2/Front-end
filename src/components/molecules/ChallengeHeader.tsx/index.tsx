@@ -30,6 +30,7 @@ interface IChallengeDataList {
 interface IProps {
   challengeList: IChallengeDataList[] | null;
   setChallengeList: (value: IChallengeDataList[]) => void;
+  generationNum: string;
 }
 
 //user상태 :
@@ -39,7 +40,7 @@ interface IProps {
 // 3: 챌린지하는유저&챌린지종료,
 // 4: 관리자
 
-function ChallengeHeader({ challengeList, setChallengeList }: IProps) {
+function ChallengeHeader({ challengeList, setChallengeList, generationNum }: IProps) {
   const [userState, setUserState] = useState(2);
   const userStatusData = useRecoilValue(userStatusState);
   const [selectedCategory, setSelectedCategory] = useState('전체');
@@ -47,23 +48,37 @@ function ChallengeHeader({ challengeList, setChallengeList }: IProps) {
   const [isClickedEntire, setISClickedEntire] = useState(false);
   const [ismine, setIsmine] = useState(false);
   React.useEffect(() => {
-    if (userStatusData) getChallengeList(userStatusData.token);
+    if (userStatusData) getChallengeList(userStatusData.token, 0, 50);
+    else getChallengeList(null, 0, 50);
   }, [isClickedEntire]);
   React.useEffect(() => {
     if (userStatusData) getChallengeCategoryData(userStatusData.token, selectedCategory, keyword, ismine);
+    else getChallengeCategoryData(null, selectedCategory, keyword, ismine);
   }, [selectedCategory, keyword]);
-  const getChallengeList = async (token: string): Promise<void> => {
-    const data = await ChallengeListData(token);
+  const getChallengeList = async (token: string | null, offset: number, limit: number): Promise<void> => {
+    const data = await ChallengeListData(token, generationNum, offset, limit);
     data && setChallengeList(data);
+  };
+  const indextoName = (index: string | number) => {
+    switch (+index) {
+      case 1:
+        return '1st';
+      case 2:
+        return `2nd`;
+      case 3:
+        return `3rd`;
+      default:
+        return `${index}th`;
+    }
   };
 
   const getChallengeCategoryData = async (
-    token: string,
+    token: string | null,
     selectedCategory: string,
     keyword: string,
     ismine: boolean,
   ): Promise<void> => {
-    const data = await getChallengeSearchData(token, selectedCategory, keyword, ismine);
+    const data = await getChallengeSearchData(token, selectedCategory, keyword, ismine, 0, 50);
     data && setChallengeList(data);
   };
 
@@ -87,7 +102,7 @@ function ChallengeHeader({ challengeList, setChallengeList }: IProps) {
   return (
     <SChallengeHeader>
       <div className="title">
-        <p className="title__text">Learn Myself 2nd</p>
+        <p className="title__text">Learn Myself {indextoName(generationNum)}</p>
       </div>
       <CategoryList reRenderCategory={reRenderCategory} selectedCategory={selectedCategory} />
       <SearchForm

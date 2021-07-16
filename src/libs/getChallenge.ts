@@ -72,18 +72,22 @@ export const ChallengeEdit = async (editData: EditData, token: string, id: strin
   return false;
 };
 
-export const ChallengeListData = async (token: string) => {
+export const ChallengeListData = async (token: string | null, generation: string, offset: number, limit: number) => {
+  console.log('dfknsldkf');
   try {
-    const data = await instance.get('/challenge', {
-      headers: {
-        Authorization: token,
-      },
-      params: {
-        offset: 0,
-        limit: 50,
-      },
-    });
-    return data.data.data;
+    if (token) {
+      const data = await instance.get(`/challenge/?generation=${generation}&offset=${offset}&limit=${limit}`, {
+        headers: {
+          Authorization: token,
+        },
+      });
+      console.log(data.data.data);
+      return data.data.data;
+    } else {
+      const data = await instance.get(`/challenge/?generation=${generation}&offset=${offset}&limit=${limit}`, {});
+      console.log(data.data.data);
+      return data.data.data;
+    }
   } catch (error) {
     console.log(error);
     return null;
@@ -161,18 +165,31 @@ export const getChallengeContent = async (id: string, token: string) => {
   }
 };
 
-export const getChallengeSearchData = async (token: string, tag: string, keyword: string, ismine: boolean) => {
+export const getChallengeSearchData = async (
+  token: string | null,
+  tag: string,
+  keyword: string,
+  ismine: boolean,
+  offset: number,
+  limit: number,
+) => {
   try {
-    const data = await instance.get(`/challenge/search?tag=${tag}&ismine=${ismine}&keyword=${keyword}`, {
-      headers: {
-        Authorization: token,
-      },
-      params: {
-        offset: 0,
-        limit: 10,
-      },
-    });
-    if (data.data.status === 200) {
+    let data = undefined;
+    if (token) {
+      data = await instance.get(
+        `/challenge/search?tag=${tag}&ismine=${ismine}&keyword=${keyword}&offset=${offset}&limit=${limit}`,
+        {
+          headers: {
+            Authorization: token,
+          },
+        },
+      );
+    } else {
+      data = await instance.get(
+        `/challenge/search?tag=${tag}&ismine=${ismine}&keyword=${keyword}&offset=${offset}&limit=${limit}`,
+      );
+    }
+    if (data?.data.status === 200) {
       return data.data.data;
     } else {
       return null;

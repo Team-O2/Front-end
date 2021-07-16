@@ -9,15 +9,19 @@ import { IChallengeData } from '../../templates/LearnMyself/ChallengeList';
 interface IProps {
   challengeList: IChallengeData[] | null;
   setChallengeList: (value: IChallengeData[]) => void;
+  generationNum: string;
 }
 
-function ViewCardList({ challengeList, setChallengeList }: IProps): React.ReactElement {
+function ViewCardList({ challengeList, setChallengeList, generationNum }: IProps): React.ReactElement {
   const [userStatusData, setUserStatusData] = useRecoilState(userStatusState);
   const [reRenderFlag, setReRenderFlag] = useState(false);
 
   const ChallengeList = async (): Promise<void> => {
     if (userStatusData) {
-      const data = await ChallengeListData(userStatusData.token);
+      const data = await ChallengeListData(userStatusData.token, generationNum, 0, 50);
+      data && setChallengeList(data);
+    } else {
+      const data = await ChallengeListData(null, generationNum, 0, 50);
       data && setChallengeList(data);
     }
   };
