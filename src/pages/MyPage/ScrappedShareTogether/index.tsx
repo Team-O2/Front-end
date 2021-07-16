@@ -1,4 +1,5 @@
 import { getShareTogetherListData } from 'apis/myPage';
+import ConcertList from 'components/organisms/ConcertList';
 import React, { useCallback, useEffect, useState } from 'react';
 import { useRecoilValue } from 'recoil';
 import { userStatusState } from 'stores/user';
@@ -8,20 +9,25 @@ import { IMyScrappedShareTogether } from 'types/myPage';
 
 function ScrappedShareTogether(): React.ReactElement {
   const [scrappedShareTogether, setScrappedShareTogether] = useState<IMyScrappedShareTogether | null>(null);
-  const [offset, setOffset] = useState(0);
+  const [currentPage, setCurrentPage] = useState(1);
   const globalUserState = useRecoilValue(userStatusState);
 
   const fetchScrappedShareTogether = useCallback(
-    async (offset: number) => {
-      const data = await getShareTogetherListData({ token: globalUserState?.token, limit: 10, offset });
+    async (pageIndex: number) => {
+      const LIMIT_PER_PAGE = 10;
+      const data = await getShareTogetherListData({
+        token: globalUserState?.token,
+        limit: 10,
+        offset: (pageIndex - 1) * LIMIT_PER_PAGE,
+      });
       data && setScrappedShareTogether(data);
     },
     [globalUserState?.token],
   );
 
   useEffect(() => {
-    fetchScrappedShareTogether(offset);
-  }, [fetchScrappedShareTogether, offset]);
+    fetchScrappedShareTogether(currentPage);
+  }, [currentPage, fetchScrappedShareTogether]);
 
   return (
     <Wrapper>
@@ -30,8 +36,12 @@ function ScrappedShareTogether(): React.ReactElement {
         <h2 className="h2_eng">Share Together</h2>
       </Header>
       {scrappedShareTogether?.totalScrapNum ? (
-        1
-        /* TODO: 여기에 페이지 네이션 넣기 */
+        <ConcertList
+          concertData={scrappedShareTogether.mypageConcertScrap}
+          totalConcertNum={scrappedShareTogether.totalScrapNum}
+          currentPage={currentPage}
+          setCurrentPage={setCurrentPage}
+        />
       ) : (
         <NoContents>
           <p className="subhead4">스크랩한 글이 없어요</p>
