@@ -24,9 +24,7 @@ const RegisterHeader = ({ generation, title, img }: IProps) => {
     <SHeader>
       <div className="header">
         <img className="header__img" src={img} alt="" />
-        <span className="header__text">
-          {title} {indextoName(generation)} 모집
-        </span>
+        <span className="header__text">Learn Myself {indextoName(generation)} 모집</span>
       </div>
     </SHeader>
   );
