@@ -103,10 +103,10 @@ function SingleComment({ _id, userID, childrenComment, text, concertID }: IProps
               onSubmit={onSubmit}
               isComment={false}
             ></CommentWrite>
-            {replyList.map((data: IReply) => (
+            {replyList.map((data: IReply, index) => (
               <ReplyComment
                 className="reply__comment"
-                key={data._id}
+                key={index}
                 img={data.userID?.img}
                 nickname={data.userID?.nickname}
                 text={data.text}

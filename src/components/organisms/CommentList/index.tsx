@@ -68,9 +68,9 @@ function CommentList({ commentList, concertID, reLoadComment }: IProps): React.R
         onClick={onSubmit}
         onSubmit={onSubmit}
       ></CommentWrite>
-      {commentList?.map((data: IData) => (
+      {commentList?.map((data: IData, index) => (
         <SingleComment
-          key={data._id}
+          key={index}
           _id={data._id}
           userID={data.userID}
           childrenComment={data.childrenComment}

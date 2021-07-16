@@ -71,9 +71,9 @@ function NoticeCommentList({ commentList, noticeID, reLoadComment }: IProps): Re
         onClick={onSubmit}
         onSubmit={onSubmit}
       ></CommentWrite>
-      {commentList?.map((data: IData) => (
+      {commentList?.map((data: IData, index) => (
         <NoticeSingleComment
-          key={data._id}
+          key={index}
           _id={data._id}
           userID={data.userID}
           childrenComment={data.childrenComment}
