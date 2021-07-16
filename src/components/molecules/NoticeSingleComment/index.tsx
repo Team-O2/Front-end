@@ -1,11 +1,14 @@
 import { postNoticeComment } from 'apis/ShareTogether';
+import Button from 'components/atoms/Button';
 import React, { useState } from 'react';
+import { Link } from 'react-router-dom';
 import { useRecoilValue } from 'recoil';
 import { userState, userStatusState } from 'stores/user';
 import Styled from 'styled-components';
+import LoginModal from '../../../assets/images/loginAlert.svg';
+import Modal from '../../atoms/Modal/index';
 import CommentWrite from '../CommentWrite';
 import ReplyComment from '../ReplyComment';
-
 interface IProps {
   childrenComment: {
     isDeleted?: boolean;
@@ -45,6 +48,7 @@ function NoticeSingleComment({ _id, userID, childrenComment, text, noticeID }: I
   const [replyList, setReplyList] = useState(childrenComment);
   const userStatusData = useRecoilValue(userStatusState);
   const userData = useRecoilValue(userState);
+  const [loginModalOpen, setLoginModalOpen] = useState(false);
 
   const onClickReplyOpen = () => {
     setOpenReply(!openReply);
@@ -73,7 +77,7 @@ function NoticeSingleComment({ _id, userID, childrenComment, text, noticeID }: I
         );
       setReplyValue('');
     } else {
-      alert('로그인 후 이용하세요');
+      setLoginModalOpen(true);
     }
   };
 
@@ -110,6 +114,28 @@ function NoticeSingleComment({ _id, userID, childrenComment, text, noticeID }: I
           </>
         )}
       </div>
+      <Modal isOpen={loginModalOpen} setIsOpen={setLoginModalOpen} isBlur={true}>
+        <div className="login">
+          <div className="login__notice">
+            <img className="login__img" src={LoginModal} alt=""></img>
+            <div className="login__title">앗!</div>
+            <div className="login__detail">로그인이 필요한 서비스입니다</div>
+          </div>
+          <div className="login__button">
+            <Button
+              className="login__cancel"
+              onClick={() => {
+                setLoginModalOpen(false);
+              }}
+            >
+              취소
+            </Button>
+            <Link to="/login">
+              <Button className="login__login">로그인하기</Button>
+            </Link>
+          </div>
+        </div>
+      </Modal>
     </SNoticeSingleComment>
   );
 }
@@ -154,6 +180,61 @@ const SNoticeSingleComment = Styled.div`
       width: 712px;
     }
   }
+  .login{
+  position: fixed;
+  top:0;
+  right:0;
+  bottom:0;
+  left:0;
+  margin:auto;
+  border-radius: 16px;
+  background-color: #FFFFFF;
+  width: 500px;
+  height: 312px;
+  &__notice{
+    padding: 0px 80px 0px 80px;
+  }
+  &__img{
+    display:flex;
+    margin:auto;
+    margin-top:-40px;
+  }
+  &__title{
+    padding:20px 0px 20px 0px;
+    text-align: center;
+    line-height: 1.42;
+    letter-spacing: -0.5px;
+    color: #000000;
+    font-size: 48px;
+    font-weight: bold;
+  }
+  &__detail{
+    text-align: center;
+    line-height: 1.5;
+    letter-spacing: -0.5px;
+    color: var(--colors-grayscale-0-d-black);
+    font-size: 16px;
+  }
+  &__button{
+    padding-top:50px;
+    text-align: center;
+  }
+  &__cancel{
+    line-height: 1.33;
+    letter-spacing: -0.5px;
+    color:#c1c1c1;
+    font-size: 18px;
+    font-weight: bold;
+  }
+  &__login{
+    padding-left:170px;
+    line-height: 1.33;
+    letter-spacing: -0.5px;
+    color: #03b6ce;
+    font-size: 18px;
+    font-weight: bold;;
+  }
+}
 
 `;
 export default NoticeSingleComment;
