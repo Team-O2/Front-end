@@ -326,6 +326,7 @@ function WriteCard({ onChangeForm }: MyFormProps) {
                 return setInterestButton(id, interest);
               }
             })}
+
             <Button
               onClick={() => {
                 setIsOpenTag(!isOpenTag);
@@ -333,13 +334,19 @@ function WriteCard({ onChangeForm }: MyFormProps) {
             >
               <img className="tag__moreIcon" src={MoreIcon} alt=""></img>
             </Button>
-            {isOpenTag === true ? (
-              interestList.map((interest, id) => {
-                return setInterestButton(id, interest);
-              })
-            ) : (
-              <div className="modal__base"></div>
-            )}
+            <div className="tag__group1">
+              {isOpenTag === true ? (
+                <button className="tag__group2">
+                  {isOpenTag === true ? (
+                    interestList.map((interest, id) => {
+                      return setInterestButton(id, interest);
+                    })
+                  ) : (
+                    <div className="modal__base"></div>
+                  )}
+                </button>
+              ) : null}
+            </div>
           </div>
         </div>
 
@@ -407,6 +414,7 @@ const SWriteCard = Styled.div`
         width: 844px;
         height:369px;
         font-size: 18px;
+        resize:none;
     }
 
     .button{
@@ -438,39 +446,33 @@ const SWriteCard = Styled.div`
         color: #FFFFFF;
     }
     .character{
-        position:sticky;
-        top:30px;
-        background-color:white;
-        margin: 0 auto;
-        padding-top:60px;
-        width:844px;
+      margin: 0 auto;
+      padding-top:60px;
+      width:844px;
+      position:sticky;
+      top:20px;
+      background-color:white;
 
-        &__1{
-            padding-left:60px;
-        }
-        &__2{
-            padding-left:50px;
-        }
-        &__black{
-            padding-right:50px;
-
-        }
-        &__color0{
-          height:120px;
-        }
-        &__color1{
-            padding-left:200px;
-            height:120px;
-        }
-        &__color2{
-            padding-left:450px;
-            height:120px;
-        }
-        &__color3{
-            text-align:end;
-            height:120px;
-        }
-
+      &__1{
+          padding-left:60px;
+      }
+      &__2{
+          padding-left:50px;
+      }
+      &__black{
+          padding-right:50px;
+          padding-top:29px;
+      }
+      &__color1{
+          padding-left:200px;
+          padding-top:29px;
+      }
+      &__color2{
+          padding-left:450px;
+      }
+      &__color3{
+          text-align:end;
+      }
         &__message{
             padding-top:12.32px;
             padding-bottom: 12px;
@@ -542,6 +544,19 @@ const SWriteCard = Styled.div`
           color : #8b8b8b;
           font-size: 18px;
           font-weight: bold;
+        }
+        .tag__group1{
+          padding-top:20px;
+
+        }
+        .tag__group2{
+          background: #FFFFFF;
+          padding: 20px 30px 30px 30px;
+          border: 1px solid rgba(223, 223, 223, 0.5);
+          box-sizing: border-box;
+          box-shadow: 0px 0px 15px rgba(23, 22, 91, 0.08);
+          border-radius: 16px
+          
         }
 
 }`;
