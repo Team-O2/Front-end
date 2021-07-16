@@ -2,6 +2,7 @@ import {
   deleteConcertLike,
   deleteConcertScrap,
   getConcertData,
+  getConcertUserData,
   postConcertLike,
   postConcertScrap,
 } from 'apis/ShareTogether';
@@ -47,22 +48,31 @@ function ShareTogetherDetail({ match }: RouteComponentProps<MatchParams>): React
   const [concert, setConcert] = useState<IConcertData | null>(null);
   const [commentList, setCommentList] = useState([]);
   const [Likes, setLikes] = useState(0);
-  const [likeClick, setLikeClick] = useState(false);
   const [scrap, setScrap] = useState(0);
-  const [scrapClick, setScrapClick] = useState(false);
   const userStatusData = useRecoilValue(userStatusState);
   const [loginModalOpen, setLoginModalOpen] = useState(false);
-
+  const [userLike, setUserLike] = useState(false);
+  const [userScrap, setUserScrap] = useState(false);
   useEffect(() => {
     const getConcertList = async () => {
-      const data = await getConcertData(id);
-      data && setConcert(data);
-      data && setCommentList(data.comments);
-      data && setLikes(data.likes);
-      data && setScrap(data.scrapNum);
+      if (userStatusData) {
+        const data = await getConcertUserData(userStatusData.token, id);
+        data && setConcert(data);
+        data && setCommentList(data.comments);
+        data && setLikes(data.likes);
+        data && setScrap(data.scrapNum);
+        data && setUserLike(data.isLike);
+        data && setUserScrap(data.isScrap);
+      } else {
+        const data = await getConcertData(id);
+        data && setConcert(data);
+        data && setCommentList(data.comments);
+        data && setLikes(data.likes);
+        data && setScrap(data.scrapNum);
+      }
     };
     getConcertList();
-  }, [commentList, Likes, scrap, id]);
+  }, [commentList, Likes, scrap, id, userStatusData]);
 
   const reLoadComment = (newComment: any) => {
     setCommentList(commentList?.concat(newComment));
@@ -71,7 +81,6 @@ function ShareTogetherDetail({ match }: RouteComponentProps<MatchParams>): React
   const onLike = async () => {
     if (userStatusData) {
       const postLike = await postConcertLike(userStatusData.token, id);
-      setLikeClick(!likeClick);
       if (postLike === true) {
         const deleteLike = await deleteConcertLike(userStatusData.token, id);
       }
@@ -82,7 +91,6 @@ function ShareTogetherDetail({ match }: RouteComponentProps<MatchParams>): React
   const onScrap = async () => {
     if (userStatusData) {
       const postScrap = await postConcertScrap(userStatusData.token, id);
-      setScrapClick(!scrapClick);
       if (postScrap === true) {
         const deleteSrap = await deleteConcertScrap(userStatusData.token, id);
       }
@@ -107,9 +115,9 @@ function ShareTogetherDetail({ match }: RouteComponentProps<MatchParams>): React
         comments={concert?.commentNum}
         scrap={concert?.scrapNum}
         onLike={onLike}
-        likeClick={likeClick}
         onScrap={onScrap}
-        scrapClick={scrapClick}
+        userLike={userLike}
+        userScrap={userScrap}
       ></DetailContent>
       <CommentList commentList={commentList} concertID={concert?._id} reLoadComment={reLoadComment}></CommentList>
       <Modal isOpen={loginModalOpen} setIsOpen={setLoginModalOpen} isBlur={true}>

@@ -54,6 +54,28 @@ export const getConcertData = async (concertID: string) => {
   }
 };
 
+export const getConcertUserData = async (token: string, concertID: string) => {
+  try {
+    const data = await serverAxios.get(`/concert/${concertID}`, {
+      headers: {
+        Authorization: token,
+      },
+      params: {
+        concertID: concertID,
+      },
+    });
+    if (data.data.status === 200) {
+      console.log(data.data.data);
+      return data.data.data;
+    } else {
+      return null;
+    }
+  } catch (e) {
+    alert(e.response.data.message);
+    return undefined;
+  }
+};
+
 export const getConcertSearchData = async ({ limit = 11, offset = 0, keyword, tag }: IFetchParameter) => {
   try {
     const data = await serverAxios.get(`/concert/search?tag=${tag}&keyword=${keyword}`, {
@@ -63,6 +85,7 @@ export const getConcertSearchData = async ({ limit = 11, offset = 0, keyword, ta
       },
     });
     if (data.data.status === 200) {
+      console.log(data.data.data);
       return data.data.data;
     } else {
       return null;
