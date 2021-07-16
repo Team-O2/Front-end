@@ -5,11 +5,15 @@ import {
   postConcertLike,
   postConcertScrap,
 } from 'apis/ShareTogether';
+import LoginModal from 'assets/images/loginAlert.svg';
+import Button from 'components/atoms/Button';
+import Modal from 'components/atoms/Modal/index';
 import DetailTitle from 'components/molecules/DetailTitle';
 import CommentList from 'components/organisms/CommentList';
 import DetailContent from 'components/organisms/DetailContent';
 import React, { useEffect, useState } from 'react';
 import { RouteComponentProps } from 'react-router';
+import { Link } from 'react-router-dom';
 import { useRecoilValue } from 'recoil';
 import { userStatusState } from 'stores/user';
 import Styled from 'styled-components';
@@ -47,6 +51,7 @@ function ShareTogetherDetail({ match }: RouteComponentProps<MatchParams>): React
   const [scrap, setScrap] = useState(0);
   const [scrapClick, setScrapClick] = useState(false);
   const userStatusData = useRecoilValue(userStatusState);
+  const [loginModalOpen, setLoginModalOpen] = useState(false);
 
   useEffect(() => {
     const getConcertList = async () => {
@@ -71,7 +76,7 @@ function ShareTogetherDetail({ match }: RouteComponentProps<MatchParams>): React
         const deleteLike = await deleteConcertLike(userStatusData.token, id);
       }
     } else {
-      alert('로그인 후 이용하세요');
+      setLoginModalOpen(true);
     }
   };
   const onScrap = async () => {
@@ -82,7 +87,7 @@ function ShareTogetherDetail({ match }: RouteComponentProps<MatchParams>): React
         const deleteSrap = await deleteConcertScrap(userStatusData.token, id);
       }
     } else {
-      alert('로그인 후 이용하세요');
+      setLoginModalOpen(true);
     }
   };
 
@@ -107,6 +112,28 @@ function ShareTogetherDetail({ match }: RouteComponentProps<MatchParams>): React
         scrapClick={scrapClick}
       ></DetailContent>
       <CommentList commentList={commentList} concertID={concert?._id} reLoadComment={reLoadComment}></CommentList>
+      <Modal isOpen={loginModalOpen} setIsOpen={setLoginModalOpen} isBlur={true}>
+        <div className="login">
+          <div className="login__notice">
+            <img className="login__img" src={LoginModal} alt=""></img>
+            <div className="login__title">앗!</div>
+            <div className="login__detail">로그인이 필요한 서비스입니다</div>
+          </div>
+          <div className="login__button">
+            <Button
+              className="login__cancel"
+              onClick={() => {
+                setLoginModalOpen(false);
+              }}
+            >
+              취소
+            </Button>
+            <Link to="/login">
+              <Button className="login__login">로그인하기</Button>
+            </Link>
+          </div>
+        </div>
+      </Modal>
     </SShareTogetherDetail>
   );
 }
@@ -117,5 +144,60 @@ const SShareTogetherDetail = Styled.div`
   justify-content: center;
   margin: 0 auto;
   width: 845px;
+  .login{
+  position: fixed;
+  top:0;
+  right:0;
+  bottom:0;
+  left:0;
+  margin:auto;
+  border-radius: 16px;
+  background-color: #FFFFFF;
+  width: 500px;
+  height: 312px;
+  &__notice{
+    padding: 0px 80px 0px 80px;
+  }
+  &__img{
+    display:flex;
+    margin:auto;
+    margin-top:-40px;
+  }
+  &__title{
+    padding:20px 0px 20px 0px;
+    text-align: center;
+    line-height: 1.42;
+    letter-spacing: -0.5px;
+    color: #000000;
+    font-size: 48px;
+    font-weight: bold;
+  }
+  &__detail{
+    text-align: center;
+    line-height: 1.5;
+    letter-spacing: -0.5px;
+    color: var(--colors-grayscale-0-d-black);
+    font-size: 16px;
+  }
+  &__button{
+    padding-top:50px;
+    text-align: center;
+  }
+  &__cancel{
+    line-height: 1.33;
+    letter-spacing: -0.5px;
+    color:#c1c1c1;
+    font-size: 18px;
+    font-weight: bold;
+  }
+  &__login{
+    padding-left:170px;
+    line-height: 1.33;
+    letter-spacing: -0.5px;
+    color: #03b6ce;
+    font-size: 18px;
+    font-weight: bold;;
+  }
+}
 `;
 export default ShareTogetherDetail;
