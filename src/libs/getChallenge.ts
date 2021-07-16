@@ -5,20 +5,11 @@ export const serverAxios = axios.create({
   withCredentials: true,
 });
 
-const instance = axios.create({
-  baseURL: 'http://3.37.218.69:5000',
-  withCredentials: true,
-  // headers: {
-  //   Authorization: userStatusData?.token,
-  // },
-});
-
 interface WriteData {
   good: string;
   bad: string;
   learn: string;
   interest: string[];
-  generation: number;
 }
 
 interface EditData {
@@ -47,7 +38,7 @@ interface ChallengeID {
 
 export const writeForm = async (writeData: WriteData, token: string) => {
   try {
-    const data = await instance.post('/challenge', writeData, {
+    const data = await serverAxios.post('/challenge', writeData, {
       headers: {
         Authorization: token,
       },
@@ -60,7 +51,7 @@ export const writeForm = async (writeData: WriteData, token: string) => {
 
 export const ChallengeEdit = async (editData: EditData, token: string, id: string) => {
   try {
-    const data = await instance.patch(`/challenge/${id}`, editData, {
+    const data = await serverAxios.patch(`/challenge/${id}`, editData, {
       headers: {
         Authorization: token,
       },
@@ -75,14 +66,14 @@ export const ChallengeEdit = async (editData: EditData, token: string, id: strin
 export const ChallengeListData = async (token: string | null, generation: string, offset: number, limit: number) => {
   try {
     if (token) {
-      const data = await instance.get(`/challenge/?generation=${generation}&offset=${offset}&limit=${limit}`, {
+      const data = await serverAxios.get(`/challenge/?generation=${generation}&offset=${offset}&limit=${limit}`, {
         headers: {
           Authorization: token,
         },
       });
       return data.data.data;
     } else {
-      const data = await instance.get(`/challenge/?generation=${generation}&offset=${offset}&limit=${limit}`);
+      const data = await serverAxios.get(`/challenge/?generation=${generation}&offset=${offset}&limit=${limit}`);
       return data.data.data;
     }
   } catch (error) {
@@ -97,7 +88,7 @@ export const postChallengeComment = async (
   commentData: IChallengeCommentData,
 ) => {
   try {
-    const data = await instance.post(`/challenge/comment/${challengeID}`, commentData, {
+    const data = await serverAxios.post(`/challenge/comment/${challengeID}`, commentData, {
       headers: {
         Authorization: token,
       },
@@ -114,7 +105,7 @@ export const postChallengeComment = async (
 
 export const SignRegister = async (signData: SignData, token: string) => {
   try {
-    const data = await instance.post('user/register', signData, {
+    const data = await serverAxios.post('user/register', signData, {
       headers: {
         Authorization: token,
       },
@@ -127,7 +118,7 @@ export const SignRegister = async (signData: SignData, token: string) => {
 
 export const DeleteChallenge = async (challengeID: string, token: string) => {
   try {
-    const data = await instance.delete(`/challenge/${challengeID}`, {
+    const data = await serverAxios.delete(`/challenge/${challengeID}`, {
       headers: {
         Authorization: token,
       },
@@ -146,7 +137,7 @@ export const DeleteChallenge = async (challengeID: string, token: string) => {
 
 export const getChallengeContent = async (id: string, token: string) => {
   try {
-    const data = await instance.get(`/challenge/${id}`, {
+    const data = await serverAxios.get(`/challenge/${id}`, {
       headers: {
         Authorization: token,
       },
@@ -174,7 +165,7 @@ export const getChallengeSearchData = async (
   try {
     let data = undefined;
     if (token) {
-      data = await instance.get(
+      data = await serverAxios.get(
         `/challenge/search?generation=${generation}&tag=${tag}&ismine=${ismine}&keyword=${keyword}&offset=${offset}&limit=${limit}`,
         {
           headers: {
@@ -183,7 +174,7 @@ export const getChallengeSearchData = async (
         },
       );
     } else {
-      data = await instance.get(
+      data = await serverAxios.get(
         `/challenge/search?generation=${generation}&tag=${tag}&ismine=${ismine}&keyword=${keyword}&offset=${offset}&limit=${limit}`,
       );
     }
@@ -198,7 +189,7 @@ export const getChallengeSearchData = async (
 
 export const ChallengeLike = async (token: string, challengeID: string) => {
   try {
-    const data = await instance.post(`/challenge/like/${challengeID}`, [], {
+    const data = await serverAxios.post(`/challenge/like/${challengeID}`, [], {
       headers: {
         Authorization: token,
       },
@@ -221,7 +212,7 @@ export const ChallengeLike = async (token: string, challengeID: string) => {
 
 export const CancelChallengeLike = async (token: string, challengeID: string) => {
   try {
-    const data = await instance.delete(`/challenge/like/${challengeID}`, {
+    const data = await serverAxios.delete(`/challenge/like/${challengeID}`, {
       headers: {
         Authorization: token,
       },
@@ -239,7 +230,7 @@ export const CancelChallengeLike = async (token: string, challengeID: string) =>
 
 export const ChallengeScrap = async (token: string, challengeID: string) => {
   try {
-    const data = await instance.post(`/challenge/scrap/${challengeID}`, [], {
+    const data = await serverAxios.post(`/challenge/scrap/${challengeID}`, [], {
       headers: {
         Authorization: token,
       },
@@ -261,7 +252,7 @@ export const ChallengeScrap = async (token: string, challengeID: string) => {
 
 export const CancelChallengeScrap = async (token: string, challengeID: string) => {
   try {
-    const data = await instance.delete(`/challenge/scrap/${challengeID}`, {
+    const data = await serverAxios.delete(`/challenge/scrap/${challengeID}`, {
       params: {
         challengeID: challengeID,
       },

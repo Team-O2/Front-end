@@ -107,7 +107,6 @@ function WriteCard({ onChangeForm }: MyFormProps) {
       bad: description2,
       learn: description3,
       interest: selectedInterest,
-      generation: 2,
     };
     if (userStatusData) {
       const data = await writeForm(writeData, userStatusData.token);
