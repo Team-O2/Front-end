@@ -21,7 +21,9 @@ interface IChallengeDataList {
   isDeleted: boolean;
   scrapNum: number;
   interest: string[];
+  isLike: boolean;
   likes: number;
+  isScrap: boolean;
   updatedAt: string;
   user: { img: string; nickname: string; _id: string };
   __v: number;
@@ -53,7 +55,7 @@ function ChallengeHeader({
   const [selectedCategory, setSelectedCategory] = useState('전체');
   const [keyword, setKeyword] = useState('');
   const [booleanMine, setBooleanMine] = useState(false);
-  const [ismine, setIsmine] = useState(0);
+  const [ismine, setIsmine] = useState(1);
   const [userStateNum, setUserState] = useState(userStatusData ? userStatusData.userType : 0);
 
   const getChallengeCategoryData = useCallback(
@@ -112,9 +114,9 @@ function ChallengeHeader({
   const setMine = () => {
     setBooleanMine(!booleanMine);
     if (booleanMine === true) {
-      setIsmine(1);
-    } else if (booleanMine === false) {
       setIsmine(0);
+    } else if (booleanMine === false) {
+      setIsmine(1);
     }
   };
 
