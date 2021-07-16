@@ -23,6 +23,8 @@ export interface IChallengeData {
   interest: string[];
   likes: number;
   updatedAt: string;
+  isLike: boolean;
+  isScrap: boolean;
   user: { img: string; nickname: string; _id: string };
   __v: number;
   _id: string;

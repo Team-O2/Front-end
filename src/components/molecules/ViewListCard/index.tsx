@@ -56,7 +56,8 @@ interface IProps {
   like?: number;
   commentlist: string[];
   comments?: number;
-  scrap?: number;
+  isLike?: boolean;
+  isScrap?: boolean;
   id: string;
   reRenderFlag: boolean;
   setReRenderFlag: (value: boolean) => void;
@@ -71,9 +72,10 @@ function ViewListCard({
   bad,
   learn,
   like,
+  isLike,
+  isScrap,
   comments,
   commentlist,
-  scrap,
   id,
   reRenderFlag,
   setReRenderFlag,
@@ -87,13 +89,10 @@ function ViewListCard({
   const [IsMenuBar, setIsMenuBar] = useState(true);
   const [IsFoldComment, setIsFoldComment] = useState(true);
   const [closed, setClosed] = useState(false);
-  const [scrapOpen, setScrap] = useState(false);
   const [deleteModalOpen, setDeleteModalOpen] = useState(false);
-  const [likes, setLikes] = useState(0);
-  const [likeClick, setLikeClick] = useState(false);
+  const [countLikes, setCountLikes] = useState(like);
   const [myCommentList, setMyCommentList] = useState<ICommentData[] | null>(null);
   const [commentListFlag, setCommentListFlag] = useState<boolean>(false);
-  const [countScraps, setCountScraps] = useState(0);
   const [userStateNum, setUserState] = useState(userStatusData ? userStatusData.userType : 0);
   const [confirmLoginModal, setConfirmLoginModal] = useState(false);
   const [userStateNickname, setUserStateNickname] = useState(userData ? userData.nickname : 0);
@@ -126,25 +125,22 @@ function ViewListCard({
     }
   };
 
-  const onClickLike = async () => {
-    setLikeClick(!likeClick);
+  const submitLike = async () => {
     if (userStatusData) {
-      if (likeClick === true) {
-        setLikes(likes - 1);
-        const token = userStatusData.token;
-        const data = await CancelChallengeLike(token, id);
-      } else {
-        setLikes(likes + 1);
-        const token = userStatusData.token;
-        const data = await ChallengeLike(token, id);
-      }
+      const token = userStatusData.token;
+      await ChallengeLike(token, id);
+    }
+  };
+
+  const cancelLike = async () => {
+    if (userStatusData) {
+      const token = userStatusData.token;
+      await CancelChallengeLike(token, id);
     }
   };
 
   const submitScarp = async () => {
     if (userStatusData) {
-      setScrap(true);
-      setCountScraps(countScraps + 1);
       const token = userStatusData.token;
       await ChallengeScrap(token, id);
     }
@@ -152,18 +148,16 @@ function ViewListCard({
 
   const cancelScrap = async () => {
     if (userStatusData) {
-      setScrap(false);
-      setCountScraps(countScraps - 1);
       const token = userStatusData.token;
       await CancelChallengeScrap(token, id);
     }
   };
 
-  //user상태 :
+  // user상태 :
   // 0: 비회원,
-  // 1: 챌린지안하는유저,
-  // 2: 챌린지하는유저,
-  // 3: 챌린지하는유저&챌린지종료,
+  // 1: 챌린지안하는유저 (기간은 신청기간 중)
+  // 2: 챌린지 안하는 유저 (기간은 신청기간이 아님)
+  // 3: 챌린지 하는 유저 (기간은 챌린지 중)
   // 4: 관리자
 
   return (
@@ -179,8 +173,8 @@ function ViewListCard({
                     <div className="profile__nickname">{nickname}</div>
                     <p className="profile__time">{dayjs(createdAt).format('MM.DD')}</p>
                   </div>
-                  {userStateNum === 0 || userStateNum === 1 || isMine === false ? (
-                    scrapOpen === false ? (
+                  {userStateNum === 0 || userStateNum === 1 || userStateNum === 2 || isMine === false ? (
+                    isScrap === false ? (
                       <div className="menu__bar">
                         <Button className="menuIcon">
                           <img
@@ -188,6 +182,9 @@ function ViewListCard({
                             alt=""
                             onClick={() => {
                               submitScarp();
+                              {
+                                userStateNum === 0 ? setConfirmLoginModal(true) : setConfirmLoginModal(false);
+                              }
                             }}
                           />
                         </Button>
@@ -298,12 +295,32 @@ function ViewListCard({
                   </div>
                 )}
                 <div className="icon">
-                  {likeClick ? (
-                    <img className="icon__click" src={LikeIconFilled} onClick={onClickLike} alt="" />
+                  {isLike ? (
+                    <img
+                      className="icon__click"
+                      src={LikeIconFilled}
+                      onClick={() => {
+                        cancelLike();
+                        {
+                          userStateNum === 0 ? setConfirmLoginModal(true) : setConfirmLoginModal(false);
+                        }
+                      }}
+                      alt=""
+                    />
                   ) : (
-                    <img className="icon__click" src={ClickGood} onClick={onClickLike} alt="" />
+                    <img
+                      className="icon__click"
+                      src={ClickGood}
+                      onClick={() => {
+                        submitLike();
+                        {
+                          userStateNum === 0 ? setConfirmLoginModal(true) : setConfirmLoginModal(false);
+                        }
+                      }}
+                      alt=""
+                    />
                   )}
-                  <p className="icon__count">{like}</p>
+                  <p className="icon__count">{countLikes}</p>
                   <img className="icon__click" src={CommentCount} alt="" />
                   <p className="icon__count">{comments}</p>
                 </div>
@@ -349,7 +366,6 @@ function ViewListCard({
           onClickDeleteButton={() => {
             alert('글삭제 완료');
             setDeleteModalOpen(false);
-            setConfirmLoginModal(true);
           }}
         />
         <Modal isOpen={confirmLoginModal} setIsOpen={setConfirmLoginModal} isBlur={true}>
@@ -416,7 +432,8 @@ const SViewListCard = Styled.div`
 }
 .delete_bar{
     display:inline-block;
-    padding-left: 480px;
+
+    
 }
 .delete_icon{
     display:inline-block;
