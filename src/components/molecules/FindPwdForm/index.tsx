@@ -22,9 +22,10 @@ export interface IProps {
   setData: (value: IData) => void;
   isConditionMet: IIsconditionMet;
   setIsConditionMet: (value: IIsconditionMet) => void;
+  errMsg?: string;
 }
 
-function FindPWDForm({ data, setData, isConditionMet, setIsConditionMet }: IProps): React.ReactElement {
+function FindPWDForm({ data, setData, isConditionMet, setIsConditionMet, errMsg }: IProps): React.ReactElement {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [email, setEmail] = useState('');
   const [certifiNum, setCertifiNum] = useState('');
@@ -85,6 +86,7 @@ function FindPWDForm({ data, setData, isConditionMet, setIsConditionMet }: IProp
           if (typeof value === 'string') setCertifiNum(value);
         }}
         isConditionMet={isConditionMet.certifiNum}
+        errorMsg={errMsg}
       />
       <Modal isOpen={isModalOpen} isBlur={true} setIsOpen={setIsModalOpen}>
         <div className="modal__container">
