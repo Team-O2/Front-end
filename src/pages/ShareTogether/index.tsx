@@ -5,11 +5,9 @@ import ConcertCardList from 'components/organisms/ConcertCardList';
 import ConcertList from 'components/organisms/ConcertList';
 import SeachForm from 'components/organisms/SearchForm';
 import React, { useEffect, useState } from 'react';
-import { useRecoilValue } from 'recoil';
-import { userStatusState } from 'stores/user';
 import Styled from 'styled-components';
 
-interface IConcertData {
+export interface IConcertData {
   videoLink: string;
   imgThumbnail: string;
   likes: number;
@@ -35,7 +33,6 @@ function ShareTogether(): React.ReactElement {
   const [keyword, setKeyword] = useState('');
   const [currentPage, setCurrentPage] = useState(1);
   const [totalConcertNum, setTotalConcertNum] = useState(0);
-  const userStatusData = useRecoilValue(userStatusState);
 
   useEffect(() => {
     const getConcertCategoryList = async (pageIndex: number) => {
