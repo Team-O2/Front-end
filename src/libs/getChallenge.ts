@@ -232,18 +232,13 @@ export const ChallengeScrap = async (token: string, challengeID: string) => {
       },
     });
     if (data.data.status === 200) {
-      alert(data.data.message);
-    } else {
-      return null;
-    }
-  } catch (e) {
-    if (e.response.data.message === '이미 스크랩 된 글입니다') {
-      alert(e.response.data.message);
+      console.log(data.data.message);
       return true;
     }
-    alert(e.response.data.message);
-    return undefined;
+  } catch (error) {
+    console.log(error.response.data.message);
   }
+  return false;
 };
 
 export const CancelChallengeScrap = async (token: string, challengeID: string) => {
@@ -254,12 +249,10 @@ export const CancelChallengeScrap = async (token: string, challengeID: string) =
       },
     });
     if (data.data.status === 200) {
-      alert(data.data.message);
-    } else {
-      return null;
+      return true;
     }
   } catch (e) {
-    alert(e.response.data.message);
-    return undefined;
+    console.log(e.response.data.message);
   }
+  return false;
 };
