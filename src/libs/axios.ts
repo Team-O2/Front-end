@@ -119,15 +119,17 @@ export const getChallengeList = async (token: string, limit: number, offset: num
     return null;
   }
 };
-
+const arrtoString = (arr: string[]) => {
+  return '[' + arr.map((item) => '"' + item + '"').toString() + ']';
+};
 export const postConcertWrite = async (token: string, concertWriteData: IConcertWriteData) => {
   const form = new FormData();
   concertWriteData.videoLink && form.append('videoLink', concertWriteData.videoLink);
   concertWriteData.imgThumbnail && form.append('imgThumbnail', concertWriteData.imgThumbnail);
   form.append('title', concertWriteData.title);
   form.append('text', concertWriteData.text);
-  form.append('interest', `[${concertWriteData.interest.join()}]`);
-  form.append('hashtag', `[${concertWriteData.hashtag.join()}]`);
+  form.append('interest', arrtoString(concertWriteData.interest));
+  form.append('hashtag', arrtoString(concertWriteData.hashtag));
   form.append('authorNickname', concertWriteData.authorNickname);
   try {
     const data = await serverAxios.post('/admin/concert', form, {
@@ -150,8 +152,8 @@ export const postNoticeWrite = async (token: string, noticeWriteData: INoticeDat
   const form = new FormData();
   form.append('title', noticeWriteData.title);
   form.append('text', noticeWriteData.text);
-  form.append('interest', `[${noticeWriteData.interest.join()}]`);
-  form.append('hashtag', `[${noticeWriteData.hashtag.join()}]`);
+  form.append('interest', arrtoString(noticeWriteData.interest));
+  form.append('hashtag', arrtoString(noticeWriteData.hashtag));
   try {
     const data = await serverAxios.post('/admin/notice', form, {
       headers: {
