@@ -6,6 +6,9 @@ interface IProps {
   title: string;
   img: string;
 }
+interface ISHeader {
+  url?: string;
+}
 const indextoName = (index: number) => {
   switch (index) {
     case 1:
@@ -21,34 +24,32 @@ const indextoName = (index: number) => {
 
 const RegisterHeader = ({ generation, title, img }: IProps) => {
   return (
-    <SHeader>
+    <SHeader url={img}>
       <div className="header">
-        <img className="header__img" src={img} alt="" />
-        <span className="header__text">Learn Myself {indextoName(generation)} 모집</span>
+        <div className="header__img">
+          <div className="header__text">
+            {title} {indextoName(generation)} 모집
+          </div>
+        </div>
       </div>
     </SHeader>
   );
 };
 
-const SHeader = Styled.div`
+const SHeader = Styled.div<ISHeader>`
 .header{
 
     &__img{
         width: 100%;
         height:253px;
         position:relative;
-
+        background: url(${(props) => props.url}) center center / cover;
+        display: flex;
+        align-items: center;
+        justify-content: center;
     }
     &__text{
-      position: absolute;
-      top:50%;
-      left:50%;
-      color: white;
-      z-index: 2;
-      text-align: center;
-      top:0;
-      padding-top:300px;
-      transform: translate(-50%, -50%);                                                                   
+      color: white;                                                                   
       font-family: AppleSDGothicNeo;
       font-size: 48px;
     }
