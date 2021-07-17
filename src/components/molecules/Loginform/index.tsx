@@ -87,7 +87,7 @@ function Loginform(): React.ReactElement {
     <LoginformWrap>
       <StyledInput
         className="email"
-        placeHolder="이메일를 입력해 주세요"
+        placeHolder="이메일을 입력해 주세요"
         width="406px"
         height="60px"
         onChange={(value) => {
