@@ -65,6 +65,9 @@ export interface ILearnMySelf {
   createdAt: string;
   updatedAt: string;
   __v: number;
+  isDeleted: boolean;
+  isLike: boolean;
+  isScrap: boolean;
 }
 
 export interface IMyUserCommentResponse {
