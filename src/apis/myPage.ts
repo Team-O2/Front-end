@@ -1,4 +1,5 @@
 import { serverAxios } from 'libs/axios';
+import { IChallengeData } from '../components/templates/LearnMyself/ChallengeList';
 import {
   IDeleteMyPageUserLearnMyselfParameter,
   IGetMyPageUserInfoParameter,
@@ -6,7 +7,6 @@ import {
   IMyScrappedLearnMyself,
   IMyScrappedShareTogether,
   IMyUserCommentResponse,
-  IMyUserLearnMyself,
 } from '../types/myPage';
 
 const MY_PAGE_URL_PREFIX = '/user/mypage';
@@ -83,9 +83,9 @@ export const getUserLearnMyselfListData = async ({
   token,
   limit = 8,
   offset = 0,
-}: IFetchParameter): Promise<IMyUserLearnMyself | null> => {
+}: IFetchParameter): Promise<IChallengeData[] | null> => {
   try {
-    const data = await serverAxios.get(`${MY_PAGE_URL_PREFIX}/challenge`, {
+    const data = await serverAxios.get(`${MY_PAGE_URL_PREFIX}/write`, {
       headers: { Accept: 'application/json', Authorization: token },
       params: { limit, offset },
     });

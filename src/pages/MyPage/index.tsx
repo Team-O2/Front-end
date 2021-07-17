@@ -13,6 +13,7 @@ import Modal from 'components/atoms/Modal';
 import { ChallengeModalComment, LearnMyselfCard, MyPageSection, ShareTogetherCard } from 'components/molecules';
 import DeleteModal from 'components/molecules/DeleteModal';
 import { MyCommentList, MyPageHeader } from 'components/organisms';
+import { IChallengeData } from 'components/templates/LearnMyself/ChallengeList';
 import dayjs from 'dayjs';
 import { getChallengeContent } from 'libs/getChallenge';
 import React, { useCallback, useEffect, useState } from 'react';
@@ -27,7 +28,6 @@ import {
   IMyScrappedLearnMyself,
   IMyScrappedShareTogether,
   IMyUserCommentResponse,
-  IMyUserLearnMyself,
 } from 'types/myPage';
 import { IShareTogether } from 'types/shareTogether';
 import { changeDateFormat } from 'utils';
@@ -37,7 +37,7 @@ function MyPage(): React.ReactElement {
   const [userInfo, setUserInfo] = useState<IMyPageHeader | null>(null);
   const [shareTogetherData, setShareTogetherData] = useState<IMyScrappedShareTogether | null>(null);
   const [learnMyselfData, setLearnMyselfData] = useState<IMyScrappedLearnMyself | null>(null);
-  const [userLearnMyselfData, setUserLearnMyselfData] = useState<IMyUserLearnMyself | null>(null);
+  const [userLearnMyselfData, setUserLearnMyselfData] = useState<IChallengeData[] | null>(null);
   const [userCommentData, setUserCommentData] = useState<IMyUserCommentResponse | null>(null);
   const [selectedCategory, setSelectedCategory] = useState('Concert');
   const [reRenderFlag, setReRenderFlag] = useState(false);
@@ -207,7 +207,7 @@ function MyPage(): React.ReactElement {
               column={4}
               gap={15}
               path="/mypage/challenge/mine"
-              data={userLearnMyselfData?.mypageChallengeScrap}
+              data={userLearnMyselfData}
               renderItemList={renderLearnMyself}
             />
           )}
