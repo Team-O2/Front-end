@@ -1,4 +1,6 @@
 import { getLearnMyselfListData } from 'apis/myPage';
+import ViewListCard from 'components/molecules/ViewListCard';
+import { IChallengeData } from 'components/templates/LearnMyself/ChallengeList';
 import React, { useCallback, useEffect, useState } from 'react';
 import { useRecoilValue } from 'recoil';
 import { userStatusState } from 'stores/user';
@@ -13,7 +15,8 @@ function ScrappedLearnMyself(): React.ReactElement {
 
   const fetchScrappedLearnMyself = useCallback(
     async (offset: number) => {
-      const data = await getLearnMyselfListData({ token: globalUserState?.token, limit: 10, offset });
+      // TODO: 페이지네이션 구현하면 나중에 총 갯수 조정할 것.
+      const data = await getLearnMyselfListData({ token: globalUserState?.token, limit: 1000, offset });
       data && setScrappedLearnMyself(data);
     },
     [globalUserState?.token],
@@ -30,7 +33,27 @@ function ScrappedLearnMyself(): React.ReactElement {
         <h2 className="h2_eng">Learn Myself</h2>
       </Header>
       {scrappedLearnMyself?.totalScrapNum ? (
-        1
+        scrappedLearnMyself?.mypageChallengeScrap.map((data: IChallengeData, id) => {
+          return (
+            <ViewListCard
+              id={data?._id}
+              nickname={data?.user?.nickname}
+              image={data?.user?.img}
+              createdAt={data?.createdAt}
+              interest={data?.interest}
+              good={data?.good}
+              bad={data?.bad}
+              learn={data?.learn}
+              like={data?.likes}
+              commentlist={data?.comments}
+              comments={data?.comments.length}
+              isLike={data?.isLike}
+              isScrap={data?.isScrap}
+              handleFetch={fetchScrappedLearnMyself}
+              key={id}
+            />
+          );
+        })
       ) : (
         /* TODO: 여기에 페이지 네이션 넣기 */
         <NoContents>
