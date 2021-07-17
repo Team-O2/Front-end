@@ -44,8 +44,7 @@ function ViewCardList({ challengeList, setChallengeList, generationNum }: IProps
               comments={data?.comments.length}
               isLike={data?.isLike}
               isScrap={data?.isScrap}
-              reRenderFlag={reRenderFlag}
-              setReRenderFlag={setReRenderFlag}
+              onChange={ChallengeList}
               key={id}
             />
           );
