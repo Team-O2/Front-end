@@ -59,7 +59,8 @@ interface IProps {
   isLike?: boolean;
   isScrap?: boolean;
   id: string;
-  onChange: (value?: number) => void;
+  onChange?: () => void;
+  handleFetch?: (offset: number) => void;
 }
 
 function ViewListCard({
@@ -77,6 +78,7 @@ function ViewListCard({
   commentlist,
   id,
   onChange,
+  handleFetch,
 }: IProps): React.ReactElement {
   const history = useHistory();
   const [userStatusData, setUserStatusData] = useRecoilState(userStatusState);
@@ -118,7 +120,8 @@ function ViewListCard({
       const token = userStatusData?.token;
       const data = await DeleteChallenge(id, token);
       data && setDeleteModalOpen(false);
-      onChange();
+      onChange?.();
+      handleFetch?.(0);
     } else {
       alert('네트워크가 좋지 않습니다');
     }
