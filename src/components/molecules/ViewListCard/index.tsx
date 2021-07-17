@@ -59,8 +59,7 @@ interface IProps {
   isLike?: boolean;
   isScrap?: boolean;
   id: string;
-  reRenderFlag: boolean;
-  setReRenderFlag: (value: boolean) => void;
+  onChange: (value?: number) => void;
 }
 
 function ViewListCard({
@@ -77,8 +76,7 @@ function ViewListCard({
   comments,
   commentlist,
   id,
-  reRenderFlag,
-  setReRenderFlag,
+  onChange,
 }: IProps): React.ReactElement {
   const history = useHistory();
   const [userStatusData, setUserStatusData] = useRecoilState(userStatusState);
@@ -117,10 +115,10 @@ function ViewListCard({
 
   const deleteClickHandler = async () => {
     if (userStatusData) {
-      const token = await userStatusData?.token;
+      const token = userStatusData?.token;
       const data = await DeleteChallenge(id, token);
       data && setDeleteModalOpen(false);
-      setReRenderFlag(!reRenderFlag);
+      onChange();
     } else {
       alert('네트워크가 좋지 않습니다');
     }
@@ -407,7 +405,7 @@ function ViewListCard({
 
 const SViewListCard = Styled.div`
 .container{
-  padding-bottom:60px;
+  padding-top: 60px;
 }
 .detail{
     position: relative;
