@@ -31,11 +31,11 @@ function CategoryButton({ tag, isMore, selectedCategory, onClickInterest }: IPro
 const SCategoryButton = Styled.label<IData>`
   height: 46px;
   border-radius: 60px;
-  padding: 12px 25px;
+  padding: 12px 30px;
   margin-right: 10px;
   background-color:${({ isCategoryClicked }) => (isCategoryClicked ? '#03b6ce' : '#ffffff')};
   border: ${({ isCategoryClicked }) =>
-    isCategoryClicked ? '#03b6ce' : ({ readMore }) => (readMore ? '1px solid #8b8b8b' : '1px solid #03b6ce')};
+    isCategoryClicked ? '1px solid #03b6ce' : ({ readMore }) => (readMore ? '1px solid #8b8b8b' : '1px solid #03b6ce')};
   .button {
     white-space : nowrap; 
     font-size: 16px;

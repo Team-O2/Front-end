@@ -97,7 +97,22 @@ const SHamDropDown = Styled.div<{ isOpened?: boolean; isEnglish: boolean }>`
       display : flex;
       flex-direction : column;
       max-height : 229px;
-      overflow: scroll;
+      overflow-y: scroll;
+      ::-webkit-scrollbar {
+      width: 0.8rem;
+    }
+    ::-webkit-scrollbar-track {
+      background: none;
+    }
+    ::-webkit-scrollbar-thumb {
+      background: #c1c1c1;
+      border-radius: 0.5rem;
+      box-sizing: border-box;
+    }
+    /* Handle on hover */
+    ::-webkit-scrollbar-thumb:hover {
+      background: #c1c1c1;
+    }
       align-items : center;
     }
     &__btn{
