@@ -58,7 +58,6 @@ function CJoin(): React.ReactElement {
   };
   const modalBtnHandler = async () => {
     //여기서 api호출!!
-    setUserData({ ...userData, interest: selectedInterest });
     const postData = {
       email: userData.email,
       password: userData.password,
@@ -81,6 +80,9 @@ function CJoin(): React.ReactElement {
   const joinBtnHandler = () => {
     setIsInterestModalOpen(true);
   };
+  useEffect(() => {
+    setUserData({ ...userData, interest: selectedInterest });
+  }, [selectedInterest]);
 
   useEffect(() => {
     if (
