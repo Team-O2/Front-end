@@ -55,7 +55,7 @@ function ChallengeHeader({
   const [selectedCategory, setSelectedCategory] = useState('전체');
   const [keyword, setKeyword] = useState('');
   const [booleanMine, setBooleanMine] = useState(false);
-  const [ismine, setIsmine] = useState(1);
+  const [ismine, setIsmine] = useState(0);
   const [userStateNum, setUserState] = useState(userStatusData ? userStatusData.userType : 0);
 
   const getChallengeCategoryData = useCallback(
