@@ -98,6 +98,7 @@ function ViewListCard({
   const [userStateNickname, setUserStateNickname] = useState(userData ? userData.nickname : 0);
   const [isMine, setIsMine] = useState(false);
   const [likeRender, setLikeRender] = useState(isLike);
+  const [scrapRender, setScrapRender] = useState(isScrap);
 
   const getCommentList = useCallback(async () => {
     if (userStatusData) {
@@ -152,14 +153,20 @@ function ViewListCard({
   const submitScarp = async () => {
     if (userStatusData) {
       const token = userStatusData.token;
-      await ChallengeScrap(token, id);
+      const submitSuccess = await ChallengeScrap(token, id);
+      if (submitSuccess) {
+        setScrapRender(true);
+      }
     }
   };
 
   const cancelScrap = async () => {
     if (userStatusData) {
       const token = userStatusData.token;
-      await CancelChallengeScrap(token, id);
+      const cancelSuccess = await CancelChallengeScrap(token, id);
+      if (cancelSuccess) {
+        setScrapRender(false);
+      }
     }
   };
 
@@ -184,7 +191,7 @@ function ViewListCard({
                     <p className="profile__time">{dayjs(createdAt).format('MM.DD')}</p>
                   </div>
                   {userStateNum === 0 || userStateNum === 1 || userStateNum === 2 || isMine === false ? (
-                    isScrap === false ? (
+                    scrapRender === false ? (
                       <div className="menu__bar">
                         <Button className="menuIcon">
                           <img
