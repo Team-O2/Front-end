@@ -1,10 +1,10 @@
+import { ChallengeListData } from 'apis';
 import ViewListCard from 'components/molecules/ViewListCard';
-import { ChallengeListData } from 'libs/getChallenge';
+import { IChallengeData } from 'pages/LearnMyself/template/ChallengeList';
 import React, { useCallback, useEffect, useState } from 'react';
 import { useRecoilValue } from 'recoil';
 import { userStatusState } from 'stores/user';
 import Styled from 'styled-components';
-import { IChallengeData } from '../../templates/LearnMyself/ChallengeList';
 
 interface IProps {
   challengeList: IChallengeData[] | null;

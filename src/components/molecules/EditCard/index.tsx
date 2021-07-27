@@ -1,4 +1,4 @@
-import { ChallengeEdit, getChallengeContent } from 'libs/getChallenge';
+import { ChallengeEdit, getChallengeContent } from 'apis';
 import React, { useEffect, useState } from 'react';
 import { useHistory } from 'react-router-dom';
 import { useRecoilState } from 'recoil';
@@ -402,8 +402,8 @@ const SWriteCard = Styled.div`
         padding: 40px 60px 40px 60px;
         width: 844px;
         height:369px;
-        font-size: 18px;
         resize:none;
+        font-size: 18px;
     }
 
     .button{
@@ -435,12 +435,12 @@ const SWriteCard = Styled.div`
         color: #FFFFFF;
     }
     .character{
-        margin: 0 auto;
-        padding-top:60px;
-        width:844px;
         position:sticky;
         top:20px;
+        margin: 0 auto;
         background-color:white;
+        padding-top:60px;
+        width:844px;
 
         &__1{
             padding-left:60px;
@@ -449,12 +449,12 @@ const SWriteCard = Styled.div`
             padding-left:50px;
         }
         &__black{
-            padding-right:50px;
             padding-top:29px;
+            padding-right:50px;
         }
         &__color1{
-            padding-left:200px;
             padding-top:29px;
+            padding-left:200px;
         }
         &__color2{
             padding-left:450px;
@@ -541,12 +541,12 @@ const SWriteCard = Styled.div`
 
         }
         .tag__group2{
-          background: #FFFFFF;
-          padding: 20px 30px 30px 30px;
-          border: 1px solid rgba(223, 223, 223, 0.5);
           box-sizing: border-box;
+          border: 1px solid rgba(223, 223, 223, 0.5);
+          border-radius: 16px;
           box-shadow: 0px 0px 15px rgba(23, 22, 91, 0.08);
-          border-radius: 16px
+          background: #FFFFFF;
+          padding: 20px 30px 30px 30px
           
         }
 

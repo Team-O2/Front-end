@@ -1,6 +1,3 @@
-import LikeIconFilled from 'assets/images/heart_filled.svg';
-import Button from 'components/atoms/Button';
-import dayjs from 'dayjs';
 import {
   CancelChallengeLike,
   CancelChallengeScrap,
@@ -8,7 +5,10 @@ import {
   ChallengeScrap,
   DeleteChallenge,
   getChallengeContent,
-} from 'libs/getChallenge';
+} from 'apis';
+import LikeIconFilled from 'assets/images/heart_filled.svg';
+import Button from 'components/atoms/Button';
+import dayjs from 'dayjs';
 import React, { useCallback, useEffect, useState } from 'react';
 import { useHistory } from 'react-router';
 import { useRecoilState } from 'recoil';

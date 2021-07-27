@@ -1,5 +1,5 @@
+import { getChallengeSearchData } from 'apis';
 import CategoryList from 'components/organisms/CategoryList';
-import { getChallengeSearchData } from 'libs/getChallenge';
 import React, { useCallback, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { useRecoilValue } from 'recoil';
