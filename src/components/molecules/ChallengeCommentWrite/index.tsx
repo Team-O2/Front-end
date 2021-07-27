@@ -1,6 +1,6 @@
+import { postChallengeComment } from 'apis';
 import { Button } from 'components/atoms';
 import TextArea from 'components/atoms/TextArea';
-import { postChallengeComment } from 'libs/getChallenge';
 import React, { useState } from 'react';
 import { useRecoilState } from 'recoil';
 import { userStatusState } from 'stores/user';

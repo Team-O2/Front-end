@@ -1,5 +1,5 @@
 import { serverAxios } from 'libs/axios';
-import { IChallengeData } from '../components/templates/LearnMyself/ChallengeList';
+import { IChallengeData } from 'pages/LearnMyself/template/ChallengeList';
 import {
   IDeleteMyPageUserLearnMyselfParameter,
   IGetMyPageUserInfoParameter,

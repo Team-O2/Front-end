@@ -75,3 +75,25 @@ export const updateUserInfo = async (
     return null;
   }
 };
+
+interface SignData {
+  challengeCNT: number;
+}
+
+export const SignRegister = async (signData: SignData, token: string) => {
+  try {
+    const data = await serverAxios.post('/user/register', signData, {
+      headers: {
+        Authorization: token,
+      },
+    });
+    console.log('[SUCCESS] POST data', data);
+    return true;
+  } catch (error) {
+    if (error.response.data) {
+      alert(error.response.data.message);
+    }
+    console.log('[FAIL] POST data', error.response.data);
+  }
+  return false;
+};

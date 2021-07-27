@@ -1,5 +1,4 @@
-import { getRegistPeriod } from 'apis';
-import { SignRegister } from 'libs/getChallenge';
+import { getRegistPeriod, SignRegister } from 'apis';
 import React, { useEffect, useState } from 'react';
 import { useRecoilState } from 'recoil';
 import { userState, userStatusState } from 'stores/user';
@@ -13,6 +12,7 @@ import MinusIcon from '../../../assets/images/minusIcon.svg';
 import PlusIcon from '../../../assets/images/plusIcon.svg';
 import Modal from '../../atoms/Modal/index';
 import RegisterHeader from '../RegisterHeader';
+
 interface IPeriodData {
   title: string;
   generation: number;
