@@ -1,4 +1,4 @@
-import { getRegistPeriod } from 'libs/axios';
+import { getRegistPeriod } from 'apis';
 import { SignRegister } from 'libs/getChallenge';
 import React, { useEffect, useState } from 'react';
 import { useRecoilState } from 'recoil';
@@ -299,9 +299,9 @@ const SRegister = Styled.div`
         font-size: 14px;
         
         &__minus-plus{
-          cursor: pointer;
           border:none;
           background-color: #FFFFFF;
+          cursor: pointer;
         }
         &__setting{
           display:inline-block;
@@ -312,23 +312,23 @@ const SRegister = Styled.div`
           padding-left:25px;
         }
         &__box{
+          box-sizing: border-box;
           display:inline-block;
-          float:right;
-          border: solid 1px #dfdfdf;
-          border-radius: 4px;
-          width: 119px;
-          height: 36px;
-          margin-top: 60px;
-          padding: 0 16px;
           display: flex;
+          float:right;
           flex-direction: row;
           align-items: center;
           justify-content: space-between;
+          margin-top: 60px;
+          border: solid 1px #dfdfdf;
+          border-radius: 4px;
+          border-radius: 4px;
+          padding: 0 16px;
+          width: 119px;
+          height: 36px;
           font-family: HomepageBaukasten;
           font-size: 16px;
           font-weight: bold;
-          box-sizing: border-box;
-          border-radius: 4px;
         }
         &__detail{
             margin: 4px 0 0;
@@ -468,15 +468,15 @@ const SRegister = Styled.div`
     }
 
     .modal__button{
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      justify-content: center;
       border:none;
       border-radius: 0px 0px 16px 16px;
       background: linear-gradient(91.91deg, #36C8F5 7.34%, #13E2DD 90.35%);
       width:500px;
       height:64px;
-      display: flex;
-      flex-direction: row;
-      align-items: center;
-      justify-content: center;
     }
     .modal__img{
       display:inline-block;
@@ -574,6 +574,8 @@ const SRegister = Styled.div`
         }
 
         &__title{
+          background: linear-gradient(to right, #36c8f5, #13e2dd);
+          -webkit-background-clip: text;
           -webkit-background-clip: text;
           background-clip: text;
             background-image: linear-gradient(to top, var(--colors-primary-36-c-8-f-5-o-2-blue), var(--colors-primary-13-e-2-dd-o-2-mint));
@@ -586,8 +588,6 @@ const SRegister = Styled.div`
           font-family: AppleSDGothicNeo;
           font-size: 48px;
           font-weight: bold;
-          background: linear-gradient(to right, #36c8f5, #13e2dd);
-          -webkit-background-clip: text;
           -webkit-text-fill-color: transparent;
           
         }

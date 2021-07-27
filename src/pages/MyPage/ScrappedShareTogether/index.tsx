@@ -1,4 +1,4 @@
-import { getShareTogetherListData } from 'apis/myPage';
+import { getShareTogetherListData } from 'apis';
 import ConcertList from 'components/organisms/ConcertList';
 import React, { useCallback, useEffect, useState } from 'react';
 import { useRecoilValue } from 'recoil';

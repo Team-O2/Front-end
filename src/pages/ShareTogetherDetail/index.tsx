@@ -5,7 +5,7 @@ import {
   getConcertUserData,
   postConcertLike,
   postConcertScrap,
-} from 'apis/ShareTogether';
+} from 'apis';
 import LoginModal from 'assets/images/loginAlert.svg';
 import Button from 'components/atoms/Button';
 import Modal from 'components/atoms/Modal/index';

@@ -1,6 +1,6 @@
+import { postNewPw } from 'apis';
 import checkIcon from 'assets/images/checkIcon.svg';
 import StyledInput from 'components/atoms/StyledInput';
-import { postNewPw } from 'libs/axios';
 import React, { useEffect, useState } from 'react';
 import { useRecoilValue } from 'recoil';
 import { userStatusState } from 'stores/user';

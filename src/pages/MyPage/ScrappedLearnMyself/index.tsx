@@ -1,4 +1,4 @@
-import { getLearnMyselfListData } from 'apis/myPage';
+import { getLearnMyselfListData } from 'apis';
 import ViewListCard from 'components/molecules/ViewListCard';
 import { IChallengeData } from 'components/templates/LearnMyself/ChallengeList';
 import React, { useCallback, useEffect, useState } from 'react';

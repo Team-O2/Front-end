@@ -1,4 +1,4 @@
-import { getUserLearnMyselfListData } from 'apis/myPage';
+import { getUserLearnMyselfListData } from 'apis';
 import ViewListCard from 'components/molecules/ViewListCard';
 import React, { useCallback, useEffect, useState } from 'react';
 import { useRecoilValue } from 'recoil';

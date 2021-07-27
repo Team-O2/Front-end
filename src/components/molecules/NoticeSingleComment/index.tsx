@@ -1,4 +1,4 @@
-import { postNoticeComment } from 'apis/ShareTogether';
+import { postNoticeComment } from 'apis';
 import Button from 'components/atoms/Button';
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';

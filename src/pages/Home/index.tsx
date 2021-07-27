@@ -1,4 +1,5 @@
 import { keyframes } from '@emotion/react';
+import { getGeneration } from 'apis';
 import {
   CommunicationKingFill,
   EmpathizingFill,
@@ -21,7 +22,6 @@ import speakerBadge2 from 'assets/images/speakerBadge2.png';
 import speakerBadge3 from 'assets/images/speakerBadge3.png';
 import { Button } from 'components/atoms';
 import BadgeCard from 'components/molecules/BadgeExpCard';
-import { getGeneration } from 'libs/axios';
 import React, { useEffect, useState } from 'react';
 import Reveal from 'react-awesome-reveal';
 import { Link } from 'react-router-dom';

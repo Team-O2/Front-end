@@ -1,4 +1,4 @@
-import { postConcertComment } from 'apis/ShareTogether';
+import { postConcertComment } from 'apis';
 import Button from 'components/atoms/Button';
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';

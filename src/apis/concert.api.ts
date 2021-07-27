@@ -4,10 +4,7 @@ interface IConcertCommentData {
   parentID?: string;
   text: string;
 }
-interface INoticeCommentData {
-  parentID?: string;
-  text: string;
-}
+
 interface IFetchParameter {
   token?: string;
   limit?: number;
@@ -15,9 +12,12 @@ interface IFetchParameter {
   keyword?: string;
   tag?: string;
 }
+
+const PREFIX_URL = '/concert';
+
 export const getConcertListData = async (token: string) => {
   try {
-    const data = await serverAxios.get('/concert', {
+    const data = await serverAxios.get(`${PREFIX_URL}`, {
       headers: {
         Authorization: token,
       },
@@ -38,7 +38,7 @@ export const getConcertListData = async (token: string) => {
 
 export const getConcertData = async (concertID: string) => {
   try {
-    const data = await serverAxios.get(`/concert/${concertID}`, {
+    const data = await serverAxios.get(`${PREFIX_URL}/${concertID}`, {
       params: {
         concertID: concertID,
       },
@@ -56,7 +56,7 @@ export const getConcertData = async (concertID: string) => {
 
 export const getConcertUserData = async (token: string, concertID: string) => {
   try {
-    const data = await serverAxios.get(`/concert/${concertID}`, {
+    const data = await serverAxios.get(`${PREFIX_URL}/${concertID}`, {
       headers: {
         Authorization: token,
       },
@@ -77,7 +77,7 @@ export const getConcertUserData = async (token: string, concertID: string) => {
 
 export const getConcertSearchData = async ({ limit = 11, offset = 0, keyword, tag }: IFetchParameter) => {
   try {
-    const data = await serverAxios.get(`/concert/search?tag=${tag}&keyword=${keyword}`, {
+    const data = await serverAxios.get(`${PREFIX_URL}/search?tag=${tag}&keyword=${keyword}`, {
       params: {
         offset,
         limit,
@@ -101,7 +101,7 @@ export const postConcertComment = async (
   commentData: IConcertCommentData,
 ) => {
   try {
-    const data = await serverAxios.post(`/concert/comment/${concertID}`, commentData, {
+    const data = await serverAxios.post(`${PREFIX_URL}/comment/${concertID}`, commentData, {
       headers: {
         Authorization: token,
       },
@@ -119,7 +119,7 @@ export const postConcertComment = async (
 
 export const postConcertLike = async (token: string, concertID: string) => {
   try {
-    const data = await serverAxios.post(`/concert/like/${concertID}`, '', {
+    const data = await serverAxios.post(`${PREFIX_URL}/like/${concertID}`, '', {
       headers: {
         Authorization: token,
       },
@@ -139,7 +139,7 @@ export const postConcertLike = async (token: string, concertID: string) => {
 
 export const deleteConcertLike = async (token: string, concertID: string) => {
   try {
-    const data = await serverAxios.delete(`/concert/like/${concertID}`, {
+    const data = await serverAxios.delete(`${PREFIX_URL}/like/${concertID}`, {
       headers: {
         Authorization: token,
       },
@@ -156,7 +156,7 @@ export const deleteConcertLike = async (token: string, concertID: string) => {
 
 export const postConcertScrap = async (token: string, concertID: string) => {
   try {
-    const data = await serverAxios.post(`/concert/scrap/${concertID}`, '', {
+    const data = await serverAxios.post(`${PREFIX_URL}/scrap/${concertID}`, '', {
       headers: {
         Authorization: token,
       },
@@ -176,80 +176,7 @@ export const postConcertScrap = async (token: string, concertID: string) => {
 
 export const deleteConcertScrap = async (token: string, concertID: string) => {
   try {
-    const data = await serverAxios.delete(`/concert/scrap/${concertID}`, {
-      headers: {
-        Authorization: token,
-      },
-    });
-    if (data.data.status === 200) {
-    } else {
-      return null;
-    }
-  } catch (e) {
-    alert(e.response.data.message);
-    return undefined;
-  }
-};
-
-export const getNoticeListData = async ({ limit = 8, offset = 0 }: IFetchParameter) => {
-  try {
-    const data = await serverAxios.get('/notice', {
-      params: {
-        offset,
-        limit,
-      },
-    });
-    if (data.data.status === 200) {
-      return data.data.data;
-    } else {
-      return null;
-    }
-  } catch (e) {
-    alert(e.response.data.message);
-    return undefined;
-  }
-};
-
-export const getNoticeData = async (noticeID: string) => {
-  try {
-    const data = await serverAxios.get(`/notice/${noticeID}`, {});
-    if (data.data.status === 200) {
-      return data.data.data;
-    } else {
-      return null;
-    }
-  } catch (e) {
-    alert(e.response.data.message);
-    return undefined;
-  }
-};
-
-export const getNoticeSearchData = async ({ limit = 8, offset = 0, keyword }: IFetchParameter) => {
-  try {
-    const data = await serverAxios.get(`/notice/search?keyword=${keyword}`, {
-      params: {
-        offset,
-        limit,
-      },
-    });
-    if (data.data.status === 200) {
-      return data.data.data;
-    } else {
-      return null;
-    }
-  } catch (e) {
-    alert(e.response.data.message);
-    return undefined;
-  }
-};
-
-export const postNoticeComment = async (
-  token: string,
-  noticeID: string | undefined,
-  commentData: INoticeCommentData,
-) => {
-  try {
-    const data = await serverAxios.post(`/notice/comment/${noticeID}`, commentData, {
+    const data = await serverAxios.delete(`${PREFIX_URL}/scrap/${concertID}`, {
       headers: {
         Authorization: token,
       },

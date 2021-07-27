@@ -1,7 +1,7 @@
+import { getChallengeList } from 'apis';
 import plusIcon from 'assets/images/plusIcon_dfdfdf.svg';
 import Label from 'components/atoms/Label';
 import AdminChallengeCard from 'components/molecules/AdminChallengeCard';
-import { getChallengeList } from 'libs/axios';
 import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { useRecoilState } from 'recoil';
