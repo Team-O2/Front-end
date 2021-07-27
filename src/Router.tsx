@@ -1,12 +1,12 @@
 import Footer from 'components/organisms/Footer';
 import Header from 'components/organisms/Header';
-import EditLearnMyself from 'components/templates/LearnMyself/ChallengeEdit';
-import LearnMyself from 'components/templates/LearnMyself/ChallengeList';
-import ChallengeRegister from 'components/templates/LearnMyself/ChallengeRegister';
-import WriteLearnMyself from 'components/templates/LearnMyself/ChallengeWrite';
 import { MyPage, Setting } from 'pages';
 import AdminChallengeList from 'pages/AdminChallengeList';
 import FindPwd from 'pages/FindPwd';
+import EditLearnMyself from 'pages/LearnMyself/template/ChallengeEdit';
+import LearnMyself from 'pages/LearnMyself/template/ChallengeList';
+import ChallengeRegister from 'pages/LearnMyself/template/ChallengeRegister';
+import WriteLearnMyself from 'pages/LearnMyself/template/ChallengeWrite';
 import Notice from 'pages/Notice';
 import NoticeDetail from 'pages/NoticeDetail';
 import SetPwd from 'pages/SetPwd';

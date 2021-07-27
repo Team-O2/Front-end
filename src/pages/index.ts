@@ -1,4 +1,4 @@
-export { default as BasedTemplate } from '../components/templates/Base';
+export { default as BasedTemplate } from './Base';
 export { default as Home } from './Home';
 export { default as Join } from './Join';
 export { default as LearnMyself } from './LearnMyself';
