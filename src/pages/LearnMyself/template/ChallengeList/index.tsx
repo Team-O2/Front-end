@@ -1,6 +1,6 @@
+import { ChallengeListData } from 'apis';
 import ChallengeHeader from 'components/molecules/ChallengeHeader.tsx';
 import ViewCardList from 'components/organisms/ViewCardList';
-import { ChallengeListData } from 'libs/getChallenge';
 import React, { useCallback, useState } from 'react';
 import { RouteComponentProps } from 'react-router';
 import { useRecoilValue } from 'recoil';

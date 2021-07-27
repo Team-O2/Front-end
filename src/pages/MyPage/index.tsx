@@ -1,6 +1,7 @@
 import {
   deleteUserCommentList,
   deleteUserLearnMyselfBookmark,
+  getChallengeContent,
   getLearnMyselfListData,
   getMyPageUserInfo,
   getShareTogetherListData,
@@ -13,9 +14,8 @@ import Modal from 'components/atoms/Modal';
 import { ChallengeModalComment, LearnMyselfCard, MyPageSection, ShareTogetherCard } from 'components/molecules';
 import DeleteModal from 'components/molecules/DeleteModal';
 import { MyCommentList, MyPageHeader } from 'components/organisms';
-import { IChallengeData } from 'components/templates/LearnMyself/ChallengeList';
 import dayjs from 'dayjs';
-import { getChallengeContent } from 'libs/getChallenge';
+import { IChallengeData } from 'pages/LearnMyself/template/ChallengeList';
 import React, { useCallback, useEffect, useState } from 'react';
 import { useRecoilValue } from 'recoil';
 import { userState, userStatusState } from 'stores/user';
