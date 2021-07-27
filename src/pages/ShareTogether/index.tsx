@@ -1,4 +1,4 @@
-import { getConcertSearchData } from 'apis/ShareTogether';
+import { getConcertSearchData } from 'apis';
 import ConcertTitle from 'components/molecules/ConcertTitle';
 import CategoryList from 'components/organisms/CategoryList';
 import ConcertCardList from 'components/organisms/ConcertCardList';

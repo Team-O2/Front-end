@@ -1,8 +1,8 @@
+import { getGeneration } from 'apis';
 import challengeIcon from 'assets/images/hamChallengeicon.svg';
 import unChallengeIcon from 'assets/images/hamUnchallengeicon.svg';
 import loginIcon from 'assets/images/loginIcon.svg';
 import userImage from 'assets/images/userImage.png';
-import { getGeneration } from 'libs/axios';
 import React, { useEffect, useState } from 'react';
 import { Link, useHistory } from 'react-router-dom';
 import { useRecoilState } from 'recoil';
@@ -346,9 +346,9 @@ const HamburgerWrap = Styled.div`
       background: none;
     }
     ::-webkit-scrollbar-thumb {
-      background: #c1c1c1;
-      border-radius: 0.5rem;
       box-sizing: border-box;
+      border-radius: 0.5rem;
+      background: #c1c1c1;
     }
     /* Handle on hover */
     ::-webkit-scrollbar-thumb:hover {

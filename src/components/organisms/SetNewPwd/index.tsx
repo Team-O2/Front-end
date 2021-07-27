@@ -1,6 +1,6 @@
+import { patchNewPwd } from 'apis';
 import checkIcon from 'assets/images/checkIcon.svg';
 import StyledInput from 'components/atoms/StyledInput';
-import { patchNewPwd } from 'libs/axios';
 import React, { useEffect, useState } from 'react';
 import { useHistory } from 'react-router-dom';
 import { useRecoilValue } from 'recoil';

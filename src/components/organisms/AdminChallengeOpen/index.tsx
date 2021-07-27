@@ -1,3 +1,4 @@
+import { challengeOpen } from 'apis';
 import checkOff from 'assets/images/checkall_off.svg';
 import checkOn from 'assets/images/checkall_on.svg';
 import plusIcon from 'assets/images/plusIconGrey.svg';
@@ -6,7 +7,6 @@ import CheckBox from 'components/atoms/CheckBox';
 import PhotoUpload from 'components/atoms/fileUpload';
 import Label from 'components/atoms/Label';
 import AdminChallengeOpenForm from 'components/molecules/AdminChallengeOpenForm';
-import { challengeOpen } from 'libs/axios';
 import React, { useEffect, useState } from 'react';
 import { useHistory } from 'react-router-dom';
 import { useRecoilState } from 'recoil';

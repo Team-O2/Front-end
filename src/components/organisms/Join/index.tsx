@@ -1,8 +1,8 @@
+import { postJoin } from 'apis';
 import Button from 'components/atoms/Button';
 import Label from 'components/atoms/Label';
 import Modal from 'components/atoms/Modal';
 import Joinform from 'components/molecules/Joinform';
-import { postJoin } from 'libs/axios';
 import React, { useEffect, useState } from 'react';
 import { useHistory } from 'react-router-dom';
 import { interestList } from 'resources/string';

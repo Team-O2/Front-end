@@ -1,8 +1,8 @@
+import { sendVerifinum } from 'apis';
 import Button from 'components/atoms/Button';
 import Label from 'components/atoms/Label';
 import FindPWDForm from 'components/molecules/FindPwdForm';
 import SetNewPwd from 'components/organisms/SetNewPwd';
-import { sendVerifinum } from 'libs/axios';
 import React, { useEffect, useState } from 'react';
 import { useHistory } from 'react-router-dom';
 import Styled from 'styled-components';

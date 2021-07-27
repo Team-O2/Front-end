@@ -1,4 +1,4 @@
-import { postNoticeComment } from 'apis/ShareTogether';
+import { postNoticeComment } from 'apis';
 import Button from 'components/atoms/Button';
 import CommentWrite from 'components/molecules/CommentWrite';
 import NoticeSingleComment from 'components/molecules/NoticeSingleComment';

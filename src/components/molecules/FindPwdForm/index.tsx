@@ -1,9 +1,9 @@
+import { sendEmail } from 'apis';
 import checkIcon from 'assets/images/checkIcon.svg';
 import Button from 'components/atoms/Button';
 import Label from 'components/atoms/Label';
 import Modal from 'components/atoms/Modal';
 import StyledInput from 'components/atoms/StyledInput';
-import { sendEmail } from 'libs/axios';
 import React, { useEffect, useState } from 'react';
 import Styled from 'styled-components';
 

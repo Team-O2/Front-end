@@ -6,7 +6,7 @@ import {
   getShareTogetherListData,
   getUserCommentListData,
   getUserLearnMyselfListData,
-} from 'apis/myPage';
+} from 'apis';
 import { Logo } from 'assets/images';
 import { Button, Img } from 'components/atoms';
 import Modal from 'components/atoms/Modal';

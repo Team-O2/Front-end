@@ -1,4 +1,4 @@
-import { getNoticeData } from 'apis/ShareTogether';
+import { getNoticeData } from 'apis';
 import NoticeDetailTitle from 'components/molecules/NoticeDetailTitle';
 import NoticeCommentList from 'components/organisms/NoticeCommentList';
 import NoticeDetailContent from 'components/organisms/NoticeDetailContent';

@@ -1,7 +1,7 @@
+import { postConcertWrite, postNoticeWrite } from 'apis';
 import Button from 'components/atoms/Button';
 import Label from 'components/atoms/Label';
 import AdminWriteForm from 'components/molecules/AdminWriteForm';
-import { postConcertWrite, postNoticeWrite } from 'libs/axios';
 import React, { useEffect, useState } from 'react';
 import { useHistory } from 'react-router-dom';
 import { useRecoilState } from 'recoil';

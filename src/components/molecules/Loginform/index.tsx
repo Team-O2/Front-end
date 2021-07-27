@@ -1,6 +1,6 @@
+import { getUserData, postLogin } from 'apis';
 import Button from 'components/atoms/Button';
 import StyledInput from 'components/atoms/StyledInput';
-import { getUserData, postLogin } from 'libs/axios';
 import React, { useEffect, useState } from 'react';
 import { useHistory } from 'react-router-dom';
 import { useRecoilState } from 'recoil';
@@ -124,14 +124,14 @@ const LoginformWrap = Styled.div`
   }
   .login{
     &_button{
-      width: 406px;
-      height: 60px;
+      margin-top : 14px;
       border-radius: 4px;
       background-image: linear-gradient(to right, #36c8f5,#13e2dd );
+      width: 406px;
+      height: 60px;
+      color : #ffffff;
       font-size : 16px;
       font-weight : bold;
-      color : #ffffff;
-      margin-top : 14px;
     }
   }
 `;

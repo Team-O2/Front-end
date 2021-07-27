@@ -1,4 +1,4 @@
-import { postConcertComment } from 'apis/ShareTogether';
+import { postConcertComment } from 'apis';
 import Button from 'components/atoms/Button';
 import CommentWrite from 'components/molecules/CommentWrite';
 import SingleComment from 'components/molecules/SingleComment';
