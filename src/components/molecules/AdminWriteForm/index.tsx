@@ -1,8 +1,5 @@
 import plusIconGrey from 'assets/images/plusIconGrey.svg';
-import ChipBtn from 'components/atoms/ChipBtn';
-import FileUpload from 'components/atoms/fileUpload';
-import Input from 'components/atoms/Input';
-import Label from 'components/atoms/Label';
+import { ChipBtn, FileUpload, Input, Label } from 'components/atoms';
 import DropDown from 'components/molecules/DropDown';
 import EditorForm from 'components/molecules/EditorForm';
 import React, { useEffect, useState } from 'react';
