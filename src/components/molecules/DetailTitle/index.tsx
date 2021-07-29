@@ -3,13 +3,13 @@ import React from 'react';
 import Styled from 'styled-components';
 
 interface IProps {
-  speaker?: string;
+  authorNickname?: string;
   interest?: string[];
   createdAt?: string;
   title?: string;
 }
 
-function DetailTitle({ title, speaker, createdAt, interest }: IProps): React.ReactElement {
+function DetailTitle({ title, authorNickname, createdAt, interest }: IProps): React.ReactElement {
   const interestDivide = interest?.join(' | ');
   return (
     <>
@@ -21,7 +21,7 @@ function DetailTitle({ title, speaker, createdAt, interest }: IProps): React.Rea
           <p>{title}</p>
         </div>
         <div className="title__bottom">
-          <p>{speaker}</p>
+          <p>{authorNickname}</p>
           <p>{`${dayjs(createdAt).format('YY.MM.DD')}`}</p>
           <p>{interestDivide}</p>
         </div>

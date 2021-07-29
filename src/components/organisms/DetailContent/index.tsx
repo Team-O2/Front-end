@@ -1,9 +1,5 @@
-import CommentIcon from 'assets/images/comment.svg';
-import LikeIcon from 'assets/images/heart.svg';
-import LikeIconFilled from 'assets/images/heart_filled.svg';
-import ScrapIcon from 'assets/images/scrap.svg';
-import ScrapFilledIcon from 'assets/images/scrap_filled.svg';
-import HashTag from 'components/atoms/HashTag';
+import { CommentIcon, LikeIcon, LikeIconFilled, ScrapFilledIcon, ScrapIcon } from 'assets/images';
+import { HashTag } from 'components/atoms';
 import React from 'react';
 import Styled from 'styled-components';
 
@@ -11,9 +7,9 @@ interface IProps {
   video?: string;
   desc?: string;
   hashtag?: string[];
-  like?: number;
-  comments?: number;
-  scrap?: number;
+  likeNum?: number;
+  commentNum?: number;
+  scrapNum?: number;
   onLike?: () => void;
   onScrap?: () => void;
   userLike?: boolean;
@@ -24,9 +20,9 @@ function DetailContent({
   video,
   desc,
   hashtag,
-  like,
-  comments,
-  scrap,
+  likeNum,
+  commentNum,
+  scrapNum,
   onLike,
   onScrap,
   userLike,
@@ -46,15 +42,15 @@ function DetailContent({
       <div className="icons">
         <div className="like">
           <img className="like__img" src={userLike ? LikeIconFilled : LikeIcon} onClick={onLike} alt="" />
-          {like}
+          {likeNum}
         </div>
         <div className="comments">
           <img className="comments__img" src={CommentIcon} alt="" />
-          {comments}
+          {commentNum}
         </div>
         <div className="scrap">
           <img className="scrap__img" src={userScrap ? ScrapFilledIcon : ScrapIcon} onClick={onScrap} alt="" />
-          {scrap}
+          {scrapNum}
         </div>
       </div>
     </SDetailContent>

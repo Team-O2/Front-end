@@ -6,12 +6,10 @@ import {
   postConcertLike,
   postConcertScrap,
 } from 'apis';
-import LoginModal from 'assets/images/loginAlert.svg';
-import Button from 'components/atoms/Button';
-import Modal from 'components/atoms/Modal/index';
+import { LoginModal } from 'assets/images';
+import { Button, Modal } from 'components/atoms';
 import DetailTitle from 'components/molecules/DetailTitle';
-import CommentList from 'components/organisms/CommentList';
-import DetailContent from 'components/organisms/DetailContent';
+import { CommentList, DetailContent } from 'components/organisms';
 import React, { useEffect, useState } from 'react';
 import { RouteComponentProps } from 'react-router';
 import { Link } from 'react-router-dom';
@@ -47,8 +45,8 @@ function ShareTogetherDetail({ match }: RouteComponentProps<MatchParams>): React
   const { id } = match.params;
   const [concert, setConcert] = useState<IConcertData | null>(null);
   const [commentList, setCommentList] = useState([]);
-  const [Likes, setLikes] = useState(0);
-  const [scrap, setScrap] = useState(0);
+  const [likeNum, setLikeNum] = useState(0);
+  const [scrapNum, setScrapNum] = useState(0);
   const userStatusData = useRecoilValue(userStatusState);
   const [loginModalOpen, setLoginModalOpen] = useState(false);
   const [userLike, setUserLike] = useState(false);
@@ -59,20 +57,20 @@ function ShareTogetherDetail({ match }: RouteComponentProps<MatchParams>): React
         const data = await getConcertUserData(userStatusData.token, id);
         data && setConcert(data);
         data && setCommentList(data.comments);
-        data && setLikes(data.likes);
-        data && setScrap(data.scrapNum);
+        data && setLikeNum(data.likes);
+        data && setScrapNum(data.scrapNum);
         data && setUserLike(data.isLike);
         data && setUserScrap(data.isScrap);
       } else {
         const data = await getConcertData(id);
         data && setConcert(data);
         data && setCommentList(data.comments);
-        data && setLikes(data.likes);
-        data && setScrap(data.scrapNum);
+        data && setLikeNum(data.likes);
+        data && setScrapNum(data.scrapNum);
       }
     };
     getConcertList();
-  }, [commentList, Likes, scrap, id, userStatusData]);
+  }, [commentList, likeNum, scrapNum, id, userStatusData]);
 
   const reLoadComment = (newComment: any) => {
     setCommentList(commentList?.concat(newComment));
@@ -82,7 +80,7 @@ function ShareTogetherDetail({ match }: RouteComponentProps<MatchParams>): React
     if (userStatusData) {
       const postLike = await postConcertLike(userStatusData.token, id);
       if (postLike === true) {
-        const deleteLike = await deleteConcertLike(userStatusData.token, id);
+        await deleteConcertLike(userStatusData.token, id);
       }
     } else {
       setLoginModalOpen(true);
@@ -92,7 +90,7 @@ function ShareTogetherDetail({ match }: RouteComponentProps<MatchParams>): React
     if (userStatusData) {
       const postScrap = await postConcertScrap(userStatusData.token, id);
       if (postScrap === true) {
-        const deleteSrap = await deleteConcertScrap(userStatusData.token, id);
+        await deleteConcertScrap(userStatusData.token, id);
       }
     } else {
       setLoginModalOpen(true);
@@ -103,7 +101,7 @@ function ShareTogetherDetail({ match }: RouteComponentProps<MatchParams>): React
     <SShareTogetherDetail>
       <DetailTitle
         title={concert?.title}
-        speaker={concert?.authorNickname}
+        authorNickname={concert?.authorNickname}
         createdAt={concert?.createdAt}
         interest={concert?.interest}
       ></DetailTitle>
@@ -111,9 +109,9 @@ function ShareTogetherDetail({ match }: RouteComponentProps<MatchParams>): React
         video={concert?.videoLink}
         desc={concert?.text}
         hashtag={concert?.hashtag}
-        like={Likes}
-        comments={concert?.commentNum}
-        scrap={scrap}
+        likeNum={likeNum}
+        commentNum={concert?.commentNum}
+        scrapNum={scrapNum}
         onLike={onLike}
         onScrap={onScrap}
         userLike={userLike}

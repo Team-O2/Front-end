@@ -2,7 +2,6 @@ import React from 'react';
 import Styled from 'styled-components';
 
 interface IProps {
-  profile?: string;
   nickname?: string;
   text?: string;
   className?: string;

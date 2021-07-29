@@ -4,14 +4,15 @@ import Styled from 'styled-components';
 
 export interface IProps {
   className?: string;
-  value?: string;
-  isComment?: boolean;
-  isCommentCheck?: boolean;
-  onChange?: (e: React.ChangeEvent<HTMLTextAreaElement>) => void;
-  onClick?: (event: any) => void;
-  onSubmit?: (event: React.FormEvent<HTMLFormElement>) => void;
+  value: string;
+  isComment: boolean;
+  onChange: (e: React.ChangeEvent<HTMLTextAreaElement>) => void;
+  onClick: (event: any) => void;
+  onSubmit: (event: React.FormEvent<HTMLFormElement>) => void;
 }
-
+interface IStyleProps {
+  isCommentCheck?: boolean;
+}
 function CommentWrite({ className, value, isComment, onChange, onClick, onSubmit }: IProps): React.ReactElement {
   return (
     <SCommentWrite isCommentCheck={isComment} className={className}>
@@ -31,7 +32,7 @@ function CommentWrite({ className, value, isComment, onChange, onClick, onSubmit
   );
 }
 
-const SCommentWrite = Styled.div<IProps>`
+const SCommentWrite = Styled.div<IStyleProps>`
   .form{
     display: flex;
     flex-direction: column;

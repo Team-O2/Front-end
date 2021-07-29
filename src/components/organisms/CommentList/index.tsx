@@ -1,14 +1,12 @@
 import { postConcertComment } from 'apis';
-import Button from 'components/atoms/Button';
-import CommentWrite from 'components/molecules/CommentWrite';
-import SingleComment from 'components/molecules/SingleComment';
+import { LoginModal } from 'assets/images';
+import { Button, Link, Modal } from 'components/atoms';
+import { CommentWrite, SingleComment } from 'components/molecules';
 import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
 import { useRecoilValue } from 'recoil';
 import { userStatusState } from 'stores/user';
 import Styled from 'styled-components';
-import LoginModal from '../../../assets/images/loginAlert.svg';
-import Modal from '../../atoms/Modal/index';
+
 interface IData {
   childrenComment: {
     _id: string;
@@ -51,7 +49,7 @@ function CommentList({ commentList, concertID, reLoadComment }: IProps): React.R
       text: commentValue,
     };
     if (userStatusData) {
-      const postData = await postConcertComment(userStatusData.token, concertID, variables);
+      await postConcertComment(userStatusData.token, concertID, variables);
       reLoadComment(variables);
       setCommentValue('');
     } else {
