@@ -8,10 +8,10 @@ import LearnMyself from 'pages/LearnMyself/template/ChallengeList';
 import ChallengeRegister from 'pages/LearnMyself/template/ChallengeRegister';
 import WriteLearnMyself from 'pages/LearnMyself/template/ChallengeWrite';
 import Notice from 'pages/Notice';
-import NoticeDetail from 'pages/NoticeDetail';
+import NoticeDetail from 'pages/Notice/NoticeDetail';
 import SetPwd from 'pages/SetPwd';
 import ShareTogether from 'pages/ShareTogether';
-import ShareTogetherDetail from 'pages/ShareTogetherDetail';
+import ShareTogetherDetail from 'pages/ShareTogether/ShareTogetherDetail';
 import React from 'react';
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
 import Styled from 'styled-components';
@@ -30,8 +30,8 @@ function Router(): React.ReactElement {
       <Header />
       <Switch>
         <Route exact path="/" component={Home} />
-        <Route exact path="/ShareTogether" component={ShareTogether} />
-        <Route exact path="/ShareTogether/:id" component={ShareTogetherDetail} />
+        <Route exact path="/concert" component={ShareTogether} />
+        <Route exact path="/concert/:id" component={ShareTogetherDetail} />
         <Route exact path="/login" component={Login} />
         <Route exact path="/adminwrite/:menu" component={AdminWrite} />
         <Route exact path="/adminchallengeopen" component={AdminChallengeOpen} />
