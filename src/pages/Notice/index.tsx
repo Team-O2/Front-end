@@ -71,7 +71,7 @@ function Notice(): React.ReactElement {
         <SeachForm
           reRenderKeyword={reRenderKeyword}
           keywordChange={keywordChange}
-          concertListNum={noticeListNum}
+          contentListNum={noticeListNum}
           selectedCategory="공지사항"
         ></SeachForm>
         {noticeList && (
