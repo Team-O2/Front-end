@@ -19,3 +19,5 @@ export * from './mypage';
 export { default as NextIcon } from './nextIcon.svg';
 export { default as SmallLeftArrow } from './smallLeftArrow.svg';
 export { default as SmallRightArrow } from './smallRightArrow.svg';
+export { default as ThumbnailCommentIcon } from './thumnailComment.svg';
+export { default as ThumbnailLikeIcon } from './thumnailHeart.svg';
