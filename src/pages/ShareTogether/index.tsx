@@ -1,9 +1,6 @@
 import { getConcertSearchData } from 'apis';
 import ConcertTitle from 'components/molecules/ConcertTitle';
-import CategoryList from 'components/organisms/CategoryList';
-import ConcertCardList from 'components/organisms/ConcertCardList';
-import ConcertList from 'components/organisms/ConcertList';
-import SeachForm from 'components/organisms/SearchForm';
+import { CategoryList, ConcertCardList, ConcertList, SearchForm } from 'components/organisms';
 import React, { useEffect, useState } from 'react';
 import Styled from 'styled-components';
 
@@ -71,12 +68,12 @@ function ShareTogether(): React.ReactElement {
         selectedCategory={selectedCategory}
         categoryChange={categoryChange}
       ></CategoryList>
-      <SeachForm
+      <SearchForm
         reRenderKeyword={reRenderKeyword}
         keywordChange={keywordChange}
         selectedCategory={selectedCategory}
-        concertListNum={totalConcertNum}
-      ></SeachForm>
+        contentListNum={totalConcertNum}
+      ></SearchForm>
       <ConcertCardList concertCardData={concertCardData} />
       <ConcertList
         concertData={concertData}
