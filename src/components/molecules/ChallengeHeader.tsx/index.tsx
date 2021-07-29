@@ -136,7 +136,7 @@ function ChallengeHeader({
       <SearchForm
         reRenderKeyword={reRenderKeyword}
         selectedCategory={selectedCategory}
-        concertListNum={challengeListNum}
+        contentListNum={challengeListNum}
       />
       {userStateNum === 1 || userStateNum === 0 ? null : (
         <div>

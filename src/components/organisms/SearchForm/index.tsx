@@ -1,14 +1,14 @@
-import DiamondIcon from 'assets/images/diamond.svg';
+import { DiamondIcon } from 'assets/images';
 import SearchBar from 'components/molecules/SearchBar';
 import React, { useState } from 'react';
 import Styled from 'styled-components';
 interface IProps {
   reRenderKeyword?: (keyword: string) => void;
   selectedCategory?: string;
-  concertListNum?: number;
+  contentListNum?: number;
   keywordChange?: () => void;
 }
-function SearchForm({ reRenderKeyword, selectedCategory, concertListNum, keywordChange }: IProps): React.ReactElement {
+function SearchForm({ reRenderKeyword, selectedCategory, contentListNum, keywordChange }: IProps): React.ReactElement {
   const [searchValue, setSearchValue] = useState('');
   const onChangeKeyword = (event: React.ChangeEvent<HTMLInputElement>) => {
     setSearchValue(event.currentTarget.value);
@@ -18,9 +18,6 @@ function SearchForm({ reRenderKeyword, selectedCategory, concertListNum, keyword
     reRenderKeyword && reRenderKeyword(searchValue);
     keywordChange && keywordChange();
   };
-  if (selectedCategory === '') {
-    selectedCategory = '전체';
-  }
   return (
     <SSearchForm>
       <div className="main">
@@ -33,7 +30,7 @@ function SearchForm({ reRenderKeyword, selectedCategory, concertListNum, keyword
         ></SearchBar>
       </div>
       <div className="detail">
-        <p>{concertListNum}개의 콘텐츠</p>
+        <p>{contentListNum}개의 콘텐츠</p>
       </div>
     </SSearchForm>
   );

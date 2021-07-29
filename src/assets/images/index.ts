@@ -1,8 +1,10 @@
+export { default as DiamondIcon } from 'assets/images/diamond.svg';
 export { default as Edit } from './edit.svg';
 export { default as EmptyBookmark } from './emptyBookmark.svg';
 export { default as EmptyCheckBox } from './emptyCheckBox.svg';
 export { default as FilledBookmark } from './filledBookmark.svg';
 export { default as FilledCheckBox } from './filledCheckBox.svg';
+export { default as SearchIcon } from './icons_search.svg';
 export { default as LargeLeftArrow } from './largeLeftArrow.svg';
 export { default as LargeRightArrow } from './largeRightArrow.svg';
 export { default as Logo } from './logo.svg';

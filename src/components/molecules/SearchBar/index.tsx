@@ -1,6 +1,5 @@
-import SearchIcon from 'assets/images/icons_search.svg';
-import Button from 'components/atoms/Button';
-import Input from 'components/atoms/Input';
+import { SearchIcon } from 'assets/images';
+import { Button, Input } from 'components/atoms';
 import React from 'react';
 import Styled from 'styled-components';
 
