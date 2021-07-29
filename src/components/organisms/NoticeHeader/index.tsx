@@ -10,7 +10,7 @@ function NoticeHeader(): React.ReactElement {
       <div className="text">
         <p>다음 강연이에요</p>
         <p>창업에 대한 모든 것</p>
-        <Link to={`/ShareTogether`}>
+        <Link to={`/concert`}>
           <Button className="button">더 알아보기</Button>
         </Link>
       </div>

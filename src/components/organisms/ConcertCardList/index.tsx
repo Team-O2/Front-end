@@ -40,7 +40,7 @@ function ConcertCardList({ concertCardData }: IProps): React.ReactElement {
               authorNickname={card.authorNickname}
               interestList={card.interest}
               key={card._id}
-              onClickFunc={() => history.push(`/ShareTogether/${card._id}`)}
+              onClickFunc={() => history.push(`/concert/${card._id}`)}
             ></ConcertCard>
           ),
       )}

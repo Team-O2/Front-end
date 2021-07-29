@@ -82,7 +82,7 @@ function ConcertList({ concertData, totalConcertNum, currentPage, setCurrentPage
                 commentNum={card.commentNum}
                 likes={card.likes}
                 key={card._id}
-                onClickFunc={() => history.push(`/ShareTogether/${card._id}`)}
+                onClickFunc={() => history.push(`/concert/${card._id}`)}
               ></Concert>
             ),
         )}
