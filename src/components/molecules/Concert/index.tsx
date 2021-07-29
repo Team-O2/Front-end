@@ -1,5 +1,4 @@
-import CommentIcon from 'assets/images/thumnailComment.svg';
-import LikeIcon from 'assets/images/thumnailHeart.svg';
+import { ThumbnailCommentIcon, ThumbnailLikeIcon } from 'assets/images';
 import dayjs from 'dayjs';
 import React from 'react';
 import Styled from 'styled-components';
@@ -44,9 +43,9 @@ function Concert({
           <img className="content__right--img" src={imgThumbnail} alt="" />
           <div className="overlay overlayFade">
             <div className="content">
-              <img src={LikeIcon} alt="" />
+              <img src={ThumbnailLikeIcon} alt="" />
               <p> {likes}</p>
-              <img src={CommentIcon} alt="" />
+              <img src={ThumbnailCommentIcon} alt="" />
               <p> {commentNum}</p>
             </div>
           </div>
