@@ -1,8 +1,7 @@
-import moreIcon from 'assets/images/moreButtonIcon.svg';
-import moreClickedIcon from 'assets/images/moreIcon.svg';
-import nextIcon from 'assets/images/nextIcon.svg';
+import { MoreClickedIcon, MoreIcon, NextIcon } from 'assets/images';
 import CategoryButton from 'components/molecules/CategoryButton';
 import React, { useEffect, useRef, useState } from 'react';
+import { interestList } from 'resources/string';
 import Styled from 'styled-components';
 
 interface IProps {
@@ -51,7 +50,7 @@ function CategoryList({ reRenderCategory, selectedCategory, categoryChange }: IP
         ></CategoryButton>
         <div className="hashtag__container">
           <div className="hashtags" ref={slideRef}>
-            {hashtagList.map((tag, index) => (
+            {interestList.map((tag, index) => (
               <CategoryButton
                 key={index}
                 tag={tag}
@@ -63,15 +62,15 @@ function CategoryList({ reRenderCategory, selectedCategory, categoryChange }: IP
           </div>
         </div>
         <div className="shadow"></div>
-        <img className="next" src={nextIcon} onClick={nextSlide} alt="" />
-        <img src={moreClicked ? moreClickedIcon : moreIcon} onClick={onClickOpenMore} alt="" />
+        <img className="next" src={NextIcon} onClick={nextSlide} alt="" />
+        <img src={moreClicked ? MoreClickedIcon : MoreIcon} onClick={onClickOpenMore} alt="" />
       </div>
 
       <div className="more">
         {openMore && (
           <>
             <div className="more__box">
-              {hashtagList.map((tag, index) => (
+              {interestList.map((tag, index) => (
                 <CategoryButton
                   key={index}
                   tag={tag}
@@ -134,35 +133,3 @@ const SCategoryList = Styled.label`
 `;
 
 export default CategoryList;
-
-const hashtagList = [
-  '건강 및 피트니스',
-  '게임',
-  '교육',
-  '그래픽 및 디자인',
-  '금융',
-  '네비게이션',
-  'K-pop',
-  '뉴스, 신문',
-  '데이트',
-  '날씨',
-  '출판, 도서',
-  '뷰티',
-  '라이프 스타일',
-  '만화',
-  '부동산 / 홈 인테리어',
-  '사진 및 비디오',
-  '쇼핑',
-  '비즈니스',
-  '생산성',
-  '소셜 네트워킹',
-  '스포츠',
-  '어린이',
-  '기타',
-  '여행',
-  '유틸리티',
-  '음식 및 음료',
-  '음악',
-  '의료',
-  'AR앱',
-];

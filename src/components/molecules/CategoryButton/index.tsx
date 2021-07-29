@@ -4,16 +4,14 @@ import Styled from 'styled-components';
 
 interface IProps {
   tag: string;
-  isMore?: boolean;
+  isMore: boolean;
   selectedCategory?: string;
-  onClickInterest?: ((tag: string) => void) | undefined;
-  ref?: React.RefObject<HTMLInputElement>;
+  onClickInterest: ((tag: string) => void) | undefined;
 }
-interface IData {
+interface IStyleProps {
   readMore?: boolean;
   isCategoryClicked?: boolean;
 }
-
 function CategoryButton({ tag, isMore, selectedCategory, onClickInterest }: IProps): React.ReactElement {
   const isSelected = tag === selectedCategory ? true : false;
   const onSelectInterest = () => {
@@ -28,7 +26,7 @@ function CategoryButton({ tag, isMore, selectedCategory, onClickInterest }: IPro
   );
 }
 
-const SCategoryButton = Styled.label<IData>`
+const SCategoryButton = Styled.label<IStyleProps>`
   height: 46px;
   border-radius: 60px;
   padding: 12px 30px;
