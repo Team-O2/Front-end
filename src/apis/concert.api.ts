@@ -1,5 +1,5 @@
 import { serverAxios } from 'libs/axios';
-import { IConcertList, IShareTogether } from '../types/shareTogether';
+import { IConcert, IConcertList } from '../types/concert.type';
 interface IConcertCommentData {
   parentID?: string;
   text: string;
@@ -15,7 +15,7 @@ interface IFetchParameter {
 
 const PREFIX_URL = '/concert';
 
-export const getConcertListData = async (token: string): Promise<IShareTogether[] | null> => {
+export const getConcertListData = async (token: string): Promise<IConcert[] | null> => {
   try {
     const data = await serverAxios.get(`${PREFIX_URL}`, {
       headers: {

@@ -2,7 +2,7 @@ import { Button, Img } from 'components/atoms';
 import React, { useState } from 'react';
 import Styled from 'styled-components';
 import { ifNotProp, ifProp, palette } from 'styled-tools';
-import { IParentComment } from 'types/learnMySelf';
+import { IParentComment } from 'types/challenge.type';
 
 interface IProps {
   commentData: IParentComment; // | IComment;

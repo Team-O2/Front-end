@@ -13,7 +13,7 @@ export interface IProps {
   onButtonClick: (id: string) => void;
 }
 
-function LearnMyselfCard({
+function ChallengeCard({
   imagePath,
   isBookmarked,
   id,
@@ -96,4 +96,4 @@ const Wrapper = Styled.div`
   }
 `;
 
-export default LearnMyselfCard;
+export default ChallengeCard;

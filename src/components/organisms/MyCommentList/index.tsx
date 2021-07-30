@@ -4,14 +4,14 @@ import React, { useEffect, useState } from 'react';
 import { useRecoilValue } from 'recoil';
 import Styled from 'styled-components';
 import { ifProp, palette } from 'styled-tools';
-import { IMyUserCommentResponse } from 'types/myPage';
+import { IMyUserCommentResponse } from 'types/myPage.type';
 import { changeDateFormat } from 'utils';
 import { userState } from '../../../stores/user';
-import { IMyUserComment } from '../../../types/myPage';
+import { IMyUserComment } from '../../../types/myPage.type';
 import CommentedBoardRow from '../../molecules/CommentedBoardRow/index';
 
 export interface IProps {
-  userCommentData: IMyUserCommentResponse;
+  userComment: IMyUserCommentResponse;
   selectedCategory: string;
   currentPage: number;
   setSelectedCategory: (value: string) => void;
@@ -25,7 +25,7 @@ export interface IProps {
 }
 
 function MyCommentList({
-  userCommentData,
+  userComment,
   selectedCategory,
   setSelectedCategory,
   currentPage,
@@ -43,7 +43,7 @@ function MyCommentList({
   const globalUserInfo = useRecoilValue(userState);
 
   const commentsOfPage = 5;
-  const totalPage = Math.ceil(userCommentData.commentNum / commentsOfPage);
+  const totalPage = Math.ceil(userComment.commentNum / commentsOfPage);
   const pageIndex: number[] = [...Array(totalPage)].map((_, i) => i + 1);
   const target = pageIndex.slice(startPage, endPage);
 
@@ -53,8 +53,8 @@ function MyCommentList({
   }, [selectedCategory, setCheckedCommentList]);
 
   useEffect(() => {
-    setAllCommentIdList(userCommentData.comments.map((item) => item._id));
-  }, [selectedCategory, currentPage, userCommentData.comments]);
+    setAllCommentIdList(userComment.comments.map((item) => item._id));
+  }, [selectedCategory, currentPage, userComment.comments]);
 
   useEffect(() => {
     setIsSelectAll(allCommentIdList.includes(checkedCommentList[checkedCommentList.length - 1]));
@@ -154,7 +154,7 @@ function MyCommentList({
         </Button>
       </div>
       <div className="commentContainer">
-        {userCommentData.comments?.map((item: IMyUserComment) => {
+        {userComment.comments?.map((item: IMyUserComment) => {
           return (
             <CommentedBoardRow
               id={item._id}

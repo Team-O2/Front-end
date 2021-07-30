@@ -1,51 +1,48 @@
 import {
+  deleteUserChallengeBookmark,
   deleteUserCommentList,
-  deleteUserLearnMyselfBookmark,
   getChallengeContent,
-  getLearnMyselfListData,
+  getMyPageChallengeList,
+  getMyPageConcertList,
   getMyPageUserInfo,
-  getShareTogetherListData,
-  getUserCommentListData,
-  getUserLearnMyselfListData,
+  getUserChallengeList,
+  getUserCommentList,
 } from 'apis';
 import { Logo } from 'assets/images';
-import { Button, Img } from 'components/atoms';
-import Modal from 'components/atoms/Modal';
-import { ChallengeModalComment, LearnMyselfCard, MyPageSection, ShareTogetherCard } from 'components/molecules';
-import DeleteModal from 'components/molecules/DeleteModal';
+import { Button, Img, Modal } from 'components/atoms';
+import {
+  ChallengeCard,
+  ChallengeModalComment,
+  DeleteModal,
+  MyPageConcertCard,
+  MyPageSection,
+} from 'components/molecules';
 import { MyCommentList, MyPageHeader } from 'components/organisms';
 import dayjs from 'dayjs';
-import { IChallengeData } from 'pages/LearnMyself/template/ChallengeList';
 import React, { useCallback, useEffect, useState } from 'react';
 import { useRecoilValue } from 'recoil';
 import { userState, userStatusState } from 'stores/user';
 import Styled from 'styled-components';
 import { ifProp, palette } from 'styled-tools';
-import { IChallenge } from 'types/learnMySelf';
-import {
-  ILearnMySelf,
-  IMyPageHeader,
-  IMyScrappedLearnMyself,
-  IMyScrappedShareTogether,
-  IMyUserCommentResponse,
-} from 'types/myPage';
-import { IShareTogether } from 'types/shareTogether';
+import { IChallenge, IChallengeData } from 'types/challenge.type';
+import { IConcert } from 'types/concert.type';
+import { IMyPageHeader, IMyScrappedChallenge, IMyScrappedConcert, IMyUserCommentResponse } from 'types/myPage.type';
 import { changeDateFormat } from 'utils';
 
 function MyPage(): React.ReactElement {
   const [selectedSection, setSelectedSection] = useState('scrap');
   const [userInfo, setUserInfo] = useState<IMyPageHeader | null>(null);
-  const [shareTogetherData, setShareTogetherData] = useState<IMyScrappedShareTogether | null>(null);
-  const [learnMyselfData, setLearnMyselfData] = useState<IMyScrappedLearnMyself | null>(null);
-  const [userLearnMyselfData, setUserLearnMyselfData] = useState<IChallengeData[] | null>(null);
-  const [userCommentData, setUserCommentData] = useState<IMyUserCommentResponse | null>(null);
+  const [concertData, setConcertData] = useState<IMyScrappedConcert | null>(null);
+  const [scrappedChallenge, setScrappedChallenge] = useState<IMyScrappedChallenge | null>(null);
+  const [userChallengeList, setUserChallengeList] = useState<IChallengeData[] | null>(null);
+  const [userComment, setUserComment] = useState<IMyUserCommentResponse | null>(null);
   const [selectedCategory, setSelectedCategory] = useState('Concert');
-  const [reRenderFlag, setReRenderFlag] = useState(false);
+  const [isReRender, setIsReRender] = useState(false);
   const [currentPage, setCurrentPage] = useState(1);
-  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [isModalOpened, setIsModalOpened] = useState(false);
   const [checkedCommentList, setCheckedCommentList] = useState<string[]>([]);
   const [isSelectAll, setIsSelectAll] = useState(false);
-  const [challengeData, setChallengeData] = useState<IChallenge | null>(null);
+  const [challenge, setChallenge] = useState<IChallenge | null>(null);
   const [isChallengeModalOpen, setIsChallengeModalOpen] = useState(false);
   const [isFolded, setIsFolded] = useState(true);
   const globalUserInfo = useRecoilValue(userState);
@@ -56,14 +53,14 @@ function MyPage(): React.ReactElement {
   };
 
   const handleModalOpen = () => {
-    setIsModalOpen(true);
+    setIsModalOpened(true);
   };
 
   const deleteSelectedCommentList = async () => {
     await deleteUserCommentList({ token: globalUserStatusInfo?.token, commentIdList: checkedCommentList });
     setIsSelectAll(false);
-    setReRenderFlag(!reRenderFlag);
-    setIsModalOpen(false);
+    setIsReRender(!isReRender);
+    setIsModalOpened(false);
   };
 
   const fetchMyPageUserInfo = useCallback(async () => {
@@ -71,26 +68,26 @@ function MyPage(): React.ReactElement {
     setUserInfo(data);
   }, [globalUserStatusInfo?.token]);
 
-  const fetchScrappedShareTogetherData = useCallback(async () => {
-    const data = await getShareTogetherListData({ token: globalUserStatusInfo?.token });
-    setShareTogetherData(data);
+  const fetchScrappedConcert = useCallback(async () => {
+    const data = await getMyPageConcertList({ token: globalUserStatusInfo?.token });
+    setConcertData(data);
   }, [globalUserStatusInfo?.token]);
 
-  const fetchScrappedLearnMyselfData = useCallback(async () => {
-    const data = await getLearnMyselfListData({ token: globalUserStatusInfo?.token });
-    setLearnMyselfData(data);
+  const fetchScrappedChallenge = useCallback(async () => {
+    const data = await getMyPageChallengeList({ token: globalUserStatusInfo?.token });
+    setScrappedChallenge(data);
   }, [globalUserStatusInfo?.token]);
 
-  const fetchUserLearnMyselfData = useCallback(async () => {
-    const data = await getUserLearnMyselfListData({ token: globalUserStatusInfo?.token });
-    setUserLearnMyselfData(data);
+  const fetchUserChallenge = useCallback(async () => {
+    const data = await getUserChallengeList({ token: globalUserStatusInfo?.token });
+    setUserChallengeList(data);
   }, [globalUserStatusInfo?.token]);
 
   const fetchLearnMyselfData = useCallback(
     async (id: string) => {
       const data = await getChallengeContent(id, globalUserStatusInfo?.token);
       if (data) {
-        setChallengeData(data);
+        setChallenge(data);
         setIsChallengeModalOpen(true);
       } else {
         alert('네트워크 오류');
@@ -99,44 +96,44 @@ function MyPage(): React.ReactElement {
     [globalUserStatusInfo?.token],
   );
 
-  const cancelLearnMyselfBookmark = async (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
+  const cancelChallengeBookmark = async (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
     const id = e.currentTarget.value;
-    await deleteUserLearnMyselfBookmark({ token: globalUserStatusInfo?.token, learnMyselfId: id });
-    setReRenderFlag(!reRenderFlag);
+    await deleteUserChallengeBookmark({ token: globalUserStatusInfo?.token, challengeId: id });
+    setIsReRender(!isReRender);
   };
 
-  const fetchUserCommentListData = useCallback(
+  const fetchUserCommentList = useCallback(
     async (selectedCategory: string, pageIndex: number) => {
       const LIMIT_PER_PAGE = 5;
-      const data = await getUserCommentListData({
+      const data = await getUserCommentList({
         token: globalUserStatusInfo?.token,
         category: selectedCategory,
         offset: (pageIndex - 1) * LIMIT_PER_PAGE,
       });
-      setUserCommentData(data);
+      setUserComment(data);
     },
     [globalUserStatusInfo?.token],
   );
 
   // FIXME: 리렌더플래그를 두개의 useEffect에 넣어둬서 같이 리렌더링 되는 문제가 생김.
   useEffect(() => {
-    fetchScrappedLearnMyselfData();
-  }, [reRenderFlag, fetchScrappedLearnMyselfData]);
+    fetchScrappedChallenge();
+  }, [isReRender, fetchScrappedChallenge]);
 
   useEffect(() => {
     fetchMyPageUserInfo();
-    fetchScrappedShareTogetherData();
-    fetchUserLearnMyselfData();
-  }, [fetchMyPageUserInfo, fetchScrappedShareTogetherData, fetchUserLearnMyselfData]);
+    fetchScrappedConcert();
+    fetchUserChallenge();
+  }, [fetchMyPageUserInfo, fetchScrappedConcert, fetchUserChallenge]);
 
   useEffect(() => {
-    fetchUserCommentListData(selectedCategory, currentPage);
-  }, [selectedCategory, currentPage, reRenderFlag, fetchUserCommentListData]);
+    fetchUserCommentList(selectedCategory, currentPage);
+  }, [selectedCategory, currentPage, isReRender, fetchUserCommentList]);
 
-  const renderScrappedShareTogether = (data: IShareTogether[]) => {
-    return data?.map((item: IShareTogether) => {
+  const renderScrappedConcert = (data: IConcert[]) => {
+    return data?.map((item: IConcert) => {
       return (
-        <ShareTogetherCard
+        <MyPageConcertCard
           key={item._id}
           id={item._id}
           tagName={item.interest[0]}
@@ -149,16 +146,16 @@ function MyPage(): React.ReactElement {
     });
   };
 
-  const renderLearnMyself = (data: ILearnMySelf[]) => {
-    return data?.map((item: ILearnMySelf) => (
-      <LearnMyselfCard
+  const renderChallenge = (data: IChallenge[]) => {
+    return data?.map((item: IChallenge) => (
+      <ChallengeCard
         imagePath={item.user?.img || Logo}
         isBookmarked={globalUserInfo?._id !== item?.user?._id}
         id={item._id}
         key={item._id}
         name={item.user?.nickname}
         content={`잘한 점: ${item.good} 못한 점: ${item.bad} 배운 점: ${item.learn}`}
-        onClick={cancelLearnMyselfBookmark}
+        onClick={cancelChallengeBookmark}
         onButtonClick={fetchLearnMyselfData}
       />
     ));
@@ -197,8 +194,8 @@ function MyPage(): React.ReactElement {
               column={2}
               gap={30}
               path="/mypage/concert/scrap"
-              data={shareTogetherData?.mypageConcertScrap}
-              renderItemList={renderScrappedShareTogether}
+              data={concertData?.mypageConcertScrap}
+              renderItemList={renderScrappedConcert}
             />
           ) : (
             <MyPageSection
@@ -207,8 +204,8 @@ function MyPage(): React.ReactElement {
               column={4}
               gap={15}
               path="/mypage/challenge/mine"
-              data={userLearnMyselfData}
-              renderItemList={renderLearnMyself}
+              data={userChallengeList}
+              renderItemList={renderChallenge}
             />
           )}
         </div>
@@ -220,13 +217,13 @@ function MyPage(): React.ReactElement {
               column={4}
               gap={15}
               path="/mypage/challenge/scrap"
-              data={learnMyselfData?.mypageChallengeScrap}
-              renderItemList={renderLearnMyself}
+              data={scrappedChallenge?.mypageChallengeScrap}
+              renderItemList={renderChallenge}
             />
           ) : (
-            userCommentData && (
+            userComment && (
               <MyCommentList
-                userCommentData={userCommentData}
+                userComment={userComment}
                 selectedCategory={selectedCategory}
                 setSelectedCategory={setSelectedCategory}
                 currentPage={currentPage}
@@ -243,32 +240,32 @@ function MyPage(): React.ReactElement {
         </div>
       </div>
       <DeleteModal
-        isDeleteModalOpen={isModalOpen}
-        setIsDeleteModalOpen={setIsModalOpen}
+        isDeleteModalOpen={isModalOpened}
+        setIsDeleteModalOpen={setIsModalOpened}
         onClickDeleteButton={deleteSelectedCommentList}
       />
       <Modal isOpen={isChallengeModalOpen} setIsOpen={setIsChallengeModalOpen} isBlur={true}>
         <LearnMyselfModalWrapper isFolded={isFolded}>
           <div className="wrapper">
             <div className="userInfo">
-              <Img className="userInfo__img" src={challengeData?.user?.img} />
+              <Img className="userInfo__img" src={challenge?.user?.img} />
               <div className="userInfo__infoWrapper">
                 <div className="userInfo__infoWrapper--top subhead5">
-                  <div>{challengeData?.user?.nickname}</div>
+                  <div>{challenge?.user?.nickname}</div>
                   <div className="userInfo__infoWrapper--date body2">{dayjs().format('MM.DD')}</div>
                 </div>
                 <div className="userInfo__infoWrapper--tags subhead2">
-                  {challengeData?.interest?.map((item: string) => `#${item} `)}
+                  {challenge?.interest?.map((item: string) => `#${item} `)}
                 </div>
               </div>
             </div>
             <div className="textArea">
               <h3 className="textArea__title subhead3">잘한 점</h3>
-              <p className="textArea__contents body3">{challengeData?.good}</p>
+              <p className="textArea__contents body3">{challenge?.good}</p>
               <h3 className="textArea__title subhead3">못한 점</h3>
-              <p className="textArea__contents body3">{challengeData?.bad}</p>
+              <p className="textArea__contents body3">{challenge?.bad}</p>
               <h3 className="textArea__title subhead3">배운 점</h3>
-              <p className="textArea__contents body3">{challengeData?.learn}</p>
+              <p className="textArea__contents body3">{challenge?.learn}</p>
             </div>
             <Button
               className="button__more subhead4"
@@ -279,7 +276,7 @@ function MyPage(): React.ReactElement {
               {isFolded ? '더보기' : '접기'}
             </Button>
             <div className="comment">
-              {challengeData?.comments.map((comment) => (
+              {challenge?.comments.map((comment) => (
                 <ChallengeModalComment key={comment._id} commentData={comment} />
               ))}
             </div>

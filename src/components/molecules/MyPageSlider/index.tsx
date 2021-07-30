@@ -41,7 +41,7 @@ import { useRecoilValue } from 'recoil';
 import { userState } from 'stores/user';
 import Styled, { css } from 'styled-components';
 import { palette } from 'styled-tools';
-import { IMyPageHeader, IMyPageShareTogether } from 'types/myPage';
+import { IMyPageConcert, IMyPageHeader } from 'types/myPage.type';
 
 export interface IProps {
   userInfo: IMyPageHeader | null;
@@ -131,7 +131,7 @@ function MyPageSlider({ userInfo }: IProps): React.ReactElement {
                   {globalUserInfo?.nickname}님이 하셨던
                   <br /> 강연의 주제들이에요!
                 </div>
-                {userInfo?.shareTogether.map((item: IMyPageShareTogether) => (
+                {userInfo?.shareTogether.map((item: IMyPageConcert) => (
                   <DotText key={item._id} content={item.title} />
                 ))}
               </div>

@@ -13,7 +13,7 @@ export interface IProps {
   id: string;
 }
 
-function ShareTogetherCard({
+function MyPageConcertCard({
   imagePath = '',
   tagName,
   tagColor = '5',
@@ -23,7 +23,7 @@ function ShareTogetherCard({
   id,
 }: IProps): React.ReactElement {
   return (
-    <LinkWrapper to={`ShareTogether/${id}`}>
+    <LinkWrapper to={`concert/${id}`}>
       <span>
         <div className="card">
           <div className="card__img-wrapper">
@@ -102,4 +102,4 @@ const LinkWrapper = Styled(Link)`
   }
 `;
 
-export default ShareTogetherCard;
+export default MyPageConcertCard;
