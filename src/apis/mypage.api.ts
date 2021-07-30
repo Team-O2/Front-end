@@ -1,13 +1,13 @@
 import { serverAxios } from 'libs/axios';
-import { IChallengeData } from 'pages/LearnMyself/template/ChallengeList';
+import { IChallengeData } from 'types/challenge.type';
 import {
-  IDeleteMyPageUserLearnMyselfParameter,
+  IDeleteMyPageUserChallengeParameter,
   IGetMyPageUserInfoParameter,
   IMyPageHeader,
-  IMyScrappedLearnMyself,
-  IMyScrappedShareTogether,
+  IMyScrappedChallenge,
+  IMyScrappedConcert,
   IMyUserCommentResponse,
-} from '../types/myPage';
+} from '../types/myPage.type';
 
 const MY_PAGE_URL_PREFIX = '/user/mypage';
 
@@ -37,11 +37,11 @@ interface IFetchCommentParameter extends IFetchParameter {
   category: string;
 }
 
-export const getShareTogetherListData = async ({
+export const getMyPageConcertList = async ({
   token,
   limit = 6,
   offset = 0,
-}: IFetchParameter): Promise<IMyScrappedShareTogether | null> => {
+}: IFetchParameter): Promise<IMyScrappedConcert | null> => {
   try {
     const data = await serverAxios.get(`${MY_PAGE_URL_PREFIX}/concert`, {
       headers: { Accept: 'application/json', Authorization: token },
@@ -58,11 +58,11 @@ export const getShareTogetherListData = async ({
   }
 };
 
-export const getLearnMyselfListData = async ({
+export const getMyPageChallengeList = async ({
   token,
   limit = 8,
   offset = 0,
-}: IFetchParameter): Promise<IMyScrappedLearnMyself | null> => {
+}: IFetchParameter): Promise<IMyScrappedChallenge | null> => {
   try {
     const data = await serverAxios.get(`${MY_PAGE_URL_PREFIX}/challenge`, {
       headers: { Accept: 'application/json', Authorization: token },
@@ -79,7 +79,7 @@ export const getLearnMyselfListData = async ({
   }
 };
 
-export const getUserLearnMyselfListData = async ({
+export const getUserChallengeList = async ({
   token,
   limit = 8,
   offset = 0,
@@ -100,7 +100,7 @@ export const getUserLearnMyselfListData = async ({
   }
 };
 
-export const getUserCommentListData = async ({
+export const getUserCommentList = async ({
   token,
   limit = 5,
   offset = 0,
@@ -143,12 +143,12 @@ export const deleteUserCommentList = async ({ token, commentIdList }: IGetMyPage
   }
 };
 
-export const deleteUserLearnMyselfBookmark = async ({
+export const deleteUserChallengeBookmark = async ({
   token,
-  learnMyselfId,
-}: IDeleteMyPageUserLearnMyselfParameter): Promise<null> => {
+  challengeId,
+}: IDeleteMyPageUserChallengeParameter): Promise<null> => {
   try {
-    const data = await serverAxios.delete(`${MY_PAGE_URL_PREFIX}/challenge/${learnMyselfId}`, {
+    const data = await serverAxios.delete(`${MY_PAGE_URL_PREFIX}/challenge/${challengeId}`, {
       headers: { Accept: 'application/json', Authorization: token },
     });
 

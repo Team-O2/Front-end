@@ -1,4 +1,4 @@
-export interface IShareTogether {
+export interface IConcert {
   _id: string;
   user: { _id: string; nickname: string; img: string };
   title: string;
@@ -20,6 +20,6 @@ export interface IShareTogether {
   __v: number;
 }
 export interface IConcertList {
-  concerts: IShareTogether[];
+  concerts: IConcert[];
   totalConcertNum: number;
 }

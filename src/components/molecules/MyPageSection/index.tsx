@@ -3,8 +3,8 @@ import { Icon, Link } from 'components/atoms';
 import React from 'react';
 import Styled from 'styled-components';
 import { palette, prop } from 'styled-tools';
-import { ILearnMySelf } from 'types/myPage';
-import { IShareTogether } from 'types/shareTogether';
+import { IConcert } from 'types/concert.type';
+import { IChallenge } from 'types/myPage.type';
 
 export interface IProps {
   title: string;
@@ -12,8 +12,8 @@ export interface IProps {
   column: number;
   gap: number;
   path: string;
-  data?: IShareTogether[] | ILearnMySelf[] | null;
-  renderItemList: (data: any[]) => React.ReactElement[]; // FIXME: IShareTogether[]와 ILearnMySelf[]를 제네릭으로 받는 방법을 모르겠음...
+  data?: IConcert[] | IChallenge[] | null;
+  renderItemList: (data: any[]) => React.ReactElement[]; // FIXME: IConcert[]와 IChallenge[]를 제네릭으로 받는 방법을 모르겠음...
 }
 
 function MyPageSection({ title, subTitle, path, data, renderItemList, ...props }: IProps): React.ReactElement {

@@ -7,7 +7,7 @@ import { useRecoilValue } from 'recoil';
 import { userState } from 'stores/user';
 import Styled from 'styled-components';
 import { palette } from 'styled-tools';
-import { IMyPageHeader } from 'types/myPage';
+import { IMyPageHeader } from 'types/myPage.type';
 
 export interface IProps {
   userInfo: IMyPageHeader | null;

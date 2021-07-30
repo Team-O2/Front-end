@@ -1,33 +1,33 @@
-import { getShareTogetherListData } from 'apis';
-import ConcertList from 'components/organisms/ConcertList';
+import { getMyPageConcertList } from 'apis';
+import { ConcertList } from 'components/organisms';
 import React, { useCallback, useEffect, useState } from 'react';
 import { useRecoilValue } from 'recoil';
 import { userStatusState } from 'stores/user';
 import Styled from 'styled-components';
 import { palette } from 'styled-tools';
-import { IMyScrappedShareTogether } from 'types/myPage';
+import { IMyScrappedConcert } from 'types/myPage.type';
 
-function ScrappedShareTogether(): React.ReactElement {
-  const [scrappedShareTogether, setScrappedShareTogether] = useState<IMyScrappedShareTogether | null>(null);
+function ScrappedConcert(): React.ReactElement {
+  const [scrappedConcert, setScrappedConcert] = useState<IMyScrappedConcert | null>(null);
   const [currentPage, setCurrentPage] = useState(1);
   const globalUserState = useRecoilValue(userStatusState);
 
-  const fetchScrappedShareTogether = useCallback(
+  const fetchScrappedConcert = useCallback(
     async (pageIndex: number) => {
       const LIMIT_PER_PAGE = 10;
-      const data = await getShareTogetherListData({
+      const data = await getMyPageConcertList({
         token: globalUserState?.token,
         limit: 10,
         offset: (pageIndex - 1) * LIMIT_PER_PAGE,
       });
-      data && setScrappedShareTogether(data);
+      data && setScrappedConcert(data);
     },
     [globalUserState?.token],
   );
 
   useEffect(() => {
-    fetchScrappedShareTogether(currentPage);
-  }, [currentPage, fetchScrappedShareTogether]);
+    fetchScrappedConcert(currentPage);
+  }, [currentPage, fetchScrappedConcert]);
 
   return (
     <Wrapper>
@@ -35,10 +35,10 @@ function ScrappedShareTogether(): React.ReactElement {
         <h2 className="h2">스크랩한</h2>
         <h2 className="h2_eng">Share Together</h2>
       </Header>
-      {scrappedShareTogether?.totalScrapNum ? (
+      {scrappedConcert?.totalScrapNum ? (
         <ConcertList
-          concertData={scrappedShareTogether.mypageConcertScrap}
-          totalConcertNum={scrappedShareTogether.totalScrapNum}
+          concertData={scrappedConcert.mypageConcertScrap}
+          totalConcertNum={scrappedConcert.totalScrapNum}
           currentPage={currentPage}
           setCurrentPage={setCurrentPage}
         />
@@ -52,8 +52,8 @@ function ScrappedShareTogether(): React.ReactElement {
 }
 
 const NoContents = Styled.div`
-  color: ${palette('grayscale', 2)};
   margin: 100px 0 70vh 0;
+  color: ${palette('grayscale', 2)};
 `;
 
 const Header = Styled.div`
@@ -68,4 +68,4 @@ const Wrapper = Styled.div`
   align-items: center;
 `;
 
-export default ScrappedShareTogether;
+export default ScrappedConcert;

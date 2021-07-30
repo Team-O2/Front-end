@@ -1,28 +1,31 @@
 import Footer from 'components/organisms/Footer';
 import Header from 'components/organisms/Header';
-import { MyPage, Setting } from 'pages';
-import AdminChallengeList from 'pages/AdminChallengeList';
-import Concert from 'pages/Concert';
-import ConcertDetail from 'pages/ConcertDetail';
-import FindPwd from 'pages/FindPwd';
-import EditLearnMyself from 'pages/LearnMyself/template/ChallengeEdit';
-import LearnMyself from 'pages/LearnMyself/template/ChallengeList';
-import ChallengeRegister from 'pages/LearnMyself/template/ChallengeRegister';
-import WriteLearnMyself from 'pages/LearnMyself/template/ChallengeWrite';
-import Notice from 'pages/Notice';
-import NoticeDetail from 'pages/NoticeDetail';
-import SetPwd from 'pages/SetPwd';
+import {
+  AdminChallengeList,
+  AdminChallengeOpen,
+  AdminWrite,
+  ChallengeEdit,
+  ChallengeList,
+  ChallengeRegister,
+  ChallengeWrite,
+  Concert,
+  ConcertDetail,
+  FindPwd,
+  Home,
+  Join,
+  Login,
+  MyChallengeList,
+  MyPage,
+  Notice,
+  NoticeDetail,
+  ScrappedChallengeList,
+  ScrappedConcertList,
+  SetPwd,
+  Setting,
+} from 'pages';
 import React from 'react';
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
 import Styled from 'styled-components';
-import AdminChallengeOpen from './pages/AdminChallengeOpen';
-import AdminWrite from './pages/AdminWrite';
-import Home from './pages/Home';
-import Join from './pages/Join/index';
-import Login from './pages/Login';
-import MyChallengeList from './pages/MyPage/MyChallengeList/index';
-import ScrappedLearnMyself from './pages/MyPage/ScrappedLearnMyself/index';
-import ScrappedShareTogether from './pages/MyPage/ScrappedShareTogether/index';
 
 function Router(): React.ReactElement {
   return (
@@ -39,17 +42,17 @@ function Router(): React.ReactElement {
         <Route exact path="/join" component={Join} />
         <Route exact path="/findPwd" component={FindPwd} />
         <Route exact path="/setPwd" component={SetPwd} />
-        <Route exact path="/challenge/:generationNum" component={LearnMyself} />
+        <Route exact path="/challenge/:generationNum" component={ChallengeList} />
         <Route exact path="/challengeRegister" component={ChallengeRegister} />
-        <Route exact path="/write" component={WriteLearnMyself} />
+        <Route exact path="/write" component={ChallengeWrite} />
         <Route exact path="/notice" component={Notice} />
         <Route exact path="/mypage" component={MyPage} />
-        <Route exact path="/edit/:id" component={EditLearnMyself} />
+        <Route exact path="/edit/:id" component={ChallengeEdit} />
         <Route exact path="/notice/:id" component={NoticeDetail} />
         <Route exact path="/setting" component={Setting} />
-        <Route exact path="/mypage/challenge/scrap" component={ScrappedLearnMyself} />
+        <Route exact path="/mypage/challenge/scrap" component={ScrappedChallengeList} />
         <Route exact path="/mypage/challenge/mine" component={MyChallengeList} />
-        <Route exact path="/mypage/concert/scrap" component={ScrappedShareTogether} />
+        <Route exact path="/mypage/concert/scrap" component={ScrappedConcertList} />
         <Route
           component={() => (
             <ForbiddenComponent>

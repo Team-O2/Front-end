@@ -1,5 +1,5 @@
-import { IShareTogether } from './shareTogether';
-export interface IMyPageShareTogether {
+import { IConcert } from './concert.type';
+export interface IMyPageConcert {
   _id: string;
   title: string;
 }
@@ -14,7 +14,7 @@ export interface IMyPageHeader {
     endDT: string;
     generation: number;
   };
-  shareTogether: IMyPageShareTogether[];
+  shareTogether: IMyPageConcert[];
   couponBook: {
     welcomeBadge: boolean;
     firstJoinBadge: boolean;
@@ -32,21 +32,21 @@ export interface IMyPageHeader {
   };
 }
 
-export interface IMyScrappedShareTogether {
-  mypageConcertScrap: IShareTogether[];
+export interface IMyScrappedConcert {
+  mypageConcertScrap: IConcert[];
   totalScrapNum: number;
 }
 
-export interface IMyScrappedLearnMyself {
-  mypageChallengeScrap: ILearnMySelf[];
+export interface IMyScrappedChallenge {
+  mypageChallengeScrap: IChallenge[];
   totalScrapNum: number;
 }
 
-export interface IMyUserLearnMyself {
-  mypageChallengeScrap: ILearnMySelf[];
+export interface IMyUserChallenge {
+  mypageChallengeScrap: IChallenge[];
 }
 
-export interface ILearnMySelf {
+export interface IChallenge {
   likes: number;
   commentNum: number;
   scrapNum: number;
@@ -106,7 +106,7 @@ export interface IGetMyPageUserInfoParameter {
   commentIdList: string[];
 }
 
-export interface IDeleteMyPageUserLearnMyselfParameter {
+export interface IDeleteMyPageUserChallengeParameter {
   token?: string;
-  learnMyselfId: string;
+  challengeId: string;
 }

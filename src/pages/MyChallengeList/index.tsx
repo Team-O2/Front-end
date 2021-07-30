@@ -1,39 +1,36 @@
-import { getLearnMyselfListData } from 'apis';
+import { getUserChallengeList } from 'apis';
 import ChallengeDetailCard from 'components/molecules/ChallengeDetailCard';
-import { IChallengeData } from 'pages/LearnMyself/template/ChallengeList';
 import React, { useCallback, useEffect, useState } from 'react';
 import { useRecoilValue } from 'recoil';
 import { userStatusState } from 'stores/user';
 import Styled from 'styled-components';
 import { palette } from 'styled-tools';
-import { IMyScrappedLearnMyself } from 'types/myPage';
+import { IChallengeData } from 'types/challenge.type';
 
-function ScrappedLearnMyself(): React.ReactElement {
-  const [scrappedLearnMyself, setScrappedLearnMyself] = useState<IMyScrappedLearnMyself | null>(null);
+function MyChallengeList(): React.ReactElement {
+  const [myLearnMyselfList, setMyLearnMyselfList] = useState<IChallengeData[] | null>(null);
   const [offset, setOffset] = useState(0);
   const globalUserState = useRecoilValue(userStatusState);
 
-  const fetchScrappedLearnMyself = useCallback(
+  const fetchMyLearnMyselfList = useCallback(
     async (offset: number) => {
-      // TODO: 페이지네이션 구현하면 나중에 총 갯수 조정할 것.
-      const data = await getLearnMyselfListData({ token: globalUserState?.token, limit: 1000, offset });
-      data && setScrappedLearnMyself(data);
+      const data = await getUserChallengeList({ token: globalUserState?.token, limit: 1000, offset });
+      data && setMyLearnMyselfList(data);
     },
     [globalUserState?.token],
   );
 
   useEffect(() => {
-    fetchScrappedLearnMyself(offset);
-  }, [fetchScrappedLearnMyself, offset]);
+    fetchMyLearnMyselfList(offset);
+  }, [fetchMyLearnMyselfList, offset]);
 
   return (
     <Wrapper>
       <Header>
-        <h2 className="h2">스크랩한</h2>
-        <h2 className="h2_eng">Learn Myself</h2>
+        <h2 className="h2_eng">내가 작성한 글</h2>
       </Header>
-      {scrappedLearnMyself?.totalScrapNum ? (
-        scrappedLearnMyself?.mypageChallengeScrap.map((data: IChallengeData, id) => {
+      {!!myLearnMyselfList ? (
+        myLearnMyselfList?.map((data: IChallengeData, id) => {
           return (
             <ChallengeDetailCard
               id={data?._id}
@@ -49,14 +46,14 @@ function ScrappedLearnMyself(): React.ReactElement {
               comments={data?.comments.length}
               isLike={data?.isLike}
               isScrap={data?.isScrap}
-              handleFetch={fetchScrappedLearnMyself}
+              handleFetch={fetchMyLearnMyselfList}
               key={id}
             />
           );
         })
       ) : (
         <NoContents>
-          <p className="subhead4">스크랩한 글이 없어요</p>
+          <p className="subhead4">작성한한 글이 없어요</p>
         </NoContents>
       )}
     </Wrapper>
@@ -80,4 +77,4 @@ const Wrapper = Styled.div`
   align-items: center;
 `;
 
-export default ScrappedLearnMyself;
+export default MyChallengeList;

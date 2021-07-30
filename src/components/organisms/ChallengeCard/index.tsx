@@ -1,9 +1,9 @@
 import { ChallengeListData } from 'apis';
 import { ChallengeDetailCard } from 'components/molecules';
-import { IChallengeData } from 'pages/LearnMyself/template/ChallengeList';
 import React, { useCallback, useEffect, useState } from 'react';
 import { useRecoilValue } from 'recoil';
 import { userStatusState } from 'stores/user';
+import { IChallengeData } from 'types/challenge.type';
 import SChallengeCard from './style';
 
 interface IProps {

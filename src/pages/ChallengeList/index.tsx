@@ -5,29 +5,10 @@ import React, { useCallback, useState } from 'react';
 import { RouteComponentProps } from 'react-router';
 import { useRecoilValue } from 'recoil';
 import { userStatusState } from 'stores/user';
+import { IChallengeData } from 'types/challenge.type';
 
 interface MatchParams {
   generationNum: string;
-}
-
-export interface IChallengeData {
-  good: string;
-  bad: string;
-  learn: string;
-  commentNum: number;
-  comments: string[];
-  generation: number;
-  createdAt: string;
-  isDeleted: boolean;
-  scrapNum: number;
-  interest: string[];
-  likes: number;
-  updatedAt: string;
-  isLike: boolean;
-  isScrap: boolean;
-  user: { img: string; nickname: string; _id: string };
-  __v: number;
-  _id: string;
 }
 
 function ChallengeView({ match }: RouteComponentProps<MatchParams>): React.ReactElement {
