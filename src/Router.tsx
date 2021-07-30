@@ -1,7 +1,6 @@
 import Footer from 'components/organisms/Footer';
 import Header from 'components/organisms/Header';
 import { MyPage, Setting } from 'pages';
-import NoticeDetail from 'pages//NoticeDetail';
 import AdminChallengeList from 'pages/AdminChallengeList';
 import Concert from 'pages/Concert';
 import ConcertDetail from 'pages/ConcertDetail';
@@ -11,6 +10,7 @@ import LearnMyself from 'pages/LearnMyself/template/ChallengeList';
 import ChallengeRegister from 'pages/LearnMyself/template/ChallengeRegister';
 import WriteLearnMyself from 'pages/LearnMyself/template/ChallengeWrite';
 import Notice from 'pages/Notice';
+import NoticeDetail from 'pages/NoticeDetail';
 import SetPwd from 'pages/SetPwd';
 import React from 'react';
 import { BrowserRouter, Route, Switch } from 'react-router-dom';

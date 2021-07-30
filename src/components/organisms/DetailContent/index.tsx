@@ -12,8 +12,8 @@ interface IProps {
   scrapNum?: number;
   onLike?: () => void;
   onScrap?: () => void;
-  userLike?: boolean;
-  userScrap?: boolean;
+  isUserLike?: boolean;
+  isUserScrap?: boolean;
 }
 
 function DetailContent({
@@ -25,8 +25,8 @@ function DetailContent({
   scrapNum,
   onLike,
   onScrap,
-  userLike,
-  userScrap,
+  isUserLike,
+  isUserScrap,
 }: IProps): React.ReactElement {
   return (
     <SDetailContent>
@@ -41,7 +41,7 @@ function DetailContent({
       </div>
       <div className="icons">
         <div className="like">
-          <img className="like__img" src={userLike ? LikeFilledIcon : LikeIcon} onClick={onLike} alt="" />
+          <img className="like__img" src={isUserLike ? LikeFilledIcon : LikeIcon} onClick={onLike} alt="" />
           {likeNum}
         </div>
         <div className="comments">
@@ -49,7 +49,7 @@ function DetailContent({
           {commentNum}
         </div>
         <div className="scrap">
-          <img className="scrap__img" src={userScrap ? ScrapFilledIcon : ScrapIcon} onClick={onScrap} alt="" />
+          <img className="scrap__img" src={isUserScrap ? ScrapFilledIcon : ScrapIcon} onClick={onScrap} alt="" />
           {scrapNum}
         </div>
       </div>

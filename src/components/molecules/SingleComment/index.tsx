@@ -41,7 +41,7 @@ interface IReply {
 }
 
 function SingleComment({ _id, userID, childrenComment, text, concertID }: IProps): React.ReactElement {
-  const [openReply, setOpenReply] = useState(false);
+  const [isOpenReply, setIsOpenReply] = useState(false);
   const [replyValue, setReplyValue] = useState('');
   const [replyList, setReplyList] = useState(childrenComment);
   const userStatusData = useRecoilValue(userStatusState);
@@ -49,7 +49,7 @@ function SingleComment({ _id, userID, childrenComment, text, concertID }: IProps
   const [loginModalOpen, setLoginModalOpen] = useState(false);
 
   const onClickReplyOpen = () => {
-    setOpenReply(!openReply);
+    setIsOpenReply(!isOpenReply);
   };
   const handleChange = (event: React.ChangeEvent<HTMLTextAreaElement>) => {
     setReplyValue(event.currentTarget.value);
@@ -86,11 +86,11 @@ function SingleComment({ _id, userID, childrenComment, text, concertID }: IProps
         <div className="comment__writer">{userID?.nickname}</div>
         <div className="comment__text">{text}</div>
         <div className="comment__toggle" onClick={onClickReplyOpen}>
-          {openReply ? '접기' : '답글보기'}
+          {isOpenReply ? '접기' : '답글보기'}
         </div>
       </div>
       <div className="reply">
-        {openReply && (
+        {isOpenReply && (
           <>
             <CommentWrite
               className="reply__write"
