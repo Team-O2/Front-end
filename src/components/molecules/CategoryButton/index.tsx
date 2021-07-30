@@ -6,7 +6,7 @@ interface IProps {
   tag: string;
   isMore: boolean;
   selectedCategory?: string;
-  onClickInterest: ((tag: string) => void) | undefined;
+  onClickInterest?: (tag: string) => void;
 }
 interface IStyleProps {
   readMore?: boolean;

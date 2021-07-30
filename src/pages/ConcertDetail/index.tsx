@@ -8,7 +8,7 @@ import {
 } from 'apis';
 import { LoginModal } from 'assets/images';
 import { Button, Modal } from 'components/atoms';
-import DetailTitle from 'components/molecules/DetailTitle';
+import { DetailTitle } from 'components/molecules';
 import { CommentList, DetailContent } from 'components/organisms';
 import React, { useEffect, useState } from 'react';
 import { RouteComponentProps } from 'react-router';
@@ -103,7 +103,7 @@ function ConcertDetail({ match }: RouteComponentProps<MatchParams>): React.React
         title={concert?.title}
         authorNickname={concert?.authorNickname}
         createdAt={concert?.createdAt}
-        interest={concert?.interest}
+        interestList={concert?.interest}
       ></DetailTitle>
       <DetailContent
         video={concert?.videoLink}

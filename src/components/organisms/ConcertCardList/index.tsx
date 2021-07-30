@@ -1,7 +1,7 @@
+import { ConcertCard } from 'components/molecules';
 import React from 'react';
 import { useHistory } from 'react-router';
 import Styled from 'styled-components';
-import ConcertCard from '../../molecules/ConcertCard';
 
 interface IData {
   videoLink: string;

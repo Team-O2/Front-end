@@ -1,10 +1,10 @@
 import { SmallLeftArrow, SmallRightArrow } from 'assets/images';
 import { Button, Icon } from 'components/atoms';
+import { Concert } from 'components/molecules';
 import React, { useState } from 'react';
 import { useHistory } from 'react-router';
 import Styled from 'styled-components';
 import { ifProp } from 'styled-tools';
-import Concert from '../../molecules/Concert';
 
 interface IData {
   videoLink: string;

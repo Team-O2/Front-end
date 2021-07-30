@@ -4,13 +4,13 @@ import Styled from 'styled-components';
 
 interface IProps {
   authorNickname?: string;
-  interest?: string[];
+  interestList?: string[];
   createdAt?: string;
   title?: string;
 }
 
-function DetailTitle({ title, authorNickname, createdAt, interest }: IProps): React.ReactElement {
-  const interestDivide = interest?.join(' | ');
+function DetailTitle({ title, authorNickname, createdAt, interestList }: IProps): React.ReactElement {
+  const interestDivide = interestList?.join(' | ');
   return (
     <>
       <SDetailTitle>

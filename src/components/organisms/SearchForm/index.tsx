@@ -1,5 +1,5 @@
 import { DiamondIcon } from 'assets/images';
-import SearchBar from 'components/molecules/SearchBar';
+import { SearchBar } from 'components/molecules';
 import React, { useState } from 'react';
 import Styled from 'styled-components';
 interface IProps {

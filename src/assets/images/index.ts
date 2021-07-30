@@ -6,7 +6,7 @@ export { default as EmptyCheckBox } from './emptyCheckBox.svg';
 export { default as FilledBookmark } from './filledBookmark.svg';
 export { default as FilledCheckBox } from './filledCheckBox.svg';
 export { default as LikeIcon } from './heart.svg';
-export { default as LikeIconFilled } from './heart_filled.svg';
+export { default as LikeFilledIcon } from './heart_filled.svg';
 export { default as SearchIcon } from './icons_search.svg';
 export { default as LargeLeftArrow } from './largeLeftArrow.svg';
 export { default as LargeRightArrow } from './largeRightArrow.svg';
