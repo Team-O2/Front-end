@@ -1,6 +1,6 @@
 import { ChallengeListData } from 'apis';
 import ChallengeHeader from 'components/molecules/ChallengeHeader.tsx';
-import ViewCardList from 'components/organisms/ViewCardList';
+import ChallengeCard from 'components/organisms/ChallengeCard';
 import React, { useCallback, useState } from 'react';
 import { RouteComponentProps } from 'react-router';
 import { useRecoilValue } from 'recoil';
@@ -57,7 +57,7 @@ function ChallengeView({ match }: RouteComponentProps<MatchParams>): React.React
         isClickedEntire={isClickedEntire}
         setIsClickedEntire={setIsClickedEntire}
       />
-      <ViewCardList challengeList={challengeList} setChallengeList={setChallengeList} generationNum={generationNum} />
+      <ChallengeCard challengeList={challengeList} setChallengeList={setChallengeList} generationNum={generationNum} />
     </div>
   );
 }

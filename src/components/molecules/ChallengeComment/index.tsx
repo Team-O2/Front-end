@@ -1,9 +1,8 @@
 import ChallengeCommentWrite from 'components/molecules/ChallengeCommentWrite';
+import { ICommentData } from 'components/molecules/ChallengeDetailCard';
 import ChallengeSingleComment from 'components/molecules/ChallengeSingleWrite';
-import { ICommentData } from 'components/molecules/ViewListCard';
-// import { ICommentData } from 'components/organisms/ViewCardList';
 import React from 'react';
-import Styled from 'styled-components';
+import SCommentList from './style';
 
 interface IProps {
   commentList: Array<ICommentData> | null;
@@ -39,14 +38,5 @@ function ChallengeComment({
     </SCommentList>
   );
 }
-const SCommentList = Styled.div`
-display : flex;
-flex-direction : column;
-align-items : flex-end;
-margin : 0 auto;
-width : 724px;
-  .comment__write{
-    margin-bottom:30px;
-  }
-`;
+
 export default ChallengeComment;

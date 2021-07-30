@@ -1,5 +1,5 @@
 import { getLearnMyselfListData } from 'apis';
-import ViewListCard from 'components/molecules/ViewListCard';
+import ChallengeDetailCard from 'components/molecules/ChallengeDetailCard';
 import { IChallengeData } from 'pages/LearnMyself/template/ChallengeList';
 import React, { useCallback, useEffect, useState } from 'react';
 import { useRecoilValue } from 'recoil';
@@ -35,7 +35,7 @@ function ScrappedLearnMyself(): React.ReactElement {
       {scrappedLearnMyself?.totalScrapNum ? (
         scrappedLearnMyself?.mypageChallengeScrap.map((data: IChallengeData, id) => {
           return (
-            <ViewListCard
+            <ChallengeDetailCard
               id={data?._id}
               nickname={data?.user?.nickname}
               image={data?.user?.img}
