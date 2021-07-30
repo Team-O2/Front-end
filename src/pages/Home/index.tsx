@@ -4,24 +4,24 @@ import {
   CommunicationKingFill,
   EmpathizingFill,
   GrowingTogetherFill,
+  landingBack as backgroundImg,
   mainCard1,
   mainCard2,
   mainCard3,
   mainCard4,
   NaturalBornO2Fill,
   ReadyForGrowFill,
+  sharePhoto1,
+  sharePhoto2,
   ShyEmailFill,
+  speakerBadge1,
+  speakerBadge2,
+  speakerBadge3,
   UsefulLearnMyselfFill,
   WelcomeToO2Fill,
 } from 'assets/images';
-import backgroundImg from 'assets/images/landingBack.svg';
-import sharePhoto1 from 'assets/images/sharePhoto1.png';
-import sharePhoto2 from 'assets/images/sharePhoto2.png';
-import speakerBadge1 from 'assets/images/speakerBadge1.png';
-import speakerBadge2 from 'assets/images/speakerBadge2.png';
-import speakerBadge3 from 'assets/images/speakerBadge3.png';
 import { Button } from 'components/atoms';
-import BadgeCard from 'components/molecules/BadgeExpCard';
+import { BadgeExpCard as BadgeCard } from 'components/molecules';
 import React, { useEffect, useState } from 'react';
 import Reveal from 'react-awesome-reveal';
 import { Link } from 'react-router-dom';
