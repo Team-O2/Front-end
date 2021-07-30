@@ -1,4 +1,4 @@
-import CAdminWrite from 'components/organisms/AdminWrite';
+import { AdminWrite as CAdminWrite } from 'components/organisms';
 import React from 'react';
 import { RouteComponentProps } from 'react-router';
 import Styled from 'styled-components';

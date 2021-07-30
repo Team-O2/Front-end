@@ -1,15 +1,13 @@
-import Modal from 'components/atoms/Modal';
-import Hamburger from 'components/organisms/Hamburger';
+import { hamburgerLogo as Ham_Logo, header_logo as O2_Logo } from 'assets/images';
+import { Button, Modal } from 'components/atoms';
+import { Hamburger } from 'components/organisms';
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import Styled from 'styled-components';
-import Ham_Logo from '../../../assets/images/hamburgerLogo.svg';
-import O2_Logo from '../../../assets/images/header_logo.svg';
-import Button from '../../atoms/Button/index';
 
 function Header(): React.ReactElement {
   const [hamburgerOpen, setHamburgerOpen] = useState(false);
-  const hamburgerOpenClickListener = () => {
+  const handleHamburgerOpen = () => {
     setHamburgerOpen(!hamburgerOpen);
   };
 
@@ -17,7 +15,7 @@ function Header(): React.ReactElement {
     <>
       <HeaderWrap>
         <div className="header_buttons">
-          <Button onClick={hamburgerOpenClickListener}>
+          <Button onClick={handleHamburgerOpen}>
             <img className="button" src={Ham_Logo}></img>
           </Button>
           <Link to="/">

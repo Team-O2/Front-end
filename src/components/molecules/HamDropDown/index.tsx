@@ -1,9 +1,7 @@
-import arrowDown from 'assets/images/ham_arrowDown.svg';
-import arrowUp from 'assets/images/ham_arrowUp.svg';
-import { Link } from 'components/atoms';
+import { ham_arrowDown as arrowDown, ham_arrowUp as arrowUp } from 'assets/images';
+import { Button, Link } from 'components/atoms';
 import React, { useState } from 'react';
 import Styled from 'styled-components';
-import Button from '../../atoms/Button/index';
 
 interface Iitem {
   name: string;
@@ -19,13 +17,13 @@ export interface IProps {
 
 function HamDropDown({ title, itemList, isEnglish }: IProps): React.ReactElement {
   const [isOpened, setIsOpened] = useState(false);
-  const learnOpenClickListener = (): void => {
+  const handleOpenOnClick = (): void => {
     setIsOpened(!isOpened);
   };
 
   return (
     <SHamDropDown isOpened={isOpened} isEnglish={isEnglish}>
-      <Button className="title" onClick={learnOpenClickListener}>
+      <Button className="title" onClick={handleOpenOnClick}>
         <>
           <div className="title__label ">{title}</div>
           <img className="title__icon" src={isOpened ? arrowUp : arrowDown} />
@@ -93,27 +91,26 @@ const SHamDropDown = Styled.div<{ isOpened?: boolean; isEnglish: boolean }>`
       margin-top : 20px;
     }
     &__btnContainer{
-      width : 98px;
+      width : 100px;
       display : flex;
       flex-direction : column;
       max-height : 229px;
       overflow-y: scroll;
-      ::-webkit-scrollbar {
-      width: 0.8rem;
-    }
-    ::-webkit-scrollbar-track {
-      background: none;
-    }
-    ::-webkit-scrollbar-thumb {
-      background: #c1c1c1;
-      border-radius: 0.5rem;
-      box-sizing: border-box;
-    }
-    /* Handle on hover */
-    ::-webkit-scrollbar-thumb:hover {
-      background: #c1c1c1;
-    }
       align-items : center;
+      ::-webkit-scrollbar {
+      width: 0.3rem;
+      }
+      ::-webkit-scrollbar-track {
+        background: none;
+      }
+      ::-webkit-scrollbar-thumb {
+        background: #c1c1c1;
+        border-radius: 0.5rem;
+        box-sizing: border-box;
+      }
+      ::-webkit-scrollbar-thumb:hover {
+        background: #c1c1c1;
+      }
     }
     &__btn{
       height: 18px;

@@ -1,11 +1,9 @@
-import plusIconGrey from 'assets/images/plusIconGrey.svg';
+import { plusIconGrey } from 'assets/images';
 import { ChipBtn, FileUpload, Input, Label } from 'components/atoms';
-import DropDown from 'components/molecules/DropDown';
-import EditorForm from 'components/molecules/EditorForm';
+import { DropDown, EditorForm } from 'components/molecules';
 import React, { useEffect, useState } from 'react';
 import { interestList } from 'resources/string';
 import Styled from 'styled-components';
-// import ChipBtn from 'components/atoms/ChipBtn'
 
 interface IUserData {
   title: string;
@@ -59,7 +57,7 @@ function AdminWriteForm({ setIsConditionMet, writeData, setWriteData, menuProps 
     hashtag: false,
     nickname: false,
   });
-  const hashTagInputHandler = () => {
+  const addHashTag = () => {
     if (currentHashtag !== '' && writeData.hashtag.length < 15) {
       if (writeData.hashtag[0] == '') {
         setWriteData({ ...writeData, hashtag: [currentHashtag] });
@@ -274,7 +272,7 @@ function AdminWriteForm({ setIsConditionMet, writeData, setWriteData, menuProps 
           }}
           onKeyUp={(e) => {
             if (e.keyCode === 13) {
-              hashTagInputHandler();
+              addHashTag();
             }
           }}
         />

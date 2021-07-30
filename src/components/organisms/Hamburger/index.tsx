@@ -1,15 +1,17 @@
 import { getGeneration } from 'apis';
-import challengeIcon from 'assets/images/hamChallengeicon.svg';
-import unChallengeIcon from 'assets/images/hamUnchallengeicon.svg';
-import loginIcon from 'assets/images/loginIcon.svg';
-import userImage from 'assets/images/userImage.png';
+import {
+  hamChallengeicon as challengeIcon,
+  hamUnchallengeicon as unChallengeIcon,
+  loginIcon,
+  userImage,
+} from 'assets/images';
+import { Button } from 'components/atoms';
+import { HamDropDown } from 'components/molecules';
 import React, { useEffect, useState } from 'react';
 import { Link, useHistory } from 'react-router-dom';
 import { useRecoilState } from 'recoil';
 import { userState, userStatusState } from 'stores/user';
 import Styled from 'styled-components';
-import Button from '../../atoms/Button/index';
-import HamDropDown from '../../molecules/HamDropDown';
 
 interface IHamDrop {
   name: string;
@@ -31,7 +33,7 @@ function Hamburger(): React.ReactElement {
   const [generationNum, setGenerationNum] = useState<{ registGeneration: number | null; progressGeneration: number }>();
   const [userName, setUserName] = useState(userData?.nickname);
   const [challengeList, setChallengeList] = useState<IHamDrop[]>([{ name: '', link: '' }]);
-  const indextoName = (index: number) => {
+  const changeIndextoName = (index: number) => {
     switch (index) {
       case 1:
         return '1st';
@@ -48,15 +50,15 @@ function Hamburger(): React.ReactElement {
     const arr: IHamDrop[] = [];
     if (generationNum) {
       for (let i = 1; i <= generationNum.progressGeneration; i++) {
-        arr.push({ name: indextoName(i), link: `/challenge/${i}` });
+        arr.push({ name: changeIndextoName(i), link: `/challenge/${i}` });
       }
       if (generationNum.registGeneration) {
-        arr.push({ name: indextoName(generationNum.registGeneration), link: '/challengeRegister' });
+        arr.push({ name: changeIndextoName(generationNum.registGeneration), link: '/challengeRegister' });
       }
     }
     setChallengeList(arr);
   };
-  const logOutHandler = () => {
+  const handleLogOut = () => {
     setUserStatusData(null);
     setUserData(null);
     alert('로그아웃 되었습니다');
@@ -132,7 +134,8 @@ function Hamburger(): React.ReactElement {
               <>
                 <img className="top__icon--subtitle" src={unChallengeIcon}></img>
                 <div style={{ color: '#36c8f5', fontWeight: 'bold' }}>
-                  {userStatusData?.registGeneration && indextoName(userStatusData.registGeneration)} Learn Myself 신청
+                  {userStatusData?.registGeneration && changeIndextoName(userStatusData.registGeneration)} Learn Myself
+                  신청
                 </div>
               </>
             </Button>
@@ -209,7 +212,7 @@ function Hamburger(): React.ReactElement {
           </Link>
         )}
         {(userStateNum === 1 || userStateNum === 2 || userStateNum === 3 || userStateNum === 4) && (
-          <Button onClick={logOutHandler}>
+          <Button onClick={handleLogOut}>
             <div className="bottom__button" style={{ color: '#8b8b8b', marginLeft: '8px', marginRight: '24px' }}>
               로그아웃
             </div>

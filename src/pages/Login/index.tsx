@@ -1,5 +1,5 @@
+import { Login as CLogin } from 'components/organisms';
 import React from 'react';
-import CLogin from '../../components/organisms/Login/index';
 
 function Login(): React.ReactElement {
   return (

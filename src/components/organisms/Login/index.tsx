@@ -1,10 +1,8 @@
-import Line from 'assets/images/line.svg';
-import { Link } from 'components/atoms';
-import Button from 'components/atoms/Button';
-import Label from 'components/atoms/Label';
+import { line as Line } from 'assets/images';
+import { Button, Label, Link } from 'components/atoms';
+import { Loginform } from 'components/molecules';
 import React from 'react';
 import Styled from 'styled-components';
-import Loginform from '../../molecules/Loginform/index';
 
 function CLogin(): React.ReactElement {
   return (

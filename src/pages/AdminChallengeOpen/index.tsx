@@ -1,6 +1,6 @@
+import { AdminChallengeOpen as CAdminChallengeOpen } from 'components/organisms';
 import React from 'react';
 import Styled from 'styled-components';
-import CAdminChallengeOpen from 'components/organisms/AdminChallengeOpen';
 
 function AdminChallengeOpen(): React.ReactElement {
   return (
