@@ -49,8 +49,8 @@ function ConcertDetail({ match }: RouteComponentProps<MatchParams>): React.React
   const [scrapNum, setScrapNum] = useState(0);
   const userStatusData = useRecoilValue(userStatusState);
   const [loginModalOpen, setLoginModalOpen] = useState(false);
-  const [userLike, setUserLike] = useState(false);
-  const [userScrap, setUserScrap] = useState(false);
+  const [isUserLike, setIsUserLike] = useState(false);
+  const [isUserScrap, setIsUserScrap] = useState(false);
   useEffect(() => {
     const getConcertList = async () => {
       if (userStatusData) {
@@ -59,8 +59,8 @@ function ConcertDetail({ match }: RouteComponentProps<MatchParams>): React.React
         data && setCommentList(data.comments);
         data && setLikeNum(data.likes);
         data && setScrapNum(data.scrapNum);
-        data && setUserLike(data.isLike);
-        data && setUserScrap(data.isScrap);
+        data && setIsUserLike(data.isLike);
+        data && setIsUserScrap(data.isScrap);
       } else {
         const data = await getConcertData(id);
         data && setConcert(data);
@@ -114,8 +114,8 @@ function ConcertDetail({ match }: RouteComponentProps<MatchParams>): React.React
         scrapNum={scrapNum}
         onLike={onLike}
         onScrap={onScrap}
-        userLike={userLike}
-        userScrap={userScrap}
+        isUserLike={isUserLike}
+        isUserScrap={isUserScrap}
       ></DetailContent>
       <CommentList commentList={commentList} concertID={concert?._id} reLoadComment={reLoadComment}></CommentList>
       <Modal isOpen={loginModalOpen} setIsOpen={setLoginModalOpen} isBlur={true}>

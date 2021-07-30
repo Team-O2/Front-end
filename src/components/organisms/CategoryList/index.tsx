@@ -13,12 +13,12 @@ function CategoryList({ reRenderCategory, selectedCategory, categoryChange }: IP
   const totalSlide = 6;
   const [currentSlide, setCurrentSlide] = useState(0);
   const slideRef = useRef<HTMLInputElement>(null);
-  const [openMore, setOpenMore] = useState(false);
-  const [moreClicked, setMoreClicked] = useState(false);
+  const [isOpenMore, setIsOpenMore] = useState(false);
+  const [isMoreClicked, setIsMoreClicked] = useState(false);
 
   const onClickOpenMore = () => {
-    setOpenMore(!openMore);
-    setMoreClicked(!moreClicked);
+    setIsOpenMore(!isOpenMore);
+    setIsMoreClicked(!isMoreClicked);
   };
   const onClickInterest = (category: string) => {
     reRenderCategory && reRenderCategory(category);
@@ -63,11 +63,11 @@ function CategoryList({ reRenderCategory, selectedCategory, categoryChange }: IP
         </div>
         <div className="shadow"></div>
         <img className="next" src={NextIcon} onClick={nextSlide} alt="" />
-        <img src={moreClicked ? MoreClickedIcon : MoreIcon} onClick={onClickOpenMore} alt="" />
+        <img src={isMoreClicked ? MoreClickedIcon : MoreIcon} onClick={onClickOpenMore} alt="" />
       </div>
 
       <div className="more">
-        {openMore && (
+        {isOpenMore && (
           <>
             <div className="more__box">
               {interestList.map((tag, index) => (
