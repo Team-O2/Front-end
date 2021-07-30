@@ -1,24 +1,24 @@
 import { keyframes } from '@emotion/react';
 import { getGeneration } from 'apis';
 import {
-  CommunicationKingFill,
-  EmpathizingFill,
-  GrowingTogetherFill,
+  CommunicationKingFill as CommunicationKingImg,
+  EmpathizingFill as EmpathizingImg,
+  GrowingTogetherFill as GrowingTogetherImg,
   landingBack as backgroundImg,
-  mainCard1,
-  mainCard2,
-  mainCard3,
-  mainCard4,
-  NaturalBornO2Fill,
-  ReadyForGrowFill,
-  sharePhoto1,
-  sharePhoto2,
-  ShyEmailFill,
-  speakerBadge1,
-  speakerBadge2,
-  speakerBadge3,
-  UsefulLearnMyselfFill,
-  WelcomeToO2Fill,
+  mainCard1 as mainCardImg1,
+  mainCard2 as mainCardImg2,
+  mainCard3 as mainCardImg3,
+  mainCard4 as mainCardImg4,
+  NaturalBornO2Fill as NaturalBornO2Img,
+  ReadyForGrowFill as ReadyForGrowImg,
+  sharePhoto1 as shareImg1,
+  sharePhoto2 as shareImg2,
+  ShyEmailFill as ShyEmailImg,
+  speakerBadge1 as speakerBadgeImg1,
+  speakerBadge2 as speakerBadgeImg2,
+  speakerBadge3 as speakerBadgeImg3,
+  UsefulLearnMyselfFill as UsefulLearnMyselfImg,
+  WelcomeToO2Fill as WelcomeToO2Img,
 } from 'assets/images';
 import { Button } from 'components/atoms';
 import { BadgeExpCard as BadgeCard } from 'components/molecules';
@@ -76,10 +76,10 @@ function Home(): React.ReactElement {
         </Reveal>
         <Reveal cascade damping={0.3} keyframes={moveUp} triggerOnce>
           <ul className="learnMyself__container--card">
-            <img className="learnMyself__img--card" src={mainCard1} />
-            <img className="learnMyself__img--card" src={mainCard2} />
-            <img className="learnMyself__img--card" src={mainCard3} />
-            <img className="learnMyself__img--card" src={mainCard4} />
+            <img className="learnMyself__img--card" src={mainCardImg1} />
+            <img className="learnMyself__img--card" src={mainCardImg2} />
+            <img className="learnMyself__img--card" src={mainCardImg3} />
+            <img className="learnMyself__img--card" src={mainCardImg4} />
           </ul>
         </Reveal>
       </div>
@@ -94,7 +94,7 @@ function Home(): React.ReactElement {
           </p>
         </Reveal>
         <div className="shareTogether__container--photo1">
-          <img className="shareTogether__image1" src={sharePhoto1}></img>
+          <img className="shareTogether__image1" src={shareImg1}></img>
           <div className="shareTogether__container--exp1">
             <Reveal keyframes={moveUp}>
               <p className="body3 shareTogether__exp--type">Share Together 인기글</p>
@@ -132,7 +132,7 @@ function Home(): React.ReactElement {
               </p>
             </Reveal>
           </div>
-          <img className="shareTogether__image2" src={sharePhoto2}></img>
+          <img className="shareTogether__image2" src={shareImg2}></img>
         </div>
       </div>
       <div className="o2speaker">
@@ -143,21 +143,21 @@ function Home(): React.ReactElement {
         <Reveal cascade damping={0.5} keyframes={moveUp} triggerOnce>
           <ul className="o2speaker__container--outer">
             <li className="o2speaker__container--inner">
-              <img className="o2speaker__image--badge" src={speakerBadge1} />
+              <img className="o2speaker__image--badge" src={speakerBadgeImg1} />
               <p className="body4 o2speaker__exp">
                 챌린지 개수를 주당 <br />
                 3개 이상으로 설정
               </p>
             </li>
             <li className="o2speaker__container--inner">
-              <img className="o2speaker__image--badge" src={speakerBadge2} />
+              <img className="o2speaker__image--badge" src={speakerBadgeImg2} />
               <p className="body4 o2speaker__exp">
                 런마쎌을 80%이상 작성 후 <br />
                 챌린지뱃지를 획득
               </p>
             </li>
             <li className="o2speaker__container--inner">
-              <img className="o2speaker__image--badge" src={speakerBadge3} />
+              <img className="o2speaker__image--badge" src={speakerBadgeImg3} />
               <p className="body4 o2speaker__exp">
                 챌린지뱃지 3개 + 활동뱃지 12개 <br />
                 얻을 시 연사가능
@@ -174,7 +174,7 @@ function Home(): React.ReactElement {
         <Reveal cascade damping={0.2} keyframes={moveUp} triggerOnce>
           <ul className="o2badge__container--badge">
             <BadgeCard
-              img={WelcomeToO2Fill}
+              img={WelcomeToO2Img}
               title="웰컴 투 오투"
               explain={
                 <>
@@ -184,7 +184,7 @@ function Home(): React.ReactElement {
               }
             />
             <BadgeCard
-              img={UsefulLearnMyselfFill}
+              img={UsefulLearnMyselfImg}
               title="유용한 런마쎌"
               explain={
                 <>
@@ -195,7 +195,7 @@ function Home(): React.ReactElement {
               }
             />
             <BadgeCard
-              img={CommunicationKingFill}
+              img={CommunicationKingImg}
               title="나는야 소통왕"
               explain={
                 <>
@@ -205,7 +205,7 @@ function Home(): React.ReactElement {
               }
             />
             <BadgeCard
-              img={EmpathizingFill}
+              img={EmpathizingImg}
               title="당신은 공감왕"
               explain={
                 <>
@@ -215,7 +215,7 @@ function Home(): React.ReactElement {
               }
             />
             <BadgeCard
-              img={ReadyForGrowFill}
+              img={ReadyForGrowImg}
               title="성장준비 완료"
               explain={
                 <>
@@ -225,7 +225,7 @@ function Home(): React.ReactElement {
               }
             />
             <BadgeCard
-              img={NaturalBornO2Fill}
+              img={NaturalBornO2Img}
               title="뼛속부터 오투인"
               explain={
                 <>
@@ -235,7 +235,7 @@ function Home(): React.ReactElement {
               }
             />
             <BadgeCard
-              img={GrowingTogetherFill}
+              img={GrowingTogetherImg}
               title="함께 성장 중"
               explain={
                 <>
@@ -245,7 +245,7 @@ function Home(): React.ReactElement {
               }
             />
             <BadgeCard
-              img={ShyEmailFill}
+              img={ShyEmailImg}
               title="설레는 첫 답글"
               explain={
                 <>

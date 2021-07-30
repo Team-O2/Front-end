@@ -16,7 +16,7 @@ export interface IData {
 export interface IProps {
   challengeData: IData;
 }
-const datetoString = (date: string, isIncludeYear: boolean): string => {
+const changeDatetoString = (date: string, isIncludeYear: boolean): string => {
   const year = date.substr(0, 4);
   const month = date.substr(5, 2);
   const day = date.substr(8, 2);
@@ -33,18 +33,20 @@ function AdminChallengeCard({ challengeData }: IProps): React.ReactElement {
 
         <div className="card__container--row">
           <div className="card__label body3">오픈일자</div>
-          <div className="card__exp subhead3">{datetoString(challengeData.createdDT, true)}</div>
+          <div className="card__exp subhead3">{changeDatetoString(challengeData.createdDT, true)}</div>
         </div>
         <div className="card__container--row">
           <div className="card__label body3">진행기간</div>
           <div className="card__exp subhead3">
-            {datetoString(challengeData.challengeStartDT, true)} ~ {datetoString(challengeData.challengeEndDT, false)}
+            {changeDatetoString(challengeData.challengeStartDT, true)} ~{' '}
+            {changeDatetoString(challengeData.challengeEndDT, false)}
           </div>
         </div>
         <div className="card__container--row">
           <div className="card__label body3">신청기간</div>
           <div className="card__exp subhead3">
-            {datetoString(challengeData.registerStartDT, true)} ~ {datetoString(challengeData.registerEndDT, false)}
+            {changeDatetoString(challengeData.registerStartDT, true)} ~{' '}
+            {changeDatetoString(challengeData.registerEndDT, false)}
           </div>
         </div>
         <div className="card__container--row">

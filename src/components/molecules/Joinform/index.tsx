@@ -1,4 +1,4 @@
-import { joinInputErrIcon as JoinErr } from 'assets/images';
+import { joinInputErrIcon as joinErrIcon } from 'assets/images';
 import { Input, Label } from 'components/atoms';
 import { DropDown, JoinCheck } from 'components/molecules';
 import React, { useEffect, useState } from 'react';
@@ -139,7 +139,7 @@ function Joinform({ isConditionMet, userData, setUserData, setIsConditionMet }: 
             setIsFocused({ ...isFocused, email: true });
           }}
         />
-        {isFocused.email && !isConditionMet.email && <img className="join__image--error" src={JoinErr}></img>}
+        {isFocused.email && !isConditionMet.email && <img className="join__image--error" src={joinErrIcon}></img>}
       </div>
       {isFocused.email && !isConditionMet.email && <div className="join__exp--error">올바르지 않은 형식입니다</div>}
       <Label className="join_subtitle">비밀번호</Label>
@@ -164,7 +164,7 @@ function Joinform({ isConditionMet, userData, setUserData, setIsConditionMet }: 
             setIsFocused({ ...isFocused, password: true });
           }}
         />
-        {isFocused.password && !isConditionMet.password && <img className="join__image--error" src={JoinErr}></img>}
+        {isFocused.password && !isConditionMet.password && <img className="join__image--error" src={joinErrIcon}></img>}
       </div>
       {isFocused.password && !isConditionMet.password && (
         <div className="join__exp--error">영어 대문자, 소문자, 특수문자가 포함되어야 합니다</div>
@@ -191,7 +191,7 @@ function Joinform({ isConditionMet, userData, setUserData, setIsConditionMet }: 
           }}
         />
         {isFocused.passwordCheck && !isConditionMet.passwordCheck && (
-          <img className="join__image--error" src={JoinErr}></img>
+          <img className="join__image--error" src={joinErrIcon}></img>
         )}
       </div>
       {isFocused.passwordCheck && !isConditionMet.passwordCheck && (
@@ -218,7 +218,7 @@ function Joinform({ isConditionMet, userData, setUserData, setIsConditionMet }: 
             setIsFocused({ ...isFocused, nickname: true });
           }}
         />
-        {isFocused.nickname && !isConditionMet.nickname && <img className="join__image--error" src={JoinErr}></img>}
+        {isFocused.nickname && !isConditionMet.nickname && <img className="join__image--error" src={joinErrIcon}></img>}
       </div>
       {isFocused.nickname && !isConditionMet.nickname && (
         <div className="join__exp--error">닉네임은 최대 6글자로 한글, 숫자, 밑줄 및 마침표만 사용할 수 있습니다</div>

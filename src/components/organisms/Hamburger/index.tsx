@@ -3,7 +3,7 @@ import {
   hamChallengeicon as challengeIcon,
   hamUnchallengeicon as unChallengeIcon,
   loginIcon,
-  userImage,
+  userImage as userImg,
 } from 'assets/images';
 import { Button } from 'components/atoms';
 import { HamDropDown } from 'components/molecules';
@@ -28,7 +28,7 @@ function Hamburger(): React.ReactElement {
   const history = useHistory();
   const [userStatusData, setUserStatusData] = useRecoilState(userStatusState);
   const [userData, setUserData] = useRecoilState(userState);
-  const [userImg, setUserImg] = useState(userData ? userData.img : userImage); //유저&사진이 존재 하면 이미지변경
+  const [userImage, setUserImage] = useState(userData ? userData.img : userImg); //유저&사진이 존재 하면 이미지변경
   const [userStateNum, setUserState] = useState(userStatusData ? userStatusData.userType : 0);
   const [generationNum, setGenerationNum] = useState<{ registGeneration: number | null; progressGeneration: number }>();
   const [userName, setUserName] = useState(userData?.nickname);
@@ -79,12 +79,12 @@ function Hamburger(): React.ReactElement {
         registGeneration: userStatusData.registGeneration,
       });
       getChallengeList();
-      setUserImg(userData.img);
+      setUserImage(userData.img);
     } else {
       setUserState(0);
       getGenerationNum();
       getChallengeList();
-      setUserImg(userImage);
+      setUserImage(userImage);
     }
   }, [userStatusData]);
 
@@ -95,7 +95,7 @@ function Hamburger(): React.ReactElement {
   return (
     <HamburgerWrap>
       <div className="top">
-        <img className="top__image--usericon" src={userImg}></img>
+        <img className="top__image--usericon" src={userImage}></img>
         {(userStateNum === 0 || userStateNum === 4) && (
           <div className="top__subtitle top__subtitle--nologin">
             함께 성장하는 공간
