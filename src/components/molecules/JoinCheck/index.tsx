@@ -20,8 +20,7 @@ export interface IProps {
   userData: userDataType;
 }
 
-function JoinCheck({ ...props }: IProps): React.ReactElement {
-  const { setUserData, userData } = props;
+function JoinCheck({ setUserData, userData }: IProps): React.ReactElement {
   const [checkAll, setCheckAll] = useState(false);
   const [isChecked, setIsChecked] = useState({
     check1: false,
