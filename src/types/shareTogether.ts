@@ -19,3 +19,7 @@ export interface IShareTogether {
   authorNickname: string;
   __v: number;
 }
+export interface IConcertList {
+  concerts: IShareTogether[];
+  totalConcertNum: number;
+}
