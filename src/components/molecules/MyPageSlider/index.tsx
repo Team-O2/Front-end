@@ -1,35 +1,35 @@
 import {
-  CommunicationKing,
-  CommunicationKingFill,
-  Empathizing,
-  EmpathizingFill,
-  FirstComment,
-  FirstCommentFill,
-  GetChallenge,
-  GetChallengeFill,
-  GrowingTogether,
-  GrowingTogetherFill,
-  NaturalBornO2,
-  NaturalBornO2Fill,
-  Percent100Img,
-  Percent20Img,
-  Percent40Img,
-  Percent60Img,
-  Percent80Img,
-  ReadyForCommunication,
-  ReadyForCommunicationFill,
-  ReadyForGrow,
-  ReadyForGrowFill,
-  ShyEmail,
-  ShyEmailFill,
-  SympathyKing,
-  SympathyKingFill,
-  UsefulLearnMyself,
-  UsefulLearnMyselfFill,
-  UsefulShareTogether,
-  UsefulShareTogetherFill,
-  WelcomeToO2,
-  WelcomeToO2Fill,
+  CommunicationKingFillIcon,
+  CommunicationKingIcon,
+  EmpathizingFillIcon,
+  EmpathizingIcon,
+  FirstCommentFillIcon,
+  FirstCommentIcon,
+  GetChallengeFillIcon,
+  GetChallengeIcon,
+  GrowingTogetherFillIcon,
+  GrowingTogetherIcon,
+  NaturalBornO2FillIcon,
+  NaturalBornO2Icon,
+  Percent100Icon,
+  Percent20Icon,
+  Percent40Icon,
+  Percent60Icon,
+  Percent80Icon,
+  ReadyForCommunicationFillIcon,
+  ReadyForCommunicationIcon,
+  ReadyForGrowFillIcon,
+  ReadyForGrowIcon,
+  ShyEmailFillIcon,
+  ShyEmailIcon,
+  SympathyKingFillIcon,
+  SympathyKingIcon,
+  UsefulLearnMyselfFillIcon,
+  UsefulLearnMyselfIcon,
+  UsefulShareTogetherFillIcon,
+  UsefulShareTogetherIcon,
+  WelcomeToO2FillIcon,
+  WelcomeToO2Icon,
 } from 'assets/images';
 import { ReactComponent as LeftArrow } from 'assets/images/largeLeftArrow.svg';
 import { ReactComponent as RightArrow } from 'assets/images/largeRightArrow.svg';
@@ -83,11 +83,11 @@ function MyPageSlider({ userInfo }: IProps): React.ReactElement {
   }, [localVisible, currentSlide]);
 
   const getLevelIcon = (percent: number): string => {
-    if (percent <= 20) return Percent20Img;
-    else if (percent <= 50) return Percent40Img;
-    else if (percent <= 80) return Percent60Img;
-    else if (percent <= 99) return Percent80Img;
-    else return Percent100Img;
+    if (percent <= 20) return Percent20Icon;
+    else if (percent <= 50) return Percent40Icon;
+    else if (percent <= 80) return Percent60Icon;
+    else if (percent <= 99) return Percent80Icon;
+    else return Percent100Icon;
   };
 
   return (
@@ -144,63 +144,67 @@ function MyPageSlider({ userInfo }: IProps): React.ReactElement {
           <MyPageCard title="Coupon Book" width="550">
             <div className="slider__couponBook">
               <div className="slider__coupon">
-                <Img src={userInfo?.couponBook.welcomeBadge ? WelcomeToO2Fill : WelcomeToO2} />
+                <Img src={userInfo?.couponBook.welcomeBadge ? WelcomeToO2FillIcon : WelcomeToO2Icon} />
                 <Label className="body1">웰컴 투 오투</Label>
               </div>
               <div className="slider__coupon">
-                <Img src={userInfo?.couponBook.firstJoinBadge ? ReadyForGrowFill : ReadyForGrow} />
+                <Img src={userInfo?.couponBook.firstJoinBadge ? ReadyForGrowFillIcon : ReadyForGrowIcon} />
                 <Label className="body1">성장 준비 완료</Label>
               </div>
               <div className="slider__coupon">
-                <Img src={userInfo?.couponBook.firstWriteBadge ? GrowingTogetherFill : GrowingTogether} />
+                <Img src={userInfo?.couponBook.firstWriteBadge ? GrowingTogetherFillIcon : GrowingTogetherIcon} />
                 <Label className="body1">함께 성장 중</Label>
               </div>
               <div className="slider__coupon">
-                <Img src={userInfo?.couponBook.oneCommentBadge ? ReadyForCommunicationFill : ReadyForCommunication} />
+                <Img
+                  src={userInfo?.couponBook.oneCommentBadge ? ReadyForCommunicationFillIcon : ReadyForCommunicationIcon}
+                />
                 <Label className="body1">소통 준비 완료</Label>
               </div>
               <div className="slider__coupon">
-                <Img src={userInfo?.couponBook.challengeBadge === 1 ? GetChallengeFill : GetChallenge} />
+                <Img src={userInfo?.couponBook.challengeBadge === 1 ? GetChallengeFillIcon : GetChallengeIcon} />
                 <Label className="body1">1차 챌린지 달성</Label>
               </div>
               <div className="slider__coupon">
-                <Img src={userInfo?.couponBook.fiveCommentBadge ? CommunicationKingFill : CommunicationKing} />
+                <Img src={userInfo?.couponBook.fiveCommentBadge ? CommunicationKingFillIcon : CommunicationKingIcon} />
                 <Label className="body1">나는야 소통왕</Label>
               </div>
               <div className="slider__coupon">
-                <Img src={userInfo?.couponBook.oneLikeBadge ? EmpathizingFill : Empathizing} />
+                <Img src={userInfo?.couponBook.oneLikeBadge ? EmpathizingFillIcon : EmpathizingIcon} />
                 <Label className="body1">당신은 공감중</Label>
               </div>
               <div className="slider__coupon">
-                <Img src={userInfo?.couponBook.fiveLikeBadge ? SympathyKingFill : SympathyKing} />
+                <Img src={userInfo?.couponBook.fiveLikeBadge ? SympathyKingFillIcon : SympathyKingIcon} />
                 <Label className="body1">당신은 공감왕</Label>
               </div>
               <div className="slider__coupon">
-                <Img src={userInfo?.couponBook.loginBadge ? NaturalBornO2Fill : NaturalBornO2} />
+                <Img src={userInfo?.couponBook.loginBadge ? NaturalBornO2FillIcon : NaturalBornO2Icon} />
                 <Label className="body1">뼛속부터 오투인</Label>
               </div>
               <div className="slider__coupon">
-                <Img src={userInfo?.couponBook.challengeBadge === 2 ? GetChallengeFill : GetChallenge} />
+                <Img src={userInfo?.couponBook.challengeBadge === 2 ? GetChallengeFillIcon : GetChallengeIcon} />
                 <Label className="body1">2차 챌린지 달성</Label>
               </div>
               <div className="slider__coupon">
-                <Img src={userInfo?.couponBook.marketingBadge ? ShyEmailFill : ShyEmail} />
+                <Img src={userInfo?.couponBook.marketingBadge ? ShyEmailFillIcon : ShyEmailIcon} />
                 <Label className="body1">수줍은 이메일</Label>
               </div>
               <div className="slider__coupon">
-                <Img src={userInfo?.couponBook.learnMySelfBadge ? UsefulLearnMyselfFill : UsefulLearnMyself} />
+                <Img src={userInfo?.couponBook.learnMySelfBadge ? UsefulLearnMyselfFillIcon : UsefulLearnMyselfIcon} />
                 <Label className="body1">유용한 런마쎌</Label>
               </div>
               <div className="slider__coupon">
-                <Img src={userInfo?.couponBook.concertScrapBadge ? UsefulShareTogetherFill : UsefulShareTogether} />
+                <Img
+                  src={userInfo?.couponBook.concertScrapBadge ? UsefulShareTogetherFillIcon : UsefulShareTogetherIcon}
+                />
                 <Label className="body1">유용한 쉐투</Label>
               </div>
               <div className="slider__coupon">
-                <Img src={userInfo?.couponBook.firstReplyBadge ? FirstCommentFill : FirstComment} />
+                <Img src={userInfo?.couponBook.firstReplyBadge ? FirstCommentFillIcon : FirstCommentIcon} />
                 <Label className="body1">설레는 첫 답글</Label>
               </div>
               <div className="slider__coupon">
-                <Img src={userInfo?.couponBook.challengeBadge === 3 ? GetChallengeFill : GetChallenge} />
+                <Img src={userInfo?.couponBook.challengeBadge === 3 ? GetChallengeFillIcon : GetChallengeIcon} />
                 <Label className="body1">3차 챌린지 달성</Label>
               </div>
             </div>
