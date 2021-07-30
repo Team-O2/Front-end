@@ -1,5 +1,5 @@
 import { getChallengeList } from 'apis';
-import { plusIcon_dfdfdf as plusIcon } from 'assets/images';
+import { GreydfPlusIcon as plusIcon } from 'assets/images';
 import { Label } from 'components/atoms';
 import { AdminChallengeCard } from 'components/molecules';
 import React, { useEffect, useState } from 'react';

@@ -1,4 +1,4 @@
-import { hamburgerLogo as hamburgerIcon, header_logo as o2Icon } from 'assets/images';
+import { HamburgerIcon, O2Icon } from 'assets/images';
 import { Button, Modal } from 'components/atoms';
 import { Hamburger } from 'components/organisms';
 import React, { useState } from 'react';
@@ -16,11 +16,11 @@ function Header(): React.ReactElement {
       <HeaderWrap>
         <div className="header_buttons">
           <Button onClick={handleHamburgerOpen}>
-            <img className="button" src={hamburgerIcon}></img>
+            <img className="button" src={HamburgerIcon}></img>
           </Button>
           <Link to="/">
             <Button>
-              <img className="button" src={o2Icon}></img>
+              <img className="button" src={O2Icon}></img>
             </Button>
           </Link>
         </div>

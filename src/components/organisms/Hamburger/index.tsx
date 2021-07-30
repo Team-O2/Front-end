@@ -1,10 +1,5 @@
 import { getGeneration } from 'apis';
-import {
-  hamChallengeicon as challengeIcon,
-  hamUnchallengeicon as unChallengeIcon,
-  loginIcon,
-  userImage as userImg,
-} from 'assets/images';
+import { HamChallengeIcon, HamUnchallengeIcon, LoginIcon, UserImg } from 'assets/images';
 import { Button } from 'components/atoms';
 import { HamDropDown } from 'components/molecules';
 import React, { useEffect, useState } from 'react';
@@ -28,7 +23,7 @@ function Hamburger(): React.ReactElement {
   const history = useHistory();
   const [userStatusData, setUserStatusData] = useRecoilState(userStatusState);
   const [userData, setUserData] = useRecoilState(userState);
-  const [userImage, setUserImage] = useState(userData ? userData.img : userImg); //유저&사진이 존재 하면 이미지변경
+  const [userImage, setUserImage] = useState(userData ? userData.img : UserImg); //유저&사진이 존재 하면 이미지변경
   const [userStateNum, setUserState] = useState(userStatusData ? userStatusData.userType : 0);
   const [generationNum, setGenerationNum] = useState<{ registGeneration: number | null; progressGeneration: number }>();
   const [userName, setUserName] = useState(userData?.nickname);
@@ -107,7 +102,7 @@ function Hamburger(): React.ReactElement {
           <Link to="/login">
             <Button className="loginBtn">
               <>
-                <img className="loginBtn_icon" src={loginIcon}></img>
+                <img className="loginBtn_icon" src={LoginIcon}></img>
                 <div className="loginBtn_login">로그인</div>
               </>
             </Button>
@@ -117,7 +112,7 @@ function Hamburger(): React.ReactElement {
           <Link to="/mypage">
             <Button className="loginBtn">
               <>
-                <img className="loginBtn_icon" src={loginIcon}></img>
+                <img className="loginBtn_icon" src={LoginIcon}></img>
                 <div className="loginBtn_login ">마이페이지</div>
               </>
             </Button>
@@ -132,7 +127,7 @@ function Hamburger(): React.ReactElement {
           <Link to="/challengeRegister">
             <Button className="top__subtitle top__subtitle--unchallengeUser">
               <>
-                <img className="top__icon--subtitle" src={unChallengeIcon}></img>
+                <img className="top__icon--subtitle" src={HamUnchallengeIcon}></img>
                 <div style={{ color: '#36c8f5', fontWeight: 'bold' }}>
                   {userStatusData?.registGeneration && changeIndextoName(userStatusData.registGeneration)} Learn Myself
                   신청
@@ -153,7 +148,7 @@ function Hamburger(): React.ReactElement {
           <Link to="/write">
             <Button className="top__subtitle top__subtitle--unchallengeUser">
               <>
-                <img className="top__icon--subtitle" src={challengeIcon}></img>
+                <img className="top__icon--subtitle" src={HamChallengeIcon}></img>
                 <div style={{ color: '#03b6ce', fontWeight: 'bold' }}>오늘의 Learn Myself 작성</div>
               </>
             </Button>

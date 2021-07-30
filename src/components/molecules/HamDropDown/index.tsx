@@ -1,4 +1,4 @@
-import { ham_arrowDown as arrowDownIcon, ham_arrowUp as arrowUpIcon } from 'assets/images';
+import { HamArrowDownIcon, HamArrowUpIcon } from 'assets/images';
 import { Button, Link } from 'components/atoms';
 import React, { useState } from 'react';
 import Styled from 'styled-components';
@@ -26,7 +26,7 @@ function HamDropDown({ title, itemList, isEnglish }: IProps): React.ReactElement
       <Button className="title" onClick={handleOpenOnClick}>
         <>
           <div className="title__label ">{title}</div>
-          <img className="title__icon" src={isOpened ? arrowUpIcon : arrowDownIcon} />
+          <img className="title__icon" src={isOpened ? HamArrowUpIcon : HamArrowDownIcon} />
         </>
       </Button>
       {isOpened && (
