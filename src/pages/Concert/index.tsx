@@ -24,7 +24,7 @@ export interface IConcertData {
   updatedAt: string;
   __v: number;
 }
-function ShareTogether(): React.ReactElement {
+function Concert(): React.ReactElement {
   const [concertList, setConcertList] = useState<IConcertData[] | null>(null);
   const [selectedCategory, setSelectedCategory] = useState('전체');
   const [keyword, setKeyword] = useState('');
@@ -92,4 +92,4 @@ const SShareTogether = Styled.div`
   margin: 0 auto;
   width: 845px;
 `;
-export default ShareTogether;
+export default Concert;

@@ -2,6 +2,8 @@ import Footer from 'components/organisms/Footer';
 import Header from 'components/organisms/Header';
 import { MyPage, Setting } from 'pages';
 import AdminChallengeList from 'pages/AdminChallengeList';
+import Concert from 'pages/Concert';
+import ConcertDetail from 'pages/ConcertDetail';
 import FindPwd from 'pages/FindPwd';
 import EditLearnMyself from 'pages/LearnMyself/template/ChallengeEdit';
 import LearnMyself from 'pages/LearnMyself/template/ChallengeList';
@@ -10,8 +12,6 @@ import WriteLearnMyself from 'pages/LearnMyself/template/ChallengeWrite';
 import Notice from 'pages/Notice';
 import NoticeDetail from 'pages/Notice/NoticeDetail';
 import SetPwd from 'pages/SetPwd';
-import ShareTogether from 'pages/ShareTogether';
-import ShareTogetherDetail from 'pages/ShareTogether/ShareTogetherDetail';
 import React from 'react';
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
 import Styled from 'styled-components';
@@ -30,8 +30,8 @@ function Router(): React.ReactElement {
       <Header />
       <Switch>
         <Route exact path="/" component={Home} />
-        <Route exact path="/concert" component={ShareTogether} />
-        <Route exact path="/concert/:id" component={ShareTogetherDetail} />
+        <Route exact path="/concert" component={Concert} />
+        <Route exact path="/concert/:id" component={ConcertDetail} />
         <Route exact path="/login" component={Login} />
         <Route exact path="/adminwrite/:menu" component={AdminWrite} />
         <Route exact path="/adminchallengeopen" component={AdminChallengeOpen} />
