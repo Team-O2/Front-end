@@ -1,4 +1,5 @@
 export { default as BasedTemplate } from './Base';
+export { default as Concert } from './Concert';
 export { default as Home } from './Home';
 export { default as Join } from './Join';
 export { default as LearnMyself } from './LearnMyself';
@@ -6,4 +7,3 @@ export { default as Login } from './Login';
 export { default as MyPage } from './MyPage';
 export { default as Notice } from './Notice';
 export { default as Setting } from './Setting';
-export { default as ShareTogether } from './ShareTogether';

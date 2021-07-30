@@ -41,7 +41,7 @@ interface IConcertData {
   __v: number;
 }
 
-function ShareTogetherDetail({ match }: RouteComponentProps<MatchParams>): React.ReactElement {
+function ConcertDetail({ match }: RouteComponentProps<MatchParams>): React.ReactElement {
   const { id } = match.params;
   const [concert, setConcert] = useState<IConcertData | null>(null);
   const [commentList, setCommentList] = useState([]);
@@ -206,4 +206,4 @@ const SShareTogetherDetail = Styled.div`
   }
 }
 `;
-export default ShareTogetherDetail;
+export default ConcertDetail;
