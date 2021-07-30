@@ -1,10 +1,10 @@
 import { ChallengeListData } from 'apis';
-import ViewListCard from 'components/molecules/ViewListCard';
+import ChallengeDetailCard from 'components/molecules/ChallengeDetailCard';
 import { IChallengeData } from 'pages/LearnMyself/template/ChallengeList';
 import React, { useCallback, useEffect, useState } from 'react';
 import { useRecoilValue } from 'recoil';
 import { userStatusState } from 'stores/user';
-import Styled from 'styled-components';
+import SChallengeCard from './style';
 
 interface IProps {
   challengeList: IChallengeData[] | null;
@@ -12,9 +12,9 @@ interface IProps {
   generationNum: string;
 }
 
-function ViewCardList({ challengeList, setChallengeList, generationNum }: IProps): React.ReactElement {
+function ChallengeCard({ challengeList, setChallengeList, generationNum }: IProps): React.ReactElement {
   const userStatusData = useRecoilValue(userStatusState);
-  const [reRenderFlag, setReRenderFlag] = useState(false);
+  const [isReRenderFlag, setIsReRenderFlag] = useState(false);
 
   const ChallengeList = useCallback(async (): Promise<void> => {
     const data = await ChallengeListData(userStatusData ? userStatusData.token : null, generationNum, 0, 10);
@@ -23,14 +23,14 @@ function ViewCardList({ challengeList, setChallengeList, generationNum }: IProps
 
   useEffect(() => {
     ChallengeList();
-  }, [reRenderFlag, generationNum, ChallengeList]);
+  }, [isReRenderFlag, generationNum, ChallengeList]);
 
   return (
-    <SViewCardList>
+    <SChallengeCard>
       {challengeList?.length !== 0 ? (
         challengeList?.map((data: IChallengeData, id) => {
           return (
-            <ViewListCard
+            <ChallengeDetailCard
               id={data?._id}
               nickname={data?.user?.nickname}
               image={data?.user?.img}
@@ -52,18 +52,8 @@ function ViewCardList({ challengeList, setChallengeList, generationNum }: IProps
       ) : (
         <div className="exp body4">회고가 존재하지 않습니다 </div>
       )}
-    </SViewCardList>
+    </SChallengeCard>
   );
 }
 
-const SViewCardList = Styled.div`
-
-.exp{
-  margin : 100px 0 100px 0;
-  width : 100%;
-  text-align  :center;
-  
-}
-`;
-
-export default ViewCardList;
+export default ChallengeCard;
