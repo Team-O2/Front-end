@@ -1,4 +1,4 @@
-import { plusIconGrey } from 'assets/images';
+import { plusIconGrey as greyPlusIcon } from 'assets/images';
 import { ChipBtn, FileUpload, Input, Label } from 'components/atoms';
 import { DropDown, EditorForm } from 'components/molecules';
 import React, { useEffect, useState } from 'react';
@@ -239,7 +239,7 @@ function AdminWriteForm({ setIsConditionMet, writeData, setWriteData, menuProps 
           <Label className="admin__label">동영상 업로드</Label>
           <FileUpload width={'400px'} height={'225px'} setFile={setVideoFile} fileType={1}>
             <div className="fileUpload__container fileUpload__container--video">
-              <img className="fileUpload__icon--plus" src={plusIconGrey}></img>
+              <img className="fileUpload__icon--plus" src={greyPlusIcon}></img>
               <div className="fileUpload__desc">동영상 업로드하기</div>
             </div>
           </FileUpload>
@@ -248,7 +248,7 @@ function AdminWriteForm({ setIsConditionMet, writeData, setWriteData, menuProps 
           <Label className="admin__label">썸네일 업로드</Label>
           <FileUpload width={'262px'} height={'225px'} setFile={setThumbnail} fileType={0}>
             <div className="fileUpload__container fileUpload__container--thumbnail">
-              <img className="fileUpload__icon--plus" src={plusIconGrey}></img>
+              <img className="fileUpload__icon--plus" src={greyPlusIcon}></img>
               <div className="fileUpload__desc">썸네일 이미지 업로드하기</div>
             </div>
           </FileUpload>
