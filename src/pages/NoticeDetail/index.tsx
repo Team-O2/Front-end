@@ -1,5 +1,5 @@
 import { getNoticeData } from 'apis';
-import NoticeDetailTitle from 'components/molecules/NoticeDetailTitle';
+import { NoticeDetailTitle } from 'components/molecules';
 import { NoticeCommentList, NoticeDetailContent } from 'components/organisms';
 import React, { useEffect, useState } from 'react';
 import { RouteComponentProps } from 'react-router';

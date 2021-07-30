@@ -1,4 +1,4 @@
-import { CommentIcon, LikeIcon, LikeIconFilled, ScrapFilledIcon, ScrapIcon } from 'assets/images';
+import { CommentIcon, LikeFilledIcon, LikeIcon, ScrapFilledIcon, ScrapIcon } from 'assets/images';
 import { HashTag } from 'components/atoms';
 import React from 'react';
 import Styled from 'styled-components';
@@ -41,7 +41,7 @@ function DetailContent({
       </div>
       <div className="icons">
         <div className="like">
-          <img className="like__img" src={userLike ? LikeIconFilled : LikeIcon} onClick={onLike} alt="" />
+          <img className="like__img" src={userLike ? LikeFilledIcon : LikeIcon} onClick={onLike} alt="" />
           {likeNum}
         </div>
         <div className="comments">

@@ -1,5 +1,5 @@
 import { MoreClickedIcon, MoreIcon, NextIcon } from 'assets/images';
-import CategoryButton from 'components/molecules/CategoryButton';
+import { CategoryButton } from 'components/molecules';
 import React, { useEffect, useRef, useState } from 'react';
 import { interestList } from 'resources/string';
 import Styled from 'styled-components';

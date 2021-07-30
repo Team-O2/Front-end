@@ -1,5 +1,5 @@
 import { getConcertSearchData } from 'apis';
-import ConcertTitle from 'components/molecules/ConcertTitle';
+import { ConcertTitle } from 'components/molecules';
 import { CategoryList, ConcertCardList, ConcertList, SearchForm } from 'components/organisms';
 import React, { useEffect, useState } from 'react';
 import Styled from 'styled-components';
