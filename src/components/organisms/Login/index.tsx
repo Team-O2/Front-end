@@ -1,4 +1,4 @@
-import { line } from 'assets/images';
+import { Line } from 'assets/images';
 import { Button, Label, Link } from 'components/atoms';
 import { Loginform } from 'components/molecules';
 import React from 'react';
@@ -13,7 +13,7 @@ function CLogin(): React.ReactElement {
         <Link to="/findPwd">
           <Button className="etc__leftbtn">비밀번호 찾기</Button>
         </Link>
-        <img className="etc__line" src={line}></img>
+        <img className="etc__line" src={Line}></img>
         <Link to="/join">
           <Button className="etc__rightbtn">회원가입</Button>
         </Link>

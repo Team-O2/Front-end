@@ -1,4 +1,4 @@
-import { arrowDown as arrowDownIcon, arrowUp as arrowUpIcon } from 'assets/images';
+import { ArrowDownIcon, ArrowUpIcon } from 'assets/images';
 import React, { useEffect, useState } from 'react';
 import Styled from 'styled-components';
 
@@ -34,7 +34,7 @@ function DropDown({ setState, state, defaultMsg, itemList }: IProps): React.Reac
       <div className="summary__container--outer">
         <div className="summary__container--inner" onClick={handleOpenOnClick}>
           <div className="summary_value">{state.length === 0 ? defaultMsg : state.join(', ')}</div>
-          <img className="arrow" src={isOpen ? arrowUpIcon : arrowDownIcon}></img>
+          <img className="arrow" src={isOpen ? ArrowUpIcon : ArrowDownIcon}></img>
         </div>
       </div>
       {isOpen && (

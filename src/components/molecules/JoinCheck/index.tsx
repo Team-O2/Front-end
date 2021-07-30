@@ -1,10 +1,4 @@
-import {
-  checkall_off as checkAllOffIcon,
-  checkall_on as checkAllOnIcon,
-  checkOff as checkOffIcon,
-  checkOn as checkOnIcon,
-  modalClose as modalCloseIcon,
-} from 'assets/images';
+import { CheckAllOffIcon, CheckAllOnIcon, CheckOffIcon, CheckOnIcon, ModalCloseIcon } from 'assets/images';
 import { Button, CheckBox, Modal } from 'components/atoms';
 import React, { useEffect, useState } from 'react';
 import Styled from 'styled-components';
@@ -128,9 +122,9 @@ function JoinCheck({ setUserData, userData }: IProps): React.ReactElement {
           <CheckBox className="check_icon1" checked={checkAll} onChange={handleCheckAll} id="policyAll" />
           <label htmlFor="policyAll" className="policy_exp1">
             {checkAll ? (
-              <img src={checkAllOnIcon} className="checkAllImg" />
+              <img src={CheckAllOnIcon} className="checkAllImg" />
             ) : (
-              <img src={checkAllOffIcon} className="checkAllImg" />
+              <img src={CheckAllOffIcon} className="checkAllImg" />
             )}
             전체 동의 (선택 정보 포함)
           </label>
@@ -147,9 +141,9 @@ function JoinCheck({ setUserData, userData }: IProps): React.ReactElement {
             />
             <label htmlFor="policy1" className="policy_exp2">
               {isChecked.check1 ? (
-                <img src={checkOnIcon} className="checkimg" />
+                <img src={CheckOnIcon} className="checkimg" />
               ) : (
-                <img src={checkOffIcon} className="checkimg" />
+                <img src={CheckOffIcon} className="checkimg" />
               )}
               (필수) 서비스 이용약관 동의
             </label>
@@ -169,9 +163,9 @@ function JoinCheck({ setUserData, userData }: IProps): React.ReactElement {
             />
             <label htmlFor="policy2" className="policy_exp2">
               {isChecked.check2 ? (
-                <img src={checkOnIcon} className="checkimg" />
+                <img src={CheckOnIcon} className="checkimg" />
               ) : (
-                <img src={checkOffIcon} className="checkimg" />
+                <img src={CheckOffIcon} className="checkimg" />
               )}
               (필수) 개인정보 수집 이용 동의
             </label>
@@ -191,9 +185,9 @@ function JoinCheck({ setUserData, userData }: IProps): React.ReactElement {
             />
             <label htmlFor="policy3" className="policy_exp2">
               {isChecked.check3 ? (
-                <img src={checkOnIcon} className="checkimg" />
+                <img src={CheckOnIcon} className="checkimg" />
               ) : (
-                <img src={checkOffIcon} className="checkimg" />
+                <img src={CheckOffIcon} className="checkimg" />
               )}
               (선택) 광고성 정보 수신 및 마케팅 활용 동의
             </label>
@@ -210,7 +204,7 @@ function JoinCheck({ setUserData, userData }: IProps): React.ReactElement {
               setIsPolicyOpen(false);
             }}
           >
-            <img className="modal__button--close" src={modalCloseIcon}></img>
+            <img className="modal__button--close" src={ModalCloseIcon}></img>
           </Button>
           <div className="modal__title">{policyList[0].title}</div>
           <p className="modal__content">{policyList[0].content}</p>

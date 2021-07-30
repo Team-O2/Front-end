@@ -2,21 +2,21 @@ import { keyframes } from '@emotion/react';
 import { getGeneration } from 'apis';
 import {
   CommunicationKingFill as CommunicationKingImg,
+  Concert1Img,
+  Concert2Img,
   EmpathizingFill as EmpathizingImg,
   GrowingTogetherFill as GrowingTogetherImg,
-  landingBack as backgroundImg,
-  mainCard1 as mainCardImg1,
-  mainCard2 as mainCardImg2,
-  mainCard3 as mainCardImg3,
-  mainCard4 as mainCardImg4,
+  LandingBackImg,
+  MainCard1Img,
+  MainCard2Img,
+  MainCard3Img,
+  MainCard4Img,
   NaturalBornO2Fill as NaturalBornO2Img,
   ReadyForGrowFill as ReadyForGrowImg,
-  sharePhoto1 as shareImg1,
-  sharePhoto2 as shareImg2,
   ShyEmailFill as ShyEmailImg,
-  speakerBadge1 as speakerBadgeImg1,
-  speakerBadge2 as speakerBadgeImg2,
-  speakerBadge3 as speakerBadgeImg3,
+  SpeakerBadge1Img,
+  SpeakerBadge2Img,
+  SpeakerBadge3Img,
   UsefulLearnMyselfFill as UsefulLearnMyselfImg,
   WelcomeToO2Fill as WelcomeToO2Img,
 } from 'assets/images';
@@ -76,10 +76,10 @@ function Home(): React.ReactElement {
         </Reveal>
         <Reveal cascade damping={0.3} keyframes={moveUp} triggerOnce>
           <ul className="learnMyself__container--card">
-            <img className="learnMyself__img--card" src={mainCardImg1} />
-            <img className="learnMyself__img--card" src={mainCardImg2} />
-            <img className="learnMyself__img--card" src={mainCardImg3} />
-            <img className="learnMyself__img--card" src={mainCardImg4} />
+            <img className="learnMyself__img--card" src={MainCard1Img} />
+            <img className="learnMyself__img--card" src={MainCard2Img} />
+            <img className="learnMyself__img--card" src={MainCard3Img} />
+            <img className="learnMyself__img--card" src={MainCard4Img} />
           </ul>
         </Reveal>
       </div>
@@ -94,7 +94,7 @@ function Home(): React.ReactElement {
           </p>
         </Reveal>
         <div className="shareTogether__container--photo1">
-          <img className="shareTogether__image1" src={shareImg1}></img>
+          <img className="shareTogether__image1" src={Concert1Img}></img>
           <div className="shareTogether__container--exp1">
             <Reveal keyframes={moveUp}>
               <p className="body3 shareTogether__exp--type">Share Together 인기글</p>
@@ -132,7 +132,7 @@ function Home(): React.ReactElement {
               </p>
             </Reveal>
           </div>
-          <img className="shareTogether__image2" src={shareImg2}></img>
+          <img className="shareTogether__image2" src={Concert2Img}></img>
         </div>
       </div>
       <div className="o2speaker">
@@ -143,21 +143,21 @@ function Home(): React.ReactElement {
         <Reveal cascade damping={0.5} keyframes={moveUp} triggerOnce>
           <ul className="o2speaker__container--outer">
             <li className="o2speaker__container--inner">
-              <img className="o2speaker__image--badge" src={speakerBadgeImg1} />
+              <img className="o2speaker__image--badge" src={SpeakerBadge1Img} />
               <p className="body4 o2speaker__exp">
                 챌린지 개수를 주당 <br />
                 3개 이상으로 설정
               </p>
             </li>
             <li className="o2speaker__container--inner">
-              <img className="o2speaker__image--badge" src={speakerBadgeImg2} />
+              <img className="o2speaker__image--badge" src={SpeakerBadge2Img} />
               <p className="body4 o2speaker__exp">
                 런마쎌을 80%이상 작성 후 <br />
                 챌린지뱃지를 획득
               </p>
             </li>
             <li className="o2speaker__container--inner">
-              <img className="o2speaker__image--badge" src={speakerBadgeImg3} />
+              <img className="o2speaker__image--badge" src={SpeakerBadge3Img} />
               <p className="body4 o2speaker__exp">
                 챌린지뱃지 3개 + 활동뱃지 12개 <br />
                 얻을 시 연사가능
@@ -308,7 +308,7 @@ const JoinWrap = Styled.div`
   display : flex;
   flex-direction : column;
   align-items : center;
-  background-image: url('${backgroundImg}');
+  background-image: url('${LandingBackImg}');
   background-repeat: no-repeat;
   background-size: cover;
   background-position: center;

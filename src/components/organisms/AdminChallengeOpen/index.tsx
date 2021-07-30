@@ -1,5 +1,5 @@
 import { challengeOpen } from 'apis';
-import { checkOff, checkOn, plusIconGrey as plusIcon } from 'assets/images';
+import { CheckOffIcon, CheckOnIcon, GreyPlusIcon } from 'assets/images';
 import { Button, CheckBox, FileUpload as PhotoUpload, Label } from 'components/atoms';
 import { AdminChallengeOpenForm } from 'components/molecules';
 import React, { useEffect, useState } from 'react';
@@ -71,7 +71,7 @@ function AdminChallengeOpen(): React.ReactElement {
         <Label className="admin__label--element">사진 업로드</Label>
         <PhotoUpload width={'262px'} height={'216px'} setFile={setImage} fileType={0}>
           <div className="photoUpload__container">
-            <img className="photoUpload__icon--plus" src={plusIcon}></img>
+            <img className="photoUpload__icon--plus" src={GreyPlusIcon}></img>
             <div className="photoUpload__desc--middle">
               대표이미지
               <br />
@@ -84,8 +84,12 @@ function AdminChallengeOpen(): React.ReactElement {
       <div className="check__container">
         <CheckBox id="checkBox" className="check__checkbox" checked={isChecked} onChange={checkHandler} />
         <label htmlFor="checkBox" className="check__exp">
-          {isChecked ? <img src={checkOn} className="check__icon" /> : <img src={checkOff} className="check__icon" />}위
-          내용을 확인하셨습니까?
+          {isChecked ? (
+            <img src={CheckOnIcon} className="check__icon" />
+          ) : (
+            <img src={CheckOffIcon} className="check__icon" />
+          )}
+          위 내용을 확인하셨습니까?
         </label>
       </div>
       <Button className="admin__button--fin" disabled={isButtonDisabled} onClick={btnHandler}>
