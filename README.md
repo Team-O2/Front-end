@@ -189,7 +189,7 @@ O2의 랜딩 페이지 입니다
  ┃ ┃ ┣ 📂SearchBar
  ┃ ┃ ┣ 📂ShareTogetherCard
  ┃ ┃ ┣ 📂SingleComment
- ┃ ┃ ┣ 📂ViewListCard
+ ┃ ┃ ┣ 📂ChallengeDetailCard
  ┃ ┃ ┣ 📂WriteCard
  ┃ ┃ ┗ 📜index.ts
  ┃ ┣ 📂organisms
@@ -214,7 +214,7 @@ O2의 랜딩 페이지 입니다
  ┃ ┃ ┣ 📂NoticeHeader
  ┃ ┃ ┣ 📂NoticeList
  ┃ ┃ ┣ 📂SearchForm
- ┃ ┃ ┣ 📂ViewCardList
+ ┃ ┃ ┣ 📂ChallengeCard
  ┃ ┃ ┗ 📜index.ts
  ┃ ┣ 📂templates
  ┃ ┃ ┣ 📂Base
