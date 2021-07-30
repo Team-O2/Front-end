@@ -1,5 +1,5 @@
 import { ChallengeListData } from 'apis';
-import ChallengeDetailCard from 'components/molecules/ChallengeDetailCard';
+import { ChallengeDetailCard } from 'components/molecules';
 import { IChallengeData } from 'pages/LearnMyself/template/ChallengeList';
 import React, { useCallback, useEffect, useState } from 'react';
 import { useRecoilValue } from 'recoil';

@@ -1,6 +1,5 @@
-import ChallengeCommentWrite from 'components/molecules/ChallengeCommentWrite';
+import { ChallengeCommentWrite, ChallengeSingleComment } from 'components/molecules';
 import { ICommentData } from 'components/molecules/ChallengeDetailCard';
-import ChallengeSingleComment from 'components/molecules/ChallengeSingleWrite';
 import React from 'react';
 import SCommentList from './style';
 

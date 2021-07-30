@@ -1,7 +1,6 @@
+import { ChallengeReCommentList, ChallengeReCommentWrite } from 'components/molecules';
 import { ICommentData } from 'components/molecules/ChallengeDetailCard';
 import React, { useState } from 'react';
-import ChallengeReCommentWrite from '../ChallengeCommentWrite';
-import ChallengeReCommentList from '../ReplyComment';
 import SSingleComment from './style';
 
 interface IProps {

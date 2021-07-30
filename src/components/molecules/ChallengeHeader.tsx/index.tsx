@@ -1,11 +1,10 @@
 import { getChallengeSearchData } from 'apis';
-import { AllFeedIcon, MyFeedIcon, WriteIcon } from 'assets/images/index';
-import CategoryList from 'components/organisms/CategoryList';
+import { AllFeedIcon, MyFeedIcon, WriteIcon } from 'assets/images';
+import { CategoryList, SearchForm } from 'components/organisms';
 import React, { useCallback, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { useRecoilValue } from 'recoil';
 import { userStatusState } from 'stores/user';
-import SearchForm from '../../organisms/SearchForm';
 import SChallengeHeader from './style';
 
 interface IChallengeDataList {
