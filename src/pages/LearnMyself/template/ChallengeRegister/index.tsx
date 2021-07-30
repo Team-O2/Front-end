@@ -1,4 +1,4 @@
-import Register from 'components/molecules/ChallengeRegister';
+import Register from 'components/molecules/ChallengeDetailRegister';
 import React from 'react';
 
 const ChallengeRegister = () => {

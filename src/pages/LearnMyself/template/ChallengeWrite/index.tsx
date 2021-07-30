@@ -1,4 +1,4 @@
-import TextWrite from 'components/molecules/WriteCard';
+import ChallengeCard from 'components/molecules/ChallengeWriteCard';
 import React from 'react';
 
 const ChallengeWrite = () => {
@@ -6,7 +6,7 @@ const ChallengeWrite = () => {
     return;
   };
 
-  return <TextWrite onChangeForm={onChangeForm} />;
+  return <ChallengeCard onChangeForm={onChangeForm} />;
 };
 
 export default ChallengeWrite;

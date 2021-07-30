@@ -1,5 +1,5 @@
 import { getUserLearnMyselfListData } from 'apis';
-import ViewListCard from 'components/molecules/ViewListCard';
+import ChallengeDetailCard from 'components/molecules/ChallengeDetailCard';
 import { IChallengeData } from 'pages/LearnMyself/template/ChallengeList';
 import React, { useCallback, useEffect, useState } from 'react';
 import { useRecoilValue } from 'recoil';
@@ -32,7 +32,7 @@ function MyChallengeList(): React.ReactElement {
       {!!myLearnMyselfList ? (
         myLearnMyselfList?.map((data: IChallengeData, id) => {
           return (
-            <ViewListCard
+            <ChallengeDetailCard
               id={data?._id}
               nickname={data?.user?.nickname}
               image={data?.user?.img}

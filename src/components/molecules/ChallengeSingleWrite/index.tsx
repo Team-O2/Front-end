@@ -1,8 +1,8 @@
-import { ICommentData } from 'components/molecules/ViewListCard';
+import { ICommentData } from 'components/molecules/ChallengeDetailCard';
 import React, { useState } from 'react';
-import Styled from 'styled-components';
-import ChallengeCommentWrite from '../ChallengeCommentWrite';
-import ChallengeReplyComment from '../ReplyComment';
+import ChallengeReCommentWrite from '../ChallengeCommentWrite';
+import ChallengeReCommentList from '../ReplyComment';
+import SSingleComment from './style';
 
 interface IProps {
   commentData: ICommentData;
@@ -47,7 +47,7 @@ function ChallengeSingleComment({
       <div className="reply">
         {openReply && (
           <>
-            <ChallengeCommentWrite // 답글 작성부분
+            <ChallengeReCommentWrite // 답글 작성부분
               className="reply__write"
               isComment={false} //답글부분
               challengeID={challengeID}
@@ -56,7 +56,7 @@ function ChallengeSingleComment({
               parentCommentId={_id}
             />
             {childrenComment.map((data: IReply) => (
-              <ChallengeReplyComment // 답글
+              <ChallengeReCommentList // 답글
                 className="reply__comment"
                 key={data._id}
                 img={data.userID.img}
@@ -70,55 +70,5 @@ function ChallengeSingleComment({
     </SSingleComment>
   );
 }
-const SSingleComment = Styled.div`
-  display: flex;
-  flex-direction: column;
-  .comment {
-    display: flex;
-    align-items:flex-start;
-    justify-content: space-between;
-    margin: 0 auto ;
-    width: 724px;
-    line-height: 1.43;
-    font-family: 'AppleSDGothicNeo';   
-    &__profile {
-      border-radius : 100%;
-      width: 28px;
-      height: 28px;
-    }
-    &__writer {
-      margin: 0 13px;
-      width : 86px;
-      font-size: 16px;
-      font-weight: bold;
-    }
-    &__text {
-      margin-right : 8px;
-      width : 585px;
-      white-space : normal;
-      word-break:break-all;
-      color: #6f6f6f;
-      font-size: 16px;
-    }
-    &__toggle {
-      cursor : pointer;
-      width: 50px;
-      text-align : right;
-      white-space : nowrap;
-      color: #36c8f5;
-      font-size: 14px;
-      font-weight: bold;
-    }
-  }
-  .reply {
-    display: flex;
-    flex-direction: column;
-    align-items : flex-end;
-    margin: 8px 0 31px;
-    &__write {
-      margin-bottom:20px;
-    }
-  }
-`;
 
 export default ChallengeSingleComment;
