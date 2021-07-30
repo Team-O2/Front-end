@@ -1,7 +1,6 @@
 import { getNoticeData } from 'apis';
 import NoticeDetailTitle from 'components/molecules/NoticeDetailTitle';
-import NoticeCommentList from 'components/organisms/NoticeCommentList';
-import NoticeDetailContent from 'components/organisms/NoticeDetailContent';
+import { NoticeCommentList, NoticeDetailContent } from 'components/organisms';
 import React, { useEffect, useState } from 'react';
 import { RouteComponentProps } from 'react-router';
 import { useRecoilValue } from 'recoil';
@@ -52,17 +51,21 @@ function NoticeDetail({ match }: RouteComponentProps<MatchParams>): React.ReactE
 
   return (
     <SNoticeDetail>
-      <NoticeDetailTitle
-        title={notice?.title}
-        createdAt={notice?.createdAt}
-        speaker={notice?.user.nickname}
-        interest={notice?.interest}
-      ></NoticeDetailTitle>
-      <NoticeDetailContent
-        imgThumbnail={notice?.imgThumbnail}
-        desc={notice?.text}
-        comments={notice?.commentNum}
-      ></NoticeDetailContent>
+      {notice && (
+        <NoticeDetailTitle
+          title={notice.title}
+          createdAt={notice.createdAt}
+          adminNickname={notice.user.nickname}
+          interestList={notice.interest}
+        ></NoticeDetailTitle>
+      )}
+      {notice && (
+        <NoticeDetailContent
+          imgThumbnail={notice.imgThumbnail}
+          desc={notice.text}
+          commentNum={notice.commentNum}
+        ></NoticeDetailContent>
+      )}
       <NoticeCommentList
         commentList={commentList}
         noticeID={notice?._id}

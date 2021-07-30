@@ -33,11 +33,9 @@ interface IProps {
   setCurrentPage: (value: number) => void;
 }
 function NoticeList({ noticeList, totalNoticeNum, currentPage, setCurrentPage }: IProps): React.ReactElement {
-  console.log(noticeList);
   const history = useHistory();
   const [startPage, setStartPage] = useState(0);
   const [endPage, setEndPage] = useState(8);
-
   const commentsOfPage = 8;
   const totalPage = Math.ceil(totalNoticeNum / commentsOfPage);
   const pageIndex: number[] = [...Array(totalPage)].map((_, i) => i + 1);
@@ -53,7 +51,6 @@ function NoticeList({ noticeList, totalNoticeNum, currentPage, setCurrentPage }:
       setCurrentPage(startPage);
     }
   };
-
   const handleNextPageClick = () => {
     if (endPage !== totalPage) {
       if (startPage + 8 <= totalPage) {
@@ -82,7 +79,6 @@ function NoticeList({ noticeList, totalNoticeNum, currentPage, setCurrentPage }:
                 title={notice.title}
                 text={notice.text}
                 commentNum={notice.commentNum}
-                likes={notice.likes}
                 key={notice._id}
                 onClickFunc={() => history.push(`/notice/${notice._id}`)}
               ></Notice>

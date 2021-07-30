@@ -1,4 +1,4 @@
-import CommentIcon from 'assets/images/thumnailComment.svg';
+import { ThumbnailCommentIcon } from 'assets/images';
 import dayjs from 'dayjs';
 import React from 'react';
 import Styled from 'styled-components';
@@ -11,7 +11,6 @@ interface IProps {
   title: string;
   text: string;
   commentNum: number;
-  likes: number;
   onClickFunc: () => void;
 }
 
@@ -42,7 +41,7 @@ function Notice({
           <img className="content__right--img" src={imgThumbnail} alt="" />
           <div className="overlay overlayFade">
             <div className="content">
-              <img src={CommentIcon} alt="" />
+              <img src={ThumbnailCommentIcon} alt="" />
               <p> {commentNum}</p>
             </div>
           </div>
