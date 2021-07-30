@@ -1,5 +1,5 @@
 import { serverAxios } from 'libs/axios';
-
+import { IConcertList, IShareTogether } from '../types/shareTogether';
 interface IConcertCommentData {
   parentID?: string;
   text: string;
@@ -15,7 +15,7 @@ interface IFetchParameter {
 
 const PREFIX_URL = '/concert';
 
-export const getConcertListData = async (token: string) => {
+export const getConcertListData = async (token: string): Promise<IShareTogether[] | null> => {
   try {
     const data = await serverAxios.get(`${PREFIX_URL}`, {
       headers: {
@@ -32,7 +32,7 @@ export const getConcertListData = async (token: string) => {
     }
   } catch (e) {
     alert(e.response.data.message);
-    return undefined;
+    return null;
   }
 };
 
@@ -75,7 +75,12 @@ export const getConcertUserData = async (token: string, concertID: string) => {
   }
 };
 
-export const getConcertSearchData = async ({ limit = 11, offset = 0, keyword, tag }: IFetchParameter) => {
+export const getConcertSearchData = async ({
+  limit = 11,
+  offset = 0,
+  keyword,
+  tag,
+}: IFetchParameter): Promise<IConcertList | null> => {
   try {
     const data = await serverAxios.get(`${PREFIX_URL}/search?tag=${tag}&keyword=${keyword}`, {
       params: {
@@ -84,14 +89,13 @@ export const getConcertSearchData = async ({ limit = 11, offset = 0, keyword, ta
       },
     });
     if (data.data.status === 200) {
-      console.log(data.data.data);
       return data.data.data;
     } else {
       return null;
     }
   } catch (e) {
     alert(e.response.data.message);
-    return undefined;
+    return null;
   }
 };
 
@@ -99,7 +103,7 @@ export const postConcertComment = async (
   token: string,
   concertID: string | undefined,
   commentData: IConcertCommentData,
-) => {
+): Promise<null> => {
   try {
     const data = await serverAxios.post(`${PREFIX_URL}/comment/${concertID}`, commentData, {
       headers: {
@@ -113,11 +117,11 @@ export const postConcertComment = async (
     }
   } catch (e) {
     alert(e.response.data.message);
-    return undefined;
+    return null;
   }
 };
 
-export const postConcertLike = async (token: string, concertID: string) => {
+export const postConcertLike = async (token: string, concertID: string): Promise<undefined> => {
   try {
     const data = await serverAxios.post(`${PREFIX_URL}/like/${concertID}`, '', {
       headers: {
@@ -126,18 +130,18 @@ export const postConcertLike = async (token: string, concertID: string) => {
     });
     if (data.data.status === 200) {
     } else {
-      return null;
+      return undefined;
     }
   } catch (e) {
     if (e.response.data.status === 400) {
-      return true;
+      return undefined;
     }
     alert(e.response.data.message);
     return undefined;
   }
 };
 
-export const deleteConcertLike = async (token: string, concertID: string) => {
+export const deleteConcertLike = async (token: string, concertID: string): Promise<undefined> => {
   try {
     const data = await serverAxios.delete(`${PREFIX_URL}/like/${concertID}`, {
       headers: {
@@ -146,7 +150,7 @@ export const deleteConcertLike = async (token: string, concertID: string) => {
     });
     if (data.data.status === 200) {
     } else {
-      return null;
+      return undefined;
     }
   } catch (e) {
     alert(e.response.data.message);
@@ -154,7 +158,7 @@ export const deleteConcertLike = async (token: string, concertID: string) => {
   }
 };
 
-export const postConcertScrap = async (token: string, concertID: string) => {
+export const postConcertScrap = async (token: string, concertID: string): Promise<undefined> => {
   try {
     const data = await serverAxios.post(`${PREFIX_URL}/scrap/${concertID}`, '', {
       headers: {
@@ -163,18 +167,18 @@ export const postConcertScrap = async (token: string, concertID: string) => {
     });
     if (data.data.status === 200) {
     } else {
-      return null;
+      return undefined;
     }
   } catch (e) {
     if (e.response.data.message === '이미 스크랩 된 글입니다') {
-      return true;
+      return undefined;
     }
     alert(e.response.data.message);
     return undefined;
   }
 };
 
-export const deleteConcertScrap = async (token: string, concertID: string) => {
+export const deleteConcertScrap = async (token: string, concertID: string): Promise<undefined> => {
   try {
     const data = await serverAxios.delete(`${PREFIX_URL}/scrap/${concertID}`, {
       headers: {
@@ -183,7 +187,7 @@ export const deleteConcertScrap = async (token: string, concertID: string) => {
     });
     if (data.data.status === 200) {
     } else {
-      return null;
+      return undefined;
     }
   } catch (e) {
     alert(e.response.data.message);
