@@ -1,6 +1,5 @@
 import { getUserData, postLogin } from 'apis';
-import Button from 'components/atoms/Button';
-import StyledInput from 'components/atoms/StyledInput';
+import { Button, StyledInput } from 'components/atoms';
 import React, { useEffect, useState } from 'react';
 import { useHistory } from 'react-router-dom';
 import { useRecoilState } from 'recoil';
@@ -25,7 +24,7 @@ function Loginform(): React.ReactElement {
     pwd: '비밀번호를 다시 확인해 주세요',
   };
 
-  const loginBtnHandler = async () => {
+  const handleLoginBtn = async () => {
     const token = await getUserStatusData();
     const isSuccess = await getUserDetailData(token);
     isSuccess && history.push('/');
@@ -108,7 +107,7 @@ function Loginform(): React.ReactElement {
         isConditionMet={isConditionMet.pwd}
         errorMsg={errMsg.pwd}
       />
-      <Button className="login_button" onClick={loginBtnHandler}>
+      <Button className="login_button" onClick={handleLoginBtn}>
         로그인
       </Button>
     </LoginformWrap>

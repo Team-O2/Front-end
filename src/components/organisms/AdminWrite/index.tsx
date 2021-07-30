@@ -1,7 +1,6 @@
 import { postConcertWrite, postNoticeWrite } from 'apis';
-import Button from 'components/atoms/Button';
-import Label from 'components/atoms/Label';
-import AdminWriteForm from 'components/molecules/AdminWriteForm';
+import { Button, Label } from 'components/atoms';
+import { AdminWriteForm } from 'components/molecules';
 import React, { useEffect, useState } from 'react';
 import { useHistory } from 'react-router-dom';
 import { useRecoilState } from 'recoil';
@@ -10,7 +9,6 @@ import Styled from 'styled-components';
 interface IProps {
   menu: string;
 }
-
 function AdminWrite({ menu }: IProps): React.ReactElement {
   const history = useHistory();
   const [userStatusData, setUserStatusData] = useRecoilState(userStatusState);
@@ -44,7 +42,7 @@ function AdminWrite({ menu }: IProps): React.ReactElement {
     thumbnail: null,
     nickname: '',
   });
-  const buttonHandler = () => {
+  const handleBtnOnClick = () => {
     if (writeData.menu === '공지사항') {
       postNoticeHandler();
     } else {
@@ -122,7 +120,7 @@ function AdminWrite({ menu }: IProps): React.ReactElement {
         setWriteData={setWriteData}
         menuProps={menu}
       />
-      <Button className="admin__button--fin" disabled={isButtonDisabled} onClick={buttonHandler}>
+      <Button className="admin__button--fin" disabled={isButtonDisabled} onClick={handleBtnOnClick}>
         등록하기
       </Button>
     </SAdminWrite>

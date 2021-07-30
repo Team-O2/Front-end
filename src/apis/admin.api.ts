@@ -1,5 +1,5 @@
 import { serverAxios } from 'libs/axios';
-import { arrToString } from 'utils';
+import { changeArrToString } from 'utils';
 
 const PREFIX_URL = '/admin';
 
@@ -41,8 +41,8 @@ export const postConcertWrite = async (token: string, concertWriteData: IConcert
   concertWriteData.imgThumbnail && form.append('imgThumbnail', concertWriteData.imgThumbnail);
   form.append('title', concertWriteData.title);
   form.append('text', concertWriteData.text);
-  form.append('interest', arrToString(concertWriteData.interest));
-  form.append('hashtag', arrToString(concertWriteData.hashtag));
+  form.append('interest', changeArrToString(concertWriteData.interest));
+  form.append('hashtag', changeArrToString(concertWriteData.hashtag));
   form.append('authorNickname', concertWriteData.authorNickname);
   try {
     const data = await serverAxios.post(`${PREFIX_URL}/concert`, form, {
@@ -72,8 +72,8 @@ export const postNoticeWrite = async (token: string, noticeWriteData: INoticeDat
   const form = new FormData();
   form.append('title', noticeWriteData.title);
   form.append('text', noticeWriteData.text);
-  form.append('interest', arrToString(noticeWriteData.interest));
-  form.append('hashtag', arrToString(noticeWriteData.hashtag));
+  form.append('interest', changeArrToString(noticeWriteData.interest));
+  form.append('hashtag', changeArrToString(noticeWriteData.hashtag));
   try {
     const data = await serverAxios.post(`${PREFIX_URL}/notice`, form, {
       headers: {

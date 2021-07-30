@@ -1,5 +1,4 @@
-import arrowDown from 'assets/images/arrowDown.svg';
-import arrowUp from 'assets/images/arrowUp.svg';
+import { arrowDown, arrowUp } from 'assets/images';
 import React, { useEffect, useState } from 'react';
 import Styled from 'styled-components';
 
@@ -16,11 +15,11 @@ export interface IProps {
 function DropDown({ setState, state, defaultMsg, itemList, page, isSetting }: IProps): React.ReactElement {
   const [isOpen, setIsOpen] = useState<boolean>(false); //드롭다운이 열렸는지
   const [isChecked, setIsChecked] = useState<boolean>(false); //값이 선택이 되었는지
-  const radioClickListener = (e: React.ChangeEvent<HTMLInputElement>): void => {
+  const handleOnChange = (e: React.ChangeEvent<HTMLInputElement>): void => {
     setState(e.target.value);
     setIsOpen(false);
   };
-  const openClickListener = (): void => {
+  const handleOpenOnClick = (): void => {
     setIsOpen(!isOpen);
   };
 
@@ -38,7 +37,7 @@ function DropDown({ setState, state, defaultMsg, itemList, page, isSetting }: IP
   return (
     <SDropDown isOpen={isOpen} isChecked={isChecked} page={page} isSetting={isSetting}>
       <div className="summary__container--outer">
-        <div className="summary__container--inner" onClick={openClickListener}>
+        <div className="summary__container--inner" onClick={handleOpenOnClick}>
           <div className="summary_value">{state}</div>
           <img className="arrow" src={isOpen ? arrowUp : arrowDown}></img>
         </div>
@@ -49,7 +48,7 @@ function DropDown({ setState, state, defaultMsg, itemList, page, isSetting }: IP
             return (
               <div key={id}>
                 <label>
-                  <input type="radio" name="radio" value={item} onChange={radioClickListener} />
+                  <input type="radio" name="radio" value={item} onChange={handleOnChange} />
                   <span>{item}</span>
                 </label>
                 {id !== itemList.length - 1 && <div className="line"></div>}

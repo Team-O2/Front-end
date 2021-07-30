@@ -1,8 +1,6 @@
-import JoinErr from 'assets/images/joinInputErrIcon.svg';
-import Input from 'components/atoms/Input';
-import Label from 'components/atoms/Label';
-import DropDown from 'components/molecules/DropDown';
-import JoinCheck from 'components/molecules/JoinCheck';
+import { joinInputErrIcon as JoinErr } from 'assets/images';
+import { Input, Label } from 'components/atoms';
+import { DropDown, JoinCheck } from 'components/molecules';
 import React, { useEffect, useState } from 'react';
 import Styled from 'styled-components';
 
@@ -48,16 +46,15 @@ const defaultStyle = {
   border: 'solid 1px #c1c1c1',
 };
 
-function Joinform({ ...props }: IProps): React.ReactElement {
+function Joinform({ isConditionMet, userData, setUserData, setIsConditionMet }: IProps): React.ReactElement {
   const [gender, setGender] = useState('선택안함');
-  const { isConditionMet, userData, setUserData, setIsConditionMet } = props;
   const [isFocused, setIsFocused] = useState({
     email: false,
     password: false,
     passwordCheck: false,
     nickname: false,
   });
-  const genderStringtoNum = (gender: string) => {
+  const changeGenderStringtoNum = (gender: string) => {
     switch (gender) {
       case '남성':
         return 0;
@@ -69,7 +66,7 @@ function Joinform({ ...props }: IProps): React.ReactElement {
   };
 
   useEffect(() => {
-    setUserData({ ...userData, gender: genderStringtoNum(gender) });
+    setUserData({ ...userData, gender: changeGenderStringtoNum(gender) });
   }, [gender]);
 
   //입력값이 달라질때마다 조건 충족여부 파악하는 useEffect

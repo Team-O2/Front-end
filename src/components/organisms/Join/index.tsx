@@ -1,8 +1,6 @@
 import { postJoin } from 'apis';
-import Button from 'components/atoms/Button';
-import Label from 'components/atoms/Label';
-import Modal from 'components/atoms/Modal';
-import Joinform from 'components/molecules/Joinform';
+import { Button, Label, Modal } from 'components/atoms';
+import { Joinform } from 'components/molecules';
 import React, { useEffect, useState } from 'react';
 import { useHistory } from 'react-router-dom';
 import { interestList } from 'resources/string';
@@ -40,7 +38,7 @@ function CJoin(): React.ReactElement {
     policyMust: false,
   });
   const [selectedInterest, setSelectedInterest] = useState<string[]>([]);
-  const modalInterestHandler = (interest: string) => {
+  const handleInterestOnClick = (interest: string) => {
     if (selectedInterest.length === 0) {
       setSelectedInterest([interest]);
     }
@@ -121,7 +119,7 @@ function CJoin(): React.ReactElement {
                   className="interestModal__button--interest"
                   key={id}
                   onClick={() => {
-                    modalInterestHandler(interest);
+                    handleInterestOnClick(interest);
                   }}
                   style={
                     //이부분 styled-component로 빼는방법 모르겠음

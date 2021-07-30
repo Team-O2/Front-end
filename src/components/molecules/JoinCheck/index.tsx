@@ -1,11 +1,5 @@
-import checkall_off from 'assets/images/checkall_off.svg';
-import checkall_on from 'assets/images/checkall_on.svg';
-import checkOff from 'assets/images/check_off.svg';
-import checkOn from 'assets/images/check_on.svg';
-import modalClose from 'assets/images/modalClose.svg';
-import Button from 'components/atoms/Button';
-import CheckBox from 'components/atoms/CheckBox';
-import Modal from 'components/atoms/Modal';
+import { checkall_off, checkall_on, checkOff, checkOn, modalClose } from 'assets/images';
+import { Button, CheckBox, Modal } from 'components/atoms';
 import React, { useEffect, useState } from 'react';
 import Styled from 'styled-components';
 
@@ -29,35 +23,50 @@ export interface IProps {
 function JoinCheck({ ...props }: IProps): React.ReactElement {
   const { setUserData, userData } = props;
   const [checkAll, setCheckAll] = useState(false);
-  const [check1, setCheck1] = useState(false);
-  const [check2, setCheck2] = useState(false);
-  const [check3, setCheck3] = useState(false);
+  const [isChecked, setIsChecked] = useState({
+    check1: false,
+    check2: false,
+    check3: false,
+  });
   const [isPolicyOpen, setIsPolicyOpen] = useState(false);
-  const checkAllHandler = (): void => {
+  const handleCheckAll = (): void => {
     if (!checkAll) {
       setCheckAll(true);
-      setCheck1(true);
-      setCheck2(true);
-      setCheck3(true);
+      setIsChecked({
+        check1: true,
+        check2: true,
+        check3: true,
+      });
     }
     if (checkAll) {
       setCheckAll(false);
-      setCheck1(false);
-      setCheck2(false);
-      setCheck3(false);
+      setIsChecked({
+        check1: false,
+        check2: false,
+        check3: false,
+      });
     }
   };
-  const checkHandler = (e: React.ChangeEvent<HTMLInputElement>): void => {
+  const handleCheck = (e: React.ChangeEvent<HTMLInputElement>): void => {
     switch (e.target.name) {
       case 'policy1':
-        setCheck1(!check1);
+        setIsChecked({
+          ...isChecked,
+          check1: !isChecked.check1,
+        });
         break;
       case 'policy2':
-        setCheck2(!check2);
+        setIsChecked({
+          ...isChecked,
+          check2: !isChecked.check2,
+        });
         break;
 
       case 'policy3':
-        setCheck3(!check3);
+        setIsChecked({
+          ...isChecked,
+          check3: !isChecked.check3,
+        });
         break;
     }
   };
@@ -66,16 +75,16 @@ function JoinCheck({ ...props }: IProps): React.ReactElement {
   };
 
   useEffect(() => {
-    setUserData({ ...userData, marpolicy: check3 });
-  }, [check3]);
+    setUserData({ ...userData, marpolicy: isChecked.check3 });
+  }, [isChecked.check3]);
 
   useEffect(() => {
-    if (check1 && check2) {
+    if (isChecked.check1 && isChecked.check2) {
       setUserData({ ...userData, policyMust: true });
     } else {
       setUserData({ ...userData, policyMust: false });
     }
-  }, [check1, check2]);
+  }, [isChecked.check1, isChecked.check2]);
 
   interface Policy {
     title: string;
@@ -111,7 +120,7 @@ function JoinCheck({ ...props }: IProps): React.ReactElement {
     <JoinCheckWrap>
       <div>
         <div className="flex" style={{ margin: '16px 0 0 0' }}>
-          <CheckBox className="check_icon1" checked={checkAll} onChange={checkAllHandler} id="policyAll" />
+          <CheckBox className="check_icon1" checked={checkAll} onChange={handleCheckAll} id="policyAll" />
           <label htmlFor="policyAll" className="policy_exp1">
             {checkAll ? (
               <img src={checkall_on} className="checkAllImg" />
@@ -124,9 +133,19 @@ function JoinCheck({ ...props }: IProps): React.ReactElement {
         <div className="line"></div>
         <div className="policy_check">
           <div className="flex">
-            <CheckBox className="check_icon2" checked={check1} name="policy1" onChange={checkHandler} id="policy1" />
+            <CheckBox
+              className="check_icon2"
+              checked={isChecked.check1}
+              name="policy1"
+              onChange={handleCheck}
+              id="policy1"
+            />
             <label htmlFor="policy1" className="policy_exp2">
-              {check1 ? <img src={checkOn} className="checkimg" /> : <img src={checkOff} className="checkimg" />}
+              {isChecked.check1 ? (
+                <img src={checkOn} className="checkimg" />
+              ) : (
+                <img src={checkOff} className="checkimg" />
+              )}
               (필수) 서비스 이용약관 동의
             </label>
           </div>
@@ -136,9 +155,19 @@ function JoinCheck({ ...props }: IProps): React.ReactElement {
         </div>
         <div className="policy_check">
           <div className="flex">
-            <CheckBox className="check_icon2" checked={check2} name="policy2" onChange={checkHandler} id="policy2" />
+            <CheckBox
+              className="check_icon2"
+              checked={isChecked.check2}
+              name="policy2"
+              onChange={handleCheck}
+              id="policy2"
+            />
             <label htmlFor="policy2" className="policy_exp2">
-              {check2 ? <img src={checkOn} className="checkimg" /> : <img src={checkOff} className="checkimg" />}
+              {isChecked.check2 ? (
+                <img src={checkOn} className="checkimg" />
+              ) : (
+                <img src={checkOff} className="checkimg" />
+              )}
               (필수) 개인정보 수집 이용 동의
             </label>
           </div>
@@ -148,9 +177,19 @@ function JoinCheck({ ...props }: IProps): React.ReactElement {
         </div>
         <div className="policy_check">
           <div className="flex">
-            <CheckBox className="check_icon2" checked={check3} name="policy3" onChange={checkHandler} id="policy3" />
+            <CheckBox
+              className="check_icon2"
+              checked={isChecked.check3}
+              name="policy3"
+              onChange={handleCheck}
+              id="policy3"
+            />
             <label htmlFor="policy3" className="policy_exp2">
-              {check3 ? <img src={checkOn} className="checkimg" /> : <img src={checkOff} className="checkimg" />}
+              {isChecked.check3 ? (
+                <img src={checkOn} className="checkimg" />
+              ) : (
+                <img src={checkOff} className="checkimg" />
+              )}
               (선택) 광고성 정보 수신 및 마케팅 활용 동의
             </label>
           </div>

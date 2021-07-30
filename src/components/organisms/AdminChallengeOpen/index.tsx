@@ -1,9 +1,7 @@
 import { challengeOpen } from 'apis';
-import checkOff from 'assets/images/checkall_off.svg';
-import checkOn from 'assets/images/checkall_on.svg';
-import plusIcon from 'assets/images/plusIconGrey.svg';
+import { checkOff, checkOn, plusIconGrey as plusIcon } from 'assets/images';
 import { Button, CheckBox, FileUpload as PhotoUpload, Label } from 'components/atoms';
-import AdminChallengeOpenForm from 'components/molecules/AdminChallengeOpenForm';
+import { AdminChallengeOpenForm } from 'components/molecules';
 import React, { useEffect, useState } from 'react';
 import { useHistory } from 'react-router-dom';
 import { useRecoilState } from 'recoil';
@@ -14,7 +12,7 @@ function AdminChallengeOpen(): React.ReactElement {
   const history = useHistory();
   const [userStatusData, setUserStatusData] = useRecoilState(userStatusState);
   const [image, setImage] = useState<File | null>(null);
-  const [check, setCheck] = useState(false);
+  const [isChecked, setIsChecked] = useState(false);
   const [isButtonDisabled, setIsButtonDisabled] = useState(true);
   const [isConditionMet, setIsConditionMet] = useState({
     title: false,
@@ -35,7 +33,7 @@ function AdminChallengeOpen(): React.ReactElement {
     peopleNum: 0,
   });
   const checkHandler = () => {
-    setCheck(!check);
+    setIsChecked(!isChecked);
   };
   useEffect(() => {
     if (
@@ -44,13 +42,13 @@ function AdminChallengeOpen(): React.ReactElement {
       isConditionMet.applyPeriod &&
       isConditionMet.peopleNum &&
       image != null &&
-      check
+      isChecked
     ) {
       setIsButtonDisabled(false);
     } else {
       setIsButtonDisabled(true);
     }
-  }, [isConditionMet, image, check]);
+  }, [isConditionMet, image, isChecked]);
   const btnHandler = async () => {
     if (userStatusData) {
       const isSuccess = await challengeOpen(userStatusData.token, { ...challengeOpenData, img: image });
@@ -84,9 +82,9 @@ function AdminChallengeOpen(): React.ReactElement {
         </PhotoUpload>
       </div>
       <div className="check__container">
-        <CheckBox id="checkBox" className="check__checkbox" checked={check} onChange={checkHandler} />
+        <CheckBox id="checkBox" className="check__checkbox" checked={isChecked} onChange={checkHandler} />
         <label htmlFor="checkBox" className="check__exp">
-          {check ? <img src={checkOn} className="check__icon" /> : <img src={checkOff} className="check__icon" />}위
+          {isChecked ? <img src={checkOn} className="check__icon" /> : <img src={checkOff} className="check__icon" />}위
           내용을 확인하셨습니까?
         </label>
       </div>

@@ -1,4 +1,4 @@
-import CJoin from 'components/organisms/Join';
+import { Join as CJoin } from 'components/organisms';
 import React from 'react';
 
 function Join(): React.ReactElement {
