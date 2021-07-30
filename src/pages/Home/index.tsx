@@ -1,24 +1,24 @@
 import { keyframes } from '@emotion/react';
 import { getGeneration } from 'apis';
 import {
-  CommunicationKingFill as CommunicationKingImg,
+  CommunicationKingFillIcon,
   Concert1Img,
   Concert2Img,
-  EmpathizingFill as EmpathizingImg,
-  GrowingTogetherFill as GrowingTogetherImg,
+  EmpathizingFillIcon,
+  GrowingTogetherFillIcon,
   LandingBackImg,
   MainCard1Img,
   MainCard2Img,
   MainCard3Img,
   MainCard4Img,
-  NaturalBornO2Fill as NaturalBornO2Img,
-  ReadyForGrowFill as ReadyForGrowImg,
-  ShyEmailFill as ShyEmailImg,
+  NaturalBornO2FillIcon,
+  ReadyForGrowFillIcon,
+  ShyEmailFillIcon,
   SpeakerBadge1Img,
   SpeakerBadge2Img,
   SpeakerBadge3Img,
-  UsefulLearnMyselfFill as UsefulLearnMyselfImg,
-  WelcomeToO2Fill as WelcomeToO2Img,
+  UsefulLearnMyselfFillIcon,
+  WelcomeToO2FillIcon,
 } from 'assets/images';
 import { Button } from 'components/atoms';
 import { BadgeExpCard as BadgeCard } from 'components/molecules';
@@ -174,7 +174,7 @@ function Home(): React.ReactElement {
         <Reveal cascade damping={0.2} keyframes={moveUp} triggerOnce>
           <ul className="o2badge__container--badge">
             <BadgeCard
-              img={WelcomeToO2Img}
+              img={WelcomeToO2FillIcon}
               title="웰컴 투 오투"
               explain={
                 <>
@@ -184,7 +184,7 @@ function Home(): React.ReactElement {
               }
             />
             <BadgeCard
-              img={UsefulLearnMyselfImg}
+              img={UsefulLearnMyselfFillIcon}
               title="유용한 런마쎌"
               explain={
                 <>
@@ -195,7 +195,7 @@ function Home(): React.ReactElement {
               }
             />
             <BadgeCard
-              img={CommunicationKingImg}
+              img={CommunicationKingFillIcon}
               title="나는야 소통왕"
               explain={
                 <>
@@ -205,7 +205,7 @@ function Home(): React.ReactElement {
               }
             />
             <BadgeCard
-              img={EmpathizingImg}
+              img={EmpathizingFillIcon}
               title="당신은 공감왕"
               explain={
                 <>
@@ -215,7 +215,7 @@ function Home(): React.ReactElement {
               }
             />
             <BadgeCard
-              img={ReadyForGrowImg}
+              img={ReadyForGrowFillIcon}
               title="성장준비 완료"
               explain={
                 <>
@@ -225,7 +225,7 @@ function Home(): React.ReactElement {
               }
             />
             <BadgeCard
-              img={NaturalBornO2Img}
+              img={NaturalBornO2FillIcon}
               title="뼛속부터 오투인"
               explain={
                 <>
@@ -235,7 +235,7 @@ function Home(): React.ReactElement {
               }
             />
             <BadgeCard
-              img={GrowingTogetherImg}
+              img={GrowingTogetherFillIcon}
               title="함께 성장 중"
               explain={
                 <>
@@ -245,7 +245,7 @@ function Home(): React.ReactElement {
               }
             />
             <BadgeCard
-              img={ShyEmailImg}
+              img={ShyEmailFillIcon}
               title="설레는 첫 답글"
               explain={
                 <>
