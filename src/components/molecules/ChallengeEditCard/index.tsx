@@ -1,18 +1,17 @@
 import { ChallengeEdit, getChallengeContent } from 'apis';
 import {
-  CharacterBlack,
-  CharacterColor1,
-  CharacterColor2,
-  CharacterColor3,
+  CharacterBlackIcon,
+  CharacterColor1Icon,
+  CharacterColor2Icon,
+  CharacterColor3Icon,
   MoreClickedIcon,
-} from 'assets/images/index';
+} from 'assets/images';
+import { Button, Modal } from 'components/atoms';
 import React, { useEffect, useState } from 'react';
 import { useHistory } from 'react-router-dom';
 import { useRecoilState } from 'recoil';
 import { userStatusState } from 'stores/user';
 import { interestList } from '../../../resources/string';
-import Button from '../../atoms/Button';
-import Modal from '../../atoms/Modal/index';
 import SWriteCard from './style';
 
 export interface IProps {
@@ -126,7 +125,7 @@ function EditCard({ id }: IEditCard) {
     setCountProgressBar(count);
   };
 
-  const totalOnChange = (e: any) => {
+  const handleTotalOnChange = (e: any) => {
     const text_val = e.target.value; //입력한 문자
     const target_byte_name = 'byte' + e.target.name.split('description')[1];
     let str = '';
@@ -217,7 +216,7 @@ function EditCard({ id }: IEditCard) {
         <div className="header">Learn Myself</div>
         {countProgressBar === 0 ? (
           <div className="character">
-            <img className="character__black" src={CharacterBlack} alt="" />
+            <img className="character__black" src={CharacterBlackIcon} alt="" />
             <div className="character__message">당신의 오늘을 알고싶어요!</div>
             <div className="bar">
               <span className="progressbar">
@@ -230,7 +229,7 @@ function EditCard({ id }: IEditCard) {
         {countProgressBar === 1 ? (
           <div className="character">
             <div className="character__color-step1">
-              <img className="character__detail-step1" src={CharacterColor1} alt="" />
+              <img className="character__detail-step1" src={CharacterColor1Icon} alt="" />
               <div className="character__message">오호라! 오늘 이런 일이 있었군요!</div>
             </div>
             <div className="bar">
@@ -243,7 +242,7 @@ function EditCard({ id }: IEditCard) {
         {countProgressBar === 2 ? (
           <div className="character">
             <div className="character__color-step2">
-              <img className="character__detail-step2" src={CharacterColor2} alt="" />
+              <img className="character__detail-step2" src={CharacterColor2Icon} alt="" />
               <div className="character__message">우와! 내일의 당신은 더 행복할거에요 :)</div>
             </div>
             <div className="bar">
@@ -256,7 +255,7 @@ function EditCard({ id }: IEditCard) {
         {countProgressBar === 3 ? (
           <div className="character">
             <div className="character__color-step3">
-              <img className="character__detail-step3" src={CharacterColor3} alt="" />
+              <img className="character__detail-step3" src={CharacterColor3Icon} alt="" />
               <div className="character__message">더 성장한 내일의 나를 위해!</div>
             </div>
             <div className="bar">
@@ -277,7 +276,7 @@ function EditCard({ id }: IEditCard) {
             name="description1"
             value={description1}
             placeholder="오늘의 잘한 점을 적어보세요."
-            onChange={totalOnChange}
+            onChange={handleTotalOnChange}
           ></textarea>
         </div>
         <div className="challenge-card">
@@ -290,7 +289,7 @@ function EditCard({ id }: IEditCard) {
             name="description2"
             value={description2}
             placeholder="오늘의 못한 점을 적어보세요."
-            onChange={totalOnChange}
+            onChange={handleTotalOnChange}
           ></textarea>
         </div>
         <div className="challenge-card">
@@ -303,7 +302,7 @@ function EditCard({ id }: IEditCard) {
             name="description3"
             value={description3}
             placeholder="배운 것과 실천할 것을 적어보세요."
-            onChange={totalOnChange}
+            onChange={handleTotalOnChange}
           ></textarea>
         </div>
 

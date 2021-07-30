@@ -16,16 +16,14 @@ import {
   LikeFilledIcon,
   LoginAlertIcon,
   MenuBarIcon,
-} from 'assets/images/index';
-import Button from 'components/atoms/Button';
+} from 'assets/images';
+import { Button, Modal } from 'components/atoms';
+import { ChallengeComment, DeleteModal } from 'components/molecules';
 import dayjs from 'dayjs';
 import React, { useCallback, useEffect, useState } from 'react';
 import { useHistory } from 'react-router';
 import { useRecoilState } from 'recoil';
 import { userState, userStatusState } from 'stores/user';
-import Modal from '../../atoms/Modal';
-import ChallengeComment from '../ChallengeComment';
-import DeleteModal from '../DeleteModal';
 import SChallengeDetailCard from './style';
 
 export interface ICommentData {

@@ -1,18 +1,17 @@
 import { writeForm } from 'apis';
 import {
-  CharacterBlack,
-  CharacterColor1,
-  CharacterColor2,
-  CharacterColor3,
+  CharacterBlackIcon,
+  CharacterColor1Icon,
+  CharacterColor2Icon,
+  CharacterColor3Icon,
   MoreClickedIcon,
-} from 'assets/images/index';
+} from 'assets/images';
 import React, { useEffect, useState } from 'react';
 import { useHistory } from 'react-router-dom';
 import { useRecoilState } from 'recoil';
 import { userStatusState } from 'stores/user';
 import { interestList } from '../../../resources/string';
-import Button from '../../atoms/Button';
-import Modal from '../../atoms/Modal/index';
+import { Button, Modal } from '../../atoms';
 import SWriteCard from './style';
 
 type selectedStyle = {
@@ -218,7 +217,7 @@ function WriteCard({ onChangeForm }: MyFormProps) {
         {countProgressBar === 0 ? (
           <div className="character">
             <div className="character__color-step0">
-              <img className="character__black" src={CharacterBlack} alt="" />
+              <img className="character__black" src={CharacterBlackIcon} alt="" />
               <div className="character__message">당신의 오늘을 알고싶어요!</div>
             </div>
             <div className="bar">
@@ -232,7 +231,7 @@ function WriteCard({ onChangeForm }: MyFormProps) {
         {countProgressBar === 1 ? (
           <div className="character">
             <div className="character__color-step1">
-              <img className="character__detail-step1" src={CharacterColor1} alt="" />
+              <img className="character__detail-step1" src={CharacterColor1Icon} alt="" />
               <div className="character__message">오호라! 오늘 이런 일이 있었군요!</div>
             </div>
             <div className="bar">
@@ -245,7 +244,7 @@ function WriteCard({ onChangeForm }: MyFormProps) {
         {countProgressBar === 2 ? (
           <div className="character">
             <div className="character__color-step2">
-              <img className="character__detail-step2" src={CharacterColor2} alt="" />
+              <img className="character__detail-step2" src={CharacterColor2Icon} alt="" />
               <div className="character__message">우와! 내일의 당신은 더 행복할거에요 :)</div>
             </div>
             <div className="bar">
@@ -258,7 +257,7 @@ function WriteCard({ onChangeForm }: MyFormProps) {
         {countProgressBar === 3 ? (
           <div className="character">
             <div className="character__color-step3">
-              <img className="character__detail-step3" src={CharacterColor3} alt="" />
+              <img className="character__detail-step3" src={CharacterColor3Icon} alt="" />
               <div className="character__message">더 성장한 내일의 나를 위해!</div>
             </div>
             <div className="bar">

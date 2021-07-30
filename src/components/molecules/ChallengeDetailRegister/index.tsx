@@ -1,18 +1,10 @@
 import { getRegistPeriod, SignRegister } from 'apis';
-import {
-  alertIcon,
-  CautionIcon,
-  ChallengeImg,
-  CheckCircleIcon,
-  CheckIcon,
-  MinusIcon,
-  PlusIcon,
-} from 'assets/images/index';
+import { alertIcon, CautionIcon, ChallengeImg, CheckCircleIcon, CheckIcon, MinusIcon, PlusIcon } from 'assets/images';
+import { Modal } from 'components/atoms';
+import { RegisterHeader } from 'components/molecules';
 import React, { useEffect, useState } from 'react';
 import { useRecoilState } from 'recoil';
 import { userState, userStatusState } from 'stores/user';
-import Modal from '../../atoms/Modal/index';
-import RegisterHeader from '../RegisterHeader';
 import SRegister from './style';
 
 interface IPeriodData {

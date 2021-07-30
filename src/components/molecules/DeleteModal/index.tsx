@@ -1,8 +1,7 @@
-import { Button } from 'components/atoms';
-import Modal from 'components/atoms/Modal';
+import { DeleteModalImg } from 'assets/images';
+import { Button, Modal } from 'components/atoms';
 import React from 'react';
 import Styled from 'styled-components';
-import DeleteModalImg from '../../../assets/images/delete_modal.png';
 
 interface IProps {
   isDeleteModalOpen: boolean;
