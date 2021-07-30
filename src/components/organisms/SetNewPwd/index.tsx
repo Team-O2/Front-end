@@ -163,7 +163,7 @@ const Modal = ({ setIsOpen }: { setIsOpen: React.Dispatch<React.SetStateAction<b
       <Background
         onClick={() => {
           setIsOpen(false);
-          history.push('login');
+          history.push('/login');
         }}
       />
       <ModalWrap>

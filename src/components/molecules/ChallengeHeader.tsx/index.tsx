@@ -138,7 +138,7 @@ function ChallengeHeader({
       {userStateNum === 1 || userStateNum === 0 ? null : (
         <div>
           <button className="button__icon">
-            <Link to="/write">
+            <Link to="/challenge/write">
               <img className="write__icon" src={WriteIcon}></img>
             </Link>
           </button>

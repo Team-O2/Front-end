@@ -38,7 +38,7 @@ function AdminChallengeList(): React.ReactElement {
       <Label className="admin__label--page">관리자 페이지</Label>
       <Label className="admin__label--title">챌린지 정보</Label>
       <div className="admin__container--bottom">
-        <Link to="/adminchallengeopen">
+        <Link to="/admin/challenge/open">
           <div className="admin__card--add">
             <img className="admin__icon--add" src={PlusIcon}></img>
             <div className="admin__label--add">챌린지 등록하기</div>

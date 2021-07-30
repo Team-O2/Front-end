@@ -33,23 +33,23 @@ function Router(): React.ReactElement {
       <Header />
       <Switch>
         <Route exact path="/" component={Home} />
+        <Route exact path="/join" component={Join} />
+        <Route exact path="/login" component={Login} />
+        <Route exact path="/challenge/write" component={ChallengeWrite} />
+        <Route exact path="/challenge/register" component={ChallengeRegister} />
+        <Route exact path="/challenge/edit/:id" component={ChallengeEdit} />
+        <Route exact path="/challenge/:generationNum" component={ChallengeList} />
+        <Route exact path="/admin/write/:menu" component={AdminWrite} />
+        <Route exact path="/admin/challenge/open" component={AdminChallengeOpen} />
+        <Route exact path="/admin/challenge/list" component={AdminChallengeList} />
         <Route exact path="/concert" component={Concert} />
         <Route exact path="/concert/:id" component={ConcertDetail} />
-        <Route exact path="/login" component={Login} />
-        <Route exact path="/adminwrite/:menu" component={AdminWrite} />
-        <Route exact path="/adminchallengeopen" component={AdminChallengeOpen} />
-        <Route exact path="/adminchallengelist" component={AdminChallengeList} />
-        <Route exact path="/join" component={Join} />
-        <Route exact path="/findPwd" component={FindPwd} />
-        <Route exact path="/setPwd" component={SetPwd} />
-        <Route exact path="/challenge/:generationNum" component={ChallengeList} />
-        <Route exact path="/challengeRegister" component={ChallengeRegister} />
-        <Route exact path="/write" component={ChallengeWrite} />
         <Route exact path="/notice" component={Notice} />
-        <Route exact path="/mypage" component={MyPage} />
-        <Route exact path="/edit/:id" component={ChallengeEdit} />
         <Route exact path="/notice/:id" component={NoticeDetail} />
         <Route exact path="/setting" component={Setting} />
+        <Route exact path="/setting/password/set" component={SetPwd} />
+        <Route exact path="/setting/password/find" component={FindPwd} />
+        <Route exact path="/mypage" component={MyPage} />
         <Route exact path="/mypage/challenge/scrap" component={ScrappedChallengeList} />
         <Route exact path="/mypage/challenge/mine" component={MyChallengeList} />
         <Route exact path="/mypage/concert/scrap" component={ScrappedConcertList} />

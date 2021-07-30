@@ -212,7 +212,7 @@ function ChallengeDetailCard({
                       <Button
                         className="edit_icon"
                         onClick={() => {
-                          history.push(`/edit/${id}`);
+                          history.push(`/challenge/edit/${id}`);
                         }}
                       >
                         <img src={EditIcon} alt="" />
