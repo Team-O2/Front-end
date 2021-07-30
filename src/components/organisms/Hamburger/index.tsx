@@ -124,7 +124,7 @@ function Hamburger(): React.ReactElement {
           </div>
         )}
         {userStateNum === 1 && (
-          <Link to="/challengeRegister">
+          <Link to="/challenge/register">
             <Button className="top__subtitle top__subtitle--unchallengeUser">
               <>
                 <img className="top__icon--subtitle" src={HamUnchallengeIcon}></img>
@@ -145,7 +145,7 @@ function Hamburger(): React.ReactElement {
           </Button>
         )}
         {userStateNum === 3 && (
-          <Link to="/write">
+          <Link to="/challenge/write">
             <Button className="top__subtitle top__subtitle--unchallengeUser">
               <>
                 <img className="top__icon--subtitle" src={HamChallengeIcon}></img>
@@ -176,10 +176,10 @@ function Hamburger(): React.ReactElement {
         )}
         {userStateNum === 4 && (
           <>
-            <Link to="/adminchallengeopen">
+            <Link to="/admin/challenge/open">
               <Button className="middle__button--title body3">챌린지 오픈하기</Button>
             </Link>
-            <Link to="/adminchallengelist">
+            <Link to="/admin/challenge/list">
               <Button className="middle__button--title body3">챌린지 정보</Button>
             </Link>
             <div style={{ marginBottom: '10px' }}></div>
@@ -187,8 +187,8 @@ function Hamburger(): React.ReactElement {
               isEnglish={false}
               title="글 올리기"
               itemList={[
-                { name: 'Share Together', link: '/adminwrite/sharetogether' },
-                { name: '공지사항', link: '/adminwrite/notice' },
+                { name: 'Share Together', link: '/admin/write/sharetogether' },
+                { name: '공지사항', link: '/admin/write/notice' },
               ]}
             />
           </>

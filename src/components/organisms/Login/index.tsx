@@ -10,7 +10,7 @@ function CLogin(): React.ReactElement {
       <Label className="login__label">로그인</Label>
       <Loginform />
       <div className="etc__buttons">
-        <Link to="/findPwd">
+        <Link to="/setting/password/find">
           <Button className="etc__leftbtn">비밀번호 찾기</Button>
         </Link>
         <img className="etc__line" src={Line}></img>
@@ -23,19 +23,19 @@ function CLogin(): React.ReactElement {
 }
 
 const LoginWrap = Styled.div`
+  display : flex;
   position: relative;
   top: -60px;
-  width: 100%;
-  height: 100vh;
-  display : flex;
   flex-direction : column;
   align-items : center;
   justify-content: center;
+  width: 100%;
+  height: 100vh;
   .login{
     &__label{
+      margin-bottom : 60px;
       font-size: 40px;
       font-weight: bold;
-      margin-bottom : 60px;
     }
   }
   .etc{
@@ -45,25 +45,25 @@ const LoginWrap = Styled.div`
       margin-top : 20px;
     }
     &__line{
+      background-color : #8b8b8b;
       width : 1px;
       height : 16px;
       object-fit : contain;
-      background-color : #8b8b8b;
     }
     &__leftbtn{
-      font-size : 16px;
+      margin-right : 15px;
       line-height : 1.5;
       color : #8b8b8b;
-      margin-right : 15px;
       font-family: AppleSDGothicNeo;
+      font-size : 16px;
     }
     &__rightbtn{
-      font-size : 16px;
-      font-weight : bold;
+      margin-left : 15px;
       line-height : 1.5;
       color : #8b8b8b;
-      margin-left : 15px;
       font-family: AppleSDGothicNeo;
+      font-size : 16px;
+      font-weight : bold;
     }
   }
 `;

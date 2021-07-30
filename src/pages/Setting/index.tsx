@@ -183,7 +183,7 @@ function Setting({}: any): React.ReactElement {
           />
         </div>
         <Txt>비밀번호 변경</Txt>
-        <PwBtn onClick={() => history.push('/setPwd')}>비밀번호 변경하기</PwBtn>
+        <PwBtn onClick={() => history.push('/setting/password/set')}>비밀번호 변경하기</PwBtn>
         <PolicyCntnr>
           <div style={{ display: 'flex', flexDirection: 'column' }}>
             <Txt style={{ width: 'auto' }}>이메일 수신 설정</Txt>

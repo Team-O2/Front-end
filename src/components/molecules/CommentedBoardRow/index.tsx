@@ -46,10 +46,7 @@ function CommentedBoardRow({
                 <span className="body3">원문보기</span>
               </Button>
             ) : (
-              <Link
-                className="row__link"
-                to={category === 'Concert' ? `ShareTogether/${boardId}` : `notice/${boardId}`}
-              >
+              <Link className="row__link" to={category === 'Concert' ? `concert/${boardId}` : `notice/${boardId}`}>
                 <span className="body3">원문보기</span>
               </Link>
             )}

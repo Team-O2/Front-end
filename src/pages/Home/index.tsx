@@ -267,7 +267,7 @@ function Home(): React.ReactElement {
             Learn Myself에 <br />
             참여해 보세요!
           </p>
-          <Link to="/challengeRegister">
+          <Link to="/challenge/register">
             <Reveal keyframes={moveUp}>
               <Button className="subhead4_eng linkTo__button">More</Button>
             </Reveal>
@@ -294,7 +294,7 @@ function Home(): React.ReactElement {
             들어보세요!
           </p>
           <Reveal keyframes={moveUp}>
-            <Link to="/ShareTogether">
+            <Link to="/concert">
               <Button className="subhead4_eng linkTo__button">More</Button>
             </Link>
           </Reveal>
