@@ -1,14 +1,11 @@
 import { postNoticeComment } from 'apis';
-import Button from 'components/atoms/Button';
+import { LoginModal } from 'assets/images';
+import { Button, Link, Modal } from 'components/atoms';
+import { CommentWrite, ReplyComment } from 'components/molecules';
 import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
 import { useRecoilValue } from 'recoil';
 import { userState, userStatusState } from 'stores/user';
 import Styled from 'styled-components';
-import LoginModal from '../../../assets/images/loginAlert.svg';
-import Modal from '../../atoms/Modal/index';
-import CommentWrite from '../CommentWrite';
-import ReplyComment from '../ReplyComment';
 interface IProps {
   childrenComment: {
     isDeleted?: boolean;

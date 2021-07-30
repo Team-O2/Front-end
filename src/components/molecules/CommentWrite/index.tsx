@@ -1,4 +1,4 @@
-import TextArea from 'components/atoms/TextArea';
+import { TextArea } from 'components/atoms';
 import React from 'react';
 import Styled from 'styled-components';
 

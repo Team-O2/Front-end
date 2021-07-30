@@ -3,14 +3,14 @@ import React from 'react';
 import Styled from 'styled-components';
 
 interface IProps {
-  speaker?: string;
-  interest?: string[];
-  createdAt?: string;
-  title?: string;
+  title: string;
+  createdAt: string;
+  adminNickname: string;
+  interestList: string[];
 }
 
-function NoticeDetailTitle({ title, speaker, createdAt, interest }: IProps): React.ReactElement {
-  const interestDivide = interest?.join(' | ');
+function NoticeDetailTitle({ title, adminNickname, createdAt, interestList }: IProps): React.ReactElement {
+  const interestDivide = interestList?.join(' | ');
   return (
     <>
       <SNoticeDetailTitle>
@@ -18,12 +18,12 @@ function NoticeDetailTitle({ title, speaker, createdAt, interest }: IProps): Rea
           <p>공지사항</p>
         </div>
         <div className="title__middle">
-          <p>{title && title}</p>
+          <p>{title}</p>
         </div>
         <div className="title__bottom">
-          <p>{speaker && speaker}</p>
+          <p>{adminNickname}</p>
           <p>{`${dayjs(createdAt).format('YY.MM.DD')}`}</p>
-          <p>{interestDivide && interestDivide}</p>
+          <p>{interestDivide}</p>
         </div>
       </SNoticeDetailTitle>
     </>

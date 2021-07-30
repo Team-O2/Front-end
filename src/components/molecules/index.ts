@@ -4,6 +4,7 @@ export { default as CommentWrite } from './CommentWrite';
 export { default as LearnMyselfCard } from './LearnMyselfCard';
 export { default as MyPageSection } from './MyPageSection';
 export { default as MyPageSlider } from './MyPageSlider';
+export { default as NoticeSingleComment } from './NoticeSingleComment';
 export { default as ReplyComment } from './ReplyComment';
 export { default as ShareTogetherCard } from './ShareTogetherCard';
 export { default as SingleComment } from './SingleComment';

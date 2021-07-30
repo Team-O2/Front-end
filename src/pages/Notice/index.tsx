@@ -1,10 +1,6 @@
 import { getNoticeListData, getNoticeSearchData } from 'apis';
-import NoticeHeader from 'components/organisms/NoticeHeader';
-import NoticeList from 'components/organisms/NoticeList';
-import SeachForm from 'components/organisms/SearchForm';
+import { NoticeHeader, NoticeList, SearchForm } from 'components/organisms';
 import React, { useEffect, useState } from 'react';
-import { useRecoilValue } from 'recoil';
-import { userStatusState } from 'stores/user';
 import Styled from 'styled-components';
 
 interface INoticeData {
@@ -31,7 +27,6 @@ function Notice(): React.ReactElement {
   const [noticeList, setnoticeList] = useState<INoticeData[] | null>(null);
   const [keyword, setKeyword] = useState('');
   const [currentPage, setCurrentPage] = useState(1);
-  const userStatusData = useRecoilValue(userStatusState);
   const [totalNoticeNum, setTotalNoticeNum] = useState(0);
 
   useEffect(() => {
@@ -68,12 +63,12 @@ function Notice(): React.ReactElement {
     <>
       <NoticeHeader />
       <SNotice>
-        <SeachForm
+        <SearchForm
           reRenderKeyword={reRenderKeyword}
           keywordChange={keywordChange}
           contentListNum={noticeListNum}
           selectedCategory="공지사항"
-        ></SeachForm>
+        ></SearchForm>
         {noticeList && (
           <NoticeList
             noticeList={noticeList}

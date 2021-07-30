@@ -1,14 +1,12 @@
 import { postNoticeComment } from 'apis';
-import Button from 'components/atoms/Button';
-import CommentWrite from 'components/molecules/CommentWrite';
-import NoticeSingleComment from 'components/molecules/NoticeSingleComment';
+import { LoginModal } from 'assets/images';
+import { Button, Link, Modal } from 'components/atoms';
+import { CommentWrite, NoticeSingleComment } from 'components/molecules';
 import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
 import { useRecoilValue } from 'recoil';
 import { userStatusState } from 'stores/user';
 import Styled from 'styled-components';
-import LoginModal from '../../../assets/images/loginAlert.svg';
-import Modal from '../../atoms/Modal/index';
+
 interface IData {
   childrenComment: {
     _id: string;
@@ -51,7 +49,7 @@ function NoticeCommentList({ commentList, noticeID, reLoadComment }: IProps): Re
       text: commentValue,
     };
     if (userStatusData) {
-      const postData = await postNoticeComment(userStatusData.token, noticeID, variables);
+      await postNoticeComment(userStatusData.token, noticeID, variables);
       reLoadComment(variables);
       setCommentValue('');
     } else {

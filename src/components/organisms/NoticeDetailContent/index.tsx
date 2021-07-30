@@ -1,14 +1,14 @@
-import CommentIcon from 'assets/images/comment.svg';
+import { CommentIcon } from 'assets/images';
 import React from 'react';
 import Styled from 'styled-components';
 
 interface IProps {
-  imgThumbnail?: string;
-  desc?: string;
-  comments?: number;
+  imgThumbnail: string;
+  desc: string;
+  commentNum: number;
 }
 
-function NoticeDetailContent({ imgThumbnail, desc, comments }: IProps): React.ReactElement {
+function NoticeDetailContent({ imgThumbnail, desc, commentNum }: IProps): React.ReactElement {
   return (
     <SNoticeDetailContent>
       <div className="image">
@@ -18,7 +18,7 @@ function NoticeDetailContent({ imgThumbnail, desc, comments }: IProps): React.Re
       <div className="icons">
         <div className="comments">
           <img className="comments__img" src={CommentIcon} alt="" />
-          {comments}
+          {commentNum}
         </div>
       </div>
     </SNoticeDetailContent>
