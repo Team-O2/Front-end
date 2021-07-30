@@ -1,17 +1,19 @@
 import { writeForm } from 'apis';
+import {
+  CharacterBlack,
+  CharacterColor1,
+  CharacterColor2,
+  CharacterColor3,
+  MoreClickedIcon,
+} from 'assets/images/index';
 import React, { useEffect, useState } from 'react';
 import { useHistory } from 'react-router-dom';
 import { useRecoilState } from 'recoil';
 import { userStatusState } from 'stores/user';
-import Styled from 'styled-components';
-import CharacterBlack from '../../../assets/images/character_black.svg';
-import CharacterColor1 from '../../../assets/images/character_color1.svg';
-import CharacterColor2 from '../../../assets/images/character_color2.svg';
-import CharacterColor3 from '../../../assets/images/character_color3.svg';
-import MoreIcon from '../../../assets/images/moreIcon.svg';
 import { interestList } from '../../../resources/string';
 import Button from '../../atoms/Button';
 import Modal from '../../atoms/Modal/index';
+import SWriteCard from './style';
 
 type selectedStyle = {
   backgroundColor: string;
@@ -59,31 +61,30 @@ type MyFormProps = {
 };
 
 function WriteCard({ onChangeForm }: MyFormProps) {
-  const [userStatusData, setUserStatusData] = useRecoilState(userStatusState);
   const history = useHistory();
-  const maxByte = 1000; //최대 1000바이트
+  const [userStatusData, setUserStatusData] = useRecoilState(userStatusState);
   const [isBadgeModal, setIsBadgeModal] = useState(false); //뱃지 모달
   const [countProgressBar, setCountProgressBar] = useState(0); //프로그래스바
-  const [periodData, setPeriodData] = useState<MyFormProps | null>(null);
+  const maxByte = 1000; //최대 1000바이트
 
   const [byte, setByte] = useState({
     byte1: 0,
     byte2: 0,
     byte3: 0,
   });
-  const [isButtonClick, setIsButtonClick] = useState(false);
 
-  const [form, setForm] = useState({
+  const [textForm, setTextForm] = useState({
     description1: '',
     description2: '',
     description3: '',
   });
 
-  const { description1, description2, description3 } = form;
-  const onChange2 = (target: any) => {
+  const { description1, description2, description3 } = textForm;
+
+  const textOnChange = (target: any) => {
     const { name, value } = target;
-    setForm({
-      ...form,
+    setTextForm({
+      ...textForm,
       [name]: value,
     });
   };
@@ -91,8 +92,8 @@ function WriteCard({ onChangeForm }: MyFormProps) {
   const handleSubmit = async (e: any) => {
     setUserData({ ...userData, interest: selectedInterest });
     e.preventDefault();
-    onChangeForm(form);
-    setForm({
+    onChangeForm(textForm);
+    setTextForm({
       description1: '',
       description2: '',
       description3: '',
@@ -123,31 +124,22 @@ function WriteCard({ onChangeForm }: MyFormProps) {
     setCountProgressBar(count);
   };
 
-  const onChange = (e: any) => {
+  const totalOnChange = (e: any) => {
     const text_val = e.target.value; //입력한 문자
     const target_byte_name = 'byte' + e.target.name.split('description')[1];
-
     let str = '';
     let totalByte = 0;
     for (let i = 0; i < text_val.length; i++) {
-      const each_char = text_val.charAt(i);
-      const uni_char = escape(each_char); //유니코드 형식으로 변환
-      if (uni_char.length > 4) {
-        totalByte += 1; //처음엔 한글 2Byte했다가 바꿈
-      } else {
-        // 영문,숫자,특수문자 : 1Byte
-        totalByte += 1;
-      }
+      totalByte += 1;
     }
 
     if (totalByte >= maxByte) {
       str = text_val.substring(0, maxByte);
       e.target.value = str;
-
       totalByte = maxByte;
     }
 
-    onChange2(e.target);
+    textOnChange(e.target);
     setByte({
       ...byte,
       [target_byte_name]: totalByte,
@@ -160,7 +152,6 @@ function WriteCard({ onChangeForm }: MyFormProps) {
 
   const [isOpenTag, setIsOpenTag] = useState(false);
   const [isClickTag, setIsClickTag] = useState(false);
-  const [isInterestModalOpen, setIsInterestModalOpen] = useState(false);
 
   const [userData, setUserData] = useState({
     interest: [''],
@@ -226,7 +217,7 @@ function WriteCard({ onChangeForm }: MyFormProps) {
         <div className="header">Learn Myself {indextoName(userStatusData?.progressGeneration)}</div>
         {countProgressBar === 0 ? (
           <div className="character">
-            <div className="character__color0">
+            <div className="character__color-step0">
               <img className="character__black" src={CharacterBlack} alt="" />
               <div className="character__message">당신의 오늘을 알고싶어요!</div>
             </div>
@@ -240,8 +231,8 @@ function WriteCard({ onChangeForm }: MyFormProps) {
 
         {countProgressBar === 1 ? (
           <div className="character">
-            <div className="character__color1">
-              <img className="character__1" src={CharacterColor1} alt="" />
+            <div className="character__color-step1">
+              <img className="character__detail-step1" src={CharacterColor1} alt="" />
               <div className="character__message">오호라! 오늘 이런 일이 있었군요!</div>
             </div>
             <div className="bar">
@@ -253,8 +244,8 @@ function WriteCard({ onChangeForm }: MyFormProps) {
         ) : null}
         {countProgressBar === 2 ? (
           <div className="character">
-            <div className="character__color2">
-              <img className="character__2" src={CharacterColor2} alt="" />
+            <div className="character__color-step2">
+              <img className="character__detail-step2" src={CharacterColor2} alt="" />
               <div className="character__message">우와! 내일의 당신은 더 행복할거에요 :)</div>
             </div>
             <div className="bar">
@@ -266,13 +257,13 @@ function WriteCard({ onChangeForm }: MyFormProps) {
         ) : null}
         {countProgressBar === 3 ? (
           <div className="character">
-            <div className="character__color3">
-              <img className="character__3" src={CharacterColor3} alt="" />
+            <div className="character__color-step3">
+              <img className="character__detail-step3" src={CharacterColor3} alt="" />
               <div className="character__message">더 성장한 내일의 나를 위해!</div>
             </div>
             <div className="bar">
               <span className="progressbar">
-                <span className="gauge__one">.</span>
+                <span className="gauge__whole">.</span>
               </span>
             </div>
           </div>
@@ -288,7 +279,7 @@ function WriteCard({ onChangeForm }: MyFormProps) {
             name="description1"
             value={description1}
             placeholder="오늘의 잘한 점을 적어보세요."
-            onChange={onChange}
+            onChange={totalOnChange}
           ></textarea>
         </div>
         <div className="challenge-card">
@@ -301,7 +292,7 @@ function WriteCard({ onChangeForm }: MyFormProps) {
             name="description2"
             value={description2}
             placeholder="오늘의 못한 점을 적어보세요."
-            onChange={onChange}
+            onChange={totalOnChange}
           ></textarea>
         </div>
         <div className="challenge-card">
@@ -314,7 +305,7 @@ function WriteCard({ onChangeForm }: MyFormProps) {
             name="description3"
             value={description3}
             placeholder="배운 것과 실천할 것을 적어보세요."
-            onChange={onChange}
+            onChange={totalOnChange}
           ></textarea>
         </div>
 
@@ -332,11 +323,11 @@ function WriteCard({ onChangeForm }: MyFormProps) {
                 setIsOpenTag(!isOpenTag);
               }}
             >
-              <img className="tag__moreIcon" src={MoreIcon} alt=""></img>
+              <img className="tag__moreIcon" src={MoreClickedIcon} alt=""></img>
             </Button>
-            <div className="tag__group1">
+            <div className="tag__group">
               {isOpenTag === true ? (
-                <button className="tag__group2">
+                <button className="tag__group-detail">
                   {isOpenTag === true ? (
                     interestList.map((interest, id) => {
                       return setInterestButton(id, interest);
@@ -373,192 +364,5 @@ function WriteCard({ onChangeForm }: MyFormProps) {
     </>
   );
 }
-
-const SWriteCard = Styled.div`
-
-    .header{
-      padding-top:100px;
-      text-align:center;
-      line-height: 1.22;
-      letter-spacing: -0.5px;
-      font-family: HomepageBaukasten;
-      font-size: 46px;
-      font-weight: bold;
-}
-    .challenge-card{
-        margin: 0 auto;
-        padding-top:60px;
-        width:844px;
-
-        &__title{
-            line-height:38px;
-            letter-spacing: -0.5px;
-            color: #3D3D3D;
-            font-size:22px;
-            font-weight: bold;
-        }
-        &__restriction{
-            padding-bottom: 30px;
-            text-align: right;
-            line-height: 18px;
-            color: #B1B1B1;
-            font-size: 14px;
-            font-weight: bold;
-        }
-    }
-    .textarea{
-        box-sizing: border-box;
-        align-items: center;
-        border: 1px solid #DFDFDF;
-        padding: 40px 60px 40px 60px;
-        width: 844px;
-        height:369px;
-        resize:none;
-        font-size: 18px;
-    }
-
-    .button{
-        align-items: center;
-        margin: 0 auto;
-        width:844px;
-    }
-    
-    .write__button-color{
-        margin: 0 auto;
-        margin-top:60px;
-        border:none;
-        border-radius: 4px;
-        background: linear-gradient(91.91deg, #36C8F5 7.34%, #13E2DD 90.35%);
-        width:844px;
-        height: 60px;
-        text-align: center;
-        color: #FFFFFF;
-    }
-    .write__button-black{
-        margin: 0 auto;
-        margin-top:60px;
-        border:none;
-        border-radius: 4px;
-        background: #DFDFDF;
-        width:844px;
-        height: 60px;
-        text-align: center;
-        color: #FFFFFF;
-    }
-    .character{
-      position:sticky;
-      top:20px;
-      margin: 0 auto;
-      background-color:white;
-      padding-top:60px;
-      width:844px;
-
-      &__1{
-          padding-left:60px;
-      }
-      &__2{
-          padding-left:50px;
-      }
-      &__black{
-          padding-top:29px;
-          padding-right:50px;
-      }
-      &__color1{
-          padding-top:29px;
-          padding-left:200px;
-      }
-      &__color2{
-          padding-left:450px;
-      }
-      &__color3{
-          text-align:end;
-      }
-        &__message{
-            padding-top:12.32px;
-            padding-bottom: 12px;
-            line-height: 1.43;
-            letter-spacing: -0.5px;
-            font-size: 14px;
-            font-weight: bold;
-        }
-    }   
-    .progressbar{
-        display: inline-block;
-        background-color: #d6d3d3;
-        width: 844px;
-        height: 5px;
-    }
-    .gauge__initial{
-        display: inline-block;
-        background-color: #3abff7;
-        width: 1%;
-        height: 5px;
-    }
-
-    .gauge__quarter{
-            display: inline-block;
-            background-color: #3abff7;
-            width: 34%;
-            height: 5px;
-        }
-    .gauge__half{
-            display: inline-block;
-            background-color: #3abff7;
-            width: 67%;
-            height: 5px;
-        }
-    .gauge__one{
-            display: inline-block;
-            background-color: #3abff7;
-            width: 100%;
-            height: 5px;
-        }
-
-    .tag{
-      align-items:center;
-      margin:0 auto;
-      padding-top:60px;
-      width:844px;
-      text-align: left;
-      line-height: 1.33;
-      letter-spacing: -0.5px;
-      color: var(--colors-grayscale-6-f);
-      font-family: AppleSDGothicNeo;
-      font-size: 24px;
-      font-weight: bold;
-
-      &__moreIcon{
-        padding-bottom:5px;
-        vertical-align : middle;
-      }
-  
-      &__interest{
-          margin : 12px 5px;
-          border: solid 1px #8b8b8b;
-          border-radius: 60px;
-          background-color:#FFFFFF;
-          padding : 12px 30px;
-          height : 48px;
-          line-height: 1.33;
-          letter-spacing: -0.5px;
-          color : #8b8b8b;
-          font-size: 18px;
-          font-weight: bold;
-        }
-        .tag__group1{
-          padding-top:20px;
-
-        }
-        .tag__group2{
-          box-sizing: border-box;
-          border: 1px solid rgba(223, 223, 223, 0.5);
-          border-radius: 16px;
-          box-shadow: 0px 0px 15px rgba(23, 22, 91, 0.08);
-          background: #FFFFFF;
-          padding: 20px 30px 30px 30px
-          
-        }
-
-}`;
 
 export default WriteCard;

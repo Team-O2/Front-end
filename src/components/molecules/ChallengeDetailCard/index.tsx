@@ -6,25 +6,27 @@ import {
   DeleteChallenge,
   getChallengeContent,
 } from 'apis';
-import LikeIconFilled from 'assets/images/heart_filled.svg';
+import {
+  ClickGoodIcon,
+  ColorScrapIcon,
+  CommentCountIcon,
+  DeleteIcon,
+  EditIcon,
+  GrayScrapIcon,
+  LikeFilledIcon,
+  LoginAlertIcon,
+  MenuBarIcon,
+} from 'assets/images/index';
 import Button from 'components/atoms/Button';
 import dayjs from 'dayjs';
 import React, { useCallback, useEffect, useState } from 'react';
 import { useHistory } from 'react-router';
 import { useRecoilState } from 'recoil';
 import { userState, userStatusState } from 'stores/user';
-import Styled from 'styled-components';
-import ColorScrapIcon from '../../../assets/images/color_scrapIcon.svg';
-import CommentCount from '../../../assets/images/commentIcon.svg';
-import DeleteIcon from '../../../assets/images/deleteIcon.svg';
-import EditIcon from '../../../assets/images/editIcon.svg';
-import ClickGood from '../../../assets/images/heartIcon.svg';
-import LoginAlert from '../../../assets/images/loginAlert.svg';
-import MenuBar from '../../../assets/images/menu_bar.svg';
-import ScrapIcon from '../../../assets/images/scrapIcon.svg';
 import Modal from '../../atoms/Modal';
 import ChallengeComment from '../ChallengeComment';
 import DeleteModal from '../DeleteModal';
+import SChallengeDetailCard from './style';
 
 export interface ICommentData {
   childrenComment: {
@@ -63,7 +65,7 @@ interface IProps {
   handleFetch?: (offset: number) => void;
 }
 
-function ViewListCard({
+function ChallengeDetailCard({
   nickname,
   image,
   createdAt,
@@ -85,20 +87,19 @@ function ViewListCard({
   const [userData, setUserData] = useRecoilState(userState);
   const [isOpenComment, setIsOpenComment] = useState(false);
   const [lookMoreButton, setLookMoreButton] = useState(true);
-  const [IsCommentButton, setIsCommentButton] = useState(true);
-  const [IsMenuBar, setIsMenuBar] = useState(true);
-  const [IsFoldComment, setIsFoldComment] = useState(true);
-  const [closed, setClosed] = useState(false);
-  const [deleteModalOpen, setDeleteModalOpen] = useState(false);
+  const [isMenuBar, setIsMenuBar] = useState(true);
+  const [isFoldComment, setIsFoldComment] = useState(true);
+  const [isClosed, setIsClosed] = useState(false);
   const [countLikes, setCountLikes] = useState(like);
   const [myCommentList, setMyCommentList] = useState<ICommentData[] | null>(null);
-  const [commentListFlag, setCommentListFlag] = useState<boolean>(false);
+  const [isCommentListFlag, setIsCommentListFlag] = useState<boolean>(false);
   const [userStateNum, setUserState] = useState(userStatusData ? userStatusData.userType : 0);
-  const [confirmLoginModal, setConfirmLoginModal] = useState(false);
   const [userStateNickname, setUserStateNickname] = useState(userData ? userData.nickname : 0);
   const [isMine, setIsMine] = useState(false);
   const [likeRender, setLikeRender] = useState(isLike);
   const [scrapRender, setScrapRender] = useState(isScrap);
+  const [isDeleteModalOpen, setIsDeleteModalOpen] = useState(false);
+  const [isConfirmLoginModal, setIsConfirmLoginModal] = useState(false);
 
   const getCommentList = useCallback(async () => {
     if (userStatusData) {
@@ -109,18 +110,18 @@ function ViewListCard({
 
   useEffect(() => {
     getCommentList();
-  }, [commentListFlag, getCommentList]);
+  }, [isCommentListFlag, getCommentList]);
 
   useEffect(() => {
     setIsMine(nickname === userStateNickname);
-    document.body.style.overflow = deleteModalOpen === true ? 'hidden' : 'unset';
-  }, [deleteModalOpen, nickname, userStateNickname]);
+    document.body.style.overflow = isDeleteModalOpen === true ? 'hidden' : 'unset';
+  }, [isDeleteModalOpen, nickname, userStateNickname]);
 
   const deleteClickHandler = async () => {
     if (userStatusData) {
       const token = userStatusData?.token;
       const data = await DeleteChallenge(id, token);
-      data && setDeleteModalOpen(false);
+      data && setIsDeleteModalOpen(false);
       onChange?.();
       handleFetch?.(0);
     } else {
@@ -170,7 +171,7 @@ function ViewListCard({
     }
   };
 
-  // user상태 :
+  // userState상태 :
   // 0: 비회원,
   // 1: 챌린지안하는유저 (기간은 신청기간 중)
   // 2: 챌린지 안하는 유저 (기간은 신청기간이 아님)
@@ -179,7 +180,7 @@ function ViewListCard({
 
   return (
     <>
-      <SViewListCard>
+      <SChallengeDetailCard>
         <div className="container">
           <div className="detail">
             <div>
@@ -195,11 +196,11 @@ function ViewListCard({
                       <div className="menu__bar">
                         <Button className="menuIcon">
                           <img
-                            src={ScrapIcon}
+                            src={GrayScrapIcon}
                             alt=""
                             onClick={() => {
                               submitScarp();
-                              userStateNum === 0 ? setConfirmLoginModal(true) : setConfirmLoginModal(false);
+                              userStateNum === 0 ? setIsConfirmLoginModal(true) : setIsConfirmLoginModal(false);
                             }}
                           />
                         </Button>
@@ -212,18 +213,18 @@ function ViewListCard({
                             alt=""
                             onClick={() => {
                               cancelScrap();
-                              userStateNum === 0 ? setConfirmLoginModal(true) : setConfirmLoginModal(false);
+                              userStateNum === 0 ? setIsConfirmLoginModal(true) : setIsConfirmLoginModal(false);
                             }}
                           />
                         </Button>
                       </div>
                     )
-                  ) : IsMenuBar === false ? (
+                  ) : isMenuBar === false ? (
                     <div className="delete_bar">
                       <Button
                         className="delete_icon"
                         onClick={() => {
-                          setDeleteModalOpen(true);
+                          setIsDeleteModalOpen(true);
                         }}
                       >
                         <img src={DeleteIcon} alt="" />
@@ -241,7 +242,7 @@ function ViewListCard({
                     <div className="menu__bar">
                       <Button className="menuIcon">
                         <img
-                          src={MenuBar}
+                          src={MenuBarIcon}
                           alt=""
                           onClick={() => {
                             setIsMenuBar(false);
@@ -263,7 +264,7 @@ function ViewListCard({
               <div className="text">
                 <div className="detail__view">
                   <h3 className="view__title">잘한점</h3>
-                  {closed === true ? (
+                  {isClosed === true ? (
                     <p className="view__content">{good}</p>
                   ) : (
                     <p className="view__full_content">{good}</p>
@@ -271,7 +272,7 @@ function ViewListCard({
                 </div>
                 <div className="detail__view">
                   <h3 className="view__title">못한점</h3>
-                  {closed === true ? (
+                  {isClosed === true ? (
                     <p className="view__content">{bad}</p>
                   ) : (
                     <p className="view__full_content">{bad}</p>
@@ -279,7 +280,7 @@ function ViewListCard({
                 </div>
                 <div className="detail__view">
                   <h3 className="view__title">배운점</h3>
-                  {closed === true ? (
+                  {isClosed === true ? (
                     <p className="view__content">{learn}</p>
                   ) : (
                     <p className="view__full_content">{learn}</p>
@@ -291,7 +292,7 @@ function ViewListCard({
                       className="more_button"
                       onClick={() => {
                         setLookMoreButton(false);
-                        setClosed(true);
+                        setIsClosed(true);
                       }}
                     >
                       더보기
@@ -303,7 +304,7 @@ function ViewListCard({
                       className="fold_button"
                       onClick={() => {
                         setLookMoreButton(true);
-                        setClosed(false);
+                        setIsClosed(false);
                       }}
                     >
                       접기
@@ -314,11 +315,11 @@ function ViewListCard({
                   {likeRender ? (
                     <img
                       className="icon__click"
-                      src={LikeIconFilled}
+                      src={LikeFilledIcon}
                       onClick={() => {
                         cancelLike();
                         {
-                          userStateNum === 0 ? setConfirmLoginModal(true) : setConfirmLoginModal(false);
+                          userStateNum === 0 ? setIsConfirmLoginModal(true) : setIsConfirmLoginModal(false);
                         }
                       }}
                       alt=""
@@ -326,18 +327,18 @@ function ViewListCard({
                   ) : (
                     <img
                       className="icon__click"
-                      src={ClickGood}
+                      src={ClickGoodIcon}
                       onClick={() => {
                         submitLike();
                         {
-                          userStateNum === 0 ? setConfirmLoginModal(true) : setConfirmLoginModal(false);
+                          userStateNum === 0 ? setIsConfirmLoginModal(true) : setIsConfirmLoginModal(false);
                         }
                       }}
                       alt=""
                     />
                   )}
                   <p className="icon__count">{countLikes}</p>
-                  <img className="icon__click" src={CommentCount} alt="" />
+                  <img className="icon__click" src={CommentCountIcon} alt="" />
                   <p className="icon__count">{comments}</p>
                 </div>
                 {isOpenComment === false ? (
@@ -345,7 +346,6 @@ function ViewListCard({
                     className="comment_button"
                     onClick={() => {
                       setIsOpenComment(true);
-                      setIsCommentButton(false);
                       getCommentList();
                     }}
                   >
@@ -353,19 +353,18 @@ function ViewListCard({
                   </button>
                 ) : (
                   <div>
-                    {IsFoldComment === false ? null : (
+                    {isFoldComment === false ? null : (
                       <ChallengeComment
                         commentList={myCommentList}
                         challengeID={id}
-                        commentListFlag={commentListFlag}
-                        setCommentListFlag={setCommentListFlag}
+                        commentListFlag={isCommentListFlag}
+                        setCommentListFlag={setIsCommentListFlag}
                       />
                     )}
                     <button
                       className="comment__card-fold"
                       onClick={() => {
                         setIsOpenComment(false);
-                        setIsCommentButton(false);
                       }}
                     >
                       댓글 접기
@@ -377,14 +376,14 @@ function ViewListCard({
           </div>
         </div>
         <DeleteModal
-          isDeleteModalOpen={deleteModalOpen}
-          setIsDeleteModalOpen={setDeleteModalOpen}
+          isDeleteModalOpen={isDeleteModalOpen}
+          setIsDeleteModalOpen={setIsDeleteModalOpen}
           onClickDeleteButton={deleteClickHandler}
         />
-        <Modal isOpen={confirmLoginModal} setIsOpen={setConfirmLoginModal} isBlur={true}>
+        <Modal isOpen={isConfirmLoginModal} setIsOpen={setIsConfirmLoginModal} isBlur={true}>
           <div className="delete">
             <div className="delete__notice">
-              <img className="delete__img" src={LoginAlert} alt=""></img>
+              <img className="delete__img" src={LoginAlertIcon} alt=""></img>
               <p className="delete__title">앗!</p>
               <p className="delete__detail">로그인이 필요한 서비스입니다</p>
             </div>
@@ -392,7 +391,7 @@ function ViewListCard({
               <Button
                 className="delete__cancel"
                 onClick={() => {
-                  setConfirmLoginModal(false);
+                  setIsConfirmLoginModal(false);
                 }}
               >
                 취소
@@ -408,243 +407,8 @@ function ViewListCard({
             </div>
           </div>
         </Modal>
-      </SViewListCard>
+      </SChallengeDetailCard>
     </>
   );
 }
-
-const SViewListCard = Styled.div`
-.container{
-  padding-top: 60px;
-}
-.detail{
-    position: relative;
-    align-items: center;
-    margin: 0 auto;
-    border-radius: 18px;
-    box-shadow: 0px 0px 24px rgba(13, 12, 63, 0.1);
-    background: #FFFFFF;
-    padding-top:40px;
-    width : 844px;
-    &__image{
-        margin: 0 15px 0px 30px;
-        border: solid 1px var(--colors-grayscale-df-light-gray-1);
-        border-radius: 40px 40px 40px 40px;
-        background-color: var(--colors-grayscale-ff);
-        width: 80px;
-        height: 80px;
-    }
-}
-.menu__bar{
-    display:inline-block;
-    padding-left: 0px;
-}
-.menuIcon{
-    border:none;
-    background-color:#FFFFFF;
-}
-.delete_bar{
-    display:inline-block;
-
-    
-}
-.delete_icon{
-    display:inline-block;
-    border:none;
-    background-color:#FFFFFF;
-}
-.edit_icon{
-    display:inline-block;
-    border:none;
-    background-color:#FFFFFF;
-}
-.profile{
-    display:inline-block;
-    width: calc( 100% - 140px);
-    &__nickname{
-        display:inline-block;
-        margin-bottom: 10px;
-        text-align: left;
-        line-height: 1.33;
-        letter-spacing: -0.5px;
-        font-size: 24px;
-        font-weight: bold;
-    }
-    &__time{
-        display:inline-block;
-        align-items: center;
-        padding-left:10px;
-        line-height: 21px;
-        letter-spacing: -0.5px;
-        color: #8B8B8B;
-        font-size: 14px;
-    }
-    &__tag{
-        display : inline-block;
-        align-items: center;
-        margin-right : 5px;
-        line-height: 20px;
-        color: #6F6F6F;
-        font-size: 14px;
-        font-weight: bold;
-    }
-}
-.button{
-    align-items: center;
-    margin: 0 auto;
-    padding: 50px 385px 0px 385px;
-
-}
-.more_button{
-    border:0;
-    background: #FFFFFF;
-    letter-spacing: -0.5px;
-    color: #03B6CE;
-    font-size: 18px;
-    font-weight: bold;
-}
-.fold_button{
-    border:0;
-    background: #FFFFFF;
-    letter-spacing: -0.5px;
-    color: #03B6CE;
-    font-size: 18px;
-    font-weight: bold;
-}
-.comment_button{
-    top: 544px;
-    left: 0px;
-    align-items: center;
-    border-radius: 0px 0px 18px 18px;
-    background: #3D3D3D;
-    width: 844px;
-    height: 63px;
-    text-align: center;
-    line-height: 22px;
-    letter-spacing: -0.5px;
-    color: #FFFFFF;
-    font-size: 16px;
-    font-weight: bold;
-}
-.detail__view{
-    padding: 30px 30px 0 60px;
-}
-.view__title{
-    text-align: left;
-    line-height: 1.38;
-    letter-spacing: -0.5px;
-    font-size: 16px;
-    font-weight: bold;
-}
-.view__content{
-    width:724px;
-    max-height: 100%;
-    text-align: left;
-    line-height: 1.5;
-    letter-spacing: -0.5px;
-    font-size: 16px;
-}
-.view__full_content{
-    width:724px;
-    overflow:hidden;
-    text-align: left;
-    text-overflow:ellipsis;
-    line-height: 1.5;
-    letter-spacing: -0.5px;
-    white-space:nowrap;
-    font-size: 16px;
-    
-}
-.icon{
-    padding: 33px 620px 0px 30px; 
-    padding-bottom:50px;
-    &__click{
-        display:inline-block;
-        width: 24px;
-        height:24px;
-    }
-    &__count{
-        display:inline-block;
-        margin: 4px 0 3.2px 8px;
-        width: 60px;
-        font-size: 18px;
-    }
-}
-.comment__card-fold{
-    border-radius: 0px 0px 18px 18px;
-    background: #3D3D3D;
-    width: 844px;
-    height: 63px;
-    line-height: 22px;
-    letter-spacing: -0.5px;
-    color: #FFFFFF;
-    font-size: 16px;
-    font-weight: bold;
-}
-
-
-.delete {
-  position: fixed;
-  top:0;
-  right:0;
-  bottom:0;
-  left:0;
-  margin:auto;
-  border-radius: 16px;
-  background-color: #FFFFFF;
-  width: 500px;
-  height: 312px;
-  &__notice{
-    padding: 0px 80px 0px 80px;
-  }
-
-  &__img{
-    display:flex;
-    margin:auto;
-    margin-top:-40px;
-
-  }
-  &__title{
-    padding:20px 0px 20px 0px;
-    text-align: center;
-    line-height: 1.42;
-    letter-spacing: -0.5px;
-    color: #000000;
-    font-size: 48px;
-    font-weight: bold;
-  }
-  &__detail{
-    text-align: center;
-    line-height: 1.5;
-    letter-spacing: -0.5px;
-    color: var(--colors-grayscale-0-d-black);
-    font-size: 16px;
-  }
-  &__delete{
-    padding-left:170px;
-    line-height: 1.33;
-    letter-spacing: -0.5px;
-    color: #03B6CE;
-    font-size: 18px;
-    font-weight: bold;;
-
-  }
-  &__cancel{
-    line-height: 1.33;
-    letter-spacing: -0.5px;
-    color: #C1C1C1;
-    font-size: 18px;
-    font-weight: bold;
-  }
-}
-.login__button{
-  padding-top:70px;
-  text-align: center;
-}
-.profile__detail{
-  display:inline-block;
-  width: calc(100% - 70px);
-}
-`;
-
-export default ViewListCard;
+export default ChallengeDetailCard;
