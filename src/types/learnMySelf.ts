@@ -32,3 +32,22 @@ export interface IChallenge {
   isLike?: boolean; // 좋아요 클릭 여부
   isScrap?: boolean; // 스크랩 여부
 }
+
+export interface ICommentData {
+  childrenComment: {
+    _id: string;
+    userID: {
+      img: string;
+      _id: string;
+      nickname: string;
+    };
+    text: string;
+  }[];
+  _id: string;
+  userID: {
+    img: string;
+    _id: string;
+    nickname: string;
+  };
+  text: string;
+}
