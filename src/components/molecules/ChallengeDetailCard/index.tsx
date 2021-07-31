@@ -24,26 +24,8 @@ import React, { useCallback, useEffect, useState } from 'react';
 import { useHistory } from 'react-router';
 import { useRecoilState } from 'recoil';
 import { userState, userStatusState } from 'stores/user';
+import { ICommentData } from 'types/learnMySelf';
 import SChallengeDetailCard from './style';
-
-export interface ICommentData {
-  childrenComment: {
-    _id: string;
-    userID: {
-      img: string;
-      _id: string;
-      nickname: string;
-    };
-    text: string;
-  }[];
-  _id: string;
-  userID: {
-    img: string;
-    _id: string;
-    nickname: string;
-  };
-  text: string;
-}
 
 interface IProps {
   nickname?: string;
