@@ -1,5 +1,5 @@
 import { getChallengeList } from 'apis';
-import { GreydfPlusIcon as plusIcon } from 'assets/images';
+import { GreydfPlusIcon as PlusIcon } from 'assets/images';
 import { Label } from 'components/atoms';
 import { AdminChallengeCard } from 'components/molecules';
 import React, { useEffect, useState } from 'react';
@@ -40,7 +40,7 @@ function AdminChallengeList(): React.ReactElement {
       <div className="admin__container--bottom">
         <Link to="/adminchallengeopen">
           <div className="admin__card--add">
-            <img className="admin__icon--add" src={plusIcon}></img>
+            <img className="admin__icon--add" src={PlusIcon}></img>
             <div className="admin__label--add">챌린지 등록하기</div>
           </div>
         </Link>

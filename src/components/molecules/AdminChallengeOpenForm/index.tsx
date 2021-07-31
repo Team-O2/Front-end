@@ -1,4 +1,4 @@
-import { Input, Label } from 'components/atoms/index';
+import { Input, Label } from 'components/atoms';
 import React, { useEffect, useState } from 'react';
 import Styled from 'styled-components';
 

@@ -84,12 +84,7 @@ function AdminChallengeOpen(): React.ReactElement {
       <div className="check__container">
         <CheckBox id="checkBox" className="check__checkbox" checked={isChecked} onChange={checkHandler} />
         <label htmlFor="checkBox" className="check__exp">
-          {isChecked ? (
-            <img src={CheckOnIcon} className="check__icon" />
-          ) : (
-            <img src={CheckOffIcon} className="check__icon" />
-          )}
-          위 내용을 확인하셨습니까?
+          <img src={isChecked ? CheckOnIcon : CheckOffIcon} className="check__icon" />위 내용을 확인하셨습니까?
         </label>
       </div>
       <Button className="admin__button--fin" disabled={isButtonDisabled} onClick={btnHandler}>

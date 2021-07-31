@@ -160,7 +160,7 @@ function Hamburger(): React.ReactElement {
           <>
             <HamDropDown isEnglish={true} title="Learn Myself" itemList={challengeList} />
             <div style={{ marginBottom: '10px' }}></div>
-            <Link to="/ShareTogether">
+            <Link to="/concert">
               <Button className="middle__button--title middle__button--engTitle">Share Together</Button>
             </Link>
             <div className="middle__line"></div>

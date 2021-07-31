@@ -114,13 +114,14 @@ function CJoin(): React.ReactElement {
           <Label className="interestModal__label">관심있는 분야를 5개 선택해 주세요</Label>
           <div className="interestModal__btnContainer">
             {interestList.map((interest, id) => {
+              const handleOnClick = () => {
+                handleInterestOnClick(interest);
+              };
               return (
                 <button
                   className="interestModal__button--interest"
                   key={id}
-                  onClick={() => {
-                    handleInterestOnClick(interest);
-                  }}
+                  onClick={handleOnClick}
                   style={
                     //이부분 styled-component로 빼는방법 모르겠음
                     interest == selectedInterest[0]

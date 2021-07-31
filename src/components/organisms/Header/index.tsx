@@ -1,8 +1,7 @@
 import { HamburgerIcon, O2Icon } from 'assets/images';
-import { Button, Modal } from 'components/atoms';
+import { Button, Link, Modal } from 'components/atoms';
 import { Hamburger } from 'components/organisms';
 import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
 import Styled from 'styled-components';
 
 function Header(): React.ReactElement {
