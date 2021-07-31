@@ -22,7 +22,7 @@ import { ChallengeComment, DeleteModal } from 'components/molecules';
 import dayjs from 'dayjs';
 import React, { useCallback, useEffect, useState } from 'react';
 import { useHistory } from 'react-router';
-import { useRecoilState } from 'recoil';
+import { useRecoilValue } from 'recoil';
 import { userState, userStatusState } from 'stores/user';
 import { ICommentData } from 'types/challenge.type';
 import SChallengeDetailCard from './style';
@@ -36,7 +36,6 @@ interface IProps {
   bad?: string;
   learn?: string;
   like: number;
-  commentlist: string[];
   comments?: number;
   isLike?: boolean;
   isScrap?: boolean;
@@ -57,14 +56,13 @@ function ChallengeDetailCard({
   isLike,
   isScrap,
   comments,
-  commentlist,
   id,
   onChange,
   handleFetch,
 }: IProps): React.ReactElement {
   const history = useHistory();
-  const [userStatusData, setUserStatusData] = useRecoilState(userStatusState);
-  const [userData, setUserData] = useRecoilState(userState);
+  const userStatusData = useRecoilValue(userStatusState);
+  const userData = useRecoilValue(userState);
   const [isOpenComment, setIsOpenComment] = useState(false);
   const [lookMoreButton, setLookMoreButton] = useState(true);
   const [isMenuBar, setIsMenuBar] = useState(true);

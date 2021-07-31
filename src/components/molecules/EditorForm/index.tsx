@@ -1,7 +1,7 @@
 import React from 'react';
-import Styled from 'styled-components';
 import ReactQuill from 'react-quill';
 import 'react-quill/dist/quill.snow.css';
+import Styled from 'styled-components';
 
 export interface IProps {
   className?: string;
@@ -46,7 +46,7 @@ function EditorForm({ content, setContent }: IProps): React.ReactElement {
         modules={modules}
         formats={formats}
         value={content || ''}
-        onChange={(content, delta, source, editor) => {
+        onChange={(content) => {
           setContent(content);
         }}
         //   >
@@ -59,10 +59,10 @@ function EditorForm({ content, setContent }: IProps): React.ReactElement {
 
 const SEditorForm = Styled.div`
     .editor{
+        margin-top : 34px;
+        margin-bottom : 80px;
         width : 844px;
         height : 700px;
-        margin-bottom : 80px;
-        margin-top : 34px;
     }
     /* .my-editing-area{
         font-size : 16px;

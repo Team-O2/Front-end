@@ -37,24 +37,24 @@ const HeaderWrap = Styled.div`
   top:0;
   left:0;
   z-index:999;
-    height : 60px;
-    width : 100vw;
     background-color : #242424;
+    width : 100vw;
+    height : 60px;
     .header_buttons{
         display : flex;
-        height : 60px;
-        margin-left : 50px;
         align-items : center;
+        margin-left : 50px;
+        height : 60px;
     }  
     .button{
-        width : 32px;
         margin-right : 20px;
+        width : 32px;
     }  
 `;
 
 const HideWrap = Styled.div`
-  height : 60px;
   width : 100vw;
+  height : 60px;
 `;
 
 export default Header;

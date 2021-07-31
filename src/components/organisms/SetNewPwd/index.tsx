@@ -1,18 +1,16 @@
 import { patchNewPwd } from 'apis';
-import checkIcon from 'assets/images/checkIcon.svg';
-import StyledInput from 'components/atoms/StyledInput';
+import { CheckedIcon } from 'assets/images';
+import { StyledInput } from 'components/atoms';
 import React, { useEffect, useState } from 'react';
 import { useHistory } from 'react-router-dom';
-import { useRecoilValue } from 'recoil';
-import { userStatusState } from 'stores/user';
 import styled, { css } from 'styled-components';
+
 interface IProps {
   email: string;
   history?: any;
 }
 
 function SetNewPwd({ email }: IProps): React.ReactElement {
-  const userStatusData = useRecoilValue(userStatusState);
   // 새 비밀번호 다시 입력한 것과 같은지 체크
   const [isOkay, setIsOkay] = useState({
     pw: false,
@@ -169,7 +167,7 @@ const Modal = ({ setIsOpen }: { setIsOpen: React.Dispatch<React.SetStateAction<b
       <ModalWrap>
         <InnerModalWrap>
           <CheckIcon>
-            <img src={checkIcon} alt="check_icon" />
+            <img src={CheckedIcon} alt="check_icon" />
           </CheckIcon>
           <ColoredTxt>완료</ColoredTxt>
           <div

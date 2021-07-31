@@ -6,6 +6,7 @@ import React, { useState } from 'react';
 import { useRecoilValue } from 'recoil';
 import { userState, userStatusState } from 'stores/user';
 import Styled from 'styled-components';
+import { IReply } from 'types/challenge.type';
 
 interface IProps {
   childrenComment: {
@@ -27,17 +28,6 @@ interface IProps {
   };
   text: string;
   concertID?: string;
-}
-
-interface IReply {
-  isDeleted?: boolean;
-  _id?: string;
-  userID?: {
-    img: string;
-    _id: string;
-    nickname: string;
-  };
-  text?: string;
 }
 
 function SingleComment({ _id, userID, childrenComment, text, concertID }: IProps): React.ReactElement {

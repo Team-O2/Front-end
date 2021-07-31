@@ -3,17 +3,7 @@ import { Input, Label } from 'components/atoms';
 import { DropDown, JoinCheck } from 'components/molecules';
 import React, { useEffect, useState } from 'react';
 import Styled from 'styled-components';
-
-interface userDataType {
-  email: string;
-  password: string;
-  passwordCheck: string;
-  nickname: string;
-  gender: number;
-  interest: Array<string>;
-  marpolicy: boolean;
-  policyMust: boolean;
-}
+import { IUserDataType } from 'types/user.type';
 
 interface conditionMet {
   email: boolean;
@@ -28,8 +18,8 @@ interface conditionMet {
 export interface IProps {
   className?: string;
   isConditionMet: conditionMet;
-  userData: userDataType;
-  setUserData: (value: userDataType) => void;
+  userData: IUserDataType;
+  setUserData: (value: IUserDataType) => void;
   setIsConditionMet: (value: conditionMet) => void;
 }
 

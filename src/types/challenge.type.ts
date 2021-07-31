@@ -71,3 +71,34 @@ export interface IChallengeData {
   __v: number;
   _id: string;
 }
+
+export interface IChallengeOpen {
+  title: string;
+  challengePeriod: {
+    start: string;
+    end: string;
+  };
+  applyPeriod: {
+    start: string;
+    end: string;
+  };
+  peopleNum: number;
+}
+
+export interface IConditionMet {
+  title: boolean;
+  challengePeriod: boolean;
+  applyPeriod: boolean;
+  peopleNum: boolean;
+}
+
+export interface IReply {
+  isDeleted?: boolean;
+  _id?: string;
+  userID?: {
+    img: string;
+    _id: string;
+    nickname: string;
+  };
+  text?: string;
+}

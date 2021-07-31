@@ -1,29 +1,12 @@
 import { Input, Label } from 'components/atoms';
 import React, { useEffect, useState } from 'react';
 import Styled from 'styled-components';
+import { IChallengeOpen, IConditionMet } from 'types/challenge.type';
 
-interface IChallengeOpenData {
-  title: string;
-  challengePeriod: {
-    start: string;
-    end: string;
-  };
-  applyPeriod: {
-    start: string;
-    end: string;
-  };
-  peopleNum: number;
-}
-interface IConditionMet {
-  title: boolean;
-  challengePeriod: boolean;
-  applyPeriod: boolean;
-  peopleNum: boolean;
-}
 export interface IProps {
   setIsConditionMet: (value: IConditionMet) => void;
-  challengeOpenData: IChallengeOpenData;
-  setChallengeOpenData: (value: IChallengeOpenData) => void;
+  challengeOpenData: IChallengeOpen;
+  setChallengeOpenData: (value: IChallengeOpen) => void;
 }
 
 function AdminChallengeOpenForm({
@@ -31,7 +14,6 @@ function AdminChallengeOpenForm({
   challengeOpenData,
   setChallengeOpenData,
 }: IProps): React.ReactElement {
-  const dateCheckPattern = /[0-9]{4}.[0-9]{2}.[0-9]{2}$/;
   const [isValueExist, setIsValueExist] = useState({
     // 값이 들어있는지 유무
     title: false,
@@ -47,6 +29,8 @@ function AdminChallengeOpenForm({
     peopleNum: false,
   });
 
+  const CheckDatePattern = (date: string) => /[0-9]{4}.[0-9]{2}.[0-9]{2}$/.test(date);
+
   useEffect(() => {
     setIsConditionMet({
       title: isValueExist.title,
@@ -54,7 +38,7 @@ function AdminChallengeOpenForm({
       applyPeriod: isValueExist.applyPeriod[0] && isValueExist.applyPeriod[1],
       peopleNum: isValueExist.peopleNum,
     });
-  }, [isValueExist]);
+  }, [isValueExist, setIsConditionMet]);
 
   useEffect(() => {
     if (challengeOpenData.title !== '') {
@@ -62,43 +46,43 @@ function AdminChallengeOpenForm({
     } else {
       setIsValueExist({ ...isValueExist, title: false });
     }
-  }, [challengeOpenData.title]);
+  }, [challengeOpenData.title, isValueExist]);
   useEffect(() => {
     if (challengeOpenData.peopleNum !== 0) {
       setIsValueExist({ ...isValueExist, peopleNum: true });
     } else {
       setIsValueExist({ ...isValueExist, peopleNum: false });
     }
-  }, [challengeOpenData.peopleNum]);
+  }, [challengeOpenData.peopleNum, isValueExist]);
 
   useEffect(() => {
-    if (dateCheckPattern.test(challengeOpenData.challengePeriod.start)) {
+    if (CheckDatePattern(challengeOpenData.challengePeriod.start)) {
       setIsValueExist({ ...isValueExist, challengePeriod: [true, isValueExist.challengePeriod[1]] });
     } else {
       setIsValueExist({ ...isValueExist, challengePeriod: [false, isValueExist.challengePeriod[1]] });
     }
-  }, [challengeOpenData.challengePeriod.start]);
+  }, [challengeOpenData.challengePeriod.start, isValueExist]);
   useEffect(() => {
-    if (dateCheckPattern.test(challengeOpenData.challengePeriod.end)) {
+    if (CheckDatePattern(challengeOpenData.challengePeriod.end)) {
       setIsValueExist({ ...isValueExist, challengePeriod: [isValueExist.challengePeriod[0], true] });
     } else {
       setIsValueExist({ ...isValueExist, challengePeriod: [isValueExist.challengePeriod[0], false] });
     }
-  }, [challengeOpenData.challengePeriod.end]);
+  }, [challengeOpenData.challengePeriod.end, isValueExist]);
   useEffect(() => {
-    if (dateCheckPattern.test(challengeOpenData.applyPeriod.start)) {
+    if (CheckDatePattern(challengeOpenData.applyPeriod.start)) {
       setIsValueExist({ ...isValueExist, applyPeriod: [true, isValueExist.applyPeriod[1]] });
     } else {
       setIsValueExist({ ...isValueExist, applyPeriod: [false, isValueExist.applyPeriod[1]] });
     }
-  }, [challengeOpenData.applyPeriod.start]);
+  }, [challengeOpenData.applyPeriod.start, isValueExist]);
   useEffect(() => {
-    if (dateCheckPattern.test(challengeOpenData.applyPeriod.end)) {
+    if (CheckDatePattern(challengeOpenData.applyPeriod.end)) {
       setIsValueExist({ ...isValueExist, applyPeriod: [isValueExist.applyPeriod[0], true] });
     } else {
       setIsValueExist({ ...isValueExist, applyPeriod: [isValueExist.applyPeriod[0], false] });
     }
-  }, [challengeOpenData.applyPeriod.end]);
+  }, [challengeOpenData.applyPeriod.end, isValueExist]);
 
   return (
     <SAdminChallengeOpenForm isValueExist={isValueExist} isFocused={isFocused}>

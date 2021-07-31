@@ -1,11 +1,11 @@
-import Logo from 'assets/images/header_logo.svg';
+import { HeaderLogoIcon } from 'assets/images';
 import React from 'react';
 import Styled from 'styled-components';
 
 function Footer(): React.ReactElement {
   return (
     <SFooter>
-      <img className="logo" src={Logo} alt="" />
+      <img className="logo" src={HeaderLogoIcon} alt="" />
       <div className="text">
         <div className="info">
           <span>Open Together</span>

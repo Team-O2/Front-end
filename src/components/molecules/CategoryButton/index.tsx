@@ -1,4 +1,4 @@
-import Button from 'components/atoms/Button';
+import { Button } from 'components/atoms';
 import React from 'react';
 import Styled from 'styled-components';
 

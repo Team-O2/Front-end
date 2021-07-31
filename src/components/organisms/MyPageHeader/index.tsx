@@ -1,7 +1,6 @@
-import { Edit } from 'assets/images';
-import userImage from 'assets/images/userImage.png';
+import { MyPageEditIcon, UserImg } from 'assets/images';
 import { Icon, Link } from 'components/atoms';
-import MyPageSlider from 'components/molecules/MyPageSlider/index';
+import { MyPageSlider } from 'components/molecules';
 import React from 'react';
 import { useRecoilValue } from 'recoil';
 import { userState } from 'stores/user';
@@ -21,14 +20,14 @@ function MyPageHeader({ userInfo }: IProps): React.ReactElement {
       <div className="userInfo">
         <Icon
           className="userInfo__thumbnail"
-          src={globalUserInfo ? globalUserInfo.img : userImage}
+          src={globalUserInfo ? globalUserInfo.img : UserImg}
           height="75px"
           circular={true}
         />
         <p className="dp1">{globalUserInfo?.nickname}님의</p>
         <span className="dp1_eng">MY O2</span>
         <Link to="/setting">
-          <Icon className="userInfo__editIcon" src={Edit} />
+          <Icon className="userInfo__editIcon" src={MyPageEditIcon} />
         </Link>
         <div className="userInfo__tag body3">
           {globalUserInfo?.interest?.map((tag, idx) => (

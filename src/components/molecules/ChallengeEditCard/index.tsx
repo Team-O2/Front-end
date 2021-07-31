@@ -9,9 +9,9 @@ import {
 import { Button, Modal } from 'components/atoms';
 import React, { useEffect, useState } from 'react';
 import { useHistory } from 'react-router-dom';
-import { useRecoilState } from 'recoil';
+import { useRecoilValue } from 'recoil';
+import { interestList } from 'resources/string';
 import { userStatusState } from 'stores/user';
-import { interestList } from '../../../resources/string';
 import SWriteCard from './style';
 
 export interface IProps {
@@ -64,8 +64,8 @@ interface IEditCard {
   id: string;
 }
 
-function EditCard({ id }: IEditCard) {
-  const [userStatusData, setUserStatusData] = useRecoilState(userStatusState);
+function EditCard({ id }: IEditCard): React.ReactElement {
+  const userStatusData = useRecoilValue(userStatusState);
   const history = useHistory();
   const maxByte = 1000; //최대 1000바이트
   const [isBadgeModal, setIsBadgeModal] = useState(false); //뱃지 모달

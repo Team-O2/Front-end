@@ -21,7 +21,7 @@ import {
   WelcomeToO2FillIcon,
 } from 'assets/images';
 import { Button } from 'components/atoms';
-import { BadgeExpCard as BadgeCard } from 'components/molecules';
+import { BadgeCard } from 'components/molecules';
 import React, { useEffect, useState } from 'react';
 import Reveal from 'react-awesome-reveal';
 import { Link } from 'react-router-dom';

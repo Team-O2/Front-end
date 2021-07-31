@@ -4,17 +4,8 @@ import { DropDown, EditorForm } from 'components/molecules';
 import React, { useEffect, useState } from 'react';
 import { interestList } from 'resources/string';
 import Styled from 'styled-components';
+import { IUserData } from 'types/user.type';
 
-interface IUserData {
-  title: string;
-  category: string[];
-  menu: string;
-  content: string;
-  hashtag: string[];
-  video: File | null;
-  thumbnail: File | null;
-  nickname: string;
-}
 interface IConditionMet {
   title: boolean;
   category: boolean;
@@ -25,6 +16,7 @@ interface IConditionMet {
   thumbnail: boolean;
   nickname: boolean;
 }
+
 export interface IProps {
   setIsConditionMet: (value: IConditionMet) => void;
   writeData: IUserData;
@@ -67,13 +59,15 @@ function AdminWriteForm({ setIsConditionMet, writeData, setWriteData, menuProps 
       setCurrentHashtag('');
     }
   };
+
   useEffect(() => {
     if (menuProps === 'sharetogether') setMenu('Share Together');
     else setMenu('공지사항');
-  }, []);
+  }, [menuProps]);
+
   useEffect(() => {
     setIsConditionMet(isValueExist);
-  }, [isValueExist]);
+  }, [isValueExist, setIsConditionMet]);
 
   useEffect(() => {
     //DropDown으로 받아온 입력값들 writeData에 저장
@@ -86,11 +80,11 @@ function AdminWriteForm({ setIsConditionMet, writeData, setWriteData, menuProps 
     ) {
       setWriteData({ ...writeData, category: [...writeData.category, category] });
     }
-  }, [category]);
+  }, [category, setWriteData, writeData]);
   useEffect(() => {
     //DropDown으로 받아온 입력값들 writeData에 저장
     menu != '메뉴를 선택하세요' && setWriteData({ ...writeData, menu: menu });
-  }, [menu]);
+  }, [menu, setWriteData, writeData]);
 
   useEffect(() => {
     if (writeData.title !== '') {
@@ -98,21 +92,23 @@ function AdminWriteForm({ setIsConditionMet, writeData, setWriteData, menuProps 
     } else {
       setIsValueExist({ ...isValueExist, title: false });
     }
-  }, [writeData.title]);
+  }, [isValueExist, writeData.title]);
+
   useEffect(() => {
     if (writeData.nickname !== '') {
       setIsValueExist({ ...isValueExist, nickname: true });
     } else {
       setIsValueExist({ ...isValueExist, nickname: false });
     }
-  }, [writeData.nickname]);
+  }, [isValueExist, writeData.nickname]);
+
   useEffect(() => {
     if (writeData.hashtag.length > 0 && writeData.hashtag[0] != '') {
       setIsValueExist({ ...isValueExist, hashtag: true });
     } else {
       setIsValueExist({ ...isValueExist, hashtag: false });
     }
-  }, [writeData.hashtag]);
+  }, [isValueExist, writeData.hashtag]);
 
   useEffect(() => {
     if (writeData.category.length >= 1) setIsValueExist({ ...isValueExist, category: true });
@@ -121,7 +117,7 @@ function AdminWriteForm({ setIsConditionMet, writeData, setWriteData, menuProps 
       //카테고리를 다 지워서 하나도 남지 않으면 DropDown의 테두리 색을 회색으로 돌려두고 설명을 보여주기 위함
       setIsValueExist({ ...isValueExist, category: false });
     }
-  }, [writeData.category]);
+  }, [isValueExist, writeData.category]);
 
   useEffect(() => {
     if (writeData.menu !== '') {
@@ -129,7 +125,8 @@ function AdminWriteForm({ setIsConditionMet, writeData, setWriteData, menuProps 
     } else {
       setIsValueExist({ ...isValueExist, menu: false });
     }
-  }, [writeData.menu]);
+  }, [isValueExist, writeData.menu]);
+
   useEffect(() => {
     setWriteData({ ...writeData, content: content });
     if (content !== '<p><br></p>' && content !== '') {
@@ -137,7 +134,8 @@ function AdminWriteForm({ setIsConditionMet, writeData, setWriteData, menuProps 
     } else {
       setIsValueExist({ ...isValueExist, content: false });
     }
-  }, [content]);
+  }, [content, isValueExist, setWriteData, writeData]);
+
   useEffect(() => {
     setWriteData({ ...writeData, video: videoFile });
     if (videoFile !== null) {
@@ -145,7 +143,8 @@ function AdminWriteForm({ setIsConditionMet, writeData, setWriteData, menuProps 
     } else {
       setIsValueExist({ ...isValueExist, video: false });
     }
-  }, [videoFile]);
+  }, [isValueExist, setWriteData, videoFile, writeData]);
+
   useEffect(() => {
     setWriteData({ ...writeData, thumbnail: thumbnail });
     if (thumbnail !== null) {
@@ -153,7 +152,7 @@ function AdminWriteForm({ setIsConditionMet, writeData, setWriteData, menuProps 
     } else {
       setIsValueExist({ ...isValueExist, thumbnail: false });
     }
-  }, [thumbnail]);
+  }, [isValueExist, setWriteData, thumbnail, writeData]);
 
   return (
     <SAdminWriteForm isValueExist={isValueExist} isFocused={isFocused}>
