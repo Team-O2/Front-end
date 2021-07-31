@@ -5,6 +5,7 @@ export { default as Percent60Icon } from './51-80img.svg';
 export { default as Percent80Icon } from './81-99img.svg';
 export { default as CommunicationKingIcon } from './communicationKing.svg';
 export { default as CommunicationKingFillIcon } from './communicationKing_fill.svg';
+export { default as MyPageEditIcon } from './edit.svg';
 export { default as EmpathizingIcon } from './empathizing.svg';
 export { default as EmpathizingFillIcon } from './empathizing_fill.svg';
 export { default as FirstCommentIcon } from './firstComment.svg';
