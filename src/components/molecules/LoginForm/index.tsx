@@ -6,7 +6,7 @@ import { useRecoilState } from 'recoil';
 import { userState, userStatusState } from 'stores/user';
 import Styled from 'styled-components';
 
-function Loginform(): React.ReactElement {
+function LoginForm(): React.ReactElement {
   const history = useHistory();
   const [loginData, setLoginData] = useState({
     // 값 저장
@@ -135,4 +135,4 @@ const LoginformWrap = Styled.div`
   }
 `;
 
-export default Loginform;
+export default LoginForm;

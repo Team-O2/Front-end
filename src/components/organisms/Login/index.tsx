@@ -1,6 +1,6 @@
 import { Line } from 'assets/images';
 import { Button, Label, Link } from 'components/atoms';
-import { Loginform } from 'components/molecules';
+import { LoginForm } from 'components/molecules';
 import React from 'react';
 import Styled from 'styled-components';
 
@@ -8,7 +8,7 @@ function CLogin(): React.ReactElement {
   return (
     <LoginWrap>
       <Label className="login__label">로그인</Label>
-      <Loginform />
+      <LoginForm />
       <div className="etc__buttons">
         <Link to="/setting/password/find">
           <Button className="etc__leftbtn">비밀번호 찾기</Button>
