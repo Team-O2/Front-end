@@ -1,6 +1,6 @@
 import { postJoin } from 'apis';
 import { Button, Label, Modal } from 'components/atoms';
-import { Joinform } from 'components/molecules';
+import { JoinForm } from 'components/molecules';
 import React, { useEffect, useState } from 'react';
 import { useHistory } from 'react-router-dom';
 import { interestList } from 'resources/string';
@@ -100,7 +100,7 @@ function CJoin(): React.ReactElement {
   return (
     <JoinWrap isButtonDisabled={isButtonDisabled} selectedInterest={selectedInterest}>
       <Label className="join__label">회원가입</Label>
-      <Joinform
+      <JoinForm
         setIsConditionMet={setIsConditionMet}
         isConditionMet={isConditionMet}
         userData={userData}

@@ -46,7 +46,7 @@ const defaultStyle = {
   border: 'solid 1px #c1c1c1',
 };
 
-function Joinform({ isConditionMet, userData, setUserData, setIsConditionMet }: IProps): React.ReactElement {
+function JoinForm({ isConditionMet, userData, setUserData, setIsConditionMet }: IProps): React.ReactElement {
   const [gender, setGender] = useState('선택안함');
   const [isFocused, setIsFocused] = useState({
     email: false,
@@ -244,14 +244,14 @@ const JoinformWrap = Styled.div`
   align-items : center;
   input {
     border : none;
-    font-size : 16px;
-    color : #0d0d0d;
-    letter-spacing: -0.5px;
-    text-align: left;
+    border-radius: 4px;
+    padding: 18px 20px;
     width : 100%;
     height : 100%;
-    padding: 18px 20px;
-    border-radius: 4px;
+    text-align: left;
+    letter-spacing: -0.5px;
+    color : #0d0d0d;
+    font-size : 16px;
     
     :placeholder{
       color : #c1c1c1;
@@ -261,8 +261,8 @@ const JoinformWrap = Styled.div`
     }
   }
   .check{
-      width : 22px;
       margin : 10px;
+      width : 22px;
   }
 
   .join{
@@ -271,53 +271,53 @@ const JoinformWrap = Styled.div`
       height: 60px;
     }
     &_subtitle{
-        width : 406px;
-        font-size: 18px;
-        font-weight: bold;
-        color : #0d0d0d;
         margin-top : 40px;
         margin-bottom : 8px;
+        width : 406px;
         line-height: 1.33;
         letter-spacing: -0.5px;
+        color : #0d0d0d;
+        font-size: 18px;
+        font-weight: bold;
     }
     &_pwd{
         margin-top : 14px;
     }
-    &_input{
-      width: 406px;
-      height: 60px;
-      border : solid 1px #c1c1c1;
-      border-radius : 4px;   
+    &_input{   
       display : flex;    
-      align-items : center;  
+      align-items : center;
+      border : solid 1px #c1c1c1;
+      border-radius : 4px;
+      width: 406px;
+      height: 60px;  
     }
     &_button{
-      width: 406px;
-      height: 60px;
+      margin-top : 14px;
       border-radius: 4px;
       background-image: linear-gradient(to right, #36c8f5,#13e2dd );
+      width: 406px;
+      height: 60px;
+      color : #ffffff;
       font-size : 16px;
       font-weight : bold;
-      color : #ffffff;
-      margin-top : 14px;
     }
     &__image--error{
+      margin-right : 15px;
       width : 24px;
       height : 24px;
-      margin-right : 15px;
     }
     &__exp--error{
+      margin-top : 5px;
       width : 406px;
       text-align : left;
-      margin-top : 5px;
-      font-size: 14px;
+      text-align: left;
       line-height: 1.5;
       letter-spacing: -0.5px;
-      text-align: left;
       color: #f66436;
+      font-size: 14px;
     }
   }
 
 `;
 
-export default Joinform;
+export default JoinForm;

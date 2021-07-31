@@ -1,5 +1,5 @@
 import { ChallengeListData } from 'apis';
-import ChallengeHeader from 'components/molecules/ChallengeHeader.tsx';
+import ChallengeHeader from 'components/molecules/ChallengeHeader';
 import ChallengeCard from 'components/organisms/ChallengeCard';
 import React, { useCallback, useState } from 'react';
 import { RouteComponentProps } from 'react-router';
