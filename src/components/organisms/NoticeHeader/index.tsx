@@ -2,6 +2,7 @@ import { NoticeBackgroundIcon } from 'assets/images';
 import { Button, Link } from 'components/atoms';
 import React from 'react';
 import Styled from 'styled-components';
+
 function NoticeHeader(): React.ReactElement {
   return (
     <SNoticeHeader>
