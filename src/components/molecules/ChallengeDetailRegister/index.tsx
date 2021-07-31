@@ -1,5 +1,5 @@
 import { getRegistPeriod, SignRegister } from 'apis';
-import { alertIcon, CautionIcon, ChallengeImg, CheckCircleIcon, CheckIcon, MinusIcon, PlusIcon } from 'assets/images';
+import { AlertIcon, CautionIcon, ChallengeImg, CheckCircleIcon, CheckIcon, MinusIcon, PlusIcon } from 'assets/images';
 import { Modal } from 'components/atoms';
 import { RegisterHeader } from 'components/molecules';
 import React, { useEffect, useState } from 'react';
@@ -186,7 +186,7 @@ function ChallengeRegister(): React.ReactElement {
           <div className="card__notice">
             <div className="o2__notice">
               오투 챌린지 주의사항
-              <img className="notice__img" src={alertIcon}></img>
+              <img className="notice__img" src={AlertIcon}></img>
             </div>
             <div className="notice__num">01</div>
             <div className="notice__detail">
