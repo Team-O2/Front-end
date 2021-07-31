@@ -4,7 +4,7 @@ import { Label } from 'components/atoms';
 import { AdminChallengeCard } from 'components/molecules';
 import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
-import { useRecoilState } from 'recoil';
+import { useRecoilValue } from 'recoil';
 import { userStatusState } from 'stores/user';
 import Styled from 'styled-components';
 
@@ -22,12 +22,14 @@ interface IChallengeData {
 }
 
 function AdminChallengeList(): React.ReactElement {
-  const [userStatusData, setUserStatusData] = useRecoilState(userStatusState);
+  const userStatusData = useRecoilValue(userStatusState);
   const [challengeDataList, setChallengeDataList] = useState<IChallengeData[] | null>(null);
+
   useEffect(() => {
     if (userStatusData) getChallengeDataList(userStatusData.token, 30, 0);
     else alert('로그인 후 이용하세요');
-  }, []);
+  }, [userStatusData]);
+
   const getChallengeDataList = async (token: string, limit: number, offset: number): Promise<void> => {
     const data = await getChallengeList(token, limit, offset);
     data && setChallengeDataList(data);

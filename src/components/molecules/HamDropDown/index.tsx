@@ -3,15 +3,13 @@ import { Button, Link } from 'components/atoms';
 import React, { useState } from 'react';
 import Styled from 'styled-components';
 
-interface Iitem {
-  name: string;
-  link: string;
-}
-
 export interface IProps {
   className?: string;
   title: string;
-  itemList: Iitem[];
+  itemList: {
+    name: string;
+    link: string;
+  }[];
   isEnglish: boolean;
 }
 

@@ -6,9 +6,9 @@ import {
   CharacterColor3Icon,
   MoreClickedIcon,
 } from 'assets/images';
-import React, { useEffect, useState } from 'react';
+import React, { useCallback, useEffect, useState } from 'react';
 import { useHistory } from 'react-router-dom';
-import { useRecoilState } from 'recoil';
+import { useRecoilValue } from 'recoil';
 import { userStatusState } from 'stores/user';
 import { interestList } from '../../../resources/string';
 import { Button, Modal } from '../../atoms';
@@ -59,9 +59,9 @@ type MyFormProps = {
   onChangeForm: (form: { description1: string; description2: string; description3: string }) => void;
 };
 
-function WriteCard({ onChangeForm }: MyFormProps) {
+function WriteCard({ onChangeForm }: MyFormProps): React.ReactElement {
   const history = useHistory();
-  const [userStatusData, setUserStatusData] = useRecoilState(userStatusState);
+  const userStatusData = useRecoilValue(userStatusState);
   const [isBadgeModal, setIsBadgeModal] = useState(false); //뱃지 모달
   const [countProgressBar, setCountProgressBar] = useState(0); //프로그래스바
   const maxByte = 1000; //최대 1000바이트
@@ -104,12 +104,12 @@ function WriteCard({ onChangeForm }: MyFormProps) {
       interest: selectedInterest,
     };
     if (userStatusData) {
-      const data = await writeForm(writeData, userStatusData.token);
+      await writeForm(writeData, userStatusData.token);
       history.goBack();
     }
   };
 
-  const progressBarState = () => {
+  const progressBarState = useCallback(() => {
     let count = 0;
     if (byte.byte1 > 0) {
       count++;
@@ -121,7 +121,7 @@ function WriteCard({ onChangeForm }: MyFormProps) {
       count++;
     }
     setCountProgressBar(count);
-  };
+  }, [byte.byte1, byte.byte2, byte.byte3]);
 
   const totalOnChange = (e: any) => {
     const text_val = e.target.value; //입력한 문자
@@ -147,7 +147,7 @@ function WriteCard({ onChangeForm }: MyFormProps) {
 
   useEffect(() => {
     progressBarState();
-  }, [byte]);
+  }, [byte, progressBarState]);
 
   const [isOpenTag, setIsOpenTag] = useState(false);
   const [isClickTag, setIsClickTag] = useState(false);

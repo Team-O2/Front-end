@@ -1,10 +1,8 @@
 import { sendVerifinum } from 'apis';
-import Button from 'components/atoms/Button';
-import Label from 'components/atoms/Label';
-import FindPWDForm from 'components/molecules/FindPwdForm';
-import SetNewPwd from 'components/organisms/SetNewPwd';
+import { Button, Label } from 'components/atoms';
+import { FindPwdForm } from 'components/molecules';
+import { SetNewPwd } from 'components/organisms';
 import React, { useEffect, useState } from 'react';
-import { useHistory } from 'react-router-dom';
 import SFindPWDWrap from './style';
 
 export interface IProps {
@@ -12,7 +10,6 @@ export interface IProps {
 }
 
 function FindPWD(): React.ReactElement {
-  const history = useHistory();
   const [data, setData] = useState({
     email: '',
     certifiNum: '',
@@ -32,15 +29,16 @@ function FindPWD(): React.ReactElement {
   };
   const [verifiErrMsg, setVerifiErrMsg] = useState('');
   const [isChangePwd, setIsChangePwd] = useState(false);
+
   useEffect(() => {
     if (isConditionMet.email && isConditionMet.certifiNum) setIsBtnDisabled(true);
     else setIsBtnDisabled(false);
-  });
+  }, [isConditionMet.certifiNum, isConditionMet.email]);
+
   return !isChangePwd ? (
     <SFindPWDWrap isBtnDisabled={isBtnDisabled}>
       <Label className="findPwd__label--title">비밀번호 찾기</Label>
-      <FindPWDForm
-        data={data}
+      <FindPwdForm
         setData={setData}
         isConditionMet={isConditionMet}
         setIsConditionMet={setIsConditionMet}

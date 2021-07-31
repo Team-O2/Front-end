@@ -2,22 +2,12 @@ import { CheckAllOffIcon, CheckAllOnIcon, CheckOffIcon, CheckOnIcon, ModalCloseI
 import { Button, CheckBox, Modal } from 'components/atoms';
 import React, { useEffect, useState } from 'react';
 import Styled from 'styled-components';
-
-interface userDataType {
-  email: string;
-  password: string;
-  passwordCheck: string;
-  nickname: string;
-  gender: number;
-  interest: Array<string>;
-  marpolicy: boolean;
-  policyMust: boolean;
-}
+import { IUserDataType } from 'types/user.type';
 
 export interface IProps {
   className?: string;
-  setUserData: (value: userDataType) => void;
-  userData: userDataType;
+  setUserData: (value: IUserDataType) => void;
+  userData: IUserDataType;
 }
 
 function JoinCheck({ setUserData, userData }: IProps): React.ReactElement {
@@ -220,124 +210,124 @@ flex-direction: column;
 align-items : center;
 .modal{
   &__container{
+    display : flex;
     position : fixed;
     top : 0;
-    left : 0;
     right : 0;
     bottom : 0;
-    margin : auto;
-    width : 600px;
-    height : 730px;
-    background-color : #ffffff;
-    border-radius: 16px;
-    padding : 50px 50px 40px 40px;
-    display : flex;
+    left : 0;
     flex-direction : column;
     align-items : center;
+    margin : auto;
+    border-radius: 16px;
+    background-color : #ffffff;
+    padding : 50px 50px 40px 40px;
+    width : 600px;
+    height : 730px;
   }
   &__title{
     margin-bottom : 40px;
-    font-size: 28px;
-    font-weight: bold;
-    font-stretch: normal;
-    font-style: normal;
+    text-align: left;
     line-height: 1.36;
     letter-spacing: -0.5px;
-    text-align: left;
     color : #0d0d0d;
+    font-size: 28px;
+    font-stretch: normal;
+    font-weight: bold;
+    font-style: normal;
   }
   &__content{
-    font-size: 16px;
     height : 100%;
     overflow: scroll;
-    font-weight: normal;
-    font-stretch: normal;
-    font-style: normal;
+    text-align: left;
     line-height: 1.5;
     letter-spacing: -0.5px;
-    text-align: left;
     color: #525252;
+    font-size: 16px;
+    font-stretch: normal;
+    font-weight: normal;
+    font-style: normal;
   }
   &__button--close{
+    position : absolute;
+    top : 54px;
+    right : 44px;
     width : 16px;
     height : 16px;
-    position : absolute;
-    right : 44px;
-    top : 54px;
   }
 }
 .checkAllImg{
+  margin-right : 16px;
   width : 20px;
   height : 20px;
-  margin-right : 16px;
 }
 .checkimg{
+  margin-right : 17px;
+  margin-left : 3.7px;
   width: 14.7px;
   height: 10.1px;
-  margin-left : 3.7px;
-  margin-right : 17px;
 }
 .check_icon2, .check_icon1{
   display:none;
 }
 
 .line{
+  margin-top : 18px;
+  background-color: #c4c4c4;
   width: 406px;
   height: 2px;
-  background-color: #c4c4c4;
-  margin-top : 18px;
 }
  .flex{
     display : flex;
     align-items : center;
  }
  .policy_check{
+    display : flex;
+    align-items : center;
+    justify-content : space-between;
     margin-top : 19px;
     width : 406px;
-    display : flex;
-    justify-content : space-between;
-    align-items : center;
  }
  .check_icon1{
+    margin-right : 16px;
     width : 22px;
-    height : 22px;
-    margin-right : 16px
+    height : 22px
  }
  .check_icon2{
+    margin-right : 16px;
     width : 22px;
-    height : 22px;
-    margin-right : 16px
+    height : 22px
  }
  .policy_exp1{
-    font-size: 16px;
-  font-weight: normal;
-  font-stretch: normal;
-  font-style: normal;
-  line-height: 1.5;
-  letter-spacing: -0.5px;
   display : flex;
     align-items : center;
+  line-height: 1.5;
+  letter-spacing: -0.5px;
+    font-size: 16px;
+  font-stretch: normal;
+  font-weight: normal;
+  font-style: normal;
  }
  .policy_exp2{
-    font-size: 14px;
-  font-weight: normal;
-  font-stretch: normal;
-  font-style: normal;
-  line-height: 1.5;
-  letter-spacing: -0.5px;
-
-  vertical-align : center;
   display : flex;
     align-items : center;
+
+  vertical-align : center;
+  line-height: 1.5;
+  letter-spacing: -0.5px;
+    font-size: 14px;
+  font-stretch: normal;
+  font-weight: normal;
+  font-style: normal;
 }
 .btn_more{
-    font-size: 14px;
-  font-weight: normal;
-  font-stretch: normal;
-  font-style: normal;
   line-height: 1.5;
   letter-spacing: -0.5px;
   color : #a5a5a5;
+    font-size: 14px;
+  font-stretch: normal;
+  font-weight: normal;
+  font-style: normal;
 }
 
 `;

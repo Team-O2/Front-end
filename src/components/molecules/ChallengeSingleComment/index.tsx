@@ -1,6 +1,6 @@
 import { ChallengeReCommentList, ChallengeReCommentWrite } from 'components/molecules';
 import React, { useState } from 'react';
-import { ICommentData } from 'types/challenge.type';
+import { ICommentData, IReply } from 'types/challenge.type';
 import SSingleComment from './style';
 
 interface IProps {
@@ -8,16 +8,6 @@ interface IProps {
   challengeID: string;
   commentListFlag: boolean;
   setCommentListFlag: (value: boolean) => void;
-}
-
-interface IReply {
-  _id: string;
-  userID: {
-    img: string;
-    _id: string;
-    nickname: string;
-  };
-  text: string;
 }
 
 function ChallengeSingleComment({
@@ -58,8 +48,8 @@ function ChallengeSingleComment({
               <ChallengeReCommentList // 답글
                 className="reply__comment"
                 key={data._id}
-                img={data.userID.img}
-                nickname={data.userID.nickname}
+                img={data.userID?.img}
+                nickname={data.userID?.nickname}
                 text={data.text}
               />
             ))}

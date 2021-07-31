@@ -1,7 +1,7 @@
 import { postChallengeComment } from 'apis';
 import { Button, TextArea } from 'components/atoms';
 import React, { useState } from 'react';
-import { useRecoilState } from 'recoil';
+import { useRecoilValue } from 'recoil';
 import { userStatusState } from 'stores/user';
 import SCommentWrite from './style';
 
@@ -22,7 +22,7 @@ function ChallengeCommentWrite({
   setCommentListFlag,
   parentCommentId,
 }: IProps): React.ReactElement {
-  const [userStatusData, setUserStatusData] = useRecoilState(userStatusState);
+  const userStatusData = useRecoilValue(userStatusState);
   const [value, setValue] = useState('');
 
   const handleChange = (event: React.ChangeEvent<HTMLTextAreaElement>) => {

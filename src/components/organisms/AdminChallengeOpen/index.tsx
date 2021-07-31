@@ -4,13 +4,13 @@ import { Button, CheckBox, FileUpload as PhotoUpload, Label } from 'components/a
 import { AdminChallengeOpenForm } from 'components/molecules';
 import React, { useEffect, useState } from 'react';
 import { useHistory } from 'react-router-dom';
-import { useRecoilState } from 'recoil';
+import { useRecoilValue } from 'recoil';
 import { userStatusState } from 'stores/user';
 import Styled from 'styled-components';
 
 function AdminChallengeOpen(): React.ReactElement {
   const history = useHistory();
-  const [userStatusData, setUserStatusData] = useRecoilState(userStatusState);
+  const userStatusData = useRecoilValue(userStatusState);
   const [image, setImage] = useState<File | null>(null);
   const [isChecked, setIsChecked] = useState(false);
   const [isButtonDisabled, setIsButtonDisabled] = useState(true);

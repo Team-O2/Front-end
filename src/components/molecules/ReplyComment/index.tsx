@@ -8,7 +8,7 @@ interface IProps {
   img?: string;
 }
 
-function Replycomment({ nickname, text, img }: IProps): React.ReactElement {
+function ReplyComment({ nickname, text, img }: IProps): React.ReactElement {
   return (
     <SReplyComment>
       <img className="profile" src={img} alt="" />
@@ -47,4 +47,4 @@ const SReplyComment = Styled.div`
       font-size: 16px;
     }
 `;
-export default React.memo(Replycomment);
+export default React.memo(ReplyComment);

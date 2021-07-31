@@ -27,14 +27,14 @@ const SBadgeCard = Styled.div`
         height : 130px;
     }
     .title{
-        color : #555555;
         margin-top: 10px;
         margin-bottom : 15px;
+        color : #555555;
     }
     .explain{
-        color : #555555;
         text-align : center;
         white-space : nowrap;
+        color : #555555;
     }
 `;
 

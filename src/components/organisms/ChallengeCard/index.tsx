@@ -40,7 +40,6 @@ function ChallengeCard({ challengeList, setChallengeList, generationNum }: IProp
               bad={data?.bad}
               learn={data?.learn}
               like={data?.likes}
-              commentlist={data?.comments}
               comments={data?.comments.length}
               isLike={data?.isLike}
               isScrap={data?.isScrap}

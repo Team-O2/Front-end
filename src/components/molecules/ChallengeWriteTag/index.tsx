@@ -25,13 +25,8 @@ const selectedStyleList = [
 const ChallengeTag = () => {
   const [isOpenTag, setIsOpenTag] = useState(false);
   const [isClickTag, setIsClickTag] = useState(false);
-  const [isInterestModalOpen, setIsInterestModalOpen] = useState(false);
-
-  const [userData, setUserData] = useState({
-    interest: [''],
-  });
-  const [checkedItems, setCheckedItems] = useState(new Set());
   const [selectedInterest, setSelectedInterest] = useState<string[]>([]);
+
   const modalInterestHandler = (interest: string) => {
     if (selectedInterest.length === 0) {
       setSelectedInterest([interest]);
@@ -114,8 +109,7 @@ const ChallengeTag = () => {
 };
 
 const STag = Styled.div`
-
-.tag{
+  .tag{
     align-items:center;
     margin:0 auto;
     padding-top:60px;
@@ -129,25 +123,18 @@ const STag = Styled.div`
     font-weight: bold;
 
     &__interest{
-        margin : 12px 5px;
-        border: solid 1px #8b8b8b;
-        border-radius: 60px;
-        background-color:#FFFFFF;
-        padding : 12px 30px;
-        height : 48px;
-        line-height: 1.33;
-        letter-spacing: -0.5px;
-        color : #8b8b8b;
-        font-size: 18px;
-        font-weight: bold;
-      }
-
-    &__moreIcon{
-  
-
+      margin : 12px 5px;
+      border: solid 1px #8b8b8b;
+      border-radius: 60px;
+      background-color:#FFFFFF;
+      padding : 12px 30px;
+      height : 48px;
+      line-height: 1.33;
+      letter-spacing: -0.5px;
+      color : #8b8b8b;
+      font-size: 18px;
+      font-weight: bold;
     }
-
-
 }`;
 
 export default ChallengeTag;

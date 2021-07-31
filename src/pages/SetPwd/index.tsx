@@ -1,6 +1,6 @@
 import { postNewPw } from 'apis';
-import checkIcon from 'assets/images/checkIcon.svg';
-import StyledInput from 'components/atoms/StyledInput';
+import { CheckedIcon } from 'assets/images';
+import { StyledInput } from 'components/atoms';
 import React, { useEffect, useState } from 'react';
 import { useRecoilValue } from 'recoil';
 import { userStatusState } from 'stores/user';
@@ -184,7 +184,7 @@ const Modal = ({ setIsOpen, history }: { setIsOpen: React.Dispatch<React.SetStat
       <ModalWrap>
         <InnerModalWrap>
           <CheckIcon>
-            <img src={checkIcon} alt="check_icon" />
+            <img src={CheckedIcon} alt="check_icon" />
           </CheckIcon>
           <ColoredTxt>완료</ColoredTxt>
           <div

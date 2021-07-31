@@ -23,7 +23,7 @@ function MyPageConcertCard({
   id,
 }: IProps): React.ReactElement {
   return (
-    <LinkWrapper to={`concert/${id}`}>
+    <LinkWrapper to={`/concert/${id}`}>
       <span>
         <div className="card">
           <div className="card__img-wrapper">

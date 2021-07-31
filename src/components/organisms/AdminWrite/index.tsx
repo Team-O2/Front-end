@@ -3,7 +3,7 @@ import { Button, Label } from 'components/atoms';
 import { AdminWriteForm } from 'components/molecules';
 import React, { useEffect, useState } from 'react';
 import { useHistory } from 'react-router-dom';
-import { useRecoilState } from 'recoil';
+import { useRecoilValue } from 'recoil';
 import { userStatusState } from 'stores/user';
 import Styled from 'styled-components';
 interface IProps {
@@ -11,7 +11,7 @@ interface IProps {
 }
 function AdminWrite({ menu }: IProps): React.ReactElement {
   const history = useHistory();
-  const [userStatusData, setUserStatusData] = useRecoilState(userStatusState);
+  const userStatusData = useRecoilValue(userStatusState);
   const [isButtonDisabled, setIsButtonDisabled] = useState(true);
   const [isConditionMet, setIsConditionMet] = useState({
     title: false,
@@ -108,7 +108,7 @@ function AdminWrite({ menu }: IProps): React.ReactElement {
         setIsButtonDisabled(true);
       }
     }
-  }, [isConditionMet]);
+  }, [isConditionMet, writeData.menu]);
 
   return (
     <SAdminWrite isButtonDisabled={isButtonDisabled}>

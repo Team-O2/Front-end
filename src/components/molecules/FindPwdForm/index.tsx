@@ -1,9 +1,6 @@
 import { sendEmail } from 'apis';
-import checkIcon from 'assets/images/checkIcon.svg';
-import Button from 'components/atoms/Button';
-import Label from 'components/atoms/Label';
-import Modal from 'components/atoms/Modal';
-import StyledInput from 'components/atoms/StyledInput';
+import { CheckedIcon } from 'assets/images';
+import { Button, Label, Modal, StyledInput } from 'components/atoms';
 import React, { useEffect, useState } from 'react';
 import SFindPWDFormWrap from './style';
 
@@ -11,6 +8,7 @@ interface IData {
   email: string;
   certifiNum: string;
 }
+
 interface IIsconditionMet {
   email: boolean;
   certifiNum: boolean;
@@ -18,14 +16,13 @@ interface IIsconditionMet {
 
 export interface IProps {
   className?: string;
-  data: IData;
   setData: (value: IData) => void;
   isConditionMet: IIsconditionMet;
   setIsConditionMet: (value: IIsconditionMet) => void;
   errMsg?: string;
 }
 
-function FindPWDForm({ data, setData, isConditionMet, setIsConditionMet, errMsg }: IProps): React.ReactElement {
+function FindPWDForm({ setData, isConditionMet, setIsConditionMet, errMsg }: IProps): React.ReactElement {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [email, setEmail] = useState('');
   const [certifiNum, setCertifiNum] = useState('');
@@ -40,7 +37,7 @@ function FindPWDForm({ data, setData, isConditionMet, setIsConditionMet, errMsg 
       email: email,
       certifiNum: certifiNum,
     });
-  }, [email, certifiNum]);
+  }, [email, certifiNum, setData]);
 
   useEffect(() => {
     if (email.includes('@')) {
@@ -49,7 +46,7 @@ function FindPWDForm({ data, setData, isConditionMet, setIsConditionMet, errMsg 
       setIsConditionMet({ ...isConditionMet, email: false });
       setEmailErrMsg('올바르지 않은 형식입니다');
     }
-  }, [email]);
+  }, [email, isConditionMet, setIsConditionMet]);
   useEffect(() => {
     const certifinumMatch = /[0-9]{6}$/;
     if (certifinumMatch.test(certifiNum)) {
@@ -57,7 +54,7 @@ function FindPWDForm({ data, setData, isConditionMet, setIsConditionMet, errMsg 
     } else {
       setIsConditionMet({ ...isConditionMet, certifiNum: false });
     }
-  }, [certifiNum]);
+  }, [certifiNum, isConditionMet, setIsConditionMet]);
 
   return (
     <SFindPWDFormWrap isConditionMet={isConditionMet}>
@@ -91,7 +88,7 @@ function FindPWDForm({ data, setData, isConditionMet, setIsConditionMet, errMsg 
       <Modal isOpen={isModalOpen} isBlur={true} setIsOpen={setIsModalOpen}>
         <div className="modal__container">
           <div className="modal__iconBack">
-            <img src={checkIcon} alt="modal__icon" />
+            <img src={CheckedIcon} alt="modal__icon" />
           </div>
           <div className="modal__title dp4">전송완료!</div>
           <div className="modal__exp body4">

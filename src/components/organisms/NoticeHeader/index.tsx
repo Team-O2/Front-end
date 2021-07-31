@@ -1,12 +1,11 @@
-import NoticeBackground from 'assets/images/noticeHeader.svg';
-import Button from 'components/atoms/Button';
-import Link from 'components/atoms/Link';
+import { NoticeBackgroundIcon } from 'assets/images';
+import { Button, Link } from 'components/atoms';
 import React from 'react';
 import Styled from 'styled-components';
 function NoticeHeader(): React.ReactElement {
   return (
     <SNoticeHeader>
-      <img className="background" src={NoticeBackground} alt="" />
+      <img className="background" src={NoticeBackgroundIcon} alt="" />
       <div className="text">
         <p>다음 강연이에요</p>
         <p>창업에 대한 모든 것</p>
