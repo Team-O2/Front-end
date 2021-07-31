@@ -1,6 +1,6 @@
 import { ChallengeReCommentList, ChallengeReCommentWrite } from 'components/molecules';
 import React, { useState } from 'react';
-import { ICommentData } from 'types/learnMySelf';
+import { ICommentData } from 'types/challenge.type';
 import SSingleComment from './style';
 
 interface IProps {

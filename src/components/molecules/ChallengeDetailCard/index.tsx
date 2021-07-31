@@ -24,7 +24,7 @@ import React, { useCallback, useEffect, useState } from 'react';
 import { useHistory } from 'react-router';
 import { useRecoilState } from 'recoil';
 import { userState, userStatusState } from 'stores/user';
-import { ICommentData } from 'types/learnMySelf';
+import { ICommentData } from 'types/challenge.type';
 import SChallengeDetailCard from './style';
 
 interface IProps {
