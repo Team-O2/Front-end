@@ -6,6 +6,7 @@ import { useHistory } from 'react-router-dom';
 import { useRecoilValue } from 'recoil';
 import { userStatusState } from 'stores/user';
 import Styled from 'styled-components';
+
 interface IProps {
   menu: string;
 }
@@ -115,6 +116,7 @@ function AdminWrite({ menu }: IProps): React.ReactElement {
       <Label className="admin__label--page">관리자 페이지</Label>
       <Label className="admin__label--title">글 올리기</Label>
       <AdminWriteForm
+        isConditionMet={isConditionMet}
         setIsConditionMet={setIsConditionMet}
         writeData={writeData}
         setWriteData={setWriteData}
