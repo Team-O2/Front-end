@@ -3,24 +3,15 @@ import { Input, Label } from 'components/atoms';
 import { DropDown, JoinCheck } from 'components/molecules';
 import React, { useEffect, useState } from 'react';
 import Styled from 'styled-components';
+import { IJoinConditionMet } from 'types/join.type';
 import { IUserDataType } from 'types/user.type';
-
-interface conditionMet {
-  email: boolean;
-  password: boolean;
-  passwordCheck: boolean;
-  nickname: boolean;
-  interest: boolean;
-  policyMust: boolean;
-  gender: boolean;
-}
 
 export interface IProps {
   className?: string;
-  isConditionMet: conditionMet;
+  isConditionMet: IJoinConditionMet;
   userData: IUserDataType;
   setUserData: (value: IUserDataType) => void;
-  setIsConditionMet: (value: conditionMet) => void;
+  setIsConditionMet: (value: IJoinConditionMet) => void;
 }
 
 const conditionMetStyle = {

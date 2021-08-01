@@ -8,11 +8,6 @@ import { useRecoilState } from 'recoil';
 import { userState, userStatusState } from 'stores/user';
 import Styled from 'styled-components';
 
-interface IHamDrop {
-  name: string;
-  link: string;
-}
-
 function Hamburger(): React.ReactElement {
   // user상태 :
   // 0: 비회원,
@@ -27,7 +22,7 @@ function Hamburger(): React.ReactElement {
   const [userStateNum, setUserState] = useState(userStatusData ? userStatusData.userType : 0);
   const [generationNum, setGenerationNum] = useState<{ registGeneration: number | null; progressGeneration: number }>();
   const [userName, setUserName] = useState(userData?.nickname);
-  const [challengeList, setChallengeList] = useState<IHamDrop[]>([{ name: '', link: '' }]);
+  const [challengeList, setChallengeList] = useState<{ name: string; link: string }[]>([{ name: '', link: '' }]);
   const changeIndextoName = (index: number) => {
     switch (index) {
       case 1:
@@ -42,7 +37,7 @@ function Hamburger(): React.ReactElement {
   };
 
   const getChallengeList = () => {
-    const arr: IHamDrop[] = [];
+    const arr: { name: string; link: string }[] = [];
     if (generationNum) {
       for (let i = 1; i <= generationNum.progressGeneration; i++) {
         arr.push({ name: changeIndextoName(i), link: `/challenge/${i}` });
