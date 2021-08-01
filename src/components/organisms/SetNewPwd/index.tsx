@@ -3,7 +3,18 @@ import { CheckedIcon } from 'assets/images';
 import { StyledInput } from 'components/atoms';
 import React, { useEffect, useState } from 'react';
 import { useHistory } from 'react-router-dom';
-import { Background, Btn, CheckIcon, ColoredTxt, Container, InnerModalWrap, ModalWrap } from './style';
+import {
+  Background,
+  Btn,
+  CheckIcon,
+  ColoredTxt,
+  Container,
+  InnerModalWrap,
+  InputWrapper,
+  Message,
+  ModalWrap,
+  Title,
+} from './style';
 
 interface IProps {
   email: string;
@@ -62,8 +73,8 @@ function SetNewPwd({ email }: IProps): React.ReactElement {
   return (
     <div>
       <Container>
-        <div style={{ marginBottom: '60px', fontSize: '36px', fontWeight: 700, color: '#0d0d0d' }}>비밀번호 변경</div>
-        <div style={{ marginBottom: '14px' }}>
+        <Title>비밀번호 변경</Title>
+        <InputWrapper>
           <StyledInput
             width="406px"
             height="60px"
@@ -78,8 +89,8 @@ function SetNewPwd({ email }: IProps): React.ReactElement {
             isConditionMet={isOkay.pw}
             errorMsg="영어 대문자, 소문자, 특수문자가 포함되어야 합니다"
           />
-        </div>
-        <div style={{ marginBottom: '14px' }}>
+        </InputWrapper>
+        <InputWrapper>
           <StyledInput
             width="406px"
             height="60px"
@@ -94,7 +105,7 @@ function SetNewPwd({ email }: IProps): React.ReactElement {
             isConditionMet={isOkay.pwCheck}
             errorMsg="비밀번호가 일치하지 않습니다"
           />
-        </div>
+        </InputWrapper>
         <Btn
           isActive={isOkay.pw && isOkay.pwCheck}
           onClick={
@@ -131,19 +142,7 @@ const Modal = ({ setIsOpen }: { setIsOpen: React.Dispatch<React.SetStateAction<b
             <img src={CheckedIcon} alt="check_icon" />
           </CheckIcon>
           <ColoredTxt>완료</ColoredTxt>
-          <div
-            style={{
-              width: '320px',
-              height: '73px',
-              textAlign: 'center',
-              lineHeight: '73px',
-              fontSize: '16px',
-              fontWeight: 500,
-              color: '#0d0d0d',
-            }}
-          >
-            비밀번호 변경이 완료되었습니다
-          </div>
+          <Message>비밀번호 변경이 완료되었습니다</Message>
         </InnerModalWrap>
       </ModalWrap>
     </>

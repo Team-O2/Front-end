@@ -1,5 +1,12 @@
+import { Img } from 'components/atoms';
 import Styled from 'styled-components';
-import { ifNotProp, ifProp, palette } from 'styled-tools';
+import { ifNotProp, ifProp, palette, theme } from 'styled-tools';
+
+export const UserThumbnail = Styled(Img)<{ isChild?: boolean }>`
+  width: ${ifProp('isChild', '26px', '28px')};
+  height: ${ifProp('isChild', '26px', '28px')};
+  border-radius: 50%;
+`
 
 export const CommentWrapper = Styled.div<{ isChild?: boolean }>`
   display: flex;
@@ -9,19 +16,15 @@ export const CommentWrapper = Styled.div<{ isChild?: boolean }>`
   margin-left: ${ifProp('isChild', '130px')};
   margin-bottom: ${ifProp('isChild', '16px', '20px')};
 
-  .img {
-    width: ${ifProp('isChild', '26px', '28px')};
-    height: ${ifProp('isChild', '26px', '28px')};
-    border-radius: 50%;
-  }
-
   h4 {
+    ${theme('font.subhead3')};
     width: 81px;
     margin: 3px 8px 0 13px;
     color: ${palette('grayscale', -1)};
   }
 
   p {
+    ${theme('font.body3')};
     word-wrap: break-word;
     width: ${ifProp('isChild', '372px', '500px')};
     margin-top: 1px;
@@ -29,6 +32,7 @@ export const CommentWrapper = Styled.div<{ isChild?: boolean }>`
   }
 
   button {
+    ${theme('font.subhead2')};
     position: absolute;
     top: 0;
     right: 0;

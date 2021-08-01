@@ -31,8 +31,8 @@ function ScrappedConcert(): React.ReactElement {
   return (
     <Wrapper>
       <Header>
-        <h2 className="h2">스크랩한</h2>
-        <h2 className="h2_eng">Share Together</h2>
+        <h2>스크랩한</h2>
+        <h2>Share Together</h2>
       </Header>
       {scrappedConcert?.totalScrapNum ? (
         <ConcertList
@@ -42,9 +42,7 @@ function ScrappedConcert(): React.ReactElement {
           setCurrentPage={setCurrentPage}
         />
       ) : (
-        <NoContents>
-          <p className="subhead4">스크랩한 글이 없어요</p>
-        </NoContents>
+        <NoContents>스크랩한 글이 없어요</NoContents>
       )}
     </Wrapper>
   );

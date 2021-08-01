@@ -1,4 +1,15 @@
 import Styled, { css } from 'styled-components';
+import { palette, theme } from 'styled-tools';
+
+export const Title = Styled.div`
+  ${theme('font.dp1')};
+  margin-bottom: 60px;
+  color: ${palette('grayscale', 9)};
+`;
+
+export const PwdInputWrapper = Styled.div`
+  margin-bottom: 14px;
+`;
 
 export const Container = Styled.div`
   position: relative;
@@ -17,6 +28,7 @@ interface IBtn {
 }
 
 export const Btn = Styled.div<IBtn>`
+  ${theme('font.subhead3')};
   cursor: pointer;
   width: 406px;
   height: 60px;
@@ -25,15 +37,12 @@ export const Btn = Styled.div<IBtn>`
   ${(props) =>
     props.isActive &&
     css`
-      background-image: linear-gradient(to right, #36c8f5, #13e2dd);
+      background-image: linear-gradient(to right, ${palette('primary', 3)}, ${palette('primary', 0)});
     `}
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 16px;
-  font-weight: 700;
-  line-height: 1.38;
-  color: #ffffff;
+  color: ${palette('grayscale', 0)};
 `;
 
 export const Background = Styled.div`
@@ -56,9 +65,12 @@ export const ModalWrap = Styled.div`
   border-radius: 16px;
   border-width: 0.1rem;
   border-style: solid;
-  border-image-source: linear-gradient(to top, #36c8f5, #13e2dd);
+  border-image-source: linear-gradient(to top, ${palette('primary', 3)}, ${palette('primary', 0)});
   border-image-slice: 1;
-  background-image: linear-gradient(to bottom, #36c8f5, #13e2dd), linear-gradient(to top, #36c8f5, #13e2dd);
+  background-image: linear-gradient(to bottom, ${palette('primary', 3)}, ${palette(
+  'primary',
+  0,
+)}), linear-gradient(to top, ${palette('primary', 3)}, ${palette('primary', 0)});
   background-origin: border-box;
   background-clip: content-box, border-box;
 `;
@@ -84,23 +96,29 @@ export const CheckIcon = Styled.div`
   width: 9rem;
   height: 9rem;
   border-radius: 4.5rem;
-  background-image: linear-gradient(to right, #36c8f5, #13e2dd);
+  background-image: linear-gradient(to right, ${palette('primary', 3)}, ${palette('primary', 0)});
   display: flex;
   align-items: center;
   justify-content: center;
 `;
 
-export const ColoredTxt = Styled.div`
+export const ModalTitle = Styled.div`
+  ${theme('font.dp4')};
   width: 83px;
   height: 68px;
   position: relative;
   top: -8px;
   margin-bottom: 1.2rem;
-  font-size: 4.6rem;
-  font-weight: 700;
   text-align: center;
-  line-height: 68px;
-  background: linear-gradient(to right, #36c8f5, #13e2dd);
+  background: linear-gradient(to right, ${palette('primary', 3)}, ${palette('primary', 0)});
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
+`;
+
+export const ModalText = Styled.div`
+  ${theme('font.subhead3')};
+  width: 320px;
+  height: 73px;
+  text-align: center;
+  color: ${palette('grayscale', 9)};
 `;

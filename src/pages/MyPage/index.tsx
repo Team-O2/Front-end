@@ -9,7 +9,7 @@ import {
   getUserCommentList,
 } from 'apis';
 import { Logo } from 'assets/images';
-import { Button, Img, Modal } from 'components/atoms';
+import { Modal } from 'components/atoms';
 import {
   ChallengeCard,
   ChallengeModalComment,
@@ -26,7 +26,24 @@ import { IChallenge, IChallengeData } from 'types/challenge.type';
 import { IConcert } from 'types/concert.type';
 import { IMyPageHeader, IMyScrappedChallenge, IMyScrappedConcert, IMyUserCommentResponse } from 'types/myPage.type';
 import { changeDateFormat } from 'utils';
-import { LearnMyselfModalWrapper, Switch, SwitchRadio, Wrapper } from './style';
+import {
+  Body,
+  Bottom,
+  ChallengeModalWrapper,
+  CloseButton,
+  CommentWrapper,
+  Header,
+  ModalUserImg,
+  ModalUserInfo,
+  ModalUserInfoWrapper,
+  ModalWrapper,
+  MoreButton,
+  Switch,
+  SwitchRadio,
+  TextArea,
+  Top,
+  Wrapper,
+} from './style';
 
 function MyPage(): React.ReactElement {
   const [selectedSection, setSelectedSection] = useState('scrap');
@@ -162,16 +179,14 @@ function MyPage(): React.ReactElement {
 
   return (
     <Wrapper>
-      <div className="mypage__header">
+      <Header>
         <MyPageHeader userInfo={userInfo} />
-      </div>
-      <div className="mypage__body">
+      </Header>
+      <Body>
         <Switch>
           <li>
             <SwitchRadio type="radio" id="scrap" onChange={onChangeSection} checked={selectedSection === 'scrap'} />
-            <label className="subhead5" htmlFor="scrap">
-              스크랩
-            </label>
+            <label htmlFor="scrap">스크랩</label>
           </li>
           <li>
             <SwitchRadio
@@ -180,12 +195,10 @@ function MyPage(): React.ReactElement {
               onChange={onChangeSection}
               checked={selectedSection === 'activity'}
             />
-            <label className="subhead5" htmlFor="activity">
-              나의 활동
-            </label>
+            <label htmlFor="activity">나의 활동</label>
           </li>
         </Switch>
-        <div className="mypage__top">
+        <Top>
           {selectedSection === 'scrap' ? (
             <MyPageSection
               title="Share Together"
@@ -207,8 +220,8 @@ function MyPage(): React.ReactElement {
               renderItemList={renderChallenge}
             />
           )}
-        </div>
-        <div className="mypage__bottom">
+        </Top>
+        <Bottom>
           {selectedSection === 'scrap' ? (
             <MyPageSection
               title="Learn Myself"
@@ -236,61 +249,56 @@ function MyPage(): React.ReactElement {
               />
             )
           )}
-        </div>
-      </div>
+        </Bottom>
+      </Body>
       <DeleteModal
         isDeleteModalOpen={isModalOpened}
         setIsDeleteModalOpen={setIsModalOpened}
         onClickDeleteButton={deleteSelectedCommentList}
       />
       <Modal isOpen={isChallengeModalOpen} setIsOpen={setIsChallengeModalOpen} isBlur={true}>
-        <LearnMyselfModalWrapper isFolded={isFolded}>
-          <div className="wrapper">
-            <div className="userInfo">
-              <Img className="userInfo__img" src={challenge?.user?.img} />
-              <div className="userInfo__infoWrapper">
-                <div className="userInfo__infoWrapper--top subhead5">
+        <ChallengeModalWrapper>
+          <ModalWrapper>
+            <ModalUserInfo>
+              <ModalUserImg src={challenge?.user?.img} />
+              <ModalUserInfoWrapper>
+                <div>
                   <div>{challenge?.user?.nickname}</div>
-                  <div className="userInfo__infoWrapper--date body2">{dayjs().format('MM.DD')}</div>
+                  <div>{dayjs().format('MM.DD')}</div>
                 </div>
-                <div className="userInfo__infoWrapper--tags subhead2">
-                  {challenge?.interest?.map((item: string) => `#${item} `)}
-                </div>
-              </div>
-            </div>
-            <div className="textArea">
-              <h3 className="textArea__title subhead3">잘한 점</h3>
-              <p className="textArea__contents body3">{challenge?.good}</p>
-              <h3 className="textArea__title subhead3">못한 점</h3>
-              <p className="textArea__contents body3">{challenge?.bad}</p>
-              <h3 className="textArea__title subhead3">배운 점</h3>
-              <p className="textArea__contents body3">{challenge?.learn}</p>
-            </div>
-            <Button
-              className="button__more subhead4"
+                <div>{challenge?.interest?.map((item: string) => `#${item} `)}</div>
+              </ModalUserInfoWrapper>
+            </ModalUserInfo>
+            <TextArea isFolded={isFolded}>
+              <h3>잘한 점</h3>
+              <p>{challenge?.good}</p>
+              <h3>못한 점</h3>
+              <p>{challenge?.bad}</p>
+              <h3>배운 점</h3>
+              <p>{challenge?.learn}</p>
+            </TextArea>
+            <MoreButton
               onClick={() => {
                 setIsFolded(!isFolded);
               }}
             >
               {isFolded ? '더보기' : '접기'}
-            </Button>
-            <div className="comment">
+            </MoreButton>
+            <CommentWrapper>
               {challenge?.comments.map((comment) => (
                 <ChallengeModalComment key={comment._id} commentData={comment} />
               ))}
-            </div>
-          </div>
-
-          <Button
-            className="button__close subhead3"
+            </CommentWrapper>
+          </ModalWrapper>
+          <CloseButton
             onClick={() => {
               setIsChallengeModalOpen(false);
               setIsFolded(true);
             }}
           >
             닫기
-          </Button>
-        </LearnMyselfModalWrapper>
+          </CloseButton>
+        </ChallengeModalWrapper>
       </Modal>
     </Wrapper>
   );

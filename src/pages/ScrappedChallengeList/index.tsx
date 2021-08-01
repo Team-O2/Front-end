@@ -28,8 +28,8 @@ function ScrappedChallenge(): React.ReactElement {
   return (
     <Wrapper>
       <Header>
-        <h2 className="h2">스크랩한</h2>
-        <h2 className="h2_eng">Learn Myself</h2>
+        <h2>스크랩한</h2>
+        <h2>Learn Myself</h2>
       </Header>
       {scrappedChallenge?.totalScrapNum ? (
         scrappedChallenge?.mypageChallengeScrap.map((data: IChallengeData, id) => {
@@ -53,9 +53,7 @@ function ScrappedChallenge(): React.ReactElement {
           );
         })
       ) : (
-        <NoContents>
-          <p className="subhead4">스크랩한 글이 없어요</p>
-        </NoContents>
+        <NoContents>스크랩한 글이 없어요</NoContents>
       )}
     </Wrapper>
   );
