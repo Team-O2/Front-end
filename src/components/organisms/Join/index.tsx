@@ -65,14 +65,8 @@ function CJoin(): React.ReactElement {
       marpolicy: userData.marpolicy,
     };
     const getData = await postJoin(postData);
-    if (getData !== undefined) {
-      if (getData.status === 201) {
-        history.push('/');
-      } else {
-        alert(getData.message);
-      }
-    } else {
-      alert('네트워크가 좋지 않습니다');
+    if (getData) {
+      history.push('/');
     }
   };
   const joinBtnHandler = () => {

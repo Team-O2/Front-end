@@ -38,18 +38,17 @@ function LoginForm(): React.ReactElement {
 
   const getUserStatusData = async () => {
     const data = await postLogin(loginData);
-    if (data !== undefined) {
+    if (data) {
       if (data.status === 200) {
         setUserStatusData({
           token: data.token,
           userType: data.data.userState,
           totalGeneration: data.data.totalGeneration,
           registGeneration: data.data.registGeneration,
-          progressGeneration: data.data.progressGeneration,
+          progressGeneration: data.data.progressGeneration ? data.data.progressGeneration : 0,
         });
         return data.token;
       } else {
-        console.log(data.message);
         if (data.message === '아이디가 존재하지 않습니다') {
           setIsConditionMet({ email: false, pwd: true });
         } else if (data.message === '비밀번호가 틀렸습니다') {
@@ -59,9 +58,9 @@ function LoginForm(): React.ReactElement {
     } else {
       alert('네트워크가 좋지 않습니다');
     }
-    return false;
+    return '';
   };
-  const getUserDetailData = async (token: string) => {
+  const getUserDetailData = async (token: string): Promise<boolean> => {
     if (token) {
       const data = await getUserData(token);
       if (data !== undefined) {

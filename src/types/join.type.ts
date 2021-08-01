@@ -7,3 +7,12 @@ export interface IJoinConditionMet {
   policyMust: boolean;
   gender: boolean;
 }
+
+export interface IJoin {
+  email: string;
+  password: string;
+  nickname: string;
+  interest: string[];
+  gender: number;
+  marpolicy: boolean;
+}

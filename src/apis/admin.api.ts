@@ -1,9 +1,14 @@
 import { serverAxios } from 'libs/axios';
+import { IAdminChallenge, IAdminChallengePeriod } from 'types/admin.type';
 import { changeArrToString } from 'utils';
 
 const PREFIX_URL = '/admin';
 
-export const getChallengeList = async (token: string, limit: number, offset: number) => {
+export const getChallengeList = async (
+  token: string,
+  limit: number,
+  offset: number,
+): Promise<IAdminChallenge[] | null> => {
   try {
     const data = await serverAxios.get(`${PREFIX_URL}`, {
       headers: {
@@ -35,7 +40,7 @@ interface IConcertWriteData {
   authorNickname: string;
 }
 
-export const postConcertWrite = async (token: string, concertWriteData: IConcertWriteData) => {
+export const postConcertWrite = async (token: string, concertWriteData: IConcertWriteData): Promise<boolean> => {
   const form = new FormData();
   concertWriteData.videoLink && form.append('videoLink', concertWriteData.videoLink);
   concertWriteData.imgThumbnail && form.append('imgThumbnail', concertWriteData.imgThumbnail);
@@ -68,7 +73,7 @@ interface INoticeData {
   hashtag: string[];
 }
 
-export const postNoticeWrite = async (token: string, noticeWriteData: INoticeData) => {
+export const postNoticeWrite = async (token: string, noticeWriteData: INoticeData): Promise<boolean> => {
   const form = new FormData();
   form.append('title', noticeWriteData.title);
   form.append('text', noticeWriteData.text);
@@ -105,7 +110,7 @@ interface IChallengeOpenData {
   img: File | null;
 }
 
-export const challengeOpen = async (token: string, challengeOpenData: IChallengeOpenData) => {
+export const challengeOpen = async (token: string, challengeOpenData: IChallengeOpenData): Promise<boolean> => {
   const changeDateStyle = (date: string) => {
     const year = date.substr(0, 4);
     const month = date.substr(5, 2);
@@ -137,7 +142,7 @@ export const challengeOpen = async (token: string, challengeOpenData: IChallenge
   return false;
 };
 
-export const getRegistPeriod = async () => {
+export const getRegistPeriod = async (): Promise<IAdminChallengePeriod> => {
   const data = await serverAxios.get(`${PREFIX_URL}/regist`);
   return data.data.data;
 };
