@@ -1,4 +1,4 @@
-import { SmallLeftArrow, SmallRightArrow } from 'assets/images';
+import { SmallLeftArrowIcon, SmallRightArrowIcon } from 'assets/images';
 import { Button, Icon, Tag } from 'components/atoms';
 import React, { useEffect, useState } from 'react';
 import { useRecoilValue } from 'recoil';
@@ -171,7 +171,7 @@ function MyCommentList({
       </div>
       <div className="navigationContainer">
         <PageNavi onClick={handlePrevPageClick}>
-          <Icon src={SmallLeftArrow} />
+          <Icon src={SmallLeftArrowIcon} />
         </PageNavi>
         <ul>
           {target.map((pageIdx: number) => (
@@ -188,7 +188,7 @@ function MyCommentList({
           ))}
         </ul>
         <PageNavi onClick={handleNextPageClick}>
-          <Icon src={SmallRightArrow} />
+          <Icon src={SmallRightArrowIcon} />
         </PageNavi>
       </div>
     </Wrapper>

@@ -1,4 +1,4 @@
-import { FilledBookmark } from 'assets/images';
+import { FilledBookmarkIcon } from 'assets/images';
 import { Button, Icon, Img } from 'components/atoms';
 import React from 'react';
 import { Wrapper } from './style';
@@ -26,7 +26,7 @@ function ChallengeCard({
     <Wrapper>
       {isBookmarked && (
         <Button className="card__icon-wrapper" value={id} onClick={onClick}>
-          <Icon className="card__icon" src={FilledBookmark} height="2.4rem" />
+          <Icon className="card__icon" src={FilledBookmarkIcon} height="2.4rem" />
         </Button>
       )}
       <Button onClick={() => onButtonClick(id)}>
