@@ -51,7 +51,7 @@ function StyledInput({
           onChange={(e) => {
             onChange(e.target.value);
           }}
-          onFocus={(e) => {
+          onFocus={() => {
             setIsfocused(true);
           }}
           // onBlur={(e) => {
