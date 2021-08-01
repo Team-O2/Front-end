@@ -6,7 +6,7 @@ import {
   postConcertLike,
   postConcertScrap,
 } from 'apis';
-import { LoginModal } from 'assets/images';
+import { LoginModalIcon } from 'assets/images';
 import { Button, Modal } from 'components/atoms';
 import { DetailTitle } from 'components/molecules';
 import { CommentList, DetailContent } from 'components/organisms';
@@ -121,7 +121,7 @@ function ConcertDetail({ match }: RouteComponentProps<MatchParams>): React.React
       <Modal isOpen={loginModalOpen} setIsOpen={setLoginModalOpen} isBlur={true}>
         <div className="login">
           <div className="login__notice">
-            <img className="login__img" src={LoginModal} alt=""></img>
+            <img className="login__img" src={LoginModalIcon} alt=""></img>
             <div className="login__title">앗!</div>
             <div className="login__detail">로그인이 필요한 서비스입니다</div>
           </div>

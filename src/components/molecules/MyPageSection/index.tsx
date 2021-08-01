@@ -1,4 +1,4 @@
-import { MoreViewArrow } from 'assets/images';
+import { MoreViewArrowIcon } from 'assets/images';
 import { Icon, Link } from 'components/atoms';
 import React from 'react';
 import { IConcert } from 'types/concert.type';

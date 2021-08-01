@@ -1,4 +1,4 @@
-import { SmallLeftArrow, SmallRightArrow } from 'assets/images';
+import { SmallLeftArrowIcon, SmallRightArrowIcon } from 'assets/images';
 import { Button, Icon } from 'components/atoms';
 import { Concert } from 'components/molecules';
 import React, { useState } from 'react';
@@ -88,7 +88,7 @@ function ConcertList({ concertData, totalConcertNum, currentPage, setCurrentPage
         )}
         <div className="navigationContainer">
           <PageNavi onClick={handlePrevPageClick}>
-            <Icon src={SmallLeftArrow} />
+            <Icon src={SmallLeftArrowIcon} />
           </PageNavi>
           <ul>
             {target.map((pageIdx: number) => (
@@ -105,7 +105,7 @@ function ConcertList({ concertData, totalConcertNum, currentPage, setCurrentPage
             ))}
           </ul>
           <PageNavi onClick={handleNextPageClick}>
-            <Icon src={SmallRightArrow} />
+            <Icon src={SmallRightArrowIcon} />
           </PageNavi>
         </div>
       </SConcertList>

@@ -1,4 +1,4 @@
-import { EmptyCheckBox, FilledCheckBox } from 'assets/images';
+import { EmptyCheckBoxIcon, FilledCheckBoxIcon } from 'assets/images';
 import { Button, CheckBox, Label, Link } from 'components/atoms';
 import React from 'react';
 import Styled from 'styled-components';
@@ -79,11 +79,11 @@ const Wrapper = Styled.div`
         cursor: pointer;
         background-repeat: no-repeat;
         background-position: left center;
-        background-image: url('${EmptyCheckBox}');
+        background-image: url('${EmptyCheckBoxIcon}');
       }
 
       :checked + label {
-        background-image: url('${FilledCheckBox}');
+        background-image: url('${FilledCheckBoxIcon}');
       }
     }
 

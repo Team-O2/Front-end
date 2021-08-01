@@ -1,4 +1,4 @@
-import errIcon from 'assets/images/errIcon.svg';
+import { ErrorIcon } from 'assets/images';
 import React, { useState } from 'react';
 import { SStyledInput } from './style';
 
@@ -61,7 +61,7 @@ function StyledInput({
           // }}
           type={isPw ? 'password' : 'text'}
         />
-        {isFocused && !isConditionMet && <img className="input__image--error" src={errIcon}></img>}
+        {isFocused && !isConditionMet && <img className="input__image--error" src={ErrorIcon}></img>}
       </div>
       {isFocused && !isConditionMet && <div className="input__msg--error">{errorMsg}</div>}
     </SStyledInput>

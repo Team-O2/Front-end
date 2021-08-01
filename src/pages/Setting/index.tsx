@@ -1,12 +1,7 @@
 import { withStyles } from '@material-ui/core/styles';
 import Switch from '@material-ui/core/Switch';
 import { getUserInfo, updateUserInfo } from 'apis';
-import editIcon from 'assets/images/editwhite.png';
-import xIcon from 'assets/images/xIcon.svg';
-import StyledInput from 'components/atoms/StyledInput';
-import DropDown from 'components/molecules/DropDown';
-import DropDownMulti from 'components/molecules/DropDownMulti';
-import Header from 'components/organisms/Header';
+import { EditWhiteIcon, XIcon } from 'assets/images';
 import React, { useEffect, useRef, useState } from 'react';
 import { useHistory, withRouter } from 'react-router-dom';
 import { useRecoilValue, useSetRecoilState } from 'recoil';

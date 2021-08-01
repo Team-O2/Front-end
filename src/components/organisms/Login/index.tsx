@@ -1,4 +1,4 @@
-import { Line } from 'assets/images';
+import { LineIcon } from 'assets/images';
 import { Button, Label, Link } from 'components/atoms';
 import { LoginForm } from 'components/molecules';
 import React from 'react';
@@ -13,7 +13,7 @@ function CLogin(): React.ReactElement {
         <Link to="/setting/password/find">
           <Button className="etc__leftbtn">비밀번호 찾기</Button>
         </Link>
-        <img className="etc__line" src={Line}></img>
+        <img className="etc__line" src={LineIcon}></img>
         <Link to="/join">
           <Button className="etc__rightbtn">회원가입</Button>
         </Link>
