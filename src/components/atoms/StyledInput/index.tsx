@@ -12,6 +12,7 @@ export interface IProps {
   width: string;
   height: string;
   isPw?: boolean;
+  margin?: string;
 }
 const conditionMetStyle = {
   border: 'double 1px transparent',
@@ -35,11 +36,12 @@ function StyledInput({
   width,
   height,
   isPw,
+  margin,
 }: IProps): React.ReactElement {
   const [isFocused, setIsfocused] = useState(false);
 
   return (
-    <SStyledInput isConditionMet={isConditionMet} isFocused={isFocused} width={width} height={height}>
+    <SStyledInput isConditionMet={isConditionMet} isFocused={isFocused} width={width} height={height} margin={margin}>
       <div
         className="input__container"
         style={!isFocused ? defaultStyle : isFocused && isConditionMet ? conditionMetStyle : conditionNotMetStyle}
@@ -66,9 +68,16 @@ function StyledInput({
   );
 }
 
-const SStyledInput = Styled.div<{ isConditionMet: boolean; isFocused: boolean; width: string; height: string }>`
+const SStyledInput = Styled.div<{
+  isConditionMet: boolean;
+  isFocused: boolean;
+  width: string;
+  height: string;
+  margin?: string;
+}>`
     display : flex;
     flex-direction : column;
+    margin : ${(props) => props.margin};
     .input{
         border : none;
         font-size : 16px;
