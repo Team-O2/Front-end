@@ -1,7 +1,7 @@
-import { Label, StyledInput } from 'components/atoms';
-import React, { useEffect, useState } from 'react';
-import Styled from 'styled-components';
+import { StyledInput } from 'components/atoms';
+import React, { useEffect } from 'react';
 import { IChallengeOpen, IConditionMet } from 'types/challenge.type';
+import { PeopleContainer, PeriodContainer, Text, Wrapper, WriteLabel } from './style';
 
 export interface IProps {
   isConditionMet: IConditionMet;
@@ -16,21 +16,6 @@ function AdminChallengeOpenForm({
   challengeOpenData,
   setChallengeOpenData,
 }: IProps): React.ReactElement {
-  const [isValueExist, setIsValueExist] = useState({
-    // 값이 들어있는지 유무
-    title: false,
-    challengePeriod: [false, false],
-    applyPeriod: [false, false],
-    peopleNum: false,
-  });
-  const [isFocused, setIsFocused] = useState({
-    // 인풋에 포커스가 되어있는지 유무
-    title: false,
-    challengePeriod: [false, false],
-    applyPeriod: [false, false],
-    peopleNum: false,
-  });
-
   const CheckDatePattern = (date: string) => /[0-9]{4}.[0-9]{2}.[0-9]{2}$/.test(date);
 
   useEffect(() => {
@@ -78,8 +63,8 @@ function AdminChallengeOpenForm({
   }, [challengeOpenData.applyPeriod.end]);
 
   return (
-    <SAdminChallengeOpenForm isValueExist={isValueExist} isFocused={isFocused}>
-      <Label className="admin__label">챌린지 제목</Label>
+    <Wrapper>
+      <WriteLabel className="subhead4">챌린지 제목</WriteLabel>
       <StyledInput
         placeHolder="제목을 입력하세요"
         width="844px"
@@ -90,8 +75,8 @@ function AdminChallengeOpenForm({
         isConditionMet={isConditionMet.title}
         margin="0 0 40px 0"
       />
-      <Label className="admin__label">챌린지 기간</Label>
-      <div className="admin__container--period">
+      <WriteLabel className="subhead4">챌린지 기간</WriteLabel>
+      <PeriodContainer>
         <StyledInput
           placeHolder="년도.월.일. ex) 2021.07.04"
           width="390px"
@@ -106,7 +91,7 @@ function AdminChallengeOpenForm({
           isConditionMet={isConditionMet.challengePeriod.start}
           margin="0 0 40px 0"
         />
-        <div className="admin__text">~</div>
+        <Text className="h1_eng">~</Text>
         <StyledInput
           placeHolder="년도.월.일. ex) 2021.07.04"
           width="390px"
@@ -121,9 +106,9 @@ function AdminChallengeOpenForm({
           isConditionMet={isConditionMet.challengePeriod.end}
           margin="0 0 40px 0"
         />
-      </div>
-      <Label className="admin__label">챌린지 신청 기간</Label>
-      <div className="admin__container--period">
+      </PeriodContainer>
+      <WriteLabel className="subhead4">챌린지 신청 기간</WriteLabel>
+      <PeriodContainer>
         <StyledInput
           placeHolder="년도.월.일. ex) 2021.07.04"
           width="390px"
@@ -138,7 +123,7 @@ function AdminChallengeOpenForm({
           isConditionMet={isConditionMet.applyPeriod.start}
           margin="0 0 40px 0"
         />
-        <div className="admin__text">~</div>
+        <Text className="h1_eng">~</Text>
         <StyledInput
           placeHolder="년도.월.일. ex) 2021.07.04"
           width="390px"
@@ -153,9 +138,9 @@ function AdminChallengeOpenForm({
           isConditionMet={isConditionMet.applyPeriod.end}
           margin="0 0 40px 0"
         />
-      </div>
-      <Label className="admin__label">제한 인원 수</Label>
-      <div className="admin__container--people">
+      </PeriodContainer>
+      <WriteLabel className="subhead4">제한 인원 수</WriteLabel>
+      <PeopleContainer>
         <StyledInput
           placeHolder="제한 인원 수를 입력하세요"
           width="390px"
@@ -169,187 +154,10 @@ function AdminChallengeOpenForm({
           isConditionMet={isConditionMet.peopleNum}
           margin="0 26px 40px 0"
         />
-        <div className="admin__text">명</div>
-      </div>
-    </SAdminChallengeOpenForm>
+        <Text className="subhead4">명</Text>
+      </PeopleContainer>
+    </Wrapper>
   );
 }
-
-const SAdminChallengeOpenForm = Styled.div<{
-  isValueExist: {
-    title: boolean;
-    challengePeriod: boolean[];
-    applyPeriod: boolean[];
-    peopleNum: boolean;
-  };
-  isFocused: {
-    title: boolean;
-    challengePeriod: boolean[];
-    applyPeriod: boolean[];
-    peopleNum: boolean;
-  };
-}>`
-  display : flex;
-  flex-direction : column;
-  align-items : center;
-  width : 844px;
-  input{
-    border : none;
-    :focus{
-        outline : none;
-      }
-  }
-  .admin{
-    &__label{
-      width : 100%;
-      font-size: 18px;
-      font-weight: bold;
-      font-stretch: normal;
-      font-style: normal;
-      line-height: 1.33;
-      letter-spacing: -0.5px;
-      color: #0d0d0d;
-      margin-bottom : 8px;
-    }
-    &__div{
-      width : 100%;
-      height : 60px;
-      border-radius: 4px;
-      border: solid 1px #c1c1c1;
-      margin-bottom : 40px;
-      &--title{
-        border : ${(props) =>
-          props.isValueExist.title || props.isFocused.title ? 'double 1px transparent' : '1px solid #c1c1c1'};
-        background-image : ${(props) =>
-          props.isValueExist.title || props.isFocused.title
-            ? 'linear-gradient(white, white), linear-gradient(to right, #36c8f5,#13e2dd)'
-            : undefined};
-        background-origin : ${(props) =>
-          props.isValueExist.title || props.isFocused.title ? 'border-box' : undefined};
-        background-clip : ${(props) =>
-          props.isValueExist.title || props.isFocused.title ? 'content-box, border-box' : undefined};    
-      }
-
-      &--period1-1{
-        width : 390px;
-        border : ${(props) =>
-          props.isValueExist.challengePeriod[0] || props.isFocused.challengePeriod[0]
-            ? 'double 1px transparent'
-            : '1px solid #c1c1c1'};
-        background-image : ${(props) =>
-          props.isValueExist.challengePeriod[0] || props.isFocused.challengePeriod[0]
-            ? 'linear-gradient(white, white), linear-gradient(to right, #36c8f5,#13e2dd)'
-            : undefined};
-        background-origin : ${(props) =>
-          props.isValueExist.challengePeriod[0] || props.isFocused.challengePeriod[0] ? 'border-box' : undefined};
-        background-clip : ${(props) =>
-          props.isValueExist.challengePeriod[0] || props.isFocused.challengePeriod[0]
-            ? 'content-box, border-box'
-            : undefined};    
-      }
-      &--period1-2{
-        width : 390px;
-        border : ${(props) =>
-          props.isValueExist.challengePeriod[1] || props.isFocused.challengePeriod[1]
-            ? 'double 1px transparent'
-            : '1px solid #c1c1c1'};
-        background-image : ${(props) =>
-          props.isValueExist.challengePeriod[1] || props.isFocused.challengePeriod[1]
-            ? 'linear-gradient(white, white), linear-gradient(to right, #36c8f5,#13e2dd)'
-            : undefined};
-        background-origin : ${(props) =>
-          props.isValueExist.challengePeriod[1] || props.isFocused.challengePeriod[1] ? 'border-box' : undefined};
-        background-clip : ${(props) =>
-          props.isValueExist.challengePeriod[1] || props.isFocused.challengePeriod[1]
-            ? 'content-box, border-box'
-            : undefined};  
-      }
-      &--period2-1{
-        width : 390px;
-        border : ${(props) =>
-          props.isValueExist.applyPeriod[0] || props.isFocused.applyPeriod[0]
-            ? 'double 1px transparent'
-            : '1px solid #c1c1c1'};
-        background-image : ${(props) =>
-          props.isValueExist.applyPeriod[0] || props.isFocused.applyPeriod[0]
-            ? 'linear-gradient(white, white), linear-gradient(to right, #36c8f5,#13e2dd)'
-            : undefined};
-        background-origin : ${(props) =>
-          props.isValueExist.applyPeriod[0] || props.isFocused.applyPeriod[0] ? 'border-box' : undefined};
-        background-clip : ${(props) =>
-          props.isValueExist.applyPeriod[0] || props.isFocused.applyPeriod[0]
-            ? 'content-box, border-box'
-            : undefined};  
-      }
-      &--period2-2{
-        width : 390px;
-        border : ${(props) =>
-          props.isValueExist.applyPeriod[1] || props.isFocused.applyPeriod[1]
-            ? 'double 1px transparent'
-            : '1px solid #c1c1c1'};
-        background-image : ${(props) =>
-          props.isValueExist.applyPeriod[1] || props.isFocused.applyPeriod[1]
-            ? 'linear-gradient(white, white), linear-gradient(to right, #36c8f5,#13e2dd)'
-            : undefined};
-        background-origin : ${(props) =>
-          props.isValueExist.applyPeriod[1] || props.isFocused.applyPeriod[1] ? 'border-box' : undefined};
-        background-clip : ${(props) =>
-          props.isValueExist.applyPeriod[1] || props.isFocused.applyPeriod[1]
-            ? 'content-box, border-box'
-            : undefined};  
-      }
-      &--people{
-        width : 390px;
-        margin-right: 26px;
-        border : ${(props) =>
-          props.isValueExist.peopleNum || props.isFocused.peopleNum ? 'double 1px transparent' : '1px solid #c1c1c1'};
-        background-image : ${(props) =>
-          props.isValueExist.peopleNum || props.isFocused.peopleNum
-            ? 'linear-gradient(white, white), linear-gradient(to right, #36c8f5,#13e2dd)'
-            : undefined};
-        background-origin : ${(props) =>
-          props.isValueExist.peopleNum || props.isFocused.peopleNum ? 'border-box' : undefined};
-        background-clip : ${(props) =>
-          props.isValueExist.peopleNum || props.isFocused.peopleNum ? 'content-box, border-box' : undefined};    
-      
-      }
-    }
-    &__input{
-      width : 100%;
-      height : 100%;
-      border-radius:4px;
-      padding : 18px 20px;
-      font-size: 16px;
-      font-weight: normal;
-      font-stretch: normal;
-      font-style: normal;
-      line-height: 1.5;
-      letter-spacing: -0.5px;
-    }
-
-    &__container{
-        &--period{
-            width : 100%;
-            display : flex;
-            justify-content : space-between;
-            align-items : flex-start;
-        }
-        &--people{
-            width : 100%;
-            display : flex;
-            align-items : center;
-            align-items : flex-start;
-        }
-    }
-    &__text{
-        font-size: 18px;
-        font-weight: bold;
-        letter-spacing: -0.5px;
-        line-height : 60px;
-        text-align: center;
-        color : #8b8b8b;
-    }
-  }
-`;
 
 export default AdminChallengeOpenForm;
