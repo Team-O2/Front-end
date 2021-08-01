@@ -3,9 +3,8 @@ import ChallengeDetailCard from 'components/molecules/ChallengeDetailCard';
 import React, { useCallback, useEffect, useState } from 'react';
 import { useRecoilValue } from 'recoil';
 import { userStatusState } from 'stores/user';
-import Styled from 'styled-components';
-import { palette } from 'styled-tools';
 import { IChallengeData } from 'types/challenge.type';
+import { Header, NoContents, Wrapper } from './style';
 
 function MyChallengeList(): React.ReactElement {
   const [myLearnMyselfList, setMyLearnMyselfList] = useState<IChallengeData[] | null>(null);
@@ -58,22 +57,5 @@ function MyChallengeList(): React.ReactElement {
     </Wrapper>
   );
 }
-
-const NoContents = Styled.div`
-  color: ${palette('grayscale', 2)};
-  margin: 100px 0 70vh 0;
-`;
-
-const Header = Styled.div`
-  margin: 100px;
-  text-align: center;
-  color: ${palette('grayscale', 7)};
-`;
-
-const Wrapper = Styled.div`
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-`;
 
 export default MyChallengeList;

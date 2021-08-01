@@ -3,9 +3,8 @@ import { ConcertList } from 'components/organisms';
 import React, { useCallback, useEffect, useState } from 'react';
 import { useRecoilValue } from 'recoil';
 import { userStatusState } from 'stores/user';
-import Styled from 'styled-components';
-import { palette } from 'styled-tools';
 import { IMyScrappedConcert } from 'types/myPage.type';
+import { Header, NoContents, Wrapper } from './style';
 
 function ScrappedConcert(): React.ReactElement {
   const [scrappedConcert, setScrappedConcert] = useState<IMyScrappedConcert | null>(null);
@@ -50,22 +49,5 @@ function ScrappedConcert(): React.ReactElement {
     </Wrapper>
   );
 }
-
-const NoContents = Styled.div`
-  margin: 100px 0 70vh 0;
-  color: ${palette('grayscale', 2)};
-`;
-
-const Header = Styled.div`
-  margin: 100px;
-  text-align: center;
-  color: ${palette('grayscale', 7)};
-`;
-
-const Wrapper = Styled.div`
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-`;
 
 export default ScrappedConcert;

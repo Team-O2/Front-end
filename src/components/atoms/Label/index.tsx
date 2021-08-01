@@ -1,5 +1,5 @@
 import React from 'react';
-import Styled from 'styled-components';
+import { SLabel } from './style';
 
 export interface IProps {
   children: React.ReactElement | string;
@@ -10,9 +10,5 @@ export interface IProps {
 function Label({ children, ...props }: IProps): React.ReactElement {
   return <SLabel {...props}>{children}</SLabel>;
 }
-
-const SLabel = Styled.label`
-  margin : 0;
-`;
 
 export default Label;

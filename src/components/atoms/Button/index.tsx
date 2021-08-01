@@ -1,5 +1,5 @@
 import React from 'react';
-import Styled from 'styled-components';
+import { SButton } from './style';
 
 export interface IProps {
   children: React.ReactElement | string;
@@ -12,14 +12,5 @@ export interface IProps {
 function Button({ children, ...props }: IProps): React.ReactElement {
   return <SButton {...props}>{children}</SButton>;
 }
-
-const SButton = Styled.button`
-  border: 0;
-  background-color: inherit;
-  padding : 0;
-  :focus {
-    outline : none;
-  }
-`;
 
 export default Button;
