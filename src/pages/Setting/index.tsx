@@ -9,7 +9,7 @@ import DropDownMulti from 'components/molecules/DropDownMulti';
 import Header from 'components/organisms/Header';
 import React, { useEffect, useRef, useState } from 'react';
 import { useHistory, withRouter } from 'react-router-dom';
-import { useRecoilState, useRecoilValue } from 'recoil';
+import { useRecoilValue, useSetRecoilState } from 'recoil';
 import { interestList } from 'resources/string';
 import { userState, userStatusState } from 'stores/user';
 import styled, { css } from 'styled-components';
@@ -30,7 +30,7 @@ function Setting({}: any): React.ReactElement {
   const history = useHistory();
 
   // for user info
-  const [userData, setUserData] = useRecoilState(userState);
+  const setUserData = useSetRecoilState(userState);
   const userStatusData = useRecoilValue(userStatusState);
   const [userInfo, setUserInfo] = useState<IUserInfo>({
     nickname: '',
