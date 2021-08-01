@@ -1,25 +1,13 @@
 import React from 'react';
 import Styled from 'styled-components';
 
-export interface IProps {
-  name: string;
-  value?: string | number;
-  invalid?: boolean;
-  disabled?: boolean;
-  className?: string;
-  defaultValue?: string;
-  placeholder?: string;
+export interface IProps extends React.InputHTMLAttributes<HTMLInputElement> {
   autoComplete?: string;
-  type?: string;
-  onChange?: (e: React.ChangeEvent<HTMLInputElement>) => void;
-  onFocusOut?: (e: React.FocusEvent<HTMLInputElement>) => void;
-  onBlur?: (e: React.FocusEvent<HTMLInputElement>) => void;
-  onFocus?: (e: React.FocusEvent<HTMLInputElement>) => void;
-  onKeyUp?: (e: React.KeyboardEvent<Element>) => void;
+  ref?: React.RefObject<HTMLInputElement>;
 }
 
-function Input({ name, autoComplete = 'off', ...props }: IProps): React.ReactElement {
-  return <SInput name={name} autoComplete={autoComplete} {...props} />;
+function Input({ autoComplete = 'off', ...props }: IProps): React.ReactElement {
+  return <SInput autoComplete={autoComplete} {...props} />;
 }
 
 const SInput = Styled.input`
