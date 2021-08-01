@@ -5,17 +5,8 @@ import { RegisterHeader } from 'components/molecules';
 import React, { useEffect, useState } from 'react';
 import { useRecoilState } from 'recoil';
 import { userState, userStatusState } from 'stores/user';
+import { IAdminChallengePeriod } from 'types/admin.type';
 import SRegister from './style';
-
-interface IPeriodData {
-  title: string;
-  generation: number;
-  registerEndDT: string;
-  registerStartDT: string;
-  challengeEndDT: string;
-  challengeStartDT: string;
-  img: string;
-}
 
 function ChallengeRegister(): React.ReactElement {
   const [userData, setUserData] = useRecoilState(userState);
@@ -23,7 +14,7 @@ function ChallengeRegister(): React.ReactElement {
   const [registerCount, setRegisterCount] = useState(0);
   const [isOpenModal, setIsOpenModal] = useState(false);
   const [isRegisterSubmit, setIsRegisterSubmit] = useState(false);
-  const [periodData, setPeriodData] = useState<IPeriodData | null>(null);
+  const [periodData, setPeriodData] = useState<IAdminChallengePeriod | null>(null);
 
   function minusCount() {
     if (registerCount > 0) {

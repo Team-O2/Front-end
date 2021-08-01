@@ -21,3 +21,13 @@ export interface IAdminWriteConditionMet {
   thumbnail: boolean;
   nickname: boolean;
 }
+
+export interface IAdminChallengePeriod {
+  title: string;
+  generation: number;
+  registerEndDT: string;
+  registerStartDT: string;
+  challengeEndDT: string;
+  challengeStartDT: string;
+  img: string;
+}
