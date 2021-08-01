@@ -1,9 +1,8 @@
-import React from 'react';
+import React, { LabelHTMLAttributes } from 'react';
 import Styled from 'styled-components';
 
-export interface IProps {
+export interface IProps extends LabelHTMLAttributes<HTMLLabelElement> {
   children: React.ReactElement | string;
-  className?: string;
 }
 
 function HashTag({ children, ...props }: IProps): React.ReactElement {

@@ -1,7 +1,7 @@
 import React from 'react';
 import Styled from 'styled-components';
 
-export interface IProps {
+export interface IProps extends React.InputHTMLAttributes<HTMLInputElement> {
   checked?: boolean;
   id?: string;
   value?: string;
