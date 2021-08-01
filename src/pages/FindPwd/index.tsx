@@ -1,8 +1,8 @@
+import { FindPwd } from 'components/organisms';
 import React from 'react';
-import FindPWD from 'components/organisms/FindPwd';
 
-function FindPwd(): React.ReactElement {
-  return <FindPWD />;
+function FindPwdPage(): React.ReactElement {
+  return <FindPwd />;
 }
 
-export default FindPwd;
+export default FindPwdPage;
