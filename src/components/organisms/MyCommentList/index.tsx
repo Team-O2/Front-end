@@ -2,13 +2,12 @@ import { SmallLeftArrow, SmallRightArrow } from 'assets/images';
 import { Button, Icon, Tag } from 'components/atoms';
 import React, { useEffect, useState } from 'react';
 import { useRecoilValue } from 'recoil';
-import Styled from 'styled-components';
-import { ifProp, palette } from 'styled-tools';
 import { IMyUserCommentResponse } from 'types/myPage.type';
 import { changeDateFormat } from 'utils';
 import { userState } from '../../../stores/user';
 import { IMyUserComment } from '../../../types/myPage.type';
 import CommentedBoardRow from '../../molecules/CommentedBoardRow/index';
+import { PageNavi, PageNumber, Wrapper } from './style';
 
 export interface IProps {
   userComment: IMyUserCommentResponse;
@@ -195,70 +194,5 @@ function MyCommentList({
     </Wrapper>
   );
 }
-
-const PageNumber = Styled(Button)<{ isSelected?: boolean }>`
-  color: ${ifProp('isSelected', '#03b6ce', '#6f6f6f')};
-`;
-
-const PageNavi = Styled(Button)`
-  margin: 0 25px;
-`;
-
-const Wrapper = Styled.div`
-  width: 1062px;
-
-  .dp2 {
-    margin-bottom: 14px;
-    color: ${palette('grayscale', -3)};
-  }
-  
-  .body3 {
-    margin-bottom: 60px;
-    color: ${palette('grayscale', -4)};
-  }
-
-  .tagContainer {
-    display: flex;
-    align-items: center;
-    margin-bottom: 60px;
-    button {
-      margin-right: 10px;
-    }
-  }
-
-  .buttonContainer {
-    display: flex;
-    align-items: center;
-    margin-bottom: 40px;
-    button:first-child {
-      margin-right: 17px;
-      color: ${palette('grayscale', 4)};
-    }
-    button:nth-child(2) {
-      margin-right: 17px;
-      color: ${palette('grayscale', 5)};
-    }
-  }
-
-  .commentContainer {
-    width: 100%;
-  }
-
-  .navigationContainer {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    
-    img {
-      width: 24px;
-      height: 24px;
-    }
-
-    ul li {
-      margin: 0 15px;
-      float: left;
-    }
-  }
-`;
 
 export default MyCommentList;

@@ -3,10 +3,9 @@ import { ChallengeDetailCard } from 'components/molecules';
 import React, { useCallback, useEffect, useState } from 'react';
 import { useRecoilValue } from 'recoil';
 import { userStatusState } from 'stores/user';
-import Styled from 'styled-components';
-import { palette } from 'styled-tools';
 import { IChallengeData } from 'types/challenge.type';
 import { IMyScrappedChallenge } from 'types/myPage.type';
+import { Header, NoContents, Wrapper } from './style';
 
 function ScrappedChallenge(): React.ReactElement {
   const [scrappedChallenge, setScrappedChallenge] = useState<IMyScrappedChallenge | null>(null);
@@ -61,22 +60,5 @@ function ScrappedChallenge(): React.ReactElement {
     </Wrapper>
   );
 }
-
-const NoContents = Styled.div`
-  margin: 100px 0 70vh 0;
-  color: ${palette('grayscale', 2)};
-`;
-
-const Header = Styled.div`
-  margin: 100px;
-  text-align: center;
-  color: ${palette('grayscale', 7)};
-`;
-
-const Wrapper = Styled.div`
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-`;
 
 export default ScrappedChallenge;

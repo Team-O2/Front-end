@@ -4,7 +4,7 @@ import { StyledInput } from 'components/atoms';
 import React, { useEffect, useState } from 'react';
 import { useRecoilValue } from 'recoil';
 import { userStatusState } from 'stores/user';
-import styled, { css } from 'styled-components';
+import { Background, Btn, CheckIcon, ColoredTxt, Container, InnerModalWrap, ModalWrap } from './style';
 
 function SetPwd({ history }: any): React.ReactElement {
   const userStatusData = useRecoilValue(userStatusState);
@@ -133,45 +133,6 @@ function SetPwd({ history }: any): React.ReactElement {
 
 export default SetPwd;
 
-const Container = styled.div`
-  position: relative;
-  top: -60px;
-  width: 100%;
-  height: 100vh;
-
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-`;
-
-interface IBtn {
-  isActive: boolean;
-}
-
-const Btn = styled.div<IBtn>`
-  cursor: pointer;
-
-  width: 406px;
-  height: 60px;
-  border-radius: 4px;
-  background-color: #dfdfdf;
-  ${(props) =>
-    props.isActive &&
-    css`
-      background-image: linear-gradient(to right, #36c8f5, #13e2dd);
-    `}
-
-  display: flex;
-  align-items: center;
-  justify-content: center;
-
-  font-size: 16px;
-  font-weight: 700;
-  line-height: 1.38;
-  color: #ffffff;
-`;
-
 const Modal = ({ setIsOpen, history }: { setIsOpen: React.Dispatch<React.SetStateAction<boolean>>; history: any }) => {
   return (
     <>
@@ -205,79 +166,3 @@ const Modal = ({ setIsOpen, history }: { setIsOpen: React.Dispatch<React.SetStat
     </>
   );
 };
-
-const Background = styled.div`
-  position: fixed;
-  top: 0;
-  z-index: 1000;
-
-  width: 100%;
-  height: 100%;
-  background-color: rgba(0, 0, 0, 0.5);
-`;
-
-const ModalWrap = styled.div`
-  position: fixed;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  z-index: 1001;
-
-  width: 500px;
-  height: 273px;
-  border-radius: 16px;
-  border-width: 0.1rem;
-  border-style: solid;
-  border-image-source: linear-gradient(to top, #36c8f5, #13e2dd);
-  border-image-slice: 1;
-  background-image: linear-gradient(to bottom, #36c8f5, #13e2dd), linear-gradient(to top, #36c8f5, #13e2dd);
-  background-origin: border-box;
-  background-clip: content-box, border-box;
-`;
-
-const InnerModalWrap = styled.div`
-  position: fixed;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  z-index: 1002;
-
-  width: 49.6rem;
-  height: 26.9rem;
-  border-radius: 15px;
-  background-color: white;
-
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-`;
-
-const CheckIcon = styled.div`
-  position: relative;
-  top: -2.8rem;
-
-  width: 9rem;
-  height: 9rem;
-  border-radius: 4.5rem;
-  background-image: linear-gradient(to right, #36c8f5, #13e2dd);
-
-  display: flex;
-  align-items: center;
-  justify-content: center;
-`;
-
-const ColoredTxt = styled.div`
-  width: 83px;
-  height: 68px;
-  position: relative;
-  top: -8px;
-  margin-bottom: 1.2rem;
-
-  font-size: 4.6rem;
-  font-weight: 700;
-  text-align: center;
-  line-height: 68px;
-  background: linear-gradient(to right, #36c8f5, #13e2dd);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-`;

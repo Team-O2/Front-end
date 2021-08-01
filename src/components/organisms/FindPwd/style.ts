@@ -1,6 +1,6 @@
 import Styled from 'styled-components';
 
-const SFindPWDWrap = Styled.div<{ isBtnDisabled: boolean }>`
+export const SFindPWDWrap = Styled.div<{ isBtnDisabled: boolean }>`
     display : flex;
     flex-direction : column;
     align-items : center;
@@ -47,5 +47,3 @@ const SFindPWDWrap = Styled.div<{ isBtnDisabled: boolean }>`
         }
     }
 `;
-
-export default SFindPWDWrap;
