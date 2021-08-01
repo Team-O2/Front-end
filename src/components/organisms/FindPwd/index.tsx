@@ -1,9 +1,8 @@
 import { sendVerifinum } from 'apis';
-import { Button, Label } from 'components/atoms';
 import { FindPwdForm } from 'components/molecules';
 import { SetNewPwd } from 'components/organisms';
 import React, { useEffect, useState } from 'react';
-import { SFindPWDWrap } from './style';
+import { LabelTitle, SFindPWDWrap, SubmitButton } from './style';
 
 export interface IProps {
   className?: string;
@@ -36,21 +35,21 @@ function FindPWD(): React.ReactElement {
   }, [isConditionMet.certifiNum, isConditionMet.email]);
 
   return !isChangePwd ? (
-    <SFindPWDWrap isBtnDisabled={isBtnDisabled}>
-      <Label className="findPwd__label--title">비밀번호 찾기</Label>
+    <SFindPWDWrap>
+      <LabelTitle>비밀번호 찾기</LabelTitle>
       <FindPwdForm
         setData={setData}
         isConditionMet={isConditionMet}
         setIsConditionMet={setIsConditionMet}
         errMsg={verifiErrMsg}
       />
-      <Button
-        className="findPwd__button"
+      <SubmitButton
+        isBtnDisabled={isBtnDisabled}
         disabled={!(isConditionMet.email && isConditionMet.certifiNum)}
         onClick={finishBtnHandler}
       >
         인증완료
-      </Button>
+      </SubmitButton>
     </SFindPWDWrap>
   ) : (
     <SetNewPwd email={data.email} />

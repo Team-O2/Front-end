@@ -1,4 +1,44 @@
 import Styled from 'styled-components';
+import { palette, theme } from 'styled-tools';
+
+export const NoticeWrapper = Styled.div`
+  padding: 0px 80px 0px 80px;
+
+  img {
+    display:flex;
+    margin:auto;
+    margin-top:-40px;
+  }
+
+  h1 {
+    ${theme('font.dp4')};
+    padding:20px 0px 20px 0px;
+    text-align: center;
+    color: ${theme('grayscale', 9)};
+  }
+
+  p {
+    ${theme('font.body3')};
+    text-align: center;
+    color: ${theme('grayscale', 9)};
+  }
+`;
+
+export const ButtonWrapper = Styled.div`
+  padding-top:50px;
+  text-align: center;
+  
+  button:first-child {
+    ${theme('font.subhead4')};
+    color: ${palette('grayscale', 2)};
+  }
+
+  button:nth-child(2) {
+    ${theme('font.subhead4')};
+    padding-left:170px;
+    color: ${palette('primary', 7)};
+  }
+`;
 
 export const Wrapper = Styled.div`
   position: fixed;
@@ -11,54 +51,4 @@ export const Wrapper = Styled.div`
   background-color: #FFFFFF;
   width: 500px;
   height: 312px;
-
-  .delete {
-    &__notice{
-      padding: 0px 80px 0px 80px;
-    }
-
-    &__img{
-      display:flex;
-      margin:auto;
-      margin-top:-40px;
-
-    }
-    &__title{
-      padding:20px 0px 20px 0px;
-      text-align: center;
-      line-height: 1.42;
-      letter-spacing: -0.5px;
-      color: #000000;
-      font-size: 48px;
-      font-weight: bold;
-    }
-    &__detail{
-      text-align: center;
-      line-height: 1.5;
-      letter-spacing: -0.5px;
-      color: var(--colors-grayscale-0-d-black);
-      font-size: 16px;
-    }
-    &__button{
-      padding-top:50px;
-      text-align: center;
-
-    }
-    &__delete{
-      padding-left:170px;
-      line-height: 1.33;
-      letter-spacing: -0.5px;
-      color: #E04747;
-      font-size: 18px;
-      font-weight: bold;;
-
-    }
-    &__cancel{
-      line-height: 1.33;
-      letter-spacing: -0.5px;
-      color: #C1C1C1;
-      font-size: 18px;
-      font-weight: bold;
-    }
-  }
 `;

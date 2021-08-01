@@ -1,7 +1,7 @@
 import { DeleteModalImg } from 'assets/images';
 import { Button, Modal } from 'components/atoms';
 import React from 'react';
-import { Wrapper } from './style';
+import { ButtonWrapper, NoticeWrapper, Wrapper } from './style';
 
 interface IProps {
   isDeleteModalOpen: boolean;
@@ -17,20 +17,16 @@ function DeleteModal({ isDeleteModalOpen, setIsDeleteModalOpen, onClickDeleteBut
   return (
     <Modal isOpen={isDeleteModalOpen} setIsOpen={setIsDeleteModalOpen} isBlur={true}>
       <Wrapper>
-        <div className="delete__notice">
-          <img className="delete__img" src={DeleteModalImg} alt=""></img>
-          <p className="delete__title">잠깐!</p>
-          <p className="delete__detail">삭제된 글은 복구가 불가능합니다.</p>
-          <p className="delete__detail">글을 삭제하시겠어요?</p>
-        </div>
-        <div className="delete__button">
-          <Button className="delete__cancel" onClick={handleCloseButton}>
-            취소
-          </Button>
-          <Button className="delete__delete" onClick={onClickDeleteButton}>
-            삭제
-          </Button>
-        </div>
+        <NoticeWrapper>
+          <img src={DeleteModalImg} alt=""></img>
+          <h1>잠깐!</h1>
+          <p>삭제된 글은 복구가 불가능합니다.</p>
+          <p>글을 삭제하시겠어요?</p>
+        </NoticeWrapper>
+        <ButtonWrapper>
+          <Button onClick={handleCloseButton}>취소</Button>
+          <Button onClick={onClickDeleteButton}>삭제</Button>
+        </ButtonWrapper>
       </Wrapper>
     </Modal>
   );

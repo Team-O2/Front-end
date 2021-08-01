@@ -4,7 +4,18 @@ import { StyledInput } from 'components/atoms';
 import React, { useEffect, useState } from 'react';
 import { useRecoilValue } from 'recoil';
 import { userStatusState } from 'stores/user';
-import { Background, Btn, CheckIcon, ColoredTxt, Container, InnerModalWrap, ModalWrap } from './style';
+import {
+  Background,
+  Btn,
+  CheckIcon,
+  Container,
+  InnerModalWrap,
+  ModalText,
+  ModalTitle,
+  ModalWrap,
+  PwdInputWrapper,
+  Title,
+} from './style';
 
 function SetPwd({ history }: any): React.ReactElement {
   const userStatusData = useRecoilValue(userStatusState);
@@ -69,8 +80,8 @@ function SetPwd({ history }: any): React.ReactElement {
   return (
     <div>
       <Container>
-        <div style={{ marginBottom: '60px', fontSize: '36px', fontWeight: 700, color: '#0d0d0d' }}>비밀번호 변경</div>
-        <div style={{ marginBottom: '14px' }}>
+        <Title>비밀번호 변경</Title>
+        <PwdInputWrapper>
           <StyledInput
             width="406px"
             height="60px"
@@ -80,8 +91,8 @@ function SetPwd({ history }: any): React.ReactElement {
             isConditionMet={isOldPwOkay}
             errorMsg="현재 비밀번호가 일치하지 않습니다"
           />
-        </div>
-        <div style={{ marginBottom: '14px' }}>
+        </PwdInputWrapper>
+        <PwdInputWrapper>
           <StyledInput
             width="406px"
             height="60px"
@@ -96,8 +107,8 @@ function SetPwd({ history }: any): React.ReactElement {
             isConditionMet={isOkay.pw}
             errorMsg="영어 대문자, 소문자, 특수문자가 포함되어야 합니다"
           />
-        </div>
-        <div style={{ marginBottom: '14px' }}>
+        </PwdInputWrapper>
+        <PwdInputWrapper>
           <StyledInput
             width="406px"
             height="60px"
@@ -112,7 +123,7 @@ function SetPwd({ history }: any): React.ReactElement {
             isConditionMet={isOkay.pwCheck}
             errorMsg="비밀번호가 일치하지 않습니다"
           />
-        </div>
+        </PwdInputWrapper>
         <Btn
           isActive={isOkay.pw && isOkay.pwCheck}
           onClick={
@@ -147,20 +158,8 @@ const Modal = ({ setIsOpen, history }: { setIsOpen: React.Dispatch<React.SetStat
           <CheckIcon>
             <img src={CheckedIcon} alt="check_icon" />
           </CheckIcon>
-          <ColoredTxt>완료</ColoredTxt>
-          <div
-            style={{
-              width: '320px',
-              height: '73px',
-              textAlign: 'center',
-              lineHeight: '73px',
-              fontSize: '16px',
-              fontWeight: 500,
-              color: '#0d0d0d',
-            }}
-          >
-            비밀번호 변경이 완료되었습니다
-          </div>
+          <ModalTitle>완료</ModalTitle>
+          <ModalText>비밀번호 변경이 완료되었습니다.</ModalText>
         </InnerModalWrap>
       </ModalWrap>
     </>

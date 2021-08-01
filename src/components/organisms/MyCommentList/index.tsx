@@ -1,13 +1,22 @@
 import { SmallLeftArrowIcon, SmallRightArrowIcon } from 'assets/images';
 import { Button, Icon, Tag } from 'components/atoms';
+import { CommentedBoardRow } from 'components/molecules';
 import React, { useEffect, useState } from 'react';
 import { useRecoilValue } from 'recoil';
-import { IMyUserCommentResponse } from 'types/myPage.type';
+import { userState } from 'stores/user';
+import { IMyUserComment, IMyUserCommentResponse } from 'types/myPage.type';
 import { changeDateFormat } from 'utils';
-import { userState } from '../../../stores/user';
-import { IMyUserComment } from '../../../types/myPage.type';
-import CommentedBoardRow from '../../molecules/CommentedBoardRow/index';
-import { PageNavi, PageNumber, Wrapper } from './style';
+import {
+  ButtonContainer,
+  CommentContainer,
+  NavigationContainer,
+  PageNavi,
+  PageNumber,
+  SubTitle,
+  TagContainer,
+  Title,
+  Wrapper,
+} from './style';
 
 export interface IProps {
   userComment: IMyUserCommentResponse;
@@ -110,12 +119,11 @@ function MyCommentList({
 
   return (
     <Wrapper>
-      <h2 className="dp2">댓글 단 글</h2>
-      <h4 className="body3">{globalUserInfo?.nickname}님이 댓글 단 글이에요</h4>
-      <div className="tagContainer">
+      <Title>댓글 단 글</Title>
+      <SubTitle>{globalUserInfo?.nickname}님이 댓글 단 글이에요</SubTitle>
+      <TagContainer>
         <Button value="Concert" onClick={handleClick}>
           <Tag
-            className="subhead4_eng"
             name="Share Together"
             paddingX="20px"
             paddingY="10px"
@@ -125,7 +133,6 @@ function MyCommentList({
         </Button>
         <Button value="Challenge" onClick={handleClick}>
           <Tag
-            className="subhead4_eng"
             name="Learn Myself"
             paddingX="20px"
             paddingY="10px"
@@ -134,25 +141,16 @@ function MyCommentList({
           />
         </Button>
         <Button value="Notice" onClick={handleClick}>
-          <Tag
-            className="subhead4"
-            name="공지사항"
-            paddingX="20px"
-            paddingY="10px"
-            color="5"
-            isSelected={selectedCategory === 'Notice'}
-          />
+          <Tag name="공지사항" paddingX="20px" paddingY="10px" color="5" isSelected={selectedCategory === 'Notice'} />
         </Button>
-      </div>
-      <div className="buttonContainer">
-        <Button className="body4" onClick={isSelectAll ? handleAllUnselectClick : handleAllSelectClick}>
+      </TagContainer>
+      <ButtonContainer>
+        <Button onClick={isSelectAll ? handleAllUnselectClick : handleAllSelectClick}>
           {isSelectAll ? '선택해제' : '전체선택'}
         </Button>
-        <Button className="subhead4" onClick={handleModalOpen}>
-          삭제
-        </Button>
-      </div>
-      <div className="commentContainer">
+        <Button onClick={handleModalOpen}>삭제</Button>
+      </ButtonContainer>
+      <CommentContainer>
         {userComment.comments?.map((item: IMyUserComment) => {
           return (
             <CommentedBoardRow
@@ -168,20 +166,15 @@ function MyCommentList({
             />
           );
         })}
-      </div>
-      <div className="navigationContainer">
+      </CommentContainer>
+      <NavigationContainer>
         <PageNavi onClick={handlePrevPageClick}>
           <Icon src={SmallLeftArrowIcon} />
         </PageNavi>
         <ul>
           {target.map((pageIdx: number) => (
             <li key={pageIdx}>
-              <PageNumber
-                className="subhead4_eng"
-                value={`${pageIdx}`}
-                onClick={handlePageClick}
-                isSelected={currentPage === pageIdx}
-              >
+              <PageNumber value={`${pageIdx}`} onClick={handlePageClick} isSelected={currentPage === pageIdx}>
                 {`${pageIdx}`}
               </PageNumber>
             </li>
@@ -190,7 +183,7 @@ function MyCommentList({
         <PageNavi onClick={handleNextPageClick}>
           <Icon src={SmallRightArrowIcon} />
         </PageNavi>
-      </div>
+      </NavigationContainer>
     </Wrapper>
   );
 }

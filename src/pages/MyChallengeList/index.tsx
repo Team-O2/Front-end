@@ -7,14 +7,14 @@ import { IChallengeData } from 'types/challenge.type';
 import { Header, NoContents, Wrapper } from './style';
 
 function MyChallengeList(): React.ReactElement {
-  const [myLearnMyselfList, setMyLearnMyselfList] = useState<IChallengeData[] | null>(null);
+  const [myChallengeList, setMyChallengeList] = useState<IChallengeData[] | null>(null);
   const [offset, setOffset] = useState(0);
   const globalUserState = useRecoilValue(userStatusState);
 
   const fetchMyLearnMyselfList = useCallback(
     async (offset: number) => {
       const data = await getUserChallengeList({ token: globalUserState?.token, limit: 1000, offset });
-      data && setMyLearnMyselfList(data);
+      data && setMyChallengeList(data);
     },
     [globalUserState?.token],
   );
@@ -25,11 +25,9 @@ function MyChallengeList(): React.ReactElement {
 
   return (
     <Wrapper>
-      <Header>
-        <h2 className="h2_eng">내가 작성한 글</h2>
-      </Header>
-      {!!myLearnMyselfList ? (
-        myLearnMyselfList?.map((data: IChallengeData, id) => {
+      <Header>내가 작성한 글</Header>
+      {!!myChallengeList ? (
+        myChallengeList?.map((data: IChallengeData, id) => {
           return (
             <ChallengeDetailCard
               id={data?._id}
@@ -51,7 +49,7 @@ function MyChallengeList(): React.ReactElement {
         })
       ) : (
         <NoContents>
-          <p className="subhead4">작성한한 글이 없어요</p>
+          <p>작성한 글이 없어요</p>
         </NoContents>
       )}
     </Wrapper>

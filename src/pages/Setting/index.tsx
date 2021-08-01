@@ -10,13 +10,21 @@ import { interestList } from 'resources/string';
 import { userState, userStatusState } from 'stores/user';
 import {
   Btn,
+  CategoryContainer,
   Container,
+  DropdownWrapper,
   EditBtn,
   Email,
+  InterestList,
   InterestTagCntnr,
+  NicknameInputContainer,
   PolicyCntnr,
+  ProfileContainer,
   ProfileImg,
+  ProfileInput,
   PwBtn,
+  Text,
+  TextWrapper,
   Txt,
   TxtSmall,
 } from './style';
@@ -117,24 +125,23 @@ function Setting(): React.ReactElement {
   return (
     <div>
       <Container>
-        <div style={{ marginBottom: '90px' }}>
+        <ProfileContainer>
           <ProfileImg url={userInfo.img} />
           <label htmlFor="file">
             <EditBtn src={EditWhiteIcon} />
           </label>
-          <input
+          <ProfileInput
             type="file"
             id="file"
             accept="image/jpeg, image/jpg, image/png"
             ref={imgInput}
             onChange={handleInputImg}
-            style={{ width: '0', height: '0' }}
           />
-        </div>
+        </ProfileContainer>
         <Txt>아이디</Txt>
         <Email>{userInfo.email}</Email>
         <Txt>닉네임</Txt>
-        <div style={{ marginBottom: '50px' }}>
+        <NicknameInputContainer>
           <StyledInput
             width="844px"
             height="60px"
@@ -148,11 +155,10 @@ function Setting(): React.ReactElement {
             isConditionMet={userInfo.nickname !== ''}
             errorMsg="닉네임을 입력해주세요"
           />
-        </div>
+        </NicknameInputContainer>
         <Txt>카테고리</Txt>
-        <div style={{ marginBottom: '20px' }}>
+        <CategoryContainer>
           <DropDownMulti
-            className="user_info_dropdown"
             state={userInfo.interest}
             setState={(e) => {
               !userInfo.interest.includes(String(e)) &&
@@ -165,16 +171,15 @@ function Setting(): React.ReactElement {
             defaultMsg="카테고리를 선택해 주세요 (최대 5개)"
             itemList={interestList}
           />
-        </div>
-        <div style={{ width: '844px', display: 'flex', flexDirection: 'row', flexWrap: 'wrap', marginBottom: '50px' }}>
+        </CategoryContainer>
+        <InterestList>
           {userInfo.interest.map((item: string, idx: number) => {
             return <InterestTag text={item} setList={handleClickDel} key={idx} />;
           })}
-        </div>
+        </InterestList>
         <Txt>성별</Txt>
-        <div style={{ marginBottom: '50px' }}>
+        <DropdownWrapper>
           <DropDown
-            className="user_info_dropdown"
             state={userInfo.gender === 0 ? '남성' : userInfo.gender === 1 ? '여성' : '선택안함'}
             setState={(e) =>
               setUserInfo({
@@ -187,14 +192,14 @@ function Setting(): React.ReactElement {
             page="joinform"
             isSetting={true}
           />
-        </div>
+        </DropdownWrapper>
         <Txt>비밀번호 변경</Txt>
         <PwBtn onClick={() => history.push('/setting/password/set')}>비밀번호 변경하기</PwBtn>
         <PolicyCntnr>
-          <div style={{ display: 'flex', flexDirection: 'column' }}>
-            <Txt style={{ width: 'auto' }}>이메일 수신 설정</Txt>
+          <TextWrapper>
+            <Text>이메일 수신 설정</Text>
             <TxtSmall>오투에서 진행하는 챌린지, 이벤트, 프로모션에 관한 광고를 수신하겠습니다.</TxtSmall>
-          </div>
+          </TextWrapper>
           <IOSSwitch
             checked={userInfo.marpolicy}
             onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
@@ -228,8 +233,8 @@ export default withRouter(Setting);
 const InterestTag = ({ setList, text }: { setList: (e: string) => void; text: string }) => {
   return (
     <InterestTagCntnr>
-      <div style={{ marginRight: '10px' }}>{text}</div>
-      <img id={text} style={{ width: '14px' }} src={XIcon} onClick={(e: any) => setList(e.target.id)} />
+      <div>{text}</div>
+      <img id={text} src={XIcon} onClick={(e: any) => setList(e.target.id)} />
     </InterestTagCntnr>
   );
 };

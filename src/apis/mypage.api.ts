@@ -19,10 +19,9 @@ export const getMyPageUserInfo = async (token?: string): Promise<IMyPageHeader |
     if (data.status === 200) {
       return data.data.data;
     } else {
-      throw new Error('통신성공 데이터 없음');
+      throw new Error();
     }
   } catch (err) {
-    console.log(err.message);
     return null;
   }
 };
@@ -50,10 +49,9 @@ export const getMyPageConcertList = async ({
     if (data.status === 200) {
       return data?.data?.data || null;
     } else {
-      throw new Error('통신성공 데이터 없음');
+      throw new Error();
     }
   } catch (err) {
-    console.log(err.message);
     return null;
   }
 };
@@ -71,10 +69,9 @@ export const getMyPageChallengeList = async ({
     if (data.status === 200) {
       return data?.data?.data || null;
     } else {
-      throw new Error('통신성공 데이터 없음');
+      throw new Error();
     }
   } catch (err) {
-    console.log(err.message);
     return null;
   }
 };
@@ -89,13 +86,12 @@ export const getUserChallengeList = async ({
       headers: { Accept: 'application/json', Authorization: token },
       params: { limit, offset },
     });
-    if (data.status === 200) {
+    if (data.status === 200 && data.data.data[0]) {
       return data.data.data;
     } else {
-      throw new Error('통신성공 데이터 없음');
+      throw new Error();
     }
   } catch (err) {
-    console.log(err.message);
     return null;
   }
 };
@@ -115,10 +111,9 @@ export const getUserCommentList = async ({
     if (data.status === 200) {
       return data.data.data;
     } else {
-      throw new Error('통신성공 데이터 없음');
+      throw new Error();
     }
   } catch (err) {
-    console.log(err.message);
     return null;
   }
 };
@@ -135,10 +130,9 @@ export const deleteUserCommentList = async ({ token, commentIdList }: IGetMyPage
     if (data.status === 200) {
       return null;
     } else {
-      throw new Error('통신성공 데이터 없음');
+      throw new Error();
     }
   } catch (err) {
-    console.log(err.message);
     return null;
   }
 };
@@ -155,10 +149,9 @@ export const deleteUserChallengeBookmark = async ({
     if (data.status === 200) {
       return null;
     } else {
-      throw new Error('통신성공 데이터 없음');
+      throw new Error();
     }
   } catch (err) {
-    console.log(err.message);
     return null;
   }
 };
