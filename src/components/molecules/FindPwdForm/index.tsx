@@ -2,7 +2,7 @@ import { sendEmail } from 'apis';
 import { CheckedIcon } from 'assets/images';
 import { Button, Label, Modal, StyledInput } from 'components/atoms';
 import React, { useEffect, useState } from 'react';
-import SFindPWDFormWrap from './style';
+import { SFindPWDFormWrap } from './style';
 
 interface IData {
   email: string;

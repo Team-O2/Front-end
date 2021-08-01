@@ -389,4 +389,5 @@ function ChallengeDetailCard({
     </>
   );
 }
+
 export default ChallengeDetailCard;

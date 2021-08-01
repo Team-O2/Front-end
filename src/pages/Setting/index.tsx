@@ -1,7 +1,8 @@
-import { withStyles } from '@material-ui/core/styles';
-import Switch from '@material-ui/core/Switch';
+import { Switch, withStyles } from '@material-ui/core';
 import { getUserInfo, updateUserInfo } from 'apis';
 import { EditWhiteIcon, XIcon } from 'assets/images';
+import { StyledInput } from 'components/atoms';
+import { DropDown, DropDownMulti } from 'components/molecules';
 import React, { useEffect, useRef, useState } from 'react';
 import { useHistory, withRouter } from 'react-router-dom';
 import { useRecoilValue, useSetRecoilState } from 'recoil';
@@ -30,7 +31,7 @@ interface IUserInfo {
   interest: string[];
 }
 
-function Setting({}: any): React.ReactElement {
+function Setting(): React.ReactElement {
   // for edit btn
   const [isBtnAtv, setIsBtnAtv] = useState(true);
   const history = useHistory();
@@ -115,12 +116,11 @@ function Setting({}: any): React.ReactElement {
 
   return (
     <div>
-      <Header />
       <Container>
         <div style={{ marginBottom: '90px' }}>
           <ProfileImg url={userInfo.img} />
           <label htmlFor="file">
-            <EditBtn src={editIcon} />
+            <EditBtn src={EditWhiteIcon} />
           </label>
           <input
             type="file"
@@ -229,7 +229,7 @@ const InterestTag = ({ setList, text }: { setList: (e: string) => void; text: st
   return (
     <InterestTagCntnr>
       <div style={{ marginRight: '10px' }}>{text}</div>
-      <img id={text} style={{ width: '14px' }} src={xIcon} onClick={(e: any) => setList(e.target.id)} />
+      <img id={text} style={{ width: '14px' }} src={XIcon} onClick={(e: any) => setList(e.target.id)} />
     </InterestTagCntnr>
   );
 };

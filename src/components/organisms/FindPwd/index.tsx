@@ -3,7 +3,7 @@ import { Button, Label } from 'components/atoms';
 import { FindPwdForm } from 'components/molecules';
 import { SetNewPwd } from 'components/organisms';
 import React, { useEffect, useState } from 'react';
-import SFindPWDWrap from './style';
+import { SFindPWDWrap } from './style';
 
 export interface IProps {
   className?: string;

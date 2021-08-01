@@ -1,6 +1,6 @@
 import Styled from 'styled-components';
 
-const SFindPWDFormWrap = Styled.div<{ isConditionMet: { email: boolean; certifiNum: boolean } }>`
+export const SFindPWDFormWrap = Styled.div<{ isConditionMet: { email: boolean; certifiNum: boolean } }>`
     width : 406px;
     display :flex;
     flex-direction : column;
@@ -90,5 +90,3 @@ const SFindPWDFormWrap = Styled.div<{ isConditionMet: { email: boolean; certifiN
         }
     }
 `;
-
-export default SFindPWDFormWrap;
