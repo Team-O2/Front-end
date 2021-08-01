@@ -7,23 +7,11 @@ import { Link } from 'react-router-dom';
 import { useRecoilValue } from 'recoil';
 import { userStatusState } from 'stores/user';
 import Styled from 'styled-components';
-
-interface IChallengeData {
-  registerStartDT: string;
-  registerEndDT: string;
-  challengeStartDT: string;
-  challengeEndDT: string;
-  createdDT: string;
-  applyNum: number;
-  participants: number;
-  postNum: number;
-  img: string;
-  generation: number;
-}
+import { IAdminChallenge } from 'types/admin.type';
 
 function AdminChallengeList(): React.ReactElement {
   const userStatusData = useRecoilValue(userStatusState);
-  const [challengeDataList, setChallengeDataList] = useState<IChallengeData[] | null>(null);
+  const [challengeDataList, setChallengeDataList] = useState<IAdminChallenge[] | null>(null);
 
   useEffect(() => {
     if (userStatusData) getChallengeDataList(userStatusData.token, 30, 0);

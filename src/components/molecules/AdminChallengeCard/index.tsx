@@ -1,20 +1,9 @@
 import React from 'react';
 import Styled from 'styled-components';
+import { IAdminChallenge } from 'types/admin.type';
 
-export interface IData {
-  generation: number; //기수
-  createdDT: string; //오픈일자
-  registerStartDT: string;
-  registerEndDT: string;
-  challengeStartDT: string;
-  challengeEndDT: string;
-  applyNum: number; //신청인
-  participants: number; //참여인원수
-  postNum: number; //총 게시물 개수
-  img: string; //이미지주소
-}
 export interface IProps {
-  challengeData: IData;
+  challengeData: IAdminChallenge;
 }
 const changeDatetoString = (date: string, isIncludeYear: boolean): string => {
   const year = date.substr(0, 4);

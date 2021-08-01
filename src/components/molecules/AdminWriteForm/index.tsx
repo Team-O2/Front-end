@@ -4,21 +4,11 @@ import { DropDown, EditorForm } from 'components/molecules';
 import React, { useEffect, useState } from 'react';
 import { interestList } from 'resources/string';
 import Styled from 'styled-components';
+import { IAdminWriteConditionMet } from 'types/admin.type';
 import { IUserData } from 'types/user.type';
 
-interface IConditionMet {
-  title: boolean;
-  category: boolean;
-  menu: boolean;
-  content: boolean;
-  hashtag: boolean;
-  video: boolean;
-  thumbnail: boolean;
-  nickname: boolean;
-}
-
 export interface IProps {
-  setIsConditionMet: (value: IConditionMet) => void;
+  setIsConditionMet: (value: IAdminWriteConditionMet) => void;
   writeData: IUserData;
   setWriteData: (value: IUserData) => void;
   menuProps: string;
