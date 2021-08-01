@@ -1,10 +1,10 @@
 import { getUserData, postLogin } from 'apis';
-import { Button, StyledInput } from 'components/atoms';
+import { StyledInput } from 'components/atoms';
 import React, { useEffect, useState } from 'react';
 import { useHistory } from 'react-router-dom';
 import { useRecoilState } from 'recoil';
 import { userState, userStatusState } from 'stores/user';
-import Styled from 'styled-components';
+import { LoginBtn, LoginformWrap } from './style';
 
 function LoginForm(): React.ReactElement {
   const history = useHistory();
@@ -88,13 +88,13 @@ function LoginForm(): React.ReactElement {
         placeHolder="이메일을 입력해 주세요"
         width="406px"
         height="60px"
+        margin="0 0 9px 0"
         onChange={(value) => {
           if (typeof value === 'string') setLoginData({ ...loginData, email: value });
         }}
         isConditionMet={isConditionMet.email}
         errorMsg={errMsg.email}
       />
-      <div className="margin"></div>
       <StyledInput
         placeHolder="비밀번호를 입력해 주세요"
         width="406px"
@@ -106,32 +106,11 @@ function LoginForm(): React.ReactElement {
         isConditionMet={isConditionMet.pwd}
         errorMsg={errMsg.pwd}
       />
-      <Button className="login_button" onClick={handleLoginBtn}>
+      <LoginBtn className="login_button" onClick={handleLoginBtn}>
         로그인
-      </Button>
+      </LoginBtn>
     </LoginformWrap>
   );
 }
-
-const LoginformWrap = Styled.div`
-  display : flex;
-  flex-direction : column;
-  align-items : center;
-  .margin{
-    height : 9px;
-  }
-  .login{
-    &_button{
-      margin-top : 14px;
-      border-radius: 4px;
-      background-image: linear-gradient(to right, #36c8f5,#13e2dd );
-      width: 406px;
-      height: 60px;
-      color : #ffffff;
-      font-size : 16px;
-      font-weight : bold;
-    }
-  }
-`;
 
 export default LoginForm;
