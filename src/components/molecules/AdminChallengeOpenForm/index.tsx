@@ -1,15 +1,17 @@
-import { Input, Label } from 'components/atoms';
+import { Label, StyledInput } from 'components/atoms';
 import React, { useEffect, useState } from 'react';
 import Styled from 'styled-components';
 import { IChallengeOpen, IConditionMet } from 'types/challenge.type';
 
 export interface IProps {
+  isConditionMet: IConditionMet;
   setIsConditionMet: (value: IConditionMet) => void;
   challengeOpenData: IChallengeOpen;
   setChallengeOpenData: (value: IChallengeOpen) => void;
 }
 
 function AdminChallengeOpenForm({
+  isConditionMet,
   setIsConditionMet,
   challengeOpenData,
   setChallengeOpenData,
@@ -32,184 +34,141 @@ function AdminChallengeOpenForm({
   const CheckDatePattern = (date: string) => /[0-9]{4}.[0-9]{2}.[0-9]{2}$/.test(date);
 
   useEffect(() => {
-    setIsConditionMet({
-      title: isValueExist.title,
-      challengePeriod: isValueExist.challengePeriod[0] && isValueExist.challengePeriod[1],
-      applyPeriod: isValueExist.applyPeriod[0] && isValueExist.applyPeriod[1],
-      peopleNum: isValueExist.peopleNum,
-    });
-  }, [isValueExist, setIsConditionMet]);
-
-  useEffect(() => {
     if (challengeOpenData.title !== '') {
-      setIsValueExist({ ...isValueExist, title: true });
+      setIsConditionMet({ ...isConditionMet, title: true });
     } else {
-      setIsValueExist({ ...isValueExist, title: false });
+      setIsConditionMet({ ...isConditionMet, title: false });
     }
-  }, [challengeOpenData.title, isValueExist]);
+  }, [challengeOpenData.title]);
   useEffect(() => {
     if (challengeOpenData.peopleNum !== 0) {
-      setIsValueExist({ ...isValueExist, peopleNum: true });
+      setIsConditionMet({ ...isConditionMet, peopleNum: true });
     } else {
-      setIsValueExist({ ...isValueExist, peopleNum: false });
+      setIsConditionMet({ ...isConditionMet, peopleNum: false });
     }
-  }, [challengeOpenData.peopleNum, isValueExist]);
+  }, [challengeOpenData.peopleNum]);
 
   useEffect(() => {
     if (CheckDatePattern(challengeOpenData.challengePeriod.start)) {
-      setIsValueExist({ ...isValueExist, challengePeriod: [true, isValueExist.challengePeriod[1]] });
+      setIsConditionMet({ ...isConditionMet, challengePeriod: { ...isConditionMet.challengePeriod, start: true } });
     } else {
-      setIsValueExist({ ...isValueExist, challengePeriod: [false, isValueExist.challengePeriod[1]] });
+      setIsConditionMet({ ...isConditionMet, challengePeriod: { ...isConditionMet.challengePeriod, start: false } });
     }
-  }, [challengeOpenData.challengePeriod.start, isValueExist]);
+  }, [challengeOpenData.challengePeriod.start]);
   useEffect(() => {
     if (CheckDatePattern(challengeOpenData.challengePeriod.end)) {
-      setIsValueExist({ ...isValueExist, challengePeriod: [isValueExist.challengePeriod[0], true] });
+      setIsConditionMet({ ...isConditionMet, challengePeriod: { ...isConditionMet.challengePeriod, end: true } });
     } else {
-      setIsValueExist({ ...isValueExist, challengePeriod: [isValueExist.challengePeriod[0], false] });
+      setIsConditionMet({ ...isConditionMet, challengePeriod: { ...isConditionMet.challengePeriod, end: false } });
     }
-  }, [challengeOpenData.challengePeriod.end, isValueExist]);
+  }, [challengeOpenData.challengePeriod.end]);
   useEffect(() => {
     if (CheckDatePattern(challengeOpenData.applyPeriod.start)) {
-      setIsValueExist({ ...isValueExist, applyPeriod: [true, isValueExist.applyPeriod[1]] });
+      setIsConditionMet({ ...isConditionMet, applyPeriod: { ...isConditionMet.applyPeriod, start: true } });
     } else {
-      setIsValueExist({ ...isValueExist, applyPeriod: [false, isValueExist.applyPeriod[1]] });
+      setIsConditionMet({ ...isConditionMet, applyPeriod: { ...isConditionMet.applyPeriod, start: false } });
     }
-  }, [challengeOpenData.applyPeriod.start, isValueExist]);
+  }, [challengeOpenData.applyPeriod.start]);
   useEffect(() => {
     if (CheckDatePattern(challengeOpenData.applyPeriod.end)) {
-      setIsValueExist({ ...isValueExist, applyPeriod: [isValueExist.applyPeriod[0], true] });
+      setIsConditionMet({ ...isConditionMet, applyPeriod: { ...isConditionMet.applyPeriod, end: true } });
     } else {
-      setIsValueExist({ ...isValueExist, applyPeriod: [isValueExist.applyPeriod[0], false] });
+      setIsConditionMet({ ...isConditionMet, applyPeriod: { ...isConditionMet.applyPeriod, end: false } });
     }
-  }, [challengeOpenData.applyPeriod.end, isValueExist]);
+  }, [challengeOpenData.applyPeriod.end]);
 
   return (
     <SAdminChallengeOpenForm isValueExist={isValueExist} isFocused={isFocused}>
       <Label className="admin__label">챌린지 제목</Label>
-      <div className="admin__div admin__div--title">
-        <Input
-          className="admin__input"
-          name="adminWriteTitle"
-          placeholder="제목을 입력하세요"
-          onChange={(e) => {
-            setChallengeOpenData({ ...challengeOpenData, title: e.target.value });
-          }}
-          onFocus={() => {
-            setIsFocused({ ...isFocused, title: true });
-          }}
-          onBlur={() => {
-            setIsFocused({ ...isFocused, title: false });
-          }}
-        />
-      </div>
-
+      <StyledInput
+        placeHolder="제목을 입력하세요"
+        width="844px"
+        height="60px"
+        onChange={(value) => {
+          if (typeof value === 'string') setChallengeOpenData({ ...challengeOpenData, title: value });
+        }}
+        isConditionMet={isConditionMet.title}
+        margin="0 0 40px 0"
+      />
       <Label className="admin__label">챌린지 기간</Label>
       <div className="admin__container--period">
-        <div className="admin__div admin__div--period1-1">
-          <Input
-            className="admin__input"
-            name="adminWriteTitle"
-            placeholder="년도.월.일. ex) 2021.07.04"
-            onChange={(e) => {
+        <StyledInput
+          placeHolder="년도.월.일. ex) 2021.07.04"
+          width="390px"
+          height="60px"
+          onChange={(value) => {
+            if (typeof value === 'string')
               setChallengeOpenData({
                 ...challengeOpenData,
-                challengePeriod: { ...challengeOpenData.challengePeriod, start: e.target.value },
+                challengePeriod: { ...challengeOpenData.challengePeriod, start: value },
               });
-            }}
-            onFocus={() => {
-              setIsFocused({ ...isFocused, challengePeriod: [true, false] });
-            }}
-            onBlur={() => {
-              setIsFocused({ ...isFocused, challengePeriod: [false, false] });
-            }}
-          />
-        </div>
+          }}
+          isConditionMet={isConditionMet.challengePeriod.start}
+          margin="0 0 40px 0"
+        />
         <div className="admin__text">~</div>
-        <div className="admin__div admin__div--period1-2">
-          <Input
-            className="admin__input"
-            name="adminWriteTitle"
-            placeholder="년도.월.일. ex) 2021.07.04"
-            onChange={(e) => {
+        <StyledInput
+          placeHolder="년도.월.일. ex) 2021.07.04"
+          width="390px"
+          height="60px"
+          onChange={(value) => {
+            if (typeof value === 'string')
               setChallengeOpenData({
                 ...challengeOpenData,
-                challengePeriod: { ...challengeOpenData.challengePeriod, end: e.target.value },
+                challengePeriod: { ...challengeOpenData.challengePeriod, end: value },
               });
-            }}
-            onFocus={() => {
-              setIsFocused({ ...isFocused, challengePeriod: [false, true] });
-            }}
-            onBlur={() => {
-              setIsFocused({ ...isFocused, challengePeriod: [false, false] });
-            }}
-          />
-        </div>
+          }}
+          isConditionMet={isConditionMet.challengePeriod.end}
+          margin="0 0 40px 0"
+        />
       </div>
-
       <Label className="admin__label">챌린지 신청 기간</Label>
       <div className="admin__container--period">
-        <div className="admin__div admin__div--period2-1">
-          <Input
-            className="admin__input"
-            name="adminWriteTitle"
-            placeholder="년도.월.일. ex) 2021.07.04"
-            onChange={(e) => {
+        <StyledInput
+          placeHolder="년도.월.일. ex) 2021.07.04"
+          width="390px"
+          height="60px"
+          onChange={(value) => {
+            if (typeof value === 'string')
               setChallengeOpenData({
                 ...challengeOpenData,
-                applyPeriod: { ...challengeOpenData.applyPeriod, start: e.target.value },
+                applyPeriod: { ...challengeOpenData.applyPeriod, start: value },
               });
-            }}
-            onFocus={() => {
-              setIsFocused({ ...isFocused, applyPeriod: [true, false] });
-            }}
-            onBlur={() => {
-              setIsFocused({ ...isFocused, applyPeriod: [false, false] });
-            }}
-          />
-        </div>
+          }}
+          isConditionMet={isConditionMet.applyPeriod.start}
+          margin="0 0 40px 0"
+        />
         <div className="admin__text">~</div>
-        <div className="admin__div admin__div--period2-2">
-          <Input
-            className="admin__input"
-            name="adminWriteTitle"
-            placeholder="년도.월.일. ex) 2021.07.04"
-            onChange={(e) => {
+        <StyledInput
+          placeHolder="년도.월.일. ex) 2021.07.04"
+          width="390px"
+          height="60px"
+          onChange={(value) => {
+            if (typeof value === 'string')
               setChallengeOpenData({
                 ...challengeOpenData,
-                applyPeriod: { ...challengeOpenData.applyPeriod, end: e.target.value },
+                applyPeriod: { ...challengeOpenData.applyPeriod, end: value },
               });
-            }}
-            onFocus={() => {
-              setIsFocused({ ...isFocused, applyPeriod: [false, true] });
-            }}
-            onBlur={() => {
-              setIsFocused({ ...isFocused, applyPeriod: [false, false] });
-            }}
-          />
-        </div>
+          }}
+          isConditionMet={isConditionMet.applyPeriod.end}
+          margin="0 0 40px 0"
+        />
       </div>
       <Label className="admin__label">제한 인원 수</Label>
       <div className="admin__container--people">
-        <div className="admin__div admin__div--people">
-          <Input
-            className="admin__input"
-            name="adminWriteTitle"
-            placeholder="제한 인원 수를 입력하세요"
-            value={challengeOpenData.peopleNum === 0 ? '' : challengeOpenData.peopleNum}
-            onChange={(e) => {
-              if (!isNaN(Number(e.target.value))) {
-                setChallengeOpenData({ ...challengeOpenData, peopleNum: Number(e.target.value) });
+        <StyledInput
+          placeHolder="제한 인원 수를 입력하세요"
+          width="390px"
+          height="60px"
+          onChange={(value) => {
+            if (typeof value === 'string')
+              if (!isNaN(Number(value))) {
+                setChallengeOpenData({ ...challengeOpenData, peopleNum: Number(value) });
               }
-            }}
-            onFocus={() => {
-              setIsFocused({ ...isFocused, peopleNum: true });
-            }}
-            onBlur={() => {
-              setIsFocused({ ...isFocused, peopleNum: false });
-            }}
-          />
-        </div>
+          }}
+          isConditionMet={isConditionMet.peopleNum}
+          margin="0 26px 40px 0"
+        />
         <div className="admin__text">명</div>
       </div>
     </SAdminChallengeOpenForm>

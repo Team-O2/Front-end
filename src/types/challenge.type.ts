@@ -87,8 +87,14 @@ export interface IChallengeOpen {
 
 export interface IConditionMet {
   title: boolean;
-  challengePeriod: boolean;
-  applyPeriod: boolean;
+  challengePeriod: {
+    start: boolean;
+    end: boolean;
+  };
+  applyPeriod: {
+    start: boolean;
+    end: boolean;
+  };
   peopleNum: boolean;
 }
 

@@ -16,8 +16,14 @@ function AdminChallengeOpen(): React.ReactElement {
   const [isButtonDisabled, setIsButtonDisabled] = useState(true);
   const [isConditionMet, setIsConditionMet] = useState({
     title: false,
-    challengePeriod: false,
-    applyPeriod: false,
+    challengePeriod: {
+      start: false,
+      end: false,
+    },
+    applyPeriod: {
+      start: false,
+      end: false,
+    },
     peopleNum: false,
   });
   const [challengeOpenData, setChallengeOpenData] = useState({
@@ -38,8 +44,10 @@ function AdminChallengeOpen(): React.ReactElement {
   useEffect(() => {
     if (
       isConditionMet.title &&
-      isConditionMet.challengePeriod &&
-      isConditionMet.applyPeriod &&
+      isConditionMet.challengePeriod.start &&
+      isConditionMet.challengePeriod.end &&
+      isConditionMet.applyPeriod.start &&
+      isConditionMet.applyPeriod.end &&
       isConditionMet.peopleNum &&
       image != null &&
       isChecked
@@ -63,6 +71,7 @@ function AdminChallengeOpen(): React.ReactElement {
       <Label className="admin__label--page">관리자 페이지</Label>
       <Label className="admin__label--title">챌린지 등록</Label>
       <AdminChallengeOpenForm
+        isConditionMet={isConditionMet}
         setIsConditionMet={setIsConditionMet}
         challengeOpenData={challengeOpenData}
         setChallengeOpenData={setChallengeOpenData}
