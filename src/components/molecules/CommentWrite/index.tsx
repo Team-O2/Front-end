@@ -1,64 +1,32 @@
-import { TextArea } from 'components/atoms';
 import React from 'react';
-import Styled from 'styled-components';
+import { SButton, SForm, STextArea } from './style';
 
 export interface IProps {
   className?: string;
   value: string;
   isComment: boolean;
   onChange: (e: React.ChangeEvent<HTMLTextAreaElement>) => void;
-  onClick: (event: any) => void;
-  onSubmit: (event: React.FormEvent<HTMLFormElement>) => void;
+  onClick: (e: any) => void;
+  onSubmit: (e: React.FormEvent<HTMLFormElement>) => void;
 }
-interface IStyleProps {
-  isCommentCheck?: boolean;
-}
-function CommentWrite({ className, value, isComment, onChange, onClick, onSubmit }: IProps): React.ReactElement {
+
+function CommentWrite({ value, isComment, onChange, onClick, onSubmit }: IProps): React.ReactElement {
   return (
-    <SCommentWrite isCommentCheck={isComment} className={className}>
-      <form className="form" onSubmit={onSubmit}>
-        <TextArea
-          className="input"
+    <SForm>
+      <form onSubmit={onSubmit}>
+        <STextArea
+          isCommentCheck={isComment}
           name="comment"
           onChange={onChange}
           value={value}
           placeholder="댓글을 입력해 주세요"
-        ></TextArea>
-        <p onClick={onClick} className="button">
+        ></STextArea>
+        <SButton isCommentCheck={isComment} onClick={onClick}>
           {isComment ? '댓글 작성' : '답글 작성'}
-        </p>
+        </SButton>
       </form>
-    </SCommentWrite>
+    </SForm>
   );
 }
-
-const SCommentWrite = Styled.div<IStyleProps>`
-  .form{
-    display: flex;
-    flex-direction: column;
-    font-family: 'AppleSDGothicNeo';
-  .input {
-    width: ${({ isCommentCheck }) => (isCommentCheck ? undefined : '713px')};
-    height: ${({ isCommentCheck }) => (isCommentCheck ? '110px' : '53px')};
-    border: 1px solid #dfdfdf;
-    padding: 10px;
-    :focus {outline:none;}
-  }
-  .button {
-    display: flex;
-    flex-direction: row;
-    justify-content: flex-end;
-    font-size: ${({ isCommentCheck }) => (isCommentCheck ? '16px' : '14px')};
-    font-weight: bold;
-    color:#555555;
-    margin-top: 8px;
-    &:hover{
-      cursor: pointer;
-      opacity: 70%;
-    }
-  }
-  }
-  
-`;
 
 export default CommentWrite;

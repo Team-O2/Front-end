@@ -16,7 +16,6 @@ export { default as Login } from './Login';
 export { default as MyCommentList } from './MyCommentList';
 export { default as MyPageHeader } from './MyPageHeader';
 export { default as NoticeCommentList } from './NoticeCommentList';
-export { default as NoticeDetailContent } from './NoticeDetailContent';
 export { default as NoticeHeader } from './NoticeHeader';
 export { default as NoticeList } from './NoticeList';
 export { default as SearchForm } from './SearchForm';

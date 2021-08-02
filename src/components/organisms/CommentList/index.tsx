@@ -1,5 +1,5 @@
 import { postConcertComment } from 'apis';
-import { LoginModalIcon } from 'assets/images';
+import { LoginAlertIcon } from 'assets/images';
 import { Button, Link, Modal } from 'components/atoms';
 import { CommentWrite, SingleComment } from 'components/molecules';
 import React, { useState } from 'react';
@@ -79,7 +79,7 @@ function CommentList({ commentList, concertID, reLoadComment }: IProps): React.R
       <Modal isOpen={loginModalOpen} setIsOpen={setLoginModalOpen} isBlur={true}>
         <div className="login">
           <div className="login__notice">
-            <img className="login__img" src={LoginModalIcon} alt=""></img>
+            <img className="login__img" src={LoginAlertIcon} alt=""></img>
             <div className="login__title">앗!</div>
             <div className="login__detail">로그인이 필요한 서비스입니다</div>
           </div>
