@@ -1,7 +1,8 @@
 import { getNoticeListData, getNoticeSearchData } from 'apis';
 import { NoticeHeader, NoticeList, SearchForm } from 'components/organisms';
 import React, { useEffect, useState } from 'react';
-import Styled from 'styled-components';
+import { INotice } from 'types/notice.type';
+import { NoticeWrapper } from './style';
 
 interface INoticeData {
   videoLink: string;
@@ -62,7 +63,7 @@ function Notice(): React.ReactElement {
   return (
     <>
       <NoticeHeader />
-      <SNotice>
+      <NoticeWrapper>
         <SearchForm
           reRenderKeyword={reRenderKeyword}
           keywordChange={keywordChange}
@@ -77,16 +78,9 @@ function Notice(): React.ReactElement {
             setCurrentPage={setCurrentPage}
           ></NoticeList>
         )}
-      </SNotice>
+      </NoticeWrapper>
     </>
   );
 }
 
-const SNotice = Styled.div`
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  margin: 0 auto;
-  width: 845px;
-`;
 export default Notice;
