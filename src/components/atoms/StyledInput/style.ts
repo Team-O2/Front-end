@@ -1,6 +1,12 @@
 import Styled from 'styled-components';
 
-export const SStyledInput = Styled.div<{ isConditionMet: boolean; isFocused: boolean; width: string; height: string }>`
+export const SStyledInput = Styled.div<{
+  isConditionMet: boolean;
+  isFocused: boolean;
+  width: string;
+  height: string;
+  margin?: string;
+}>`
   display : flex;
   flex-direction : column;
   .input{
