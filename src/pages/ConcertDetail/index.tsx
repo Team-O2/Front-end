@@ -6,7 +6,7 @@ import {
   postConcertLike,
   postConcertScrap,
 } from 'apis';
-import { LoginModalIcon } from 'assets/images';
+import { LoginAlertIcon } from 'assets/images';
 import { Button, Modal } from 'components/atoms';
 import { DetailTitle } from 'components/molecules';
 import { CommentList, DetailContent } from 'components/organisms';
@@ -100,28 +100,31 @@ function ConcertDetail({ match }: RouteComponentProps<MatchParams>): React.React
   return (
     <SShareTogetherDetail>
       <DetailTitle
+        pageName="Share Together"
         title={concert?.title}
         authorNickname={concert?.authorNickname}
         createdAt={concert?.createdAt}
         interestList={concert?.interest}
       ></DetailTitle>
-      <DetailContent
-        video={concert?.videoLink}
-        desc={concert?.text}
-        hashtag={concert?.hashtag}
-        likeNum={likeNum}
-        commentNum={concert?.commentNum}
-        scrapNum={scrapNum}
-        onLike={onLike}
-        onScrap={onScrap}
-        isUserLike={isUserLike}
-        isUserScrap={isUserScrap}
-      ></DetailContent>
+      {concert && (
+        <DetailContent
+          video={concert.videoLink}
+          desc={concert.text}
+          hashtag={concert.hashtag}
+          likeNum={likeNum}
+          commentNum={concert.commentNum}
+          scrapNum={scrapNum}
+          onLike={onLike}
+          onScrap={onScrap}
+          isUserLike={isUserLike}
+          isUserScrap={isUserScrap}
+        ></DetailContent>
+      )}
       <CommentList commentList={commentList} concertID={concert?._id} reLoadComment={reLoadComment}></CommentList>
       <Modal isOpen={loginModalOpen} setIsOpen={setLoginModalOpen} isBlur={true}>
         <div className="login">
           <div className="login__notice">
-            <img className="login__img" src={LoginModalIcon} alt=""></img>
+            <img className="login__img" src={LoginAlertIcon} alt=""></img>
             <div className="login__title">앗!</div>
             <div className="login__detail">로그인이 필요한 서비스입니다</div>
           </div>

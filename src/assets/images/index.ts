@@ -43,7 +43,7 @@ export { default as LandingBackImg } from './landingBack.svg';
 export { default as LargeLeftArrowIcon } from './largeLeftArrow.svg';
 export { default as LargeRightArrowIcon } from './largeRightArrow.svg';
 export { default as LineIcon } from './line.svg';
-export { default as LoginAlertIcon, default as LoginModalIcon } from './loginAlert.svg';
+export { default as LoginAlertIcon } from './loginAlert.svg';
 export { default as LoginIcon } from './loginIcon.svg';
 export { default as Logo } from './logo.svg';
 export { default as MainCard1Img } from './mainCard1.png';

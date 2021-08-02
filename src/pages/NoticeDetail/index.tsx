@@ -1,11 +1,12 @@
 import { getNoticeData } from 'apis';
-import { NoticeDetailTitle } from 'components/molecules';
-import { NoticeCommentList, NoticeDetailContent } from 'components/organisms';
+import { DetailTitle } from 'components/molecules';
+import { DetailContent, NoticeCommentList } from 'components/organisms';
 import React, { useEffect, useState } from 'react';
 import { RouteComponentProps } from 'react-router';
 import { useRecoilValue } from 'recoil';
 import { userStatusState } from 'stores/user';
-import Styled from 'styled-components';
+import { INotice } from 'types/notice.type';
+import { NoticeDetailWrapper } from './style';
 
 interface MatchParams {
   id: string;
@@ -50,36 +51,30 @@ function NoticeDetail({ match }: RouteComponentProps<MatchParams>): React.ReactE
   };
 
   return (
-    <SNoticeDetail>
+    <NoticeDetailWrapper>
       {notice && (
-        <NoticeDetailTitle
+        <DetailTitle
+          pageName="공지사항"
           title={notice.title}
           createdAt={notice.createdAt}
-          adminNickname={notice.user.nickname}
+          authorNickname={notice.user.nickname}
           interestList={notice.interest}
-        ></NoticeDetailTitle>
+        ></DetailTitle>
       )}
       {notice && (
-        <NoticeDetailContent
+        <DetailContent
           imgThumbnail={notice.imgThumbnail}
           desc={notice.text}
           commentNum={notice.commentNum}
-        ></NoticeDetailContent>
+        ></DetailContent>
       )}
       <NoticeCommentList
         commentList={commentList}
         noticeID={notice?._id}
         reLoadComment={reLoadComment}
       ></NoticeCommentList>
-    </SNoticeDetail>
+    </NoticeDetailWrapper>
   );
 }
 
-const SNoticeDetail = Styled.div`
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  margin: 0 auto;
-  width: 845px;
-`;
 export default NoticeDetail;
