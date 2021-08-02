@@ -4,28 +4,8 @@ import React, { useEffect, useState } from 'react';
 import { INotice } from 'types/notice.type';
 import { NoticeWrapper } from './style';
 
-interface INoticeData {
-  videoLink: string;
-  imgThumbnail: string;
-  likes: number;
-  commentNum: number;
-  scrapNum: number;
-  interest: string[];
-  hashtag: string[];
-  isDeleted: boolean;
-  comments: string[];
-  isNotice: boolean;
-  _id: string;
-  title: string;
-  user: { _id: string; nickname: string; img: string };
-  createdAt: string;
-  text: string;
-  authorNickname: string;
-  updatedAt: string;
-  __v: number;
-}
 function Notice(): React.ReactElement {
-  const [noticeList, setnoticeList] = useState<INoticeData[] | null>(null);
+  const [noticeList, setnoticeList] = useState<INotice[] | null>(null);
   const [keyword, setKeyword] = useState('');
   const [currentPage, setCurrentPage] = useState(1);
   const [totalNoticeNum, setTotalNoticeNum] = useState(0);

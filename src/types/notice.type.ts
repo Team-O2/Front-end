@@ -1,28 +1,27 @@
-export interface INoticeData {
-  videoLink: string;
-  imgThumbnail: string;
-  likes: number;
+export interface INotice {
   commentNum: number;
-  scrapNum: number;
-  interest: string[];
-  hashtag: string[];
-  isDeleted: boolean;
   comments: string[];
-  isNotice: boolean;
-  _id: string;
-  title: string;
-  user: { _id: string; nickname: string; img: string };
   createdAt: string;
+  hashtag: string[];
+  imgThumbnail: string;
+  interest: string[];
+  isDeleted: boolean;
+  isNotice: boolean;
+  likes: number;
+  scrapNum: number;
   text: string;
-  authorNickname: string;
+  title: string;
   updatedAt: string;
+  user: { img: string; nickname: string; _id: string };
+  videoLink: string;
   __v: number;
+  _id: string;
 }
 export interface INoticeList {
-  notices: INoticeData[];
+  notices: INotice[];
   totalNoticeNum: number;
 }
 export interface ISearchNoticeList {
-  searchData: INoticeData[];
+  searchData: INotice[];
   totalNoticeSearchNum: number;
 }
