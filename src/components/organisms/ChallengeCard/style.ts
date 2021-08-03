@@ -1,12 +1,11 @@
 import Styled from 'styled-components';
+import { theme } from 'styled-tools';
 
-const SChallengeCard = Styled.div`
-
-.exp{
+export const ChallengeCardWrapper = Styled.div`
+p{
   margin : 100px 0 100px 0;
   width : 100%;
   text-align  :center;
+  ${theme('font.body3')};
 }
 `;
-
-export default SChallengeCard;
