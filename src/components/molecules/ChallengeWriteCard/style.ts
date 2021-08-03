@@ -1,187 +1,197 @@
+import { Button } from 'components/atoms';
 import Styled from 'styled-components';
+import { palette, theme } from 'styled-tools';
 
-const SWriteCard = Styled.div`
-    .header{
-      padding-top:100px;
-      text-align:center;
-      line-height: 1.22;
-      letter-spacing: -0.5px;
-      font-family: HomepageBaukasten;
-      font-size: 46px;
-      font-weight: bold;
-}
-    .challenge-card{
-        margin: 0 auto;
-        padding-top:60px;
-        width:844px;
+export const Header = Styled.div`
+    padding-top:100px;
+    text-align:center;
+    ${theme('font.dp3_eng')};
+`;
+export const InterestTagButton = Styled(Button)`
+    margin : 12px 5px;
+    border: solid 1px ${palette('grayscale', 4)};
+    border-radius: 60px;
+    background-color: ${palette('grayscale', 0)};
+    padding : 12px 30px;
+    height : 48px;
+    color : ${palette('grayscale', 4)};
+    ${theme('font.subhead3')};
+`;
 
-        &__title{
-            line-height:38px;
-            letter-spacing: -0.5px;
-            color: #3D3D3D;
-            font-size:22px;
-            font-weight: bold;
-        }
-        &__restriction{
-            padding-bottom: 30px;
-            text-align: right;
-            line-height: 18px;
-            color: #B1B1B1;
-            font-size: 14px;
-            font-weight: bold;
-        }
+export const CharacterWrapper = Styled.div`
+    position:sticky;
+    top:20px;
+    margin: 0 auto;
+    background-color: ${palette('grayscale', 0)};
+    padding-top:60px;
+    width:844px;
+
+    img{
+        padding-top:29px;
     }
-    .textarea{
+    p{
+        padding-top:12.32px;
+        padding-bottom: 12px;
+        ${theme('font.subhead2')};
+        color : ${palette('grayscale', 5)};
+    }
+    h1{
+        padding-top:29px;
+        padding-left:200px;
+    }
+    h2{
+        padding-left:450px;
+    }
+    h3{
+        text-align:end;
+    }
+`;
+
+export const QuestionWrapper = Styled.div`
+    margin: 0 auto;
+    padding-top:60px;
+    width:844px;
+
+    h1 {
+        line-height:38px;
+        color: ${palette('grayscale', 7)};
+        ${theme('font.subhead5')};
+    }
+
+    p {
+        padding-bottom: 30px;
+        text-align: right;
+        color: #B1B1B1;
+        ${theme('font.subhead2_eng')};
+    }
+
+    textarea{
         box-sizing: border-box;
         align-items: center;
-        border: 1px solid #DFDFDF;
+        border: 1px solid ${palette('grayscale', 1)};
         padding: 40px 60px 40px 60px;
         width: 844px;
         height:369px;
         resize:none;
-        font-size: 18px;
+        ${theme('font.body4')};
+    }
+`;
+
+export const TagWrapper = Styled.div`
+    align-items:center;
+    margin:0 auto;
+    padding-top:60px;
+    width:844px;
+    text-align: left;
+    ${theme('font.subhead5')};
+
+    img{
+        padding-bottom:5px;
+        vertical-align : middle;
+    }
+`;
+
+export const TagListWrapper = Styled.div`
+    padding-top:20px;
+
+    button{
+        box-sizing: border-box;
+        border: 1px solid rgba(223, 223, 223, 0.5);
+        box-shadow: 0px 0px 15px rgba(23, 22, 91, 0.08);
+        background: ${palette('grayscale', 0)};
+        padding: 13px 30px 30px 30px;
     }
 
-    .button{
-        align-items: center;
-        margin: 0 auto;
-        width:844px;
-    }
-    .write__button-color{
-        margin: 0 auto;
-        margin-top:60px;
-        border:none;
-        border-radius: 4px;
-        width:844px;
-        height: 60px;
-        text-align: center;
-        color: #FFFFFF;
-        background: linear-gradient(91.91deg, #36C8F5 7.34%, #13E2DD 90.35%);
-    }
-    .write__button-black{
-        margin: 0 auto;
-        margin-top:60px;
-        border:none;
-        border-radius: 4px;
-        width:844px;
-        height: 60px;
-        text-align: center;
-        color: #FFFFFF;
-        background: #DFDFDF;
-    }
-    .character{
-      position:sticky;
-      top:20px;
-      margin: 0 auto;
-      background-color:white;
-      padding-top:60px;
-      width:844px;
 
-      &__black{
-        padding-top:29px;
-        padding-right:50px;
-    }
+`;
+export const ProgressBarStep0 = Styled.span`
+    display: inline-block;
+    background-color: #d6d3d3;
+    width: 844px;
+    height: 5px;
 
-      &__color-step1{
-          padding-top:29px;
-          padding-left:200px;
-      }
-      &__detail-step1{
-        padding-left:60px;
-      }
-
-      &__color-step2{
-          padding-left:450px;
-      }
-      &__detail-step2{
-        padding-left:50px;
-      }
-
-      &__color-step3{
-          text-align:end;
-      }
-        &__message{
-            padding-top:12.32px;
-            padding-bottom: 12px;
-            line-height: 1.43;
-            letter-spacing: -0.5px;
-            font-size: 14px;
-            font-weight: bold;
-        }
-    }   
-    .progressbar{
+    span{
         display: inline-block;
-        background-color: #d6d3d3;
-        width: 844px;
-        height: 5px;
-    }
-    .gauge__initial{
-        display: inline-block;
-        background-color: #3abff7;
+        background-color: ${palette('primary', 3)};
         width: 1%;
         height: 5px;
     }
+`;
 
-    .gauge__quarter{
-            display: inline-block;
-            background-color: #3abff7;
-            width: 34%;
-            height: 5px;
-        }
-    .gauge__half{
-            display: inline-block;
-            background-color: #3abff7;
-            width: 67%;
-            height: 5px;
-        }
-    .gauge__whole{
-            display: inline-block;
-            background-color: #3abff7;
-            width: 100%;
-            height: 5px;
-        }
+export const ProgressBarStep1 = Styled.span`
+    display: inline-block;
+    background-color: #d6d3d3;
+    width: 844px;
+    height: 5px;
 
-    .tag{
-      align-items:center;
-      margin:0 auto;
-      padding-top:60px;
-      width:844px;
-      text-align: left;
-      line-height: 1.33;
-      letter-spacing: -0.5px;
-      color: var(--colors-grayscale-6-f);
-      font-size: 24px;
-      font-weight: bold;
+    span{
+        display: inline-block;
+        background-color: ${palette('primary', 3)};
+        width: 34%;
+        height: 5px;
+    }
+`;
 
-      &__moreIcon{
-        padding-bottom:5px;
-        vertical-align : middle;
-      }
-  
-      &__interest{
-          margin : 12px 5px;
-          border: solid 1px #8b8b8b;
-          border-radius: 60px;
-          background-color:#FFFFFF;
-          padding : 12px 30px;
-          height : 48px;
-          line-height: 1.33;
-          letter-spacing: -0.5px;
-          color : #8b8b8b;
-          font-size: 18px;
-          font-weight: bold;
-        }
-        .tag__group{
-          padding-top:20px;
-        }
-        .tag__group-detail{
-          box-sizing: border-box;
-          border: 1px solid rgba(223, 223, 223, 0.5);
-          border-radius: 16px;
-          box-shadow: 0px 0px 15px rgba(23, 22, 91, 0.08);
-          background: #FFFFFF;
-          padding: 20px 30px 30px 30px;
-        }
-}`;
+export const ProgressBarStep2 = Styled.span`
+    display: inline-block;
+    background-color: #d6d3d3;
+    width: 844px;
+    height: 5px;
 
-export default SWriteCard;
+    span{
+        display: inline-block;
+        background-color: ${palette('primary', 3)};
+        width: 67%;
+        height: 5px;
+    }
+`;
+
+export const ProgressBarStep3 = Styled.span`
+    display: inline-block;
+    background-color: #d6d3d3;
+    width: 844px;
+    height: 5px;
+
+    span{
+        display: inline-block;
+        background-color: ${palette('primary', 3)};
+        width: 100%;
+        height: 5px;
+    }
+`;
+
+export const ButtonWrapper = Styled.div`
+    align-items: center;
+    margin: 0 auto;
+    width:844px;
+`;
+
+export const ColorButton = Styled(Button)`
+
+    margin: 0 auto;
+    margin-top:60px;
+    border:none;
+    border-radius: 4px;
+    width:844px;
+    height: 60px;
+    text-align: center;
+    color: ${palette('grayscale', 0)};
+    background: linear-gradient(91.91deg, ${palette('primary', 3)} 7.34%, ${palette('primary', 0)} 90.35%);
+    ${theme('font.subhead3')};
+`;
+export const BlackButton = Styled(Button)`
+    margin: 0 auto;
+    margin-top:60px;
+    border:none;
+    border-radius: 4px;
+    width:844px;
+    height: 60px;
+    text-align: center;
+    color: ${palette('grayscale', 0)};
+    background: ${palette('grayscale', 1)};
+    ${theme('font.subhead3')};
+`;
+
+export const CharacterStepImg = Styled.img`
+    padding-left:55px;
+`;
