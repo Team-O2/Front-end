@@ -12,7 +12,7 @@ export const CommentContainer = Styled.div`
 `;
 
 export const CommentWriter = Styled.div`
-${theme('font.subhead3')};
+  ${theme('font.subhead3')};
 `;
 
 export const CommentText = Styled.div`

@@ -15,7 +15,7 @@ function ConcertCard({ imgThumbnail, title, authorNickname, interestList, onClic
     <>
       <ConcertCardWrapper>
         <Main onClick={onClickFunc}>
-          <img className="card__main--img" src={imgThumbnail} alt="" />
+          <img src={imgThumbnail} alt="" />
           <p>{title}</p>
           <Overlay />
         </Main>

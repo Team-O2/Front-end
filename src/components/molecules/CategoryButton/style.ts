@@ -2,10 +2,9 @@ import { Button } from 'components/atoms';
 import Styled from 'styled-components';
 import { ifProp, theme } from 'styled-tools';
 
-export const Category = Styled(Button)<{ isCategoryClicked?: boolean; readMore?: boolean }>`
+export const CategoryBtn = Styled(Button)<{ isCategoryClicked?: boolean; readMore?: boolean }>`
   white-space : nowrap; 
-  color: ${({ isCategoryClicked }) =>
-    isCategoryClicked ? '#ffffff' : ({ readMore }) => (readMore ? '#8b8b8b' : '#03b6ce')};
+  color: ${ifProp('isCategoryClicked', '#ffffff', ifProp('readMore', '#8b8b8b', '#03b6ce'))};
   ${theme('font.subhead3')};
 `;
 
