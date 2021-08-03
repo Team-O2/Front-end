@@ -1,38 +1,18 @@
 import { ConcertCard } from 'components/molecules';
 import React from 'react';
 import { useHistory } from 'react-router';
-import Styled from 'styled-components';
-
-interface IData {
-  videoLink: string;
-  imgThumbnail: string;
-  likes: number;
-  commentNum: number;
-  scrapNum: number;
-  interest: string[];
-  hashtag: string[];
-  isDeleted: boolean;
-  comments: string[];
-  isNotice: boolean;
-  _id: string;
-  title: string;
-  user: { _id: string; nickname: string; img: string };
-  createdAt: string;
-  text: string;
-  authorNickname: string;
-  updatedAt: string;
-  __v: number;
-}
+import { IConcert } from 'types/concert.type';
+import { ConcertCardListWrapper } from './style';
 interface IProps {
-  concertCardData: Array<IData> | undefined;
+  concertCardData: Array<IConcert> | undefined;
 }
 
 function ConcertCardList({ concertCardData }: IProps): React.ReactElement {
   const history = useHistory();
   return (
-    <SConcertCardList>
+    <ConcertCardListWrapper>
       {concertCardData?.map(
-        (card: IData) =>
+        (card: IConcert) =>
           card && (
             <ConcertCard
               imgThumbnail={card.imgThumbnail}
@@ -44,14 +24,8 @@ function ConcertCardList({ concertCardData }: IProps): React.ReactElement {
             ></ConcertCard>
           ),
       )}
-    </SConcertCardList>
+    </ConcertCardListWrapper>
   );
 }
 
-const SConcertCardList = Styled.div`
-  display: flex;
-  flex-direction: row;
-  justify-content: space-around;
-  margin-top: 60px;
-`;
 export default ConcertCardList;
