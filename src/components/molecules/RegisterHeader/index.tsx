@@ -1,5 +1,5 @@
 import React from 'react';
-import SHeader from './style';
+import { Container, GenerationText } from './style';
 
 interface IProps {
   generation: number;
@@ -21,15 +21,13 @@ const indextoName = (index: number) => {
 
 const RegisterHeader = ({ generation, title, img }: IProps) => {
   return (
-    <SHeader url={img}>
-      <div className="header">
-        <div className="header__img">
-          <div className="header__text">
-            {title} {indextoName(generation)} 모집
-          </div>
-        </div>
-      </div>
-    </SHeader>
+    <Container url={img}>
+      <p>
+        <GenerationText>
+          {title} {indextoName(generation)} 모집
+        </GenerationText>
+      </p>
+    </Container>
   );
 };
 

@@ -1,13 +1,22 @@
 import Styled from 'styled-components';
+import { palette, theme } from 'styled-tools';
 
 interface ISHeader {
   url?: string;
 }
 
-const SHeader = Styled.div<ISHeader>`
-.header{
+export const GenerationText = Styled.div`
 
-    &__img{
+  color: ${palette('grayscale', 0)};                                                                   
+  width: 600px;
+  height: 68px;
+  text-align: left;
+  ${theme('font.dp3_eng')};
+
+`;
+
+export const Container = Styled.div<ISHeader>`
+    p{
         width: 100%;
         height:253px;
         position:relative;
@@ -16,24 +25,5 @@ const SHeader = Styled.div<ISHeader>`
         align-items: center;
         justify-content: center;
     }
-    &__text{
-      color: black;                                                                   
-      width: 600px;
-      height: 68px;
-      font-size: 46px;
-      font-weight: bold;
-      line-height: 1.22;
-      letter-spacing: -0.5px;
-      text-align: left;
-      color: var(--colors-grayscale-ff);
-    }
-    &__fixed{
-        position: fixed;
-        top: 0px;
-        width: 100%;
-        background-color: #FFFFFF;
-    }
-}
-`;
 
-export default SHeader;
+`;
