@@ -4,7 +4,7 @@ import React, { useCallback, useEffect, useState } from 'react';
 import { useRecoilValue } from 'recoil';
 import { userStatusState } from 'stores/user';
 import { IChallengeData } from 'types/challenge.type';
-import SChallengeCard from './style';
+import { ChallengeCardWrapper } from './style';
 
 interface IProps {
   challengeList: IChallengeData[] | null;
@@ -26,7 +26,7 @@ function ChallengeCard({ challengeList, setChallengeList, generationNum }: IProp
   }, [isReRenderFlag, generationNum, ChallengeList]);
 
   return (
-    <SChallengeCard>
+    <ChallengeCardWrapper>
       {challengeList?.length !== 0 ? (
         challengeList?.map((data: IChallengeData, id) => {
           return (
@@ -49,9 +49,9 @@ function ChallengeCard({ challengeList, setChallengeList, generationNum }: IProp
           );
         })
       ) : (
-        <div className="exp body4">회고가 존재하지 않습니다 </div>
+        <p>회고가 존재하지 않습니다 </p>
       )}
-    </SChallengeCard>
+    </ChallengeCardWrapper>
   );
 }
 

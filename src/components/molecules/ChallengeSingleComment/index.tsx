@@ -1,7 +1,7 @@
 import { ChallengeReCommentList, ChallengeReCommentWrite } from 'components/molecules';
 import React, { useState } from 'react';
 import { ICommentData, IReply } from 'types/challenge.type';
-import SSingleComment from './style';
+import { CommentFold, CommentWrapper, RecommentWrapper, SingleCommentWrapper } from './style';
 
 interface IProps {
   commentData: ICommentData;
@@ -24,16 +24,14 @@ function ChallengeSingleComment({
   };
 
   return (
-    <SSingleComment>
-      <div className="comment">
-        <img className="comment__profile" src={userID?.img} alt="" />
-        <div className="comment__writer">{userID?.nickname}</div>
-        <div className="comment__text">{text}</div>
-        <div className="comment__toggle" onClick={onClickReplyOpen}>
-          {openReply ? '접기' : '답글보기'}
-        </div>
-      </div>
-      <div className="reply">
+    <SingleCommentWrapper>
+      <CommentWrapper>
+        <img src={userID?.img} alt="" />
+        <h1>{userID?.nickname}</h1>
+        <h2>{text}</h2>
+        <CommentFold onClick={onClickReplyOpen}>{openReply ? '접기' : '답글보기'}</CommentFold>
+      </CommentWrapper>
+      <RecommentWrapper>
         {openReply && (
           <>
             <ChallengeReCommentWrite // 답글 작성부분
@@ -55,8 +53,8 @@ function ChallengeSingleComment({
             ))}
           </>
         )}
-      </div>
-    </SSingleComment>
+      </RecommentWrapper>
+    </SingleCommentWrapper>
   );
 }
 
