@@ -1,7 +1,6 @@
 import React from 'react';
-import ReactQuill from 'react-quill';
 import 'react-quill/dist/quill.snow.css';
-import Styled from 'styled-components';
+import { Editor } from './style';
 
 export interface IProps {
   className?: string;
@@ -39,41 +38,16 @@ function EditorForm({ content, setContent }: IProps): React.ReactElement {
   ];
 
   return (
-    <SEditorForm>
-      <ReactQuill
-        className="editor"
-        theme="snow"
-        modules={modules}
-        formats={formats}
-        value={content || ''}
-        onChange={(content) => {
-          setContent(content);
-        }}
-        //   >
-        //     <div className="my-editing-area"></div>
-        //   </ReactQuill>
-      />
-    </SEditorForm>
+    <Editor
+      theme="snow"
+      modules={modules}
+      formats={formats}
+      value={content || ''}
+      onChange={(content) => {
+        setContent(content);
+      }}
+    />
   );
 }
-
-const SEditorForm = Styled.div`
-    .editor{
-        margin-top : 34px;
-        margin-bottom : 80px;
-        width : 844px;
-        height : 700px;
-    }
-    /* .my-editing-area{
-        font-size : 16px;
-        letter-spacing: -0.5px;
-        strong{
-            font-weight : bold;
-        }
-        em{
-            font-style : italic;
-        }
-    } */
-  `;
 
 export default EditorForm;
