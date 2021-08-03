@@ -11,30 +11,10 @@ import { NoticeDetailWrapper } from './style';
 interface MatchParams {
   id: string;
 }
-interface INoticeData {
-  videoLink: string;
-  imgThumbnail: string;
-  likes: number;
-  commentNum: number;
-  scrapNum: number;
-  interest: string[];
-  hashtag: string[];
-  isDeleted: boolean;
-  comments: string[];
-  isNotice: boolean;
-  _id: string;
-  title: string;
-  user: { _id: string; nickname: string; img: string };
-  createdAt: string;
-  text: string;
-  authorNickname: string;
-  updatedAt: string;
-  __v: number;
-}
 
 function NoticeDetail({ match }: RouteComponentProps<MatchParams>): React.ReactElement {
   const { id } = match.params;
-  const [notice, setNotice] = useState<INoticeData | null>(null);
+  const [notice, setNotice] = useState<INotice | null>(null);
   const [commentList, setCommentList] = useState([]);
   const userStatusData = useRecoilValue(userStatusState);
   useEffect(() => {
