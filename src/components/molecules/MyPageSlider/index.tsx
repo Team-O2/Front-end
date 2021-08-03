@@ -33,15 +33,26 @@ import {
 } from 'assets/images';
 import { ReactComponent as LeftArrow } from 'assets/images/largeLeftArrow.svg';
 import { ReactComponent as RightArrow } from 'assets/images/largeRightArrow.svg';
-import { fadeIn, fadeOut } from 'assets/styles/animation';
-import { Button, DotText, Img, Label, Link, MyPageCard } from 'components/atoms';
+import { DotText, Img, Link, MyPageCard } from 'components/atoms';
 import dayjs from 'dayjs';
 import React, { useEffect, useRef, useState } from 'react';
 import { useRecoilValue } from 'recoil';
 import { userState } from 'stores/user';
-import Styled, { css } from 'styled-components';
-import { palette } from 'styled-tools';
 import { IMyPageConcert, IMyPageHeader } from 'types/myPage.type';
+import {
+  CouponBookWrapper,
+  NextButton,
+  PrevButton,
+  Slider,
+  SliderBox,
+  SliderCoupon,
+  SliderLearnMySelf,
+  SliderLearnMySelfImg,
+  SliderNoContent,
+  SliderShareTogether,
+  TextLabel,
+  Wrapper,
+} from './style';
 
 export interface IProps {
   userInfo: IMyPageHeader | null;
@@ -92,284 +103,130 @@ function MyPageSlider({ userInfo }: IProps): React.ReactElement {
 
   return (
     <Wrapper disappear={!!currentSlide}>
-      <Button className="prevButton" onClick={prevSlide}>
+      <PrevButton onClick={prevSlide}>
         <LeftArrow stroke="#fff" />
-      </Button>
-      <div className="slider">
-        <div className="slider__box" ref={slideRef}>
+      </PrevButton>
+      <Slider>
+        <SliderBox ref={slideRef}>
           <MyPageCard title="Learn Myself" width="350">
             {userInfo?.learnMyselfAchieve ? (
               <Link to={`challenge/${userInfo.learnMyselfAchieve.generation}`}>
-                <div className="slider__learnMyself">
-                  <p className="slider__learnMyself--date subhead3_eng">
+                <SliderLearnMySelf>
+                  <h1>
                     {`${dayjs(userInfo.learnMyselfAchieve.startDT).format('YY.MM.DD')} - ${dayjs(
                       userInfo.learnMyselfAchieve.endDT,
                     ).format('YY.MM.DD')}`}
-                  </p>
-                  <div className="slider__learnMyself--img">
+                  </h1>
+                  <SliderLearnMySelfImg>
                     <Img src={getLevelIcon(userInfo.learnMyselfAchieve.percent)} />
-                  </div>
-                  <p className="slider__learnMyself--percent subhead5_eng">
-                    {userInfo.learnMyselfAchieve.percent}% 달성
-                  </p>
-                  <p className="slider__learnMyself--count body2">
+                  </SliderLearnMySelfImg>
+                  <h2>{userInfo.learnMyselfAchieve.percent}% 달성</h2>
+                  <h3>
                     내가 쓴 개수 &nbsp; &nbsp;<span>{userInfo.learnMyselfAchieve.completeNum}</span> &nbsp;/ &nbsp;
                     {userInfo.learnMyselfAchieve.totalNum}
-                  </p>
-                </div>
+                  </h3>
+                </SliderLearnMySelf>
               </Link>
             ) : (
-              <div className="slider__noContents">
-                <p className="body2">현재 참여한 챌린지가 없어요!</p>
-              </div>
+              <SliderNoContent>
+                <p>현재 참여한 챌린지가 없어요!</p>
+              </SliderNoContent>
             )}
           </MyPageCard>
           <MyPageCard title="Share Together" width="310">
             {userInfo?.shareTogether ? (
-              <div className="slider__shareTogether">
-                <div className="slider__shareTogether--title subhead3">
+              <SliderShareTogether>
+                <h4>
                   {globalUserInfo?.nickname}님이 하셨던
                   <br /> 강연의 주제들이에요!
-                </div>
+                </h4>
                 {userInfo?.shareTogether.map((item: IMyPageConcert) => (
                   <DotText key={item._id} content={item.title} />
                 ))}
-              </div>
+              </SliderShareTogether>
             ) : (
-              <div className="slider__noContents">
-                <p className="body2">현재 참여한 강연이 없어요!</p>
-              </div>
+              <SliderNoContent>
+                <p>현재 참여한 강연이 없어요!</p>
+              </SliderNoContent>
             )}
           </MyPageCard>
           <MyPageCard title="Coupon Book" width="550">
-            <div className="slider__couponBook">
-              <div className="slider__coupon">
+            <CouponBookWrapper>
+              <SliderCoupon>
                 <Img src={userInfo?.couponBook.welcomeBadge ? WelcomeToO2FillIcon : WelcomeToO2Icon} />
-                <Label className="body1">웰컴 투 오투</Label>
-              </div>
-              <div className="slider__coupon">
+                <TextLabel>웰컴 투 오투</TextLabel>
+              </SliderCoupon>
+              <SliderCoupon>
                 <Img src={userInfo?.couponBook.firstJoinBadge ? ReadyForGrowFillIcon : ReadyForGrowIcon} />
-                <Label className="body1">성장 준비 완료</Label>
-              </div>
-              <div className="slider__coupon">
+                <TextLabel>성장 준비 완료</TextLabel>
+              </SliderCoupon>
+              <SliderCoupon>
                 <Img src={userInfo?.couponBook.firstWriteBadge ? GrowingTogetherFillIcon : GrowingTogetherIcon} />
-                <Label className="body1">함께 성장 중</Label>
-              </div>
-              <div className="slider__coupon">
+                <TextLabel>함께 성장 중</TextLabel>
+              </SliderCoupon>
+              <SliderCoupon>
                 <Img
                   src={userInfo?.couponBook.oneCommentBadge ? ReadyForCommunicationFillIcon : ReadyForCommunicationIcon}
                 />
-                <Label className="body1">소통 준비 완료</Label>
-              </div>
-              <div className="slider__coupon">
+                <TextLabel>소통 준비 완료</TextLabel>
+              </SliderCoupon>
+              <SliderCoupon>
                 <Img src={userInfo?.couponBook.challengeBadge === 1 ? GetChallengeFillIcon : GetChallengeIcon} />
-                <Label className="body1">1차 챌린지 달성</Label>
-              </div>
-              <div className="slider__coupon">
+                <TextLabel>1차 챌린지 달성</TextLabel>
+              </SliderCoupon>
+              <SliderCoupon>
                 <Img src={userInfo?.couponBook.fiveCommentBadge ? CommunicationKingFillIcon : CommunicationKingIcon} />
-                <Label className="body1">나는야 소통왕</Label>
-              </div>
-              <div className="slider__coupon">
+                <TextLabel>나는야 소통왕</TextLabel>
+              </SliderCoupon>
+              <SliderCoupon>
                 <Img src={userInfo?.couponBook.oneLikeBadge ? EmpathizingFillIcon : EmpathizingIcon} />
-                <Label className="body1">당신은 공감중</Label>
-              </div>
-              <div className="slider__coupon">
+                <TextLabel>당신은 공감중</TextLabel>
+              </SliderCoupon>
+              <SliderCoupon>
                 <Img src={userInfo?.couponBook.fiveLikeBadge ? SympathyKingFillIcon : SympathyKingIcon} />
-                <Label className="body1">당신은 공감왕</Label>
-              </div>
-              <div className="slider__coupon">
+                <TextLabel>당신은 공감왕</TextLabel>
+              </SliderCoupon>
+              <SliderCoupon>
                 <Img src={userInfo?.couponBook.loginBadge ? NaturalBornO2FillIcon : NaturalBornO2Icon} />
-                <Label className="body1">뼛속부터 오투인</Label>
-              </div>
-              <div className="slider__coupon">
+                <TextLabel>뼛속부터 오투인</TextLabel>
+              </SliderCoupon>
+              <SliderCoupon>
                 <Img src={userInfo?.couponBook.challengeBadge === 2 ? GetChallengeFillIcon : GetChallengeIcon} />
-                <Label className="body1">2차 챌린지 달성</Label>
-              </div>
-              <div className="slider__coupon">
+                <TextLabel>2차 챌린지 달성</TextLabel>
+              </SliderCoupon>
+              <SliderCoupon>
                 <Img src={userInfo?.couponBook.marketingBadge ? ShyEmailFillIcon : ShyEmailIcon} />
-                <Label className="body1">수줍은 이메일</Label>
-              </div>
-              <div className="slider__coupon">
+                <TextLabel>수줍은 이메일</TextLabel>
+              </SliderCoupon>
+              <SliderCoupon>
                 <Img src={userInfo?.couponBook.learnMySelfBadge ? UsefulLearnMyselfFillIcon : UsefulLearnMyselfIcon} />
-                <Label className="body1">유용한 런마쎌</Label>
-              </div>
-              <div className="slider__coupon">
+                <TextLabel>유용한 런마쎌</TextLabel>
+              </SliderCoupon>
+              <SliderCoupon>
                 <Img
                   src={userInfo?.couponBook.concertScrapBadge ? UsefulShareTogetherFillIcon : UsefulShareTogetherIcon}
                 />
-                <Label className="body1">유용한 쉐투</Label>
-              </div>
-              <div className="slider__coupon">
+                <TextLabel>유용한 쉐투</TextLabel>
+              </SliderCoupon>
+              <SliderCoupon>
                 <Img src={userInfo?.couponBook.firstReplyBadge ? FirstCommentFillIcon : FirstCommentIcon} />
-                <Label className="body1">설레는 첫 답글</Label>
-              </div>
-              <div className="slider__coupon">
+                <TextLabel>설레는 첫 답글</TextLabel>
+              </SliderCoupon>
+              <SliderCoupon>
                 <Img src={userInfo?.couponBook.challengeBadge === 3 ? GetChallengeFillIcon : GetChallengeIcon} />
-                <Label className="body1">3차 챌린지 달성</Label>
-              </div>
-            </div>
+                <TextLabel>3차 챌린지 달성</TextLabel>
+              </SliderCoupon>
+            </CouponBookWrapper>
           </MyPageCard>
-        </div>
-      </div>
+        </SliderBox>
+      </Slider>
       {(!localVisible || animation) && <div className="slider__gradientBack--left"></div>}
       {(localVisible || animation) && <div className="slider__gradientBack--right"></div>}
-      <Button className="nextButton" onClick={nextSlide}>
+      <NextButton onClick={nextSlide}>
         <RightArrow stroke="#fff" />
-      </Button>
+      </NextButton>
     </Wrapper>
   );
 }
-
-const Wrapper = Styled.div<{ disappear: boolean }>`
-  display: flex;
-  position: relative;
-  align-items: center;
-
-  .prevButton {
-    margin-right: 20px;
-  }
-
-  .nextButton {
-    margin-left: 20px;
-  }
-
-  .slider {
-    width: 824px;
-    overflow: hidden;
-
-    &__box {
-      display: flex;
-      width: 100%;
-    }
-
-    &__noContents {
-      width: 100%;
-      height: 100%;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-
-      p {
-        color: ${palette('grayscale', 5)};
-      }
-    }
-
-    &__learnMyself {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      width: 100%;
-      height: 100%;
-
-      &--date {
-        margin: 40px 0 20px 0;
-        color: ${palette('grayscale', 4)};
-      }
-
-      &--img {
-        margin-bottom: 20px;
-        width: 180px;
-        height: 115px;
-      }
-
-      &--percent {
-        -webkit-background-clip: text;
-        -webkit-text-fill-color: transparent;
-        background-clip: text;
-        background-image: linear-gradient(to right, ${palette('primary', 3)}, ${palette('primary', 0)});
-      }
-
-      &--count {
-        margin-top: 5px;
-        color: ${palette('grayscale', 5)};
-
-        span {
-          color: ${palette('grayscale', 7)};
-        }
-      }
-    }
-
-    &__shareTogether {
-      display: flex;
-      flex-direction: column;
-
-      &--title {
-        margin: 30px 0 49px 20px;
-      }
-    }
-
-    &__coupon {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-
-      img {
-        margin: 0;
-      }
-
-      label {
-        margin-top: 4px;
-        color: ${palette('grayscale', -4)};
-      }
-    }
-
-    &__couponBook {
-      display: grid;
-      grid-template-rows: repeat(3, 1fr);
-      grid-template-columns: repeat(4, 1fr) 140px;
-      align-items: center;
-      justify-items: center;
-      width: 100%;
-      height: 100%;
-    }
-
-    &__gradientBack--left {
-      position: absolute;
-      margin: 28px 0 0 68px;
-      background-image: linear-gradient(to right, #fff, rgba(255, 255, 255, 0));
-      width: 224px;
-      height: 313px;
-      animation-name: ${fadeOut};
-      animation-duration: 0.5s;
-      animation-timing-function: ease-out;
-      animation-fill-mode: forwards;
-      ${(props) =>
-        props.disappear &&
-        css`
-          animation-name: ${fadeIn};
-        `}
-    }
-
-    &__gradientBack--right {
-      position: absolute;
-      margin: 28px 0 0 793px;
-      background-image: linear-gradient(to left, #fff, rgba(255, 255, 255, 0));
-      width: 100px;
-      height: 313px;
-      animation-name: ${fadeIn};
-      animation-duration: 0.5s;
-      animation-timing-function: ease-out;
-      animation-fill-mode: forwards;
-      ${(props) =>
-        props.disappear &&
-        css`
-          animation-name: ${fadeOut};
-        `}
-    }
-  }
-
-  button {
-    all: unset;
-    border-radius: 10px;
-    background-color: inherit;
-    width: 48px;
-    height: 48px;
-    color: coral;
-    &:hover {
-      cursor: pointer;
-      color: #fff;
-    }
-  }
-`;
 
 export default MyPageSlider;
