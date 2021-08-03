@@ -23,3 +23,25 @@ export interface IConcertList {
   concerts: IConcert[];
   totalConcertNum: number;
 }
+
+export interface IConcertComment {
+  childrenComment: {
+    _id: string;
+    nickname: string;
+    text: string;
+    createdAt?: string;
+  }[];
+  isDeleted?: boolean;
+  _id: string;
+  userID: {
+    img: string;
+    _id: string;
+    nickname: string;
+  };
+  text: string;
+}
+
+export interface IConcertNewComment {
+  parentID?: string;
+  text: string;
+}

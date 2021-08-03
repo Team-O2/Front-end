@@ -3,34 +3,13 @@ import { CommentWrite, LoginModal, SingleComment } from 'components/molecules';
 import React, { useState } from 'react';
 import { useRecoilValue } from 'recoil';
 import { userStatusState } from 'stores/user';
+import { IConcertComment, IConcertNewComment } from 'types/concert.type';
 import { SCommentWrite } from './style';
 
-interface IData {
-  childrenComment: {
-    _id: string;
-    nickname: string;
-    text: string;
-    createdAt?: string;
-  }[];
-  isDeleted?: boolean;
-  _id: string;
-  userID: {
-    img: string;
-    _id: string;
-    nickname: string;
-  };
-  text: string;
-}
-
-interface INewComment {
-  parentID?: string;
-  text: string;
-}
-
 interface IProps {
-  commentList: Array<IData>;
+  commentList: Array<IConcertComment>;
   concertID?: string;
-  reLoadComment: (newComment: INewComment) => void;
+  reLoadComment: (newComment: IConcertNewComment) => void;
 }
 
 function CommentList({ commentList, concertID, reLoadComment }: IProps): React.ReactElement {
@@ -66,7 +45,7 @@ function CommentList({ commentList, concertID, reLoadComment }: IProps): React.R
           onSubmit={onSubmit}
         ></CommentWrite>
       </SCommentWrite>
-      {commentList?.map((data: IData, index) => (
+      {commentList?.map((data: IConcertComment, index) => (
         <SingleComment
           key={index}
           _id={data._id}

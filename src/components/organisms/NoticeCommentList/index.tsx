@@ -3,33 +3,13 @@ import { CommentWrite, LoginModal, NoticeSingleComment } from 'components/molecu
 import React, { useState } from 'react';
 import { useRecoilValue } from 'recoil';
 import { userStatusState } from 'stores/user';
+import { INoticeComment, INoticeNewComment } from 'types/notice.type';
 import { SCommentWrite } from './style';
-interface IData {
-  childrenComment: {
-    _id: string;
-    nickname: string;
-    text: string;
-    createdAt?: string;
-  }[];
-  isDeleted?: boolean;
-  _id: string;
-  userID: {
-    img: string;
-    _id: string;
-    nickname: string;
-  };
-  text: string;
-}
-
-interface INewComment {
-  parentID?: string;
-  text: string;
-}
 
 interface IProps {
-  commentList: Array<IData>;
+  commentList: Array<INoticeComment>;
   noticeID?: string;
-  reLoadComment: (newComment: INewComment) => void;
+  reLoadComment: (newComment: INoticeNewComment) => void;
 }
 
 function NoticeCommentList({ commentList, noticeID, reLoadComment }: IProps): React.ReactElement {
@@ -67,7 +47,7 @@ function NoticeCommentList({ commentList, noticeID, reLoadComment }: IProps): Re
           onSubmit={onSubmit}
         ></CommentWrite>
       </SCommentWrite>
-      {commentList?.map((data: IData, index) => (
+      {commentList?.map((data: INoticeComment, index) => (
         <NoticeSingleComment
           key={index}
           _id={data._id}
