@@ -59,7 +59,7 @@ export { default as MoreViewArrowIcon } from './moreViewArrow.svg';
 export { default as MyFeedIcon } from './myfeedIcon.svg';
 export * from './mypage';
 export { default as NextIcon } from './nextIcon.svg';
-export { default as NoticeBackgroundIcon } from './noticeHeader.svg';
+export { default as NoticeHeaderIcon } from './noticeHeaderIcon.svg';
 export { default as PlusIcon } from './plusIcon.svg';
 export { default as GreyPlusIcon } from './plusIconGrey.svg';
 export { default as GreydfPlusIcon } from './plusIcon_dfdfdf.svg';
