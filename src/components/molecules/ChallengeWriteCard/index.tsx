@@ -12,7 +12,22 @@ import { useRecoilValue } from 'recoil';
 import { userStatusState } from 'stores/user';
 import { interestList } from '../../../resources/string';
 import { Button, Modal } from '../../atoms';
-import SWriteCard from './style';
+import {
+  BlackButton,
+  ButtonWrapper,
+  CharacterStepImg,
+  CharacterWrapper,
+  ColorButton,
+  Header,
+  InterestTagButton,
+  ProgressBarStep0,
+  ProgressBarStep1,
+  ProgressBarStep2,
+  ProgressBarStep3,
+  QuestionWrapper,
+  TagListWrapper,
+  TagWrapper,
+} from './style';
 
 type selectedStyle = {
   backgroundColor: string;
@@ -175,8 +190,7 @@ function WriteCard({ onChangeForm }: MyFormProps): React.ReactElement {
 
   const setInterestButton = (id: any, interest: string) => {
     return (
-      <button
-        className="tag__interest"
+      <InterestTagButton
         key={id}
         onClick={() => {
           modalInterestHandler(interest);
@@ -189,7 +203,7 @@ function WriteCard({ onChangeForm }: MyFormProps): React.ReactElement {
         }
       >
         {interest}
-      </button>
+      </InterestTagButton>
     );
   };
 
@@ -212,154 +226,147 @@ function WriteCard({ onChangeForm }: MyFormProps): React.ReactElement {
 
   return (
     <>
-      <SWriteCard>
-        <div className="header">Learn Myself {indextoName(userStatusData?.progressGeneration)}</div>
-        {countProgressBar === 0 ? (
-          <div className="character">
-            <div className="character__color-step0">
-              <img className="character__black" src={CharacterBlackIcon} alt="" />
-              <div className="character__message">당신의 오늘을 알고싶어요!</div>
-            </div>
-            <div className="bar">
-              <span className="progressbar">
-                <span className="gauge__initial">.</span>
-              </span>
-            </div>
+      <Header>Learn Myself {indextoName(userStatusData?.progressGeneration)}</Header>
+      {countProgressBar === 0 ? (
+        <CharacterWrapper>
+          <div>
+            <img src={CharacterBlackIcon} alt="" />
+            <p>당신의 오늘을 알고싶어요!</p>
           </div>
-        ) : null}
+          <div>
+            <ProgressBarStep0>
+              <span>.</span>
+            </ProgressBarStep0>
+          </div>
+        </CharacterWrapper>
+      ) : null}
 
-        {countProgressBar === 1 ? (
-          <div className="character">
-            <div className="character__color-step1">
-              <img className="character__detail-step1" src={CharacterColor1Icon} alt="" />
-              <div className="character__message">오호라! 오늘 이런 일이 있었군요!</div>
-            </div>
-            <div className="bar">
-              <span className="progressbar">
-                <span className="gauge__quarter">.</span>
-              </span>
-            </div>
+      {countProgressBar === 1 ? (
+        <CharacterWrapper>
+          <h1>
+            <CharacterStepImg src={CharacterColor1Icon} alt="" />
+            <p>오호라! 오늘 이런 일이 있었군요!</p>
+          </h1>
+          <div>
+            <ProgressBarStep1>
+              <span>.</span>
+            </ProgressBarStep1>
           </div>
-        ) : null}
-        {countProgressBar === 2 ? (
-          <div className="character">
-            <div className="character__color-step2">
-              <img className="character__detail-step2" src={CharacterColor2Icon} alt="" />
-              <div className="character__message">우와! 내일의 당신은 더 행복할거에요 :)</div>
-            </div>
-            <div className="bar">
-              <span className="progressbar">
-                <span className="gauge__half">.</span>
-              </span>
-            </div>
+        </CharacterWrapper>
+      ) : null}
+      {countProgressBar === 2 ? (
+        <CharacterWrapper>
+          <h2>
+            <CharacterStepImg src={CharacterColor2Icon} alt="" />
+            <p>우와! 내일의 당신은 더 행복할거에요 :)</p>
+          </h2>
+          <div>
+            <ProgressBarStep2>
+              <span>.</span>
+            </ProgressBarStep2>
           </div>
-        ) : null}
-        {countProgressBar === 3 ? (
-          <div className="character">
-            <div className="character__color-step3">
-              <img className="character__detail-step3" src={CharacterColor3Icon} alt="" />
-              <div className="character__message">더 성장한 내일의 나를 위해!</div>
-            </div>
-            <div className="bar">
-              <span className="progressbar">
-                <span className="gauge__whole">.</span>
-              </span>
-            </div>
+        </CharacterWrapper>
+      ) : null}
+      {countProgressBar === 3 ? (
+        <CharacterWrapper>
+          <h3>
+            <img src={CharacterColor3Icon} alt="" />
+            <p>더 성장한 내일의 나를 위해!</p>
+          </h3>
+          <div>
+            <ProgressBarStep3>
+              <span>.</span>
+            </ProgressBarStep3>
           </div>
-        ) : null}
+        </CharacterWrapper>
+      ) : null}
 
-        <div className="challenge-card">
-          <div className="challenge-card__title">오늘의 잘한 점을 적어보세요.</div>
-          <div className="challenge-card__restriction">
-            {byte.byte1}/{maxByte}
-          </div>
-          <textarea
-            className="textarea"
-            name="description1"
-            value={description1}
-            placeholder="오늘의 잘한 점을 적어보세요."
-            onChange={totalOnChange}
-          ></textarea>
+      <QuestionWrapper>
+        <h1>오늘의 잘한 점을 적어보세요.</h1>
+        <p>
+          {byte.byte1}/{maxByte}
+        </p>
+        <textarea
+          name="description1"
+          value={description1}
+          placeholder="오늘의 잘한 점을 적어보세요."
+          onChange={totalOnChange}
+        ></textarea>
+      </QuestionWrapper>
+      <QuestionWrapper>
+        <h1>오늘의 못한 점을 적어보세요.</h1>
+        <p>
+          {byte.byte2}/{maxByte}
+        </p>
+        <textarea
+          name="description2"
+          value={description2}
+          placeholder="오늘의 못한 점을 적어보세요."
+          onChange={totalOnChange}
+        ></textarea>
+      </QuestionWrapper>
+      <QuestionWrapper>
+        <h1>잘한 점/못한 점을 통해 배운 것과 다음에 실천할 것을 적어보세요.</h1>
+        <p>
+          {byte.byte3}/{maxByte}
+        </p>
+        <textarea
+          name="description3"
+          value={description3}
+          placeholder="배운 것과 실천할 것을 적어보세요."
+          onChange={totalOnChange}
+        ></textarea>
+      </QuestionWrapper>
+
+      <TagWrapper>
+        해시태그
+        <div>
+          {interestList.map((interest, id) => {
+            if (id < 6) {
+              return setInterestButton(id, interest);
+            }
+          })}
+
+          <Button
+            onClick={() => {
+              setIsOpenTag(!isOpenTag);
+            }}
+          >
+            <img src={MoreClickedIcon} alt=""></img>
+          </Button>
+          <TagListWrapper>
+            {isOpenTag === true ? (
+              <button>
+                {isOpenTag === true ? (
+                  interestList.map((interest, id) => {
+                    return setInterestButton(id, interest);
+                  })
+                ) : (
+                  <div></div>
+                )}
+              </button>
+            ) : null}
+          </TagListWrapper>
         </div>
-        <div className="challenge-card">
-          <div className="challenge-card__title">오늘의 못한 점을 적어보세요.</div>
-          <div className="challenge-card__restriction">
-            {byte.byte2}/{maxByte}
-          </div>
-          <textarea
-            className="textarea"
-            name="description2"
-            value={description2}
-            placeholder="오늘의 못한 점을 적어보세요."
-            onChange={totalOnChange}
-          ></textarea>
+      </TagWrapper>
+
+      {countProgressBar === 3 ? (
+        <ButtonWrapper>
+          <ColorButton onClick={handleSubmit}>글 올리기</ColorButton>
+        </ButtonWrapper>
+      ) : (
+        <ButtonWrapper>
+          <BlackButton>글 올리기</BlackButton>
+        </ButtonWrapper>
+      )}
+
+      <Modal isOpen={isBadgeModal} setIsOpen={setIsBadgeModal} isBlur={true}>
+        <div>
+          <h1>뱃지 획득</h1>
+          <h2>축하합니다! 뱃지 하나가 추가되었습니다</h2>
+          <p>마이페이지를 확인해주세요 :)</p>
         </div>
-        <div className="challenge-card">
-          <div className="challenge-card__title">잘한 점/못한 점을 통해 배운 것과 다음에 실천할 것을 적어보세요.</div>
-          <div className="challenge-card__restriction">
-            {byte.byte3}/{maxByte}
-          </div>
-          <textarea
-            className="textarea"
-            name="description3"
-            value={description3}
-            placeholder="배운 것과 실천할 것을 적어보세요."
-            onChange={totalOnChange}
-          ></textarea>
-        </div>
-
-        <div className="tag">
-          해시태그
-          <div className="tag__list">
-            {interestList.map((interest, id) => {
-              if (id < 5) {
-                return setInterestButton(id, interest);
-              }
-            })}
-
-            <Button
-              onClick={() => {
-                setIsOpenTag(!isOpenTag);
-              }}
-            >
-              <img className="tag__moreIcon" src={MoreClickedIcon} alt=""></img>
-            </Button>
-            <div className="tag__group">
-              {isOpenTag === true ? (
-                <button className="tag__group-detail">
-                  {isOpenTag === true ? (
-                    interestList.map((interest, id) => {
-                      return setInterestButton(id, interest);
-                    })
-                  ) : (
-                    <div className="modal__base"></div>
-                  )}
-                </button>
-              ) : null}
-            </div>
-          </div>
-        </div>
-
-        {countProgressBar === 3 ? (
-          <div className="button">
-            <button className="write__button-color" onClick={handleSubmit}>
-              글 올리기
-            </button>
-          </div>
-        ) : (
-          <div className="button">
-            <button className="write__button-black">글 올리기</button>
-          </div>
-        )}
-
-        <Modal isOpen={isBadgeModal} setIsOpen={setIsBadgeModal} isBlur={true}>
-          <div className="badge">
-            <div className="badge__modal">뱃지 획득</div>
-            <div className="badge__detail">축하합니다! 뱃지 하나가 추가되었습니다</div>
-            <div className="badge__detail">마이페이지를 확인해주세요 :)</div>
-          </div>
-        </Modal>
-      </SWriteCard>
+      </Modal>
     </>
   );
 }
