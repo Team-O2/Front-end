@@ -1,6 +1,6 @@
 import { ArrowDownIcon, ArrowUpIcon } from 'assets/images';
 import React, { useEffect, useState } from 'react';
-import { SDropDown } from './style';
+import { Arrow, Input, Item, Label, Line, ListContainer, SummaryInner, SummaryOuter, SummaryValue } from './style';
 
 export interface IProps {
   className?: string;
@@ -30,29 +30,29 @@ function DropDown({ setState, state, defaultMsg, itemList }: IProps): React.Reac
   }, [state]);
 
   return (
-    <SDropDown isOpen={isOpen} isChecked={isChecked} state={state}>
-      <div className="summary__container--outer">
-        <div className="summary__container--inner" onClick={handleOpenOnClick}>
-          <div className="summary_value">{state.length === 0 ? defaultMsg : state.join(', ')}</div>
-          <img className="arrow" src={isOpen ? ArrowUpIcon : ArrowDownIcon}></img>
-        </div>
-      </div>
+    <>
+      <SummaryOuter isOpen={isOpen} isChecked={isChecked}>
+        <SummaryInner onClick={handleOpenOnClick}>
+          <SummaryValue state={state}>{state.length === 0 ? defaultMsg : state.join(', ')}</SummaryValue>
+          <Arrow src={isOpen ? ArrowUpIcon : ArrowDownIcon}></Arrow>
+        </SummaryInner>
+      </SummaryOuter>
       {isOpen && (
-        <div className="container">
+        <ListContainer>
           {itemList.map((item, id) => {
             return (
               <div key={id}>
-                <label>
-                  <input type="radio" name="radio" value={item} onChange={handleOnChange} />
-                  <span>{item}</span>
-                </label>
-                {id !== itemList.length - 1 && <div className="line"></div>}
+                <Label>
+                  <Input type="radio" name="radio" value={item} onChange={handleOnChange} />
+                  <Item>{item}</Item>
+                </Label>
+                {id !== itemList.length - 1 && <Line></Line>}
               </div>
             );
           })}
-        </div>
+        </ListContainer>
       )}
-    </SDropDown>
+    </>
   );
 }
 
