@@ -4,10 +4,10 @@ import { Bottom, DetailTitleWrapper, Middle, Top } from './style';
 
 interface IProps {
   pageName: string;
-  authorNickname?: string;
-  interestList?: string[];
-  createdAt?: string;
-  title?: string;
+  title: string;
+  createdAt: string;
+  authorNickname: string;
+  interestList: string[];
 }
 
 function DetailTitle({ pageName, title, authorNickname, createdAt, interestList }: IProps): React.ReactElement {
