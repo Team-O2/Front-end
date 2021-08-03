@@ -3,7 +3,6 @@ import { LoginModal, ReplyComment } from 'components/molecules';
 import React, { useState } from 'react';
 import { useRecoilValue } from 'recoil';
 import { userState, userStatusState } from 'stores/user';
-import Styled from 'styled-components';
 import { IReply } from 'types/challenge.type';
 import {
   CommentContainer,
@@ -112,48 +111,5 @@ function SingleComment({ _id, userID, childrenComment, text, concertID }: IProps
     </SingleCommentWrapper>
   );
 }
-const SSingleComment = Styled.div`
-  display: flex;
-  flex-direction: column;
-  .comment {
-    display: flex;
-    justify-content: space-between;
-    line-height: 1.43;
-    font-family: 'AppleSDGothicNeo';
-    &__profile {
-      width: 28px;
-      height: 28px;
-    }
-    &__writer {
-      font-size: 16px;
-      font-weight: bold;
-    }
-    &__text {
-      width: 647px;
-      color: #6f6f6f;
-      font-size: 16px;
-    }
-    &__toggle {
-      width: 50px;
-      text-align: right;
-      color: #36c8f5;
-      font-size: 14px;
-      font-weight: bold;
-    }
-  }
-  .reply {
-    display: flex;
-    flex-direction: column;
-    margin: 16px 0 31px;
-    &__write {
-    display: flex;
-    justify-content: flex-end;
-    }
-    &__comment {
-      width: 712px;
-    }
-  }
- 
 
-`;
 export default SingleComment;

@@ -20,24 +20,29 @@ export const CommentText = Styled.div`
   color: ${palette('grayscale', 5)};
   ${theme('font.body3')};
 `;
+
 export const CommentToggle = Styled.div`
   width: 50px;
   text-align: right;
   color: ${palette('primary', 3)};
   ${theme('font.subhead2')};
 `;
+
 export const ReplyContainer = Styled.div`
   display: flex;
   flex-direction: column;
   margin: 16px 0 31px;
 `;
+
 export const ReplyCommentWrite = Styled(CommentWrite)`
   display: flex;
   justify-content: flex-end;
 `;
+
 export const ReplyContent = Styled.div`
   width: 712px;
 `;
+
 export const NoticeSingleCommentWrapper = Styled.div`
   display: flex;
   flex-direction: column;

@@ -25,3 +25,25 @@ export interface ISearchNoticeList {
   searchData: INotice[];
   totalNoticeSearchNum: number;
 }
+
+export interface INoticeComment {
+  childrenComment: {
+    _id: string;
+    nickname: string;
+    text: string;
+    createdAt?: string;
+  }[];
+  isDeleted?: boolean;
+  _id: string;
+  userID: {
+    img: string;
+    _id: string;
+    nickname: string;
+  };
+  text: string;
+}
+
+export interface INoticeNewComment {
+  parentID?: string;
+  text: string;
+}
