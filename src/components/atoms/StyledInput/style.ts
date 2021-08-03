@@ -9,6 +9,7 @@ export const SStyledInput = Styled.div<{
 }>`
   display : flex;
   flex-direction : column;
+  margin : ${(props) => props.margin};
   .input{
     border : none;
     font-size : 16px;
