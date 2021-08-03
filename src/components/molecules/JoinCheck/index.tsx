@@ -1,8 +1,24 @@
 import { CheckAllOffIcon, CheckAllOnIcon, CheckOffIcon, CheckOnIcon, ModalCloseIcon } from 'assets/images';
-import { Button, CheckBox, Modal } from 'components/atoms';
+import { Button, Modal } from 'components/atoms';
 import React, { useEffect, useState } from 'react';
-import Styled from 'styled-components';
 import { IUserDataType } from 'types/user.type';
+import {
+  BiggerCheckBox,
+  BiggerLabel,
+  CheckAllImg,
+  CheckImg,
+  CloseImage,
+  Content,
+  FlexContainer,
+  Label,
+  Line,
+  ModalContainer,
+  MoreBtn,
+  PolicyCheck,
+  SmallerCheckBox,
+  Titie,
+  Wrapper,
+} from './style';
 
 export interface IProps {
   className?: string;
@@ -106,230 +122,62 @@ function JoinCheck({ setUserData, userData }: IProps): React.ReactElement {
   ];
 
   return (
-    <JoinCheckWrap>
+    <Wrapper>
       <div>
-        <div className="flex" style={{ margin: '16px 0 0 0' }}>
-          <CheckBox className="check_icon1" checked={checkAll} onChange={handleCheckAll} id="policyAll" />
-          <label htmlFor="policyAll" className="policy_exp1">
-            {checkAll ? (
-              <img src={CheckAllOnIcon} className="checkAllImg" />
-            ) : (
-              <img src={CheckAllOffIcon} className="checkAllImg" />
-            )}
+        <FlexContainer style={{ margin: '16px 0 0 0' }}>
+          <BiggerCheckBox checked={checkAll} onChange={handleCheckAll} id="policyAll" />
+          <BiggerLabel htmlFor="policyAll">
+            <CheckAllImg src={checkAll ? CheckAllOnIcon : CheckAllOffIcon} />
             전체 동의 (선택 정보 포함)
-          </label>
-        </div>
-        <div className="line"></div>
-        <div className="policy_check">
-          <div className="flex">
-            <CheckBox
-              className="check_icon2"
-              checked={isChecked.check1}
-              name="policy1"
-              onChange={handleCheck}
-              id="policy1"
-            />
-            <label htmlFor="policy1" className="policy_exp2">
-              {isChecked.check1 ? (
-                <img src={CheckOnIcon} className="checkimg" />
-              ) : (
-                <img src={CheckOffIcon} className="checkimg" />
-              )}
+          </BiggerLabel>
+        </FlexContainer>
+        <Line />
+        <PolicyCheck>
+          <FlexContainer>
+            <SmallerCheckBox checked={isChecked.check1} name="policy1" onChange={handleCheck} id="policy1" />
+            <Label htmlFor="policy1">
+              <CheckImg src={isChecked.check1 ? CheckOnIcon : CheckOffIcon} />
               (필수) 서비스 이용약관 동의
-            </label>
-          </div>
-          <Button className="btn_more" onClick={modalHandler}>
-            보기
-          </Button>
-        </div>
-        <div className="policy_check">
-          <div className="flex">
-            <CheckBox
-              className="check_icon2"
-              checked={isChecked.check2}
-              name="policy2"
-              onChange={handleCheck}
-              id="policy2"
-            />
-            <label htmlFor="policy2" className="policy_exp2">
-              {isChecked.check2 ? (
-                <img src={CheckOnIcon} className="checkimg" />
-              ) : (
-                <img src={CheckOffIcon} className="checkimg" />
-              )}
+            </Label>
+          </FlexContainer>
+          <MoreBtn onClick={modalHandler}>보기</MoreBtn>
+        </PolicyCheck>
+        <PolicyCheck>
+          <FlexContainer>
+            <SmallerCheckBox checked={isChecked.check2} name="policy2" onChange={handleCheck} id="policy2" />
+            <Label htmlFor="policy2">
+              <CheckImg src={isChecked.check2 ? CheckOnIcon : CheckOffIcon} />
               (필수) 개인정보 수집 이용 동의
-            </label>
-          </div>
-          <Button className="btn_more" onClick={modalHandler}>
-            보기
-          </Button>
-        </div>
-        <div className="policy_check">
-          <div className="flex">
-            <CheckBox
-              className="check_icon2"
-              checked={isChecked.check3}
-              name="policy3"
-              onChange={handleCheck}
-              id="policy3"
-            />
-            <label htmlFor="policy3" className="policy_exp2">
-              {isChecked.check3 ? (
-                <img src={CheckOnIcon} className="checkimg" />
-              ) : (
-                <img src={CheckOffIcon} className="checkimg" />
-              )}
+            </Label>
+          </FlexContainer>
+          <MoreBtn onClick={modalHandler}>보기</MoreBtn>
+        </PolicyCheck>
+        <PolicyCheck>
+          <FlexContainer>
+            <SmallerCheckBox checked={isChecked.check3} name="policy3" onChange={handleCheck} id="policy3" />
+            <Label htmlFor="policy3">
+              <CheckImg src={isChecked.check3 ? CheckOnIcon : CheckOffIcon} />
               (선택) 광고성 정보 수신 및 마케팅 활용 동의
-            </label>
-          </div>
-          <Button className="btn_more" onClick={modalHandler}>
-            보기
-          </Button>
-        </div>
+            </Label>
+          </FlexContainer>
+          <MoreBtn onClick={modalHandler}>보기</MoreBtn>
+        </PolicyCheck>
       </div>
       <Modal isOpen={isPolicyOpen} setIsOpen={setIsPolicyOpen} isBlur={true}>
-        <div className="modal__container">
+        <ModalContainer>
           <Button
             onClick={() => {
               setIsPolicyOpen(false);
             }}
           >
-            <img className="modal__button--close" src={ModalCloseIcon}></img>
+            <CloseImage src={ModalCloseIcon}></CloseImage>
           </Button>
-          <div className="modal__title">{policyList[0].title}</div>
-          <p className="modal__content">{policyList[0].content}</p>
-        </div>
+          <Titie>{policyList[0].title}</Titie>
+          <Content>{policyList[0].content}</Content>
+        </ModalContainer>
       </Modal>
-    </JoinCheckWrap>
+    </Wrapper>
   );
 }
-
-const JoinCheckWrap = Styled.div`
-display : flex;
-flex-direction: column;
-align-items : center;
-.modal{
-  &__container{
-    display : flex;
-    position : fixed;
-    top : 0;
-    right : 0;
-    bottom : 0;
-    left : 0;
-    flex-direction : column;
-    align-items : center;
-    margin : auto;
-    border-radius: 16px;
-    background-color : #ffffff;
-    padding : 50px 50px 40px 40px;
-    width : 600px;
-    height : 730px;
-  }
-  &__title{
-    margin-bottom : 40px;
-    text-align: left;
-    line-height: 1.36;
-    letter-spacing: -0.5px;
-    color : #0d0d0d;
-    font-size: 28px;
-    font-stretch: normal;
-    font-weight: bold;
-    font-style: normal;
-  }
-  &__content{
-    height : 100%;
-    overflow: scroll;
-    text-align: left;
-    line-height: 1.5;
-    letter-spacing: -0.5px;
-    color: #525252;
-    font-size: 16px;
-    font-stretch: normal;
-    font-weight: normal;
-    font-style: normal;
-  }
-  &__button--close{
-    position : absolute;
-    top : 54px;
-    right : 44px;
-    width : 16px;
-    height : 16px;
-  }
-}
-.checkAllImg{
-  margin-right : 16px;
-  width : 20px;
-  height : 20px;
-}
-.checkimg{
-  margin-right : 17px;
-  margin-left : 3.7px;
-  width: 14.7px;
-  height: 10.1px;
-}
-.check_icon2, .check_icon1{
-  display:none;
-}
-
-.line{
-  margin-top : 18px;
-  background-color: #c4c4c4;
-  width: 406px;
-  height: 2px;
-}
- .flex{
-    display : flex;
-    align-items : center;
- }
- .policy_check{
-    display : flex;
-    align-items : center;
-    justify-content : space-between;
-    margin-top : 19px;
-    width : 406px;
- }
- .check_icon1{
-    margin-right : 16px;
-    width : 22px;
-    height : 22px
- }
- .check_icon2{
-    margin-right : 16px;
-    width : 22px;
-    height : 22px
- }
- .policy_exp1{
-  display : flex;
-    align-items : center;
-  line-height: 1.5;
-  letter-spacing: -0.5px;
-    font-size: 16px;
-  font-stretch: normal;
-  font-weight: normal;
-  font-style: normal;
- }
- .policy_exp2{
-  display : flex;
-    align-items : center;
-
-  vertical-align : center;
-  line-height: 1.5;
-  letter-spacing: -0.5px;
-    font-size: 14px;
-  font-stretch: normal;
-  font-weight: normal;
-  font-style: normal;
-}
-.btn_more{
-  line-height: 1.5;
-  letter-spacing: -0.5px;
-  color : #a5a5a5;
-    font-size: 14px;
-  font-stretch: normal;
-  font-weight: normal;
-  font-style: normal;
-}
-
-`;
 
 export default JoinCheck;
