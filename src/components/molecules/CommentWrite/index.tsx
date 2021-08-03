@@ -1,5 +1,5 @@
 import React from 'react';
-import { SButton, SForm, STextArea } from './style';
+import { CommentButton, CommentForm, CommentTextArea } from './style';
 
 export interface IProps {
   className?: string;
@@ -12,20 +12,20 @@ export interface IProps {
 
 function CommentWrite({ value, isComment, onChange, onClick, onSubmit }: IProps): React.ReactElement {
   return (
-    <SForm>
+    <CommentForm>
       <form onSubmit={onSubmit}>
-        <STextArea
+        <CommentTextArea
           isCommentCheck={isComment}
           name="comment"
           onChange={onChange}
           value={value}
           placeholder="댓글을 입력해 주세요"
-        ></STextArea>
-        <SButton isCommentCheck={isComment} onClick={onClick}>
+        ></CommentTextArea>
+        <CommentButton isCommentCheck={isComment} onClick={onClick}>
           {isComment ? '댓글 작성' : '답글 작성'}
-        </SButton>
+        </CommentButton>
       </form>
-    </SForm>
+    </CommentForm>
   );
 }
 

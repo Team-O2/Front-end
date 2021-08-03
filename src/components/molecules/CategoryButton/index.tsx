@@ -1,5 +1,5 @@
 import React from 'react';
-import { CategoryButtonWrapper, SButton } from './style';
+import { Category, CategoryButtonWrapper } from './style';
 
 interface IProps {
   tag: string;
@@ -15,9 +15,9 @@ function CategoryButton({ tag, isMore, selectedCategory, onClickInterest }: IPro
   };
   return (
     <CategoryButtonWrapper readMore={isMore} isCategoryClicked={isSelected}>
-      <SButton readMore={isMore} isCategoryClicked={isSelected} onClick={onSelectInterest} className="button">
+      <Category readMore={isMore} isCategoryClicked={isSelected} onClick={onSelectInterest} className="button">
         {tag}
-      </SButton>
+      </Category>
     </CategoryButtonWrapper>
   );
 }

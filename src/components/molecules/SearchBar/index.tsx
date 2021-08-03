@@ -1,6 +1,6 @@
 import { SearchIcon } from 'assets/images';
 import React from 'react';
-import { SButton, SearchBarWrapper, SInput } from './style';
+import { SearchBarWrapper, SearchButton, SearchInput } from './style';
 
 export interface IProps {
   className?: string;
@@ -11,10 +11,10 @@ export interface IProps {
 function SearchBar({ onClickSearch, onChangeKeyword }: IProps): React.ReactElement {
   return (
     <SearchBarWrapper>
-      <SInput name="searchBar" onChange={onChangeKeyword} placeholder="키워드를 검색해 주세요"></SInput>
-      <SButton onClick={onClickSearch}>
+      <SearchInput name="searchBar" onChange={onChangeKeyword} placeholder="키워드를 검색해 주세요"></SearchInput>
+      <SearchButton onClick={onClickSearch}>
         <img src={SearchIcon} alt="" />
-      </SButton>
+      </SearchButton>
     </SearchBarWrapper>
   );
 }

@@ -4,7 +4,7 @@ import React, { useState } from 'react';
 import { useRecoilValue } from 'recoil';
 import { userStatusState } from 'stores/user';
 import { IConcertComment, IConcertNewComment } from 'types/concert.type';
-import { SCommentWrite } from './style';
+import { CommentWriteContainer } from './style';
 
 interface IProps {
   commentList: Array<IConcertComment>;
@@ -35,7 +35,7 @@ function CommentList({ commentList, concertID, reLoadComment }: IProps): React.R
   };
   return (
     <>
-      <SCommentWrite>
+      <CommentWriteContainer>
         <CommentWrite
           className="comment__write"
           value={commentValue}
@@ -44,7 +44,7 @@ function CommentList({ commentList, concertID, reLoadComment }: IProps): React.R
           onClick={onSubmit}
           onSubmit={onSubmit}
         ></CommentWrite>
-      </SCommentWrite>
+      </CommentWriteContainer>
       {commentList?.map((data: IConcertComment, index) => (
         <SingleComment
           key={index}
