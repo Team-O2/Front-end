@@ -2,7 +2,7 @@ import { HamburgerIcon, O2Icon } from 'assets/images';
 import { Button, Link, Modal } from 'components/atoms';
 import { Hamburger } from 'components/organisms';
 import React, { useState } from 'react';
-import Styled from 'styled-components';
+import { ButtonWrapper, HeaderButton, HeaderWrapper, HideWrap } from './style';
 
 function Header(): React.ReactElement {
   const [hamburgerOpen, setHamburgerOpen] = useState(false);
@@ -12,49 +12,24 @@ function Header(): React.ReactElement {
 
   return (
     <>
-      <HeaderWrap>
-        <div className="header_buttons">
+      <HeaderWrapper>
+        <ButtonWrapper>
           <Button onClick={handleHamburgerOpen}>
-            <img className="button" src={HamburgerIcon}></img>
+            <HeaderButton src={HamburgerIcon}></HeaderButton>
           </Button>
           <Link to="/">
             <Button>
-              <img className="button" src={O2Icon}></img>
+              <HeaderButton src={O2Icon}></HeaderButton>
             </Button>
           </Link>
-        </div>
+        </ButtonWrapper>
         <Modal isOpen={hamburgerOpen} setIsOpen={setHamburgerOpen} isBlur={false}>
           <Hamburger />
         </Modal>
-      </HeaderWrap>
+      </HeaderWrapper>
       <HideWrap></HideWrap>
     </>
   );
 }
-
-const HeaderWrap = Styled.div`
-  position: fixed;
-  top:0;
-  left:0;
-  z-index:999;
-    background-color : #242424;
-    width : 100vw;
-    height : 60px;
-    .header_buttons{
-        display : flex;
-        align-items : center;
-        margin-left : 50px;
-        height : 60px;
-    }  
-    .button{
-        margin-right : 20px;
-        width : 32px;
-    }  
-`;
-
-const HideWrap = Styled.div`
-  width : 100vw;
-  height : 60px;
-`;
 
 export default Header;
