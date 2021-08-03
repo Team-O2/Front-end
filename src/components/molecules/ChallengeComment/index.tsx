@@ -1,7 +1,7 @@
 import { ChallengeCommentWrite, ChallengeSingleComment } from 'components/molecules';
 import React from 'react';
 import { ICommentData } from 'types/challenge.type';
-import SCommentList from './style';
+import { CommentListWrapper } from './style';
 
 interface IProps {
   commentList: Array<ICommentData> | null;
@@ -17,7 +17,7 @@ function ChallengeComment({
   setCommentListFlag,
 }: IProps): React.ReactElement {
   return (
-    <SCommentList>
+    <CommentListWrapper>
       <ChallengeCommentWrite
         className="comment__write"
         isComment={true} //댓글부분
@@ -34,7 +34,7 @@ function ChallengeComment({
           setCommentListFlag={setCommentListFlag}
         />
       ))}
-    </SCommentList>
+    </CommentListWrapper>
   );
 }
 

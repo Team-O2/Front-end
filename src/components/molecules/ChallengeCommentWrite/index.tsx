@@ -1,9 +1,8 @@
 import { postChallengeComment } from 'apis';
-import { Button, TextArea } from 'components/atoms';
 import React, { useState } from 'react';
 import { useRecoilValue } from 'recoil';
 import { userStatusState } from 'stores/user';
-import SCommentWrite from './style';
+import { CommentSubmitButton, CommentWriteWrapper } from './style';
 
 export interface IProps {
   className?: string;
@@ -52,22 +51,12 @@ function ChallengeCommentWrite({
   };
 
   return (
-    <SCommentWrite isCommentt={isComment} className={className}>
-      <form className="form">
-        <TextArea
-          className="input"
-          name="comment"
-          onChange={handleChange}
-          value={value}
-          placeholder="댓글을 입력해 주세요"
-        ></TextArea>
-        <div className="comment__button-submit">
-          <Button onClick={btnHandler} className="comment__submit">
-            {isComment ? '댓글 작성' : '답글 작성'}
-          </Button>
-        </div>
+    <CommentWriteWrapper isCommentt={isComment} className={className}>
+      <form>
+        <textarea name="comment" onChange={handleChange} value={value} placeholder="댓글을 입력해 주세요"></textarea>
+        <CommentSubmitButton onClick={btnHandler}>{isComment ? '댓글 작성' : '답글 작성'}</CommentSubmitButton>
       </form>
-    </SCommentWrite>
+    </CommentWriteWrapper>
   );
 }
 export default ChallengeCommentWrite;
