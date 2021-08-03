@@ -7,6 +7,28 @@ import { Link, useHistory } from 'react-router-dom';
 import { useRecoilState } from 'recoil';
 import { userState, userStatusState } from 'stores/user';
 import Styled from 'styled-components';
+import {
+  HamburgerContainer,
+  BottomContainer,
+  ChallengeEndUser,
+  EngTitleBtn,
+  Hide,
+  Line,
+  LoginButton,
+  LoginExp,
+  LoginImage,
+  LogOutBtn,
+  MiddleContainer,
+  NoLoginSubTitle,
+  Padding,
+  SettingBtn,
+  SubTitleImage,
+  TitleBtn,
+  TopContainer,
+  UnChallengeUserSubTitle,
+  UserIcon,
+  UserNameLabel,
+} from './style';
 
 function Hamburger(): React.ReactElement {
   // user상태 :
@@ -83,99 +105,97 @@ function Hamburger(): React.ReactElement {
   }, [generationNum]);
 
   return (
-    <HamburgerWrap>
-      <div className="top">
-        <img className="top__image--usericon" src={userImage}></img>
+    <HamburgerContainer>
+      <TopContainer>
+        <UserIcon src={userImage} />
         {(userStateNum === 0 || userStateNum === 4) && (
-          <div className="top__subtitle top__subtitle--nologin">
+          <NoLoginSubTitle>
             함께 성장하는 공간
             <br />
             창업가들이 마시는 산소
-          </div>
+          </NoLoginSubTitle>
         )}
         {userStateNum === 0 && (
           <Link to="/login">
-            <Button className="loginBtn">
+            <LoginButton>
               <>
-                <img className="loginBtn_icon" src={LoginIcon}></img>
-                <div className="loginBtn_login">로그인</div>
+                <LoginImage src={LoginIcon}></LoginImage>
+                <LoginExp>로그인</LoginExp>
               </>
-            </Button>
+            </LoginButton>
           </Link>
         )}
         {userStateNum === 4 && (
           <Link to="/mypage">
-            <Button className="loginBtn">
+            <LoginButton>
               <>
-                <img className="loginBtn_icon" src={LoginIcon}></img>
-                <div className="loginBtn_login ">마이페이지</div>
+                <LoginImage src={LoginIcon}></LoginImage>
+                <LoginExp>마이페이지</LoginExp>
               </>
-            </Button>
+            </LoginButton>
           </Link>
         )}
         {(userStateNum === 1 || userStateNum === 2 || userStateNum === 3) && (
-          <div className="top__label--userName">
+          <UserNameLabel>
             <span>{userName}</span> CEO님
-          </div>
+          </UserNameLabel>
         )}
         {userStateNum === 1 && (
           <Link to="/challenge/register">
-            <Button className="top__subtitle top__subtitle--unchallengeUser">
+            <UnChallengeUserSubTitle color="#36c8f5">
               <>
-                <img className="top__icon--subtitle" src={HamUnchallengeIcon}></img>
-                <div style={{ color: '#36c8f5', fontWeight: 'bold' }}>
-                  {userStatusData?.registGeneration && changeIndextoName(userStatusData.registGeneration)} Learn Myself
-                  신청
-                </div>
+                <SubTitleImage src={HamUnchallengeIcon}></SubTitleImage>
+                {userStatusData?.registGeneration && changeIndextoName(userStatusData.registGeneration)} Learn Myself
+                신청
               </>
-            </Button>
+            </UnChallengeUserSubTitle>
           </Link>
         )}
         {userStateNum === 2 && (
-          <Button className="top__subtitle top__subtitle--challengeEndUser">
-            <div style={{ color: '#03b6ce' }}>
+          <ChallengeEndUser>
+            <div>
               <span>Next Learn Myself</span> <br />
               Comming Soon...
             </div>
-          </Button>
+          </ChallengeEndUser>
         )}
         {userStateNum === 3 && (
           <Link to="/challenge/write">
-            <Button className="top__subtitle top__subtitle--unchallengeUser">
+            <UnChallengeUserSubTitle color="#03b6ce">
               <>
-                <img className="top__icon--subtitle" src={HamChallengeIcon}></img>
-                <div style={{ color: '#03b6ce', fontWeight: 'bold' }}>오늘의 Learn Myself 작성</div>
+                <SubTitleImage src={HamChallengeIcon}></SubTitleImage>
+                오늘의 Learn Myself 작성
               </>
-            </Button>
+            </UnChallengeUserSubTitle>
           </Link>
         )}
-      </div>
-      <div className="middle">
+      </TopContainer>
+      <MiddleContainer>
         {(userStateNum === 0 || userStateNum === 1 || userStateNum === 2 || userStateNum === 3) && (
           <>
             <HamDropDown isEnglish={true} title="Learn Myself" itemList={challengeList} />
             <div style={{ marginBottom: '10px' }}></div>
             <Link to="/concert">
-              <Button className="middle__button--title middle__button--engTitle">Share Together</Button>
+              <EngTitleBtn>Share Together</EngTitleBtn>
             </Link>
-            <div className="middle__line"></div>
+            <Line />
             <Link to="/notice">
-              <Button className="middle__button--title">공지사항</Button>
+              <TitleBtn>공지사항</TitleBtn>
             </Link>
           </>
         )}
         {(userStateNum === 1 || userStateNum === 2 || userStateNum === 3) && (
           <Link to="/mypage">
-            <Button className="middle__button--title">나의 O2</Button>
+            <TitleBtn>나의 O2</TitleBtn>
           </Link>
         )}
         {userStateNum === 4 && (
           <>
             <Link to="/admin/challenge/open">
-              <Button className="middle__button--title body3">챌린지 오픈하기</Button>
+              <TitleBtn>챌린지 오픈하기</TitleBtn>
             </Link>
             <Link to="/admin/challenge/list">
-              <Button className="middle__button--title body3">챌린지 정보</Button>
+              <TitleBtn>챌린지 정보</TitleBtn>
             </Link>
             <div style={{ marginBottom: '10px' }}></div>
             <HamDropDown
@@ -188,216 +208,25 @@ function Hamburger(): React.ReactElement {
             />
           </>
         )}
-        <div className="middle__padding--forHide">for Hide</div>
-      </div>
-      <div className="bottom">
-        <div className="middle--forHide"></div>
+        <Padding>for Hide</Padding>
+      </MiddleContainer>
+      <BottomContainer>
+        <Hide />
         {(userStateNum === 1 || userStateNum === 2 || userStateNum === 3) && (
           <Link to="/setting">
             <Button>
-              <div className="bottom__button" style={{ color: '#3d3d3d' }}>
-                설정
-              </div>
+              <SettingBtn>설정</SettingBtn>
             </Button>
           </Link>
         )}
         {(userStateNum === 1 || userStateNum === 2 || userStateNum === 3 || userStateNum === 4) && (
           <Button onClick={handleLogOut}>
-            <div className="bottom__button" style={{ color: '#8b8b8b', marginLeft: '8px', marginRight: '24px' }}>
-              로그아웃
-            </div>
+            <LogOutBtn>로그아웃</LogOutBtn>
           </Button>
         )}
-      </div>
-    </HamburgerWrap>
+      </BottomContainer>
+    </HamburgerContainer>
   );
 }
-
-const HamburgerWrap = Styled.div`
-  display : flex;
-  position : fixed;
-  top :0;
-  flex-direction:column;
-  z-index : 999;
-  box-shadow: 0 4px 40px 0 rgba(30, 37, 98, 0.1);
-  background-color : #ffffff;
-  width: 282px;
-  height : 100vh;
-  animation : slideIn 0.5s;
-  @keyframes slideIn {
-    from {
-      left : -282px;
-    }
-    to {
-      left : 0%;
-    }
-  }
-
-  span{
-    font-weight : bold;
-  }
-
-  .top{
-    display : flex;
-    flex:none;
-    flex-direction : column;
-    align-items : center;
-    background-color: #edfeff;
-    height : 376px;
-    &__icon--subtitle{
-      margin-right : 6px;
-      width : 20px;
-      height : 20px;
-    }
-    &__label{
-      &--userName{
-        margin-top : 28px;
-        line-height: 1.5;
-        letter-spacing: -0.5px;
-        color : #3d3d3d;
-        font-size: 16px;
-        font-stretch: normal;
-        font-weight: normal;
-        font-style: normal;
-      }
-    }
-    &__image{
-      &--usericon{
-        margin : 120px 91px 0 91px;
-        border : 1px solid #dfdfdf;
-        border-radius:50px;
-        width : 100px;
-        height : 100px;
-        object-fit:cover;
-      }
-    }
-    &__subtitle{
-      line-height: 1.25;
-      letter-spacing: normal;
-      font-family: HomepageBaukasten;
-      font-size: 16px;
-      font-stretch: normal;
-      font-weight: normal;
-      font-style: normal;
-      &--nologin{
-        margin-top : 16px;
-        margin-bottom : 30px;
-        -webkit-background-clip: text;
-        background-clip: text;
-        background-image:linear-gradient(to right, #34caf4, #13e2dd);
-        text-align : center;
-        line-height: 1.5;
-        letter-spacing: -0.5px;
-        -webkit-text-fill-color: transparent;
-      }
-      &--unchallengeUser{
-        display : flex;
-        align-items : center;
-        margin-top : 30px;
-        line-height: 1.5;
-        letter-spacing: -0.5px;
-      }
-      &--challengeEndUser{
-        margin-top : 30px;
-      }
-    }
-  }
-
-  .loginBtn{
-      display : flex;
-      align-items : center;
-      justify-content : center;
-      width : 100%;
-      &_icon{
-        margin-right : 6px;
-        width : 20px;
-        height : 20px;
-      }
-      &_login{
-        height: 18px;
-        line-height: 1.38;
-        letter-spacing: -0.5px;
-        color : #3d3d3d;
-        font-size : 16px;
-        font-stretch: normal;
-        font-weight: bold;
-        font-style: normal;
-      }
-  }
-  .middle{
-    display : flex;
-    flex:1;
-    flex-direction : column;
-    align-items : center;
-    padding-top : 70px;
-    overflow : scroll;
-    ::-webkit-scrollbar {
-      width: 0.8rem;
-      height: 1rem;
-    }
-    ::-webkit-scrollbar-track {
-      background: none;
-    }
-    ::-webkit-scrollbar-thumb {
-      box-sizing: border-box;
-      border-radius: 0.5rem;
-      background: #c1c1c1;
-    }
-    /* Handle on hover */
-    ::-webkit-scrollbar-thumb:hover {
-      background: #c1c1c1;
-    }
-    &__button{
-      &--title{
-        margin : 10px 0;
-        height : 20px;
-        color : #3d3d3d;
-        font-family : AppleSDGothicNeo;
-        font-size : 16px;
-        :hover {
-          font-weight: bold;
-        }
-      }
-      &--engTitle{
-        font-family : HomepageBaukasten;
-      }
-    }
-    &__line{
-      margin : 20px 0;
-      background-color: #c1c1c1;
-      width :164px;
-      height: 1px;
-    }
-    &--forHide{
-      position : absolute;
-      top:-50px;
-      background-image: linear-gradient(to bottom, rgba(255, 255, 255, 0), #ffffff);
-      width : 100%;
-      height : 50px;
-    }
-    &__padding--forHide{
-      line-height : 60px;
-      color:rgba(0,0,0,0);
-    }
-  }
-  .bottom{
-    display: flex;
-    position:relative;
-    flex:none;
-    align-items:flex-start;
-    justify-content:flex-end;
-    height : 84px;
-    &__button{
-      line-height: 1.5;
-      letter-spacing: -0.5px;
-      font-family: AppleSDGothicNeo;
-      font-size: 16px;
-      font-size : 16px;
-      font-stretch: normal;
-      font-weight: normal;
-      font-style: normal;
-    }
-  }
-`;
 
 export default Hamburger;
