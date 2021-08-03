@@ -13,6 +13,7 @@ const grayscale = [
   '#3d3d3d',
   '#242424',
   '#0d0d0d',
+  '#c4c4c4',
 ];
 
 const theme = {
