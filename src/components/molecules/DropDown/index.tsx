@@ -1,6 +1,6 @@
 import { ArrowDownIcon, ArrowUpIcon } from 'assets/images';
 import React, { useEffect, useState } from 'react';
-import { SDropDown } from './style';
+import { Arrow, Input, Item, Label, Line, ListContainer, SummaryInner, SummaryOuter, SummaryValue } from './style';
 
 export interface IProps {
   className?: string;
@@ -35,29 +35,35 @@ function DropDown({ setState, state, defaultMsg, itemList, page, isSetting }: IP
   }, []);
 
   return (
-    <SDropDown isOpen={isOpen} isChecked={isChecked} page={page} isSetting={isSetting}>
-      <div className="summary__container--outer">
-        <div className="summary__container--inner" onClick={handleOpenOnClick}>
-          <div className="summary_value">{state}</div>
-          <img className="arrow" src={isOpen ? ArrowUpIcon : ArrowDownIcon}></img>
-        </div>
-      </div>
+    <>
+      <SummaryOuter isOpen={isOpen} isChecked={isChecked} page={page} isSetting={isSetting}>
+        <SummaryInner
+          onClick={handleOpenOnClick}
+          isOpen={isOpen}
+          isChecked={isChecked}
+          page={page}
+          isSetting={isSetting}
+        >
+          <SummaryValue>{state}</SummaryValue>
+          <Arrow src={isOpen ? ArrowUpIcon : ArrowDownIcon}></Arrow>
+        </SummaryInner>
+      </SummaryOuter>
       {isOpen && (
-        <div className="container">
+        <ListContainer page={page} isSetting={isSetting}>
           {itemList.map((item, id) => {
             return (
               <div key={id}>
-                <label>
-                  <input type="radio" name="radio" value={item} onChange={handleOnChange} />
-                  <span>{item}</span>
-                </label>
-                {id !== itemList.length - 1 && <div className="line"></div>}
+                <Label>
+                  <Input type="radio" name="radio" value={item} onChange={handleOnChange} />
+                  <Item page={page}>{item}</Item>
+                </Label>
+                {id !== itemList.length - 1 && <Line page={page} isSetting={isSetting} />}
               </div>
             );
           })}
-        </div>
+        </ListContainer>
       )}
-    </SDropDown>
+    </>
   );
 }
 
