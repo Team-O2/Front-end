@@ -1,33 +1,13 @@
 import { SmallLeftArrowIcon, SmallRightArrowIcon } from 'assets/images';
-import { Button, Icon } from 'components/atoms';
+import { Icon } from 'components/atoms';
 import { Concert } from 'components/molecules';
 import React, { useState } from 'react';
 import { useHistory } from 'react-router';
-import Styled from 'styled-components';
-import { ifProp } from 'styled-tools';
+import { IConcert } from 'types/concert.type';
+import { ConcertListWrapper, NavigationContainer, PageNavi, PageNumber } from './style';
 
-interface IData {
-  videoLink: string;
-  imgThumbnail: string;
-  likes: number;
-  commentNum: number;
-  scrapNum: number;
-  interest: string[];
-  hashtag: string[];
-  isDeleted: boolean;
-  comments: string[];
-  isNotice: boolean;
-  _id: string;
-  title: string;
-  user: { _id: string; nickname: string; img: string };
-  createdAt: string;
-  text: string;
-  authorNickname: string;
-  updatedAt: string;
-  __v: number;
-}
 interface IProps {
-  concertData: Array<IData> | undefined;
+  concertData: Array<IConcert> | undefined;
   totalConcertNum: number;
   currentPage: number;
   setCurrentPage: (value: number) => void;
@@ -68,9 +48,9 @@ function ConcertList({ concertData, totalConcertNum, currentPage, setCurrentPage
   };
   return (
     <>
-      <SConcertList>
+      <ConcertListWrapper>
         {concertData?.map(
-          (card: IData) =>
+          (card: IConcert) =>
             card && (
               <Concert
                 imgThumbnail={card.imgThumbnail}
@@ -86,19 +66,14 @@ function ConcertList({ concertData, totalConcertNum, currentPage, setCurrentPage
               ></Concert>
             ),
         )}
-        <div className="navigationContainer">
+        <NavigationContainer>
           <PageNavi onClick={handlePrevPageClick}>
             <Icon src={SmallLeftArrowIcon} />
           </PageNavi>
           <ul>
             {target.map((pageIdx: number) => (
               <li key={pageIdx}>
-                <PageNumber
-                  className="subhead4_eng"
-                  value={`${pageIdx}`}
-                  onClick={handlePageClick}
-                  isSelected={currentPage === pageIdx}
-                >
+                <PageNumber value={`${pageIdx}`} onClick={handlePageClick} isSelected={currentPage === pageIdx}>
                   {`${pageIdx}`}
                 </PageNumber>
               </li>
@@ -107,35 +82,10 @@ function ConcertList({ concertData, totalConcertNum, currentPage, setCurrentPage
           <PageNavi onClick={handleNextPageClick}>
             <Icon src={SmallRightArrowIcon} />
           </PageNavi>
-        </div>
-      </SConcertList>
+        </NavigationContainer>
+      </ConcertListWrapper>
     </>
   );
 }
 
-const SConcertList = Styled.div`
-  margin-top: 60px;
-  .navigationContainer {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    margin: 60px auto 76px;
-    
-    img {
-      width: 24px;
-      height: 24px;
-    }
-    ul li {
-      float: left;
-      margin: 0 15px;
-    }
-  }
-`;
-
-const PageNavi = Styled(Button)`
-  margin: 0 25px;
-`;
-const PageNumber = Styled(Button)<{ isSelected?: boolean }>`
-  color: ${ifProp('isSelected', '#03b6ce', '#6f6f6f')};
-`;
 export default ConcertList;

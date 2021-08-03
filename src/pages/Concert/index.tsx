@@ -2,30 +2,11 @@ import { getConcertSearchData } from 'apis';
 import { ConcertTitle } from 'components/molecules';
 import { CategoryList, ConcertCardList, ConcertList, SearchForm } from 'components/organisms';
 import React, { useEffect, useState } from 'react';
-import Styled from 'styled-components';
+import { IConcert } from 'types/concert.type';
+import { ConcertWrapper } from './style';
 
-export interface IConcertData {
-  videoLink: string;
-  imgThumbnail: string;
-  likes: number;
-  commentNum: number;
-  scrapNum: number;
-  interest: string[];
-  hashtag: string[];
-  isDeleted: boolean;
-  comments: string[];
-  isNotice: boolean;
-  _id: string;
-  title: string;
-  user: { _id: string; nickname: string; img: string };
-  createdAt: string;
-  text: string;
-  authorNickname: string;
-  updatedAt: string;
-  __v: number;
-}
 function Concert(): React.ReactElement {
-  const [concertList, setConcertList] = useState<IConcertData[] | null>(null);
+  const [concertList, setConcertList] = useState<IConcert[] | null>(null);
   const [selectedCategory, setSelectedCategory] = useState('전체');
   const [keyword, setKeyword] = useState('');
   const [currentPage, setCurrentPage] = useState(1);
@@ -61,7 +42,7 @@ function Concert(): React.ReactElement {
   const concertData = concertList?.slice(3);
 
   return (
-    <SShareTogether>
+    <ConcertWrapper>
       <ConcertTitle></ConcertTitle>
       <CategoryList
         reRenderCategory={reRenderCategory}
@@ -81,15 +62,8 @@ function Concert(): React.ReactElement {
         currentPage={currentPage}
         setCurrentPage={setCurrentPage}
       ></ConcertList>
-    </SShareTogether>
+    </ConcertWrapper>
   );
 }
 
-const SShareTogether = Styled.div`
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  margin: 0 auto;
-  width: 845px;
-`;
 export default Concert;
