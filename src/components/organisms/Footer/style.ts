@@ -60,7 +60,7 @@ export const FooterWrapper = Styled.div`
   width: 100%;
   height: 278px;
   img {
-    margin-right: 980px;
+    margin-right: 985px;
     margin-bottom: 27px;
   }
 `;
