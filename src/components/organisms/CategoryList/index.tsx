@@ -2,7 +2,7 @@ import { MoreClickedIcon, MoreIcon, NextIcon } from 'assets/images';
 import { CategoryButton } from 'components/molecules';
 import React, { useEffect, useRef, useState } from 'react';
 import { interestList } from 'resources/string';
-import { CategoryListWrapper, Hashtag, HashtagContainer, Main, More, Next, Shadow } from './style';
+import { CategoryListWrapper, Hashtag, HashtagContainer, Main, More, NextButton, Shadow } from './style';
 
 interface IProps {
   reRenderCategory?: (interest: string) => void;
@@ -62,26 +62,24 @@ function CategoryList({ reRenderCategory, selectedCategory, categoryChange }: IP
           </Hashtag>
         </HashtagContainer>
         <Shadow />
-        <Next>
+        <NextButton>
           <img src={NextIcon} onClick={nextSlide} alt="" />
-        </Next>
+        </NextButton>
         <img src={isMoreClicked ? MoreClickedIcon : MoreIcon} onClick={onClickOpenMore} alt="" />
       </Main>
       <div>
         {isOpenMore && (
-          <>
-            <More>
-              {interestList.map((tag, index) => (
-                <CategoryButton
-                  key={index}
-                  tag={tag}
-                  isMore={true}
-                  selectedCategory={selectedCategory}
-                  onClickInterest={onClickInterest}
-                ></CategoryButton>
-              ))}
-            </More>
-          </>
+          <More>
+            {interestList.map((tag, index) => (
+              <CategoryButton
+                key={index}
+                tag={tag}
+                isMore={true}
+                selectedCategory={selectedCategory}
+                onClickInterest={onClickInterest}
+              ></CategoryButton>
+            ))}
+          </More>
         )}
       </div>
     </CategoryListWrapper>

@@ -23,7 +23,7 @@ function LoginModal({ isLoginModalOpen, setIsLoginModalOpen }: IProps): React.Re
     <Modal isOpen={isLoginModalOpen} setIsOpen={setIsLoginModalOpen} isBlur={true}>
       <LoginModalWrapper>
         <LoginNotice>
-          <img className="login__img" src={LoginAlertIcon} alt=""></img>
+          <img src={LoginAlertIcon} alt=""></img>
           <LoginNoticeTitle>앗!</LoginNoticeTitle>
           <LoginNoticeDetail>로그인이 필요한 서비스입니다</LoginNoticeDetail>
         </LoginNotice>

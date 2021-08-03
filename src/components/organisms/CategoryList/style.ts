@@ -25,7 +25,7 @@ export const Shadow = Styled.div`
   height: 46px;
 `;
 
-export const Next = Styled.div`
+export const NextButton = Styled.div`
   z-index: 5;
 `;
 
