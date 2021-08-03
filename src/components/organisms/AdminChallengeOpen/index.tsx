@@ -1,12 +1,27 @@
 import { challengeOpen } from 'apis';
 import { CheckOffIcon, CheckOnIcon, GreyPlusIcon } from 'assets/images';
-import { Button, CheckBox, FileUpload as PhotoUpload, Label } from 'components/atoms';
+import { FileUpload as PhotoUpload } from 'components/atoms';
 import { AdminChallengeOpenForm } from 'components/molecules';
 import React, { useEffect, useState } from 'react';
 import { useHistory } from 'react-router-dom';
 import { useRecoilValue } from 'recoil';
 import { userStatusState } from 'stores/user';
-import Styled from 'styled-components';
+import {
+  CheckContainer,
+  CheckExp,
+  CheckImage,
+  ElementLabel,
+  OpenButton,
+  PageLabel,
+  PhotoUploadBottomDesc,
+  PhotoUploadContainer,
+  PhotoUploadImage,
+  PhotoUploadMiddleDesc,
+  SCheckBox,
+  Title,
+  UploadContainer,
+  Wrapper,
+} from './style';
 
 function AdminChallengeOpen(): React.ReactElement {
   const history = useHistory();
@@ -67,156 +82,40 @@ function AdminChallengeOpen(): React.ReactElement {
   };
 
   return (
-    <SAdminChallengeOpen isButtonDisabled={isButtonDisabled}>
-      <Label className="admin__label--page">관리자 페이지</Label>
-      <Label className="admin__label--title">챌린지 등록</Label>
+    <Wrapper>
+      <PageLabel>관리자 페이지</PageLabel>
+      <Title>챌린지 등록</Title>
       <AdminChallengeOpenForm
         isConditionMet={isConditionMet}
         setIsConditionMet={setIsConditionMet}
         challengeOpenData={challengeOpenData}
         setChallengeOpenData={setChallengeOpenData}
       />
-      <div className="admin__container--uploder">
-        <Label className="admin__label--element">사진 업로드</Label>
+      <UploadContainer>
+        <ElementLabel>사진 업로드</ElementLabel>
         <PhotoUpload width={'262px'} height={'216px'} setFile={setImage} fileType={0}>
-          <div className="photoUpload__container">
-            <img className="photoUpload__icon--plus" src={GreyPlusIcon}></img>
-            <div className="photoUpload__desc--middle">
+          <PhotoUploadContainer>
+            <PhotoUploadImage src={GreyPlusIcon}></PhotoUploadImage>
+            <PhotoUploadMiddleDesc>
               대표이미지
               <br />
               (필수)
-            </div>
-            <div className="photoUpload__desc--bottom">(1920px X 253px)</div>
-          </div>
+            </PhotoUploadMiddleDesc>
+            <PhotoUploadBottomDesc>(1920px X 253px)</PhotoUploadBottomDesc>
+          </PhotoUploadContainer>
         </PhotoUpload>
-      </div>
-      <div className="check__container">
-        <CheckBox id="checkBox" className="check__checkbox" checked={isChecked} onChange={checkHandler} />
-        <label htmlFor="checkBox" className="check__exp">
-          <img src={isChecked ? CheckOnIcon : CheckOffIcon} className="check__icon" />위 내용을 확인하셨습니까?
-        </label>
-      </div>
-      <Button className="admin__button--fin" disabled={isButtonDisabled} onClick={btnHandler}>
+      </UploadContainer>
+      <CheckContainer>
+        <SCheckBox id="checkBox" checked={isChecked} onChange={checkHandler} />
+        <CheckExp htmlFor="checkBox">
+          <CheckImage src={isChecked ? CheckOnIcon : CheckOffIcon} />위 내용을 확인하셨습니까?
+        </CheckExp>
+      </CheckContainer>
+      <OpenButton disabled={isButtonDisabled} isButtonDisabled={isButtonDisabled} onClick={btnHandler}>
         등록하기
-      </Button>
-    </SAdminChallengeOpen>
+      </OpenButton>
+    </Wrapper>
   );
 }
-
-const SAdminChallengeOpen = Styled.div<{ isButtonDisabled?: boolean }>`
-    display : flex;
-    flex-direction: column;
-    align-items: center;
-    .check{
-      &__container{
-        margin-top : 200px;
-        margin-bottom : 40px;
-      }
-      &__checkbox{
-        display : none;
-      }
-      &__exp{
-        font-size: 18px;
-        color : #8b8b8b;
-        line-height: 1.56;
-        letter-spacing: -0.5px;
-        display : flex;
-        align-items : center;
-      }
-      &__icon{
-        width : 24px;
-        height : 24px;
-        margin-right : 16px;
-      }
-    }
-    .photoUpload{
-        &__container{
-            width: 262px;
-            height: 216px;
-            background-color : #f2f2f2;
-            display : flex;
-            flex-direction : column;
-            align-items : center;
-            justify-content : center;
-        }
-        &__icon--plus{
-            width : 38px;
-            height : 38px;
-        }
-        &__desc{
-            &--middle{
-                font-size: 16px;
-                font-weight: bold;
-                line-height: 1.38;
-                letter-spacing: -0.5px;
-                color : #a5a5a5;
-                text-align: center;
-                margin-top :4px;
-                margin-bottom : 20px;
-            }
-            &--bottom{
-                font-size: 14px;
-                line-height: 1.29;
-                color : #a5a5a5;
-            }
-        }
-    }
-    .admin{
-        &__label{
-            &--page{
-                font-size: 16px;
-                font-weight: normal;
-                font-stretch: normal;
-                font-style: normal;
-                line-height: 1.5;
-                letter-spacing: -0.5px;
-                color : #3d3d3d;
-                margin-top : 60px;
-            }
-            &--title{
-                font-size: 48px;
-                font-weight: bold;
-                font-stretch: normal;
-                font-style: normal;
-                line-height: 1.42;
-                letter-spacing: -0.5px;
-                color:#3d3d3d;
-                margin-top:10px;
-                margin-bottom : 110px;
-            }
-            &--element{
-                font-size: 18px;
-                font-weight: bold;
-                line-height: 1.33;
-                letter-spacing: -0.5px;
-                color: #0d0d0d;
-                margin-bottom :11px;
-            }
-        }
-        &__button{
-            &--fin{
-                width: 406px;
-                height: 60px;
-                border-radius: 4px;
-                font-size : 16px;
-                font-weight : bold;  
-                line-height: 1.38;
-                      letter-spacing: -0.5px;   
-                color : #ffffff; 
-                background-color : ${(props) => (props.isButtonDisabled ? '#dfdfdf' : undefined)};
-                background-image : ${(props) =>
-                  !props.isButtonDisabled ? 'linear-gradient(to right, #36c8f5,#13e2dd )' : undefined};        
-                margin-bottom : 304px;
-            }
-        }
-        &__container{
-            &--uploder{
-                width : 844px;
-                display : flex;
-                flex-direction : column;
-            }
-        }
-    }
-  `;
 
 export default AdminChallengeOpen;
