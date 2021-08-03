@@ -2,13 +2,13 @@ import { Button, TextArea } from 'components/atoms';
 import Styled from 'styled-components';
 import { ifProp, palette } from 'styled-tools';
 
-export const SForm = Styled.div`
+export const CommentForm = Styled.div`
   display: flex;
   flex-direction: column;
   margin-left: auto;
 `;
 
-export const STextArea = Styled(TextArea)<{ isCommentCheck?: boolean }>`
+export const CommentTextArea = Styled(TextArea)<{ isCommentCheck?: boolean }>`
   border: 1px solid #dfdfdf;
   padding: 10px;
   width: ${ifProp('isCommentCheck', '100%', '713px')};
@@ -18,7 +18,7 @@ export const STextArea = Styled(TextArea)<{ isCommentCheck?: boolean }>`
   }
 `;
 
-export const SButton = Styled(Button)<{ isCommentCheck?: boolean }>`
+export const CommentButton = Styled(Button)<{ isCommentCheck?: boolean }>`
   display: flex;
   margin-top: 8px;
   margin-left: auto;

@@ -24,7 +24,7 @@ export const Text = Styled.div`
 }
 `;
 
-export const SButton = Styled(Button)`
+export const ConcertButton = Styled(Button)`
   margin-top:37px;
   margin-bottom:85px;
   border-radius: 4px;

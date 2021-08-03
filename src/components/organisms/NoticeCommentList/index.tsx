@@ -4,7 +4,7 @@ import React, { useState } from 'react';
 import { useRecoilValue } from 'recoil';
 import { userStatusState } from 'stores/user';
 import { INoticeComment, INoticeNewComment } from 'types/notice.type';
-import { SCommentWrite } from './style';
+import { CommentWriteContainer } from './style';
 
 interface IProps {
   commentList: Array<INoticeComment>;
@@ -38,7 +38,7 @@ function NoticeCommentList({ commentList, noticeID, reLoadComment }: IProps): Re
   } else document.body.style.overflow = 'unset';
   return (
     <>
-      <SCommentWrite>
+      <CommentWriteContainer>
         <CommentWrite
           value={commentValue}
           isComment={true}
@@ -46,7 +46,7 @@ function NoticeCommentList({ commentList, noticeID, reLoadComment }: IProps): Re
           onClick={onSubmit}
           onSubmit={onSubmit}
         ></CommentWrite>
-      </SCommentWrite>
+      </CommentWriteContainer>
       {commentList?.map((data: INoticeComment, index) => (
         <NoticeSingleComment
           key={index}

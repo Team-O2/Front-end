@@ -1,5 +1,5 @@
 import Styled from 'styled-components';
 
-export const SCommentWrite = Styled.div`
+export const CommentWriteContainer = Styled.div`
   margin-bottom:68px;
 `;

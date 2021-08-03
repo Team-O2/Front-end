@@ -2,7 +2,7 @@ import { Button, Input } from 'components/atoms';
 import Styled from 'styled-components';
 import { palette } from 'styled-tools';
 
-export const SInput = Styled(Input)`
+export const SearchInput = Styled(Input)`
   border: 1px solid #dfdfdf;
   border-radius: 72px;
   background-color: rgba(223, 223, 223, 0.2);
@@ -16,7 +16,7 @@ export const SInput = Styled(Input)`
   }
 `;
 
-export const SButton = Styled(Button)`
+export const SearchButton = Styled(Button)`
   opacity: 50%;
   margin-bottom:4px;
   margin-left:-50px;
