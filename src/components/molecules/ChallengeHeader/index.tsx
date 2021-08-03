@@ -5,7 +5,7 @@ import React, { useCallback, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { useRecoilValue } from 'recoil';
 import { userStatusState } from 'stores/user';
-import SChallengeHeader from './style';
+import { AllFeedButtom, HeaderWrapper, MyFeedButtom, SChallengeHeader, WriteButton } from './style';
 
 interface IChallengeDataList {
   good: string;
@@ -121,14 +121,14 @@ function ChallengeHeader({
 
   return (
     <SChallengeHeader>
-      <div className="title">
-        <p className="title__text">Learn Myself {indextoName(generationNum)}</p>
-        <p className="circle__ani1"></p>
-        <p className="circle__ani2"></p>
-        <p className="circle__ani3"></p>
-        <p className="circle__ani4"></p>
-        <p className="circle__ani5"></p>
-      </div>
+      <HeaderWrapper>
+        <p>Learn Myself {indextoName(generationNum)}</p>
+        <h1></h1>
+        <h2></h2>
+        <h3></h3>
+        <h4></h4>
+        <h5></h5>
+      </HeaderWrapper>
       <CategoryList reRenderCategory={reRenderCategory} selectedCategory={selectedCategory} />
       <SearchForm
         reRenderKeyword={reRenderKeyword}
@@ -137,19 +137,19 @@ function ChallengeHeader({
       />
       {userStateNum === 1 || userStateNum === 0 ? null : (
         <div>
-          <button className="button__icon">
+          <WriteButton>
             <Link to="/challenge/write">
-              <img className="write__icon" src={WriteIcon}></img>
+              <img src={WriteIcon}></img>
             </Link>
-          </button>
+          </WriteButton>
           {booleanMine === true ? (
-            <button className="button__icon2" onClick={setMine}>
-              <img className="allfeed__icon" src={AllFeedIcon}></img>
-            </button>
+            <AllFeedButtom onClick={setMine}>
+              <img src={AllFeedIcon}></img>
+            </AllFeedButtom>
           ) : (
-            <button className="button__icon3" onClick={setMine}>
-              <img className="myfeed__icon" src={MyFeedIcon}></img>
-            </button>
+            <MyFeedButtom onClick={setMine}>
+              <img src={MyFeedIcon}></img>
+            </MyFeedButtom>
           )}
         </div>
       )}
