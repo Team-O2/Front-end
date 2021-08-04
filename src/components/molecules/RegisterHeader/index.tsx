@@ -22,11 +22,9 @@ const indextoName = (index: number) => {
 const RegisterHeader = ({ generation, title, img }: IProps) => {
   return (
     <Container url={img}>
-      <p>
-        <GenerationText>
-          {title} {indextoName(generation)} 모집
-        </GenerationText>
-      </p>
+      <GenerationText>
+        {title} {indextoName(generation)} 모집
+      </GenerationText>
     </Container>
   );
 };
