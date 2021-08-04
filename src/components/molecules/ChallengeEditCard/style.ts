@@ -104,6 +104,7 @@ export const TagListWrapper = Styled.div`
 
 
 `;
+
 export const ProgressBarStep0 = Styled.span`
     display: inline-block;
     background-color: #d6d3d3;
@@ -167,7 +168,6 @@ export const ButtonWrapper = Styled.div`
 `;
 
 export const ColorButton = Styled(Button)`
-
     margin: 0 auto;
     margin-top:60px;
     border:none;
@@ -179,6 +179,7 @@ export const ColorButton = Styled(Button)`
     background: linear-gradient(91.91deg, ${palette('primary', 3)} 7.34%, ${palette('primary', 0)} 90.35%);
     ${theme('font.subhead3')};
 `;
+
 export const BlackButton = Styled(Button)`
     margin: 0 auto;
     margin-top:60px;
