@@ -1,6 +1,15 @@
-import { Img, Tag } from 'components/atoms';
+import { Img } from 'components/atoms';
 import React from 'react';
-import { LinkWrapper } from './style';
+import {
+  CardContainer,
+  Content,
+  DateInfo,
+  ImageWrapper,
+  InfoContainer,
+  InfoTag,
+  MyPageConcertCardWrapper,
+  Title,
+} from './style';
 
 export interface IProps {
   imagePath?: string;
@@ -22,21 +31,21 @@ function MyPageConcertCard({
   id,
 }: IProps): React.ReactElement {
   return (
-    <LinkWrapper to={`/concert/${id}`}>
+    <MyPageConcertCardWrapper to={`/concert/${id}`}>
       <span>
-        <div className="card">
-          <div className="card__img-wrapper">
+        <CardContainer>
+          <ImageWrapper>
             <Img src={imagePath} />
-          </div>
-          <div className="card__info">
-            <Tag className="subhead2" name={tagName} color={tagColor} isSelected={false} />
-            <div className="card__info--title subhead4">{title}</div>
-            <div className="card__info--content body2" dangerouslySetInnerHTML={{ __html: `${content}` }}></div>
-            <div className="card__info--date body1_eng">{date}</div>
-          </div>
-        </div>
+          </ImageWrapper>
+          <InfoContainer>
+            <InfoTag name={tagName} color={tagColor} isSelected={false} />
+            <Title>{title}</Title>
+            <Content dangerouslySetInnerHTML={{ __html: `${content}` }}></Content>
+            <DateInfo>{date}</DateInfo>
+          </InfoContainer>
+        </CardContainer>
       </span>
-    </LinkWrapper>
+    </MyPageConcertCardWrapper>
   );
 }
 

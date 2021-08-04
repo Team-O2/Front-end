@@ -3,7 +3,15 @@ import { Icon, Link } from 'components/atoms';
 import React from 'react';
 import { IConcert } from 'types/concert.type';
 import { IChallenge } from 'types/myPage.type';
-import { EngTitle, Title, Wrapper } from './style';
+import {
+  EmptyTextWrapper,
+  EngTitle,
+  InfoWrapper,
+  ItemContainer,
+  LinkWrapper,
+  MyPageSectionContainer,
+  Title,
+} from './style';
 
 export interface IProps {
   title: string;
@@ -17,25 +25,25 @@ export interface IProps {
 
 function MyPageSection({ title, subTitle, path, data, renderItemList, ...props }: IProps): React.ReactElement {
   return (
-    <Wrapper {...props}>
+    <MyPageSectionContainer>
       {title === '작성한 글' ? <Title>{title}</Title> : <EngTitle>{title}</EngTitle>}
-      <div className="infoContainer">
-        <h2 className="body3">{subTitle}</h2>
+      <InfoWrapper>
+        <h2>{subTitle}</h2>
         <Link to={path}>
-          <div className="infoContainer__link">
-            <p className="body2">더보기</p>
+          <LinkWrapper>
+            <p>더보기</p>
             <Icon src={MoreViewArrowIcon} />
-          </div>
+          </LinkWrapper>
         </Link>
-      </div>
+      </InfoWrapper>
       {data ? (
-        <div className="itemContainer">{renderItemList(data)}</div>
+        <ItemContainer {...props}>{renderItemList(data)}</ItemContainer>
       ) : (
-        <div className="emptyContainer">
-          <p className="subhead4">스크랩한 글이 없어요</p>
-        </div>
+        <EmptyTextWrapper>
+          <p>스크랩한 글이 없어요</p>
+        </EmptyTextWrapper>
       )}
-    </Wrapper>
+    </MyPageSectionContainer>
   );
 }
 
