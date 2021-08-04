@@ -35,6 +35,7 @@ export const MenuBarWrapper = Styled.div`
     display:inline-block;
     padding-left: 0px;
 `;
+
 export const IconWrapper = Styled.div`
     padding: 33px 620px 0px 30px; 
     padding-bottom:50px;
@@ -79,6 +80,7 @@ export const FormDetailWrapper = Styled.div`
     }
 
 `;
+
 export const CommentFoldButton = Styled.button`
 
     border-radius: 0px 0px 18px 18px;
@@ -89,11 +91,12 @@ export const CommentFoldButton = Styled.button`
     color: ${palette('grayscale', 0)};
     ${theme('font.subhead3')};
 `;
+
 export const ButtonWrapper = Styled.div`
     align-items: center;
     margin: 0 auto;
     padding: 50px 385px 0px 385px;
-    `;
+`;
 
 export const FoldButton = Styled.button`
     border:0;
@@ -101,6 +104,7 @@ export const FoldButton = Styled.button`
     color: ${palette('primary', 5)};
     ${theme('font.subhead4')};
 `;
+
 export const MenuButton = Styled.button`
     border:none;
     background-color:${palette('grayscale', 0)};
@@ -122,13 +126,11 @@ export const CommentButton = Styled.button`
     text-align: center;
     color: ${palette('grayscale', 0)};
     ${theme('font.subhead3')};
-
 `;
 
 export const ProfileWrapper = Styled.div`
     display:inline-block;
     width: calc( 100% - 140px);
-
 `;
 
 export const InterestTag = Styled.div`
@@ -138,12 +140,12 @@ export const InterestTag = Styled.div`
     line-height: 20px;
     color: ${palette('grayscale', 5)};
     ${theme('font.subhead2')};
-
 `;
 
 export const Container = Styled.div`
-  padding-top: 60px;
+    padding-top: 60px;
 `;
+
 export const ProfileImage = Styled.img`
     margin: 0 15px 0px 30px;
     border: solid 1px ${palette('grayscale', 0)};
