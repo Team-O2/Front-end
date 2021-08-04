@@ -41,6 +41,8 @@ import { userState } from 'stores/user';
 import { IMyPageConcert, IMyPageHeader } from 'types/myPage.type';
 import {
   CouponBookWrapper,
+  GradientLeft,
+  GradientRight,
   NextButton,
   PrevButton,
   Slider,
@@ -102,7 +104,7 @@ function MyPageSlider({ userInfo }: IProps): React.ReactElement {
   };
 
   return (
-    <Wrapper disappear={!!currentSlide}>
+    <Wrapper>
       <PrevButton onClick={prevSlide}>
         <LeftArrow stroke="#fff" />
       </PrevButton>
@@ -220,8 +222,8 @@ function MyPageSlider({ userInfo }: IProps): React.ReactElement {
           </MyPageCard>
         </SliderBox>
       </Slider>
-      {(!localVisible || animation) && <div className="slider__gradientBack--left"></div>}
-      {(localVisible || animation) && <div className="slider__gradientBack--right"></div>}
+      {(!localVisible || animation) && <GradientLeft disappear={!!currentSlide}></GradientLeft>}
+      {(localVisible || animation) && <GradientRight disappear={!!currentSlide}></GradientRight>}
       <NextButton onClick={nextSlide}>
         <RightArrow stroke="#fff" />
       </NextButton>
