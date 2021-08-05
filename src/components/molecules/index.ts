@@ -33,7 +33,6 @@ export { default as LoginModal } from './LoginModal';
 export { default as MyPageConcertCard } from './MyPageConcertCard';
 export { default as MyPageSection } from './MyPageSection';
 export { default as MyPageSlider } from './MyPageSlider';
-export { default as Notice } from './Notice';
 export { default as NoticeSingleComment } from './NoticeSingleComment';
 export { default as RegisterHeader } from './RegisterHeader';
 export { default as ChallengeReCommentList, default as ReplyComment } from './ReplyComment';

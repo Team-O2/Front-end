@@ -1,6 +1,6 @@
 import { SmallLeftArrowIcon, SmallRightArrowIcon } from 'assets/images';
 import { Icon } from 'components/atoms';
-import { Notice } from 'components/molecules';
+import { Concert } from 'components/molecules';
 import React, { useState } from 'react';
 import { useHistory } from 'react-router';
 import { INotice } from 'types/notice.type';
@@ -51,7 +51,7 @@ function NoticeList({ noticeList, totalNoticeNum, currentPage, setCurrentPage }:
         {noticeList?.map(
           (notice: INotice) =>
             notice && (
-              <Notice
+              <Concert
                 imgThumbnail={notice.imgThumbnail}
                 authorNickname={notice.user.nickname}
                 interestList={notice.interest}
@@ -61,7 +61,7 @@ function NoticeList({ noticeList, totalNoticeNum, currentPage, setCurrentPage }:
                 commentNum={notice.commentNum}
                 key={notice._id}
                 onClickFunc={() => history.push(`/notice/${notice._id}`)}
-              ></Notice>
+              ></Concert>
             ),
         )}
         <NavigationContainer>
