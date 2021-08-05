@@ -11,7 +11,7 @@ interface IProps {
   title: string;
   text: string;
   commentNum: number;
-  likes: number;
+  likeNum?: number;
   onClickFunc: () => void;
 }
 
@@ -23,7 +23,7 @@ function Concert({
   title,
   text,
   commentNum,
-  likes,
+  likeNum,
   onClickFunc,
 }: IProps): React.ReactElement {
   const interestDivide = interestList?.join(' | ');
@@ -40,11 +40,17 @@ function Concert({
           <p dangerouslySetInnerHTML={{ __html: `${text}` }} />
         </Content>
         <ThumbnailContainer onClick={onClickFunc}>
-          <img className="content__right--img" src={imgThumbnail} alt="" />
+          <img src={imgThumbnail} alt="" />
           <ThumbnailOverlay>
             <ThumbnailInfo>
-              <img src={ThumbnailLikeIcon} alt="" />
-              <p> {likes}</p>
+              {likeNum === undefined ? (
+                <div></div>
+              ) : (
+                <>
+                  <img src={ThumbnailLikeIcon} alt="" />
+                  <p> {likeNum}</p>
+                </>
+              )}
               <img src={ThumbnailCommentIcon} alt="" />
               <p> {commentNum}</p>
             </ThumbnailInfo>

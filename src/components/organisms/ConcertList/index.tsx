@@ -60,7 +60,7 @@ function ConcertList({ concertData, totalConcertNum, currentPage, setCurrentPage
                 title={card.title}
                 text={card.text}
                 commentNum={card.commentNum}
-                likes={card.likes}
+                likeNum={card.likes}
                 key={card._id}
                 onClickFunc={() => history.push(`/concert/${card._id}`)}
               ></Concert>
