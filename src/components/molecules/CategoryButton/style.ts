@@ -8,7 +8,7 @@ export const CategoryBtn = Styled(Button)<{ isCategoryClicked?: boolean; readMor
   ${theme('font.subhead3')};
 `;
 
-export const CategoryButtonWrapper = Styled(Button)<{ isCategoryClicked?: boolean; readMore?: boolean }>`
+export const CategoryButtonWrapper = Styled.div<{ isCategoryClicked?: boolean; readMore?: boolean }>`
   height: 46px;
   border-radius: 60px;
   padding: 12px 30px;
