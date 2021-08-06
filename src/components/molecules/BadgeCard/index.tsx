@@ -1,5 +1,6 @@
 import React from 'react';
 import Styled from 'styled-components';
+import { Exp, Image, SBadgeCard, Title } from './style';
 
 export interface IProps {
   className?: string;
@@ -11,31 +12,11 @@ export interface IProps {
 function BadgeCard({ title, explain, img }: IProps): React.ReactElement {
   return (
     <SBadgeCard>
-      <img src={img} className="image"></img>
-      <h1 className="title subhead4">{title}</h1>
-      <p className="explain body3"> {explain}</p>
+      <Image src={img}></Image>
+      <Title>{title}</Title>
+      <Exp> {explain}</Exp>
     </SBadgeCard>
   );
 }
-
-const SBadgeCard = Styled.div`
-    display : flex;
-    flex-direction : column;
-    align-items : center;
-    .image{
-        width : 130px;
-        height : 130px;
-    }
-    .title{
-        margin-top: 10px;
-        margin-bottom : 15px;
-        color : #555555;
-    }
-    .explain{
-        text-align : center;
-        white-space : nowrap;
-        color : #555555;
-    }
-`;
 
 export default BadgeCard;
