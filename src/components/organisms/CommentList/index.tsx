@@ -37,7 +37,6 @@ function CommentList({ commentList, concertID, reLoadComment }: IProps): React.R
     <>
       <CommentWriteContainer>
         <CommentWrite
-          className="comment__write"
           value={commentValue}
           isComment={true}
           onChange={handleChange}

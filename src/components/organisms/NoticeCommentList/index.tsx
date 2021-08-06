@@ -33,9 +33,6 @@ function NoticeCommentList({ commentList, noticeID, reLoadComment }: IProps): Re
       setIsLoginModalOpen(true);
     }
   };
-  if (isLoginModalOpen === true) {
-    document.body.style.overflow = 'hidden';
-  } else document.body.style.overflow = 'unset';
   return (
     <>
       <CommentWriteContainer>

@@ -79,7 +79,7 @@ function SingleComment({ _id, userID, childrenComment, text, concertID }: IProps
   return (
     <SingleCommentWrapper>
       <CommentContainer>
-        <img className="comment__profile" src={userID?.img} alt="" />
+        <img src={userID?.img} alt="" />
         <CommentWriter>{userID?.nickname}</CommentWriter>
         <CommentText>{text}</CommentText>
         <CommentToggle onClick={onClickReplyOpen}>{isOpenReply ? '접기' : '답글보기'}</CommentToggle>
