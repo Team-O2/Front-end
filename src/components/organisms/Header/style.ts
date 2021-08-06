@@ -1,4 +1,5 @@
 import Styled from 'styled-components';
+import { palette } from 'styled-tools';
 
 export const ButtonWrapper = Styled.div`
 display : flex;
@@ -17,7 +18,7 @@ position: fixed;
 top:0;
 left:0;
 z-index:999;
-background-color : #242424;
+background-color : ${palette('grayscale', 8)};
 width : 100vw;
 height : 60px;
 `;

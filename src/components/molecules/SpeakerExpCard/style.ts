@@ -1,5 +1,5 @@
 import Styled from 'styled-components';
-import { theme } from 'styled-tools';
+import { palette, theme } from 'styled-tools';
 
 export const Image = Styled.img`
   width: 260px;
@@ -8,7 +8,7 @@ export const Image = Styled.img`
 
 export const Exp = Styled.p`
   ${theme('font.body4')};
-  color : #ffffff;
+  color : ${palette('grayscale', 0)};
   text-align: center;
   margin-top : 48px;
 `;

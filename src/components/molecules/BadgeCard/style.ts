@@ -1,5 +1,5 @@
 import Styled from 'styled-components';
-import { theme } from 'styled-tools';
+import { palette, theme } from 'styled-tools';
 
 export const Image = Styled.img`
   width : 130px;
@@ -10,14 +10,14 @@ export const Title = Styled.h1`
   ${theme('font.subhead4')};
   margin-top: 10px;
   margin-bottom : 15px;
-  color : #555555;
+  color : ${palette('grayscale', 6)};
 `;
 
 export const Exp = Styled.p`
   ${theme('font.body3')};
   text-align : center;
   white-space : nowrap;
-  color : #555555;
+  color : ${palette('grayscale', 6)};
 `;
 
 export const SBadgeCard = Styled.div`

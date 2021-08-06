@@ -1,12 +1,12 @@
 import Styled from 'styled-components';
-import { theme } from 'styled-tools';
+import { palette, theme } from 'styled-tools';
 
 export const Item = Styled.span`
   ${theme('font.body1')};
   font-size: 16px;
-  width : 100%;
+  width: 100%;
   display: block;
-  color: #8b8b8b;
+  color: ${palette('grayscale', 4)};
 `;
 
 export const SummaryOuter = Styled.div<{
@@ -20,11 +20,12 @@ export const SummaryOuter = Styled.div<{
   border-radius: 4px;
   display : flex;
   align-items : center;
-  border : ${(props) => (props.isOpen || props.isChecked ? 'double 1px transparent' : '1px solid #c1c1c1')};
+  border : ${(props) =>
+    props.isOpen || props.isChecked ? 'double 1px transparent' : `1px solid ${palette('grayscale', 1)}`};
   background-image : 
   ${(props) =>
     props.isOpen || props.isChecked
-      ? 'linear-gradient(white, white), linear-gradient(to right, #36c8f5,#13e2dd)'
+      ? `linear-gradient(white, white), linear-gradient(to right, ${palette('primary', 3)},${palette('primary', 0)})`
       : undefined};
   background-origin : 
   ${(props) => (props.isOpen || props.isChecked ? 'border-box' : undefined)};
@@ -44,7 +45,7 @@ export const SummaryInner = Styled.div`
 export const SummaryValue = Styled.div<{ state: string[] }>`
   ${theme('font.body1')};
   font-size: 16px;
-  color: ${(props) => props.state.length === 0 && '#c1c1c1'};
+  color: ${(props) => props.state.length === 0 && `${palette('grayscale', 2)}`};
 `;
 
 export const Arrow = Styled.img`
@@ -56,7 +57,7 @@ export const Line = Styled.div`
   padding : 0;
   width:804px;
   height : 1px;
-  background-color : #dfdfdf;
+  background-color : ${palette('grayscale', 1)};
   margin : 13px 0 14px 0 ;
 `;
 
@@ -64,13 +65,13 @@ export const ListContainer = Styled.div`
   width:844px;
   height: 212px;
   margin-top: 5px;
-  border: 1px solid #c1c1c1;
+  border: 1px solid ${palette('grayscale', 2)};
   border-radius: 4px;
   display: flex;
   flex-direction: column;
   padding: 20px 18px;
   z-index : 10;
-  background-color : #ffffff;
+  background-color : ${palette('grayscale', 0)};
   overflow-y: scroll;
   ::-webkit-scrollbar {    
       width: 4px;  
@@ -82,12 +83,12 @@ export const ListContainer = Styled.div`
   }  
   /* Handle */  
   ::-webkit-scrollbar-thumb {   
-      background: #dfdfdf;    
+      background: ${palette('grayscale', 1)};    
       border-radius: 20px;  
   }  
   /* Handle on hover */  
   ::-webkit-scrollbar-thumb:hover {    
-      background: #c1c1c1;  
+      background: ${palette('grayscale', 2)};  
   }
 `;
 
@@ -102,6 +103,6 @@ export const Input = Styled.input`
   visibility: hidden;
   position: absolute;
   :checked + span {
-    color: #36c8f5;
+    color: ${palette('primary', 3)};
   }
 `;

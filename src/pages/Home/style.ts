@@ -1,6 +1,6 @@
 import { Button } from 'components/atoms';
 import Styled from 'styled-components';
-import { theme } from 'styled-tools';
+import { palette, theme } from 'styled-tools';
 
 export const TopWrapper = Styled.div`
   padding-top : 178px;
@@ -14,27 +14,27 @@ export const O2Title = Styled.h1`
   letter-spacing: -0.5px;
   font-family: HomepageBaukasten;
   margin-bottom : 50px;
-  color : #0d0d0d;
+  color : ${palette('grayscale', 9)};
 `;
 
 export const TopSubTitle = Styled.h2`
   ${theme('font.dp2')};
-  color : #0d0d0d;
+  color : ${palette('grayscale', 9)};
 `;
 
 export const TopExp = Styled.p`
   ${theme('font.body4')};
   margin-top : 20px;
   margin-bottom : 30px;
-  color : #3d3d3d;
+  color : ${palette('grayscale', 7)};
 `;
 
 export const ChallengeBtn = Styled(Button)`
   ${theme('font.subhead2')};
   width : 164px;
   height : 40px;
-  color : #ffffff;
-  background-color : #3d3d3d;
+  color : ${palette('grayscale', 0)};
+  background-color : ${palette('grayscale', 7)};
   border-radius: 50px;
 `;
 
@@ -45,19 +45,19 @@ export const ChallengeWrapper = Styled.div`
 
 export const MiddleTitle = Styled.h2`
   ${theme('font.dp1_eng')};
-  color : #0d0d0d;
+  color : ${palette('grayscale', 9)};
 `;
 
 export const MiddleSubTitle = Styled.h3`
   ${theme('font.h1')};
-  color : #6f6f6f;
+  color : ${palette('grayscale', 5)};
   margin-top : 20px;
   margin-bottom : 40px;
 `;
 
 export const MiddleExp = Styled.p`
   ${theme('font.body4')};
-  color : #8b8b8b;
+  color : ${palette('grayscale', 4)};
 `;
 
 export const ChallengeCardWrapper = Styled.ul`
@@ -120,12 +120,12 @@ export const ConcertExpContainer2 = Styled.div`
 
 export const ConcertExpType = Styled.p`
   ${theme('font.body3')};
-  color : #8b8b8b;
+  color : ${palette('grayscale', 4)};
 `;
 
 export const ConcertTitle = Styled.h1`
   ${theme('font.h1')};
-  color : #3d3d3d;
+  color : ${palette('grayscale', 7)};
   margin-top : 10px;
 `;
 
@@ -138,7 +138,7 @@ export const ConcertContent = Styled.p`
   font-style: normal;
   line-height: 1.79;
   letter-spacing: -0.5px;
-  color : #555555;
+  color : ${palette('grayscale', 6)};
 `;
 
 export const O2SpeakerWrapper = Styled.div`
@@ -152,12 +152,12 @@ export const O2SpeakerWrapper = Styled.div`
 
 export const O2SpeakerTitle = Styled.h1`
   ${theme('font.dp1_eng')};
-   color : #ffffff;
+   color : ${palette('grayscale', 0)};
 `;
 
 export const O2SpeakerSubTitle = Styled.h2`
   ${theme('font.subhead4')};
-  color : #a5a5a5;
+  color : ${palette('grayscale', 3)};
   margin-top : 20px;
   margin-bottom : 138px;
 `;
@@ -178,13 +178,13 @@ export const O2BadgeWrapper = Styled.div`
 
 export const O2BadgeTitle = Styled.h1`
   ${theme('font.dp1_eng')};
-  color : #0d0d0d;
+  color : ${palette('grayscale', 9)};
   margin-bottom : 20px;
 `;
 
 export const O2BadgeSubTitle = Styled.h2`
   ${theme('font.subhead4')};
-  color : #6f6f6f;
+  color : ${palette('grayscale', 5)};
   margin-bottom : 150px;
 `;
 
@@ -214,13 +214,13 @@ export const LinkCardWrapper = Styled.div`
 
 export const LinkTitle = Styled.h1`
   ${theme('font.h1_eng')};
-  color : #ffffff;
+  color : ${palette('grayscale', 0)};
   height : 68px;
 `;
 
 export const LinkExp = Styled.p`
   ${theme('font.body4')};
-  color : #dfdfdf;
+  color : ${palette('grayscale', 1)};
   margin : 31px 0;
 `;
 
@@ -228,6 +228,6 @@ export const LinkBtn = Styled(Button)`
   ${theme('font.subhead4_eng')};
   width: 200px;
   height: 60px;
-  background-color : #36c8f5;
-  color : #ffffff;
+  background-color : ${palette('primary', 3)};
+  color : ${palette('grayscale', 0)};
 `;
