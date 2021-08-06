@@ -1,10 +1,8 @@
 import { getNoticeData } from 'apis';
 import { DetailTitle } from 'components/molecules';
 import { DetailContent, NoticeCommentList } from 'components/organisms';
-import React, { useEffect, useState } from 'react';
+import React, { useCallback, useEffect, useState } from 'react';
 import { RouteComponentProps } from 'react-router';
-import { useRecoilValue } from 'recoil';
-import { userStatusState } from 'stores/user';
 import { INotice } from 'types/notice.type';
 import { NoticeDetailWrapper } from './style';
 
@@ -16,19 +14,17 @@ function NoticeDetail({ match }: RouteComponentProps<MatchParams>): React.ReactE
   const { id } = match.params;
   const [notice, setNotice] = useState<INotice | null>(null);
   const [commentList, setCommentList] = useState([]);
-  const userStatusData = useRecoilValue(userStatusState);
-  useEffect(() => {
-    const getConcertList = async () => {
-      const data = await getNoticeData(id);
-      data[0] && setNotice(data[0]);
-      data[0] && setCommentList(data[0].comments);
-    };
-    getConcertList();
-  }, [commentList, userStatusData, id]);
+  const [isRerender, setIsRerender] = useState<boolean>(false);
+  
+  const getNoticeContent = useCallback(async () => {
+    const data = await getNoticeData(id);
+    data[0] && setNotice(data[0]);
+    data[0] && setCommentList(data[0].comments);
+  }, [id]);
 
-  const reLoadComment = (newComment: any) => {
-    setCommentList(commentList?.concat(newComment));
-  };
+  useEffect(() => {
+    getNoticeContent();
+  }, [isRerender, getNoticeContent]);
 
   return (
     <NoticeDetailWrapper>
@@ -51,7 +47,8 @@ function NoticeDetail({ match }: RouteComponentProps<MatchParams>): React.ReactE
       <NoticeCommentList
         commentList={commentList}
         noticeID={notice?._id}
-        reLoadComment={reLoadComment}
+        isRerender={isRerender}
+        setIsRerender={setIsRerender}
       ></NoticeCommentList>
     </NoticeDetailWrapper>
   );

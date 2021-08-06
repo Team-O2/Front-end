@@ -2,7 +2,7 @@ import { postConcertComment } from 'apis';
 import { LoginModal, ReplyComment } from 'components/molecules';
 import React, { useState } from 'react';
 import { useRecoilValue } from 'recoil';
-import { userState, userStatusState } from 'stores/user';
+import { userStatusState } from 'stores/user';
 import { IReply } from 'types/challenge.type';
 import {
   CommentContainer,
@@ -27,7 +27,7 @@ interface IProps {
     text?: string;
   }[];
   isDeleted?: boolean;
-  _id: string;
+  parentCommentID: string;
   userID: {
     img: string;
     _id: string;
@@ -35,14 +35,22 @@ interface IProps {
   };
   text: string;
   concertID?: string;
+  isRerender: boolean;
+  setIsRerender: (value: boolean) => void;
 }
 
-function SingleComment({ _id, userID, childrenComment, text, concertID }: IProps): React.ReactElement {
+function SingleComment({
+  parentCommentID,
+  userID,
+  childrenComment,
+  text,
+  concertID,
+  isRerender,
+  setIsRerender,
+}: IProps): React.ReactElement {
   const [isOpenReply, setIsOpenReply] = useState(false);
   const [replyValue, setReplyValue] = useState('');
-  const [replyList, setReplyList] = useState(childrenComment);
   const userStatusData = useRecoilValue(userStatusState);
-  const userData = useRecoilValue(userState);
   const [isLoginModalOpen, setIsLoginModalOpen] = useState(false);
 
   const onClickReplyOpen = () => {
@@ -51,26 +59,12 @@ function SingleComment({ _id, userID, childrenComment, text, concertID }: IProps
   const handleChange = (event: React.ChangeEvent<HTMLTextAreaElement>) => {
     setReplyValue(event.currentTarget.value);
   };
-  const onSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
+  const handleSubmit = async (event: React.MouseEvent<HTMLButtonElement>) => {
     event.preventDefault();
-    const variables = {
-      parentID: _id,
-      text: replyValue,
-    };
     if (userStatusData) {
-      await postConcertComment(userStatusData.token, concertID, variables);
-      userData &&
-        setReplyList(
-          replyList.concat({
-            text: variables.text,
-            userID: {
-              img: userData.img,
-              _id: userData._id,
-              nickname: userData.nickname,
-            },
-          }),
-        );
+      await postConcertComment(userStatusData.token, concertID, { parentID: parentCommentID, text: replyValue });
       setReplyValue('');
+      setIsRerender(!isRerender);
     } else {
       setIsLoginModalOpen(true);
     }
@@ -89,13 +83,12 @@ function SingleComment({ _id, userID, childrenComment, text, concertID }: IProps
           <>
             <ReplyCommentWrite
               value={replyValue}
-              onChange={handleChange}
-              onClick={onSubmit}
-              onSubmit={onSubmit}
               isComment={false}
+              handleChange={handleChange}
+              handleSubmit={handleSubmit}
             ></ReplyCommentWrite>
             <ReplyContent>
-              {replyList.map((data: IReply, index) => (
+              {childrenComment.map((data: IReply, index) => (
                 <ReplyComment
                   key={index}
                   img={data.userID?.img}

@@ -8,7 +8,7 @@ import {
 } from 'apis';
 import { DetailTitle, LoginModal } from 'components/molecules';
 import { CommentList, DetailContent } from 'components/organisms';
-import React, { useEffect, useState } from 'react';
+import React, { useCallback, useEffect, useState } from 'react';
 import { RouteComponentProps } from 'react-router';
 import { useRecoilValue } from 'recoil';
 import { userStatusState } from 'stores/user';
@@ -29,37 +29,38 @@ function ConcertDetail({ match }: RouteComponentProps<MatchParams>): React.React
   const [isLoginModalOpen, setIsLoginModalOpen] = useState(false);
   const [isUserLike, setIsUserLike] = useState(false);
   const [isUserScrap, setIsUserScrap] = useState(false);
-  useEffect(() => {
-    const getConcertList = async () => {
-      if (userStatusData) {
-        const data = await getConcertUserData(userStatusData.token, id);
-        data && setConcert(data);
-        data && setCommentList(data.comments);
-        data && setLikeNum(data.likes);
-        data && setScrapNum(data.scrapNum);
-        data && setIsUserLike(data.isLike);
-        data && setIsUserScrap(data.isScrap);
-      } else {
-        const data = await getConcertData(id);
-        data && setConcert(data);
-        data && setCommentList(data.comments);
-        data && setLikeNum(data.likes);
-        data && setScrapNum(data.scrapNum);
-      }
-    };
-    getConcertList();
-  }, [commentList, likeNum, scrapNum, id, userStatusData]);
+  const [isRerender, setIsRerender] = useState<boolean>(false);
 
-  const reLoadComment = (newComment: any) => {
-    setCommentList(commentList?.concat(newComment));
-  };
+  const getConcertContent = useCallback(async () => {
+    if (userStatusData) {
+      const data = await getConcertUserData(userStatusData.token, id);
+      data && setConcert(data);
+      data && setCommentList(data.comments);
+      data && setLikeNum(data.likes);
+      data && setScrapNum(data.scrapNum);
+      data && setIsUserLike(data.isLike);
+      data && setIsUserScrap(data.isScrap);
+    } else {
+      const data = await getConcertData(id);
+      data && setConcert(data);
+      data && setCommentList(data.comments);
+      data && setLikeNum(data.likes);
+      data && setScrapNum(data.scrapNum);
+    }
+  }, [id, userStatusData]);
+
+  useEffect(() => {
+    getConcertContent();
+  }, [isRerender, getConcertContent]);
 
   const onLike = async () => {
     if (userStatusData) {
       const postLike = await postConcertLike(userStatusData.token, id);
       if (postLike === true) {
         await deleteConcertLike(userStatusData.token, id);
+        setIsRerender(!isRerender);
       }
+      setIsRerender(!isRerender);
     } else {
       setIsLoginModalOpen(true);
     }
@@ -69,7 +70,9 @@ function ConcertDetail({ match }: RouteComponentProps<MatchParams>): React.React
       const postScrap = await postConcertScrap(userStatusData.token, id);
       if (postScrap === true) {
         await deleteConcertScrap(userStatusData.token, id);
+        setIsRerender(!isRerender);
       }
+      setIsRerender(!isRerender);
     } else {
       setIsLoginModalOpen(true);
     }
@@ -100,7 +103,12 @@ function ConcertDetail({ match }: RouteComponentProps<MatchParams>): React.React
           isUserScrap={isUserScrap}
         ></DetailContent>
       )}
-      <CommentList commentList={commentList} concertID={concert?._id} reLoadComment={reLoadComment}></CommentList>
+      <CommentList
+        commentList={commentList}
+        concertID={concert?._id}
+        isRerender={isRerender}
+        setIsRerender={setIsRerender}
+      ></CommentList>
       <LoginModal isLoginModalOpen={isLoginModalOpen} setIsLoginModalOpen={setIsLoginModalOpen} />
     </ConcertDetailWrapper>
   );

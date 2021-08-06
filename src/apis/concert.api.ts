@@ -1,7 +1,8 @@
 import { serverAxios } from 'libs/axios';
 import { IConcert, IConcertList } from '../types/concert.type';
+
 interface IConcertCommentData {
-  parentID?: string;
+  parentID?: string | null;
   text: string;
 }
 
@@ -121,7 +122,7 @@ export const postConcertComment = async (
   }
 };
 
-export const postConcertLike = async (token: string, concertID: string) => {
+export const postConcertLike = async (token: string, concertID: string): Promise<boolean> => {
   try {
     const data = await serverAxios.post(`${PREFIX_URL}/like/${concertID}`, '', {
       headers: {
@@ -129,19 +130,20 @@ export const postConcertLike = async (token: string, concertID: string) => {
       },
     });
     if (data.data.status === 200) {
+      return data.data.data;
     } else {
-      return null;
+      return false;
     }
   } catch (e) {
     if (e.response.data.status === 400) {
       return true;
     }
     alert(e.response.data.message);
-    return undefined;
+    return false;
   }
 };
 
-export const deleteConcertLike = async (token: string, concertID: string) => {
+export const deleteConcertLike = async (token: string, concertID: string): Promise<boolean> => {
   try {
     const data = await serverAxios.delete(`${PREFIX_URL}/like/${concertID}`, {
       headers: {
@@ -149,16 +151,17 @@ export const deleteConcertLike = async (token: string, concertID: string) => {
       },
     });
     if (data.data.status === 200) {
+      return data.data.data;
     } else {
-      return null;
+      return false;
     }
   } catch (e) {
     alert(e.response.data.message);
-    return undefined;
+    return false;
   }
 };
 
-export const postConcertScrap = async (token: string, concertID: string) => {
+export const postConcertScrap = async (token: string, concertID: string): Promise<boolean> => {
   try {
     const data = await serverAxios.post(`${PREFIX_URL}/scrap/${concertID}`, '', {
       headers: {
@@ -166,19 +169,20 @@ export const postConcertScrap = async (token: string, concertID: string) => {
       },
     });
     if (data.data.status === 200) {
+      return data.data.data;
     } else {
-      return null;
+      return false;
     }
   } catch (e) {
     if (e.response.data.message === '이미 스크랩 된 글입니다') {
       return true;
     }
     alert(e.response.data.message);
-    return undefined;
+    return false;
   }
 };
 
-export const deleteConcertScrap = async (token: string, concertID: string) => {
+export const deleteConcertScrap = async (token: string, concertID: string): Promise<boolean> => {
   try {
     const data = await serverAxios.delete(`${PREFIX_URL}/scrap/${concertID}`, {
       headers: {
@@ -186,11 +190,12 @@ export const deleteConcertScrap = async (token: string, concertID: string) => {
       },
     });
     if (data.data.status === 200) {
+      return data.data.data;
     } else {
-      return null;
+      return false;
     }
   } catch (e) {
     alert(e.response.data.message);
-    return undefined;
+    return false;
   }
 };

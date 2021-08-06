@@ -3,16 +3,17 @@ import { CommentWrite, LoginModal, NoticeSingleComment } from 'components/molecu
 import React, { useState } from 'react';
 import { useRecoilValue } from 'recoil';
 import { userStatusState } from 'stores/user';
-import { INoticeComment, INoticeNewComment } from 'types/notice.type';
+import { INoticeComment } from 'types/notice.type';
 import { CommentWriteContainer } from './style';
 
 interface IProps {
   commentList: Array<INoticeComment>;
   noticeID?: string;
-  reLoadComment: (newComment: INoticeNewComment) => void;
+  isRerender: boolean;
+  setIsRerender: (value: boolean) => void;
 }
 
-function NoticeCommentList({ commentList, noticeID, reLoadComment }: IProps): React.ReactElement {
+function NoticeCommentList({ commentList, noticeID, isRerender, setIsRerender }: IProps): React.ReactElement {
   const [commentValue, setCommentValue] = useState('');
   const [isLoginModalOpen, setIsLoginModalOpen] = useState(false);
   const userStatusData = useRecoilValue(userStatusState);
@@ -20,38 +21,37 @@ function NoticeCommentList({ commentList, noticeID, reLoadComment }: IProps): Re
   const handleChange = (event: React.ChangeEvent<HTMLTextAreaElement>) => {
     setCommentValue(event.currentTarget.value);
   };
-  const onSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
+  const handleSubmit = async (event: React.MouseEvent<HTMLButtonElement>) => {
     event.preventDefault();
-    const variables = {
-      text: commentValue,
-    };
     if (userStatusData) {
-      await postNoticeComment(userStatusData.token, noticeID, variables);
-      reLoadComment(variables);
+      await postNoticeComment(userStatusData.token, noticeID, { parentID: null, text: commentValue });
       setCommentValue('');
+      setIsRerender(!isRerender);
     } else {
       setIsLoginModalOpen(true);
     }
   };
+
   return (
     <>
       <CommentWriteContainer>
         <CommentWrite
           value={commentValue}
           isComment={true}
-          onChange={handleChange}
-          onClick={onSubmit}
-          onSubmit={onSubmit}
+          handleChange={handleChange}
+          handleSubmit={handleSubmit}
         ></CommentWrite>
       </CommentWriteContainer>
       {commentList?.map((data: INoticeComment, index) => (
         <NoticeSingleComment
           key={index}
-          _id={data._id}
+          parentCommentID={data._id}
           userID={data.userID}
           childrenComment={data.childrenComment}
           text={data.text}
           noticeID={noticeID}
+          isRerender={isRerender}
+          setIsRerender={setIsRerender}
         ></NoticeSingleComment>
       ))}
       <LoginModal isLoginModalOpen={isLoginModalOpen} setIsLoginModalOpen={setIsLoginModalOpen} />
