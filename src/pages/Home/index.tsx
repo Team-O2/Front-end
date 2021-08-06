@@ -112,14 +112,14 @@ function Home(): React.ReactElement {
             배운 점을 적용하며 더 성장한 내일의 나를 만들어요.
           </MiddleExp>
         </Reveal>
-        <Reveal cascade damping={0.3} keyframes={moveUp} triggerOnce>
-          <ChallengeCardWrapper>
-            <ChallengeCard src={MainCard1Img} />
-            <ChallengeCard src={MainCard2Img} />
-            <ChallengeCard src={MainCard3Img} />
-            <ChallengeCard src={MainCard4Img} />
-          </ChallengeCardWrapper>
-        </Reveal>
+        {/* <Reveal cascade damping={0.3} keyframes={moveUp} triggerOnce> */}
+        <ChallengeCardWrapper>
+          <ChallengeCard src={MainCard1Img} />
+          <ChallengeCard src={MainCard2Img} />
+          <ChallengeCard src={MainCard3Img} />
+          <ChallengeCard src={MainCard4Img} />
+        </ChallengeCardWrapper>
+        {/* </Reveal> */}
       </ChallengeWrapper>
       <ConcertWrapper>
         <Reveal keyframes={moveUp}>
@@ -178,122 +178,122 @@ function Home(): React.ReactElement {
           <O2SpeakerTitle>To Be an O2 Speaker</O2SpeakerTitle>
           <O2SpeakerSubTitle>뱃지를 모아 O2 Speaker가 되어보세요!</O2SpeakerSubTitle>
         </Reveal>
-        <Reveal cascade damping={0.5} keyframes={moveUp} triggerOnce>
-          <O2SpeakerOuterWrapper>
-            <O2SpeakerInnerWrapper>
-              <O2SpeakerBadgeImage src={SpeakerBadge1Img} />
-              <O2SpaekerExp>
-                챌린지 개수를 주당 <br />
-                3개 이상으로 설정
-              </O2SpaekerExp>
-            </O2SpeakerInnerWrapper>
-            <O2SpeakerInnerWrapper>
-              <O2SpeakerBadgeImage src={SpeakerBadge2Img} />
-              <O2SpaekerExp>
-                런마쎌을 80%이상 작성 후 <br />
-                챌린지뱃지를 획득
-              </O2SpaekerExp>
-            </O2SpeakerInnerWrapper>
-            <O2SpeakerInnerWrapper>
-              <O2SpeakerBadgeImage src={SpeakerBadge3Img} />
-              <O2SpaekerExp>
-                챌린지뱃지 3개 + 활동뱃지 12개 <br />
-                얻을 시 연사가능
-              </O2SpaekerExp>
-            </O2SpeakerInnerWrapper>
-          </O2SpeakerOuterWrapper>
-        </Reveal>
+        {/* <Reveal cascade damping={0.5} keyframes={moveUp} triggerOnce> */}
+        <O2SpeakerOuterWrapper>
+          <O2SpeakerInnerWrapper>
+            <O2SpeakerBadgeImage src={SpeakerBadge1Img} />
+            <O2SpaekerExp>
+              챌린지 개수를 주당 <br />
+              3개 이상으로 설정
+            </O2SpaekerExp>
+          </O2SpeakerInnerWrapper>
+          <O2SpeakerInnerWrapper>
+            <O2SpeakerBadgeImage src={SpeakerBadge2Img} />
+            <O2SpaekerExp>
+              런마쎌을 80%이상 작성 후 <br />
+              챌린지뱃지를 획득
+            </O2SpaekerExp>
+          </O2SpeakerInnerWrapper>
+          <O2SpeakerInnerWrapper>
+            <O2SpeakerBadgeImage src={SpeakerBadge3Img} />
+            <O2SpaekerExp>
+              챌린지뱃지 3개 + 활동뱃지 12개 <br />
+              얻을 시 연사가능
+            </O2SpaekerExp>
+          </O2SpeakerInnerWrapper>
+        </O2SpeakerOuterWrapper>
+        {/* </Reveal> */}
       </O2SpeakerWrapper>
       <O2BadgeWrapper>
         <Reveal keyframes={moveUp}>
           <O2BadgeTitle>O2 Badge</O2BadgeTitle>
           <O2BadgeSubTitle>열심히 활동하면 멋진 오투의 뱃지들을 받을 수 있어요.</O2BadgeSubTitle>
         </Reveal>
-        <Reveal cascade damping={0.2} keyframes={moveUp} triggerOnce>
-          <BadgeWrapper>
-            <BadgeCard
-              img={WelcomeToO2FillIcon}
-              title="웰컴 투 오투"
-              explain={
-                <>
-                  첫 회원가입을 했을 때<br />
-                  받을 수 있는 뱃지예요.
-                </>
-              }
-            />
-            <BadgeCard
-              img={UsefulLearnMyselfFillIcon}
-              title="유용한 런마쎌"
-              explain={
-                <>
-                  타인의 Learn Myself를 처음 스크랩
-                  <br />
-                  했을 때 받을 수 있는 뱃지에요.
-                </>
-              }
-            />
-            <BadgeCard
-              img={CommunicationKingFillIcon}
-              title="나는야 소통왕"
-              explain={
-                <>
-                  타인의 Learn Myself에 댓글 5개를 <br />
-                  작성할 시 받을 수 있는 뱃지에요.
-                </>
-              }
-            />
-            <BadgeCard
-              img={EmpathizingFillIcon}
-              title="당신은 공감왕"
-              explain={
-                <>
-                  타인의 글의 좋아요를 처음 <br />
-                  눌렀을 때 받을 수 있는 뱃지에요.
-                </>
-              }
-            />
-            <BadgeCard
-              img={ReadyForGrowFillIcon}
-              title="성장준비 완료"
-              explain={
-                <>
-                  타인의 글에 댓글을 처음 <br />
-                  달았을 때 받을 수 있는 뱃지에요.
-                </>
-              }
-            />
-            <BadgeCard
-              img={NaturalBornO2FillIcon}
-              title="뼛속부터 오투인"
-              explain={
-                <>
-                  오투에 3일 연속 로그인 <br />
-                  했을 때 받을 수 있는 뱃지에요.
-                </>
-              }
-            />
-            <BadgeCard
-              img={GrowingTogetherFillIcon}
-              title="함께 성장 중"
-              explain={
-                <>
-                  Learn Myself 첫 작성 시<br />
-                  받을 수 있는 뱃지에요.
-                </>
-              }
-            />
-            <BadgeCard
-              img={ShyEmailFillIcon}
-              title="설레는 첫 답글"
-              explain={
-                <>
-                  타인의 댓글의 답글을 처음 달았을 때 <br />
-                  받을 수 있는 뱃지에요.
-                </>
-              }
-            />
-          </BadgeWrapper>
-        </Reveal>
+        {/* <Reveal cascade damping={0.2} keyframes={moveUp} triggerOnce> */}
+        <BadgeWrapper>
+          <BadgeCard
+            img={WelcomeToO2FillIcon}
+            title="웰컴 투 오투"
+            explain={
+              <>
+                첫 회원가입을 했을 때<br />
+                받을 수 있는 뱃지예요.
+              </>
+            }
+          />
+          <BadgeCard
+            img={UsefulLearnMyselfFillIcon}
+            title="유용한 런마쎌"
+            explain={
+              <>
+                타인의 Learn Myself를 처음 스크랩
+                <br />
+                했을 때 받을 수 있는 뱃지에요.
+              </>
+            }
+          />
+          <BadgeCard
+            img={CommunicationKingFillIcon}
+            title="나는야 소통왕"
+            explain={
+              <>
+                타인의 Learn Myself에 댓글 5개를 <br />
+                작성할 시 받을 수 있는 뱃지에요.
+              </>
+            }
+          />
+          <BadgeCard
+            img={EmpathizingFillIcon}
+            title="당신은 공감왕"
+            explain={
+              <>
+                타인의 글의 좋아요를 처음 <br />
+                눌렀을 때 받을 수 있는 뱃지에요.
+              </>
+            }
+          />
+          <BadgeCard
+            img={ReadyForGrowFillIcon}
+            title="성장준비 완료"
+            explain={
+              <>
+                타인의 글에 댓글을 처음 <br />
+                달았을 때 받을 수 있는 뱃지에요.
+              </>
+            }
+          />
+          <BadgeCard
+            img={NaturalBornO2FillIcon}
+            title="뼛속부터 오투인"
+            explain={
+              <>
+                오투에 3일 연속 로그인 <br />
+                했을 때 받을 수 있는 뱃지에요.
+              </>
+            }
+          />
+          <BadgeCard
+            img={GrowingTogetherFillIcon}
+            title="함께 성장 중"
+            explain={
+              <>
+                Learn Myself 첫 작성 시<br />
+                받을 수 있는 뱃지에요.
+              </>
+            }
+          />
+          <BadgeCard
+            img={ShyEmailFillIcon}
+            title="설레는 첫 답글"
+            explain={
+              <>
+                타인의 댓글의 답글을 처음 달았을 때 <br />
+                받을 수 있는 뱃지에요.
+              </>
+            }
+          />
+        </BadgeWrapper>
+        {/* </Reveal> */}
       </O2BadgeWrapper>
       <LinkWrapper>
         <LinkCardWrapper>
