@@ -1,4 +1,3 @@
-import { Button } from 'components/atoms';
 import Styled from 'styled-components';
 import { theme } from 'styled-tools';
 

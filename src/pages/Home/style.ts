@@ -162,29 +162,11 @@ export const O2SpeakerSubTitle = Styled.h2`
   margin-bottom : 138px;
 `;
 
-export const O2SpeakerOuterWrapper = Styled.ul`
+export const O2SpeakerCardWrapper = Styled.ul`
   width : 1100px;
   display : flex;
   flex-direction : row;
   justify-content : space-between;
-`;
-
-export const O2SpeakerInnerWrapper = Styled.li`
-  display : flex;
-  flex-direction : column;
-  align-items : center;
-`;
-
-export const O2SpeakerBadgeImage = Styled.img`
-  width: 260px;
-  height: 260px;
-`;
-
-export const O2SpaekerExp = Styled.p`
-  ${theme('font.body4')};
-  color : #ffffff;
-  text-align: center;
-  margin-top : 48px;
 `;
 
 export const O2BadgeWrapper = Styled.div`
