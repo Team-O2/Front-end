@@ -7,7 +7,7 @@ import { ButtonWrapper, FindPwdBtn, JoinBtn, Line, LoginContainer, LoginLabel } 
 function CLogin(): React.ReactElement {
   return (
     <LoginContainer>
-      <LoginLabel className="login__label">로그인</LoginLabel>
+      <LoginLabel>로그인</LoginLabel>
       <LoginForm />
       <ButtonWrapper>
         <Link to="/setting/password/find">

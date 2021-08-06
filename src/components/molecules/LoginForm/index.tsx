@@ -84,7 +84,6 @@ function LoginForm(): React.ReactElement {
   return (
     <LoginformWrap>
       <StyledInput
-        className="email"
         placeHolder="이메일을 입력해 주세요"
         width="406px"
         height="60px"
@@ -106,9 +105,7 @@ function LoginForm(): React.ReactElement {
         isConditionMet={isConditionMet.pwd}
         errorMsg={errMsg.pwd}
       />
-      <LoginBtn className="login_button" onClick={handleLoginBtn}>
-        로그인
-      </LoginBtn>
+      <LoginBtn onClick={handleLoginBtn}>로그인</LoginBtn>
     </LoginformWrap>
   );
 }

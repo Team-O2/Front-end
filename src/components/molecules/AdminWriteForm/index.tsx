@@ -153,7 +153,7 @@ function AdminWriteForm({
     <Wrapper>
       <TopRowContainer>
         <TitleContainer>
-          <WriteLabel className="subhead4">제목</WriteLabel>
+          <WriteLabel>제목</WriteLabel>
           <StyledInput
             placeHolder="제목을 입력하세요"
             width="598px"
@@ -165,7 +165,7 @@ function AdminWriteForm({
           />
         </TitleContainer>
         <NicknameContainer>
-          <WriteLabel className="subhead4">연사 닉네임</WriteLabel>
+          <WriteLabel>연사 닉네임</WriteLabel>
           <StyledInput
             placeHolder="연사 닉네임을 입력하세요"
             width="222px"
@@ -179,7 +179,7 @@ function AdminWriteForm({
       </TopRowContainer>
       <RowContainer>
         <div>
-          <WriteLabel className="subhead4">메뉴</WriteLabel>
+          <WriteLabel>메뉴</WriteLabel>
           <DropDown
             state={menu}
             setState={setMenu}
@@ -189,7 +189,7 @@ function AdminWriteForm({
           />
         </div>
         <div>
-          <WriteLabel className="subhead4">카테고리</WriteLabel>
+          <WriteLabel>카테고리</WriteLabel>
           <DropDown
             state={category}
             setState={setCategory}
@@ -212,28 +212,27 @@ function AdminWriteForm({
       <EditorForm setContent={setContent} content={content} />
       <RowUploadContainer>
         <UploadContainer>
-          <WriteLabel className="subhead4">동영상 업로드</WriteLabel>
+          <WriteLabel>동영상 업로드</WriteLabel>
           <FileUpload width={'400px'} height={'225px'} setFile={setVideoFile} fileType={1}>
-            <VideoUploadSpace className="fileUpload__container fileUpload__container--video">
+            <VideoUploadSpace>
               <Icon src={GreyPlusIcon}></Icon>
-              <UploadDescription className="subhead3">동영상 업로드하기</UploadDescription>
+              <UploadDescription>동영상 업로드하기</UploadDescription>
             </VideoUploadSpace>
           </FileUpload>
         </UploadContainer>
         <UploadContainer>
-          <WriteLabel className="subhead4">썸네일 업로드</WriteLabel>
+          <WriteLabel>썸네일 업로드</WriteLabel>
           <FileUpload width={'262px'} height={'225px'} setFile={setThumbnail} fileType={0}>
             <ThumbnailUploadSpace>
               <Icon src={GreyPlusIcon}></Icon>
-              <UploadDescription className="subhead3">썸네일 이미지 업로드하기</UploadDescription>
+              <UploadDescription>썸네일 이미지 업로드하기</UploadDescription>
             </ThumbnailUploadSpace>
           </FileUpload>
         </UploadContainer>
       </RowUploadContainer>
-      <WriteLabel className="subhead4">해시태그</WriteLabel>
+      <WriteLabel>해시태그</WriteLabel>
       <HashTagInputContainer isFocused={isHashTagFocused}>
         <HashTagInput
-          className="admin__input body2"
           name="adminWriteTitle"
           placeholder="최대 15개 가능"
           value={currentHashtag}
@@ -256,13 +255,7 @@ function AdminWriteForm({
       <HashTagContainer>
         {writeData.hashtag.length >= 0 &&
           writeData.hashtag.map((hashtag, id) => {
-            return (
-              hashtag != '' && (
-                <HashTag className="body2" key={id}>
-                  #{hashtag}
-                </HashTag>
-              )
-            );
+            return hashtag != '' && <HashTag key={id}>#{hashtag}</HashTag>;
           })}
       </HashTagContainer>
     </Wrapper>

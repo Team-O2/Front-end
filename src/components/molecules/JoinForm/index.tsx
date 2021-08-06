@@ -125,7 +125,6 @@ function JoinForm({ isConditionMet, userData, setUserData, setIsConditionMet }: 
       />
       <SubTitle>성별</SubTitle>
       <DropDown
-        className="join_dropdown"
         state={gender}
         setState={setGender}
         defaultMsg="성별 선택"

@@ -1,7 +1,9 @@
 import { Input, Label } from 'components/atoms';
 import Styled from 'styled-components';
+import { theme } from 'styled-tools';
 
 export const UploadDescription = Styled.div`
+  ${theme('font.subhead3')};
   color : #a5a5a5;
   text-align: center;
   margin-top :4px;
@@ -63,6 +65,7 @@ export const TopRowContainer = Styled.div`
   justify-content : space-between;
 `;
 export const HashTagInput = Styled(Input)`
+  ${theme('font.body2')};
   width : 100%;
   height : 100%;
   border-radius:4px;
@@ -88,11 +91,13 @@ export const HashTagContainer = Styled.div`
   margin-bottom : 130px;
 `;
 export const WriteLabel = Styled(Label)`
+  ${theme('font.subhead4')};
   width : 100%;
   color: #0d0d0d;
   margin-bottom : 8px;
 `;
 export const HashTag = Styled.div`
+  ${theme('font.body2')};
   padding : 5px 10px;
   background-color: #f5f5f5;
   color : #a5a5a5;
