@@ -1,4 +1,4 @@
-import { getNoticeListData, getNoticeSearchData } from 'apis';
+import { getNoticeSearchData } from 'apis';
 import { NoticeHeader, NoticeList, SearchForm } from 'components/organisms';
 import React, { useEffect, useState } from 'react';
 import { INotice } from 'types/notice.type';
@@ -9,16 +9,6 @@ function Notice(): React.ReactElement {
   const [keyword, setKeyword] = useState('');
   const [currentPage, setCurrentPage] = useState(1);
   const [totalNoticeNum, setTotalNoticeNum] = useState(0);
-
-  useEffect(() => {
-    const getNoticeList = async (pageIndex: number) => {
-      const LIMIT_PER_PAGE = 8;
-      const data = await getNoticeListData({ offset: (pageIndex - 1) * LIMIT_PER_PAGE });
-      data && setnoticeList(data.notices);
-      data && setTotalNoticeNum(data.totalNoticeNum);
-    };
-    getNoticeList(currentPage);
-  }, [currentPage]);
 
   useEffect(() => {
     const getNoticeSearchList = async (pageIndex: number) => {
@@ -39,7 +29,7 @@ function Notice(): React.ReactElement {
   const keywordChange = () => {
     setCurrentPage(1);
   };
-  const noticeListNum = noticeList?.length;
+
   return (
     <>
       <NoticeHeader />
@@ -47,7 +37,7 @@ function Notice(): React.ReactElement {
         <SearchForm
           reRenderKeyword={reRenderKeyword}
           keywordChange={keywordChange}
-          contentListNum={noticeListNum}
+          contentListNum={totalNoticeNum}
           selectedCategory="공지사항"
         ></SearchForm>
         {noticeList && (
