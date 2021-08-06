@@ -2,26 +2,24 @@ import React from 'react';
 import { CommentButton, CommentForm, CommentTextArea } from './style';
 
 export interface IProps {
-  className?: string;
   value: string;
   isComment: boolean;
-  onChange: (e: React.ChangeEvent<HTMLTextAreaElement>) => void;
-  onClick: (e: any) => void;
-  onSubmit: (e: React.FormEvent<HTMLFormElement>) => void;
+  handleChange: (e: React.ChangeEvent<HTMLTextAreaElement>) => void;
+  handleSubmit: (e: React.MouseEvent<HTMLButtonElement>) => void;
 }
 
-function CommentWrite({ value, isComment, onChange, onClick, onSubmit }: IProps): React.ReactElement {
+function CommentWrite({ value, isComment, handleChange, handleSubmit }: IProps): React.ReactElement {
   return (
     <CommentForm>
-      <form onSubmit={onSubmit}>
+      <form>
         <CommentTextArea
           isCommentCheck={isComment}
           name="comment"
-          onChange={onChange}
+          onChange={handleChange}
           value={value}
           placeholder="댓글을 입력해 주세요"
         ></CommentTextArea>
-        <CommentButton isCommentCheck={isComment} onClick={onClick}>
+        <CommentButton isCommentCheck={isComment} onClick={handleSubmit}>
           {isComment ? '댓글 작성' : '답글 작성'}
         </CommentButton>
       </form>

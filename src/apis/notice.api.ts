@@ -1,7 +1,7 @@
 import { serverAxios } from 'libs/axios';
 import { INoticeList, ISearchNoticeList } from '../types/notice.type';
 interface INoticeCommentData {
-  parentID?: string;
+  parentID?: string | null;
   text: string;
 }
 

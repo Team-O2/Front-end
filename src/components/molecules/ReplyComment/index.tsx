@@ -11,7 +11,7 @@ interface IProps {
 function ReplyComment({ nickname, text, img }: IProps): React.ReactElement {
   return (
     <ReplyCommentWrapper>
-      <img className="profile" src={img} alt="" />
+      <img src={img} alt="" />
       <Writer>{nickname}</Writer>
       <Text>{text}</Text>
     </ReplyCommentWrapper>
