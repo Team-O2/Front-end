@@ -1,11 +1,11 @@
 import Styled from 'styled-components';
-import { theme } from 'styled-tools';
+import { palette, theme } from 'styled-tools';
 
 export const Input = Styled.input`
   border : none;
   ${theme('font.body1')};
   font-size: 16px;  
-  color : #0d0d0d;
+  color : ${palette('grayscale', 10)};
   text-align: left;
   width : 100%;
   height : 100%;
@@ -13,7 +13,7 @@ export const Input = Styled.input`
   border-radius: 4px;
   font-style: AppleSDGothicNeo;
   :placeholder{
-    color : #c1c1c1;
+    color : ${palette('grayscale', 2)}
   }
   :focus{
     outline : none;
@@ -27,12 +27,13 @@ export const InputContainer = Styled.div<{ width: string; height: string; condit
     1 : 컨디션 O   */
   border : ${(props) =>
     props.condition == -1
-      ? 'solid 1px #c1c1c1'
+      ? `solid 1px ${palette('grayscale', 2)}`
       : props.condition == 1
       ? 'double 1px transparent'
-      : 'solid 1px #f66436'};
+      : `solid 1px ${palette('primary', 6)}`};
   background-image : ${(props) =>
-    props.condition == 1 && 'linear-gradient(white, white), linear-gradient(to right, #36c8f5,#13e2dd)'};
+    props.condition == 1 &&
+    `linear-gradient(white, white), linear-gradient(to right, ${palette('primary', 3)}, ${palette('primary', 0)})`};
   background-origin : ${(props) => props.condition == 1 && 'border-box'};
   background-clip : ${(props) => props.condition == 1 && 'content-box, border-box'};
   border-radius : 4px;   
@@ -53,7 +54,7 @@ export const ErrorMsg = Styled.div`
   ${theme('font.body2')};
   text-align : left;
   text-align: left;
-  color: #f66436;
+  color: ${palette('primary', 6)};
 `;
 
 export const SStyledInput = Styled.div<{

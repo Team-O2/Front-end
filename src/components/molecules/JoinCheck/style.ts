@@ -1,6 +1,6 @@
 import { Button, CheckBox } from 'components/atoms';
 import Styled from 'styled-components';
-import { theme } from 'styled-tools';
+import { palette, theme } from 'styled-tools';
 
 export const BiggerCheckBox = Styled(CheckBox)`
   display:none;
@@ -25,7 +25,7 @@ export const PolicyCheck = Styled.div`
 
 export const Line = Styled.div`
   margin-top : 18px;
-  background-color: #c4c4c4;
+  background-color: ${palette('grayscale', 10)};
   width: 406px;
   height: 2px;
 `;
@@ -45,14 +45,14 @@ export const BiggerLabel = Styled.label`
 
 export const MoreBtn = Styled(Button)`
   ${theme('font.body2')};
-  color : #a5a5a5;
+  color : ${palette('grayscale', 3)};
 `;
 
 export const Titie = Styled.div`
   ${theme('font.h1')};
   margin-bottom : 40px;
   text-align: left;
-  color : #0d0d0d;
+  color : ${palette('grayscale', 9)};
 `;
 
 export const Content = Styled.p`
@@ -88,7 +88,7 @@ export const ModalContainer = Styled.div`
   align-items : center;
   margin : auto;
   border-radius: 16px;
-  background-color : #ffffff;
+  background-color : ${palette('grayscale', 0)};
   padding : 50px 50px 40px 40px;
   width : 600px;
   height : 730px;

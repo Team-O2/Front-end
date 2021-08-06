@@ -1,12 +1,12 @@
 import { Button, Label } from 'components/atoms';
 import Styled from 'styled-components';
-import { theme } from 'styled-tools';
+import { palette, theme } from 'styled-tools';
 
 export const PageLabel = Styled(Label)`
   margin-top : 60px;
   line-height: 1.5;
   letter-spacing: -0.5px;
-  color : #3d3d3d;
+  color : ${palette('grayscale', 7)};
   font-size: 16px;
 `;
 
@@ -14,7 +14,7 @@ export const Title = Styled(Label)`
   ${theme('font.dp4')}
   margin-top:10px;
   margin-bottom : 110px;
-  color:#3d3d3d;
+  color:${palette('grayscale', 7)};
 `;
 
 export const WriteButton = Styled(Button)<{ isButtonDisabled?: boolean }>`
@@ -23,10 +23,12 @@ export const WriteButton = Styled(Button)<{ isButtonDisabled?: boolean }>`
   width: 406px;
   height: 60px;
   border-radius: 4px;
-  color : #ffffff; 
-  background-color : ${(props) => (props.isButtonDisabled ? '#dfdfdf' : undefined)};
+  color : ${palette('grayscale', 0)}; 
+  background-color : ${(props) => (props.isButtonDisabled ? `${palette('grayscale', 1)}` : undefined)};
   background-image : ${(props) =>
-    !props.isButtonDisabled ? 'linear-gradient(to right, #36c8f5,#13e2dd )' : undefined};        
+    !props.isButtonDisabled
+      ? `linear-gradient(to right, ${palette('primary', 3)}, ${palette('primary', 0)} )`
+      : undefined};        
   margin-bottom : 304px;
 `;
 

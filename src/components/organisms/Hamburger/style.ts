@@ -1,6 +1,6 @@
 import { Button } from 'components/atoms';
 import Styled from 'styled-components';
-import { theme } from 'styled-tools';
+import { palette, theme } from 'styled-tools';
 
 export const HamburgerContainer = Styled.div`
   display : flex;
@@ -9,7 +9,7 @@ export const HamburgerContainer = Styled.div`
   flex-direction:column;
   z-index : 999;
   box-shadow: 0 4px 40px 0 rgba(30, 37, 98, 0.1);
-  background-color : #ffffff;
+  background-color : ${palette('grayscale', 0)};
   width: 282px;
   height : 100vh;
   animation : slideIn 0.5s;
@@ -29,7 +29,7 @@ export const HamburgerContainer = Styled.div`
 export const LogOutBtn = Styled.div`
   ${theme('font.body2')}
   font-size: 16px;
-  color: #8b8b8b;
+  color: ${palette('grayscale', 4)};
   margin-left: 8px;
   margin-right: 24px;
 `;
@@ -37,7 +37,7 @@ export const LogOutBtn = Styled.div`
 export const SettingBtn = Styled.div`
   ${theme('font.body2')}
   font-size: 16px;
-  color: #3d3d3d;
+  color: ${palette('grayscale', 7)};
 `;
 
 export const BottomContainer = Styled.div`
@@ -66,11 +66,11 @@ export const MiddleContainer = Styled.div`
   ::-webkit-scrollbar-thumb {
     box-sizing: border-box;
     border-radius: 0.5rem;
-    background: #c1c1c1;
+    background: ${palette('grayscale', 2)};
   }
   /* Handle on hover */
   ::-webkit-scrollbar-thumb:hover {
-    background: #c1c1c1;
+    background: ${palette('grayscale', 2)};
   }
 `;
 
@@ -93,12 +93,12 @@ export const UserNameLabel = Styled.div`
   ${theme('font.body2')};
   font-size : 16px;
   margin-top : 28px;
-  color : #3d3d3d;
+  color : ${palette('grayscale', 7)};
 `;
 
 export const UserIcon = Styled.img`
   margin : 120px 91px 0 91px;
-  border : 1px solid #dfdfdf;
+  border : 1px solid ${palette('grayscale', 1)};
   border-radius:50px;
   width : 100px;
   height : 100px;
@@ -112,7 +112,7 @@ export const NoLoginSubTitle = Styled.div`
   margin-bottom : 30px;
   -webkit-background-clip: text;
   background-clip: text;
-  background-image:linear-gradient(to right, #34caf4, #13e2dd);
+  background-image:linear-gradient(to right, #34caf4, ${palette('primary', 0)});
   text-align : center;
   -webkit-text-fill-color: transparent;
 `;
@@ -129,7 +129,7 @@ export const UnChallengeUserSubTitle = Styled(Button)<{ color?: string }>`
 `;
 
 export const ChallengeEndUser = Styled(Button)`
-  color: #03b6ce;
+  color:  ${palette('primary', 5)};
   ${theme('font.subhead3_eng')};
   margin-top : 30px;
 `;
@@ -150,13 +150,13 @@ export const LoginButton = Styled(Button)`
 export const LoginExp = Styled.div`
   ${theme('font.subhead3')};
   height: 18px;
-  color : #3d3d3d;
+  color : ${palette('grayscale', 7)};
 `;
 
 export const TitleBtn = Styled(Button)`
   margin : 10px 0;
   height : 20px;
-  color : #3d3d3d;
+  color : ${palette('grayscale', 7)};
   font-family : AppleSDGothicNeo;
   font-size : 16px;
   :hover {
@@ -167,7 +167,7 @@ export const TitleBtn = Styled(Button)`
 export const EngTitleBtn = Styled(Button)`
   margin : 10px 0;
   height : 20px;
-  color : #3d3d3d;
+  color : ${palette('grayscale', 7)};
   font-size : 16px;
   font-family : HomepageBaukasten;
   :hover {
@@ -177,7 +177,7 @@ export const EngTitleBtn = Styled(Button)`
 
 export const Line = Styled.div`
   margin : 20px 0;
-  background-color: #c1c1c1;
+  background-color: ${palette('grayscale', 2)};
   width :164px;
   height: 1px;
 `;
@@ -190,7 +190,7 @@ export const Padding = Styled.div`
 export const Hide = Styled.div`
   position : absolute;
   top:-50px;
-  background-image: linear-gradient(to bottom, rgba(255, 255, 255, 0), #ffffff);
+  background-image: linear-gradient(to bottom, rgba(255, 255, 255, 0),  ${palette('grayscale', 0)});
   width : 100%;
   height : 50px;
 `;

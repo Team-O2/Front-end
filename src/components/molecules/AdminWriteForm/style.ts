@@ -1,10 +1,10 @@
 import { Input, Label } from 'components/atoms';
 import Styled from 'styled-components';
-import { theme } from 'styled-tools';
+import { palette, theme } from 'styled-tools';
 
 export const UploadDescription = Styled.div`
   ${theme('font.subhead3')};
-  color : #a5a5a5;
+  color : ${palette('grayscale', 3)};
   text-align: center;
   margin-top :4px;
   margin-bottom : 20px;
@@ -72,9 +72,11 @@ export const HashTagInput = Styled(Input)`
   padding : 18px 20px;
 `;
 export const HashTagInputContainer = Styled.div<{ isFocused: boolean }>`
-  border : ${(props) => (props.isFocused ? 'double 1px transparent' : '1px solid #c1c1c1')};
+  border : ${(props) => (props.isFocused ? 'double 1px transparent' : `1px solid ${palette('grayscale', 2)}`)};
   background-image : ${(props) =>
-    props.isFocused ? 'linear-gradient(white, white), linear-gradient(to right, #36c8f5,#13e2dd)' : undefined};
+    props.isFocused
+      ? `linear-gradient(white, white), linear-gradient(to right, ${palette('primary', 3)}, ${palette('primary', 0)})`
+      : undefined};
   background-origin : ${(props) => (props.isFocused ? 'border-box' : undefined)};
   background-clip : ${(props) => (props.isFocused ? 'content-box, border-box' : undefined)};   
   width : 100%;
@@ -93,14 +95,14 @@ export const HashTagContainer = Styled.div`
 export const WriteLabel = Styled(Label)`
   ${theme('font.subhead4')};
   width : 100%;
-  color: #0d0d0d;
+  color: ${palette('grayscale', 9)};
   margin-bottom : 8px;
 `;
 export const HashTag = Styled.div`
   ${theme('font.body2')};
   padding : 5px 10px;
   background-color: #f5f5f5;
-  color : #a5a5a5;
+  color : ${palette('grayscale', 3)};
   min-height : 31px;
   max-width : 100%;
   white-space : break-all;

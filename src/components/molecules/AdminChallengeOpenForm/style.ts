@@ -1,11 +1,11 @@
 import { Label } from 'components/atoms';
 import Styled from 'styled-components';
-import { theme } from 'styled-tools';
+import { palette, theme } from 'styled-tools';
 
 export const WriteLabel = Styled(Label)`
   ${theme('font.subhead4')};
   width : 100%;
-  color: #0d0d0d;
+  color: ${palette('grayscale', 9)};
   margin-bottom : 8px;
 `;
 
@@ -26,7 +26,7 @@ export const PeopleContainer = Styled.div`
 export const Text = Styled.div<{ style: string }>`
   ${theme(`font.style`)};
   line-height : 60px;
-  color : #8b8b8b;
+  color : ${palette('grayscale', 4)};
 `;
 
 export const Wrapper = Styled.div`

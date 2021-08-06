@@ -1,15 +1,15 @@
 import Styled from 'styled-components';
-import { theme } from 'styled-tools';
+import { palette, theme } from 'styled-tools';
 
 export const Label = Styled.div`
   ${theme('font.body3')};
   margin-right : 41px;
   width : 90px;
-  color:#6f6f6f;
+  color:${palette('grayscale', 5)};;
 `;
 export const Exp = Styled.div`
   ${theme('font.subhead3')};
-  color : #6f6f6f;
+  color : ${palette('grayscale', 5)};;
 `;
 export const RowContainer = Styled.div`
   display : flex;
@@ -35,7 +35,7 @@ export const Title = Styled.div`
   width : 322px;
   line-height: 1.31;
   letter-spacing: -0.5px;
-  color : #3d3d3d;
+  color : ${palette('grayscale', 7)};;
   font-size: 32px;
   font-weight: bold;
 `;
@@ -45,7 +45,7 @@ export const SAdminChallengeCard = Styled.div`
   align-items : center;
   border-radius: 18px;
   box-shadow: 0 0 24px 0 rgba(13, 12, 63, 0.1);
-  background-color: #ffffff;
+  background-color: ${palette('grayscale', 0)};;
   cursor : pointer;
   width: 402px;
   height: 484px;

@@ -1,6 +1,6 @@
 import { Button, Label } from 'components/atoms';
 import Styled from 'styled-components';
-import { theme } from 'styled-tools';
+import { palette, theme } from 'styled-tools';
 
 export const InterestButtonWrapper = Styled.div`
   display : flex;
@@ -13,34 +13,34 @@ export const InterestButton = Styled(Button)<{ order: number }>`
   ${theme('font.subhead4')}
   background-color :  ${(props) =>
     props.order == 0
-      ? '#13E2DD'
+      ? `${palette('primary', 0)}`
       : props.order == 1
-      ? '#36C8F5'
+      ? `${palette('primary', 3)}`
       : props.order == 2
-      ? '#58E2FF'
+      ? `${palette('primary', 2)}`
       : props.order == 3
-      ? '#03B6CE'
+      ? `${palette('primary', 5)}`
       : props.order == 4
-      ? '#00BAFA'
-      : '#ffffff'}};
+      ? `${palette('primary', 4)}`
+      : `${palette('grayscale', 0)}`}};
   padding : 12px 30px;
   margin : 12px 5px;
   height : 48px;
   border-radius: 60px;
-  border: solid 1px #8b8b8b;
+  border: solid 1px ${palette('grayscale', 4)};
   border-color : ${(props) =>
     props.order == 0
-      ? '#13E2DD'
+      ? `${palette('primary', 0)}`
       : props.order == 1
-      ? '#36C8F5'
+      ? `${palette('primary', 3)}`
       : props.order == 2
-      ? '#58E2FF'
+      ? `${palette('primary', 2)}`
       : props.order == 3
-      ? '#03B6CE'
+      ? `${palette('primary', 5)}`
       : props.order == 4
-      ? '#00BAFA'
-      : '#8b8b8b'};
-  color : ${(props) => (props.order == -1 ? '#8b8b8b' : '#ffffff')}
+      ? `${palette('primary', 4)}`
+      : `${palette('grayscale', 0)}`}};
+  color : ${(props) => (props.order == -1 ? `${palette('grayscale', 4)}` : `${palette('grayscale', 0)}`)}
   ;
 `;
 
@@ -49,16 +49,17 @@ export const ModalButton = Styled(Button)<{ selectedInterest: string[] }>`
   height: 60px;
   padding: 19px 172px 19px 170px;
   border-radius: 4px;
-  background-color : #dfdfdf; 
+  background-color : ${palette('grayscale', 1)}; 
   ${theme('font.subhead3')}
-  color : #ffffff;
+  color : ${palette('grayscale', 0)};
   margin-top : 38px;
-  background-color : ${(props) => (props.selectedInterest.length > 0 ? '#0d0d0d' : '#dfdfdf')};
+  background-color : ${(props) =>
+    props.selectedInterest.length > 0 ? `${palette('grayscale', 9)}` : `${palette('grayscale', 1)}`};
 `;
 
 export const ModalLabel = Styled(Label)`
   ${theme('font.h1')}
-  color : #0d0d0d;
+  color : ${palette('grayscale', 9)};
   margin-bottom : 38px;
 `;
 
@@ -74,7 +75,7 @@ export const ModalWrapper = Styled.div`
   border-radius: 16px;
   padding: 40px 100px;
   box-shadow: -4px 11px 24px 0 rgba(13, 12, 63, 0.1);
-  background-color : #ffffff;
+  background-color : ${palette('grayscale', 0)};
   display : flex;
   flex-direction : column;
   align-items : center;
@@ -92,11 +93,13 @@ export const JoinButton = Styled(Button)<{ isButtonDisabled: boolean }>`
   border-radius: 4px;
   font-size : 16px;
   font-weight : bold;     
-  color : #ffffff; 
+  color : ${palette('grayscale', 0)}; 
   margin-top : 60px;
-  background-color : ${(props) => (props.isButtonDisabled ? '#dfdfdf' : undefined)};
+  background-color : ${(props) => (props.isButtonDisabled ? `${palette('grayscale', 1)}` : undefined)};
   background-image : ${(props) =>
-    !props.isButtonDisabled ? 'linear-gradient(to right, #36c8f5,#13e2dd )' : undefined};
+    !props.isButtonDisabled
+      ? `linear-gradient(to right, ${palette('primary', 3)},${palette('primary', 0)} )`
+      : undefined};
 `;
 
 export const JoinWrap = Styled.div`

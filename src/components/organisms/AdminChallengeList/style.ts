@@ -1,10 +1,10 @@
 import { Label } from 'components/atoms';
 import Styled from 'styled-components';
-import { theme } from 'styled-tools';
+import { palette, theme } from 'styled-tools';
 
 export const AddExp = Styled.div`
 ${theme('font.subhead5')}
-color : #dfdfdf;
+color : ${palette('grayscale', 1)};
 `;
 
 export const AddImage = Styled.img`
@@ -19,7 +19,7 @@ flex-direction : column;
 align-items : center;
 border-radius: 18px;
 box-shadow: 0 0 24px 0 rgba(13, 12, 63, 0.1);
-background-color : #ffffff;
+background-color : ${palette('grayscale', 0)};
 width: 402px;
 height: 484px;
 height: 484px;
@@ -37,7 +37,7 @@ export const PageLabel = Styled(Label)`
 margin-top : 60px;
 line-height: 1.5;
 letter-spacing: -0.5px;
-color : #3d3d3d;
+color : ${palette('grayscale', 7)};
 font-size: 16px;
 `;
 
@@ -45,7 +45,7 @@ export const Title = Styled(Label)`
 ${theme('font.dp4')}
 margin-top:10px;
 margin-bottom : 110px;
-color:#3d3d3d;
+color:${palette('grayscale', 7)};
 `;
 
 export const Wrapper = Styled.div`

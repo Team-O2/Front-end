@@ -1,12 +1,12 @@
 import Styled from 'styled-components';
-import { theme } from 'styled-tools';
+import { palette, theme } from 'styled-tools';
 
 export const Item = Styled.span<{ page: string }>`
   ${theme('font.body1')};
   font-size: 16px;
   width : 100%;
   display: block;
-  color:${(props) => (props.page === 'adminwrite' ? '#0d0d0d' : '#8b8b8b')};
+  color:${(props) => (props.page === 'adminwrite' ? `${palette('grayscale', 9)}` : `${palette('grayscale', 4)}`)};
 `;
 
 export const SummaryOuter = Styled.div<{
@@ -22,11 +22,12 @@ export const SummaryOuter = Styled.div<{
   border-radius: 4px;
   display : flex;
   align-items : center;
-  border : ${(props) => (props.isOpen || props.isChecked ? 'double 1px transparent' : '1px solid #c1c1c1')};
+  border : ${(props) =>
+    props.isOpen || props.isChecked ? 'double 1px transparent' : `1px solid ${palette('grayscale', 1)}`};
   background-image : 
   ${(props) =>
     props.isOpen || props.isChecked
-      ? 'linear-gradient(white, white), linear-gradient(to right, #36c8f5,#13e2dd)'
+      ? `linear-gradient(white, white), linear-gradient(to right, ${palette('primary', 3)},${palette('primary', 0)})`
       : undefined};
   background-origin : 
   ${(props) => (props.isOpen || props.isChecked ? 'border-box' : undefined)};
@@ -62,7 +63,7 @@ export const Line = Styled.div<{ page: string; isSetting?: boolean }>`
   padding : 0;
   width:${(props) => (props.isSetting ? '804px' : props.page === 'adminwrite' ? '100%' : '370px')};
   height : 1px;
-  background-color : #dfdfdf;
+  background-color : ${palette('grayscale', 1)};
   margin : 13px 0 14px 0 ;
 `;
 
@@ -71,14 +72,14 @@ export const ListContainer = Styled.div<{ page: string; isSetting?: boolean }>`
   max-height:${(props) => (props.page === 'adminwrite' ? '220px' : undefined)};
   overflow:${(props) => (props.page === 'adminwrite' ? 'scroll' : undefined)};
   margin-top: 5px;
-  border: 1px solid #c1c1c1;
+  border: 1px solid ${palette('grayscale', 2)};
   border-radius: 4px;
   display: flex;
   flex-direction: column;
   padding: 20px 18px;
   position:${(props) => (props.page === 'adminwrite' ? 'absolute' : undefined)};
   z-index : 10;
-  background-color : #ffffff;
+  background-color : ${palette('grayscale', 0)};
 `;
 
 export const Label = Styled.label`
@@ -92,6 +93,6 @@ export const Input = Styled.input`
   visibility: hidden;
   position: absolute;
   :checked + span {
-    color: #36c8f5;
+    color: ${palette('primary', 3)};
   }
 `;

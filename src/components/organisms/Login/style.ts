@@ -1,8 +1,9 @@
 import { Button, Label } from 'components/atoms';
 import Styled from 'styled-components';
+import { palette } from 'styled-tools';
 
 export const Line = Styled.img`
-background-color : #8b8b8b;
+background-color : ${palette('grayscale', 4)};
 width : 1px;
 height : 16px;
 object-fit : contain;
@@ -11,7 +12,7 @@ object-fit : contain;
 export const JoinBtn = Styled(Button)`
 margin-left : 15px;
 line-height : 1.5;
-color : #8b8b8b;
+color : ${palette('grayscale', 4)};
 font-family: AppleSDGothicNeo;
 font-size : 16px;
 font-weight : bold;
@@ -20,7 +21,7 @@ font-weight : bold;
 export const FindPwdBtn = Styled(Button)`
 margin-right : 15px;
 line-height : 1.5;
-color : #8b8b8b;
+color : ${palette('grayscale', 4)};
 font-family: AppleSDGothicNeo;
 font-size : 16px;
 `;

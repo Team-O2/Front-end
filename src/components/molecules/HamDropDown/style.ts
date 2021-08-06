@@ -1,6 +1,6 @@
 import { Button } from 'components/atoms';
 import Styled from 'styled-components';
-import { theme } from 'styled-tools';
+import { palette, theme } from 'styled-tools';
 
 export const LabelIcon = Styled.img`
 width: 20px;
@@ -25,7 +25,7 @@ export const Title = Styled(Button)`
 display : flex;
 align-items : center;
 justify-content : center;
-color : #3d3d3d;
+color : ${palette('grayscale', 7)};
 `;
 
 export const Detail = Styled.div`
@@ -57,12 +57,12 @@ width: 0.3rem;
   background: none;
 }
 ::-webkit-scrollbar-thumb {
-  background: #c1c1c1;
+  background: ${palette('grayscale', 2)};
   border-radius: 0.5rem;
   box-sizing: border-box;
 }
 ::-webkit-scrollbar-thumb:hover {
-  background: #c1c1c1;
+  background: ${palette('grayscale', 2)};
 }
 `;
 
@@ -70,7 +70,7 @@ export const DetailBtn = Styled(Button)`
 ${theme('font.body2_eng')}
 height: 18px;
 margin: 5px 0;
-color : #8b8b8b;
+color : ${palette('grayscale', 4)};
 white-space: nowrap;
 :hover{
   ${theme('font.subhead2_eng')};
@@ -85,7 +85,7 @@ line-height : 30px;
 export const Hide = Styled.div`
 width : 100%;
 height : 36px;
-background-image: linear-gradient(to bottom, rgba(255, 255, 255, 0), #ffffff);
+background-image: linear-gradient(to bottom, rgba(255, 255, 255, 0), ${palette('grayscale', 0)});
 position : absolute;
 bottom : 0px;
 `;
