@@ -20,7 +20,7 @@ import {
   UsefulLearnMyselfFillIcon,
   WelcomeToO2FillIcon,
 } from 'assets/images';
-import { BadgeCard } from 'components/molecules';
+import { BadgeCard, SpeakerExpCard } from 'components/molecules';
 import React, { useEffect, useState } from 'react';
 import Reveal from 'react-awesome-reveal';
 import { Link } from 'react-router-dom';
@@ -52,10 +52,7 @@ import {
   O2BadgeSubTitle,
   O2BadgeTitle,
   O2BadgeWrapper,
-  O2SpaekerExp,
-  O2SpeakerBadgeImage,
-  O2SpeakerInnerWrapper,
-  O2SpeakerOuterWrapper,
+  O2SpeakerCardWrapper,
   O2SpeakerSubTitle,
   O2SpeakerTitle,
   O2SpeakerWrapper,
@@ -179,29 +176,11 @@ function Home(): React.ReactElement {
           <O2SpeakerSubTitle>뱃지를 모아 O2 Speaker가 되어보세요!</O2SpeakerSubTitle>
         </Reveal>
         {/* <Reveal cascade damping={0.5} keyframes={moveUp} triggerOnce> */}
-        <O2SpeakerOuterWrapper>
-          <O2SpeakerInnerWrapper>
-            <O2SpeakerBadgeImage src={SpeakerBadge1Img} />
-            <O2SpaekerExp>
-              챌린지 개수를 주당 <br />
-              3개 이상으로 설정
-            </O2SpaekerExp>
-          </O2SpeakerInnerWrapper>
-          <O2SpeakerInnerWrapper>
-            <O2SpeakerBadgeImage src={SpeakerBadge2Img} />
-            <O2SpaekerExp>
-              런마쎌을 80%이상 작성 후 <br />
-              챌린지뱃지를 획득
-            </O2SpaekerExp>
-          </O2SpeakerInnerWrapper>
-          <O2SpeakerInnerWrapper>
-            <O2SpeakerBadgeImage src={SpeakerBadge3Img} />
-            <O2SpaekerExp>
-              챌린지뱃지 3개 + 활동뱃지 12개 <br />
-              얻을 시 연사가능
-            </O2SpaekerExp>
-          </O2SpeakerInnerWrapper>
-        </O2SpeakerOuterWrapper>
+        <O2SpeakerCardWrapper>
+          <SpeakerExpCard img={SpeakerBadge1Img} exp1="챌린지 개수를 주당" exp2="3개 이상으로 설정" />
+          <SpeakerExpCard img={SpeakerBadge2Img} exp1="런마쎌을 80%이상 작성 후" exp2="챌린지뱃지를 획득" />
+          <SpeakerExpCard img={SpeakerBadge3Img} exp1="챌린지뱃지 3개 + 활동뱃지 12개" exp2="얻을 시 연사가능" />
+        </O2SpeakerCardWrapper>
         {/* </Reveal> */}
       </O2SpeakerWrapper>
       <O2BadgeWrapper>
