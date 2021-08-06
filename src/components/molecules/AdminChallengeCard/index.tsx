@@ -20,34 +20,34 @@ function AdminChallengeCard({ challengeData }: IProps): React.ReactElement {
       <BottomContainer>
         <Title>오투 회고 챌린지 {challengeData.generation}기</Title>
         <RowContainer>
-          <Label className=" body3">오픈일자</Label>
-          <Exp className=" subhead3">{changeDatetoString(challengeData.createdDT, true)}</Exp>
+          <Label>오픈일자</Label>
+          <Exp>{changeDatetoString(challengeData.createdDT, true)}</Exp>
         </RowContainer>
         <RowContainer>
-          <Label className=" body3">진행기간</Label>
-          <Exp className=" subhead3">
+          <Label>진행기간</Label>
+          <Exp>
             {changeDatetoString(challengeData.challengeStartDT, true)} ~{' '}
             {changeDatetoString(challengeData.challengeEndDT, false)}
           </Exp>
         </RowContainer>
         <RowContainer>
-          <Label className=" body3">신청기간</Label>
-          <Exp className=" subhead3">
+          <Label>신청기간</Label>
+          <Exp>
             {changeDatetoString(challengeData.registerStartDT, true)} ~{' '}
             {changeDatetoString(challengeData.registerEndDT, false)}
           </Exp>
         </RowContainer>
         <RowContainer>
-          <Label className=" body3">신청인</Label>
-          <Exp className=" subhead3">{challengeData.applyNum}명</Exp>
+          <Label>신청인</Label>
+          <Exp>{challengeData.applyNum}명</Exp>
         </RowContainer>
         <RowContainer>
-          <Label className=" body3">참여인원수</Label>
-          <Exp className=" subhead3">{challengeData.participants}명</Exp>
+          <Label>참여인원수</Label>
+          <Exp>{challengeData.participants}명</Exp>
         </RowContainer>
         <RowContainer>
-          <Label className=" body3">총 게시물 개수</Label>
-          <Exp className=" subhead3">{challengeData.postNum}개</Exp>
+          <Label>총 게시물 개수</Label>
+          <Exp>{challengeData.postNum}개</Exp>
         </RowContainer>
       </BottomContainer>
     </SAdminChallengeCard>

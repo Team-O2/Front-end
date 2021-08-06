@@ -47,7 +47,7 @@ function StyledInput({
         />
         {isFocused && !isConditionMet && <ErrorImage src={ErrorIcon}></ErrorImage>}
       </InputContainer>
-      {isFocused && !isConditionMet && <ErrorMsg className="input__msg--error">{errorMsg}</ErrorMsg>}
+      {isFocused && !isConditionMet && <ErrorMsg>{errorMsg}</ErrorMsg>}
     </SStyledInput>
   );
 }

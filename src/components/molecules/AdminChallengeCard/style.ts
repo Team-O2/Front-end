@@ -1,11 +1,14 @@
 import Styled from 'styled-components';
+import { theme } from 'styled-tools';
 
 export const Label = Styled.div`
+  ${theme('font.body3')};
   margin-right : 41px;
   width : 90px;
   color:#6f6f6f;
 `;
 export const Exp = Styled.div`
+  ${theme('font.subhead3')};
   color : #6f6f6f;
 `;
 export const RowContainer = Styled.div`

@@ -64,7 +64,7 @@ function AdminChallengeOpenForm({
 
   return (
     <Wrapper>
-      <WriteLabel className="subhead4">챌린지 제목</WriteLabel>
+      <WriteLabel>챌린지 제목</WriteLabel>
       <StyledInput
         placeHolder="제목을 입력하세요"
         width="844px"
@@ -75,7 +75,7 @@ function AdminChallengeOpenForm({
         isConditionMet={isConditionMet.title}
         margin="0 0 40px 0"
       />
-      <WriteLabel className="subhead4">챌린지 기간</WriteLabel>
+      <WriteLabel>챌린지 기간</WriteLabel>
       <PeriodContainer>
         <StyledInput
           placeHolder="년도.월.일. ex) 2021.07.04"
@@ -91,7 +91,7 @@ function AdminChallengeOpenForm({
           isConditionMet={isConditionMet.challengePeriod.start}
           margin="0 0 40px 0"
         />
-        <Text className="h1_eng">~</Text>
+        <Text style="h1_eng">~</Text>
         <StyledInput
           placeHolder="년도.월.일. ex) 2021.07.04"
           width="390px"
@@ -107,7 +107,7 @@ function AdminChallengeOpenForm({
           margin="0 0 40px 0"
         />
       </PeriodContainer>
-      <WriteLabel className="subhead4">챌린지 신청 기간</WriteLabel>
+      <WriteLabel>챌린지 신청 기간</WriteLabel>
       <PeriodContainer>
         <StyledInput
           placeHolder="년도.월.일. ex) 2021.07.04"
@@ -123,7 +123,7 @@ function AdminChallengeOpenForm({
           isConditionMet={isConditionMet.applyPeriod.start}
           margin="0 0 40px 0"
         />
-        <Text className="h1_eng">~</Text>
+        <Text style="h1_eng">~</Text>
         <StyledInput
           placeHolder="년도.월.일. ex) 2021.07.04"
           width="390px"
@@ -139,7 +139,7 @@ function AdminChallengeOpenForm({
           margin="0 0 40px 0"
         />
       </PeriodContainer>
-      <WriteLabel className="subhead4">제한 인원 수</WriteLabel>
+      <WriteLabel>제한 인원 수</WriteLabel>
       <PeopleContainer>
         <StyledInput
           placeHolder="제한 인원 수를 입력하세요"
@@ -154,7 +154,7 @@ function AdminChallengeOpenForm({
           isConditionMet={isConditionMet.peopleNum}
           margin="0 26px 40px 0"
         />
-        <Text className="subhead4">명</Text>
+        <Text style="subhead4">명</Text>
       </PeopleContainer>
     </Wrapper>
   );
