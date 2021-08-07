@@ -1,19 +1,55 @@
-import Styled from 'styled-components';
+import { fadeIn, fadeOut } from 'assets/styles/animation';
+import Styled, { css } from 'styled-components';
 
 export const Main = Styled.div`
   display: flex;
   align-items: center;
   width: 815px;
+  position: relative;
 `;
 
-export const HashtagContainer = Styled.div`
+export const HashtagContainer = Styled.div<{ disappear: boolean }>`
   display: flex;
-  width: 645px;
+  align-items: center;
+  width: ${({ disappear }) => (disappear ? '645px' : '726px')};
+  margin-left: ${({ disappear }) => (disappear ? '65px' : '0')};
   overflow: hidden;
 `;
 
 export const Hashtag = Styled.div`
   display: flex;
+`;
+
+export const GradientLeft = Styled.div<{ disappear: boolean }>`
+  position: absolute;
+  margin-left: 45px;
+  background-image: linear-gradient(to right, #FFFFFF 33.87%, rgba(255, 255, 255, 0) 94.35%);
+  width: 81px;
+  height: 46px;
+  animation-name: ${fadeOut};
+  animation-duration: 0.5s;
+  animation-timing-function: ease-out;
+  animation-fill-mode: forwards;
+  ${(props) =>
+    props.disappear &&
+    css`
+      animation-name: ${fadeIn};
+    `}
+    z-index: 4;
+`;
+
+export const PrevButton = Styled.img<{ disappear: boolean }>`
+  position: absolute;
+  animation-name: ${fadeOut};
+  animation-duration: 0.5s;
+  animation-timing-function: ease-out;
+  animation-fill-mode: forwards;
+  ${(props) =>
+    props.disappear &&
+    css`
+      animation-name: ${fadeIn};
+    `}
+    z-index: 5;
 `;
 
 export const Shadow = Styled.div`
