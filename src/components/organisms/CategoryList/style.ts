@@ -27,8 +27,6 @@ export const GradientLeft = Styled.div<{ disappear: boolean }>`
   width: 81px;
   height: 46px;
   animation-name: ${fadeOut};
-  animation-duration: 0.5s;
-  animation-timing-function: ease-out;
   animation-fill-mode: forwards;
   ${(props) =>
     props.disappear &&
@@ -41,8 +39,6 @@ export const GradientLeft = Styled.div<{ disappear: boolean }>`
 export const PrevButton = Styled.img<{ disappear: boolean }>`
   position: absolute;
   animation-name: ${fadeOut};
-  animation-duration: 0.5s;
-  animation-timing-function: ease-out;
   animation-fill-mode: forwards;
   ${(props) =>
     props.disappear &&
