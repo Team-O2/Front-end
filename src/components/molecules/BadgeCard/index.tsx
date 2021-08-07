@@ -1,5 +1,4 @@
 import React from 'react';
-import Styled from 'styled-components';
 import { Exp, Image, SBadgeCard, Title } from './style';
 
 export interface IProps {

@@ -1,11 +1,11 @@
-import Styled from 'styled-components';
+import Styled, { css } from 'styled-components';
 import { palette, theme } from 'styled-tools';
 
 export const Input = Styled.input`
   border : none;
   ${theme('font.body1')};
   font-size: 16px;  
-  color : ${palette('grayscale', 10)};
+  color : ${palette('grayscale', 9)};
   text-align: left;
   width : 100%;
   height : 100%;
@@ -25,17 +25,22 @@ export const InputContainer = Styled.div<{ width: string; height: string; condit
     -1 : 기본
     0 : 컨디션 X
     1 : 컨디션 O   */
-  border : ${(props) =>
+  ${(props) =>
     props.condition == -1
-      ? `solid 1px ${palette('grayscale', 2)}`
+      ? css`
+          border: solid 1px ${palette('grayscale', 2)};
+        `
       : props.condition == 1
-      ? 'double 1px transparent'
-      : `solid 1px ${palette('primary', 6)}`};
-  background-image : ${(props) =>
-    props.condition == 1 &&
-    `linear-gradient(white, white), linear-gradient(to right, ${palette('primary', 3)}, ${palette('primary', 0)})`};
-  background-origin : ${(props) => props.condition == 1 && 'border-box'};
-  background-clip : ${(props) => props.condition == 1 && 'content-box, border-box'};
+      ? css`
+          border: double 1px transparent;
+          background-image: linear-gradient(white, white),
+            linear-gradient(to right, ${palette('primary', 3)}, ${palette('primary', 0)});
+          background-origin: border-box;
+          background-clip: content-box, border-box;
+        `
+      : css`
+          border: solid 1px ${palette('primary', 6)};
+        `};
   border-radius : 4px;   
   display : flex;    
   align-items : center;  
