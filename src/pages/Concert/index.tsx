@@ -1,9 +1,7 @@
 import { getConcertSearchData } from 'apis';
-import { ConcertTitle } from 'components/molecules';
-import { CategoryList, ConcertCardList, ConcertList, SearchForm } from 'components/organisms';
 import React, { useEffect, useState } from 'react';
 import { IConcert } from 'types/concert.type';
-import { ConcertWrapper } from './style';
+import ConcertTemplate from './template';
 
 function Concert(): React.ReactElement {
   const [concertList, setConcertList] = useState<IConcert[] | null>(null);
@@ -42,27 +40,18 @@ function Concert(): React.ReactElement {
   const concertData = concertList?.slice(3);
 
   return (
-    <ConcertWrapper>
-      <ConcertTitle></ConcertTitle>
-      <CategoryList
-        reRenderCategory={reRenderCategory}
-        selectedCategory={selectedCategory}
-        categoryChange={categoryChange}
-      ></CategoryList>
-      <SearchForm
-        reRenderKeyword={reRenderKeyword}
-        keywordChange={keywordChange}
-        selectedCategory={selectedCategory}
-        contentListNum={totalConcertNum}
-      ></SearchForm>
-      <ConcertCardList concertCardData={concertCardData} />
-      <ConcertList
-        concertData={concertData}
-        totalConcertNum={totalConcertNum}
-        currentPage={currentPage}
-        setCurrentPage={setCurrentPage}
-      ></ConcertList>
-    </ConcertWrapper>
+    <ConcertTemplate
+      reRenderCategory={reRenderCategory}
+      selectedCategory={selectedCategory}
+      categoryChange={categoryChange}
+      reRenderKeyword={reRenderKeyword}
+      keywordChange={keywordChange}
+      concertCardData={concertCardData}
+      concertData={concertData}
+      totalConcertNum={totalConcertNum}
+      currentPage={currentPage}
+      setCurrentPage={setCurrentPage}
+    ></ConcertTemplate>
   );
 }
 
