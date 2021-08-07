@@ -6,14 +6,12 @@ import {
   postConcertLike,
   postConcertScrap,
 } from 'apis';
-import { DetailTitle, LoginModal } from 'components/molecules';
-import { CommentList, DetailContent } from 'components/organisms';
 import React, { useCallback, useEffect, useState } from 'react';
 import { RouteComponentProps } from 'react-router';
 import { useRecoilValue } from 'recoil';
 import { userStatusState } from 'stores/user';
 import { IConcert } from 'types/concert.type';
-import { ConcertDetailWrapper } from './style';
+import ConcertDetailTemplate from './template';
 
 interface MatchParams {
   id: string;
@@ -79,38 +77,20 @@ function ConcertDetail({ match }: RouteComponentProps<MatchParams>): React.React
   };
 
   return (
-    <ConcertDetailWrapper>
-      {concert && (
-        <DetailTitle
-          pageName="Share Together"
-          title={concert.title}
-          authorNickname={concert.authorNickname}
-          createdAt={concert.createdAt}
-          interestList={concert.interest}
-        ></DetailTitle>
-      )}
-      {concert && (
-        <DetailContent
-          video={concert.videoLink}
-          desc={concert.text}
-          hashtag={concert.hashtag}
-          likeNum={likeNum}
-          commentNum={concert.commentNum}
-          scrapNum={scrapNum}
-          onLike={onLike}
-          onScrap={onScrap}
-          isUserLike={isUserLike}
-          isUserScrap={isUserScrap}
-        ></DetailContent>
-      )}
-      <CommentList
-        commentList={commentList}
-        concertID={concert?._id}
-        isRerender={isRerender}
-        setIsRerender={setIsRerender}
-      ></CommentList>
-      <LoginModal isLoginModalOpen={isLoginModalOpen} setIsLoginModalOpen={setIsLoginModalOpen} />
-    </ConcertDetailWrapper>
+    <ConcertDetailTemplate
+      concert={concert}
+      likeNum={likeNum}
+      scrapNum={scrapNum}
+      onLike={onLike}
+      onScrap={onScrap}
+      isUserLike={isUserLike}
+      isUserScrap={isUserScrap}
+      commentList={commentList}
+      isRerender={isRerender}
+      setIsRerender={setIsRerender}
+      isLoginModalOpen={isLoginModalOpen}
+      setIsLoginModalOpen={setIsLoginModalOpen}
+    ></ConcertDetailTemplate>
   );
 }
 
