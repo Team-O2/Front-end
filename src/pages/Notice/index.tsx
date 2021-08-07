@@ -1,8 +1,7 @@
 import { getNoticeSearchData } from 'apis';
-import { NoticeHeader, NoticeList, SearchForm } from 'components/organisms';
 import React, { useEffect, useState } from 'react';
 import { INotice } from 'types/notice.type';
-import { NoticeWrapper } from './style';
+import NoticeTemplate from './template';
 
 function Notice(): React.ReactElement {
   const [noticeList, setnoticeList] = useState<INotice[] | null>(null);
@@ -31,25 +30,14 @@ function Notice(): React.ReactElement {
   };
 
   return (
-    <>
-      <NoticeHeader />
-      <NoticeWrapper>
-        <SearchForm
-          reRenderKeyword={reRenderKeyword}
-          keywordChange={keywordChange}
-          contentListNum={totalNoticeNum}
-          selectedCategory="공지사항"
-        ></SearchForm>
-        {noticeList && (
-          <NoticeList
-            noticeList={noticeList}
-            totalNoticeNum={totalNoticeNum}
-            currentPage={currentPage}
-            setCurrentPage={setCurrentPage}
-          ></NoticeList>
-        )}
-      </NoticeWrapper>
-    </>
+    <NoticeTemplate
+      reRenderKeyword={reRenderKeyword}
+      keywordChange={keywordChange}
+      noticeList={noticeList}
+      totalNoticeNum={totalNoticeNum}
+      currentPage={currentPage}
+      setCurrentPage={setCurrentPage}
+    ></NoticeTemplate>
   );
 }
 
