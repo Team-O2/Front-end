@@ -63,6 +63,7 @@ export { default as NoticeHeaderIcon } from './noticeHeaderIcon.svg';
 export { default as PlusIcon } from './plusIcon.svg';
 export { default as GreyPlusIcon } from './plusIconGrey.svg';
 export { default as GreydfPlusIcon } from './plusIcon_dfdfdf.svg';
+export { default as PrevIcon } from './prevCategoryButton.svg';
 export { default as ScrapIcon } from './scrap.svg';
 export { default as GrayScrapIcon } from './scrapIcon.svg';
 export { default as ScrapFilledIcon } from './scrap_filled.svg';
