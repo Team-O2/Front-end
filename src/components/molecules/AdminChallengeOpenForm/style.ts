@@ -23,8 +23,8 @@ export const PeopleContainer = Styled.div`
   align-items : flex-start;
 `;
 
-export const Text = Styled.div<{ style: string }>`
-  ${theme(`font.style`)};
+export const Text = Styled.div<{ font: string }>`
+  ${theme(`font.font`)};
   line-height : 60px;
   color : ${palette('grayscale', 4)};
 `;

@@ -91,7 +91,7 @@ function AdminChallengeOpenForm({
           isConditionMet={isConditionMet.challengePeriod.start}
           margin="0 0 40px 0"
         />
-        <Text style="h1_eng">~</Text>
+        <Text font="h1_eng">~</Text>
         <StyledInput
           placeHolder="년도.월.일. ex) 2021.07.04"
           width="390px"
@@ -123,7 +123,7 @@ function AdminChallengeOpenForm({
           isConditionMet={isConditionMet.applyPeriod.start}
           margin="0 0 40px 0"
         />
-        <Text style="h1_eng">~</Text>
+        <Text font="h1_eng">~</Text>
         <StyledInput
           placeHolder="년도.월.일. ex) 2021.07.04"
           width="390px"
@@ -154,7 +154,7 @@ function AdminChallengeOpenForm({
           isConditionMet={isConditionMet.peopleNum}
           margin="0 26px 40px 0"
         />
-        <Text style="subhead4">명</Text>
+        <Text font="subhead4">명</Text>
       </PeopleContainer>
     </Wrapper>
   );

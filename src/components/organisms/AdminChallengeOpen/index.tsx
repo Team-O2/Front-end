@@ -93,7 +93,7 @@ function AdminChallengeOpen(): React.ReactElement {
       />
       <UploadContainer>
         <ElementLabel>사진 업로드</ElementLabel>
-        <PhotoUpload width={'262px'} height={'216px'} setFile={setImage} fileType={0}>
+        <PhotoUpload width="262px" height="216px" setFile={setImage} fileType={0}>
           <PhotoUploadContainer>
             <PhotoUploadImage src={GreyPlusIcon}></PhotoUploadImage>
             <PhotoUploadMiddleDesc>
