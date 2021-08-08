@@ -43,8 +43,12 @@ function MyPage(): React.ReactElement {
   };
 
   const handleCommentFold = () => {
-    !isFolded && setIsChallengeModalOpen(false);
     setIsFolded(!isFolded);
+  };
+
+  const handleChallengeModalOpen = () => {
+    setIsChallengeModalOpen(false);
+    setIsFolded(true);
   };
 
   const handleModalOpen = () => {
@@ -186,6 +190,7 @@ function MyPage(): React.ReactElement {
       handleCommentFold={handleCommentFold}
       fetchLearnMyselfData={fetchLearnMyselfData}
       deleteSelectedCommentList={deleteSelectedCommentList}
+      handleChallengeModalOpen={handleChallengeModalOpen}
     />
   );
 }
