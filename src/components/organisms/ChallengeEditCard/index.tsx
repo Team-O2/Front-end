@@ -121,6 +121,22 @@ function EditCard({ id }: IEditCard): React.ReactElement {
   };
 
   const [selectedInterest, setSelectedInterest] = useState<string[]>([]);
+  const modalInterestHandler = (interest: string) => {
+    if (selectedInterest.length === 0) {
+      setSelectedInterest([interest]);
+    }
+    if (selectedInterest.length < 3) {
+      if (!selectedInterest.includes(interest)) {
+        setSelectedInterest([...selectedInterest, interest]);
+      } else {
+        setSelectedInterest(selectedInterest.filter((v) => v !== interest));
+      }
+    } else {
+      if (selectedInterest.includes(interest)) {
+        setSelectedInterest(selectedInterest.filter((v) => v !== interest));
+      }
+    }
+  };
 
   const indextoName = (index: undefined | number) => {
     switch (index) {
