@@ -1,34 +1,19 @@
 import { getRegistPeriod, SignRegister } from 'apis';
-import { AlertIcon, MinusIcon, PlusIcon } from 'assets/images';
-import { RegisterCompletedModal, RegisterConfirmModal } from 'components/molecules';
+import { AlertIcon } from 'assets/images';
+import { RegisterCard, RegisterCompletedModal, RegisterConfirmModal } from 'components/molecules';
 import React, { useEffect, useState } from 'react';
 import { useRecoilState } from 'recoil';
-import { userState, userStatusState } from 'stores/user';
+import { userStatusState } from 'stores/user';
 import { IAdminChallengePeriod } from 'types/admin.type';
-import {
-  BoxWrapper,
-  CardDetailWrapper,
-  CardSettingWrapper,
-  CardWrapper,
-  ChallengeSetting,
-  NoticeCardWrapper,
-  NoticeHeaderWrapper,
-  RegisterButton,
-} from './style';
+import { CardWrapper, NoticeCardWrapper, NoticeHeaderWrapper } from './style';
 
 function RegisterDetailCard() {
-  const [userData, setUserData] = useRecoilState(userState);
   const [userStatusData, setUserStatusData] = useRecoilState(userStatusState);
   const [registerCount, setRegisterCount] = useState(0);
   const [isOpenModal, setIsOpenModal] = useState(false);
   const [isRegisterSubmit, setIsRegisterSubmit] = useState(false);
   const [periodData, setPeriodData] = useState<IAdminChallengePeriod | null>(null);
 
-  function minusCount() {
-    if (registerCount > 0) {
-      setRegisterCount(registerCount - 1);
-    }
-  }
   const handleSubmit = async () => {
     const signData = {
       challengeCNT: registerCount,
@@ -52,17 +37,6 @@ function RegisterDetailCard() {
     return `${month}월 ${day}일`;
   };
 
-  const getRestDay = (dateString: string): number => {
-    const date = new Date(
-      parseInt(dateString.substr(0, 4)),
-      parseInt(dateString.substr(5, 2)) - 1,
-      parseInt(dateString.substr(8, 2)),
-    );
-    const today = new Date();
-    const rest = Math.ceil((date.getTime() - today.getTime()) / (1000 * 3600 * 24));
-    return rest;
-  };
-
   const getChallengePeriod = async () => {
     const data = await getRegistPeriod();
     data && setPeriodData(data);
@@ -75,46 +49,13 @@ function RegisterDetailCard() {
   return periodData ? (
     <>
       <CardWrapper>
-        <CardDetailWrapper>
-          <h1>신청기간</h1>
-          <h2>{getRestDay(periodData.registerEndDT)}일 남음</h2>
-          <h3>챌린지 기간</h3>
-          <h4>
-            {dateToString(periodData.challengeStartDT)} ~ {dateToString(periodData.challengeEndDT)}
-          </h4>
-          <CardSettingWrapper>
-            <ChallengeSetting>
-              <h1>챌린지 개수 설정</h1>
-              <p>2개 이상부터 뱃지 획득 가능</p>
-            </ChallengeSetting>
-            <BoxWrapper>
-              <p
-                onClick={() => {
-                  minusCount();
-                }}
-              >
-                <img src={MinusIcon} />
-              </p>
-              {registerCount}
-              <p
-                onClick={() => {
-                  setRegisterCount(registerCount + 1);
-                }}
-              >
-                <img src={PlusIcon} />
-              </p>
-            </BoxWrapper>
-          </CardSettingWrapper>
-          <RegisterButton>
-            <button
-              onClick={() => {
-                setIsOpenModal(true);
-              }}
-            >
-              신청하기
-            </button>
-          </RegisterButton>
-        </CardDetailWrapper>
+        <RegisterCard
+          setIsOpenModal={setIsOpenModal}
+          dateToString={dateToString}
+          periodData={periodData}
+          setRegisterCount={setRegisterCount}
+          registerCount={registerCount}
+        />
         <RegisterConfirmModal
           isOpenModal={isOpenModal}
           setIsOpenModal={setIsOpenModal}
