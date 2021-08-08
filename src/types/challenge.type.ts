@@ -108,3 +108,15 @@ export interface IReply {
   };
   text?: string;
 }
+
+export interface IByte {
+  byte1: number;
+  byte2: number;
+  byte3: number;
+}
+
+export interface ITextForm {
+  description1: string;
+  description2: string;
+  description3: string;
+}
