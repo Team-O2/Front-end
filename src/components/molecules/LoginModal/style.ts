@@ -12,7 +12,7 @@ export const LoginNotice = Styled.div`
 `;
 
 export const LoginNoticeTitle = Styled.div`
-  padding:20px 0px 20px 0px;
+  padding:30px 0px 30px 0px;
   text-align: center;
   color: #000000;
   ${theme('font.dp4')};
