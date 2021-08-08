@@ -1,5 +1,5 @@
 import { getMyPageChallengeList } from 'apis';
-import { ChallengeDetailCard } from 'components/molecules';
+import { ChallengeDetailCard } from 'components/organisms';
 import React, { useCallback, useEffect, useState } from 'react';
 import { useRecoilValue } from 'recoil';
 import { userStatusState } from 'stores/user';
