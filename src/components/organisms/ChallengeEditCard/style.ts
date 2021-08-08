@@ -72,67 +72,6 @@ export const TagListWrapper = Styled.div`
         background: ${palette('grayscale', 0)};
         padding: 13px 30px 30px 30px;
     }
-<<<<<<< Updated upstream
-
-
-`;
-
-export const ProgressBarStep0 = Styled.span`
-    display: inline-block;
-    background-color: #d6d3d3;
-    width: 844px;
-    height: 5px;
-
-    span{
-        display: inline-block;
-        background-color: ${palette('primary', 3)};
-        width: 1%;
-        height: 5px;
-    }
-`;
-
-export const ProgressBarStep1 = Styled.span`
-    display: inline-block;
-    background-color: #d6d3d3;
-    width: 844px;
-    height: 5px;
-
-    span{
-        display: inline-block;
-        background-color: ${palette('primary', 3)};
-        width: 34%;
-        height: 5px;
-    }
-`;
-
-export const ProgressBarStep2 = Styled.span`
-    display: inline-block;
-    background-color: #d6d3d3;
-    width: 844px;
-    height: 5px;
-
-    span{
-        display: inline-block;
-        background-color: ${palette('primary', 3)};
-        width: 67%;
-        height: 5px;
-    }
-`;
-
-export const ProgressBarStep3 = Styled.span`
-    display: inline-block;
-    background-color: #d6d3d3;
-    width: 844px;
-    height: 5px;
-
-    span{
-        display: inline-block;
-        background-color: ${palette('primary', 3)};
-        width: 100%;
-        height: 5px;
-    }
-=======
->>>>>>> Stashed changes
 `;
 
 export const ButtonWrapper = Styled.div`
@@ -142,6 +81,7 @@ export const ButtonWrapper = Styled.div`
 `;
 
 export const ColorButton = Styled(Button)`
+
     margin: 0 auto;
     margin-top:60px;
     border:none;

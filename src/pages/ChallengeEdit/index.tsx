@@ -1,4 +1,4 @@
-import ChallengeEdit from 'components/molecules/ChallengeEditCard/index';
+import { ChallengeEditCard } from 'components/organisms';
 import React from 'react';
 import { RouteComponentProps } from 'react-router';
 
@@ -7,7 +7,7 @@ interface MatchParams {
 }
 function ChallengeWrite({ match }: RouteComponentProps<MatchParams>): React.ReactElement {
   const { id } = match.params;
-  return <ChallengeEdit id={id} />;
+  return <ChallengeEditCard id={id} />;
 }
 
 export default ChallengeWrite;
