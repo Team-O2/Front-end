@@ -1,4 +1,4 @@
-import ChallengeCard from 'components/molecules/ChallengeWriteCard';
+import { ChallengeWriteCard } from 'components/organisms';
 import React from 'react';
 
 const ChallengeWrite = () => {
@@ -6,7 +6,7 @@ const ChallengeWrite = () => {
     return;
   };
 
-  return <ChallengeCard onChangeForm={onChangeForm} />;
+  return <ChallengeWriteCard onChangeForm={onChangeForm} />;
 };
 
 export default ChallengeWrite;
