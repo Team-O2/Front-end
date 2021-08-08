@@ -1,11 +1,11 @@
 import { ChallengeListData } from 'apis';
-import ChallengeHeader from 'components/molecules/ChallengeHeader';
-import ChallengeCard from 'components/organisms/ChallengeCard';
+import { ChallengeHeader } from 'components/molecules';
 import React, { useCallback, useState } from 'react';
 import { RouteComponentProps } from 'react-router';
 import { useRecoilValue } from 'recoil';
 import { userStatusState } from 'stores/user';
 import { IChallengeData } from 'types/challenge.type';
+import ChallengeMiddle from './template';
 
 interface MatchParams {
   generationNum: string;
@@ -38,7 +38,11 @@ function ChallengeView({ match }: RouteComponentProps<MatchParams>): React.React
         isClickedEntire={isClickedEntire}
         setIsClickedEntire={setIsClickedEntire}
       />
-      <ChallengeCard challengeList={challengeList} setChallengeList={setChallengeList} generationNum={generationNum} />
+      <ChallengeMiddle
+        challengeList={challengeList}
+        setChallengeList={setChallengeList}
+        generationNum={generationNum}
+      />
     </div>
   );
 }
