@@ -1,28 +1,22 @@
 import { getRegistPeriod, SignRegister } from 'apis';
-import { AlertIcon, ChallengeImg, CheckCircleIcon, MinusIcon, PlusIcon } from 'assets/images';
-import { Modal } from 'components/atoms';
-import { RegisterHeader } from 'components/molecules';
+import { AlertIcon, MinusIcon, PlusIcon } from 'assets/images';
+import { RegisterCompletedModal, RegisterConfirmModal } from 'components/molecules';
 import React, { useEffect, useState } from 'react';
 import { useRecoilState } from 'recoil';
 import { userState, userStatusState } from 'stores/user';
 import { IAdminChallengePeriod } from 'types/admin.type';
-import RegisterConfirmModal from '../RegisterConfirmModal';
 import {
   BoxWrapper,
   CardDetailWrapper,
   CardSettingWrapper,
   CardWrapper,
   ChallengeSetting,
-  Container,
-  Header,
   NoticeCardWrapper,
   NoticeHeaderWrapper,
   RegisterButton,
-  RegisterImg,
-  RegisterSubmitWrapper,
 } from './style';
 
-function ChallengeRegister(): React.ReactElement {
+function RegisterDetailCard() {
   const [userData, setUserData] = useRecoilState(userState);
   const [userStatusData, setUserStatusData] = useRecoilState(userStatusState);
   const [registerCount, setRegisterCount] = useState(0);
@@ -68,24 +62,18 @@ function ChallengeRegister(): React.ReactElement {
     const rest = Math.ceil((date.getTime() - today.getTime()) / (1000 * 3600 * 24));
     return rest;
   };
+
   const getChallengePeriod = async () => {
     const data = await getRegistPeriod();
     data && setPeriodData(data);
   };
+
   useEffect(() => {
     getChallengePeriod();
   }, []);
 
   return periodData ? (
-    <Container>
-      <RegisterHeader title={periodData.title} generation={periodData.generation} img={periodData.img} />
-      <Header>
-        <p>챌린지 설명</p>
-        <span></span>
-      </Header>
-      <RegisterImg>
-        <img src={ChallengeImg} alt="" />
-      </RegisterImg>
+    <>
       <CardWrapper>
         <CardDetailWrapper>
           <h1>신청기간</h1>
@@ -136,14 +124,7 @@ function ChallengeRegister(): React.ReactElement {
           handleSubmit={handleSubmit}
         />
         {isRegisterSubmit === true ? (
-          <Modal isOpen={isRegisterSubmit} setIsOpen={setIsRegisterSubmit} isBlur={true}>
-            <RegisterSubmitWrapper>
-              <img src={CheckCircleIcon} alt=""></img>
-              <h5>신청완료!</h5>
-              <p>{userData?.nickname}님 챌린지가 정상적으로</p>
-              <p> 신청되었습니다.</p>
-            </RegisterSubmitWrapper>
-          </Modal>
+          <RegisterCompletedModal isRegisterSubmit={isRegisterSubmit} setIsRegisterSubmit={setIsRegisterSubmit} />
         ) : null}
 
         <NoticeCardWrapper>
@@ -157,9 +138,10 @@ function ChallengeRegister(): React.ReactElement {
           <p>본 챌린지 의도와는 다른 광고성 글과 카테고리와 무관한 내용은 무통보 삭제 될 수 있습니다.</p>
         </NoticeCardWrapper>
       </CardWrapper>
-    </Container>
+    </>
   ) : (
     <p> 챌린지 신청기간이 아닙니다</p>
   );
 }
-export default ChallengeRegister;
+
+export default RegisterDetailCard;
