@@ -9,16 +9,7 @@ import {
   getUserCommentList,
 } from 'apis';
 import { Logo } from 'assets/images';
-import { Modal } from 'components/atoms';
-import {
-  ChallengeCard,
-  ChallengeModalComment,
-  DeleteModal,
-  MyPageConcertCard,
-  MyPageSection,
-} from 'components/molecules';
-import { MyCommentList, MyPageHeader } from 'components/organisms';
-import dayjs from 'dayjs';
+import { ChallengeCard, MyPageConcertCard } from 'components/molecules';
 import React, { useCallback, useEffect, useState } from 'react';
 import { useRecoilValue } from 'recoil';
 import { userState, userStatusState } from 'stores/user';
@@ -26,24 +17,7 @@ import { IChallenge, IChallengeData } from 'types/challenge.type';
 import { IConcert } from 'types/concert.type';
 import { IMyPageHeader, IMyScrappedChallenge, IMyScrappedConcert, IMyUserCommentResponse } from 'types/myPage.type';
 import { changeDateFormat } from 'utils';
-import {
-  Body,
-  Bottom,
-  ChallengeModalWrapper,
-  CloseButton,
-  CommentWrapper,
-  Header,
-  ModalUserImg,
-  ModalUserInfo,
-  ModalUserInfoWrapper,
-  ModalWrapper,
-  MoreButton,
-  Switch,
-  SwitchRadio,
-  TextArea,
-  Top,
-  Wrapper,
-} from './style';
+import MyPageTemplate from './template';
 
 function MyPage(): React.ReactElement {
   const [selectedSection, setSelectedSection] = useState('scrap');
@@ -68,6 +42,11 @@ function MyPage(): React.ReactElement {
     setSelectedSection(e.target.id);
   };
 
+  const handleCommentFold = () => {
+    !isFolded && setIsChallengeModalOpen(false);
+    setIsFolded(!isFolded);
+  };
+
   const handleModalOpen = () => {
     setIsModalOpened(true);
   };
@@ -77,6 +56,37 @@ function MyPage(): React.ReactElement {
     setIsSelectAll(false);
     setIsReRender(!isReRender);
     setIsModalOpened(false);
+  };
+
+  const renderScrappedConcert = (data: IConcert[]) => {
+    return data?.map((item: IConcert) => {
+      return (
+        <MyPageConcertCard
+          key={item._id}
+          id={item._id}
+          tagName={item.interest[0]}
+          title={item.title}
+          content={item.text}
+          date={changeDateFormat(item.createdAt)}
+          imagePath={item.imgThumbnail}
+        />
+      );
+    });
+  };
+
+  const renderChallenge = (data: IChallenge[]) => {
+    return data?.map((item: IChallenge) => (
+      <ChallengeCard
+        imagePath={item.user?.img || Logo}
+        isBookmarked={globalUserInfo?._id !== item?.user?._id}
+        id={item._id}
+        key={item._id}
+        name={item.user?.nickname}
+        content={`잘한 점: ${item.good} 못한 점: ${item.bad} 배운 점: ${item.learn}`}
+        onClick={cancelChallengeBookmark}
+        onButtonClick={fetchLearnMyselfData}
+      />
+    ));
   };
 
   const fetchMyPageUserInfo = useCallback(async () => {
@@ -146,161 +156,37 @@ function MyPage(): React.ReactElement {
     fetchUserCommentList(selectedCategory, currentPage);
   }, [selectedCategory, currentPage, isReRender, fetchUserCommentList]);
 
-  const renderScrappedConcert = (data: IConcert[]) => {
-    return data?.map((item: IConcert) => {
-      return (
-        <MyPageConcertCard
-          key={item._id}
-          id={item._id}
-          tagName={item.interest[0]}
-          title={item.title}
-          content={item.text}
-          date={changeDateFormat(item.createdAt)}
-          imagePath={item.imgThumbnail}
-        />
-      );
-    });
-  };
-
-  const renderChallenge = (data: IChallenge[]) => {
-    return data?.map((item: IChallenge) => (
-      <ChallengeCard
-        imagePath={item.user?.img || Logo}
-        isBookmarked={globalUserInfo?._id !== item?.user?._id}
-        id={item._id}
-        key={item._id}
-        name={item.user?.nickname}
-        content={`잘한 점: ${item.good} 못한 점: ${item.bad} 배운 점: ${item.learn}`}
-        onClick={cancelChallengeBookmark}
-        onButtonClick={fetchLearnMyselfData}
-      />
-    ));
-  };
-
   return (
-    <Wrapper>
-      <Header>
-        <MyPageHeader userInfo={userInfo} />
-      </Header>
-      <Body>
-        <Switch>
-          <li>
-            <SwitchRadio type="radio" id="scrap" onChange={onChangeSection} checked={selectedSection === 'scrap'} />
-            <label htmlFor="scrap">스크랩</label>
-          </li>
-          <li>
-            <SwitchRadio
-              type="radio"
-              id="activity"
-              onChange={onChangeSection}
-              checked={selectedSection === 'activity'}
-            />
-            <label htmlFor="activity">나의 활동</label>
-          </li>
-        </Switch>
-        <Top>
-          {selectedSection === 'scrap' ? (
-            <MyPageSection
-              title="Share Together"
-              subTitle={`${globalUserInfo?.nickname}님이 스크랩한 강연들이에요`}
-              column={2}
-              gap={30}
-              path="/mypage/concert/scrap"
-              data={concertData?.mypageConcertScrap}
-              renderItemList={renderScrappedConcert}
-            />
-          ) : (
-            <MyPageSection
-              title="작성한 글"
-              subTitle={`${globalUserInfo?.nickname}님이 작성한 런마셀들이에요`}
-              column={4}
-              gap={15}
-              path="/mypage/challenge/mine"
-              data={userChallengeList}
-              renderItemList={renderChallenge}
-            />
-          )}
-        </Top>
-        <Bottom>
-          {selectedSection === 'scrap' ? (
-            <MyPageSection
-              title="Learn Myself"
-              subTitle={`${globalUserInfo?.nickname}님이 스크랩한 런마셀들이에요`}
-              column={4}
-              gap={15}
-              path="/mypage/challenge/scrap"
-              data={scrappedChallenge?.mypageChallengeScrap}
-              renderItemList={renderChallenge}
-            />
-          ) : (
-            userComment && (
-              <MyCommentList
-                userComment={userComment}
-                selectedCategory={selectedCategory}
-                setSelectedCategory={setSelectedCategory}
-                currentPage={currentPage}
-                setCurrentPage={setCurrentPage}
-                handleModalOpen={handleModalOpen}
-                checkedCommentList={checkedCommentList}
-                setCheckedCommentList={setCheckedCommentList}
-                isSelectAll={isSelectAll}
-                setIsSelectAll={setIsSelectAll}
-                handleDetailModal={fetchLearnMyselfData}
-              />
-            )
-          )}
-        </Bottom>
-      </Body>
-      <DeleteModal
-        isDeleteModalOpen={isModalOpened}
-        setIsDeleteModalOpen={setIsModalOpened}
-        onClickDeleteButton={deleteSelectedCommentList}
-      />
-      <Modal isOpen={isChallengeModalOpen} setIsOpen={setIsChallengeModalOpen} isBlur={true}>
-        <ChallengeModalWrapper>
-          <ModalWrapper>
-            <ModalUserInfo>
-              <ModalUserImg src={challenge?.user?.img} />
-              <ModalUserInfoWrapper>
-                <div>
-                  <div>{challenge?.user?.nickname}</div>
-                  <div>{dayjs().format('MM.DD')}</div>
-                </div>
-                <div>{challenge?.interest?.map((item: string) => `#${item} `)}</div>
-              </ModalUserInfoWrapper>
-            </ModalUserInfo>
-            <TextArea isFolded={isFolded}>
-              <h3>잘한 점</h3>
-              <p>{challenge?.good}</p>
-              <h3>못한 점</h3>
-              <p>{challenge?.bad}</p>
-              <h3>배운 점</h3>
-              <p>{challenge?.learn}</p>
-            </TextArea>
-            <MoreButton
-              onClick={() => {
-                setIsFolded(!isFolded);
-              }}
-            >
-              {isFolded ? '더보기' : '접기'}
-            </MoreButton>
-            <CommentWrapper>
-              {challenge?.comments.map((comment) => (
-                <ChallengeModalComment key={comment._id} commentData={comment} />
-              ))}
-            </CommentWrapper>
-          </ModalWrapper>
-          <CloseButton
-            onClick={() => {
-              setIsChallengeModalOpen(false);
-              setIsFolded(true);
-            }}
-          >
-            닫기
-          </CloseButton>
-        </ChallengeModalWrapper>
-      </Modal>
-    </Wrapper>
+    <MyPageTemplate
+      userInfo={userInfo}
+      globalUserInfo={globalUserInfo}
+      concertData={concertData}
+      scrappedChallenge={scrappedChallenge}
+      userChallengeList={userChallengeList}
+      userComment={userComment}
+      challenge={challenge}
+      selectedSection={selectedSection}
+      selectedCategory={selectedCategory}
+      isModalOpened={isModalOpened}
+      isSelectAll={isSelectAll}
+      isChallengeModalOpen={isChallengeModalOpen}
+      isFolded={isFolded}
+      currentPage={currentPage}
+      checkedCommentList={checkedCommentList}
+      onChangeSection={onChangeSection}
+      setSelectedCategory={setSelectedCategory}
+      setCurrentPage={setCurrentPage}
+      setCheckedCommentList={setCheckedCommentList}
+      setIsSelectAll={setIsSelectAll}
+      setIsModalOpened={setIsModalOpened}
+      setIsChallengeModalOpen={setIsChallengeModalOpen}
+      renderScrappedConcert={renderScrappedConcert}
+      renderChallenge={renderChallenge}
+      handleModalOpen={handleModalOpen}
+      handleCommentFold={handleCommentFold}
+      fetchLearnMyselfData={fetchLearnMyselfData}
+      deleteSelectedCommentList={deleteSelectedCommentList}
+    />
   );
 }
 
