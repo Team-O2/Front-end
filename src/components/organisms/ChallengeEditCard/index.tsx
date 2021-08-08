@@ -1,10 +1,10 @@
 import { ChallengeEdit, getChallengeContent } from 'apis';
-import { ChallengeProgressBar, ChallengeWriteInterest } from 'components/molecules';
+import { ChallengeEditForm, ChallengeProgressBar, ChallengeWriteInterest } from 'components/molecules';
 import React, { useEffect, useState } from 'react';
 import { useHistory } from 'react-router-dom';
 import { useRecoilValue } from 'recoil';
 import { userStatusState } from 'stores/user';
-import { BlackButton, ButtonWrapper, ColorButton, Header, QuestionWrapper } from './style';
+import { BlackButton, ButtonWrapper, ColorButton, Header } from './style';
 
 export interface IProps {
   description?: string;
@@ -121,22 +121,6 @@ function EditCard({ id }: IEditCard): React.ReactElement {
   };
 
   const [selectedInterest, setSelectedInterest] = useState<string[]>([]);
-  const modalInterestHandler = (interest: string) => {
-    if (selectedInterest.length === 0) {
-      setSelectedInterest([interest]);
-    }
-    if (selectedInterest.length < 3) {
-      if (!selectedInterest.includes(interest)) {
-        setSelectedInterest([...selectedInterest, interest]);
-      } else {
-        setSelectedInterest(selectedInterest.filter((v) => v !== interest));
-      }
-    } else {
-      if (selectedInterest.includes(interest)) {
-        setSelectedInterest(selectedInterest.filter((v) => v !== interest));
-      }
-    }
-  };
 
   const indextoName = (index: undefined | number) => {
     switch (index) {
@@ -155,47 +139,8 @@ function EditCard({ id }: IEditCard): React.ReactElement {
     <>
       <Header>Learn Myself {indextoName(userStatusData?.progressGeneration)}</Header>
       <ChallengeProgressBar countProgressBar={countProgressBar} />
-
-      <QuestionWrapper>
-        <h1>오늘의 잘한 점을 적어보세요.</h1>
-        <p>
-          {byte.byte1}/{maxByte}
-        </p>
-        <textarea
-          name="description1"
-          value={description1}
-          placeholder="오늘의 잘한 점을 적어보세요."
-          onChange={handleTotalOnChange}
-        ></textarea>
-      </QuestionWrapper>
-
-      <QuestionWrapper>
-        <h1>오늘의 못한 점을 적어보세요.</h1>
-        <p>
-          {byte.byte2}/{maxByte}
-        </p>
-        <textarea
-          name="description2"
-          value={description2}
-          placeholder="오늘의 못한 점을 적어보세요."
-          onChange={handleTotalOnChange}
-        ></textarea>
-      </QuestionWrapper>
-      <QuestionWrapper>
-        <h1>잘한 점/못한 점을 통해 배운 것과 다음에 실천할 것을 적어보세요.</h1>
-        <p>
-          {byte.byte3}/{maxByte}
-        </p>
-        <textarea
-          name="description3"
-          value={description3}
-          placeholder="배운 것과 실천할 것을 적어보세요."
-          onChange={handleTotalOnChange}
-        ></textarea>
-      </QuestionWrapper>
-
+      <ChallengeEditForm handleTotalOnChange={handleTotalOnChange} byte={byte} ITextForm={textForm} />
       <ChallengeWriteInterest selectedInterest={selectedInterest} setSelectedInterest={setSelectedInterest} />
-
       {countProgressBar === 3 ? (
         <ButtonWrapper>
           <ColorButton onClick={handleSubmit}>수정완료</ColorButton>

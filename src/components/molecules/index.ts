@@ -10,7 +10,7 @@ export { default as ChallengeCardList } from './ChallengeCardList';
 export { default as ChallengeCardProfile } from './ChallengeCardProfile';
 export { default as ChallengeComment } from './ChallengeComment';
 export { default as ChallengeCommentWrite, default as ChallengeReCommentWrite } from './ChallengeCommentWrite';
-export { default as ChallengeEditCard } from './ChallengeEditCard';
+export { default as ChallengeEditForm } from './ChallengeEditForm';
 export { default as ChallengeHeader } from './ChallengeHeader';
 export { default as ChallengeModalComment } from './ChallengeModalComment';
 export { default as ChallengeProgressBar } from './ChallengeProgressBar';
