@@ -36,7 +36,8 @@ export interface IProps {
   handleModalOpen: () => void;
   handleCommentFold: () => void;
   fetchLearnMyselfData: (id: string) => Promise<void>;
-  deleteSelectedCommentList: () => void;
+  deleteSelectedCommentList: () => Promise<void>;
+  handleChallengeModalOpen: () => void;
 }
 
 function MyPageTemplate({
@@ -68,6 +69,7 @@ function MyPageTemplate({
   handleCommentFold,
   fetchLearnMyselfData,
   deleteSelectedCommentList,
+  handleChallengeModalOpen,
 }: IProps): React.ReactElement {
   return (
     <S.Wrapper>
