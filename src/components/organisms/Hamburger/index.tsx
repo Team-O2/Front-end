@@ -6,12 +6,11 @@ import React, { useEffect, useState } from 'react';
 import { Link, useHistory } from 'react-router-dom';
 import { useRecoilState } from 'recoil';
 import { userState, userStatusState } from 'stores/user';
-import Styled from 'styled-components';
 import {
-  HamburgerContainer,
   BottomContainer,
   ChallengeEndUser,
   EngTitleBtn,
+  HamburgerContainer,
   Hide,
   Line,
   LoginButton,
@@ -65,7 +64,7 @@ function Hamburger(): React.ReactElement {
         arr.push({ name: changeIndextoName(i), link: `/challenge/${i}` });
       }
       if (generationNum.registGeneration) {
-        arr.push({ name: changeIndextoName(generationNum.registGeneration), link: '/challengeRegister' });
+        arr.push({ name: changeIndextoName(generationNum.registGeneration), link: '/challenge/register' });
       }
     }
     setChallengeList(arr);
