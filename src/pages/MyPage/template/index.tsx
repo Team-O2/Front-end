@@ -1,6 +1,5 @@
 import { DeleteModal, MyPageSection } from 'components/molecules';
-import { MyCommentList, MyPageHeader } from 'components/organisms';
-import MyPageCommentModal from 'components/organisms/MyPageCommentModal';
+import { MyCommentList, MyPageCommentModal, MyPageHeader } from 'components/organisms';
 import React from 'react';
 import { IChallenge, IChallengeData } from 'types/challenge.type';
 import { IConcert } from 'types/concert.type';
