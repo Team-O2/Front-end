@@ -1,10 +1,10 @@
-import Register from 'components/molecules/ChallengeDetailRegister';
 import React from 'react';
+import ChallengeDetailRegister from './template';
 
 const ChallengeRegister = () => {
   return (
     <div>
-      <Register />
+      <ChallengeDetailRegister />
     </div>
   );
 };
