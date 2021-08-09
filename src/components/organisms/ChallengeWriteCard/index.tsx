@@ -11,11 +11,11 @@ import { useRecoilValue } from 'recoil';
 import { userStatusState } from 'stores/user';
 import { Header } from './style';
 
-type MyFormProps = {
+interface IProps {
   onChangeForm: (form: { description1: string; description2: string; description3: string }) => void;
-};
+}
 
-function WriteCard({ onChangeForm }: MyFormProps): React.ReactElement {
+function WriteCard({ onChangeForm }: IProps): React.ReactElement {
   const history = useHistory();
   const userStatusData = useRecoilValue(userStatusState);
   const [countProgressBar, setCountProgressBar] = useState(0); //프로그래스바
@@ -43,7 +43,7 @@ function WriteCard({ onChangeForm }: MyFormProps): React.ReactElement {
     });
   };
 
-  const handleSubmit = async (e: any) => {
+  const handleSubmit = async (e: React.MouseEvent<HTMLButtonElement>) => {
     setUserData({ ...userData, interest: selectedInterest });
     e.preventDefault();
     onChangeForm(textForm);
@@ -78,7 +78,7 @@ function WriteCard({ onChangeForm }: MyFormProps): React.ReactElement {
     setCountProgressBar(count);
   }, [byte.byte1, byte.byte2, byte.byte3]);
 
-  const totalOnChange = (e: any) => {
+  const totalOnChange = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
     const text_val = e.target.value; //입력한 문자
     const target_byte_name = 'byte' + e.target.name.split('description')[1];
     let str = '';
