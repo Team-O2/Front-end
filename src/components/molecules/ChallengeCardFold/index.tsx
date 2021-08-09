@@ -27,6 +27,7 @@ function ChallengeCardFold({ id }: IProps): React.ReactElement {
   useEffect(() => {
     getCommentList();
   }, [isCommentListFlag, getCommentList]);
+
   return (
     <>
       {isOpenComment === false ? (

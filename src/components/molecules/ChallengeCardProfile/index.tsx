@@ -1,8 +1,8 @@
 import { CancelChallengeScrap, ChallengeScrap } from 'apis';
 import { ColorScrapIcon, DeleteIcon, EditIcon, GrayScrapIcon, MenuBarIcon } from 'assets/images';
+import { Link } from 'components/atoms';
 import dayjs from 'dayjs';
 import React, { useState } from 'react';
-import { useHistory } from 'react-router';
 import { useRecoilValue } from 'recoil';
 import { userStatusState } from 'stores/user';
 import {
@@ -39,7 +39,6 @@ function ChallengeCardProfile({
   interest,
   id,
 }: IProps): React.ReactElement {
-  const history = useHistory();
   const [isMenuBar, setIsMenuBar] = useState(true);
   const [scrapRender, setScrapRender] = useState(isScrap);
   const userStatusData = useRecoilValue(userStatusState);
@@ -65,6 +64,23 @@ function ChallengeCardProfile({
     }
   };
 
+  const scrapCancelHandelOnClick = () => {
+    cancelScrap();
+    userStateNum === 0 ? setIsLoginModalOpen(true) : setIsLoginModalOpen(false);
+  };
+
+  const scrapSubmitHandelOnClick = () => {
+    submitScrap();
+    userStateNum === 0 ? setIsLoginModalOpen(true) : setIsLoginModalOpen(false);
+  };
+
+  //userState상태 :
+  // 0: 비회원,
+  // 1: 챌린지안하는유저,
+  // 2: 챌린지하는유저,
+  // 3: 챌린지하는유저&챌린지종료,
+  // 4: 관리자
+
   return (
     <div>
       <ProfileImage src={image} />
@@ -82,8 +98,7 @@ function ChallengeCardProfile({
                     src={GrayScrapIcon}
                     alt=""
                     onClick={() => {
-                      submitScrap();
-                      userStateNum === 0 ? setIsLoginModalOpen(true) : setIsLoginModalOpen(false);
+                      scrapSubmitHandelOnClick();
                     }}
                   />
                 </MenuButton>
@@ -95,8 +110,7 @@ function ChallengeCardProfile({
                     src={ColorScrapIcon}
                     alt=""
                     onClick={() => {
-                      cancelScrap();
-                      userStateNum === 0 ? setIsLoginModalOpen(true) : setIsLoginModalOpen(false);
+                      scrapCancelHandelOnClick();
                     }}
                   />
                 </MenuButton>
@@ -111,13 +125,11 @@ function ChallengeCardProfile({
               >
                 <img src={DeleteIcon} alt="" />
               </DeleteEditCardButton>
-              <DeleteEditCardButton
-                onClick={() => {
-                  history.push(`/challenge/edit/${id}`);
-                }}
-              >
-                <img src={EditIcon} alt="" />
-              </DeleteEditCardButton>
+              <Link to={`/challenge/edit/${id}`}>
+                <DeleteEditCardButton>
+                  <img src={EditIcon} alt="" />
+                </DeleteEditCardButton>
+              </Link>
             </DeleteBar>
           ) : (
             <MenuBarWrapper>

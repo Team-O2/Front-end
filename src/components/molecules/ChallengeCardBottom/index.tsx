@@ -7,6 +7,7 @@ import { ButtonWrapper, FoldButton, IconWrapper } from './style';
 
 interface IProps {
   setIsClosed: (value: boolean) => void;
+  isClosed: boolean;
   setIsLoginModalOpen: (value: boolean) => void;
   isLike?: boolean;
   like: number;
@@ -21,6 +22,7 @@ function ChallengeCardBottom({
   isLike,
   comments,
   id,
+  isClosed,
 }: IProps): React.ReactElement {
   const userStatusData = useRecoilValue(userStatusState);
   const [countLikes, setCountLikes] = useState(like);
@@ -50,14 +52,32 @@ function ChallengeCardBottom({
     }
   };
 
+  const foldHandleOnClick = () => {
+    setLookMoreButton(!lookMoreButton);
+    setIsClosed(!isClosed);
+  };
+
+  const likeCancelHandelOnClick = () => {
+    cancelLike();
+    {
+      userStateNum === 0 ? setIsLoginModalOpen(true) : setIsLoginModalOpen(false);
+    }
+  };
+
+  const likeSubmitHandelOnClick = () => {
+    submitLike();
+    {
+      userStateNum === 0 ? setIsLoginModalOpen(true) : setIsLoginModalOpen(false);
+    }
+  };
+
   return (
     <>
       {lookMoreButton === true ? (
         <ButtonWrapper>
           <FoldButton
             onClick={() => {
-              setLookMoreButton(false);
-              setIsClosed(true);
+              foldHandleOnClick();
             }}
           >
             더보기
@@ -67,8 +87,7 @@ function ChallengeCardBottom({
         <ButtonWrapper>
           <FoldButton
             onClick={() => {
-              setLookMoreButton(true);
-              setIsClosed(false);
+              foldHandleOnClick();
             }}
           >
             접기
@@ -80,10 +99,7 @@ function ChallengeCardBottom({
           <img
             src={LikeFilledIcon}
             onClick={() => {
-              cancelLike();
-              {
-                userStateNum === 0 ? setIsLoginModalOpen(true) : setIsLoginModalOpen(false);
-              }
+              likeCancelHandelOnClick();
             }}
             alt=""
           />
@@ -91,10 +107,7 @@ function ChallengeCardBottom({
           <img
             src={ClickGoodIcon}
             onClick={() => {
-              submitLike();
-              {
-                userStateNum === 0 ? setIsLoginModalOpen(true) : setIsLoginModalOpen(false);
-              }
+              likeSubmitHandelOnClick();
             }}
             alt=""
           />
