@@ -3,7 +3,7 @@ import { IByte, ITextForm } from 'types/challenge.type';
 import { QuestionWrapper } from './style';
 
 interface IProps {
-  totalOnChange: (e: any) => void;
+  totalOnChange: (e: React.ChangeEvent<HTMLTextAreaElement>) => void;
   byte: IByte;
   ITextForm: ITextForm;
 }

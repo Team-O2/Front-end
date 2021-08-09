@@ -43,7 +43,7 @@ function EditCard({ id }: IEditCard): React.ReactElement {
     });
   };
 
-  const handleSubmit = async (e: any) => {
+  const handleSubmit = async (e: React.MouseEvent<HTMLButtonElement>) => {
     e.preventDefault();
     setTextForm({
       description1: '',
@@ -76,7 +76,7 @@ function EditCard({ id }: IEditCard): React.ReactElement {
     setCountProgressBar(count);
   };
 
-  const handleTotalOnChange = (e: any) => {
+  const handleTotalOnChange = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
     const text_val = e.target.value; //입력한 문자
     const target_byte_name = 'byte' + e.target.name.split('description')[1];
     let str = '';

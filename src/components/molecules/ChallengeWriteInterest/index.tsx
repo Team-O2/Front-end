@@ -69,15 +69,15 @@ function ChallengeWriteInterest({ selectedInterest, setSelectedInterest }: IProp
         setSelectedInterest(selectedInterest.filter((v) => v !== interest));
       }
     }
+    setIsClickTag(!isClickTag);
   };
 
-  const setInterestButton = (id: any, interest: string) => {
+  const setInterestButton = (id: number, interest: string) => {
     return (
       <InterestTagButton
         key={id}
         onClick={() => {
           modalInterestHandler(interest);
-          setIsClickTag(!isClickTag);
         }}
         style={
           selectedInterestStyle[interest] && selectedInterest.indexOf(interest) > -1

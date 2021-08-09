@@ -3,7 +3,7 @@ import { BlackButton, ButtonWrapper, ColorButton } from './style';
 
 interface IProps {
   countProgressBar: number;
-  handleSubmit: (e: any) => void;
+  handleSubmit: (e: React.MouseEvent<HTMLButtonElement>) => void;
 }
 
 function ChallengeWriteButton({ countProgressBar, handleSubmit }: IProps): React.ReactElement {
