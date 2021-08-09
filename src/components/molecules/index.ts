@@ -1,6 +1,5 @@
 export { default as AdminChallengeCard } from './AdminChallengeCard';
 export { default as AdminChallengeOpenForm } from './AdminChallengeOpenForm';
-export { default as AdminWriteForm } from './AdminWriteForm';
 export { default as BadgeCard } from './BadgeCard';
 export { default as CategoryButton } from './CategoryButton';
 export { default as ChallengeCard } from './ChallengeCard';

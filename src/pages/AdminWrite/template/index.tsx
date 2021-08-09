@@ -1,8 +1,8 @@
-import { AdminWriteForm } from 'components/molecules';
+import { AdminWriteForm, HashTagAddForm } from 'components/organisms';
 import React from 'react';
 import { IAdminWriteConditionMet } from 'types/admin.type';
 import { IUserData } from 'types/user.type';
-import { PageLabel, Title, Wrapper, WriteButton } from './style';
+import { PageLabel, Title, Wrapper, WriteButton, WriteLabel } from './style';
 
 interface IProps {
   menu: string;
@@ -33,6 +33,8 @@ function AdminWriteTemplate({
         setWriteData={setWriteData}
         menuProps={menu}
       />
+      <WriteLabel>해시태그</WriteLabel>
+      <HashTagAddForm writeData={writeData} setWriteData={setWriteData} />
       <WriteButton disabled={isButtonDisabled} isButtonDisabled={isButtonDisabled} onClick={handleBtnOnClick}>
         등록하기
       </WriteButton>
