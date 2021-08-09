@@ -1,7 +1,43 @@
+import { AdminWriteForm } from 'components/molecules';
 import React from 'react';
+import { IAdminWriteConditionMet } from 'types/admin.type';
+import { IUserData } from 'types/user.type';
+import { PageLabel, Title, Wrapper, WriteButton } from './style';
 
-function Home(): React.ReactElement {
-  return <div>Home</div>;
+interface IProps {
+  menu: string;
+  isConditionMet: IAdminWriteConditionMet;
+  setIsConditionMet: (value: IAdminWriteConditionMet) => void;
+  writeData: IUserData;
+  setWriteData: (value: IUserData) => void;
+  isButtonDisabled: boolean;
+  handleBtnOnClick: () => void;
+}
+function AdminWriteTemplate({
+  menu,
+  setIsConditionMet,
+  writeData,
+  setWriteData,
+  isConditionMet,
+  isButtonDisabled,
+  handleBtnOnClick,
+}: IProps): React.ReactElement {
+  return (
+    <Wrapper>
+      <PageLabel>관리자 페이지</PageLabel>
+      <Title>글 올리기</Title>
+      <AdminWriteForm
+        isConditionMet={isConditionMet}
+        setIsConditionMet={setIsConditionMet}
+        writeData={writeData}
+        setWriteData={setWriteData}
+        menuProps={menu}
+      />
+      <WriteButton disabled={isButtonDisabled} isButtonDisabled={isButtonDisabled} onClick={handleBtnOnClick}>
+        등록하기
+      </WriteButton>
+    </Wrapper>
+  );
 }
 
-export default Home;
+export default AdminWriteTemplate;
