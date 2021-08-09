@@ -1,5 +1,5 @@
 import { Input, Label } from 'components/atoms';
-import Styled from 'styled-components';
+import Styled, { css } from 'styled-components';
 import { palette, theme } from 'styled-tools';
 
 export const UploadDescription = Styled.div`
@@ -72,13 +72,18 @@ export const HashTagInput = Styled(Input)`
   padding : 18px 20px;
 `;
 export const HashTagInputContainer = Styled.div<{ isFocused: boolean }>`
-  border : ${(props) => (props.isFocused ? 'double 1px transparent' : `1px solid ${palette('grayscale', 2)}`)};
-  background-image : ${(props) =>
+  ${(props) =>
     props.isFocused
-      ? `linear-gradient(white, white), linear-gradient(to right, ${palette('primary', 3)}, ${palette('primary', 0)})`
-      : undefined};
-  background-origin : ${(props) => (props.isFocused ? 'border-box' : undefined)};
-  background-clip : ${(props) => (props.isFocused ? 'content-box, border-box' : undefined)};   
+      ? css`
+          border: double 1px transparent;
+          background-image: linear-gradient(white, white),
+            linear-gradient(to right, ${palette('primary', 3)}, ${palette('primary', 0)});
+          background-origin: border-box;
+          background-clip: content-box, border-box;
+        `
+      : css`
+          border: 1px solid ${palette('grayscale', 2)};
+        `};
   width : 100%;
   height : 60px;
   border-radius: 4px;

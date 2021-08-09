@@ -1,5 +1,5 @@
 import { Button, Label } from 'components/atoms';
-import Styled from 'styled-components';
+import Styled, { css } from 'styled-components';
 import { palette, theme } from 'styled-tools';
 
 export const PageLabel = Styled(Label)`
@@ -24,11 +24,14 @@ export const WriteButton = Styled(Button)<{ isButtonDisabled?: boolean }>`
   height: 60px;
   border-radius: 4px;
   color : ${palette('grayscale', 0)}; 
-  background-color : ${(props) => (props.isButtonDisabled ? `${palette('grayscale', 1)}` : undefined)};
-  background-image : ${(props) =>
-    !props.isButtonDisabled
-      ? `linear-gradient(to right, ${palette('primary', 3)}, ${palette('primary', 0)} )`
-      : undefined};        
+  ${(props) =>
+    props.isButtonDisabled
+      ? css`
+          background-color: ${palette('grayscale', 1)};
+        `
+      : css`
+          background-image: linear-gradient(to right, ${palette('primary', 3)}, ${palette('primary', 0)});
+        `}
   margin-bottom : 304px;
 `;
 

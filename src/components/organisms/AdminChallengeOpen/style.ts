@@ -1,5 +1,5 @@
 import { Button, CheckBox, Label } from 'components/atoms';
-import Styled from 'styled-components';
+import Styled, { css } from 'styled-components';
 import { palette, theme } from 'styled-tools';
 
 export const PhotoUploadBottomDesc = Styled.div`
@@ -85,11 +85,15 @@ export const OpenButton = Styled(Button)<{ isButtonDisabled?: boolean }>`
   height: 60px;
   border-radius: 4px;
   color : ${palette('grayscale', 0)}; 
-  background-image : ${(props) =>
+  ${(props) =>
     !props.isButtonDisabled
-      ? `linear-gradient(to right, ${palette('primary', 3)},${palette('primary', 0)} )`
-      : `${palette('grayscale', 1)}`};    
-  background-color : ${(props) => (props.isButtonDisabled ? `${palette('grayscale', 1)}` : undefined)};
+      ? css`
+          background-image: linear-gradient(to right, ${palette('primary', 3)}, ${palette('primary', 0)});
+        `
+      : css`
+          background-color: ${palette('grayscale', 1)};
+          background-image: ${palette('grayscale', 1)};
+        `};    
   margin-bottom : 304px;
 `;
 

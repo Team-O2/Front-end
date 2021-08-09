@@ -1,5 +1,5 @@
 import { Button, Label } from 'components/atoms';
-import Styled from 'styled-components';
+import Styled, { css } from 'styled-components';
 import { palette, theme } from 'styled-tools';
 
 export const InterestButtonWrapper = Styled.div`
@@ -11,36 +11,49 @@ export const InterestButtonWrapper = Styled.div`
 
 export const InterestButton = Styled(Button)<{ order: number }>`
   ${theme('font.subhead4')}
-  background-color :  ${(props) =>
+  border: solid 1px ${palette('grayscale', 4)};
+  ${(props) =>
     props.order == 0
-      ? `${palette('primary', 0)}`
+      ? css`
+          background-color: ${palette('primary', 0)};
+          border-color: ${palette('primary', 0)};
+        `
       : props.order == 1
-      ? `${palette('primary', 3)}`
+      ? css`
+          background-color: ${palette('primary', 3)};
+          border-color: ${palette('primary', 3)};
+        `
       : props.order == 2
-      ? `${palette('primary', 2)}`
+      ? css`
+          background-color: ${palette('primary', 2)};
+          border-color: ${palette('primary', 2)};
+        `
       : props.order == 3
-      ? `${palette('primary', 5)}`
+      ? css`
+          background-color: ${palette('primary', 5)};
+          border-color: ${palette('primary', 5)};
+        `
       : props.order == 4
-      ? `${palette('primary', 4)}`
-      : `${palette('grayscale', 0)}`}};
+      ? css`
+          background-color: ${palette('primary', 4)};
+          border-color: ${palette('primary', 4)};
+        `
+      : css`
+          background-color: ${palette('grayscale', 0)};
+          border-color: ${palette('grayscale', 4)};
+        `}};
   padding : 12px 30px;
   margin : 12px 5px;
   height : 48px;
   border-radius: 60px;
-  border: solid 1px ${palette('grayscale', 4)};
-  border-color : ${(props) =>
-    props.order == 0
-      ? `${palette('primary', 0)}`
-      : props.order == 1
-      ? `${palette('primary', 3)}`
-      : props.order == 2
-      ? `${palette('primary', 2)}`
-      : props.order == 3
-      ? `${palette('primary', 5)}`
-      : props.order == 4
-      ? `${palette('primary', 4)}`
-      : `${palette('grayscale', 0)}`}};
-  color : ${(props) => (props.order == -1 ? `${palette('grayscale', 4)}` : `${palette('grayscale', 0)}`)}
+  ${(props) =>
+    props.order == -1
+      ? css`
+          color: ${palette('grayscale', 4)};
+        `
+      : css`
+          color: ${palette('grayscale', 0)};
+        `};
   ;
 `;
 
@@ -53,8 +66,14 @@ export const ModalButton = Styled(Button)<{ selectedInterest: string[] }>`
   ${theme('font.subhead3')}
   color : ${palette('grayscale', 0)};
   margin-top : 38px;
-  background-color : ${(props) =>
-    props.selectedInterest.length > 0 ? `${palette('grayscale', 9)}` : `${palette('grayscale', 1)}`};
+   ${(props) =>
+     props.selectedInterest.length > 0
+       ? css`
+           background-color: ${palette('grayscale', 9)};
+         `
+       : css`
+           background-color: ${palette('grayscale', 1)};
+         `};
 `;
 
 export const ModalLabel = Styled(Label)`
@@ -95,11 +114,14 @@ export const JoinButton = Styled(Button)<{ isButtonDisabled: boolean }>`
   font-weight : bold;     
   color : ${palette('grayscale', 0)}; 
   margin-top : 60px;
-  background-color : ${(props) => (props.isButtonDisabled ? `${palette('grayscale', 1)}` : undefined)};
-  background-image : ${(props) =>
-    !props.isButtonDisabled
-      ? `linear-gradient(to right, ${palette('primary', 3)},${palette('primary', 0)} )`
-      : undefined};
+   ${(props) =>
+     props.isButtonDisabled
+       ? css`
+           background-color: ${palette('grayscale', 1)};
+         `
+       : css`
+           background-image: linear-gradient(to right, ${palette('primary', 3)}, ${palette('primary', 0)});
+         `};
 `;
 
 export const JoinWrap = Styled.div`

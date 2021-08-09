@@ -1,4 +1,4 @@
-import Styled from 'styled-components';
+import Styled, { css } from 'styled-components';
 import { palette, theme } from 'styled-tools';
 
 export const Item = Styled.span`
@@ -20,17 +20,18 @@ export const SummaryOuter = Styled.div<{
   border-radius: 4px;
   display : flex;
   align-items : center;
-  border : ${(props) =>
-    props.isOpen || props.isChecked ? 'double 1px transparent' : `1px solid ${palette('grayscale', 1)}`};
-  background-image : 
   ${(props) =>
     props.isOpen || props.isChecked
-      ? `linear-gradient(white, white), linear-gradient(to right, ${palette('primary', 3)},${palette('primary', 0)})`
-      : undefined};
-  background-origin : 
-  ${(props) => (props.isOpen || props.isChecked ? 'border-box' : undefined)};
-  background-clip : 
-  ${(props) => (props.isOpen || props.isChecked ? 'content-box, border-box' : undefined)};  
+      ? css`
+          border: double 1px transparent;
+          background-image: linear-gradient(white, white),
+            linear-gradient(to right, ${palette('primary', 3)}, ${palette('primary', 0)});
+          background-origin: border-box;
+          background-clip: content-box, border-box;
+        `
+      : css`
+          border: 1px solid ${palette('grayscale', 1)};
+        `};   
 `;
 
 export const SummaryInner = Styled.div`

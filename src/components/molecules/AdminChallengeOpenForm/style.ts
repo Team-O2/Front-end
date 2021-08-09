@@ -24,7 +24,7 @@ export const PeopleContainer = Styled.div`
 `;
 
 export const Text = Styled.div<{ font: string }>`
-  ${theme(`font.font`)};
+  ${(props) => theme(`font.${props.font}`)};
   line-height : 60px;
   color : ${palette('grayscale', 4)};
 `;
