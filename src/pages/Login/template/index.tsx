@@ -1,11 +1,10 @@
 import { LineIcon } from 'assets/images';
 import { Link } from 'components/atoms';
-import { LoginForm } from 'components/molecules';
+import { LoginForm } from 'components/organisms';
 import React from 'react';
 import { ButtonWrapper, FindPwdBtn, JoinBtn, Line, LoginBtn, LoginContainer, LoginLabel } from './style';
 
 interface IProps {
-  getUserDetailData: (token: string) => Promise<boolean>;
   handleLoginBtn: () => Promise<void>;
   idInputChange: (value: string | number) => void;
   pwdInputChange: (value: string | number) => void;
@@ -15,13 +14,7 @@ interface IProps {
   };
 }
 
-function LoginTemplate({
-  getUserDetailData,
-  handleLoginBtn,
-  idInputChange,
-  pwdInputChange,
-  isConditionMet,
-}: IProps): React.ReactElement {
+function LoginTemplate({ handleLoginBtn, idInputChange, pwdInputChange, isConditionMet }: IProps): React.ReactElement {
   return (
     <LoginContainer>
       <LoginLabel>로그인</LoginLabel>
