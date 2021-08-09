@@ -1,10 +1,29 @@
 import { Button } from 'components/atoms';
-import Styled from 'styled-components';
+import Styled, { css } from 'styled-components';
 import { palette, theme } from 'styled-tools';
 
 export const TopWrapper = Styled.div`
   padding-top : 178px;
   width : 1109px;
+`;
+
+export const HomeContainer = Styled.div<{ image: string }>`
+  display : flex;
+  flex-direction : column;
+  align-items : center;
+  ${(props) =>
+    css`
+      background-image: url('${props.image}');
+    `}
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+  min-height: 6114px;
+  overflow-x: hidden;
+  img{
+    margin : 0;
+    padding : 0;
+  }
 `;
 
 export const O2Title = Styled.h1`

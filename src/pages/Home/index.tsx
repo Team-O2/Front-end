@@ -24,7 +24,6 @@ import { BadgeCard, SpeakerExpCard } from 'components/molecules';
 import React, { useEffect, useState } from 'react';
 import Reveal from 'react-awesome-reveal';
 import { Link } from 'react-router-dom';
-import Styled from 'styled-components';
 import {
   BadgeWrapper,
   ChallengeBtn,
@@ -41,6 +40,7 @@ import {
   ConcertWrapper,
   ConcertWrapper1,
   ConcertWrapper2,
+  HomeContainer,
   LinkBtn,
   LinkCardWrapper,
   LinkExp,
@@ -85,7 +85,7 @@ function Home(): React.ReactElement {
   }, []);
 
   return (
-    <HomeContainer>
+    <HomeContainer image={LandingBackImg}>
       <Reveal keyframes={moveUp} cascade>
         <TopWrapper>
           <O2Title>O2</O2Title>
@@ -320,21 +320,5 @@ function Home(): React.ReactElement {
     </HomeContainer>
   );
 }
-
-const HomeContainer = Styled.div`
-  display : flex;
-  flex-direction : column;
-  align-items : center;
-  background-image: url('${LandingBackImg}');
-  background-repeat: no-repeat;
-  background-size: cover;
-  background-position: center;
-  min-height: 6114px;
-  overflow-x: hidden;
-  img{
-    margin : 0;
-    padding : 0;
-  }
-`;
 
 export default Home;
