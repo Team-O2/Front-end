@@ -1,4 +1,3 @@
-export { default as AdminChallengeList } from './AdminChallengeList';
 export { default as AdminChallengeOpen } from './AdminChallengeOpen';
 export { default as AdminWrite } from './AdminWrite';
 export { default as CategoryList } from './CategoryList';
