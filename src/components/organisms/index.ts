@@ -2,6 +2,7 @@ export { default as AdminWrite } from './AdminWrite';
 export { default as CategoryList } from './CategoryList';
 export { default as ChallengeDetailCard } from './ChallengeDetailCard';
 export { default as ChallengeEditCard } from './ChallengeEditCard';
+export { default as ChallengeOpenPhotoUpload } from './ChallengeOpenPhotoUpload';
 export { default as ChallengeWriteCard } from './ChallengeWriteCard';
 export { default as CommentList } from './CommentList';
 export { default as ConcertCardList } from './ConcertCardList';
