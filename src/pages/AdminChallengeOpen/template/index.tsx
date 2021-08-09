@@ -2,7 +2,7 @@ import { CheckOffIcon, CheckOnIcon } from 'assets/images';
 import { AdminChallengeOpenForm } from 'components/molecules';
 import { ChallengeOpenPhotoUpload } from 'components/organisms';
 import React from 'react';
-import { IChallengeOpen, IConditionMet } from 'types/challenge.type';
+import { IConditionMet } from 'types/challenge.type';
 import {
   CheckContainer,
   CheckExp,
@@ -18,26 +18,32 @@ import {
 
 interface IProps {
   isConditionMet: IConditionMet;
-  setIsConditionMet: (value: IConditionMet) => void;
-  challengeOpenData: IChallengeOpen;
-  setChallengeOpenData: (value: IChallengeOpen) => void;
   setImage: (image: File | null) => void;
   isChecked: boolean;
   checkHandler: () => void;
   isButtonDisabled: boolean;
   btnHandler: () => Promise<void>;
+  handleTitleOnChange: (value: string | number) => void;
+  handleChallengeStOnChange: (value: string | number) => void;
+  handleChallengeEndOnChange: (value: string | number) => void;
+  handleApplyStOnChange: (value: string | number) => void;
+  handleApplyEndOnChange: (value: string | number) => void;
+  handleNumOnChange: (value: string | number) => void;
 }
 
 function AdminChallengeOpenTemplate({
+  handleTitleOnChange,
   isConditionMet,
-  setIsConditionMet,
-  challengeOpenData,
-  setChallengeOpenData,
   setImage,
   isChecked,
   checkHandler,
   isButtonDisabled,
   btnHandler,
+  handleChallengeStOnChange,
+  handleChallengeEndOnChange,
+  handleApplyStOnChange,
+  handleApplyEndOnChange,
+  handleNumOnChange,
 }: IProps): React.ReactElement {
   return (
     <Wrapper>
@@ -45,9 +51,12 @@ function AdminChallengeOpenTemplate({
       <Title>챌린지 등록</Title>
       <AdminChallengeOpenForm
         isConditionMet={isConditionMet}
-        setIsConditionMet={setIsConditionMet}
-        challengeOpenData={challengeOpenData}
-        setChallengeOpenData={setChallengeOpenData}
+        handleTitleOnChange={handleTitleOnChange}
+        handleChallengeStOnChange={handleChallengeStOnChange}
+        handleChallengeEndOnChange={handleChallengeEndOnChange}
+        handleApplyStOnChange={handleApplyStOnChange}
+        handleApplyEndOnChange={handleApplyEndOnChange}
+        handleNumOnChange={handleNumOnChange}
       />
       <UploadContainer>
         <ElementLabel>사진 업로드</ElementLabel>
