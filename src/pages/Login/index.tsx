@@ -84,7 +84,6 @@ function Login(): React.ReactElement {
   };
   return (
     <LoginTemplate
-      getUserDetailData={getUserDetailData}
       handleLoginBtn={handleLoginBtn}
       idInputChange={idInputChange}
       pwdInputChange={pwdInputChange}
