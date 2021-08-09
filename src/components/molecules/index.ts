@@ -33,7 +33,7 @@ export { default as FindPwdForm } from './FindPwdForm';
 export { default as HamDropDown } from './HamDropDown';
 export { default as JoinCheck } from './JoinCheck';
 export { default as JoinForm } from './JoinForm';
-export { default as LoginForm } from './LoginForm';
+export { default as LoginForm } from '../organisms/LoginForm';
 export { default as LoginModal } from './LoginModal';
 export { default as MyPageConcertCard } from './MyPageConcertCard';
 export { default as MyPageSection } from './MyPageSection';
