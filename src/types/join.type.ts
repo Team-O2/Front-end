@@ -16,3 +16,14 @@ export interface IJoin {
   gender: number;
   marpolicy: boolean;
 }
+
+export interface IJoinData {
+  email: string;
+  password: string;
+  passwordCheck: string;
+  nickname: string;
+  gender: number;
+  interest: string[];
+  marpolicy: boolean;
+  policyMust: boolean;
+}
