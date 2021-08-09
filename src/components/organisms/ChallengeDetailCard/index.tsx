@@ -88,6 +88,7 @@ function ChallengeDetailCard({
           <ChallengeCardList good={good} bad={bad} learn={learn} isClosed={isClosed} />
           {
             <ChallengeCardBottom
+              isClosed={isClosed}
               setIsClosed={setIsClosed}
               setIsLoginModalOpen={setIsLoginModalOpen}
               comments={comments}
