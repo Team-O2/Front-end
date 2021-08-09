@@ -1,13 +1,127 @@
-import { AdminWrite as CAdminWrite } from 'components/organisms';
-import React from 'react';
+import { postConcertWrite, postNoticeWrite } from 'apis';
+import React, { useEffect, useState } from 'react';
 import { RouteComponentProps } from 'react-router';
+import { useHistory } from 'react-router-dom';
+import { useRecoilValue } from 'recoil';
+import { userStatusState } from 'stores/user';
+import AdminWriteTemplate from './template';
 
 interface MatchParams {
   menu: string;
 }
 function AdminWrite({ match }: RouteComponentProps<MatchParams>): React.ReactElement {
   const menu = match.params.menu;
-  return <CAdminWrite menu={menu} />;
+  const history = useHistory();
+  const userStatusData = useRecoilValue(userStatusState);
+  const [isButtonDisabled, setIsButtonDisabled] = useState(true);
+  const [isConditionMet, setIsConditionMet] = useState({
+    title: false,
+    category: false,
+    menu: false,
+    content: false,
+    hashtag: false,
+    video: false,
+    thumbnail: false,
+    nickname: false,
+  });
+  const [writeData, setWriteData] = useState<{
+    title: string;
+    category: string[];
+    menu: string;
+    content: string;
+    hashtag: string[];
+    video: File | null;
+    thumbnail: File | null;
+    nickname: string;
+  }>({
+    title: '',
+    category: [''],
+    menu: '',
+    content: '',
+    hashtag: [''],
+    video: null,
+    thumbnail: null,
+    nickname: '',
+  });
+  const handleBtnOnClick = () => {
+    if (writeData.menu === '공지사항') {
+      postNoticeHandler();
+    } else {
+      postConcertHandler();
+    }
+  };
+  const postConcertHandler = async () => {
+    if (userStatusData) {
+      const isSuccess = await postConcertWrite(userStatusData.token, {
+        videoLink: writeData.video,
+        imgThumbnail: writeData.thumbnail,
+        title: writeData.title,
+        text: writeData.content,
+        interest: writeData.category,
+        hashtag: writeData.hashtag,
+        authorNickname: writeData.nickname,
+      });
+      isSuccess && history.goBack();
+    } else {
+      alert('로그인 후 이용하세요');
+    }
+  };
+  const postNoticeHandler = async () => {
+    if (userStatusData) {
+      const isSuccess = await postNoticeWrite(userStatusData.token, {
+        title: writeData.title,
+        text: writeData.content,
+        interest: writeData.category,
+        hashtag: writeData.hashtag,
+      });
+      isSuccess && history.goBack();
+    } else {
+      alert('로그인 후 이용하세요');
+    }
+  };
+
+  useEffect(() => {
+    if (writeData.menu === 'Share Together') {
+      if (
+        isConditionMet.title &&
+        isConditionMet.category &&
+        isConditionMet.menu &&
+        isConditionMet.content &&
+        isConditionMet.hashtag &&
+        isConditionMet.video &&
+        isConditionMet.thumbnail &&
+        isConditionMet.nickname
+      ) {
+        setIsButtonDisabled(false);
+      } else {
+        setIsButtonDisabled(true);
+      }
+    } else {
+      if (
+        isConditionMet.title &&
+        isConditionMet.category &&
+        isConditionMet.menu &&
+        isConditionMet.content &&
+        isConditionMet.hashtag
+      ) {
+        setIsButtonDisabled(false);
+      } else {
+        setIsButtonDisabled(true);
+      }
+    }
+  }, [isConditionMet, writeData.menu]);
+
+  return (
+    <AdminWriteTemplate
+      menu={menu}
+      setIsConditionMet={setIsConditionMet}
+      writeData={writeData}
+      setWriteData={setWriteData}
+      isConditionMet={isConditionMet}
+      isButtonDisabled={isButtonDisabled}
+      handleBtnOnClick={handleBtnOnClick}
+    />
+  );
 }
 
 export default AdminWrite;
