@@ -14,7 +14,7 @@ export { default as Footer } from './Footer';
 export { default as Hamburger } from './Hamburger';
 export { default as Header } from './Header';
 export { default as Join } from './Join';
-export { default as Login } from './Login';
+export { default as Login } from '../../pages/Login/template';
 export { default as MyCommentList } from './MyCommentList';
 export { default as MyPageHeader } from './MyPageHeader';
 export { default as NoticeCommentList } from './NoticeCommentList';
