@@ -1,17 +1,11 @@
 import { serverAxios } from 'libs/axios';
-import { INoticeList, ISearchNoticeList } from '../types/notice.type';
-interface INoticeCommentData {
-  parentID?: string | null;
-  text: string;
-}
-
-interface IFetchParameter {
-  token?: string;
-  limit?: number;
-  offset?: number;
-  keyword?: string;
-  tag?: string;
-}
+import {
+  IFetchComment,
+  IFetchParameter,
+  INoticeCommentData,
+  INoticeList,
+  ISearchNoticeList,
+} from '../types/notice.type';
 
 const PREFIX_URL = '/notice';
 
@@ -75,7 +69,7 @@ export const postNoticeComment = async (
   token: string,
   noticeID: string | undefined,
   commentData: INoticeCommentData,
-): Promise<null> => {
+): Promise<IFetchComment | null> => {
   try {
     const data = await serverAxios.post(`${PREFIX_URL}/comment/${noticeID}`, commentData, {
       headers: {
@@ -83,7 +77,7 @@ export const postNoticeComment = async (
       },
     });
     if (data.data.status === 200) {
-      return null;
+      return data.data.data;
     } else {
       return null;
     }

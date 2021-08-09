@@ -1,18 +1,5 @@
 import { serverAxios } from 'libs/axios';
-import { IConcert, IConcertList } from '../types/concert.type';
-
-interface IConcertCommentData {
-  parentID?: string | null;
-  text: string;
-}
-
-interface IFetchParameter {
-  token?: string;
-  limit?: number;
-  offset?: number;
-  keyword?: string;
-  tag?: string;
-}
+import { IConcert, IConcertCommentData, IConcertList, IFetchComment, IFetchParameter } from '../types/concert.type';
 
 const PREFIX_URL = '/concert';
 
@@ -104,7 +91,7 @@ export const postConcertComment = async (
   token: string,
   concertID: string | undefined,
   commentData: IConcertCommentData,
-): Promise<null> => {
+): Promise<IFetchComment | null> => {
   try {
     const data = await serverAxios.post(`${PREFIX_URL}/comment/${concertID}`, commentData, {
       headers: {

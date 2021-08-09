@@ -43,7 +43,22 @@ export interface INoticeComment {
   text: string;
 }
 
-export interface INoticeNewComment {
-  parentID?: string;
+export interface INoticeCommentData {
+  parentID?: string | null;
   text: string;
+}
+
+export interface IFetchParameter {
+  token?: string;
+  limit?: number;
+  offset?: number;
+  keyword?: string;
+  tag?: string;
+}
+
+export interface IFetchComment {
+  createdAt: string;
+  nickname: string;
+  text: string;
+  _id: string;
 }

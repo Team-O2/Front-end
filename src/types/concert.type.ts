@@ -41,7 +41,22 @@ export interface IConcertComment {
   text: string;
 }
 
-export interface IConcertNewComment {
-  parentID?: string;
+export interface IConcertCommentData {
+  parentID?: string | null;
   text: string;
+}
+
+export interface IFetchParameter {
+  token?: string;
+  limit?: number;
+  offset?: number;
+  keyword?: string;
+  tag?: string;
+}
+
+export interface IFetchComment {
+  createdAt: string;
+  nickname: string;
+  text: string;
+  _id: string;
 }
