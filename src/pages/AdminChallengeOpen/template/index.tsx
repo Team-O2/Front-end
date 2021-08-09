@@ -1,6 +1,6 @@
-import { CheckOffIcon, CheckOnIcon, GreyPlusIcon } from 'assets/images';
-import { FileUpload as PhotoUpload } from 'components/atoms';
+import { CheckOffIcon, CheckOnIcon } from 'assets/images';
 import { AdminChallengeOpenForm } from 'components/molecules';
+import { ChallengeOpenPhotoUpload } from 'components/organisms';
 import React from 'react';
 import { IChallengeOpen, IConditionMet } from 'types/challenge.type';
 import {
@@ -10,10 +10,6 @@ import {
   ElementLabel,
   OpenButton,
   PageLabel,
-  PhotoUploadBottomDesc,
-  PhotoUploadContainer,
-  PhotoUploadImage,
-  PhotoUploadMiddleDesc,
   SCheckBox,
   Title,
   UploadContainer,
@@ -55,17 +51,7 @@ function AdminChallengeOpenTemplate({
       />
       <UploadContainer>
         <ElementLabel>사진 업로드</ElementLabel>
-        <PhotoUpload width="262px" height="216px" setFile={setImage} fileType={0}>
-          <PhotoUploadContainer>
-            <PhotoUploadImage src={GreyPlusIcon}></PhotoUploadImage>
-            <PhotoUploadMiddleDesc>
-              대표이미지
-              <br />
-              (필수)
-            </PhotoUploadMiddleDesc>
-            <PhotoUploadBottomDesc>(1920px X 253px)</PhotoUploadBottomDesc>
-          </PhotoUploadContainer>
-        </PhotoUpload>
+        <ChallengeOpenPhotoUpload setImage={setImage} />
       </UploadContainer>
       <CheckContainer>
         <SCheckBox id="checkBox" checked={isChecked} onChange={checkHandler} />
