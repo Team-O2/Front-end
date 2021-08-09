@@ -1,6 +1,5 @@
 import { StyledInput } from 'components/atoms';
-import { DropDown, JoinCheck } from 'components/molecules';
-import React, { useEffect, useState } from 'react';
+import React, { useEffect } from 'react';
 import { IJoinConditionMet } from 'types/join.type';
 import { IUserDataType } from 'types/user.type';
 import { SubTitle, Wrapper } from './style';
@@ -14,22 +13,6 @@ export interface IProps {
 }
 
 function JoinForm({ isConditionMet, userData, setUserData, setIsConditionMet }: IProps): React.ReactElement {
-  const [gender, setGender] = useState('선택안함');
-  const changeGenderStringtoNum = (gender: string) => {
-    switch (gender) {
-      case '남성':
-        return 0;
-      case '여성':
-        return 1;
-      default:
-        return 2;
-    }
-  };
-
-  useEffect(() => {
-    setUserData({ ...userData, gender: changeGenderStringtoNum(gender) });
-  }, [gender]);
-
   //입력값이 달라질때마다 조건 충족여부 파악하는 useEffect
   useEffect(() => {
     if (userData.email.includes('@')) {
@@ -123,16 +106,6 @@ function JoinForm({ isConditionMet, userData, setUserData, setIsConditionMet }: 
         }}
         isConditionMet={isConditionMet.nickname}
       />
-      <SubTitle>성별</SubTitle>
-      <DropDown
-        state={gender}
-        setState={setGender}
-        defaultMsg="성별 선택"
-        itemList={['남성', '여성', '선택안함']}
-        page="joinform"
-      />
-      <SubTitle>약관동의</SubTitle>
-      <JoinCheck setUserData={setUserData} userData={userData} />
     </Wrapper>
   );
 }
