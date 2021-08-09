@@ -17,6 +17,13 @@ export const Title = Styled(Label)`
   color:${palette('grayscale', 7)};
 `;
 
+export const WriteLabel = Styled(Label)`
+  ${theme('font.subhead4')};
+  width : 844px;
+  color: ${palette('grayscale', 9)};
+  margin-bottom : 8px;
+`;
+
 export const WriteButton = Styled(Button)<{ isButtonDisabled?: boolean }>`
 /* 버튼 색이 안바뀜 */
   ${theme('font.subhead3')}

@@ -7,10 +7,6 @@ import { IAdminWriteConditionMet } from 'types/admin.type';
 import { IUserData } from 'types/user.type';
 import {
   CategoryChipsContainer,
-  HashTag,
-  HashTagContainer,
-  HashTagInput,
-  HashTagInputContainer,
   Icon,
   NicknameContainer,
   RowContainer,
@@ -43,21 +39,8 @@ function AdminWriteForm({
   const [category, setCategory] = useState('카테고리를 선택하세요');
   const [menu, setMenu] = useState('');
   const [content, setContent] = useState('');
-  const [currentHashtag, setCurrentHashtag] = useState('');
   const [videoFile, setVideoFile] = useState<File | null>(null);
   const [thumbnail, setThumbnail] = useState<File | null>(null);
-  const [isHashTagFocused, setIsHashTagFocused] = useState(false);
-
-  const addHashTag = () => {
-    if (currentHashtag !== '' && writeData.hashtag.length < 15) {
-      if (writeData.hashtag[0] == '') {
-        setWriteData({ ...writeData, hashtag: [currentHashtag] });
-      } else {
-        setWriteData({ ...writeData, hashtag: [...writeData.hashtag, currentHashtag] });
-      }
-      setCurrentHashtag('');
-    }
-  };
 
   useEffect(() => {
     if (menuProps === 'sharetogether') setMenu('Share Together');
@@ -230,34 +213,6 @@ function AdminWriteForm({
           </FileUpload>
         </UploadContainer>
       </RowUploadContainer>
-      <WriteLabel>해시태그</WriteLabel>
-      <HashTagInputContainer isFocused={isHashTagFocused}>
-        <HashTagInput
-          name="adminWriteTitle"
-          placeholder="최대 15개 가능"
-          value={currentHashtag}
-          onChange={(e) => {
-            setCurrentHashtag(e.target.value);
-          }}
-          onFocus={() => {
-            setIsHashTagFocused(true);
-          }}
-          onBlur={() => {
-            setIsHashTagFocused(false);
-          }}
-          onKeyUp={(e) => {
-            if (e.keyCode === 13) {
-              addHashTag();
-            }
-          }}
-        />
-      </HashTagInputContainer>
-      <HashTagContainer>
-        {writeData.hashtag.length >= 0 &&
-          writeData.hashtag.map((hashtag, id) => {
-            return hashtag != '' && <HashTag key={id}>#{hashtag}</HashTag>;
-          })}
-      </HashTagContainer>
     </Wrapper>
   );
 }
