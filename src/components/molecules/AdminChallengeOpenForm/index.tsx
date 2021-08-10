@@ -5,12 +5,12 @@ import { PeopleContainer, PeriodContainer, Text, Wrapper, WriteLabel } from './s
 
 export interface IProps {
   isConditionMet: IConditionMet;
-  handleTitleOnChange: (value: string | number) => void;
-  handleChallengeStOnChange: (value: string | number) => void;
-  handleChallengeEndOnChange: (value: string | number) => void;
-  handleApplyStOnChange: (value: string | number) => void;
-  handleApplyEndOnChange: (value: string | number) => void;
-  handleNumOnChange: (value: string | number) => void;
+  handleTitleOnChange: (value: string) => void;
+  handleChallengeStOnChange: (value: string) => void;
+  handleChallengeEndOnChange: (value: string) => void;
+  handleApplyStOnChange: (value: string) => void;
+  handleApplyEndOnChange: (value: string) => void;
+  handleNumOnChange: (value: string) => void;
 }
 
 function AdminChallengeOpenForm({

@@ -6,8 +6,8 @@ import { ButtonWrapper, FindPwdBtn, JoinBtn, Line, LoginBtn, LoginContainer, Log
 
 interface IProps {
   handleLoginBtn: () => Promise<void>;
-  idInputChange: (value: string | number) => void;
-  pwdInputChange: (value: string | number) => void;
+  idInputChange: (value: string) => void;
+  pwdInputChange: (value: string) => void;
   isConditionMet: {
     email: boolean;
     pwd: boolean;

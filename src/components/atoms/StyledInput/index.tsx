@@ -7,7 +7,7 @@ export interface IProps {
   className?: string;
   errorMsg?: string;
   placeHolder?: string;
-  onChange: (value: string | number) => void;
+  onChange: (value: string) => void;
   isConditionMet: boolean;
   width: string;
   height: string;
