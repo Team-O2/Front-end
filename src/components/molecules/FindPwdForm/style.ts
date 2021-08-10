@@ -1,5 +1,4 @@
-import { Button } from '@material-ui/core';
-import { Label } from 'components/atoms';
+import { Button, Label } from 'components/atoms';
 import Styled from 'styled-components';
 import { palette, theme } from 'styled-tools';
 
