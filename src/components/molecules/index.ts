@@ -43,3 +43,4 @@ export { default as ChallengeReCommentList, default as ReplyComment } from './Re
 export { default as SearchBar } from './SearchBar';
 export { default as SingleComment } from './SingleComment';
 export { default as SpeakerExpCard } from './SpeakerExpCard';
+export { default as ToggleSwitch } from './ToggleSwitch';
