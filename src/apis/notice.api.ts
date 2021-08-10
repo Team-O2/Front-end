@@ -2,6 +2,7 @@ import { serverAxios } from 'libs/axios';
 import {
   IFetchComment,
   IFetchParameter,
+  INotice,
   INoticeCommentData,
   INoticeList,
   ISearchNoticeList,
@@ -28,11 +29,11 @@ export const getNoticeListData = async ({ limit = 8, offset = 0 }: IFetchParamet
   }
 };
 
-export const getNoticeData = async (noticeID: string) => {
+export const getNoticeData = async (noticeID: string): Promise<INotice | null> => {
   try {
     const data = await serverAxios.get(`${PREFIX_URL}/${noticeID}`, {});
     if (data.data.status === 200) {
-      return data.data.data;
+      return data.data.data[0];
     } else {
       return null;
     }
