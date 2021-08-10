@@ -1,7 +1,6 @@
-import { Switch, withStyles } from '@material-ui/core';
 import { EditWhiteIcon, XIcon } from 'assets/images';
 import { StyledInput } from 'components/atoms';
-import { DropDown, DropDownMulti } from 'components/molecules';
+import { DropDown, DropDownMulti, ToggleSwitch } from 'components/molecules';
 import React from 'react';
 import { interestList } from 'resources/string';
 import { ISettingUserInfo } from 'types/setting.type';
@@ -113,7 +112,7 @@ function SettingTemplate({
           <Text>이메일 수신 설정</Text>
           <TxtSmall>오투에서 진행하는 챌린지, 이벤트, 프로모션에 관한 광고를 수신하겠습니다.</TxtSmall>
         </TextWrapper>
-        <IOSSwitch checked={userInfo.marpolicy} onChange={handleUserMarpolicy} name="checkedB" />
+        <ToggleSwitch checked={userInfo.marpolicy} onChange={handleUserMarpolicy} />
       </PolicyCntnr>
       <Btn isActive={isBtnAtv} onClick={handleClickEdit}>
         수정완료
@@ -132,56 +131,3 @@ const InterestTag = ({ setList, text }: { setList: (e: string) => void; text: st
     </InterestTagCntnr>
   );
 };
-
-const IOSSwitch = withStyles((theme) => ({
-  root: {
-    width: 42,
-    height: 26,
-    padding: 0,
-    margin: theme.spacing(1),
-  },
-  switchBase: {
-    'padding': 1,
-    '&$checked': {
-      'transform': 'translateX(16px)',
-      'color': theme.palette.common.white,
-      '& + $track': {
-        backgroundColor: '#3d3d3d',
-        opacity: 1,
-        border: '#dfdfdf',
-      },
-    },
-    '&$focusVisible $thumb': {
-      color: '#3d3d3d',
-      border: '6px solid #dfdfdf',
-    },
-  },
-  thumb: {
-    width: 24,
-    height: 24,
-  },
-  track: {
-    borderRadius: 26 / 2,
-    border: `1px solid ${theme.palette.grey[400]}`,
-    backgroundColor: theme.palette.grey[50],
-    opacity: 1,
-    transition: theme.transitions.create(['background-color', 'border']),
-  },
-  checked: {},
-  focusVisible: {},
-}))(({ classes, ...props }: any) => {
-  return (
-    <Switch
-      focusVisibleClassName={classes.focusVisible}
-      disableRipple
-      classes={{
-        root: classes.root,
-        switchBase: classes.switchBase,
-        thumb: classes.thumb,
-        track: classes.track,
-        checked: classes.checked,
-      }}
-      {...props}
-    />
-  );
-});
