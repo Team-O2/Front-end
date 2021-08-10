@@ -62,7 +62,7 @@ export const updateUserInfo = async (
       body.append('img', img);
     }
     body.append('nickname', nickname);
-    body.append('interest', `[${interest.join()}]`);
+    body.append('interest', `[${interest.map((item) => `"${item}"`).join(', ')}]`);
     body.append('gender', String(gender));
     body.append('marpolicy', String(marpolicy));
 
