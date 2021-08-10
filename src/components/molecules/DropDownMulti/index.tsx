@@ -10,7 +10,7 @@ export interface IProps {
   itemList: string[];
 }
 
-function DropDown({ setState, state, defaultMsg, itemList }: IProps): React.ReactElement {
+function DropDownMulti({ setState, state, defaultMsg, itemList }: IProps): React.ReactElement {
   const [isOpen, setIsOpen] = useState<boolean>(false); //드롭다운이 열렸는지
   const [isChecked, setIsChecked] = useState<boolean>(false); //값이 선택이 되었는지
   const handleOnChange = (e: React.ChangeEvent<HTMLInputElement>): void => {
@@ -56,4 +56,4 @@ function DropDown({ setState, state, defaultMsg, itemList }: IProps): React.Reac
   );
 }
 
-export default DropDown;
+export default DropDownMulti;
