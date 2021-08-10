@@ -34,7 +34,7 @@ function StyledInput({
         <Input
           name={name}
           placeholder={placeHolder}
-          onChange={(e) => {
+          onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
             onChange(e.target.value);
           }}
           onFocus={() => {
