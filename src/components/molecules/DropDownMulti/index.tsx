@@ -1,16 +1,16 @@
 import { ArrowDownIcon, ArrowUpIcon } from 'assets/images';
 import React, { useEffect, useState } from 'react';
-import { Arrow, Input, Item, Label, Line, ListContainer, SummaryInner, SummaryOuter, SummaryValue } from './style';
+import * as S from './style';
 
 export interface IProps {
-  className?: string;
+  title?: string;
   setState: (value: string) => void;
   state: string[];
   defaultMsg: string;
   itemList: string[];
 }
 
-function DropDownMulti({ setState, state, defaultMsg, itemList }: IProps): React.ReactElement {
+function DropDownMulti({ title, setState, state, defaultMsg, itemList }: IProps): React.ReactElement {
   const [isOpen, setIsOpen] = useState<boolean>(false); //드롭다운이 열렸는지
   const [isChecked, setIsChecked] = useState<boolean>(false); //값이 선택이 되었는지
   const handleOnChange = (e: React.ChangeEvent<HTMLInputElement>): void => {
@@ -31,26 +31,27 @@ function DropDownMulti({ setState, state, defaultMsg, itemList }: IProps): React
 
   return (
     <>
-      <SummaryOuter isOpen={isOpen} isChecked={isChecked}>
-        <SummaryInner onClick={handleOpenOnClick}>
-          <SummaryValue state={state}>{state.length === 0 ? defaultMsg : state.join(', ')}</SummaryValue>
-          <Arrow src={isOpen ? ArrowUpIcon : ArrowDownIcon}></Arrow>
-        </SummaryInner>
-      </SummaryOuter>
+      {title && <S.Title>카테고리</S.Title>}
+      <S.SummaryOuter isOpen={isOpen} isChecked={isChecked}>
+        <S.SummaryInner onClick={handleOpenOnClick}>
+          <S.SummaryValue state={state}>{state.length === 0 ? defaultMsg : state.join(', ')}</S.SummaryValue>
+          <S.Arrow src={isOpen ? ArrowUpIcon : ArrowDownIcon}></S.Arrow>
+        </S.SummaryInner>
+      </S.SummaryOuter>
       {isOpen && (
-        <ListContainer>
+        <S.ListContainer>
           {itemList.map((item, id) => {
             return (
               <div key={id}>
-                <Label>
-                  <Input type="radio" name="radio" value={item} onChange={handleOnChange} />
-                  <Item>{item}</Item>
-                </Label>
-                {id !== itemList.length - 1 && <Line></Line>}
+                <S.Label>
+                  <S.Input type="radio" name="radio" value={item} onChange={handleOnChange} />
+                  <S.Item>{item}</S.Item>
+                </S.Label>
+                {id !== itemList.length - 1 && <S.Line></S.Line>}
               </div>
             );
           })}
-        </ListContainer>
+        </S.ListContainer>
       )}
     </>
   );

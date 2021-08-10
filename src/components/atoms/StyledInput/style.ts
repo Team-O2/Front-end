@@ -1,32 +1,34 @@
 import Styled, { css } from 'styled-components';
-import { palette, theme } from 'styled-tools';
+import { ifProp, palette, theme } from 'styled-tools';
 
-export const Input = Styled.input`
-  border : none;
-  ${theme('font.body1')};
-  font-size: 16px;  
-  color : ${palette('grayscale', 9)};
-  text-align: left;
-  width : 100%;
-  height : 100%;
+export const Input = Styled.input<{ readOnly: boolean }>`
+  border: none;
+  ${ifProp('readOnly', theme('font.subhead3'), theme('font.body3'))};
+  color: ${ifProp({ readOnly: true }, palette('grayscale', 4), palette('grayscale', 9))};
+  background: ${ifProp('readOnly', palette('grayscale', 1))};
+  width: 100%;
+  height: 100%;
   padding: 18px 20px;
   border-radius: 4px;
-  font-style: AppleSDGothicNeo;
   :placeholder{
-    color : ${palette('grayscale', 2)}
+    color: ${palette('grayscale', 2)};
   }
   :focus{
-    outline : none;
+    outline: none;
   }
 `;
 
-export const InputContainer = Styled.div<{ width: string; height: string; condition: number }>`
+export const InputContainer = Styled.div<{ width: string; height: string; condition: number; readOnly: boolean }>`
   /* condition 
     -1 : 기본
     0 : 컨디션 X
     1 : 컨디션 O   */
   ${(props) =>
-    props.condition == -1
+    props.readOnly
+      ? css`
+          border: solid 1px ${palette('grayscale', 2)};
+        `
+      : props.condition == -1
       ? css`
           border: solid 1px ${palette('grayscale', 2)};
         `

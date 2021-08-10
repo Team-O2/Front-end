@@ -1,6 +1,13 @@
 import Styled, { css } from 'styled-components';
 import { palette, theme } from 'styled-tools';
 
+export const Title = Styled.div`
+  ${theme('font.subhead4')};
+  width: 844px;
+  margin-bottom: 10px;
+  color: ${palette('grayscale', 9)};
+`;
+
 export const Item = Styled.span`
   ${theme('font.body1')};
   font-size: 16px;
