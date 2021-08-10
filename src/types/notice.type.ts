@@ -1,6 +1,6 @@
 export interface INotice {
   commentNum: number;
-  comments: string[];
+  comments: INoticeComment[];
   createdAt: string;
   hashtag: string[];
   imgThumbnail: string;
