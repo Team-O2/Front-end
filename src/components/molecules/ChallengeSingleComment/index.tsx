@@ -6,6 +6,7 @@ import { CommentFold, CommentWrapper, RecommentWrapper, SingleCommentWrapper } f
 interface IProps {
   commentData: ICommentData;
   challengeID: string;
+  comments: number;
   commentListFlag: boolean;
   setCommentListFlag: (value: boolean) => void;
 }
@@ -13,10 +14,11 @@ interface IProps {
 function ChallengeSingleComment({
   commentData,
   challengeID,
+  comments,
   commentListFlag,
   setCommentListFlag,
 }: IProps): React.ReactElement {
-  const { childrenComment, _id, userID, text } = commentData;
+  const { childrenComment, _id, userID, text, isDeleted } = commentData;
   const [openReply, setOpenReply] = useState(false);
 
   const onClickReplyOpen = () => {
@@ -28,7 +30,7 @@ function ChallengeSingleComment({
       <CommentWrapper>
         <img src={userID?.img} alt="" />
         <h1>{userID?.nickname}</h1>
-        <h2>{text}</h2>
+        <h2>{isDeleted ? '삭제된 댓글입니다.' : text}</h2>
         <CommentFold onClick={onClickReplyOpen}>{openReply ? '접기' : '답글보기'}</CommentFold>
       </CommentWrapper>
       <RecommentWrapper>
@@ -38,6 +40,7 @@ function ChallengeSingleComment({
               className="reply__write"
               isComment={false} //답글부분
               challengeID={challengeID}
+              comments={comments}
               commentListFlag={commentListFlag}
               setCommentListFlag={setCommentListFlag}
               parentCommentId={_id}
@@ -49,6 +52,7 @@ function ChallengeSingleComment({
                 img={data.userID?.img}
                 nickname={data.userID?.nickname}
                 text={data.text}
+                isDeleted={data.isDeleted}
               />
             ))}
           </>

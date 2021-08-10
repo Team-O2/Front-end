@@ -35,6 +35,7 @@ export interface IChallenge {
 
 export interface ICommentData {
   childrenComment: {
+    isDeleted?: boolean;
     _id: string;
     userID: {
       img: string;
@@ -50,6 +51,7 @@ export interface ICommentData {
     nickname: string;
   };
   text: string;
+  isDeleted?: boolean;
 }
 
 export interface IChallengeData {
