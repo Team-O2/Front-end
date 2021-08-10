@@ -41,13 +41,7 @@ interface IProps {
 // 3: 챌린지하는유저&챌린지종료,
 // 4: 관리자
 
-function ChallengeHeader({
-  isClickedEntire,
-  setIsClickedEntire,
-  challengeList,
-  setChallengeList,
-  generationNum,
-}: IProps): React.ReactElement {
+function ChallengeHeader({ challengeList, setChallengeList, generationNum }: IProps): React.ReactElement {
   const userStatusData = useRecoilValue(userStatusState);
   const [selectedCategory, setSelectedCategory] = useState('전체');
   const [keyword, setKeyword] = useState('');
@@ -97,13 +91,9 @@ function ChallengeHeader({
   };
 
   const reRenderCategory = (category: string) => {
-    if (category === '전체') {
-      setSelectedCategory('');
-      setIsClickedEntire(!isClickedEntire);
-    } else {
-      setSelectedCategory(category);
-    }
+    setSelectedCategory(category);
   };
+
   const reRenderKeyword = (keyword: string) => {
     setKeyword(keyword);
   };
