@@ -1,8 +1,9 @@
 import { ArrowDownIcon, ArrowUpIcon } from 'assets/images';
 import React, { useEffect, useState } from 'react';
-import { Arrow, Input, Item, Label, Line, ListContainer, SummaryInner, SummaryOuter, SummaryValue } from './style';
+import * as S from './style';
 
 export interface IProps {
+  title?: string;
   className?: string;
   setState: (value: string) => void;
   state: string;
@@ -12,7 +13,7 @@ export interface IProps {
   isSetting?: boolean;
 }
 
-function DropDown({ setState, state, defaultMsg, itemList, page, isSetting }: IProps): React.ReactElement {
+function DropDown({ title, setState, state, defaultMsg, itemList, page, isSetting }: IProps): React.ReactElement {
   const [isOpen, setIsOpen] = useState<boolean>(false); //드롭다운이 열렸는지
   const [isChecked, setIsChecked] = useState<boolean>(false); //값이 선택이 되었는지
   const handleOnChange = (e: React.ChangeEvent<HTMLInputElement>): void => {
@@ -36,32 +37,33 @@ function DropDown({ setState, state, defaultMsg, itemList, page, isSetting }: IP
 
   return (
     <>
-      <SummaryOuter isOpen={isOpen} isChecked={isChecked} page={page} isSetting={isSetting}>
-        <SummaryInner
+      {title && <S.Title>{title}</S.Title>}
+      <S.SummaryOuter isOpen={isOpen} isChecked={isChecked} page={page} isSetting={isSetting}>
+        <S.SummaryInner
           onClick={handleOpenOnClick}
           isOpen={isOpen}
           isChecked={isChecked}
           page={page}
           isSetting={isSetting}
         >
-          <SummaryValue>{state}</SummaryValue>
-          <Arrow src={isOpen ? ArrowUpIcon : ArrowDownIcon}></Arrow>
-        </SummaryInner>
-      </SummaryOuter>
+          <S.SummaryValue>{state}</S.SummaryValue>
+          <S.Arrow src={isOpen ? ArrowUpIcon : ArrowDownIcon}></S.Arrow>
+        </S.SummaryInner>
+      </S.SummaryOuter>
       {isOpen && (
-        <ListContainer page={page} isSetting={isSetting}>
+        <S.ListContainer page={page} isSetting={isSetting}>
           {itemList.map((item, id) => {
             return (
               <div key={id}>
-                <Label>
-                  <Input type="radio" name="radio" value={item} onChange={handleOnChange} />
-                  <Item page={page}>{item}</Item>
-                </Label>
-                {id !== itemList.length - 1 && <Line page={page} isSetting={isSetting} />}
+                <S.Label>
+                  <S.Input type="radio" name="radio" value={item} onChange={handleOnChange} />
+                  <S.Item page={page}>{item}</S.Item>
+                </S.Label>
+                {id !== itemList.length - 1 && <S.Line page={page} isSetting={isSetting} />}
               </div>
             );
           })}
-        </ListContainer>
+        </S.ListContainer>
       )}
     </>
   );

@@ -7,12 +7,13 @@ export interface IProps {
   className?: string;
   errorMsg?: string;
   placeHolder?: string;
-  onChange: (value: string) => void;
+  onChange?: (value: string) => void;
   isConditionMet: boolean;
   width: string;
   height: string;
   isPw?: boolean;
   margin?: string;
+  readOnly?: boolean;
 }
 
 function StyledInput({
@@ -25,25 +26,36 @@ function StyledInput({
   height,
   isPw,
   margin,
+  readOnly = false,
 }: IProps): React.ReactElement {
-  const [isFocused, setIsfocused] = useState(false);
+  const [isFocused, setIsFocused] = useState(false);
+
+  const handleOnChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    onChange?.(e.target.value);
+  };
+
+  const handleOnFocus = () => {
+    setIsFocused(true);
+  };
 
   return (
     <SStyledInput margin={margin}>
-      <InputContainer width={width} height={height} condition={!isFocused ? -1 : isFocused && isConditionMet ? 1 : 0}>
+      <InputContainer
+        width={width}
+        height={height}
+        condition={!isFocused ? -1 : isFocused && isConditionMet ? 1 : 0}
+        readOnly={readOnly}
+      >
         <Input
           name={name}
           placeholder={placeHolder}
-          onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
-            onChange(e.target.value);
-          }}
-          onFocus={() => {
-            setIsfocused(true);
-          }}
+          onChange={handleOnChange}
+          onFocus={handleOnFocus}
           // onBlur={(e) => {
-          //   setIsfocused(false);
+          //   setIsFocused(false);
           // }}
           type={isPw ? 'password' : 'text'}
+          readOnly={readOnly}
         />
         {isFocused && !isConditionMet && <ErrorImage src={ErrorIcon}></ErrorImage>}
       </InputContainer>
