@@ -52,6 +52,7 @@ function CommentList({ commentList, concertID, isRerender, setIsRerender }: IPro
           concertID={concertID}
           isRerender={isRerender}
           setIsRerender={setIsRerender}
+          isDeleted={data.isDeleted}
         ></SingleComment>
       ))}
       <LoginModal isLoginModalOpen={isLoginModalOpen} setIsLoginModalOpen={setIsLoginModalOpen} />

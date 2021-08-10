@@ -28,12 +28,16 @@ export interface ISearchNoticeList {
 
 export interface INoticeComment {
   childrenComment: {
+    idDeleted: boolean;
     _id: string;
-    nickname: string;
+    userID: {
+      img: string;
+      _id: string;
+      nickname: string;
+    };
     text: string;
-    createdAt?: string;
   }[];
-  isDeleted?: boolean;
+  isDeleted: boolean;
   _id: string;
   userID: {
     img: string;

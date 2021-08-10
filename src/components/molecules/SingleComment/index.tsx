@@ -26,7 +26,7 @@ interface IProps {
     };
     text?: string;
   }[];
-  isDeleted?: boolean;
+  isDeleted: boolean;
   parentCommentID: string;
   userID: {
     img: string;
@@ -47,6 +47,7 @@ function SingleComment({
   concertID,
   isRerender,
   setIsRerender,
+  isDeleted,
 }: IProps): React.ReactElement {
   const [isOpenReply, setIsOpenReply] = useState(false);
   const [replyValue, setReplyValue] = useState('');
@@ -75,7 +76,7 @@ function SingleComment({
       <CommentContainer>
         <img src={userID?.img} alt="" />
         <CommentWriter>{userID?.nickname}</CommentWriter>
-        <CommentText>{text}</CommentText>
+        <CommentText>{isDeleted ? '삭제된 댓글입니다.' : text}</CommentText>
         <CommentToggle onClick={onClickReplyOpen}>{isOpenReply ? '접기' : '답글보기'}</CommentToggle>
       </CommentContainer>
       <ReplyContainer>
@@ -94,6 +95,7 @@ function SingleComment({
                   img={data.userID?.img}
                   nickname={data.userID?.nickname}
                   text={data.text}
+                  isDeleted={data.isDeleted}
                 ></ReplyComment>
               ))}
             </ReplyContent>
