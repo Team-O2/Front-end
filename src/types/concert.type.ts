@@ -19,6 +19,30 @@ export interface IConcert {
   authorNickname: string;
   __v: number;
 }
+
+export interface IUserConcert {
+  authorNickname: string;
+  commentNum: number;
+  comments: IConcertComment[];
+  createdAt: string;
+  hashtag: string[];
+  imgThumbnail: string;
+  interest: string[];
+  isDeleted: boolean;
+  isLike: boolean;
+  isNotice: boolean;
+  isScrap: boolean;
+  likes: number;
+  scrapNum: number;
+  text: string;
+  title: string;
+  updatedAt: string;
+  user: { img: string; nickname: string; _id: string };
+  videoLink: string;
+  __v: number;
+  _id: string;
+}
+
 export interface IConcertList {
   concerts: IConcert[];
   totalConcertNum: number;

@@ -1,10 +1,10 @@
 import { DetailTitle, LoginModal } from 'components/molecules';
 import { CommentList, DetailContent } from 'components/organisms';
 import React from 'react';
-import { IConcert, IConcertComment } from 'types/concert.type';
+import { IConcertComment, IUserConcert } from 'types/concert.type';
 import { ConcertDetailWrapper } from './style';
 interface IProps {
-  concert: IConcert | null;
+  concert: IUserConcert | null;
   likeNum?: number;
   scrapNum?: number;
   onLike?: () => void;

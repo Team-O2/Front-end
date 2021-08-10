@@ -10,7 +10,7 @@ import React, { useCallback, useEffect, useState } from 'react';
 import { RouteComponentProps } from 'react-router';
 import { useRecoilValue } from 'recoil';
 import { userStatusState } from 'stores/user';
-import { IConcert } from 'types/concert.type';
+import { IConcertComment, IUserConcert } from 'types/concert.type';
 import ConcertDetailTemplate from './template';
 
 interface MatchParams {
@@ -19,8 +19,8 @@ interface MatchParams {
 
 function ConcertDetail({ match }: RouteComponentProps<MatchParams>): React.ReactElement {
   const { id } = match.params;
-  const [concert, setConcert] = useState<IConcert | null>(null);
-  const [commentList, setCommentList] = useState([]);
+  const [concert, setConcert] = useState<IUserConcert | null>(null);
+  const [commentList, setCommentList] = useState<IConcertComment[]>([]);
   const [likeNum, setLikeNum] = useState(0);
   const [scrapNum, setScrapNum] = useState(0);
   const userStatusData = useRecoilValue(userStatusState);
