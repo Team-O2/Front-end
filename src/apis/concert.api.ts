@@ -1,5 +1,12 @@
 import { serverAxios } from 'libs/axios';
-import { IConcert, IConcertCommentData, IConcertList, IFetchComment, IFetchParameter } from '../types/concert.type';
+import {
+  IConcert,
+  IConcertCommentData,
+  IConcertList,
+  IFetchComment,
+  IFetchParameter,
+  IUserConcert,
+} from '../types/concert.type';
 
 const PREFIX_URL = '/concert';
 
@@ -24,7 +31,7 @@ export const getConcertListData = async (token: string): Promise<IConcert[] | nu
   }
 };
 
-export const getConcertData = async (concertID: string) => {
+export const getConcertData = async (concertID: string): Promise<IUserConcert | null> => {
   try {
     const data = await serverAxios.get(`${PREFIX_URL}/${concertID}`, {
       params: {
@@ -38,11 +45,11 @@ export const getConcertData = async (concertID: string) => {
     }
   } catch (e) {
     alert(e.response.data.message);
-    return undefined;
+    return null;
   }
 };
 
-export const getConcertUserData = async (token: string, concertID: string) => {
+export const getConcertUserData = async (token: string, concertID: string): Promise<IUserConcert | null> => {
   try {
     const data = await serverAxios.get(`${PREFIX_URL}/${concertID}`, {
       headers: {
@@ -59,7 +66,7 @@ export const getConcertUserData = async (token: string, concertID: string) => {
     }
   } catch (e) {
     alert(e.response.data.message);
-    return undefined;
+    return null;
   }
 };
 
