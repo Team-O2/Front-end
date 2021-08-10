@@ -39,6 +39,7 @@ export { default as RegisterCard } from './RegisterCard';
 export { default as RegisterCompletedModal } from './RegisterCompletedModal';
 export { default as RegisterConfirmModal } from './RegisterConfirmModal';
 export { default as RegisterHeader } from './RegisterHeader';
+export { default as RemovableTag } from './RemovableTag';
 export { default as ChallengeReCommentList, default as ReplyComment } from './ReplyComment';
 export { default as SearchBar } from './SearchBar';
 export { default as SingleComment } from './SingleComment';

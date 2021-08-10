@@ -1,6 +1,6 @@
-import { EditWhiteIcon, XIcon } from 'assets/images';
+import { EditWhiteIcon } from 'assets/images';
 import { StyledInput } from 'components/atoms';
-import { DropDown, DropDownMulti, ToggleSwitch } from 'components/molecules';
+import { DropDown, DropDownMulti, RemovableTag, ToggleSwitch } from 'components/molecules';
 import React from 'react';
 import { interestList } from 'resources/string';
 import { ISettingUserInfo } from 'types/setting.type';
@@ -12,7 +12,6 @@ import {
   EditBtn,
   Email,
   InterestList,
-  InterestTagCntnr,
   NicknameInputContainer,
   PolicyCntnr,
   ProfileContainer,
@@ -91,7 +90,7 @@ function SettingTemplate({
       </CategoryContainer>
       <InterestList>
         {userInfo.interest.map((item: string, idx: number) => {
-          return <InterestTag text={item} setList={handleClickDel} key={idx} />;
+          return <RemovableTag text={item} setList={handleClickDel} key={idx} />;
         })}
       </InterestList>
       <Txt>성별</Txt>
@@ -122,12 +121,3 @@ function SettingTemplate({
 }
 
 export default SettingTemplate;
-
-const InterestTag = ({ setList, text }: { setList: (e: string) => void; text: string }) => {
-  return (
-    <InterestTagCntnr>
-      <div>{text}</div>
-      <img id={text} src={XIcon} onClick={(e: any) => setList(e.target.id)} />
-    </InterestTagCntnr>
-  );
-};
