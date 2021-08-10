@@ -1,10 +1,18 @@
-import { CautionIcon, CheckIcon } from 'assets/images';
+import { CautionIcon, CheckIcon, XIcon } from 'assets/images';
 import { Modal } from 'components/atoms';
 import React from 'react';
 import { useRecoilState } from 'recoil';
 import { userState } from 'stores/user';
 import { IAdminChallengePeriod } from 'types/admin.type';
-import { CautionWrapper, ConfirmDetail, ConfirmModalWrapper, DetailContent, ModalButton } from './style';
+import {
+  CautionWrapper,
+  ConfirmDetail,
+  ConfirmModalWrapper,
+  DetailContent,
+  ImgIcon,
+  ModalButton,
+  XButton,
+} from './style';
 
 interface IProps {
   isOpenModal: boolean;
@@ -27,6 +35,13 @@ function RegisterConfirmModal({
   return (
     <Modal isOpen={isOpenModal} setIsOpen={setIsOpenModal} isBlur={true}>
       <ConfirmModalWrapper>
+        <XButton
+          onClick={() => {
+            setIsOpenModal(false);
+          }}
+        >
+          <ImgIcon src={XIcon} alt="" />
+        </XButton>
         <ConfirmDetail>
           <h1>잠깐! 확인하고 신청 완료하세요</h1>
           <h2>아래 정보를 확인해주세요</h2>
