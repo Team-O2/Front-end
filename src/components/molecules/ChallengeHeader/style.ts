@@ -51,8 +51,9 @@ export const HeaderWrapper = Styled.div`
     }
     h5{
       position: fixed;
-      top: 807px;
+      top: 607px;
       left: 180px;
+      opacity: 0.07;
       border-radius:100%;
       background: ${palette('primary', 5)};
       width: 200px;
@@ -67,7 +68,7 @@ export const WriteButton = Styled.button`
     border:none;
     border-radius:100%;
     background-color:${palette('grayscale', 0)};
-    height:64px;
+    height:0px;
 
     img{
       align-items:center;
@@ -83,7 +84,7 @@ export const AllFeedButtom = Styled.button`
     border-radius:100%;
     background-color:${palette('grayscale', 0)};
     padding-bottom: 40px;
-    height:64px;
+    height:0px;
 
     img{
       align-items:center;
@@ -98,7 +99,7 @@ export const MyFeedButtom = Styled.button`
     border:none;
     border-radius:100%;
     background-color:${palette('grayscale', 0)};
-    height:64px;
+    height:0px;
 
     img{
       align-items:center;
