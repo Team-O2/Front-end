@@ -52,6 +52,7 @@ function NoticeCommentList({ commentList, noticeID, isRerender, setIsRerender }:
           noticeID={noticeID}
           isRerender={isRerender}
           setIsRerender={setIsRerender}
+          isDeleted={data.isDeleted}
         ></NoticeSingleComment>
       ))}
       <LoginModal isLoginModalOpen={isLoginModalOpen} setIsLoginModalOpen={setIsLoginModalOpen} />
