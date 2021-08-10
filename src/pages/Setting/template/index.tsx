@@ -31,7 +31,7 @@ export interface IProps {
   imgInput: React.RefObject<HTMLInputElement>;
   isBtnAtv: boolean;
   handleInputImg: (e: React.ChangeEvent<HTMLInputElement>) => void;
-  handleUserNickname: (nickname: string | number) => void;
+  handleUserNickname: (nickname: string) => void;
   handleClickDel: (e: string) => void;
   handleUserInterest: (e: string) => void;
   handleUserGender: (e: string) => void;
