@@ -69,7 +69,7 @@ function JoinForm({ isConditionMet, userData, setUserData, setIsConditionMet }: 
         height="60px"
         errorMsg="올바르지 않은 형식입니다"
         onChange={(value) => {
-          if (typeof value === 'string') setUserData({ ...userData, email: value });
+          setUserData({ ...userData, email: value });
         }}
         isConditionMet={isConditionMet.email}
       />
@@ -80,7 +80,7 @@ function JoinForm({ isConditionMet, userData, setUserData, setIsConditionMet }: 
         height="60px"
         errorMsg="영어 대문자, 소문자, 특수문자가 포함되어야 합니다"
         onChange={(value) => {
-          if (typeof value === 'string') setUserData({ ...userData, password: value });
+          setUserData({ ...userData, password: value });
         }}
         isConditionMet={isConditionMet.password}
       />
@@ -90,7 +90,7 @@ function JoinForm({ isConditionMet, userData, setUserData, setIsConditionMet }: 
         height="60px"
         errorMsg="비밀번호가 일치하지 않습니다"
         onChange={(value) => {
-          if (typeof value === 'string') setUserData({ ...userData, passwordCheck: value });
+          setUserData({ ...userData, passwordCheck: value });
         }}
         isConditionMet={isConditionMet.passwordCheck}
         margin="14px 0 0 0"
@@ -102,7 +102,7 @@ function JoinForm({ isConditionMet, userData, setUserData, setIsConditionMet }: 
         height="60px"
         errorMsg="닉네임은 최대 6글자로 한글, 숫자, 밑줄 및 마침표만 사용할 수 있습니다"
         onChange={(value) => {
-          if (typeof value === 'string') setUserData({ ...userData, nickname: value });
+          setUserData({ ...userData, nickname: value });
         }}
         isConditionMet={isConditionMet.nickname}
       />

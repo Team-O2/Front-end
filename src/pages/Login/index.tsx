@@ -19,10 +19,10 @@ function Login(): React.ReactElement {
     pwd: true,
   });
 
-  const idInputChange = (value: string | number) => {
+  const idInputChange = (value: string) => {
     if (typeof value === 'string') setLoginData({ ...loginData, email: value });
   };
-  const pwdInputChange = (value: string | number) => {
+  const pwdInputChange = (value: string) => {
     if (typeof value === 'string') setLoginData({ ...loginData, password: value });
   };
 

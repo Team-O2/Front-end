@@ -142,7 +142,7 @@ function AdminWriteForm({
             width="598px"
             height="60px"
             onChange={(value) => {
-              if (typeof value === 'string') setWriteData({ ...writeData, title: value });
+              setWriteData({ ...writeData, title: value });
             }}
             isConditionMet={isConditionMet.title}
           />
@@ -154,7 +154,7 @@ function AdminWriteForm({
             width="222px"
             height="60px"
             onChange={(value) => {
-              if (typeof value === 'string') setWriteData({ ...writeData, nickname: value });
+              setWriteData({ ...writeData, nickname: value });
             }}
             isConditionMet={isConditionMet.nickname}
           />

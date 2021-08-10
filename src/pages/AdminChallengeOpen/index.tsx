@@ -47,42 +47,37 @@ function AdminChallengeOpen(): React.ReactElement {
     }
   };
   const CheckDatePattern = (date: string) => /[0-9]{4}.[0-9]{2}.[0-9]{2}$/.test(date);
-  const handleTitleOnChange = (value: string | number) => {
-    if (typeof value === 'string') setChallengeOpenData({ ...challengeOpenData, title: value });
+  const handleTitleOnChange = (value: string) => {
+    setChallengeOpenData({ ...challengeOpenData, title: value });
   };
-  const handleChallengeStOnChange = (value: string | number) => {
-    if (typeof value === 'string')
-      setChallengeOpenData({
-        ...challengeOpenData,
-        challengePeriod: { ...challengeOpenData.challengePeriod, start: value },
-      });
+  const handleChallengeStOnChange = (value: string) => {
+    setChallengeOpenData({
+      ...challengeOpenData,
+      challengePeriod: { ...challengeOpenData.challengePeriod, start: value },
+    });
   };
-  const handleChallengeEndOnChange = (value: string | number) => {
-    if (typeof value === 'string')
-      setChallengeOpenData({
-        ...challengeOpenData,
-        challengePeriod: { ...challengeOpenData.challengePeriod, end: value },
-      });
+  const handleChallengeEndOnChange = (value: string) => {
+    setChallengeOpenData({
+      ...challengeOpenData,
+      challengePeriod: { ...challengeOpenData.challengePeriod, end: value },
+    });
   };
-  const handleApplyStOnChange = (value: string | number) => {
-    if (typeof value === 'string')
-      setChallengeOpenData({
-        ...challengeOpenData,
-        applyPeriod: { ...challengeOpenData.applyPeriod, start: value },
-      });
+  const handleApplyStOnChange = (value: string) => {
+    setChallengeOpenData({
+      ...challengeOpenData,
+      applyPeriod: { ...challengeOpenData.applyPeriod, start: value },
+    });
   };
-  const handleApplyEndOnChange = (value: string | number) => {
-    if (typeof value === 'string')
-      setChallengeOpenData({
-        ...challengeOpenData,
-        applyPeriod: { ...challengeOpenData.applyPeriod, end: value },
-      });
+  const handleApplyEndOnChange = (value: string) => {
+    setChallengeOpenData({
+      ...challengeOpenData,
+      applyPeriod: { ...challengeOpenData.applyPeriod, end: value },
+    });
   };
-  const handleNumOnChange = (value: string | number) => {
-    if (typeof value === 'string')
-      if (!isNaN(Number(value))) {
-        setChallengeOpenData({ ...challengeOpenData, peopleNum: Number(value) });
-      }
+  const handleNumOnChange = (value: string) => {
+    if (!isNaN(Number(value))) {
+      setChallengeOpenData({ ...challengeOpenData, peopleNum: Number(value) });
+    }
   };
 
   useEffect(() => {

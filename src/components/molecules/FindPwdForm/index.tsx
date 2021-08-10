@@ -75,7 +75,7 @@ function FindPWDForm({ setData, isConditionMet, setIsConditionMet, errMsg }: IPr
           width="258px"
           height="60px"
           onChange={(value) => {
-            if (typeof value === 'string') setEmail(value);
+            setEmail(value);
           }}
           isConditionMet={isConditionMet.email}
           errorMsg={emailErrMsg}
@@ -90,7 +90,7 @@ function FindPWDForm({ setData, isConditionMet, setIsConditionMet, errMsg }: IPr
         width="406px"
         height="60px"
         onChange={(value) => {
-          if (typeof value === 'string') setCertifiNum(value);
+          setCertifiNum(value);
         }}
         isConditionMet={isConditionMet.certifiNum}
         errorMsg={errMsg}

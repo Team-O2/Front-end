@@ -3,8 +3,8 @@ import React from 'react';
 import { LoginformWrap } from './style';
 
 interface IProps {
-  idInputChange: (value: string | number) => void;
-  pwdInputChange: (value: string | number) => void;
+  idInputChange: (value: string) => void;
+  pwdInputChange: (value: string) => void;
   isConditionMet: {
     email: boolean;
     pwd: boolean;
