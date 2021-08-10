@@ -141,23 +141,3 @@ export const Btn = Styled.div<IBtn>`
   justify-content: center;
   color: ${palette('grayscale', 0)};
 `;
-
-export const InterestTagCntnr = Styled.div`
-  ${theme('font.subhead3')};
-  margin-right: 10px;
-  padding: 12px 30px;
-  border-radius: 60px;
-  border: solid 1px ${palette('primary', 5)};
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  color: ${palette('primary', 5)};
-
-  div {
-    margin-right: 10px;
-  }
-
-  img {
-    width: 14px;
-  }
-`;
