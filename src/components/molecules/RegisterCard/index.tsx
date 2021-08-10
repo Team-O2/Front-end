@@ -1,5 +1,8 @@
 import { MinusIcon, PlusIcon } from 'assets/images';
-import React from 'react';
+import { LoginModal } from 'components/molecules';
+import React, { useState } from 'react';
+import { useRecoilValue } from 'recoil';
+import { userStatusState } from 'stores/user';
 import { IAdminChallengePeriod } from 'types/admin.type';
 import { BoxWrapper, CardDetailWrapper, CardSettingWrapper, ChallengeSetting, RegisterButton } from './style';
 
@@ -18,9 +21,21 @@ function RegisterCard({
   registerCount,
   setRegisterCount,
 }: IProps): React.ReactElement {
+  const [isLoginModalOpen, setIsLoginModalOpen] = useState(false);
+  const userStatusData = useRecoilValue(userStatusState);
+  const [userStateNum, setUserState] = useState(userStatusData ? userStatusData.userType : 0);
+
   function minusCount() {
     if (registerCount > 0) {
       setRegisterCount(registerCount - 1);
+    }
+  }
+
+  function registerAuthority() {
+    if (userStateNum === 0) {
+      return setIsLoginModalOpen(true);
+    } else {
+      setIsOpenModal(true);
     }
   }
 
@@ -69,12 +84,13 @@ function RegisterCard({
         <RegisterButton>
           <button
             onClick={() => {
-              setIsOpenModal(true);
+              registerAuthority();
             }}
           >
             신청하기
           </button>
         </RegisterButton>
+        <LoginModal isLoginModalOpen={isLoginModalOpen} setIsLoginModalOpen={setIsLoginModalOpen} />
       </CardDetailWrapper>
     </>
   );

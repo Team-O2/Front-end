@@ -25,8 +25,10 @@ export const LoginNoticeDetail = Styled.div`
 `;
 
 export const ButtonContainer = Styled.div`
-  padding-top:50px;
+  padding:50px 100px 0px 100px;
   text-align: center;
+  justify-content : space-between;
+  display:flex;
 `;
 
 export const CancelButton = Styled(Button)`
@@ -35,7 +37,6 @@ export const CancelButton = Styled(Button)`
 `;
 
 export const LoginButton = Styled(Button)`
-  padding-left:170px;
   color: ${palette('primary', 5)};
   ${theme('font.subhead4')};
 `;
