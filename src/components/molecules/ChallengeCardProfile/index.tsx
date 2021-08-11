@@ -44,6 +44,28 @@ function ChallengeCardProfile({
   const userStatusData = useRecoilValue(userStatusState);
   const [userStateNum, setUserState] = useState(userStatusData ? userStatusData.userType : 0);
 
+  const timeForToday = (value: any) => {
+    const today = new Date();
+    const timeValue = new Date(value);
+
+    const betweenTime = Math.floor((today.getTime() - timeValue.getTime()) / 1000 / 60);
+    if (betweenTime < 1) {
+      return '방금전';
+    } else if (betweenTime < 60) {
+      return `${betweenTime}분전`;
+    }
+
+    const betweenTimeHour = Math.floor(betweenTime / 60);
+    if (betweenTimeHour < 24) {
+      return `${betweenTimeHour}시간전`;
+    }
+
+    const betweenTimeDay = Math.floor(betweenTime / 60 / 24);
+    if (betweenTimeDay < 365) {
+      return dayjs(createdAt).format('YY.MM.DD');
+    }
+  };
+
   const submitScrap = async () => {
     if (userStatusData) {
       const token = userStatusData.token;
@@ -74,6 +96,10 @@ function ChallengeCardProfile({
     userStateNum === 0 ? setIsLoginModalOpen(true) : setIsLoginModalOpen(false);
   };
 
+  const menuTimer = setTimeout(function () {
+    setIsMenuBar(true);
+  }, 8000);
+
   //userState상태 :
   // 0: 비회원,
   // 1: 챌린지안하는유저,
@@ -88,7 +114,7 @@ function ChallengeCardProfile({
         <div>
           <ProfileDetailWrapper>
             <h3>{nickname}</h3>
-            <h4>{dayjs(createdAt).format('MM.DD')}</h4>
+            <h4>{timeForToday(createdAt)}</h4>
           </ProfileDetailWrapper>
           {userStateNum === 0 || userStateNum === 1 || userStateNum === 2 || isMine === false ? (
             scrapRender === false ? (
@@ -139,6 +165,7 @@ function ChallengeCardProfile({
                   alt=""
                   onClick={() => {
                     setIsMenuBar(false);
+                    menuTimer;
                   }}
                 />
               </MenuButton>
