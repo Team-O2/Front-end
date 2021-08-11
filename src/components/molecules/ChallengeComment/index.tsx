@@ -6,6 +6,7 @@ import { CommentListWrapper } from './style';
 interface IProps {
   commentList: Array<ICommentData> | null;
   challengeID: string;
+  comments: number;
   commentListFlag: boolean;
   setCommentListFlag: (value: boolean) => void;
 }
@@ -14,6 +15,7 @@ function ChallengeComment({
   commentList,
   challengeID,
   commentListFlag,
+  comments,
   setCommentListFlag,
 }: IProps): React.ReactElement {
   return (
@@ -22,6 +24,7 @@ function ChallengeComment({
         className="comment__write"
         isComment={true} //댓글부분
         challengeID={challengeID}
+        comments={comments}
         commentListFlag={commentListFlag}
         setCommentListFlag={setCommentListFlag}
       />
@@ -29,6 +32,7 @@ function ChallengeComment({
         <ChallengeSingleComment
           key={data._id}
           commentData={data}
+          comments={comments}
           challengeID={challengeID}
           commentListFlag={commentListFlag}
           setCommentListFlag={setCommentListFlag}

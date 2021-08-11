@@ -30,8 +30,6 @@ interface IProps {
   challengeList: IChallengeDataList[] | null;
   setChallengeList: (value: IChallengeDataList[]) => void;
   generationNum: string;
-  isClickedEntire: boolean;
-  setIsClickedEntire: (value: boolean) => void;
 }
 
 //userState상태 :

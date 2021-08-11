@@ -15,7 +15,6 @@ function ChallengeView({ match }: RouteComponentProps<MatchParams>): React.React
   const { generationNum } = match.params;
   const [challengeList, setChallengeList] = useState<IChallengeData[] | null>(null);
   const userStatusData = useRecoilValue(userStatusState);
-  const [isClickedEntire, setIsClickedEntire] = useState(false);
 
   const getChallengeList = useCallback(
     async (token: string | null, offset: number, limit: number): Promise<void> => {
@@ -27,7 +26,7 @@ function ChallengeView({ match }: RouteComponentProps<MatchParams>): React.React
 
   React.useEffect(() => {
     getChallengeList(userStatusData && userStatusData.token, 0, 10);
-  }, [getChallengeList, isClickedEntire, userStatusData]);
+  }, [getChallengeList, userStatusData]);
 
   return (
     <div>
@@ -35,8 +34,6 @@ function ChallengeView({ match }: RouteComponentProps<MatchParams>): React.React
         challengeList={challengeList}
         setChallengeList={setChallengeList}
         generationNum={generationNum}
-        isClickedEntire={isClickedEntire}
-        setIsClickedEntire={setIsClickedEntire}
       />
       <ChallengeMiddle
         challengeList={challengeList}

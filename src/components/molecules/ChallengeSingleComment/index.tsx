@@ -6,16 +6,16 @@ import { CommentFold, CommentWrapper, RecommentWrapper, SingleCommentWrapper } f
 interface IProps {
   commentData: ICommentData;
   challengeID: string;
-  comments: number;
   commentListFlag: boolean;
+  comments: number;
   setCommentListFlag: (value: boolean) => void;
 }
 
 function ChallengeSingleComment({
   commentData,
   challengeID,
-  comments,
   commentListFlag,
+  comments,
   setCommentListFlag,
 }: IProps): React.ReactElement {
   const { childrenComment, _id, userID, text, isDeleted } = commentData;
