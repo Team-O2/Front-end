@@ -48,7 +48,8 @@ export const Wrapper = Styled.div`
   left:0;
   margin:auto;
   border-radius: 16px;
-  background-color: #FFFFFF;
+  border: solid 1px ${palette('grayscale', 4)};
+  background-color: ${palette('grayscale', 0)};
   width: 500px;
   height: 312px;
 `;

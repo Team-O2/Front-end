@@ -3,13 +3,12 @@ import Styled from 'styled-components';
 import { palette, theme } from 'styled-tools';
 
 export const XButton = Styled(Button)`
-width:24px;
-height:24px;
-float:right;
-margin-right:30px;
-margin-top:30px;
-cursor: pointer;
-
+  width:24px;
+  height:24px;
+  float:right;
+  margin-right:30px;
+  margin-top:30px;
+  cursor: pointer;
 `;
 
 export const ImgIcon = Styled(Img)`

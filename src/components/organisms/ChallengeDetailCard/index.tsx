@@ -21,7 +21,7 @@ interface IProps {
   bad?: string;
   learn?: string;
   like: number;
-  comments?: number;
+  comments: number;
   isLike?: boolean;
   isScrap?: boolean;
   id: string;
@@ -52,11 +52,12 @@ function ChallengeDetailCard({
   const [isMine, setIsMine] = useState(false);
   const [isDeleteModalOpen, setIsDeleteModalOpen] = useState(false);
   const [isLoginModalOpen, setIsLoginModalOpen] = useState(false);
+  const [isRerender, setIsRerender] = useState<boolean>(false);
 
   useEffect(() => {
     setIsMine(nickname === userStateNickname);
-    document.body.style.overflow = isDeleteModalOpen === true ? 'hidden' : 'unset';
-  }, [isDeleteModalOpen, nickname, userStateNickname]);
+    document.body.style.overflow = isDeleteModalOpen || isLoginModalOpen === true ? 'hidden' : 'unset';
+  }, [isDeleteModalOpen, isLoginModalOpen, nickname, userStateNickname]);
 
   const deleteClickHandler = async () => {
     if (userStatusData) {
@@ -97,7 +98,7 @@ function ChallengeDetailCard({
               id={id}
             />
           }
-          <ChallengeCardFold id={id} />
+          <ChallengeCardFold id={id} comments={comments} setIsLoginModalOpen={setIsLoginModalOpen} />
         </MainCardWrapper>
       </Container>
       <DeleteModal
