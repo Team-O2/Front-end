@@ -8,12 +8,15 @@ import { CommentButton, CommentFoldButton } from './style';
 
 interface IProps {
   id: string;
+  comments: number;
+  setIsLoginModalOpen: (value: boolean) => void;
 }
 
-function ChallengeCardFold({ id }: IProps): React.ReactElement {
+function ChallengeCardFold({ id, comments, setIsLoginModalOpen }: IProps): React.ReactElement {
+  const userStatusData = useRecoilValue(userStatusState);
+  const [userStateNum, setUserState] = useState(userStatusData ? userStatusData.userType : 0);
   const [isOpenComment, setIsOpenComment] = useState(false);
   const [isFoldComment, setIsFoldComment] = useState(true);
-  const userStatusData = useRecoilValue(userStatusState);
   const [isCommentListFlag, setIsCommentListFlag] = useState<boolean>(false);
   const [myCommentList, setMyCommentList] = useState<ICommentData[] | null>(null);
 
@@ -28,13 +31,21 @@ function ChallengeCardFold({ id }: IProps): React.ReactElement {
     getCommentList();
   }, [isCommentListFlag, getCommentList]);
 
+  function commentAuthorization() {
+    if (userStateNum === 0) {
+      return setIsLoginModalOpen(true);
+    } else {
+      setIsOpenComment(true);
+      getCommentList();
+    }
+  }
+
   return (
     <>
       {isOpenComment === false ? (
         <CommentButton
           onClick={() => {
-            setIsOpenComment(true);
-            getCommentList();
+            commentAuthorization();
           }}
         >
           댓글 펼치기
@@ -45,6 +56,7 @@ function ChallengeCardFold({ id }: IProps): React.ReactElement {
             <ChallengeComment
               commentList={myCommentList}
               challengeID={id}
+              comments={comments}
               commentListFlag={isCommentListFlag}
               setCommentListFlag={setIsCommentListFlag}
             />
