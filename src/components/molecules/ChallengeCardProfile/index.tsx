@@ -48,20 +48,20 @@ function ChallengeCardProfile({
     const today = new Date();
     const timeValue = new Date(value);
 
-    const betweenTime = Math.floor((today.getTime() - timeValue.getTime()) / 1000 / 60);
-    if (betweenTime < 1) {
+    const uploadTime = Math.floor((today.getTime() - timeValue.getTime()) / 1000 / 60);
+    if (uploadTime < 1) {
       return '방금전';
-    } else if (betweenTime < 60) {
-      return `${betweenTime}분전`;
+    } else if (uploadTime < 60) {
+      return `${uploadTime}분전`;
     }
 
-    const betweenTimeHour = Math.floor(betweenTime / 60);
-    if (betweenTimeHour < 24) {
-      return `${betweenTimeHour}시간전`;
+    const uploadTimeHour = Math.floor(uploadTime / 60);
+    if (uploadTimeHour < 24) {
+      return `${uploadTimeHour}시간전`;
     }
 
-    const betweenTimeDay = Math.floor(betweenTime / 60 / 24);
-    if (betweenTimeDay < 365) {
+    const uploadTimeDay = Math.floor(uploadTimeHour / 60 / 24);
+    if (uploadTimeDay < 365) {
       return dayjs(createdAt).format('YY.MM.DD');
     }
   };
@@ -117,7 +117,7 @@ function ChallengeCardProfile({
             <h4>{timeForToday(createdAt)}</h4>
           </ProfileDetailWrapper>
           {userStateNum === 0 || userStateNum === 1 || userStateNum === 2 || isMine === false ? (
-            scrapRender === false ? (
+            scrapRender === false || userStateNum === 0 ? (
               <MenuBarWrapper>
                 <MenuButton>
                   <img
