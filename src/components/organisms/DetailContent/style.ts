@@ -1,6 +1,5 @@
 import Styled from 'styled-components';
 import { palette, theme } from 'styled-tools';
-
 export const Video = Styled.div`
   margin-top: 60px;
   height: 468px;
@@ -21,6 +20,24 @@ export const Text = Styled.div`
   line-height: 1.56;
   color: ${palette('grayscale', 6)};
   ${theme('font.body4')};
+  h1 {
+    ${theme('font.h2_eng')};
+  }
+  h2 {
+    ${theme('font.h1_eng')};
+  }
+  blockquote {
+    padding-left: 20px;
+    border-left: 3px solid ${palette('grayscale', 6)};
+  }
+  ol {
+    list-style-type:decimal;
+    list-style-position : inside;
+  }
+  ul li{
+    list-style-type:disc ;
+    list-style-position : inside;
+  }
 `;
 
 export const HashTagList = Styled.div`
