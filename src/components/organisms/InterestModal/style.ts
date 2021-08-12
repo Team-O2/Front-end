@@ -92,7 +92,7 @@ export const ModalWrapper = Styled.div`
   width : 1030px;
   height : 614px;
   border-radius: 16px;
-  padding: 40px 100px;
+  padding: 40px 90px;
   box-shadow: -4px 11px 24px 0 rgba(13, 12, 63, 0.1);
   background-color : ${palette('grayscale', 0)};
   display : flex;
