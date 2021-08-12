@@ -35,7 +35,7 @@ justify-content:center;
 `;
 
 export const DetailContainer = Styled.div`
-width : 98px;
+width : 200px;
 display : flex;
 flex-direction : column;
 align-items : center;
@@ -44,7 +44,7 @@ margin-top : 20px;
 `;
 
 export const DetailBtnContainer = Styled.div`
-width : 100px;
+width : 200px;
 display : flex;
 flex-direction : column;
 max-height : 229px;
