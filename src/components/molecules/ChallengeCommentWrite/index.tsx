@@ -26,7 +26,8 @@ function ChallengeCommentWrite({
 }: IProps): React.ReactElement {
   const [isLoginModalOpen, setIsLoginModalOpen] = useState(false);
   const userStatusData = useRecoilValue(userStatusState);
-  const [userStateNum, setUserState] = useState(userStatusData ? userStatusData.userType : 0);
+  const userStateNum = userStatusData ? userStatusData.userType : 0;
+  const [countComments, setCountComments] = useState(comments);
   const [value, setValue] = useState('');
 
   const handleChange = (event: React.ChangeEvent<HTMLTextAreaElement>) => {
@@ -47,7 +48,13 @@ function ChallengeCommentWrite({
   const postComment = async () => {
     setValue('');
     if (userStatusData) {
-      await postChallengeComment(userStatusData.token, challengeID, { parentID: null, text: value });
+      const commentSuccess = await postChallengeComment(userStatusData.token, challengeID, {
+        parentID: null,
+        text: value,
+      });
+      if (commentSuccess) {
+        setCountComments(countComments + 1);
+      }
     }
     setCommentListFlag(!commentListFlag);
   };
