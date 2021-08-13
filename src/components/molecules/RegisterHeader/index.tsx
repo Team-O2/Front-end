@@ -19,7 +19,7 @@ const indextoName = (index: number) => {
   }
 };
 
-const RegisterHeader = ({ generation, title, img }: IProps) => {
+const RegisterHeader = ({ generation, title, img }: IProps): React.ReactElement => {
   return (
     <Container url={img}>
       <GenerationText>

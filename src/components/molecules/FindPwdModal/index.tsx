@@ -9,7 +9,7 @@ interface IProps {
   email: string;
 }
 
-function FindPwdModal({ isModalOpen, setIsModalOpen, email }: IProps) {
+function FindPwdModal({ isModalOpen, setIsModalOpen, email }: IProps): React.ReactElement {
   return (
     <Modal isOpen={isModalOpen} isBlur={true} setIsOpen={setIsModalOpen}>
       <SuccessModal>
