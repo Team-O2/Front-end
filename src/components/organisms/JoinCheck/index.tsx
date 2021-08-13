@@ -66,7 +66,6 @@ function JoinCheck({ setUserData, userData }: IProps): React.ReactElement {
           check2: !isChecked.check2,
         });
         break;
-
       case 'policy3':
         setIsChecked({
           ...isChecked,
@@ -82,7 +81,6 @@ function JoinCheck({ setUserData, userData }: IProps): React.ReactElement {
   useEffect(() => {
     setUserData({ ...userData, marpolicy: isChecked.check3 });
   }, [isChecked.check3]);
-
   useEffect(() => {
     if (isChecked.check1 && isChecked.check2) {
       setUserData({ ...userData, policyMust: true });
@@ -90,11 +88,16 @@ function JoinCheck({ setUserData, userData }: IProps): React.ReactElement {
       setUserData({ ...userData, policyMust: false });
     }
   }, [isChecked.check1, isChecked.check2]);
+  useEffect(() => {
+    if (isChecked.check1 && isChecked.check2 && isChecked.check3) setCheckAll(true);
+    else setCheckAll(false);
+  }, [isChecked.check1, isChecked.check2, isChecked.check3]);
 
   interface Policy {
     title: string;
     content: string;
   }
+
   const policyList: Policy[] = [
     {
       //리스트 인덱스에 따라 내용다르게,
