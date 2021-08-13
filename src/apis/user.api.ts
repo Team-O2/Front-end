@@ -1,8 +1,9 @@
 import { serverAxios } from 'libs/axios';
+import { IUserState } from 'types/global.type';
 
 const PREFIX_URL = '/user';
 
-export const getUserData = async (token: string) => {
+export const getUserData = async (token: string): Promise<IUserState | null> => {
   try {
     const data = await serverAxios.get(`${PREFIX_URL}/userInfo`, {
       headers: {
@@ -10,17 +11,25 @@ export const getUserData = async (token: string) => {
       },
     });
     if (data.data.status === 200) {
-      return data.data.data;
-    } else {
-      return null;
+      if (data.data.data !== undefined) {
+        return {
+          interest: data.data.data.interest,
+          marpolicy: data.data.data.marpolicy,
+          img: data.data.data.img,
+          _id: data.data.data._id,
+          email: data.data.data.email,
+          nickname: data.data.data.nickname,
+          gender: data.data.data.gender,
+        };
+      }
     }
   } catch (e) {
     alert(e?.response?.data?.message);
-    return null;
   }
+  return null;
 };
 
-export const postNewPw = async (token: string | undefined, password: string, newPassword: string) => {
+export const postNewPw = async (token: string | undefined, password: string, newPassword: string): Promise<boolean> => {
   try {
     const data = await serverAxios.patch(
       `${PREFIX_URL}/password`,
@@ -32,8 +41,8 @@ export const postNewPw = async (token: string | undefined, password: string, new
     }
   } catch (e) {
     alert(e?.response?.data?.message);
-    return false;
   }
+  return false;
 };
 
 export const getUserInfo = async (token: string) => {
@@ -76,11 +85,7 @@ export const updateUserInfo = async (
   }
 };
 
-interface SignData {
-  challengeCNT: number;
-}
-
-export const SignRegister = async (signData: SignData, token: string) => {
+export const SignRegister = async (signData: { challengeCNT: number }, token: string): Promise<boolean> => {
   try {
     const data = await serverAxios.post('/user/register', signData, {
       headers: {
