@@ -28,7 +28,7 @@ function ChallengeCardBottom({
   const [countLikes, setCountLikes] = useState(like);
   const [likeRender, setLikeRender] = useState(isLike);
   const [lookMoreButton, setLookMoreButton] = useState(true);
-  const [userStateNum, setUserState] = useState(userStatusData ? userStatusData.userType : 0);
+  const userStateNum = userStatusData ? userStatusData.userType : 0;
 
   const submitLike = async () => {
     if (userStatusData) {

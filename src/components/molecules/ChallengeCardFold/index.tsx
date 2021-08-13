@@ -14,11 +14,11 @@ interface IProps {
 
 function ChallengeCardFold({ id, comments, setIsLoginModalOpen }: IProps): React.ReactElement {
   const userStatusData = useRecoilValue(userStatusState);
-  const [userStateNum, setUserState] = useState(userStatusData ? userStatusData.userType : 0);
+  const userStateNum = userStatusData ? userStatusData.userType : 0;
   const [isOpenComment, setIsOpenComment] = useState(false);
-  const [isFoldComment, setIsFoldComment] = useState(true);
   const [isCommentListFlag, setIsCommentListFlag] = useState<boolean>(false);
   const [myCommentList, setMyCommentList] = useState<ICommentData[] | null>(null);
+  const isFoldComment = true;
 
   const getCommentList = useCallback(async () => {
     if (userStatusData) {
@@ -52,7 +52,7 @@ function ChallengeCardFold({ id, comments, setIsLoginModalOpen }: IProps): React
         </CommentButton>
       ) : (
         <div>
-          {isFoldComment === false ? null : (
+          {isFoldComment === true ? (
             <ChallengeComment
               commentList={myCommentList}
               challengeID={id}
@@ -60,7 +60,7 @@ function ChallengeCardFold({ id, comments, setIsLoginModalOpen }: IProps): React
               commentListFlag={isCommentListFlag}
               setCommentListFlag={setIsCommentListFlag}
             />
-          )}
+          ) : null}
           <CommentFoldButton
             onClick={() => {
               setIsOpenComment(false);

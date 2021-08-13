@@ -5,30 +5,12 @@ import React, { useCallback, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { useRecoilValue } from 'recoil';
 import { userStatusState } from 'stores/user';
+import { IChallengeDataList } from 'types/challenge.type';
 import { AllFeedButtom, HeaderWrapper, MyFeedButtom, SChallengeHeader, WriteButton } from './style';
 
-interface IChallengeDataList {
-  good: string;
-  bad: string;
-  learn: string;
-  commentNum: number;
-  comments: string[];
-  generation: number;
-  createdAt: string;
-  isDeleted: boolean;
-  scrapNum: number;
-  interest: string[];
-  isLike: boolean;
-  likes: number;
-  isScrap: boolean;
-  updatedAt: string;
-  user: { img: string; nickname: string; _id: string };
-  __v: number;
-  _id: string;
-}
 interface IProps {
   challengeList: IChallengeDataList[] | null;
-  setChallengeList: (value: IChallengeDataList[]) => void;
+  setChallengeList: (value: IChallengeDataList[] | null) => void;
   generationNum: string;
 }
 
@@ -45,7 +27,7 @@ function ChallengeHeader({ challengeList, setChallengeList, generationNum }: IPr
   const [keyword, setKeyword] = useState('');
   const [booleanMine, setBooleanMine] = useState(false);
   const [ismine, setIsmine] = useState(0);
-  const [userStateNum, setUserState] = useState(userStatusData ? userStatusData.userType : 0);
+  const userStateNum = userStatusData ? userStatusData.userType : 0;
 
   const getChallengeCategoryData = useCallback(
     async (
