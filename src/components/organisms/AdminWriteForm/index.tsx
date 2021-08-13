@@ -42,6 +42,14 @@ function AdminWriteForm({
   const [videoFile, setVideoFile] = useState<File | null>(null);
   const [thumbnail, setThumbnail] = useState<File | null>(null);
 
+  const handleTitleOnChange = (value: string) => {
+    setWriteData({ ...writeData, title: value });
+  };
+
+  const handleNicknameOnChange = (value: string) => {
+    setWriteData({ ...writeData, nickname: value });
+  };
+
   useEffect(() => {
     if (menuProps === 'sharetogether') setMenu('Share Together');
     else setMenu('공지사항');
@@ -59,6 +67,7 @@ function AdminWriteForm({
       setWriteData({ ...writeData, category: [...writeData.category, category] });
     }
   }, [category]);
+
   useEffect(() => {
     //DropDown으로 받아온 입력값들 writeData에 저장
     menu != '메뉴를 선택하세요' && setWriteData({ ...writeData, menu: menu });
@@ -141,9 +150,7 @@ function AdminWriteForm({
             placeHolder="제목을 입력하세요"
             width="598px"
             height="60px"
-            onChange={(value) => {
-              setWriteData({ ...writeData, title: value });
-            }}
+            onChange={handleTitleOnChange}
             isConditionMet={isConditionMet.title}
           />
         </TitleContainer>
@@ -153,9 +160,7 @@ function AdminWriteForm({
             placeHolder="연사 닉네임을 입력하세요"
             width="222px"
             height="60px"
-            onChange={(value) => {
-              setWriteData({ ...writeData, nickname: value });
-            }}
+            onChange={handleNicknameOnChange}
             isConditionMet={isConditionMet.nickname}
           />
         </NicknameContainer>

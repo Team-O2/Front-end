@@ -13,7 +13,19 @@ export interface IProps {
 }
 
 function JoinForm({ isConditionMet, userData, setUserData, setIsConditionMet }: IProps): React.ReactElement {
-  //입력값이 달라질때마다 조건 충족여부 파악하는 useEffect
+  const handleEmailOnChange = (value: string) => {
+    setUserData({ ...userData, email: value });
+  };
+  const handlePwdOnChange = (value: string) => {
+    setUserData({ ...userData, password: value });
+  };
+  const handleCheckPwdOnChange = (value: string) => {
+    setUserData({ ...userData, passwordCheck: value });
+  };
+  const handleNicknameOnChange = (value: string) => {
+    setUserData({ ...userData, nickname: value });
+  };
+
   useEffect(() => {
     if (userData.email.includes('@')) {
       setIsConditionMet({ ...isConditionMet, email: true });
@@ -68,9 +80,7 @@ function JoinForm({ isConditionMet, userData, setUserData, setIsConditionMet }: 
         width="406px"
         height="60px"
         errorMsg="올바르지 않은 형식입니다"
-        onChange={(value) => {
-          setUserData({ ...userData, email: value });
-        }}
+        onChange={handleEmailOnChange}
         isConditionMet={isConditionMet.email}
       />
       <SubTitle>비밀번호</SubTitle>
@@ -79,9 +89,7 @@ function JoinForm({ isConditionMet, userData, setUserData, setIsConditionMet }: 
         width="406px"
         height="60px"
         errorMsg="영어 대문자, 소문자, 특수문자가 포함되어야 합니다"
-        onChange={(value) => {
-          setUserData({ ...userData, password: value });
-        }}
+        onChange={handlePwdOnChange}
         isConditionMet={isConditionMet.password}
       />
       <StyledInput
@@ -89,9 +97,7 @@ function JoinForm({ isConditionMet, userData, setUserData, setIsConditionMet }: 
         width="406px"
         height="60px"
         errorMsg="비밀번호가 일치하지 않습니다"
-        onChange={(value) => {
-          setUserData({ ...userData, passwordCheck: value });
-        }}
+        onChange={handleCheckPwdOnChange}
         isConditionMet={isConditionMet.passwordCheck}
         margin="14px 0 0 0"
       />
@@ -101,9 +107,7 @@ function JoinForm({ isConditionMet, userData, setUserData, setIsConditionMet }: 
         width="406px"
         height="60px"
         errorMsg="닉네임은 최대 6글자로 한글, 숫자, 밑줄 및 마침표만 사용할 수 있습니다"
-        onChange={(value) => {
-          setUserData({ ...userData, nickname: value });
-        }}
+        onChange={handleNicknameOnChange}
         isConditionMet={isConditionMet.nickname}
       />
     </Wrapper>
