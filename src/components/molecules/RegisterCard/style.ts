@@ -50,7 +50,7 @@ export const CardSettingWrapper = Styled.div`
     h1{
       margin: 0 37px 0 0;
       margin-top:60px;
-      width: 89px;
+      width: 130px;
       height: 21px;
       text-align: center;
       color: ${palette('grayscale', 7)};
@@ -75,7 +75,6 @@ export const BoxWrapper = Styled.div`
     padding: 0 16px;
     width: 119px;
     height: 36px;
-    margin-left : 49px;
     ${theme('font.subhead3_eng')};
 
     p{
