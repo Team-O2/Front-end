@@ -129,7 +129,11 @@ function WriteCard({ onChangeForm }: IProps): React.ReactElement {
       <ChallengeProgressBar countProgressBar={countProgressBar} />
       <ChallengeWriteForm totalOnChange={totalOnChange} byte={byte} ITextForm={textForm} />
       <ChallengeWriteInterest selectedInterest={selectedInterest} setSelectedInterest={setSelectedInterest} />
-      <ChallengeWriteButton countProgressBar={countProgressBar} handleSubmit={handleSubmit} />
+      <ChallengeWriteButton
+        countProgressBar={countProgressBar}
+        handleSubmit={handleSubmit}
+        selectedInterest={selectedInterest}
+      />
     </>
   );
 }

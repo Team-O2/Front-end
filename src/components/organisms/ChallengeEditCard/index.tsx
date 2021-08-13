@@ -141,7 +141,7 @@ function EditCard({ id }: IEditCard): React.ReactElement {
       <ChallengeProgressBar countProgressBar={countProgressBar} />
       <ChallengeEditForm handleTotalOnChange={handleTotalOnChange} byte={byte} ITextForm={textForm} />
       <ChallengeWriteInterest selectedInterest={selectedInterest} setSelectedInterest={setSelectedInterest} />
-      {countProgressBar === 3 ? (
+      {countProgressBar === 3 && selectedInterest.length > 0 ? (
         <ButtonWrapper>
           <ColorButton onClick={handleSubmit}>수정완료</ColorButton>
         </ButtonWrapper>
