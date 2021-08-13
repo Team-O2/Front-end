@@ -11,6 +11,17 @@ export interface IAdminChallenge {
   img: string; //이미지주소
 }
 
+export interface IAdminWrite {
+  title: string;
+  category: string[];
+  menu: string;
+  content: string;
+  hashtag: string[];
+  video: File | null;
+  thumbnail: File | null;
+  nickname: string;
+}
+
 export interface IAdminWriteConditionMet {
   title: boolean;
   category: boolean;
