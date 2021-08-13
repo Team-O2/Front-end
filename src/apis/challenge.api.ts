@@ -1,4 +1,5 @@
 import { serverAxios } from 'libs/axios';
+import { IChallenge, IChallengeData, IChallengeDataList } from 'types/challenge.type';
 
 const PREFIX_URL = '/challenge';
 
@@ -21,7 +22,7 @@ interface IChallengeCommentData {
   text: string;
 }
 
-export const writeForm = async (writeData: WriteData, token: string) => {
+export const writeForm = async (writeData: WriteData, token: string): Promise<boolean> => {
   try {
     const data = await serverAxios.post(`${PREFIX_URL}`, writeData, {
       headers: {
@@ -31,9 +32,10 @@ export const writeForm = async (writeData: WriteData, token: string) => {
   } catch (error) {
     console.log('[FAIL] POST data', error);
   }
+  return false;
 };
 
-export const ChallengeEdit = async (editData: EditData, token: string, id: string) => {
+export const ChallengeEdit = async (editData: EditData, token: string, id: string): Promise<boolean> => {
   try {
     const data = await serverAxios.patch(`${PREFIX_URL}/${id}`, editData, {
       headers: {
@@ -47,7 +49,12 @@ export const ChallengeEdit = async (editData: EditData, token: string, id: strin
   return false;
 };
 
-export const ChallengeListData = async (token: string | null, generation: string, offset: number, limit: number) => {
+export const ChallengeListData = async (
+  token: string | null,
+  generation: string,
+  offset: number,
+  limit: number,
+): Promise<IChallengeData[]> => {
   try {
     if (token) {
       const data = await serverAxios.get(`${PREFIX_URL}/?generation=${generation}&offset=${offset}&limit=${limit}`, {
@@ -62,7 +69,7 @@ export const ChallengeListData = async (token: string | null, generation: string
     }
   } catch (error) {
     console.log(error);
-    return null;
+    return error;
   }
 };
 
@@ -70,7 +77,7 @@ export const postChallengeComment = async (
   token: string,
   challengeID: string | undefined,
   commentData: IChallengeCommentData,
-) => {
+): Promise<boolean | null> => {
   try {
     const data = await serverAxios.post(`${PREFIX_URL}/comment/${challengeID}`, commentData, {
       headers: {
@@ -87,7 +94,7 @@ export const postChallengeComment = async (
   return false;
 };
 
-export const DeleteChallenge = async (challengeID: string, token: string) => {
+export const DeleteChallenge = async (challengeID: string, token: string): Promise<boolean | null> => {
   try {
     const data = await serverAxios.delete(`${PREFIX_URL}/${challengeID}`, {
       headers: {
@@ -106,7 +113,7 @@ export const DeleteChallenge = async (challengeID: string, token: string) => {
   return false;
 };
 
-export const getChallengeContent = async (id: string, token?: string) => {
+export const getChallengeContent = async (id: string, token?: string): Promise<IChallenge | null> => {
   try {
     const data = await serverAxios.get(`${PREFIX_URL}/${id}`, {
       headers: {
@@ -132,7 +139,7 @@ export const getChallengeSearchData = async (
   ismine: number,
   offset: number,
   limit: number,
-) => {
+): Promise<IChallengeDataList[] | null> => {
   try {
     let data = undefined;
     if (token) {
@@ -158,7 +165,7 @@ export const getChallengeSearchData = async (
   return null;
 };
 
-export const ChallengeLike = async (token: string, challengeID: string) => {
+export const ChallengeLike = async (token: string, challengeID: string): Promise<boolean | null> => {
   try {
     const data = await serverAxios.post(`${PREFIX_URL}/like/${challengeID}`, [], {
       headers: {
@@ -175,7 +182,7 @@ export const ChallengeLike = async (token: string, challengeID: string) => {
   return false;
 };
 
-export const CancelChallengeLike = async (token: string, challengeID: string) => {
+export const CancelChallengeLike = async (token: string, challengeID: string): Promise<boolean | null> => {
   try {
     const data = await serverAxios.delete(`${PREFIX_URL}/like/${challengeID}`, {
       headers: {
@@ -191,7 +198,7 @@ export const CancelChallengeLike = async (token: string, challengeID: string) =>
   return false;
 };
 
-export const ChallengeScrap = async (token: string, challengeID: string) => {
+export const ChallengeScrap = async (token: string, challengeID: string): Promise<boolean | null> => {
   try {
     const data = await serverAxios.post(`${PREFIX_URL}/scrap/${challengeID}`, [], {
       headers: {
@@ -208,7 +215,7 @@ export const ChallengeScrap = async (token: string, challengeID: string) => {
   return false;
 };
 
-export const CancelChallengeScrap = async (token: string, challengeID: string) => {
+export const CancelChallengeScrap = async (token: string, challengeID: string): Promise<boolean | null> => {
   try {
     const data = await serverAxios.delete(`${PREFIX_URL}/scrap/${challengeID}`, {
       headers: {
