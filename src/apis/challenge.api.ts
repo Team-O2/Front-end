@@ -24,7 +24,7 @@ interface IChallengeCommentData {
 
 export const writeForm = async (writeData: WriteData, token: string): Promise<boolean> => {
   try {
-    const data = await serverAxios.post(`${PREFIX_URL}`, writeData, {
+    await serverAxios.post(`${PREFIX_URL}`, writeData, {
       headers: {
         Authorization: token,
       },
