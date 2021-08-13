@@ -51,11 +51,9 @@ function StyledInput({
           placeholder={placeHolder}
           onChange={handleOnChange}
           onFocus={handleOnFocus}
-          // onBlur={(e) => {
-          //   setIsFocused(false);
-          // }}
           type={isPw ? 'password' : 'text'}
           readOnly={readOnly}
+          autoComplete={isPw ? 'false' : 'true'}
         />
         {isFocused && !isConditionMet && <ErrorImage src={ErrorIcon}></ErrorImage>}
       </InputContainer>
