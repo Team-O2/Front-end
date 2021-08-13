@@ -78,7 +78,6 @@ function Join(): React.ReactElement {
   useEffect(() => {
     setUserData({ ...userData, gender: changeGenderStringtoNum(gender) });
   }, [gender]);
-
   useEffect(() => {
     if (
       isConditionMet.email &&
@@ -95,23 +94,21 @@ function Join(): React.ReactElement {
   }, [isConditionMet]);
 
   return (
-    <>
-      <JoinTemplate
-        isConditionMet={isConditionMet}
-        setIsConditionMet={setIsConditionMet}
-        userData={userData}
-        setUserData={setUserData}
-        isJoinButtonDisabled={isJoinButtonDisabled}
-        joinBtnHandler={joinBtnHandler}
-        isInterestModalOpen={isInterestModalOpen}
-        setIsInterestModalOpen={setIsInterestModalOpen}
-        handleInterestOnClick={handleInterestOnClick}
-        selectedInterest={selectedInterest}
-        modalBtnHandler={modalBtnHandler}
-        gender={gender}
-        setGender={setGender}
-      />
-    </>
+    <JoinTemplate
+      isConditionMet={isConditionMet}
+      setIsConditionMet={setIsConditionMet}
+      userData={userData}
+      setUserData={setUserData}
+      isJoinButtonDisabled={isJoinButtonDisabled}
+      joinBtnHandler={joinBtnHandler}
+      isInterestModalOpen={isInterestModalOpen}
+      setIsInterestModalOpen={setIsInterestModalOpen}
+      handleInterestOnClick={handleInterestOnClick}
+      selectedInterest={selectedInterest}
+      modalBtnHandler={modalBtnHandler}
+      gender={gender}
+      setGender={setGender}
+    />
   );
 }
 

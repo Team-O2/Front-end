@@ -25,19 +25,11 @@ function Login(): React.ReactElement {
   const pwdInputChange = (value: string) => {
     if (typeof value === 'string') setLoginData({ ...loginData, password: value });
   };
-
   const handleLoginBtn = async () => {
     const token = await getUserStatusData();
     const isSuccess = await getUserDetailData(token);
     isSuccess && history.push('/');
   };
-  useEffect(() => {
-    if (userStatusData && userData) {
-      alert('이미 로그인이 되어있습니다. ');
-      history.push('/');
-    }
-  }, []);
-
   const getUserStatusData = async () => {
     const data = await postLogin(loginData);
     if (data) {
@@ -74,6 +66,14 @@ function Login(): React.ReactElement {
     }
     return false;
   };
+
+  useEffect(() => {
+    if (userStatusData && userData) {
+      alert('이미 로그인이 되어있습니다. ');
+      history.push('/');
+    }
+  }, []);
+
   return (
     <LoginTemplate
       handleLoginBtn={handleLoginBtn}
