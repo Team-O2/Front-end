@@ -122,3 +122,23 @@ export interface ITextForm {
   description2: string;
   description3: string;
 }
+
+export interface IChallengeDataList {
+  good: string;
+  bad: string;
+  learn: string;
+  commentNum: number;
+  comments: string[];
+  generation: number;
+  createdAt: string;
+  isDeleted: boolean;
+  scrapNum: number;
+  interest: string[];
+  isLike: boolean;
+  likes: number;
+  isScrap: boolean;
+  updatedAt: string;
+  user: { img: string; nickname: string; _id: string };
+  __v: number;
+  _id: string;
+}
