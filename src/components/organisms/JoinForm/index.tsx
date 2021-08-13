@@ -91,6 +91,7 @@ function JoinForm({ isConditionMet, userData, setUserData, setIsConditionMet }: 
         height="60px"
         errorMsg="영어 대문자, 소문자, 특수문자가 포함되어야 합니다"
         onChange={handlePwdOnChange}
+        isPw={true}
         isConditionMet={isConditionMet.password}
       />
       <StyledInput
@@ -99,6 +100,7 @@ function JoinForm({ isConditionMet, userData, setUserData, setIsConditionMet }: 
         height="60px"
         errorMsg="비밀번호가 일치하지 않습니다"
         onChange={handleCheckPwdOnChange}
+        isPw={true}
         isConditionMet={isConditionMet.passwordCheck}
         margin="14px 0 0 0"
       />
