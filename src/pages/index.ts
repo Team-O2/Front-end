@@ -18,5 +18,5 @@ export { default as Notice } from './Notice';
 export { default as NoticeDetail } from './NoticeDetail';
 export { default as ScrappedChallengeList } from './ScrappedChallengeList';
 export { default as ScrappedConcertList } from './ScrappedConcertList';
-export { default as SetPwd } from './SetPwd';
 export { default as Setting } from './Setting';
+export { default as SettingPwd } from './SettingPwd';

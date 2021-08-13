@@ -18,16 +18,18 @@ function FindPWD(): React.ReactElement {
     certifiNum: false,
   });
   const [isBtnDisabled, setIsBtnDisabled] = useState(false);
+  const [verifiErrMsg, setVerifiErrMsg] = useState('');
+  const [isChangePwd, setIsChangePwd] = useState(false);
+
   const finishBtnHandler = async () => {
     const isSuccess = await sendVerifinum(data.email, data.certifiNum);
+
     if (isSuccess) setIsChangePwd(true);
     else {
       setVerifiErrMsg('인증번호를 다시 확인해 주세요');
       setIsConditionMet({ ...isConditionMet, certifiNum: false });
     }
   };
-  const [verifiErrMsg, setVerifiErrMsg] = useState('');
-  const [isChangePwd, setIsChangePwd] = useState(false);
 
   useEffect(() => {
     if (isConditionMet.email && isConditionMet.certifiNum) setIsBtnDisabled(true);

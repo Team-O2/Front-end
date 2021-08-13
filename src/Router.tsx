@@ -20,8 +20,8 @@ import {
   NoticeDetail,
   ScrappedChallengeList,
   ScrappedConcertList,
-  SetPwd,
   Setting,
+  SettingPwd,
 } from 'pages';
 import React from 'react';
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
@@ -47,7 +47,7 @@ function Router(): React.ReactElement {
         <Route exact path="/notice" component={Notice} />
         <Route exact path="/notice/:id" component={NoticeDetail} />
         <Route exact path="/setting" component={Setting} />
-        <Route exact path="/setting/password/set" component={SetPwd} />
+        <Route exact path="/setting/password/set" component={SettingPwd} />
         <Route exact path="/setting/password/find" component={FindPwd} />
         <Route exact path="/mypage" component={MyPage} />
         <Route exact path="/mypage/challenge/scrap" component={ScrappedChallengeList} />

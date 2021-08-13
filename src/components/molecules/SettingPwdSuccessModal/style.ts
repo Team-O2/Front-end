@@ -1,57 +1,13 @@
-import Styled, { css } from 'styled-components';
+import Styled from 'styled-components';
 import { palette, theme } from 'styled-tools';
 
-export const Title = Styled.div`
-  ${theme('font.dp1')};
-  margin-bottom: 60px;
-  color: ${palette('grayscale', 9)};
-`;
-
-export const PwdInputWrapper = Styled.div`
-  margin-bottom: 14px;
-`;
-
-export const Container = Styled.div`
-  position: relative;
-  top: -60px;
-  width: 100%;
-  height: 100vh;
-
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-`;
-
-interface IBtn {
-  isActive: boolean;
-}
-
-export const Btn = Styled.div<IBtn>`
-  ${theme('font.subhead3')};
-  cursor: pointer;
-  width: 406px;
-  height: 60px;
-  border-radius: 4px;
-  background-color: #dfdfdf;
-  ${(props) =>
-    props.isActive &&
-    css`
-      background-image: linear-gradient(to right, ${palette('primary', 3)}, ${palette('primary', 0)});
-    `}
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  color: ${palette('grayscale', 0)};
-`;
-
 export const Background = Styled.div`
-  position: fixed;
-  top: 0;
-  z-index: 1000;
-  width: 100%;
-  height: 100%;
-  background-color: rgba(0, 0, 0, 0.5);
+position: fixed;
+top: 0;
+z-index: 1000;
+width: 100%;
+height: 100%;
+background-color: rgba(0, 0, 0, 0.5);
 `;
 
 export const ModalWrap = Styled.div`
@@ -60,6 +16,7 @@ export const ModalWrap = Styled.div`
   left: 50%;
   transform: translate(-50%, -50%);
   z-index: 1001;
+
   width: 500px;
   height: 273px;
   border-radius: 16px;
@@ -67,10 +24,8 @@ export const ModalWrap = Styled.div`
   border-style: solid;
   border-image-source: linear-gradient(to top, ${palette('primary', 3)}, ${palette('primary', 0)});
   border-image-slice: 1;
-  background-image: linear-gradient(to bottom, ${palette('primary', 3)}, ${palette(
-  'primary',
-  0,
-)}), linear-gradient(to top, ${palette('primary', 3)}, ${palette('primary', 0)});
+  background-image: linear-gradient(to bottom, ${palette('primary', 3)}, ${palette('primary', 0)}),
+    linear-gradient(to top, ${palette('primary', 3)}, ${palette('primary', 0)});
   background-origin: border-box;
   background-clip: content-box, border-box;
 `;
@@ -81,10 +36,12 @@ export const InnerModalWrap = Styled.div`
   left: 50%;
   transform: translate(-50%, -50%);
   z-index: 1002;
+
   width: 49.6rem;
   height: 26.9rem;
   border-radius: 15px;
   background-color: white;
+
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -93,16 +50,18 @@ export const InnerModalWrap = Styled.div`
 export const CheckIcon = Styled.div`
   position: relative;
   top: -2.8rem;
+
   width: 9rem;
   height: 9rem;
   border-radius: 4.5rem;
   background-image: linear-gradient(to right, ${palette('primary', 3)}, ${palette('primary', 0)});
+
   display: flex;
   align-items: center;
   justify-content: center;
 `;
 
-export const ModalTitle = Styled.div`
+export const ColoredTxt = Styled.div`
   ${theme('font.dp4')};
   width: 83px;
   height: 68px;
@@ -111,12 +70,12 @@ export const ModalTitle = Styled.div`
   margin-bottom: 1.2rem;
   text-align: center;
   background: linear-gradient(to right, ${palette('primary', 3)}, ${palette('primary', 0)});
-  -webkit-background-clip: text;
+  background-clip: text;
   -webkit-text-fill-color: transparent;
 `;
 
-export const ModalText = Styled.div`
-  ${theme('font.subhead3')};
+export const Message = Styled.div`
+  ${theme('font.body3')};
   width: 320px;
   height: 73px;
   text-align: center;
