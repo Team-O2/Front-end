@@ -15,7 +15,7 @@ import { Container, MainCardWrapper } from './style';
 interface IProps {
   nickname?: string;
   image?: string;
-  createdAt?: string;
+  createdAt: string;
   interest?: string[];
   good?: string;
   bad?: string;
@@ -52,7 +52,6 @@ function ChallengeDetailCard({
   const [isMine, setIsMine] = useState(false);
   const [isDeleteModalOpen, setIsDeleteModalOpen] = useState(false);
   const [isLoginModalOpen, setIsLoginModalOpen] = useState(false);
-  const [isRerender, setIsRerender] = useState<boolean>(false);
 
   useEffect(() => {
     setIsMine(nickname === userStateNickname);

@@ -22,7 +22,7 @@ interface IProps {
   isMine: boolean;
   nickname?: string;
   image?: string;
-  createdAt?: string;
+  createdAt: string;
   isScrap?: boolean;
   interest?: string[];
   id: string;
@@ -42,9 +42,9 @@ function ChallengeCardProfile({
   const [isMenuBar, setIsMenuBar] = useState(true);
   const [scrapRender, setScrapRender] = useState(isScrap);
   const userStatusData = useRecoilValue(userStatusState);
-  const [userStateNum, setUserState] = useState(userStatusData ? userStatusData.userType : 0);
+  const userStateNum = userStatusData ? userStatusData.userType : 0;
 
-  const timeForToday = (value: any) => {
+  const timeForToday = (value: string) => {
     const today = new Date();
     const timeValue = new Date(value);
 
