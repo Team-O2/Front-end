@@ -10,6 +10,7 @@ export interface IProps {
 function HashTagAddForm({ writeData, setWriteData }: IProps): React.ReactElement {
   const [currentHashtag, setCurrentHashtag] = useState('');
   const [isHashTagFocused, setIsHashTagFocused] = useState(false);
+
   const addHashTag = () => {
     if (currentHashtag !== '' && writeData.hashtag.length < 15) {
       if (writeData.hashtag[0] == '') {
@@ -20,6 +21,22 @@ function HashTagAddForm({ writeData, setWriteData }: IProps): React.ReactElement
       setCurrentHashtag('');
     }
   };
+
+  const handleInputOnChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setCurrentHashtag(e.target.value);
+  };
+  const handleInputOnFocus = () => {
+    setIsHashTagFocused(true);
+  };
+  const handleInputOnBlur = () => {
+    setIsHashTagFocused(false);
+  };
+  const handleInputOnKeyUp = (e: React.KeyboardEvent<HTMLInputElement>) => {
+    if (e.keyCode === 13) {
+      addHashTag();
+    }
+  };
+
   return (
     <Wrapper>
       <HashTagInputContainer isFocused={isHashTagFocused}>
@@ -27,20 +44,10 @@ function HashTagAddForm({ writeData, setWriteData }: IProps): React.ReactElement
           name="adminWriteTitle"
           placeholder="최대 15개 가능"
           value={currentHashtag}
-          onChange={(e) => {
-            setCurrentHashtag(e.target.value);
-          }}
-          onFocus={() => {
-            setIsHashTagFocused(true);
-          }}
-          onBlur={() => {
-            setIsHashTagFocused(false);
-          }}
-          onKeyUp={(e) => {
-            if (e.keyCode === 13) {
-              addHashTag();
-            }
-          }}
+          onChange={handleInputOnChange}
+          onFocus={handleInputOnFocus}
+          onBlur={handleInputOnBlur}
+          onKeyUp={handleInputOnKeyUp}
         />
       </HashTagInputContainer>
       <HashTagContainer>

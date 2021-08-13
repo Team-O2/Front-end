@@ -165,11 +165,7 @@ function JoinCheck({ setUserData, userData }: IProps): React.ReactElement {
       </div>
       <Modal isOpen={isPolicyOpen} setIsOpen={setIsPolicyOpen} isBlur={true}>
         <ModalContainer>
-          <Button
-            onClick={() => {
-              setIsPolicyOpen(false);
-            }}
-          >
+          <Button onClick={modalHandler}>
             <CloseImage src={ModalCloseIcon}></CloseImage>
           </Button>
           <Titie>{policyList[0].title}</Titie>
