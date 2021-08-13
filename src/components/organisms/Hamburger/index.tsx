@@ -8,6 +8,7 @@ import { useRecoilState } from 'recoil';
 import { userState, userStatusState } from 'stores/user';
 import {
   BottomContainer,
+  BottomMargin10,
   ChallengeEndUser,
   EngTitleBtn,
   HamburgerContainer,
@@ -44,6 +45,7 @@ function Hamburger(): React.ReactElement {
   const [generationNum, setGenerationNum] = useState<{ registGeneration: number | null; progressGeneration: number }>();
   const [userName, setUserName] = useState(userData?.nickname);
   const [challengeList, setChallengeList] = useState<{ name: string; link: string }[]>([{ name: '', link: '' }]);
+
   const changeIndextoName = (index: number) => {
     switch (index) {
       case 1:
@@ -56,7 +58,6 @@ function Hamburger(): React.ReactElement {
         return `${index}th`;
     }
   };
-
   const getChallengeList = () => {
     const arr: { name: string; link: string }[] = [];
     if (generationNum) {
@@ -172,8 +173,9 @@ function Hamburger(): React.ReactElement {
       <MiddleContainer>
         {(userStateNum === 0 || userStateNum === 1 || userStateNum === 2 || userStateNum === 3) && (
           <>
-            <HamDropDown isEnglish={true} title="Learn Myself" itemList={challengeList} />
-            <div style={{ marginBottom: '10px' }}></div>
+            <BottomMargin10>
+              <HamDropDown isEnglish={true} title="Learn Myself" itemList={challengeList} />
+            </BottomMargin10>
             <Link to="/concert">
               <EngTitleBtn>Share Together</EngTitleBtn>
             </Link>
@@ -194,9 +196,10 @@ function Hamburger(): React.ReactElement {
               <TitleBtn>챌린지 오픈하기</TitleBtn>
             </Link>
             <Link to="/admin/challenge/list">
-              <TitleBtn>챌린지 정보</TitleBtn>
+              <BottomMargin10>
+                <TitleBtn>챌린지 정보</TitleBtn>
+              </BottomMargin10>
             </Link>
-            <div style={{ marginBottom: '10px' }}></div>
             <HamDropDown
               isEnglish={false}
               title="글 올리기"

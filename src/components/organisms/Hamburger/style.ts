@@ -194,3 +194,7 @@ export const Hide = Styled.div`
   width : 100%;
   height : 50px;
 `;
+
+export const BottomMargin10 = Styled.div`
+  margin-bottom : 10px;
+`;
