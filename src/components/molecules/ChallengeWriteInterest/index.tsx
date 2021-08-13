@@ -1,6 +1,6 @@
 import { MoreClickedIcon } from 'assets/images';
 import { Button } from 'components/atoms';
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import { interestList } from 'resources/string';
 import { InterestTagButton, TagListWrapper, TagWrapper } from './style';
 
@@ -50,7 +50,7 @@ const selectedInterestStyle: selectedStyleLists = {
   '기타': { backgroundColor: '#6f6f6f', color: '#FFFFFF' },
 };
 
-function ChallengeWriteInterest({ selectedInterest, setSelectedInterest }: IProps) {
+function ChallengeWriteInterest({ selectedInterest, setSelectedInterest }: IProps): React.ReactElement {
   const [isOpenTag, setIsOpenTag] = useState(false);
   const [isClickTag, setIsClickTag] = useState(false);
 
@@ -89,10 +89,6 @@ function ChallengeWriteInterest({ selectedInterest, setSelectedInterest }: IProp
       </InterestTagButton>
     );
   };
-
-  useEffect(() => {
-    setSelectedInterest(selectedInterest);
-  }, [selectedInterest]);
 
   return (
     <TagWrapper>

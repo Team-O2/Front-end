@@ -1,7 +1,7 @@
 import { sendEmail } from 'apis';
 import { StyledInput } from 'components/atoms';
+import { FindPwdModal } from 'components/molecules';
 import React, { useEffect, useState } from 'react';
-import FindPwdModal from '../FindPwdModal';
 import { InputForm, NumberSendButton, SubTitle, Wrapper } from './style';
 
 interface IData {
