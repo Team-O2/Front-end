@@ -11,14 +11,14 @@ interface IProps {
 function SettingPwdSuccessModal({ setIsOpen, url }: IProps): React.ReactElement {
   const history = useHistory();
 
+  const handleOnClick = () => {
+    setIsOpen(false);
+    history.push(url);
+  };
+
   return (
     <>
-      <S.Background
-        onClick={() => {
-          setIsOpen(false);
-          history.push(url);
-        }}
-      />
+      <S.Background onClick={handleOnClick} />
       <S.ModalWrap>
         <S.InnerModalWrap>
           <S.CheckIcon>
