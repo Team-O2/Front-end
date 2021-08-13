@@ -16,10 +16,12 @@ export interface IProps {
 function DropDown({ title, setState, state, defaultMsg, itemList, page, isSetting }: IProps): React.ReactElement {
   const [isOpen, setIsOpen] = useState<boolean>(false); //드롭다운이 열렸는지
   const [isChecked, setIsChecked] = useState<boolean>(false); //값이 선택이 되었는지
+
   const handleOnChange = (e: React.ChangeEvent<HTMLInputElement>): void => {
     setState(e.target.value);
     setIsOpen(false);
   };
+
   const handleOpenOnClick = (): void => {
     setIsOpen(!isOpen);
   };
@@ -31,6 +33,7 @@ function DropDown({ title, setState, state, defaultMsg, itemList, page, isSettin
       setIsChecked(false);
     }
   }, [defaultMsg, state]);
+
   useEffect(() => {
     setState(defaultMsg);
   }, []);

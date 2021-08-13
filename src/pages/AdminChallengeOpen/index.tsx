@@ -110,7 +110,6 @@ function AdminChallengeOpen(): React.ReactElement {
       setIsConditionMet({ ...isConditionMet, peopleNum: false });
     }
   }, [challengeOpenData.peopleNum]);
-
   useEffect(() => {
     if (CheckDatePattern(challengeOpenData.challengePeriod.start)) {
       setIsConditionMet({ ...isConditionMet, challengePeriod: { ...isConditionMet.challengePeriod, start: true } });

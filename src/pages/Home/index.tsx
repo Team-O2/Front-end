@@ -60,7 +60,7 @@ import {
   TopExp,
   TopSubTitle,
   TopWrapper,
-} from './style';
+} from './template/style';
 
 const moveUp = keyframes`
   from {
@@ -109,14 +109,12 @@ function Home(): React.ReactElement {
             배운 점을 적용하며 더 성장한 내일의 나를 만들어요.
           </MiddleExp>
         </Reveal>
-        {/* <Reveal cascade damping={0.3} keyframes={moveUp} triggerOnce> */}
         <ChallengeCardWrapper>
           <ChallengeCard src={MainCard1Img} />
           <ChallengeCard src={MainCard2Img} />
           <ChallengeCard src={MainCard3Img} />
           <ChallengeCard src={MainCard4Img} />
         </ChallengeCardWrapper>
-        {/* </Reveal> */}
       </ChallengeWrapper>
       <ConcertWrapper>
         <Reveal keyframes={moveUp}>
@@ -175,20 +173,17 @@ function Home(): React.ReactElement {
           <O2SpeakerTitle>To Be an O2 Speaker</O2SpeakerTitle>
           <O2SpeakerSubTitle>뱃지를 모아 O2 Speaker가 되어보세요!</O2SpeakerSubTitle>
         </Reveal>
-        {/* <Reveal cascade damping={0.5} keyframes={moveUp} triggerOnce> */}
         <O2SpeakerCardWrapper>
           <SpeakerExpCard img={SpeakerBadge1Img} exp1="챌린지 개수를 주당" exp2="3개 이상으로 설정" />
           <SpeakerExpCard img={SpeakerBadge2Img} exp1="런마쎌을 80%이상 작성 후" exp2="챌린지뱃지를 획득" />
           <SpeakerExpCard img={SpeakerBadge3Img} exp1="챌린지뱃지 3개 + 활동뱃지 12개" exp2="얻을 시 연사가능" />
         </O2SpeakerCardWrapper>
-        {/* </Reveal> */}
       </O2SpeakerWrapper>
       <O2BadgeWrapper>
         <Reveal keyframes={moveUp}>
           <O2BadgeTitle>O2 Badge</O2BadgeTitle>
           <O2BadgeSubTitle>열심히 활동하면 멋진 오투의 뱃지들을 받을 수 있어요.</O2BadgeSubTitle>
         </Reveal>
-        {/* <Reveal cascade damping={0.2} keyframes={moveUp} triggerOnce> */}
         <BadgeWrapper>
           <BadgeCard
             img={WelcomeToO2FillIcon}
@@ -272,7 +267,6 @@ function Home(): React.ReactElement {
             }
           />
         </BadgeWrapper>
-        {/* </Reveal> */}
       </O2BadgeWrapper>
       <LinkWrapper>
         <LinkCardWrapper>
