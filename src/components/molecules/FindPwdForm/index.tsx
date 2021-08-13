@@ -49,7 +49,8 @@ function FindPWDForm({ setData, isConditionMet, setIsConditionMet, errMsg }: IPr
   }, [email, certifiNum, setData]);
 
   useEffect(() => {
-    if (email.includes('@')) {
+    const emailCheck = /^[A-Za-z0-9_\.\-]+@[A-Za-z0-9\-]+\.[A-Za-z0-9\-]+/;
+    if (emailCheck.test(email)) {
       setIsConditionMet({ ...isConditionMet, email: true });
     } else {
       setIsConditionMet({ ...isConditionMet, email: false });
