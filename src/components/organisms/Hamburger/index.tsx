@@ -95,7 +95,7 @@ function Hamburger(): React.ReactElement {
       setUserState(0);
       getGenerationNum();
       getChallengeList();
-      setUserImage(userImage);
+      setUserImage(UserImg);
     }
   }, [userStatusData]);
 
