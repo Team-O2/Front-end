@@ -3,13 +3,10 @@ import { ChallengeImg } from 'assets/images';
 import { RegisterHeader } from 'components/molecules';
 import { RegisterDetailCard } from 'components/organisms';
 import React, { useEffect, useState } from 'react';
-import { useRecoilState } from 'recoil';
-import { userState } from 'stores/user';
 import { IAdminChallengePeriod } from 'types/admin.type';
 import { Container, Header, RegisterImg } from './style';
 
 function ChallengeRegister(): React.ReactElement {
-  const [userData, setUserData] = useRecoilState(userState);
   const [periodData, setPeriodData] = useState<IAdminChallengePeriod | null>(null);
 
   const getChallengePeriod = async () => {

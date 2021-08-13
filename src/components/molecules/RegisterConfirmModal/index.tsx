@@ -1,7 +1,7 @@
 import { CautionIcon, CheckIcon, XIcon } from 'assets/images';
 import { Modal } from 'components/atoms';
 import React from 'react';
-import { useRecoilState } from 'recoil';
+import { useRecoilValue } from 'recoil';
 import { userState } from 'stores/user';
 import { IAdminChallengePeriod } from 'types/admin.type';
 import {
@@ -31,7 +31,7 @@ function RegisterConfirmModal({
   registerCount,
   handleSubmit,
 }: IProps): React.ReactElement {
-  const [userData, setUserData] = useRecoilState(userState);
+  const userData = useRecoilValue(userState);
   return (
     <Modal isOpen={isOpenModal} setIsOpen={setIsOpenModal} isBlur={true}>
       <ConfirmModalWrapper>
