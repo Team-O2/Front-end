@@ -2,13 +2,13 @@ import { getRegistPeriod, SignRegister } from 'apis';
 import { AlertIcon } from 'assets/images';
 import { RegisterCard, RegisterCompletedModal, RegisterConfirmModal } from 'components/molecules';
 import React, { useEffect, useState } from 'react';
-import { useRecoilState } from 'recoil';
+import { useRecoilValue } from 'recoil';
 import { userStatusState } from 'stores/user';
 import { IAdminChallengePeriod } from 'types/admin.type';
 import { CardWrapper, NoticeCardWrapper, NoticeHeaderWrapper } from './style';
 
 function RegisterDetailCard() {
-  const [userStatusData, setUserStatusData] = useRecoilState(userStatusState);
+  const userStatusData = useRecoilValue(userStatusState);
   const [registerCount, setRegisterCount] = useState(0);
   const [isOpenModal, setIsOpenModal] = useState(false);
   const [isRegisterSubmit, setIsRegisterSubmit] = useState(false);

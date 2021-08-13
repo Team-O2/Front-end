@@ -1,7 +1,7 @@
 import { CheckCircleIcon } from 'assets/images';
 import { Modal } from 'components/atoms';
 import React from 'react';
-import { useRecoilState } from 'recoil';
+import { useRecoilValue } from 'recoil';
 import { userState } from 'stores/user';
 import { RegisterSubmitWrapper } from './style';
 
@@ -11,7 +11,7 @@ interface IProps {
 }
 
 function RegisterCompletedModal({ isRegisterSubmit, setIsRegisterSubmit }: IProps): React.ReactElement {
-  const [userData, setUserData] = useRecoilState(userState);
+  const userData = useRecoilValue(userState);
   return (
     <Modal isOpen={isRegisterSubmit} setIsOpen={setIsRegisterSubmit} isBlur={true}>
       <RegisterSubmitWrapper>
