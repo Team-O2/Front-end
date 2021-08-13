@@ -4,7 +4,7 @@ import { Exp, Image, SBadgeCard, Title } from './style';
 export interface IProps {
   className?: string;
   title: string;
-  explain: any; //줄바꿈때문에 <p> </p> 가져오는데 타입 모르겠음
+  explain: JSX.Element; //줄바꿈때문에 <p> </p> 가져오는데 타입 모르겠음
   img: string;
 }
 

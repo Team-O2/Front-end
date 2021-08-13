@@ -35,7 +35,7 @@ function EditCard({ id }: IEditCard): React.ReactElement {
   });
 
   const { description1, description2, description3 } = textForm;
-  const textOnChange = (target: any) => {
+  const textOnChange = (target: { name: string; value: string }) => {
     const { name, value } = target;
     setTextForm({
       ...textForm,
