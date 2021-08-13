@@ -66,15 +66,7 @@ function Login(): React.ReactElement {
     if (token) {
       const data = await getUserData(token);
       if (data !== undefined) {
-        setUserData({
-          interest: data.interest,
-          marpolicy: data.marpolicy,
-          img: data.img,
-          _id: data._id,
-          email: data.email,
-          nickname: data.nickname,
-          gender: data.gender,
-        });
+        setUserData(data);
         return true;
       } else {
         alert('네트워크가 좋지 않습니다');
