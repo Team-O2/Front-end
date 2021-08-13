@@ -4,6 +4,7 @@ import { RouteComponentProps } from 'react-router';
 import { useHistory } from 'react-router-dom';
 import { useRecoilValue } from 'recoil';
 import { userStatusState } from 'stores/user';
+import { IAdminWrite } from 'types/admin.type';
 import AdminWriteTemplate from './template';
 
 interface MatchParams {
@@ -24,16 +25,7 @@ function AdminWrite({ match }: RouteComponentProps<MatchParams>): React.ReactEle
     thumbnail: false,
     nickname: false,
   });
-  const [writeData, setWriteData] = useState<{
-    title: string;
-    category: string[];
-    menu: string;
-    content: string;
-    hashtag: string[];
-    video: File | null;
-    thumbnail: File | null;
-    nickname: string;
-  }>({
+  const [writeData, setWriteData] = useState<IAdminWrite>({
     title: '',
     category: [''],
     menu: '',
