@@ -23,11 +23,17 @@ function RegisterCard({
 }: IProps): React.ReactElement {
   const [isLoginModalOpen, setIsLoginModalOpen] = useState(false);
   const userStatusData = useRecoilValue(userStatusState);
-  const [userStateNum, setUserState] = useState(userStatusData ? userStatusData.userType : 0);
+  const userStateNum = userStatusData ? userStatusData.userType : 0;
 
   function minusCount() {
-    if (registerCount > 0) {
+    if (registerCount > 1) {
       setRegisterCount(registerCount - 1);
+    }
+  }
+
+  function plusCount() {
+    if (registerCount < 7) {
+      setRegisterCount(registerCount + 1);
     }
   }
 
@@ -60,7 +66,7 @@ function RegisterCard({
         </h4>
         <CardSettingWrapper>
           <ChallengeSetting>
-            <h1>챌린지 개수 설정</h1>
+            <h1>한 주의 챌린지 개수 설정</h1>
             <p>2개 이상부터 뱃지 획득 가능</p>
           </ChallengeSetting>
           <BoxWrapper>
@@ -74,7 +80,7 @@ function RegisterCard({
             {registerCount}
             <p
               onClick={() => {
-                setRegisterCount(registerCount + 1);
+                plusCount();
               }}
             >
               <img src={PlusIcon} />
