@@ -27,3 +27,4 @@ export { default as RegisterDetailCard } from './RegisterDetailCard';
 export { default as SearchForm } from './SearchForm';
 export { default as SetNewPwd } from './SetNewPwd';
 export { default as SettingForm } from './SettingForm';
+export { default as SettingPwd } from './SettingPwd';

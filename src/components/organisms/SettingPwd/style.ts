@@ -7,6 +7,10 @@ export const Title = Styled.div`
   color: ${palette('grayscale', 9)};
 `;
 
+export const PwdInputWrapper = Styled.div`
+  margin-bottom: 14px;
+`;
+
 export const Container = Styled.div`
   position: relative;
   top: -60px;

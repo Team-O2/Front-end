@@ -44,6 +44,8 @@ export { default as RegisterHeader } from './RegisterHeader';
 export { default as RemovableTag } from './RemovableTag';
 export { default as ChallengeReCommentList, default as ReplyComment } from './ReplyComment';
 export { default as SearchBar } from './SearchBar';
+export { default as SetNewPwdForm } from './SetNewPwdForm';
+export { default as SettingPwdSuccessModal } from './SettingPwdSuccessModal';
 export { default as SingleComment } from './SingleComment';
 export { default as SpeakerExpCard } from './SpeakerExpCard';
 export { default as ToggleSwitch } from './ToggleSwitch';
