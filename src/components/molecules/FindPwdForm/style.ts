@@ -1,5 +1,5 @@
 import { Button, Label } from 'components/atoms';
-import Styled from 'styled-components';
+import Styled, { css } from 'styled-components';
 import { palette, theme } from 'styled-tools';
 
 export const SuccessModal = Styled.div`
@@ -67,8 +67,11 @@ export const InputForm = Styled.div`
 
 export const NumberSendButton = Styled(Button)<{ isConditionMet: { email: boolean; certifiNum: boolean } }>`
     ${theme('font.subhead3')};
-    background-image : ${(props) =>
-      props.isConditionMet.email && `linear-gradient(to right , ${palette('primary', 3)}, ${palette('primary', 0)})`};
+    ${(props) =>
+      props.isConditionMet.email &&
+      css`
+        background-image: linear-gradient(to right, ${palette('primary', 3)}, ${palette('primary', 0)});
+      `};
     background-color : ${(props) => !props.isConditionMet.email && palette('grayscale', 1)};
     width : 134px;
     height 60px;
