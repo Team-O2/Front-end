@@ -124,7 +124,7 @@ function JoinCheck({ setUserData, userData }: IProps): React.ReactElement {
   return (
     <Wrapper>
       <div>
-        <FlexContainer style={{ margin: '16px 0 0 0' }}>
+        <FlexContainer>
           <BiggerCheckBox checked={checkAll} onChange={handleCheckAll} id="policyAll" />
           <BiggerLabel htmlFor="policyAll">
             <CheckAllImg src={checkAll ? CheckAllOnIcon : CheckAllOffIcon} />
