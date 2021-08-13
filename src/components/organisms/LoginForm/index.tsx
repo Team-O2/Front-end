@@ -1,6 +1,6 @@
 import { StyledInput } from 'components/atoms';
 import React from 'react';
-import { LoginformWrap } from './style';
+import { Form, LoginformWrap } from './style';
 
 interface IProps {
   idInputChange: (value: string) => void;
@@ -18,24 +18,26 @@ const errMsg = {
 function LoginForm({ idInputChange, isConditionMet, pwdInputChange }: IProps): React.ReactElement {
   return (
     <LoginformWrap>
-      <StyledInput
-        placeHolder="이메일을 입력해 주세요"
-        width="406px"
-        height="60px"
-        margin="0 0 9px 0"
-        onChange={idInputChange}
-        isConditionMet={isConditionMet.email}
-        errorMsg={errMsg.email}
-      />
-      <StyledInput
-        placeHolder="비밀번호를 입력해 주세요"
-        width="406px"
-        height="60px"
-        isPw={true}
-        onChange={pwdInputChange}
-        isConditionMet={isConditionMet.pwd}
-        errorMsg={errMsg.pwd}
-      />
+      <Form>
+        <StyledInput
+          placeHolder="이메일을 입력해 주세요"
+          width="406px"
+          height="60px"
+          margin="0 0 9px 0"
+          onChange={idInputChange}
+          isConditionMet={isConditionMet.email}
+          errorMsg={errMsg.email}
+        />
+        <StyledInput
+          placeHolder="비밀번호를 입력해 주세요"
+          width="406px"
+          height="60px"
+          isPw={true}
+          onChange={pwdInputChange}
+          isConditionMet={isConditionMet.pwd}
+          errorMsg={errMsg.pwd}
+        />
+      </Form>
     </LoginformWrap>
   );
 }

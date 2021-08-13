@@ -5,3 +5,7 @@ export const LoginformWrap = Styled.div`
   flex-direction : column;
   align-items : center;
 `;
+
+export const Form = Styled.form`
+  width : 100%;
+`;
