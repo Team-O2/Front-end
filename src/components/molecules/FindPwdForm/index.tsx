@@ -1,17 +1,8 @@
 import { sendEmail } from 'apis';
-import { CheckedIcon } from 'assets/images';
-import { Modal, StyledInput } from 'components/atoms';
+import { StyledInput } from 'components/atoms';
 import React, { useEffect, useState } from 'react';
-import {
-  InputForm,
-  ModalEXP,
-  ModalIconWrapper,
-  ModalTitle,
-  NumberSendButton,
-  SubTitle,
-  SuccessModal,
-  Wrapper,
-} from './style';
+import FindPwdModal from '../FindPwdModal';
+import { InputForm, NumberSendButton, SubTitle, Wrapper } from './style';
 
 interface IData {
   email: string;
@@ -96,21 +87,7 @@ function FindPWDForm({ setData, isConditionMet, setIsConditionMet, errMsg }: IPr
         isConditionMet={isConditionMet.certifiNum}
         errorMsg={errMsg}
       />
-      <Modal isOpen={isModalOpen} isBlur={true} setIsOpen={setIsModalOpen}>
-        <SuccessModal>
-          <ModalIconWrapper>
-            <img src={CheckedIcon} alt="modal__icon" />
-          </ModalIconWrapper>
-          <ModalTitle>전송완료!</ModalTitle>
-          <ModalEXP>
-            <span>{email}</span>으로
-            <br />
-            인증번호를 보냈습니다.
-            <br />
-            이메일을 확인해주세요
-          </ModalEXP>
-        </SuccessModal>
-      </Modal>
+      <FindPwdModal isModalOpen={isModalOpen} setIsModalOpen={setIsModalOpen} email={email} />
     </Wrapper>
   );
 }
