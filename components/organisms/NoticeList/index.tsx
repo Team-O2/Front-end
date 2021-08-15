@@ -60,7 +60,7 @@ function NoticeList({ noticeList, totalNoticeNum, currentPage, setCurrentPage }:
                 text={notice.text}
                 commentNum={notice.commentNum}
                 key={notice._id}
-                onClickFunc={() => history.push(`/notice/${notice._id}`)}
+                noticeID={notice._id}
               ></Concert>
             ),
         )}

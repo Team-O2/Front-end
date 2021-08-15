@@ -29,7 +29,7 @@ export const getNoticeListData = async ({ limit = 8, offset = 0 }: IFetchParamet
   }
 };
 
-export const getNoticeData = async (noticeID: string): Promise<INotice | null> => {
+export const getNoticeData = async (noticeID: string | string[]): Promise<INotice | null> => {
   try {
     const data = await serverAxios.get(`${PREFIX_URL}/${noticeID}`, {});
     if (data.data.status === 200) {
