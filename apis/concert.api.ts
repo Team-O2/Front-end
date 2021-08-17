@@ -31,7 +31,7 @@ export const getConcertListData = async (token: string): Promise<IConcert[] | nu
   }
 };
 
-export const getConcertData = async (concertID: string): Promise<IUserConcert | null> => {
+export const getConcertData = async (concertID: string | string[]): Promise<IUserConcert | null> => {
   try {
     const data = await serverAxios.get(`${PREFIX_URL}/${concertID}`, {
       params: {
@@ -49,7 +49,7 @@ export const getConcertData = async (concertID: string): Promise<IUserConcert | 
   }
 };
 
-export const getConcertUserData = async (token: string, concertID: string): Promise<IUserConcert | null> => {
+export const getConcertUserData = async (token: string, concertID: string | string[]): Promise<IUserConcert | null> => {
   try {
     const data = await serverAxios.get(`${PREFIX_URL}/${concertID}`, {
       headers: {
@@ -116,7 +116,7 @@ export const postConcertComment = async (
   }
 };
 
-export const postConcertLike = async (token: string, concertID: string): Promise<boolean> => {
+export const postConcertLike = async (token: string, concertID: string | string[]): Promise<boolean> => {
   try {
     const data = await serverAxios.post(`${PREFIX_URL}/like/${concertID}`, '', {
       headers: {
@@ -137,7 +137,7 @@ export const postConcertLike = async (token: string, concertID: string): Promise
   }
 };
 
-export const deleteConcertLike = async (token: string, concertID: string): Promise<boolean> => {
+export const deleteConcertLike = async (token: string, concertID: string | string[]): Promise<boolean> => {
   try {
     const data = await serverAxios.delete(`${PREFIX_URL}/like/${concertID}`, {
       headers: {
@@ -155,7 +155,7 @@ export const deleteConcertLike = async (token: string, concertID: string): Promi
   }
 };
 
-export const postConcertScrap = async (token: string, concertID: string): Promise<boolean> => {
+export const postConcertScrap = async (token: string, concertID: string | string[]): Promise<boolean> => {
   try {
     const data = await serverAxios.post(`${PREFIX_URL}/scrap/${concertID}`, '', {
       headers: {
@@ -176,7 +176,7 @@ export const postConcertScrap = async (token: string, concertID: string): Promis
   }
 };
 
-export const deleteConcertScrap = async (token: string, concertID: string): Promise<boolean> => {
+export const deleteConcertScrap = async (token: string, concertID: string | string[]): Promise<boolean> => {
   try {
     const data = await serverAxios.delete(`${PREFIX_URL}/scrap/${concertID}`, {
       headers: {

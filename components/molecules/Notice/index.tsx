@@ -3,15 +3,7 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { ThumbnailCommentIcon, ThumbnailLikeIcon } from 'public/assets/images';
 import React from 'react';
-import {
-  ConcertWrapper,
-  Content,
-  Info,
-  ThumbnailContainer,
-  ThumbnailIcon,
-  ThumbnailInfo,
-  ThumbnailOverlay,
-} from './style';
+import { ConcertWrapper, Content, Info, ThumbnailContainer, ThumbnailInfo, ThumbnailOverlay } from './style';
 
 interface IProps {
   imgThumbnail: string;
@@ -22,10 +14,10 @@ interface IProps {
   text: string;
   commentNum: number;
   likeNum?: number;
-  concertID?: string;
+  noticeID?: string;
 }
 
-function Concert({
+function Notice({
   imgThumbnail,
   authorNickname,
   interestList,
@@ -34,13 +26,13 @@ function Concert({
   text,
   commentNum,
   likeNum,
-  concertID,
+  noticeID,
 }: IProps): React.ReactElement {
   const interestDivide = interestList?.join(' | ');
   return (
     <Link
       href={{
-        pathname: `/concert/${concertID}`,
+        pathname: `/notice/${noticeID}`,
       }}
       passHref
     >
@@ -62,15 +54,11 @@ function Concert({
                 <div></div>
               ) : (
                 <>
-                  <ThumbnailIcon>
-                    <Image src={ThumbnailLikeIcon} alt="" />
-                  </ThumbnailIcon>
+                  <Image src={ThumbnailLikeIcon} alt="" />
                   <p> {likeNum}</p>
                 </>
               )}
-              <ThumbnailIcon>
-                <Image src={ThumbnailCommentIcon} alt="" />
-              </ThumbnailIcon>
+              <Image src={ThumbnailCommentIcon} alt="" />
               <p> {commentNum}</p>
             </ThumbnailInfo>
           </ThumbnailOverlay>
@@ -80,4 +68,4 @@ function Concert({
   );
 }
 
-export default Concert;
+export default Notice;

@@ -1,6 +1,5 @@
 import { ConcertCard } from 'components/molecules';
 import React from 'react';
-import { useHistory } from 'react-router';
 import { IConcert } from 'types/concert.type';
 import { ConcertCardListWrapper } from './style';
 interface IProps {
@@ -8,7 +7,6 @@ interface IProps {
 }
 
 function ConcertCardList({ concertCardData }: IProps): React.ReactElement {
-  const history = useHistory();
   return (
     <ConcertCardListWrapper>
       {concertCardData?.map(
@@ -20,7 +18,7 @@ function ConcertCardList({ concertCardData }: IProps): React.ReactElement {
               authorNickname={card.authorNickname}
               interestList={card.interest}
               key={card._id}
-              onClickFunc={() => history.push(`/concert/${card._id}`)}
+              concertID={card._id}
             ></ConcertCard>
           ),
       )}

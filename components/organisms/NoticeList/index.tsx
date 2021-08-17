@@ -1,4 +1,4 @@
-import { Concert } from 'components/molecules';
+import { Notice } from 'components/molecules';
 import Image from 'next/image';
 import { SmallLeftArrowIcon, SmallRightArrowIcon } from 'public/assets/images';
 import React, { useState } from 'react';
@@ -51,7 +51,7 @@ function NoticeList({ noticeList, totalNoticeNum, currentPage, setCurrentPage }:
         {noticeList?.map(
           (notice: INotice) =>
             notice && (
-              <Concert
+              <Notice
                 imgThumbnail={notice.imgThumbnail}
                 authorNickname={notice.user.nickname}
                 interestList={notice.interest}
@@ -61,7 +61,7 @@ function NoticeList({ noticeList, totalNoticeNum, currentPage, setCurrentPage }:
                 commentNum={notice.commentNum}
                 key={notice._id}
                 noticeID={notice._id}
-              ></Concert>
+              ></Notice>
             ),
         )}
         <NavigationContainer>
