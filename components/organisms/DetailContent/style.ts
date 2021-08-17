@@ -56,24 +56,19 @@ export const Like = Styled.div`
   display: flex;
   align-items:center;
   margin-right: 20px;
-  img {
-    margin-right: 10px;
-  }
 `;
 
 export const Comment = Styled.div`
   display: flex;
   align-items:center;
   margin-right: 20px;
-  img {
-    margin-right: 10px;
-  }
 `;
 
 export const Scrap = Styled.div`
   display: flex;
   align-items:center;
-  img {
+`;
+
+export const IconContainer = Styled.div`
     margin-right: 10px;
-  }
 `;

@@ -2,7 +2,7 @@ import { HashTag } from 'components/atoms';
 import Image from 'next/image';
 import { CommentIcon, LikeFilledIcon, LikeIcon, ScrapFilledIcon, ScrapIcon } from 'public/assets/images';
 import React from 'react';
-import { Comment, HashTagList, IconList, Like, Scrap, Text, Video } from './style';
+import { Comment, HashTagList, IconContainer, IconList, Like, Scrap, Text, Video } from './style';
 interface IProps {
   video?: string;
   imgThumbnail?: string;
@@ -48,19 +48,25 @@ function DetailContent({
           <div></div>
         ) : (
           <Like>
-            <Image className="like__img" src={isUserLike ? LikeFilledIcon : LikeIcon} onClick={onLike} alt="" />
+            <IconContainer>
+              <Image className="like__img" src={isUserLike ? LikeFilledIcon : LikeIcon} onClick={onLike} alt="" />
+            </IconContainer>
             {likeNum}
           </Like>
         )}
         <Comment>
-          <Image className="comments__img" src={CommentIcon} alt="" />
+          <IconContainer>
+            <Image className="comments__img" src={CommentIcon} alt="" />
+          </IconContainer>
           {commentNum}
         </Comment>
         {scrapNum === undefined ? (
           <div></div>
         ) : (
           <Scrap>
-            <Image className="scrap__img" src={isUserScrap ? ScrapFilledIcon : ScrapIcon} onClick={onScrap} alt="" />
+            <IconContainer>
+              <Image className="scrap__img" src={isUserScrap ? ScrapFilledIcon : ScrapIcon} onClick={onScrap} alt="" />
+            </IconContainer>
             {scrapNum}
           </Scrap>
         )}

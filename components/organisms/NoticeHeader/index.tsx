@@ -13,7 +13,7 @@ function NoticeHeader(): React.ReactElement {
       <Text>
         <p>다음 강연이에요</p>
         <p>창업에 대한 모든 것</p>
-        <Link href="/">
+        <Link href="/concert">
           <ConcertButton>더 알아보기</ConcertButton>
         </Link>
       </Text>

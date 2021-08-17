@@ -5,6 +5,8 @@ export { default as ConcertCard } from './ConcertCard';
 export { default as ConcertTitle } from './ConcertTitle';
 export { default as DetailTitle } from './DetailTitle';
 export { default as LoginModal } from './LoginModal';
+export { default as Notice } from './Notice';
 export { default as NoticeSingleComment } from './NoticeSingleComment';
 export { default as ChallengeReCommentList, default as ReplyComment } from './ReplyComment';
 export { default as SearchBar } from './SearchBar';
+export { default as SingleComment } from './SingleComment';
