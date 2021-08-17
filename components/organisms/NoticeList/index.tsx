@@ -2,7 +2,6 @@ import { Notice } from 'components/molecules';
 import Image from 'next/image';
 import { SmallLeftArrowIcon, SmallRightArrowIcon } from 'public/assets/images';
 import React, { useState } from 'react';
-import { useHistory } from 'react-router';
 import { INotice } from 'types/notice.type';
 import { NavigationContainer, NoticeListWrapper, PageNavi, PageNumber } from './style';
 
@@ -13,7 +12,6 @@ interface IProps {
   setCurrentPage: (value: number) => void;
 }
 function NoticeList({ noticeList, totalNoticeNum, currentPage, setCurrentPage }: IProps): React.ReactElement {
-  const history = useHistory();
   const [startPage, setStartPage] = useState(0);
   const [endPage, setEndPage] = useState(8);
   const commentsOfPage = 8;
