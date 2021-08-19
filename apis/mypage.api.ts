@@ -7,7 +7,7 @@ import {
   IMyScrappedChallenge,
   IMyScrappedConcert,
   IMyUserCommentResponse,
-} from '../types/myPage.type';
+} from 'types/myPage.type';
 
 const MY_PAGE_URL_PREFIX = '/user/mypage';
 
