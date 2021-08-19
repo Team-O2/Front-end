@@ -1,6 +1,6 @@
 import { serverAxios } from 'libs/axios';
-import { IAdminChallenge, IAdminChallengePeriod } from 'types/admin.type';
 import { changeArrToString } from 'utils';
+import { IAdminChallenge, IAdminChallengePeriod } from '../types/admin.type';
 
 const PREFIX_URL = '/admin';
 
