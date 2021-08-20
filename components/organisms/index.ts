@@ -13,5 +13,6 @@ export { default as NoticeCommentList } from './NoticeCommentList';
 export { default as NoticeHeader } from './NoticeHeader';
 export { default as NoticeList } from './NoticeList';
 export { default as SearchForm } from './SearchForm';
+export { default as SetNewPwd } from './SetNewPwd';
 export { default as SettingForm } from './SettingForm';
 export { default as SettingPwd } from './SettingPwd';

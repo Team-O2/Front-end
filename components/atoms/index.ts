@@ -1,7 +1,14 @@
 export { default as Button } from './Button';
+export { default as CheckBox } from './CheckBox';
+export { default as DotText } from './DotText';
 export { default as HashTag } from './HashTag';
 export { default as Icon } from './Icon';
+export { default as Img } from './Img';
 export { default as Input } from './Input';
+export { default as Label } from './Label';
+export { default as Link } from './Link';
 export { default as Modal } from './Modal';
+export { default as MyPageCard } from './MyPageCard';
 export { default as StyledInput } from './StyledInput';
+export { default as Tag } from './Tag';
 export { default as TextArea } from './TextArea';

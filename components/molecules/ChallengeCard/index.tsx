@@ -1,5 +1,5 @@
-import { FilledBookmarkIcon } from 'assets/images';
 import { Button, Icon } from 'components/atoms';
+import { FilledBookmarkIcon } from 'public/assets/images';
 import React from 'react';
 import { Contents, IconButton, Image, Name, Wrapper } from './style';
 

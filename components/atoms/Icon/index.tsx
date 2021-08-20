@@ -1,18 +1,20 @@
+import Image from 'next/image';
 import React from 'react';
 import Styled from 'styled-components';
 import { ifProp } from 'styled-tools';
 
-export interface IProps extends React.ImgHTMLAttributes<HTMLImageElement> {
+export interface IProps {
   height?: string;
+  alt?: string;
+  src: string | StaticImageData;
   circular?: boolean;
 }
 
 function Icon({ height = '2rem', alt = '', ...props }: IProps): React.ReactElement {
-  return <SImg height={height} alt={alt} {...props} />;
+  return <SImg height={height} width={height} alt={alt} {...props} />;
 }
 
-const SImg = Styled.img`
-  height: ${(props) => props.height};
+const SImg = Styled(Image)<{ circular?: boolean }>`
   border-radius: ${ifProp('circular', '50%', '')};
 `;
 

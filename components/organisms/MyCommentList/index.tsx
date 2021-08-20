@@ -1,6 +1,6 @@
-import { SmallLeftArrowIcon, SmallRightArrowIcon } from 'assets/images';
 import { Button, Icon, Tag } from 'components/atoms';
 import { CommentedBoardRow } from 'components/molecules';
+import { SmallLeftArrowIcon, SmallRightArrowIcon } from 'public/assets/images';
 import React, { useEffect, useState } from 'react';
 import { useRecoilValue } from 'recoil';
 import { userState } from 'stores/user';

@@ -1,4 +1,4 @@
-import { ErrorIcon } from 'assets/images';
+import { ErrorIcon } from 'public/assets/images';
 import React, { useState } from 'react';
 import { ErrorImage, ErrorMsg, Input, InputContainer, SStyledInput } from './style';
 
