@@ -1,5 +1,6 @@
-import { DeleteModalImg } from 'assets/images';
 import { Button, Modal } from 'components/atoms';
+import Image from 'next/image';
+import { DeleteModalImg } from 'public/assets/images';
 import React from 'react';
 import { ButtonWrapper, NoticeWrapper, Wrapper } from './style';
 
@@ -18,7 +19,7 @@ function DeleteModal({ isDeleteModalOpen, setIsDeleteModalOpen, onClickDeleteBut
     <Modal isOpen={isDeleteModalOpen} setIsOpen={setIsDeleteModalOpen} isBlur={true}>
       <Wrapper>
         <NoticeWrapper>
-          <img src={DeleteModalImg} alt=""></img>
+          <Image src={DeleteModalImg} alt=""></Image>
           <h1>잠깐!</h1>
           <p>삭제된 글은 복구가 불가능합니다.</p>
           <p>글을 삭제하시겠어요?</p>

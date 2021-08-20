@@ -1,6 +1,6 @@
-import { MyPageEditIcon, UserImg } from 'assets/images';
 import { Link } from 'components/atoms';
 import { MyPageSlider } from 'components/molecules';
+import { MyPageEditIcon, UserImg } from 'public/assets/images';
 import React from 'react';
 import { useRecoilValue } from 'recoil';
 import { userState } from 'stores/user';

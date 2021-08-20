@@ -1,4 +1,4 @@
-import { CheckedIcon } from 'assets/images';
+import { CheckedIcon } from 'public/assets/images';
 import React from 'react';
 import { useHistory } from 'react-router-dom';
 import * as S from './style';

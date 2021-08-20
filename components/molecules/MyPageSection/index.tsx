@@ -1,5 +1,5 @@
-import { MoreViewArrowIcon } from 'assets/images';
 import { Icon, Link } from 'components/atoms';
+import { MoreViewArrowIcon } from 'public/assets/images';
 import React from 'react';
 import { IConcert } from 'types/concert.type';
 import { IChallenge } from 'types/myPage.type';
