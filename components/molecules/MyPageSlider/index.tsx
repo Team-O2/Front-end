@@ -11,6 +11,8 @@ import {
   GetChallengeIcon,
   GrowingTogetherFillIcon,
   GrowingTogetherIcon,
+  LargeLeftArrowIcon,
+  LargeRightArrowIcon,
   NaturalBornO2FillIcon,
   NaturalBornO2Icon,
   Percent100Icon,
@@ -33,8 +35,6 @@ import {
   WelcomeToO2FillIcon,
   WelcomeToO2Icon,
 } from 'public/assets/images';
-import { ReactComponent as LeftArrow } from 'public/assets/images/largeLeftArrow.svg';
-import { ReactComponent as RightArrow } from 'public/assets/images/largeRightArrow.svg';
 import React, { useEffect, useRef, useState } from 'react';
 import { useRecoilValue } from 'recoil';
 import { userState } from 'stores/user';
@@ -106,7 +106,7 @@ function MyPageSlider({ userInfo }: IProps): React.ReactElement {
   return (
     <Wrapper>
       <PrevButton onClick={prevSlide}>
-        <LeftArrow stroke="#fff" />
+        <Img src={LargeLeftArrowIcon} />
       </PrevButton>
       <Slider>
         <SliderBox ref={slideRef}>
@@ -225,7 +225,7 @@ function MyPageSlider({ userInfo }: IProps): React.ReactElement {
       {(!localVisible || animation) && <GradientLeft disappear={!!currentSlide}></GradientLeft>}
       {(localVisible || animation) && <GradientRight disappear={!!currentSlide}></GradientRight>}
       <NextButton onClick={nextSlide}>
-        <RightArrow stroke="#fff" />
+        <Img src={LargeRightArrowIcon} />
       </NextButton>
     </Wrapper>
   );
