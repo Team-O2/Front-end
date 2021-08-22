@@ -1,6 +1,6 @@
+import { useRouter } from 'next/router';
 import { CheckedIcon } from 'public/assets/images';
 import React from 'react';
-import { useHistory } from 'react-router-dom';
 import * as S from './style';
 
 interface IProps {
@@ -9,7 +9,7 @@ interface IProps {
 }
 
 function SettingPwdSuccessModal({ setIsOpen, url }: IProps): React.ReactElement {
-  const history = useHistory();
+  const history = useRouter();
 
   const handleOnClick = () => {
     setIsOpen(false);
