@@ -1,6 +1,6 @@
 import { getUserInfo, updateUserInfo } from 'apis';
+import { useRouter } from 'next/router';
 import React, { useEffect, useRef, useState } from 'react';
-import { useHistory, withRouter } from 'react-router-dom';
 import { useRecoilValue, useSetRecoilState } from 'recoil';
 import { userState, userStatusState } from 'stores/user';
 import { ISettingUserInfo } from 'types/setting.type';
@@ -9,7 +9,7 @@ import SettingTemplate from './template';
 function Setting(): React.ReactElement {
   // for edit btn
   const [isBtnAtv, setIsBtnAtv] = useState(true);
-  const history = useHistory();
+  const history = useRouter();
 
   // for user info
   const setUserData = useSetRecoilState(userState);
@@ -106,7 +106,7 @@ function Setting(): React.ReactElement {
       );
     }
     if (data) {
-      history.goBack();
+      history.back();
       setUserData(userInfo);
     }
   };
@@ -143,4 +143,4 @@ function Setting(): React.ReactElement {
   );
 }
 
-export default withRouter(Setting);
+export default Setting;
