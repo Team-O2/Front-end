@@ -1,5 +1,6 @@
 export { default as AdminChallengeCard } from './AdminChallengeCard';
 export { default as AdminChallengeOpenForm } from './AdminChallengeOpenForm';
+export { default as BadgeCard } from './BadgeCard';
 export { default as CategoryButton } from './CategoryButton';
 export { default as ChallengeCard } from './ChallengeCard';
 export { default as ChallengeCardBottom } from './ChallengeCardBottom';
@@ -46,4 +47,5 @@ export { default as SearchBar } from './SearchBar';
 export { default as SetNewPwdForm } from './SetNewPwdForm';
 export { default as SettingPwdSuccessModal } from './SettingPwdSuccessModal';
 export { default as SingleComment } from './SingleComment';
+export { default as SpeakerExpCard } from './SpeakerExpCard';
 export { default as ToggleSwitch } from './ToggleSwitch';
