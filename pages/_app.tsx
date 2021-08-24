@@ -1,4 +1,4 @@
-import { Footer } from 'components/organisms';
+import { Footer, Header } from 'components/organisms';
 import type { AppProps } from 'next/app';
 import Head from 'next/head';
 import { RecoilRoot } from 'recoil';
@@ -17,6 +17,7 @@ function MyApp({ Component, pageProps }: AppProps): React.ReactElement {
       <ThemeProvider theme={theme}>
         <GlobalStyles />
         <RecoilRoot>
+          <Header />
           <Component {...pageProps} />
           <Footer />
         </RecoilRoot>
