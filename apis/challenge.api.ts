@@ -51,7 +51,7 @@ export const ChallengeEdit = async (editData: EditData, token: string, id: strin
 
 export const ChallengeListData = async (
   token: string | null,
-  generation: string,
+  generation: string | string[],
   offset: number,
   limit: number,
 ): Promise<IChallengeData[]> => {
@@ -132,7 +132,7 @@ export const getChallengeContent = async (id: string, token?: string): Promise<I
 };
 
 export const getChallengeSearchData = async (
-  generation: string,
+  generation: string | string[],
   token: string | null,
   tag: string,
   keyword: string,
