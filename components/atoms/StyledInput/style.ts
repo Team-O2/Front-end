@@ -1,3 +1,4 @@
+import { Img } from 'components/atoms';
 import Styled, { css } from 'styled-components';
 import { ifProp, palette, theme } from 'styled-tools';
 
@@ -51,7 +52,7 @@ export const InputContainer = Styled.div<{ width: string; height: string; condit
   margin-bottom : 5px;
 `;
 
-export const ErrorImage = Styled.img`
+export const ErrorImage = Styled(Img)`
   width : 24px;
   height : 24px;
   margin-right : 15px;
