@@ -16,6 +16,7 @@ export { default as Header } from './Header';
 export { default as InterestModal } from './InterestModal';
 export { default as JoinCheck } from './JoinCheck';
 export { default as JoinForm } from './JoinForm';
+export { default as LoginForm } from './LoginForm';
 export { default as MyCommentList } from './MyCommentList';
 export { default as MyPageCommentModal } from './MyPageCommentModal';
 export { default as MyPageHeader } from './MyPageHeader';
