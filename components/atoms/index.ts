@@ -1,6 +1,8 @@
 export { default as Button } from './Button';
 export { default as CheckBox } from './CheckBox';
+export { default as ChipBtn } from './ChipBtn';
 export { default as DotText } from './DotText';
+export { default as FileUpload } from './FileUpload';
 export { default as HashTag } from './HashTag';
 export { default as Icon } from './Icon';
 export { default as Img } from './Img';

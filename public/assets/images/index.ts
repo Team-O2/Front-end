@@ -78,4 +78,5 @@ export { default as ThumbnailCommentIcon } from './thumnailComment.svg';
 export { default as ThumbnailLikeIcon } from './thumnailHeart.svg';
 export { default as UserImg } from './userImage.png';
 export { default as WriteIcon } from './writeIcon.svg';
+export { default as XBtn } from './XBtn.svg';
 export { default as XIcon } from './xIcon.svg';
