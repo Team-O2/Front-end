@@ -137,7 +137,7 @@ function Hamburger(): React.ReactElement {
         )}
         {(userStateNum === 1 || userStateNum === 2 || userStateNum === 3) && (
           <UserNameLabel>
-            <span>{userName}</span> CEO님
+            <span>{userName}</span> 님
           </UserNameLabel>
         )}
         {userStateNum === 1 && (
