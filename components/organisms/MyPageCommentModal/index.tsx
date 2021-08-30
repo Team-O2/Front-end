@@ -27,7 +27,7 @@ function MyPageCommentModal({
       <S.ChallengeModalWrapper>
         <S.ModalWrapper>
           <S.ModalUserInfo>
-            <S.ModalUserImg src={challenge?.user?.img} />
+            <S.ModalUserImg width={80} height={80} src={challenge?.user?.img} />
             <S.ModalUserInfoWrapper>
               <div>
                 <div>{challenge?.user?.nickname}</div>

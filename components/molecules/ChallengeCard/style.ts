@@ -1,4 +1,4 @@
-import { Button, Img } from 'components/atoms';
+import { Button } from 'components/atoms';
 import Styled from 'styled-components';
 import { theme } from 'styled-tools';
 
@@ -14,7 +14,7 @@ export const IconButton = Styled(Button)`
     height: 24px;
 `;
 
-export const Image = Styled(Img)`
+export const ImageWrapper = Styled.div`
     margin: 30px 0 10px 0;
     border-radius: 50%;
     width: 100px;
@@ -45,14 +45,14 @@ export const Wrapper = Styled.div`
     position: relative;
 
     span {
-      display: inline-block;
-      display: flex;
-      position: relative;
-      flex-direction: column;
-      align-items: center;
-      border-radius: 20px;
-      box-shadow: 0 0 24px 0 rgba(13, 12, 63, 0.1);
-      width: 254px;
-      height: 259px;
+        display: inline-block;
+        display: flex;
+        position: relative;
+        flex-direction: column;
+        align-items: center;
+        border-radius: 20px;
+        box-shadow: 0 0 24px 0 rgba(13, 12, 63, 0.1);
+        width: 254px;
+        height: 259px;
     }
 `;

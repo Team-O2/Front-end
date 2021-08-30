@@ -1,4 +1,4 @@
-import { DotText, Img, Link, MyPageCard } from 'components/atoms';
+import { DotText, Icon, Img, Link, MyPageCard } from 'components/atoms';
 import dayjs from 'dayjs';
 import {
   CommunicationKingFillIcon,
@@ -39,22 +39,7 @@ import React, { useEffect, useRef, useState } from 'react';
 import { useRecoilValue } from 'recoil';
 import { userState } from 'stores/user';
 import { IMyPageConcert, IMyPageHeader } from 'types/myPage.type';
-import {
-  CouponBookWrapper,
-  GradientLeft,
-  GradientRight,
-  NextButton,
-  PrevButton,
-  Slider,
-  SliderBox,
-  SliderCoupon,
-  SliderLearnMySelf,
-  SliderLearnMySelfImg,
-  SliderNoContent,
-  SliderShareTogether,
-  TextLabel,
-  Wrapper,
-} from './style';
+import * as S from './style';
 
 export interface IProps {
   userInfo: IMyPageHeader | null;
@@ -104,40 +89,40 @@ function MyPageSlider({ userInfo }: IProps): React.ReactElement {
   };
 
   return (
-    <Wrapper>
-      <PrevButton onClick={prevSlide}>
-        <Img src={LargeLeftArrowIcon} />
-      </PrevButton>
-      <Slider>
-        <SliderBox ref={slideRef}>
+    <S.Wrapper>
+      <S.PrevButton onClick={prevSlide}>
+        <Icon src={LargeLeftArrowIcon} size={48} />
+      </S.PrevButton>
+      <S.Slider>
+        <S.SliderBox ref={slideRef}>
           <MyPageCard title="Learn Myself" width="350">
             {userInfo?.learnMyselfAchieve ? (
               <Link to={`challenge/${userInfo.learnMyselfAchieve.generation}`}>
-                <SliderLearnMySelf>
+                <S.SliderLearnMySelf>
                   <h1>
                     {`${dayjs(userInfo.learnMyselfAchieve.startDT).format('YY.MM.DD')} - ${dayjs(
                       userInfo.learnMyselfAchieve.endDT,
                     ).format('YY.MM.DD')}`}
                   </h1>
-                  <SliderLearnMySelfImg>
-                    <Img src={getLevelIcon(userInfo.learnMyselfAchieve.percent)} />
-                  </SliderLearnMySelfImg>
+                  <S.SliderLearnMySelfImg>
+                    <Img src={getLevelIcon(userInfo.learnMyselfAchieve.percent)} width={180} height={115} />
+                  </S.SliderLearnMySelfImg>
                   <h2>{userInfo.learnMyselfAchieve.percent}% 달성</h2>
                   <h3>
                     내가 쓴 개수 &nbsp; &nbsp;<span>{userInfo.learnMyselfAchieve.completeNum}</span> &nbsp;/ &nbsp;
                     {userInfo.learnMyselfAchieve.totalNum}
                   </h3>
-                </SliderLearnMySelf>
+                </S.SliderLearnMySelf>
               </Link>
             ) : (
-              <SliderNoContent>
+              <S.SliderNoContent>
                 <p>현재 참여한 챌린지가 없어요!</p>
-              </SliderNoContent>
+              </S.SliderNoContent>
             )}
           </MyPageCard>
           <MyPageCard title="Share Together" width="310">
             {userInfo?.shareTogether ? (
-              <SliderShareTogether>
+              <S.SliderShareTogether>
                 <h4>
                   {globalUserInfo?.nickname}님이 하셨던
                   <br /> 강연의 주제들이에요!
@@ -145,89 +130,109 @@ function MyPageSlider({ userInfo }: IProps): React.ReactElement {
                 {userInfo?.shareTogether.map((item: IMyPageConcert) => (
                   <DotText key={item._id} content={item.title} />
                 ))}
-              </SliderShareTogether>
+              </S.SliderShareTogether>
             ) : (
-              <SliderNoContent>
+              <S.SliderNoContent>
                 <p>현재 참여한 강연이 없어요!</p>
-              </SliderNoContent>
+              </S.SliderNoContent>
             )}
           </MyPageCard>
           <MyPageCard title="Coupon Book" width="550">
-            <CouponBookWrapper>
-              <SliderCoupon>
-                <Img src={userInfo?.couponBook.welcomeBadge ? WelcomeToO2FillIcon : WelcomeToO2Icon} />
-                <TextLabel>웰컴 투 오투</TextLabel>
-              </SliderCoupon>
-              <SliderCoupon>
-                <Img src={userInfo?.couponBook.firstJoinBadge ? ReadyForGrowFillIcon : ReadyForGrowIcon} />
-                <TextLabel>성장 준비 완료</TextLabel>
-              </SliderCoupon>
-              <SliderCoupon>
-                <Img src={userInfo?.couponBook.firstWriteBadge ? GrowingTogetherFillIcon : GrowingTogetherIcon} />
-                <TextLabel>함께 성장 중</TextLabel>
-              </SliderCoupon>
-              <SliderCoupon>
-                <Img
+            <S.CouponBookWrapper>
+              <S.SliderCoupon>
+                <Icon size={70} src={userInfo?.couponBook.welcomeBadge ? WelcomeToO2FillIcon : WelcomeToO2Icon} />
+                <S.TextLabel>웰컴 투 오투</S.TextLabel>
+              </S.SliderCoupon>
+              <S.SliderCoupon>
+                <Icon size={70} src={userInfo?.couponBook.firstJoinBadge ? ReadyForGrowFillIcon : ReadyForGrowIcon} />
+                <S.TextLabel>성장 준비 완료</S.TextLabel>
+              </S.SliderCoupon>
+              <S.SliderCoupon>
+                <Icon
+                  size={70}
+                  src={userInfo?.couponBook.firstWriteBadge ? GrowingTogetherFillIcon : GrowingTogetherIcon}
+                />
+                <S.TextLabel>함께 성장 중</S.TextLabel>
+              </S.SliderCoupon>
+              <S.SliderCoupon>
+                <Icon
+                  size={70}
                   src={userInfo?.couponBook.oneCommentBadge ? ReadyForCommunicationFillIcon : ReadyForCommunicationIcon}
                 />
-                <TextLabel>소통 준비 완료</TextLabel>
-              </SliderCoupon>
-              <SliderCoupon>
-                <Img src={userInfo?.couponBook.challengeBadge === 1 ? GetChallengeFillIcon : GetChallengeIcon} />
-                <TextLabel>1차 챌린지 달성</TextLabel>
-              </SliderCoupon>
-              <SliderCoupon>
-                <Img src={userInfo?.couponBook.fiveCommentBadge ? CommunicationKingFillIcon : CommunicationKingIcon} />
-                <TextLabel>나는야 소통왕</TextLabel>
-              </SliderCoupon>
-              <SliderCoupon>
-                <Img src={userInfo?.couponBook.oneLikeBadge ? EmpathizingFillIcon : EmpathizingIcon} />
-                <TextLabel>당신은 공감중</TextLabel>
-              </SliderCoupon>
-              <SliderCoupon>
-                <Img src={userInfo?.couponBook.fiveLikeBadge ? SympathyKingFillIcon : SympathyKingIcon} />
-                <TextLabel>당신은 공감왕</TextLabel>
-              </SliderCoupon>
-              <SliderCoupon>
-                <Img src={userInfo?.couponBook.loginBadge ? NaturalBornO2FillIcon : NaturalBornO2Icon} />
-                <TextLabel>뼛속부터 오투인</TextLabel>
-              </SliderCoupon>
-              <SliderCoupon>
-                <Img src={userInfo?.couponBook.challengeBadge === 2 ? GetChallengeFillIcon : GetChallengeIcon} />
-                <TextLabel>2차 챌린지 달성</TextLabel>
-              </SliderCoupon>
-              <SliderCoupon>
-                <Img src={userInfo?.couponBook.marketingBadge ? ShyEmailFillIcon : ShyEmailIcon} />
-                <TextLabel>수줍은 이메일</TextLabel>
-              </SliderCoupon>
-              <SliderCoupon>
-                <Img src={userInfo?.couponBook.learnMySelfBadge ? UsefulLearnMyselfFillIcon : UsefulLearnMyselfIcon} />
-                <TextLabel>유용한 런마쎌</TextLabel>
-              </SliderCoupon>
-              <SliderCoupon>
-                <Img
+                <S.TextLabel>소통 준비 완료</S.TextLabel>
+              </S.SliderCoupon>
+              <S.SliderCoupon>
+                <Icon
+                  size={70}
+                  src={userInfo?.couponBook.challengeBadge === 1 ? GetChallengeFillIcon : GetChallengeIcon}
+                />
+                <S.TextLabel>1차 챌린지 달성</S.TextLabel>
+              </S.SliderCoupon>
+              <S.SliderCoupon>
+                <Icon
+                  size={70}
+                  src={userInfo?.couponBook.fiveCommentBadge ? CommunicationKingFillIcon : CommunicationKingIcon}
+                />
+                <S.TextLabel>나는야 소통왕</S.TextLabel>
+              </S.SliderCoupon>
+              <S.SliderCoupon>
+                <Icon size={70} src={userInfo?.couponBook.oneLikeBadge ? EmpathizingFillIcon : EmpathizingIcon} />
+                <S.TextLabel>당신은 공감중</S.TextLabel>
+              </S.SliderCoupon>
+              <S.SliderCoupon>
+                <Icon size={70} src={userInfo?.couponBook.fiveLikeBadge ? SympathyKingFillIcon : SympathyKingIcon} />
+                <S.TextLabel>당신은 공감왕</S.TextLabel>
+              </S.SliderCoupon>
+              <S.SliderCoupon>
+                <Icon size={70} src={userInfo?.couponBook.loginBadge ? NaturalBornO2FillIcon : NaturalBornO2Icon} />
+                <S.TextLabel>뼛속부터 오투인</S.TextLabel>
+              </S.SliderCoupon>
+              <S.SliderCoupon>
+                <Icon
+                  size={70}
+                  src={userInfo?.couponBook.challengeBadge === 2 ? GetChallengeFillIcon : GetChallengeIcon}
+                />
+                <S.TextLabel>2차 챌린지 달성</S.TextLabel>
+              </S.SliderCoupon>
+              <S.SliderCoupon>
+                <Icon size={70} src={userInfo?.couponBook.marketingBadge ? ShyEmailFillIcon : ShyEmailIcon} />
+                <S.TextLabel>수줍은 이메일</S.TextLabel>
+              </S.SliderCoupon>
+              <S.SliderCoupon>
+                <Icon
+                  size={70}
+                  src={userInfo?.couponBook.learnMySelfBadge ? UsefulLearnMyselfFillIcon : UsefulLearnMyselfIcon}
+                />
+                <S.TextLabel>유용한 런마쎌</S.TextLabel>
+              </S.SliderCoupon>
+              <S.SliderCoupon>
+                <Icon
+                  size={70}
                   src={userInfo?.couponBook.concertScrapBadge ? UsefulShareTogetherFillIcon : UsefulShareTogetherIcon}
                 />
-                <TextLabel>유용한 쉐투</TextLabel>
-              </SliderCoupon>
-              <SliderCoupon>
-                <Img src={userInfo?.couponBook.firstReplyBadge ? FirstCommentFillIcon : FirstCommentIcon} />
-                <TextLabel>설레는 첫 답글</TextLabel>
-              </SliderCoupon>
-              <SliderCoupon>
-                <Img src={userInfo?.couponBook.challengeBadge === 3 ? GetChallengeFillIcon : GetChallengeIcon} />
-                <TextLabel>3차 챌린지 달성</TextLabel>
-              </SliderCoupon>
-            </CouponBookWrapper>
+                <S.TextLabel>유용한 쉐투</S.TextLabel>
+              </S.SliderCoupon>
+              <S.SliderCoupon>
+                <Icon size={70} src={userInfo?.couponBook.firstReplyBadge ? FirstCommentFillIcon : FirstCommentIcon} />
+                <S.TextLabel>설레는 첫 답글</S.TextLabel>
+              </S.SliderCoupon>
+              <S.SliderCoupon>
+                <Icon
+                  size={70}
+                  src={userInfo?.couponBook.challengeBadge === 3 ? GetChallengeFillIcon : GetChallengeIcon}
+                />
+                <S.TextLabel>3차 챌린지 달성</S.TextLabel>
+              </S.SliderCoupon>
+            </S.CouponBookWrapper>
           </MyPageCard>
-        </SliderBox>
-      </Slider>
-      {(!localVisible || animation) && <GradientLeft disappear={!!currentSlide}></GradientLeft>}
-      {(localVisible || animation) && <GradientRight disappear={!!currentSlide}></GradientRight>}
-      <NextButton onClick={nextSlide}>
-        <Img src={LargeRightArrowIcon} />
-      </NextButton>
-    </Wrapper>
+        </S.SliderBox>
+      </S.Slider>
+      {(!localVisible || animation) && <S.GradientLeft disappear={!!currentSlide}></S.GradientLeft>}
+      {(localVisible || animation) && <S.GradientRight disappear={!!currentSlide}></S.GradientRight>}
+      <S.NextButton onClick={nextSlide}>
+        <Icon src={LargeRightArrowIcon} size={48} />
+      </S.NextButton>
+    </S.Wrapper>
   );
 }
 

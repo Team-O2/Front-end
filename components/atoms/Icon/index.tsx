@@ -4,14 +4,15 @@ import Styled from 'styled-components';
 import { ifProp } from 'styled-tools';
 
 export interface IProps {
-  height?: string;
+  size?: number;
   alt?: string;
   src: string | StaticImageData;
+  layout?: 'fixed' | 'intrinsic' | 'fill' | 'responsive';
   circular?: boolean;
 }
 
-function Icon({ height = '2rem', alt = '', ...props }: IProps): React.ReactElement {
-  return <SImg height={height} width={height} alt={alt} {...props} />;
+function Icon({ size, alt = '', ...props }: IProps): React.ReactElement {
+  return <SImg height={size} width={size} alt={alt} {...props} />;
 }
 
 const SImg = Styled(Image)<{ circular?: boolean }>`
