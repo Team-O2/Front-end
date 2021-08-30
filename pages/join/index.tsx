@@ -14,19 +14,16 @@ function Join(): React.ReactElement {
     nickname: false,
     interest: false,
     policyMust: false,
-    gender: false,
   });
   const [userData, setUserData] = useState({
     email: '',
     password: '',
     passwordCheck: '',
     nickname: '',
-    gender: -1,
     interest: [''],
     marpolicy: false,
     policyMust: false,
   });
-  const [gender, setGender] = useState('선택안함');
   const [selectedInterest, setSelectedInterest] = useState<string[]>([]);
   const handleInterestOnClick = (interest: string) => {
     if (selectedInterest.length === 0) {
@@ -51,7 +48,6 @@ function Join(): React.ReactElement {
       password: userData.password,
       nickname: userData.nickname,
       interest: userData.interest,
-      gender: userData.gender,
       marpolicy: userData.marpolicy,
     };
     const getData = await postJoin(postData);
@@ -62,29 +58,15 @@ function Join(): React.ReactElement {
   const joinBtnHandler = () => {
     setIsInterestModalOpen(true);
   };
-  const changeGenderStringtoNum = (gender: string) => {
-    switch (gender) {
-      case '남성':
-        return 0;
-      case '여성':
-        return 1;
-      default:
-        return 2;
-    }
-  };
   useEffect(() => {
     setUserData({ ...userData, interest: selectedInterest });
   }, [selectedInterest]);
-  useEffect(() => {
-    setUserData({ ...userData, gender: changeGenderStringtoNum(gender) });
-  }, [gender]);
   useEffect(() => {
     if (
       isConditionMet.email &&
       isConditionMet.password &&
       isConditionMet.passwordCheck &&
       isConditionMet.nickname &&
-      isConditionMet.gender &&
       isConditionMet.policyMust
     ) {
       setIsJoinButtonDisabled(false);
@@ -106,8 +88,6 @@ function Join(): React.ReactElement {
       handleInterestOnClick={handleInterestOnClick}
       selectedInterest={selectedInterest}
       modalBtnHandler={modalBtnHandler}
-      gender={gender}
-      setGender={setGender}
     />
   );
 }

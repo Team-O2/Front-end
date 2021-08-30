@@ -65,13 +65,6 @@ function JoinForm({ isConditionMet, userData, setUserData, setIsConditionMet }: 
       setIsConditionMet({ ...isConditionMet, policyMust: false });
     }
   }, [userData.policyMust]);
-  useEffect(() => {
-    if (userData.gender != -1) {
-      setIsConditionMet({ ...isConditionMet, gender: true });
-    } else {
-      setIsConditionMet({ ...isConditionMet, gender: false });
-    }
-  }, [userData.gender]);
 
   return (
     <Wrapper>

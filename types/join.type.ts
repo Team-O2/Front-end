@@ -5,7 +5,6 @@ export interface IJoinConditionMet {
   nickname: boolean;
   interest: boolean;
   policyMust: boolean;
-  gender: boolean;
 }
 
 export interface IJoin {
@@ -13,7 +12,6 @@ export interface IJoin {
   password: string;
   nickname: string;
   interest: string[];
-  gender: number;
   marpolicy: boolean;
 }
 
@@ -22,7 +20,6 @@ export interface IJoinData {
   password: string;
   passwordCheck: string;
   nickname: string;
-  gender: number;
   interest: string[];
   marpolicy: boolean;
   policyMust: boolean;
