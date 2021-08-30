@@ -81,6 +81,7 @@ export const TopContainer = Styled.div`
   align-items : center;
   background-color: #edfeff;
   height : 376px;
+  padding-top : 120px;
 `;
 
 export const SubTitleImage = Styled(Img)`
@@ -97,11 +98,8 @@ export const UserNameLabel = Styled.div`
 `;
 
 export const UserIcon = Styled(Img)`
-  margin : 120px 91px 0 91px;
   border : 1px solid ${palette('grayscale', 1)};
   border-radius:50px;
-  width : 100px;
-  height : 100px;
   object-fit:cover;
 `;
 

@@ -3,7 +3,7 @@ import { SDiv, SImg } from './style';
 
 export interface IProps {
   alt?: string;
-  src?: string;
+  src?: string | StaticImageData;
   width?: number;
   height?: number;
   layout?: 'fixed' | 'intrinsic' | 'fill' | 'responsive';

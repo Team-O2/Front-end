@@ -1,8 +1,8 @@
-import { Button } from 'components/atoms';
+import { Button, Img } from 'components/atoms';
 import Styled from 'styled-components';
 import { palette, theme } from 'styled-tools';
 
-export const LabelIcon = Styled.img`
+export const LabelIcon = Styled(Img)`
 width: 20px;
 height: 20px;
 margin: 0 0 0 1px;
