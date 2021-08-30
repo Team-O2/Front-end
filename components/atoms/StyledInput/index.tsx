@@ -31,9 +31,10 @@ function StyledInput({
   readOnly = false,
 }: IProps): React.ReactElement {
   const [isFocused, setIsFocused] = useState(false);
-
+  const [value, setValue] = useState('');
   const handleOnChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     onChange?.(e.target.value);
+    setValue(e.target.value);
   };
 
   const handleOnFocus = () => {
@@ -45,7 +46,7 @@ function StyledInput({
       <InputContainer
         width={width}
         height={height}
-        condition={!isFocused ? -1 : isFocused && isConditionMet ? 1 : 0}
+        condition={!isFocused ? -1 : (isFocused && isConditionMet) || value == '' ? 1 : 0}
         readOnly={readOnly}
       >
         <Input
@@ -58,9 +59,9 @@ function StyledInput({
           autoComplete={isPw ? 'false' : 'true'}
           onKeyUp={onKeyUp}
         />
-        {isFocused && !isConditionMet && <ErrorImage src={ErrorIcon}></ErrorImage>}
+        {isFocused && !isConditionMet && value !== '' && <ErrorImage src={ErrorIcon}></ErrorImage>}
       </InputContainer>
-      {isFocused && !isConditionMet && <ErrorMsg>{errorMsg}</ErrorMsg>}
+      {isFocused && !isConditionMet && value !== '' && <ErrorMsg>{errorMsg}</ErrorMsg>}
     </SStyledInput>
   );
 }
