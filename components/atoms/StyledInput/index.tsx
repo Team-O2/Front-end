@@ -14,6 +14,7 @@ export interface IProps {
   isPw?: boolean;
   margin?: string;
   readOnly?: boolean;
+  onKeyUp?: (e: React.KeyboardEvent<HTMLInputElement>) => void;
 }
 
 function StyledInput({
@@ -22,6 +23,7 @@ function StyledInput({
   placeHolder,
   isConditionMet,
   onChange,
+  onKeyUp,
   width,
   height,
   isPw,
@@ -54,6 +56,7 @@ function StyledInput({
           type={isPw ? 'password' : 'text'}
           readOnly={readOnly}
           autoComplete={isPw ? 'false' : 'true'}
+          onKeyUp={onKeyUp}
         />
         {isFocused && !isConditionMet && <ErrorImage src={ErrorIcon}></ErrorImage>}
       </InputContainer>

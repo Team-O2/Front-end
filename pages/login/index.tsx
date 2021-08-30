@@ -68,6 +68,14 @@ function Login(): React.ReactElement {
     return false;
   };
 
+  const handleLoginEnter = async (e: React.KeyboardEvent<HTMLInputElement>) => {
+    if (e.keyCode === 13) {
+      const token = await getUserStatusData();
+      const isSuccess = await getUserDetailData(token);
+      isSuccess && history.push('/');
+    }
+  };
+
   useEffect(() => {
     if (userStatusData && userData) {
       alert('이미 로그인이 되어있습니다. ');
@@ -77,6 +85,7 @@ function Login(): React.ReactElement {
 
   return (
     <LoginTemplate
+      handleLoginEnter={handleLoginEnter}
       handleLoginBtn={handleLoginBtn}
       idInputChange={idInputChange}
       pwdInputChange={pwdInputChange}

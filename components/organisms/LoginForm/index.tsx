@@ -9,13 +9,14 @@ interface IProps {
     email: boolean;
     pwd: boolean;
   };
+  handleLoginEnter: (e: React.KeyboardEvent<HTMLInputElement>) => Promise<void>;
 }
 const errMsg = {
   email: '가입되지 않은 이메일입니다',
   pwd: '비밀번호를 다시 확인해 주세요',
 };
 
-function LoginForm({ idInputChange, isConditionMet, pwdInputChange }: IProps): React.ReactElement {
+function LoginForm({ idInputChange, isConditionMet, pwdInputChange, handleLoginEnter }: IProps): React.ReactElement {
   return (
     <LoginformWrap>
       <Form>
@@ -36,6 +37,7 @@ function LoginForm({ idInputChange, isConditionMet, pwdInputChange }: IProps): R
           onChange={pwdInputChange}
           isConditionMet={isConditionMet.pwd}
           errorMsg={errMsg.pwd}
+          onKeyUp={handleLoginEnter}
         />
       </Form>
     </LoginformWrap>
