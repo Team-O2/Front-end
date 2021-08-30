@@ -1,4 +1,3 @@
-import { DropDown } from 'components/molecules';
 import { InterestModal, JoinCheck, JoinForm } from 'components/organisms';
 import React from 'react';
 import { IJoinConditionMet, IJoinData } from 'types/join.type';
@@ -16,8 +15,6 @@ interface IProps {
   handleInterestOnClick: (interest: string) => void;
   selectedInterest: string[];
   modalBtnHandler: () => Promise<void>;
-  gender: string;
-  setGender: (gender: string) => void;
 }
 
 function JoinTemplate({
@@ -32,8 +29,6 @@ function JoinTemplate({
   handleInterestOnClick,
   selectedInterest,
   modalBtnHandler,
-  gender,
-  setGender,
 }: IProps): React.ReactElement {
   return (
     <JoinWrap>
@@ -43,14 +38,6 @@ function JoinTemplate({
         isConditionMet={isConditionMet}
         userData={userData}
         setUserData={setUserData}
-      />
-      <SubTitle>성별</SubTitle>
-      <DropDown
-        state={gender}
-        setState={setGender}
-        defaultMsg="성별 선택"
-        itemList={['남성', '여성', '선택안함']}
-        page="joinform"
       />
       <SubTitle>약관동의</SubTitle>
       <JoinCheck setUserData={setUserData} userData={userData} />

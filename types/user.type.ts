@@ -14,7 +14,6 @@ export interface IUserDataType {
   password: string;
   passwordCheck: string;
   nickname: string;
-  gender: number;
   interest: Array<string>;
   marpolicy: boolean;
   policyMust: boolean;
