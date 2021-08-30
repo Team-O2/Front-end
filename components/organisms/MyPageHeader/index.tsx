@@ -17,11 +17,11 @@ function MyPageHeader({ userInfo }: IProps): React.ReactElement {
   return (
     <Wrapper>
       <UserInfo>
-        <Thumbnail src={globalUserInfo ? globalUserInfo.img : UserImg} height="75px" circular={true} />
+        <Thumbnail src={globalUserInfo ? globalUserInfo.img : UserImg} size={75} circular={true} />
         <Text>{globalUserInfo?.nickname}님의</Text>
         <TextEng>MY O2</TextEng>
         <Link to="/setting">
-          <EditIcon src={MyPageEditIcon} />
+          <EditIcon src={MyPageEditIcon} size={20} />
         </Link>
         <Tag>
           {globalUserInfo?.interest?.map((tag, idx) => (

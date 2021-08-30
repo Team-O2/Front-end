@@ -1,7 +1,7 @@
 import { Button, Icon } from 'components/atoms';
 import { FilledBookmarkIcon } from 'public/assets/images';
 import React from 'react';
-import { Contents, IconButton, Image, Name, Wrapper } from './style';
+import { Contents, IconButton, ImageWrapper, Name, Wrapper } from './style';
 
 export interface IProps {
   imagePath: string;
@@ -30,12 +30,14 @@ function ChallengeCard({
     <Wrapper>
       {isBookmarked && (
         <IconButton value={id} onClick={onClick}>
-          <Icon src={FilledBookmarkIcon} height="2.4rem" />
+          <Icon src={FilledBookmarkIcon} size={24} />
         </IconButton>
       )}
       <Button onClick={handleOnClick}>
         <span>
-          <Image src={imagePath} />
+          <ImageWrapper>
+            <Icon src={imagePath} size={100} />
+          </ImageWrapper>
           <Name>{name}</Name>
           <Contents>{content}</Contents>
         </span>

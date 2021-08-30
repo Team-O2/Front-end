@@ -6,17 +6,7 @@ import { useRecoilValue } from 'recoil';
 import { userState } from 'stores/user';
 import { IMyUserComment, IMyUserCommentResponse } from 'types/myPage.type';
 import { changeDateFormat } from 'utils';
-import {
-  ButtonContainer,
-  CommentContainer,
-  NavigationContainer,
-  PageNavi,
-  PageNumber,
-  SubTitle,
-  TagContainer,
-  Title,
-  Wrapper,
-} from './style';
+import * as S from './style';
 
 export interface IProps {
   userComment: IMyUserCommentResponse;
@@ -118,10 +108,10 @@ function MyCommentList({
   };
 
   return (
-    <Wrapper>
-      <Title>댓글 단 글</Title>
-      <SubTitle>{globalUserInfo?.nickname}님이 댓글 단 글이에요</SubTitle>
-      <TagContainer>
+    <S.Wrapper>
+      <S.Title>댓글 단 글</S.Title>
+      <S.SubTitle>{globalUserInfo?.nickname}님이 댓글 단 글이에요</S.SubTitle>
+      <S.TagContainer>
         <Button value="Concert" onClick={handleClick}>
           <Tag
             name="Share Together"
@@ -143,14 +133,14 @@ function MyCommentList({
         <Button value="Notice" onClick={handleClick}>
           <Tag name="공지사항" paddingX="20px" paddingY="10px" color="5" isSelected={selectedCategory === 'Notice'} />
         </Button>
-      </TagContainer>
-      <ButtonContainer>
+      </S.TagContainer>
+      <S.ButtonContainer>
         <Button onClick={isSelectAll ? handleAllUnselectClick : handleAllSelectClick}>
           {isSelectAll ? '선택해제' : '전체선택'}
         </Button>
         <Button onClick={handleModalOpen}>삭제</Button>
-      </ButtonContainer>
-      <CommentContainer>
+      </S.ButtonContainer>
+      <S.CommentContainer>
         {userComment.comments?.map((item: IMyUserComment) => {
           return (
             <CommentedBoardRow
@@ -166,25 +156,25 @@ function MyCommentList({
             />
           );
         })}
-      </CommentContainer>
-      <NavigationContainer>
-        <PageNavi onClick={handlePrevPageClick}>
-          <Icon src={SmallLeftArrowIcon} />
-        </PageNavi>
+      </S.CommentContainer>
+      <S.NavigationContainer>
+        <S.PageNavi onClick={handlePrevPageClick}>
+          <Icon size={24} src={SmallLeftArrowIcon} />
+        </S.PageNavi>
         <ul>
           {target.map((pageIdx: number) => (
             <li key={pageIdx}>
-              <PageNumber value={`${pageIdx}`} onClick={handlePageClick} isSelected={currentPage === pageIdx}>
+              <S.PageNumber value={`${pageIdx}`} onClick={handlePageClick} isSelected={currentPage === pageIdx}>
                 {`${pageIdx}`}
-              </PageNumber>
+              </S.PageNumber>
             </li>
           ))}
         </ul>
-        <PageNavi onClick={handleNextPageClick}>
-          <Icon src={SmallRightArrowIcon} />
-        </PageNavi>
-      </NavigationContainer>
-    </Wrapper>
+        <S.PageNavi onClick={handleNextPageClick}>
+          <Icon size={24} src={SmallRightArrowIcon} />
+        </S.PageNavi>
+      </S.NavigationContainer>
+    </S.Wrapper>
   );
 }
 

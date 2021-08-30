@@ -2,11 +2,11 @@ import { Img } from 'components/atoms';
 import Styled from 'styled-components';
 import { ifNotProp, ifProp, palette, theme } from 'styled-tools';
 
-export const UserThumbnail = Styled(Img)<{ isChild?: boolean }>`
+export const UserThumbnail = Styled(Img)`
   width: ${ifProp('isChild', '26px', '28px')};
   height: ${ifProp('isChild', '26px', '28px')};
   border-radius: 50%;
-`
+`;
 
 export const CommentWrapper = Styled.div<{ isChild?: boolean }>`
   display: flex;

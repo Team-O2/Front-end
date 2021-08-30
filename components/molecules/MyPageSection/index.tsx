@@ -32,7 +32,7 @@ function MyPageSection({ title, subTitle, path, data, renderItemList, ...props }
         <Link to={path}>
           <LinkWrapper>
             <p>더보기</p>
-            <Icon src={MoreViewArrowIcon} />
+            <Icon src={MoreViewArrowIcon} size={24} />
           </LinkWrapper>
         </Link>
       </InfoWrapper>

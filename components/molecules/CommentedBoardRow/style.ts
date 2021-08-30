@@ -1,5 +1,4 @@
 import { Button, CheckBox, Label, Link } from 'components/atoms';
-import { EmptyCheckBoxIcon, FilledCheckBoxIcon } from 'public/assets/images';
 import Styled from 'styled-components';
 import { palette, theme } from 'styled-tools';
 
@@ -20,11 +19,11 @@ export const RowCheckBox = Styled(CheckBox)`
     cursor: pointer;
     background-repeat: no-repeat;
     background-position: left center;
-    background-image: url('${EmptyCheckBoxIcon}');
+    background-image: url('/assets/images/emptyCheckBox.svg');
   }
 
   :checked + label {
-    background-image: url('${FilledCheckBoxIcon}');
+    background-image: url('/assets/images/filledCheckBox.svg');
   }
 `;
 
