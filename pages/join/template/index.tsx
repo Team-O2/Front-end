@@ -55,7 +55,7 @@ function JoinTemplate({
       <SubTitle>약관동의</SubTitle>
       <JoinCheck setUserData={setUserData} userData={userData} />
       <JoinButton disabled={isJoinButtonDisabled} isButtonDisabled={isJoinButtonDisabled} onClick={joinBtnHandler}>
-        가입 완료
+        관심사 선택하기
       </JoinButton>
       <InterestModal
         isInterestModalOpen={isInterestModalOpen}
