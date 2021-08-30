@@ -1,9 +1,9 @@
 import { getGeneration } from 'apis';
-import { Button } from 'components/atoms';
+import { Button, Link } from 'components/atoms';
 import { HamDropDown } from 'components/molecules';
+import { useRouter } from 'next/router';
 import { HamChallengeIcon, HamUnchallengeIcon, LoginIcon, UserImg } from 'public/assets/images';
 import React, { useEffect, useState } from 'react';
-import { Link, useHistory } from 'react-router-dom';
 import { useRecoilState } from 'recoil';
 import { userState, userStatusState } from 'stores/user';
 import {
@@ -37,7 +37,7 @@ function Hamburger(): React.ReactElement {
   // 2: 챌린지 안하는 유저 (기간은 신청기간이 아님)
   // 3: 챌린지 하는 유저 (기간은 챌린지 중)
   // 4: 관리자
-  const history = useHistory();
+  const history = useRouter();
   const [userStatusData, setUserStatusData] = useRecoilState(userStatusState);
   const [userData, setUserData] = useRecoilState(userState);
   const [userImage, setUserImage] = useState(userData ? userData.img : UserImg); //유저&사진이 존재 하면 이미지변경
@@ -107,7 +107,7 @@ function Hamburger(): React.ReactElement {
   return (
     <HamburgerContainer>
       <TopContainer>
-        <UserIcon src={userImage} />
+        <UserIcon src={userImage} width={100} height={100} />
         {(userStateNum === 0 || userStateNum === 4) && (
           <NoLoginSubTitle>
             함께 성장하는 공간
