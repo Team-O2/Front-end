@@ -1,6 +1,6 @@
 import { getChallengeSearchData } from 'apis';
-import { AllFeedIcon, MyFeedIcon, WriteIcon } from 'assets/images';
 import { CategoryList, SearchForm } from 'components/organisms';
+import { AllFeedIcon, MyFeedIcon, WriteIcon } from 'public/assets/images';
 import React, { useCallback, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { useRecoilValue } from 'recoil';
