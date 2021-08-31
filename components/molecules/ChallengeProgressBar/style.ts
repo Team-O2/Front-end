@@ -4,7 +4,7 @@ import { palette, theme } from 'styled-tools';
 
 export const CharacterWrapper = Styled.div`
     position:sticky;
-    top:0.01px;
+    top:30px;
     margin: 0 auto;
     background-color: ${palette('grayscale', 0)};
     padding-top:30px;
