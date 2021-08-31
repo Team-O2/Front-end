@@ -3,7 +3,15 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { ThumbnailCommentIcon, ThumbnailLikeIcon } from 'public/assets/images';
 import React from 'react';
-import { ConcertWrapper, Content, Info, ThumbnailContainer, ThumbnailInfo, ThumbnailOverlay } from './style';
+import {
+  ConcertWrapper,
+  Content,
+  Info,
+  ThumbnailContainer,
+  ThumbnailIcon,
+  ThumbnailInfo,
+  ThumbnailOverlay,
+} from './style';
 
 interface IProps {
   imgThumbnail: string;
@@ -54,11 +62,15 @@ function Notice({
                 <div></div>
               ) : (
                 <>
-                  <Image src={ThumbnailLikeIcon} alt="" />
+                  <ThumbnailIcon>
+                    <Image src={ThumbnailLikeIcon} alt="" />
+                  </ThumbnailIcon>
                   <p> {likeNum}</p>
                 </>
               )}
-              <Image src={ThumbnailCommentIcon} alt="" />
+              <ThumbnailIcon>
+                <Image src={ThumbnailCommentIcon} alt="" />
+              </ThumbnailIcon>
               <p> {commentNum}</p>
             </ThumbnailInfo>
           </ThumbnailOverlay>
