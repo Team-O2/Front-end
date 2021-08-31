@@ -1,4 +1,4 @@
-import Image from 'next/image';
+import { Img } from 'components/atoms';
 import { SearchIcon } from 'public/assets/images';
 import React from 'react';
 import { SearchBarWrapper, SearchButton, SearchInput } from './style';
@@ -13,7 +13,7 @@ function SearchBar({ onClickSearch, onChangeKeyword }: IProps): React.ReactEleme
     <SearchBarWrapper>
       <SearchInput name="searchBar" onChange={onChangeKeyword} placeholder="키워드를 검색해 주세요"></SearchInput>
       <SearchButton onClick={onClickSearch}>
-        <Image src={SearchIcon} alt="" />
+        <Img src={SearchIcon} alt="" />
       </SearchButton>
     </SearchBarWrapper>
   );

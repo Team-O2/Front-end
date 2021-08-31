@@ -1,5 +1,4 @@
-import { Modal } from 'components/atoms';
-import Link from 'next/link';
+import { Link, Modal } from 'components/atoms';
 import { LoginAlertIcon } from 'public/assets/images';
 import React from 'react';
 import {
@@ -30,7 +29,7 @@ function LoginModal({ isLoginModalOpen, setIsLoginModalOpen }: IProps): React.Re
         </LoginNotice>
         <ButtonContainer>
           <CancelButton onClick={handleCloseButton}>취소</CancelButton>
-          <Link href="/login">
+          <Link to="/login">
             <LoginButton>로그인하기</LoginButton>
           </Link>
         </ButtonContainer>

@@ -1,5 +1,5 @@
+import Image from 'components/atoms/Img';
 import { Concert } from 'components/molecules';
-import Image from 'next/image';
 import { SmallLeftArrowIcon, SmallRightArrowIcon } from 'public/assets/images';
 import React, { useState } from 'react';
 import { IConcert } from 'types/concert.type';

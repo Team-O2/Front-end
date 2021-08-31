@@ -1,4 +1,4 @@
-import Link from 'next/link';
+import { Link } from 'components/atoms';
 import React from 'react';
 import { ConcertCardWrapper, Detail, Main, Overlay } from './style';
 interface IProps {
@@ -12,12 +12,7 @@ interface IProps {
 function ConcertCard({ imgThumbnail, title, authorNickname, interestList, concertID }: IProps): React.ReactElement {
   const interestDivide = interestList?.join(' | ');
   return (
-    <Link
-      href={{
-        pathname: `/concert/${concertID}`,
-      }}
-      passHref
-    >
+    <Link to={`/concert/${concertID}`}>
       <ConcertCardWrapper>
         <Main>
           <img src={imgThumbnail} alt="" />
