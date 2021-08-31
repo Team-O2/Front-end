@@ -13,7 +13,7 @@ export interface IProps {
 }
 
 interface IEditCard {
-  id: string;
+  id: string | string[];
 }
 
 function EditCard({ id }: IEditCard): React.ReactElement {
