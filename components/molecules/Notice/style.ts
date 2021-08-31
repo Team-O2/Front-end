@@ -89,6 +89,12 @@ export const ThumbnailInfo = Styled.div`
   }
 `;
 
+export const ThumbnailIcon = Styled.div`
+  margin-right:5px;
+  width: 20px;
+  height: 20px;
+`;
+
 export const ConcertWrapper = Styled.div`
   display: flex;
   flex-direction: row;
