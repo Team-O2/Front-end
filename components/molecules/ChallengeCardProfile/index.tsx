@@ -1,6 +1,7 @@
 import { CancelChallengeScrap, ChallengeScrap } from 'apis';
 import { Link } from 'components/atoms';
 import dayjs from 'dayjs';
+import Image from 'next/image';
 import { ColorScrapIcon, DeleteIcon, EditIcon, GrayScrapIcon, MenuBarIcon } from 'public/assets/images';
 import React, { useState } from 'react';
 import { useRecoilValue } from 'recoil';
@@ -120,7 +121,7 @@ function ChallengeCardProfile({
             scrapRender === false || userStateNum === 0 ? (
               <MenuBarWrapper>
                 <MenuButton>
-                  <img
+                  <Image
                     src={GrayScrapIcon}
                     alt=""
                     onClick={() => {
@@ -132,7 +133,7 @@ function ChallengeCardProfile({
             ) : (
               <MenuBarWrapper>
                 <MenuButton>
-                  <img
+                  <Image
                     src={ColorScrapIcon}
                     alt=""
                     onClick={() => {
@@ -149,18 +150,18 @@ function ChallengeCardProfile({
                   setIsDeleteModalOpen(true);
                 }}
               >
-                <img src={DeleteIcon} alt="" />
+                <Image src={DeleteIcon} alt="" />
               </DeleteEditCardButton>
               <Link to={`/challenge/edit/${id}`}>
                 <DeleteEditCardButton>
-                  <img src={EditIcon} alt="" />
+                  <Image src={EditIcon} alt="" />
                 </DeleteEditCardButton>
               </Link>
             </DeleteBar>
           ) : (
             <MenuBarWrapper>
               <MenuButton>
-                <img
+                <Image
                   src={MenuBarIcon}
                   alt=""
                   onClick={() => {

@@ -1,4 +1,5 @@
 import { CancelChallengeLike, ChallengeLike } from 'apis';
+import Image from 'next/image';
 import { ClickGoodIcon, CommentCountIcon, LikeFilledIcon } from 'public/assets/images';
 import React, { useState } from 'react';
 import { useRecoilValue } from 'recoil';
@@ -96,7 +97,7 @@ function ChallengeCardBottom({
       )}
       <IconWrapper>
         {likeRender ? (
-          <img
+          <Image
             src={LikeFilledIcon}
             onClick={() => {
               likeCancelHandelOnClick();
@@ -104,7 +105,7 @@ function ChallengeCardBottom({
             alt=""
           />
         ) : (
-          <img
+          <Image
             src={ClickGoodIcon}
             onClick={() => {
               likeSubmitHandelOnClick();
@@ -113,7 +114,7 @@ function ChallengeCardBottom({
           />
         )}
         <h2>{countLikes}</h2>
-        <img src={CommentCountIcon} alt="" />
+        <Image src={CommentCountIcon} alt="" />
         <h2>{comments}</h2>
       </IconWrapper>
     </>
