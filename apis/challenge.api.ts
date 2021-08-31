@@ -35,7 +35,7 @@ export const writeForm = async (writeData: WriteData, token: string): Promise<bo
   return false;
 };
 
-export const ChallengeEdit = async (editData: EditData, token: string, id: string): Promise<boolean> => {
+export const ChallengeEdit = async (editData: EditData, token: string, id: string | string[]): Promise<boolean> => {
   try {
     const data = await serverAxios.patch(`${PREFIX_URL}/${id}`, editData, {
       headers: {
@@ -113,7 +113,7 @@ export const DeleteChallenge = async (challengeID: string, token: string): Promi
   return false;
 };
 
-export const getChallengeContent = async (id: string, token?: string): Promise<IChallenge | null> => {
+export const getChallengeContent = async (id: string | string[], token?: string): Promise<IChallenge | null> => {
   try {
     const data = await serverAxios.get(`${PREFIX_URL}/${id}`, {
       headers: {
