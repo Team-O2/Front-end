@@ -1,4 +1,4 @@
-import { Link, Modal } from 'components/atoms';
+import { Img, Link, Modal } from 'components/atoms';
 import { LoginAlertIcon } from 'public/assets/images';
 import React from 'react';
 import {
@@ -8,6 +8,7 @@ import {
   LoginModalWrapper,
   LoginNotice,
   LoginNoticeDetail,
+  LoginNoticeIcon,
   LoginNoticeTitle,
 } from './style';
 interface IProps {
@@ -23,7 +24,9 @@ function LoginModal({ isLoginModalOpen, setIsLoginModalOpen }: IProps): React.Re
     <Modal isOpen={isLoginModalOpen} setIsOpen={setIsLoginModalOpen} isBlur={true}>
       <LoginModalWrapper>
         <LoginNotice>
-          <img src={LoginAlertIcon} alt=""></img>
+          <LoginNoticeIcon>
+            <Img src={LoginAlertIcon} alt=""></Img>
+          </LoginNoticeIcon>
           <LoginNoticeTitle>앗!</LoginNoticeTitle>
           <LoginNoticeDetail>로그인이 필요한 서비스입니다</LoginNoticeDetail>
         </LoginNotice>
