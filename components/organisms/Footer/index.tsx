@@ -1,4 +1,4 @@
-import Image from 'next/image';
+import { Img } from 'components/atoms';
 import { HeaderLogoIcon } from 'public/assets/images';
 import React from 'react';
 import { Designer, Developer, FooterWrapper, Info, Logo, Member, Planner, Server, Text } from './style';
@@ -7,7 +7,7 @@ function Footer(): React.ReactElement {
   return (
     <FooterWrapper>
       <Logo>
-        <Image src={HeaderLogoIcon} alt="" />
+        <Img src={HeaderLogoIcon} alt="" />
       </Logo>
       <Text>
         <Info>

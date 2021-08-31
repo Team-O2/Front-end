@@ -1,6 +1,5 @@
+import { Img, Link } from 'components/atoms';
 import dayjs from 'dayjs';
-import Image from 'next/image';
-import Link from 'next/link';
 import { ThumbnailCommentIcon, ThumbnailLikeIcon } from 'public/assets/images';
 import React from 'react';
 import {
@@ -38,12 +37,7 @@ function Notice({
 }: IProps): React.ReactElement {
   const interestDivide = interestList?.join(' | ');
   return (
-    <Link
-      href={{
-        pathname: `/notice/${noticeID}`,
-      }}
-      passHref
-    >
+    <Link to={`/notice/${noticeID}`}>
       <ConcertWrapper>
         <Info>
           <p>{authorNickname}</p>
@@ -63,13 +57,13 @@ function Notice({
               ) : (
                 <>
                   <ThumbnailIcon>
-                    <Image src={ThumbnailLikeIcon} alt="" />
+                    <Img src={ThumbnailLikeIcon} alt="" />
                   </ThumbnailIcon>
                   <p> {likeNum}</p>
                 </>
               )}
               <ThumbnailIcon>
-                <Image src={ThumbnailCommentIcon} alt="" />
+                <Img src={ThumbnailCommentIcon} alt="" />
               </ThumbnailIcon>
               <p> {commentNum}</p>
             </ThumbnailInfo>

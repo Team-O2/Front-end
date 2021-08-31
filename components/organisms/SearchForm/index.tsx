@@ -1,5 +1,5 @@
+import { Img } from 'components/atoms';
 import { SearchBar } from 'components/molecules';
-import Image from 'next/image';
 import { DiamondIcon } from 'public/assets/images';
 import React, { useState } from 'react';
 import { Detail, Main, SearchFormWrapper } from './style';
@@ -23,7 +23,7 @@ function SearchForm({ reRenderKeyword, selectedCategory, contentListNum, keyword
   return (
     <SearchFormWrapper>
       <Main>
-        <Image src={DiamondIcon} alt="" />
+        <Img src={DiamondIcon} alt="" />
         <p>{selectedCategory}</p>
         <SearchBar onChangeKeyword={onChangeKeyword} onClickSearch={onClickSearch}></SearchBar>
       </Main>

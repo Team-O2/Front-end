@@ -1,5 +1,5 @@
+import { Img } from 'components/atoms';
 import { Notice } from 'components/molecules';
-import Image from 'next/image';
 import { SmallLeftArrowIcon, SmallRightArrowIcon } from 'public/assets/images';
 import React, { useState } from 'react';
 import { INotice } from 'types/notice.type';
@@ -64,7 +64,7 @@ function NoticeList({ noticeList, totalNoticeNum, currentPage, setCurrentPage }:
         )}
         <NavigationContainer>
           <PageNavi onClick={handlePrevPageClick}>
-            <Image src={SmallLeftArrowIcon} />
+            <Img src={SmallLeftArrowIcon} />
           </PageNavi>
           <ul>
             {target.map((pageIdx: number) => (
@@ -76,7 +76,7 @@ function NoticeList({ noticeList, totalNoticeNum, currentPage, setCurrentPage }:
             ))}
           </ul>
           <PageNavi onClick={handleNextPageClick}>
-            <Image src={SmallRightArrowIcon} />
+            <Img src={SmallRightArrowIcon} />
           </PageNavi>
         </NavigationContainer>
       </NoticeListWrapper>
