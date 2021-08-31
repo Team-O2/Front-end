@@ -4,13 +4,13 @@ import { palette, theme } from 'styled-tools';
 
 export const LoginNotice = Styled.div`
   padding: 0px 80px 0px 80px;
-  img {
-    display:flex;
-    margin:auto;
-    margin-top:-40px;
-  }
 `;
-
+export const LoginNoticeIcon = Styled.div`
+  display:flex;
+  margin:auto;
+  margin-left:120px;
+  margin-top:-40px;
+`;
 export const LoginNoticeTitle = Styled.div`
   padding:30px 0px 30px 0px;
   text-align: center;
