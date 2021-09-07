@@ -44,6 +44,7 @@ function Footer(): React.ReactElement {
             <p>Server</p>
             <p>Hyunjin</p>
             <p>Seongyong</p>
+            <p>Seolhui</p>
           </Server>
         </Member>
       </Text>
