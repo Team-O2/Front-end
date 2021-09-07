@@ -33,6 +33,10 @@ function CommentedBoardRow({
   category,
   handleDetailModal,
 }: IProps): React.ReactElement {
+  const onClickHandler = () => {
+    handleDetailModal(boardId);
+  };
+
   return (
     <Wrapper>
       {content && (
@@ -43,11 +47,7 @@ function CommentedBoardRow({
             <InfoDate>{date}</InfoDate>
             <VerticalBar></VerticalBar>
             {category === 'Challenge' ? (
-              <OriginBoardButton
-                onClick={() => {
-                  handleDetailModal(boardId);
-                }}
-              >
+              <OriginBoardButton onClick={onClickHandler}>
                 <LinkText>원문보기</LinkText>
               </OriginBoardButton>
             ) : (

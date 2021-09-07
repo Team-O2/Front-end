@@ -29,7 +29,7 @@ export const RowCheckBox = Styled(CheckBox)`
 
 export const RowLabel = Styled(Label)`
   ${theme('font.body4')};
-  width: 783px;
+  /* width: 783px; */
   height: 28px;
   color: ${palette('grayscale', -3)};
   margin-right: 78px;
@@ -47,14 +47,17 @@ export const InfoWrapper = Styled.div`
 `;
 
 export const InfoDate = Styled.span`
+  display: inline-block;
   ${theme('font.body3_eng')};
-  width: 95px;
+  width: 100px;
   height: 20px;
   text-align: right;
-  margin-right: 10px;
 `;
 
 export const VerticalBar = Styled.span`
+  display: inline-block;
+  margin-right: 9px;
+  margin-left: 10px;
   width: 1px;
   height: 16px;
   background-color: ${palette('grayscale', 3)};
@@ -63,13 +66,13 @@ export const VerticalBar = Styled.span`
 export const OriginBoardLink = Styled(Link)`
   width: 54px;
   height: 24px;
-  margin: auto 0 auto 9px;
+  margin: auto 0;
 `;
 
 export const OriginBoardButton = Styled(Button)`
   width: 54px;
   height: 24px;
-  margin: auto 0 auto 9px;
+  margin: auto 0;
 `;
 
 export const LinkText = Styled.span`
