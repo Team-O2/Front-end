@@ -1,5 +1,6 @@
+import { Img } from 'components/atoms';
 import React from 'react';
-import { Exp, Image, SBadgeCard, Title } from './style';
+import { Exp, SBadgeCard, Title } from './style';
 
 export interface IProps {
   className?: string;
@@ -11,7 +12,7 @@ export interface IProps {
 function BadgeCard({ title, explain, img }: IProps): React.ReactElement {
   return (
     <SBadgeCard>
-      <Image src={img}></Image>
+      <Img src={img} width={130} height={130} />
       <Title>{title}</Title>
       <Exp> {explain}</Exp>
     </SBadgeCard>
