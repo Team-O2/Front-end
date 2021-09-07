@@ -12,11 +12,11 @@ export const RemovableContainer = Styled.div`
   align-items: center;
   color: ${palette('primary', 5)};
 
-  div {
+  p {
     margin-right: 10px;
   }
 
-  img {
+  div {
     width: 14px;
   }
 `;
