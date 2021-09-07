@@ -192,10 +192,10 @@ function Hamburger(): React.ReactElement {
         )}
         {userStateNum === 4 && (
           <>
-            <Link to="/admin/challenge/open">
+            <Link to="/admin/challengeopen">
               <TitleBtn>챌린지 오픈하기</TitleBtn>
             </Link>
-            <Link to="/admin/challenge/list">
+            <Link to="/admin/challengelist">
               <BottomMargin10>
                 <TitleBtn>챌린지 정보</TitleBtn>
               </BottomMargin10>
