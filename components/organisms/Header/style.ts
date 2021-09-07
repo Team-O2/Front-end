@@ -9,8 +9,11 @@ margin-left : 50px;
 height : 60px;
 `;
 
-export const HeaderButton = Styled(Img)`
+export const ButtonWrap = Styled.div`
 margin-right : 20px;
+`;
+
+export const HeaderButton = Styled(Img)`
 width : 32px;
 `;
 
