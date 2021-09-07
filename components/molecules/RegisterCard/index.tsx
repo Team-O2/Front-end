@@ -1,4 +1,5 @@
 import { LoginModal } from 'components/molecules';
+import Image from 'next/image';
 import { MinusIcon, PlusIcon } from 'public/assets/images';
 import React, { useState } from 'react';
 import { useRecoilValue } from 'recoil';
@@ -75,7 +76,7 @@ function RegisterCard({
                 minusCount();
               }}
             >
-              <img src={MinusIcon} />
+              <Image src={MinusIcon} />
             </p>
             {registerCount}
             <p
@@ -83,7 +84,7 @@ function RegisterCard({
                 plusCount();
               }}
             >
-              <img src={PlusIcon} />
+              <Image src={PlusIcon} />
             </p>
           </BoxWrapper>
         </CardSettingWrapper>
