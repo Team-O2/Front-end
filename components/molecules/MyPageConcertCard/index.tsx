@@ -35,7 +35,7 @@ function MyPageConcertCard({
       <span>
         <CardContainer>
           <ImageWrapper>
-            <Img src={imagePath} />
+            <Img src={imagePath} width={200} height={214} />
           </ImageWrapper>
           <InfoContainer>
             <InfoTag name={tagName} color={tagColor} isSelected={false} />
