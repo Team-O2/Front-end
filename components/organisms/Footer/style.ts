@@ -18,6 +18,9 @@ export const Info = Styled.div`
     margin-top: 10px;
     ${theme('font.body2_eng')};
   }
+  span:hover {
+    cursor:pointer;
+  }
 `;
 
 export const Member = Styled.div`

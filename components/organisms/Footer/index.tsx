@@ -1,4 +1,4 @@
-import { Img } from 'components/atoms';
+import { Img, Link } from 'components/atoms';
 import { HeaderLogoIcon } from 'public/assets/images';
 import React from 'react';
 import { Designer, Developer, FooterWrapper, Info, Logo, Member, Planner, Server, Text } from './style';
@@ -11,10 +11,14 @@ function Footer(): React.ReactElement {
       </Logo>
       <Text>
         <Info>
-          <span>Open Together</span>
+          <Link to="/">
+            <span>Open Together</span>
+          </Link>
           <span>이용약관</span>
           <span>개인정보 처리방침</span>
-          <span>공지사항</span>
+          <Link to="/notice">
+            <span>공지사항</span>
+          </Link>
           <p>Copyright © 2021 Open Together, O2</p>
         </Info>
         <Member>
