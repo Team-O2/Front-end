@@ -1,38 +1,19 @@
 import React from 'react';
-import Styled from 'styled-components';
-import { palette, prop } from 'styled-tools';
+import { Card, Text, Wrapper } from './style';
 
 export interface IProps {
   title: string;
   children: string | React.ReactElement;
   width: string;
-  className?: string;
 }
 
-function MyPageCard({ title, children, ...props }: IProps): React.ReactElement {
+function MyPageCard({ title, children, width }: IProps): React.ReactElement {
   return (
-    <Wrapper {...props}>
-      <p className="subhead2_eng">{title}</p>
-      <div className="card">{children}</div>
+    <Wrapper>
+      <Text>{title}</Text>
+      <Card width={width}>{children}</Card>
     </Wrapper>
   );
 }
-
-const Wrapper = Styled.span`
-  display: inline-block;
-
-  p {
-    color: ${palette('grayscale', 2)};
-  }
-
-  .card {
-    margin: 10px 20px 0 0;
-    width: ${prop('width')}px;
-    height: 313px;
-    flex-grow: 0;
-    border-radius: 4px;
-    background-color: #fbfbfb;
-  }
-`;
 
 export default MyPageCard;
