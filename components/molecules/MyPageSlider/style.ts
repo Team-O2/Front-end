@@ -5,9 +5,11 @@ import { fadeIn, fadeOut } from 'styles/animation';
 
 export const PrevButton = Styled(Button)`
   margin-right: 20px;
+  width: 48px;
 `;
 
 export const NextButton = Styled(Button)`
+  width: 48px;
   margin-left: 20px;
 `;
 
@@ -36,10 +38,10 @@ export const TextLabel = Styled(Label)`
   color: ${palette('grayscale', -4)};
   ${theme('font.body1')};
 `;
+
 export const Slider = Styled.div`
   width: 824px;
   overflow: hidden;
-
 `;
 
 export const SliderBox = Styled.div`
