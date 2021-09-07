@@ -1,4 +1,3 @@
-import { Icon } from 'components/atoms';
 import Styled from 'styled-components';
 import { palette, theme } from 'styled-tools';
 
@@ -12,10 +11,11 @@ export const UserInfo = Styled.div`
   margin-right: 50px;
 `;
 
-export const Thumbnail = Styled(Icon)`
+export const Thumbnail = Styled.div`
   width : 74px;
   height : 74px;
   margin-bottom: 36px;
+  border-radius: 50%;
   border: solid 1px ${palette('grayscale', 0)};
 `;
 
@@ -32,7 +32,8 @@ export const TextEng = Styled.span`
   background-image: linear-gradient(to right, ${palette('primary', 3)}, ${palette('primary', 0)});
 `;
 
-export const EditIcon = Styled(Icon)`
+export const EditIconLinkWrapper = Styled.div`
+  display: inline-block;
   margin: 10px 0 0 20px;
 `;
 
