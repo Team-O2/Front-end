@@ -13,6 +13,8 @@ interface IProps {
   scrapNum?: number;
   onLike?: () => void;
   onScrap?: () => void;
+  cancelLike?: () => void;
+  cancelScrap?: () => void;
   isUserLike?: boolean;
   isUserScrap?: boolean;
 }
@@ -27,6 +29,8 @@ function DetailContent({
   scrapNum,
   onLike,
   onScrap,
+  cancelLike,
+  cancelScrap,
   isUserLike,
   isUserScrap,
 }: IProps): React.ReactElement {
@@ -49,7 +53,12 @@ function DetailContent({
         ) : (
           <Like>
             <IconContainer>
-              <Image className="like__img" src={isUserLike ? LikeFilledIcon : LikeIcon} onClick={onLike} alt="" />
+              <Image
+                className="like__img"
+                src={isUserLike ? LikeFilledIcon : LikeIcon}
+                onClick={isUserLike ? cancelLike : onLike}
+                alt=""
+              />
             </IconContainer>
             {likeNum}
           </Like>
@@ -65,7 +74,12 @@ function DetailContent({
         ) : (
           <Scrap>
             <IconContainer>
-              <Image className="scrap__img" src={isUserScrap ? ScrapFilledIcon : ScrapIcon} onClick={onScrap} alt="" />
+              <Image
+                className="scrap__img"
+                src={isUserScrap ? ScrapFilledIcon : ScrapIcon}
+                onClick={isUserScrap ? cancelScrap : onScrap}
+                alt=""
+              />
             </IconContainer>
             {scrapNum}
           </Scrap>

@@ -9,6 +9,8 @@ interface IProps {
   scrapNum?: number;
   onLike?: () => void;
   onScrap?: () => void;
+  cancelLike?: () => void;
+  cancelScrap?: () => void;
   isUserLike?: boolean;
   isUserScrap?: boolean;
   commentList: Array<IConcertComment>;
@@ -23,6 +25,8 @@ function ConcertDetailTemplate({
   scrapNum,
   onLike,
   onScrap,
+  cancelLike,
+  cancelScrap,
   isUserLike,
   isUserScrap,
   commentList,
@@ -52,6 +56,8 @@ function ConcertDetailTemplate({
           scrapNum={scrapNum}
           onLike={onLike}
           onScrap={onScrap}
+          cancelLike={cancelLike}
+          cancelScrap={cancelScrap}
           isUserLike={isUserLike}
           isUserScrap={isUserScrap}
         ></DetailContent>

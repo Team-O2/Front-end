@@ -26,7 +26,6 @@ export const getConcertListData = async (token: string): Promise<IConcert[] | nu
       return null;
     }
   } catch (e) {
-    alert(e.response.data.message);
     return null;
   }
 };
@@ -44,7 +43,6 @@ export const getConcertData = async (concertID: string | string[]): Promise<IUse
       return null;
     }
   } catch (e) {
-    alert(e.response.data.message);
     return null;
   }
 };
@@ -65,7 +63,6 @@ export const getConcertUserData = async (token: string, concertID: string | stri
       return null;
     }
   } catch (e) {
-    alert(e.response.data.message);
     return null;
   }
 };
@@ -89,7 +86,6 @@ export const getConcertSearchData = async ({
       return null;
     }
   } catch (e) {
-    alert(e.response.data.message);
     return null;
   }
 };
@@ -111,7 +107,6 @@ export const postConcertComment = async (
       return null;
     }
   } catch (e) {
-    alert(e.response.data.message);
     return null;
   }
 };
@@ -129,10 +124,6 @@ export const postConcertLike = async (token: string, concertID: string | string[
       return false;
     }
   } catch (e) {
-    if (e.response.data.status === 400) {
-      return true;
-    }
-    alert(e.response.data.message);
     return false;
   }
 };
@@ -150,7 +141,6 @@ export const deleteConcertLike = async (token: string, concertID: string | strin
       return false;
     }
   } catch (e) {
-    alert(e.response.data.message);
     return false;
   }
 };
@@ -168,10 +158,6 @@ export const postConcertScrap = async (token: string, concertID: string | string
       return false;
     }
   } catch (e) {
-    if (e.response.data.message === '이미 스크랩 된 글입니다') {
-      return true;
-    }
-    alert(e.response.data.message);
     return false;
   }
 };
@@ -189,7 +175,6 @@ export const deleteConcertScrap = async (token: string, concertID: string | stri
       return false;
     }
   } catch (e) {
-    alert(e.response.data.message);
     return false;
   }
 };
