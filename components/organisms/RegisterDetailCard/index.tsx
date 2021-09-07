@@ -1,5 +1,6 @@
 import { getRegistPeriod, SignRegister } from 'apis';
 import { RegisterCard, RegisterCompletedModal, RegisterConfirmModal } from 'components/molecules';
+import Image from 'next/image';
 import { AlertIcon } from 'public/assets/images';
 import React, { useEffect, useState } from 'react';
 import { useRecoilState } from 'recoil';
@@ -71,7 +72,7 @@ function RegisterDetailCard() {
         <NoticeCardWrapper>
           <NoticeHeaderWrapper>
             오투 챌린지 주의사항
-            <img src={AlertIcon}></img>
+            <Image src={AlertIcon}></Image>
           </NoticeHeaderWrapper>
           <h1>01</h1>
           <p>주당 회고록 개수 3개 이상 선택 및 80% 이상 달성 시 뱃지 획득이 가능합니다.</p>
