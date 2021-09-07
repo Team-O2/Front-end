@@ -15,7 +15,7 @@ export const ProfileImg = Styled.div<IProfileImg>`
   background: url(${(props) => props.url}) center center / cover;
 `;
 
-export const EditButton = Styled.img`
+export const EditButton = Styled.div`
   cursor: pointer;
 
   position: relative;
