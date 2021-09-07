@@ -1,3 +1,4 @@
+import { Icon } from 'components/atoms';
 import { ErrorIcon } from 'public/assets/images';
 import React, { useState } from 'react';
 import { ErrorImage, ErrorMsg, Input, InputContainer, SStyledInput } from './style';
@@ -59,7 +60,11 @@ function StyledInput({
           autoComplete={isPw ? 'false' : 'true'}
           onKeyUp={onKeyUp}
         />
-        {isFocused && !isConditionMet && value !== '' && <ErrorImage src={ErrorIcon}></ErrorImage>}
+        {isFocused && !isConditionMet && value !== '' && (
+          <ErrorImage>
+            <Icon src={ErrorIcon} size={24} />
+          </ErrorImage>
+        )}
       </InputContainer>
       {isFocused && !isConditionMet && value !== '' && <ErrorMsg>{errorMsg}</ErrorMsg>}
     </SStyledInput>
