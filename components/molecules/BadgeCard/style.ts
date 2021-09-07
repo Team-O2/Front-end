@@ -1,11 +1,5 @@
-import { Img } from 'components/atoms';
 import Styled from 'styled-components';
 import { palette, theme } from 'styled-tools';
-
-export const Image = Styled(Img)`
-  width : 130px;
-  height : 130px;
-`;
 
 export const Title = Styled.h1`
   ${theme('font.subhead4')};

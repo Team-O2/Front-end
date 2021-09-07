@@ -1,11 +1,5 @@
-import { Img } from 'components/atoms';
 import Styled from 'styled-components';
 import { palette, theme } from 'styled-tools';
-
-export const Image = Styled(Img)`
-  width: 260px;
-  height: 260px;
-`;
 
 export const Exp = Styled.p`
   ${theme('font.body4')};
