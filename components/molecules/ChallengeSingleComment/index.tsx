@@ -31,7 +31,7 @@ function ChallengeSingleComment({
         <img src={userID?.img} alt="" />
         <h1>{userID?.nickname}</h1>
         <h2>{isDeleted ? '삭제된 댓글입니다.' : text}</h2>
-        <CommentFold onClick={onClickReplyOpen}>{openReply ? '접기' : '답글보기'}</CommentFold>
+        <CommentFold onClick={onClickReplyOpen}>답글</CommentFold>
       </CommentWrapper>
       <RecommentWrapper>
         {openReply && (
@@ -45,18 +45,18 @@ function ChallengeSingleComment({
               setCommentListFlag={setCommentListFlag}
               parentCommentId={_id}
             />
-            {childrenComment.map((data: IReply) => (
-              <ChallengeReCommentList // 답글
-                className="reply__comment"
-                key={data._id}
-                img={data.userID?.img}
-                nickname={data.userID?.nickname}
-                text={data.text}
-                isDeleted={data.isDeleted}
-              />
-            ))}
           </>
         )}
+        {childrenComment.map((data: IReply) => (
+          <ChallengeReCommentList // 답글
+            className="reply__comment"
+            key={data._id}
+            img={data.userID?.img}
+            nickname={data.userID?.nickname}
+            text={data.text}
+            isDeleted={data.isDeleted}
+          />
+        ))}
       </RecommentWrapper>
     </SingleCommentWrapper>
   );
