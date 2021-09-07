@@ -1,3 +1,4 @@
+import Image from 'next/image';
 import { EditWhiteIcon } from 'public/assets/images';
 import React from 'react';
 import { ISettingUserInfo } from 'types/setting.type';
@@ -14,7 +15,9 @@ function ProfileEdit({ userInfo, imgInput, handleInputImg }: IProps): React.Reac
     <S.ProfileContainer>
       <S.ProfileImg url={userInfo.img} />
       <label htmlFor="file">
-        <S.EditButton src={EditWhiteIcon} />
+        <S.EditButton>
+          <Image src={EditWhiteIcon} />
+        </S.EditButton>
       </label>
       <S.ProfileInput
         type="file"
