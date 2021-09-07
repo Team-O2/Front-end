@@ -1,3 +1,4 @@
+import { Icon } from 'components/atoms';
 import { XIcon } from 'public/assets/images';
 import React from 'react';
 import * as S from './style';
@@ -14,8 +15,10 @@ function RemovableTag({ setList, text }: IProps): React.ReactElement {
 
   return (
     <S.RemovableContainer>
-      <div>{text}</div>
-      <img id={text} src={XIcon} onClick={handleOnClick} />
+      <p>{text}</p>
+      <div id={text} onClick={handleOnClick}>
+        <Icon src={XIcon} size={14} />
+      </div>
     </S.RemovableContainer>
   );
 }
