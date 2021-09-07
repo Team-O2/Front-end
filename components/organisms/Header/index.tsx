@@ -1,8 +1,8 @@
-import { HamburgerIcon, O2Icon } from 'public/assets/images';
 import { Button, Link, Modal } from 'components/atoms';
 import { Hamburger } from 'components/organisms';
+import { HamburgerIcon, O2Icon } from 'public/assets/images';
 import React, { useState } from 'react';
-import { ButtonWrapper, HeaderButton, HeaderWrapper, HideWrap } from './style';
+import { ButtonWrap, ButtonWrapper, HeaderButton, HeaderWrapper, HideWrap } from './style';
 
 function Header(): React.ReactElement {
   const [hamburgerOpen, setHamburgerOpen] = useState(false);
@@ -15,11 +15,13 @@ function Header(): React.ReactElement {
       <HeaderWrapper>
         <ButtonWrapper>
           <Button onClick={handleHamburgerOpen}>
-            <HeaderButton src={HamburgerIcon}></HeaderButton>
+            <ButtonWrap>
+              <HeaderButton src={HamburgerIcon} />
+            </ButtonWrap>
           </Button>
           <Link to="/">
             <Button>
-              <HeaderButton src={O2Icon}></HeaderButton>
+              <HeaderButton src={O2Icon} />
             </Button>
           </Link>
         </ButtonWrapper>
