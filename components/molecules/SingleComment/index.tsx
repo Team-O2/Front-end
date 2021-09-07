@@ -77,30 +77,28 @@ function SingleComment({
         <img src={userID?.img} alt="" />
         <CommentWriter>{userID?.nickname}</CommentWriter>
         <CommentText>{isDeleted ? '삭제된 댓글입니다.' : text}</CommentText>
-        <CommentToggle onClick={onClickReplyOpen}>{isOpenReply ? '접기' : '답글보기'}</CommentToggle>
+        <CommentToggle onClick={onClickReplyOpen}>답글</CommentToggle>
       </CommentContainer>
       <ReplyContainer>
         {isOpenReply && (
-          <>
-            <ReplyCommentWrite
-              value={replyValue}
-              isComment={false}
-              handleChange={handleChange}
-              handleSubmit={handleSubmit}
-            ></ReplyCommentWrite>
-            <ReplyContent>
-              {childrenComment.map((data: IReply, index) => (
-                <ReplyComment
-                  key={index}
-                  img={data.userID?.img}
-                  nickname={data.userID?.nickname}
-                  text={data.text}
-                  isDeleted={data.isDeleted}
-                ></ReplyComment>
-              ))}
-            </ReplyContent>
-          </>
+          <ReplyCommentWrite
+            value={replyValue}
+            isComment={false}
+            handleChange={handleChange}
+            handleSubmit={handleSubmit}
+          ></ReplyCommentWrite>
         )}
+        <ReplyContent>
+          {childrenComment.map((data: IReply, index) => (
+            <ReplyComment
+              key={index}
+              img={data.userID?.img}
+              nickname={data.userID?.nickname}
+              text={data.text}
+              isDeleted={data.isDeleted}
+            ></ReplyComment>
+          ))}
+        </ReplyContent>
       </ReplyContainer>
       <LoginModal isLoginModalOpen={isLoginModalOpen} setIsLoginModalOpen={setIsLoginModalOpen} />
     </SingleCommentWrapper>
