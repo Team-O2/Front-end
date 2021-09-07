@@ -24,7 +24,6 @@ export const getNoticeListData = async ({ limit = 8, offset = 0 }: IFetchParamet
       return null;
     }
   } catch (e) {
-    alert(e.response.data.message);
     return null;
   }
 };
@@ -38,7 +37,6 @@ export const getNoticeData = async (noticeID: string | string[]): Promise<INotic
       return null;
     }
   } catch (e) {
-    alert(e.response.data.message);
     return null;
   }
 };
@@ -61,7 +59,6 @@ export const getNoticeSearchData = async ({
       return null;
     }
   } catch (e) {
-    alert(e.response.data.message);
     return null;
   }
 };
@@ -83,7 +80,6 @@ export const postNoticeComment = async (
       return null;
     }
   } catch (e) {
-    alert(e.response.data.message);
     return null;
   }
 };

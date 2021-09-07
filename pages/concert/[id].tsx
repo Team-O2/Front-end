@@ -50,11 +50,15 @@ function ConcertDetail(): React.ReactElement {
 
   const onLike = async () => {
     if (userStatusData) {
-      const postLike = await postConcertLike(userStatusData.token, id);
-      if (postLike === true) {
-        await deleteConcertLike(userStatusData.token, id);
-        setIsRerender(!isRerender);
-      }
+      await postConcertLike(userStatusData.token, id);
+      setIsRerender(!isRerender);
+    } else {
+      setIsLoginModalOpen(true);
+    }
+  };
+  const cancelLike = async () => {
+    if (userStatusData) {
+      await deleteConcertLike(userStatusData.token, id);
       setIsRerender(!isRerender);
     } else {
       setIsLoginModalOpen(true);
@@ -62,11 +66,15 @@ function ConcertDetail(): React.ReactElement {
   };
   const onScrap = async () => {
     if (userStatusData) {
-      const postScrap = await postConcertScrap(userStatusData.token, id);
-      if (postScrap === true) {
-        await deleteConcertScrap(userStatusData.token, id);
-        setIsRerender(!isRerender);
-      }
+      await postConcertScrap(userStatusData.token, id);
+      setIsRerender(!isRerender);
+    } else {
+      setIsLoginModalOpen(true);
+    }
+  };
+  const cancelScrap = async () => {
+    if (userStatusData) {
+      await deleteConcertScrap(userStatusData.token, id);
       setIsRerender(!isRerender);
     } else {
       setIsLoginModalOpen(true);
@@ -80,6 +88,8 @@ function ConcertDetail(): React.ReactElement {
       scrapNum={scrapNum}
       onLike={onLike}
       onScrap={onScrap}
+      cancelLike={cancelLike}
+      cancelScrap={cancelScrap}
       isUserLike={isUserLike}
       isUserScrap={isUserScrap}
       commentList={commentList}
