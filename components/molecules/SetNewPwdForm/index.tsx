@@ -25,7 +25,7 @@ function SetNewPwdForm({ pw, setPw, handleClickButton }: IProps): React.ReactEle
   }, []);
 
   useEffect(() => {
-    pw.pw !== '' && pw.pw.match(/([a-zA-Z0-9].*[!,@,#,$,%,^,&,*,?,_,~,-])|([!,@,#,$,%,^,&,*,?,_,~,-].*[a-zA-Z0-9])/)
+    pw.pw !== '' && pw.pw.match('^(?=.*[a-z])(?=.*[A-Z])(?=.*[$@$!%*?&])[A-Za-zd$@$!%*?&]')
       ? setIsOkay({
           ...isOkay,
           pw: true,
