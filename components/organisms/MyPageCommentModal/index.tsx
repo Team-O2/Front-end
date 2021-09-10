@@ -1,8 +1,8 @@
 import { Modal } from 'components/atoms';
 import { ChallengeModalComment } from 'components/molecules';
-import dayjs from 'dayjs';
 import React from 'react';
 import { IChallenge } from 'types/challenge.type';
+import { getTimeForToday } from 'utils';
 import * as S from './style';
 
 export interface IProps {
@@ -31,7 +31,7 @@ function MyPageCommentModal({
             <S.ModalUserInfoWrapper>
               <div>
                 <div>{challenge?.user?.nickname}</div>
-                <div>{dayjs().format('MM.DD')}</div>
+                <div>{challenge?.createdAt && getTimeForToday(challenge.createdAt)}</div>
               </div>
               <div>{challenge?.interest?.map((item: string) => `#${item} `)}</div>
             </S.ModalUserInfoWrapper>

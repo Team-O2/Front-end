@@ -1,4 +1,5 @@
 import React from 'react';
+import { getTimeForToday } from 'utils';
 import {
   InfoDate,
   InfoWrapper,
@@ -44,7 +45,7 @@ function CommentedBoardRow({
           <RowCheckBox id={id} onChange={onChange} checked={isChecked} />
           <RowLabel htmlFor={id}>{content}</RowLabel>
           <InfoWrapper>
-            <InfoDate>{date}</InfoDate>
+            <InfoDate>{getTimeForToday(date)}</InfoDate>
             <VerticalBar></VerticalBar>
             {category === 'Challenge' ? (
               <OriginBoardButton onClick={onClickHandler}>
