@@ -1,4 +1,4 @@
-import { Modal } from 'components/atoms';
+import { Icon, Modal } from 'components/atoms';
 import { ChallengeModalComment } from 'components/molecules';
 import React from 'react';
 import { IChallenge } from 'types/challenge.type';
@@ -27,7 +27,9 @@ function MyPageCommentModal({
       <S.ChallengeModalWrapper>
         <S.ModalWrapper>
           <S.ModalUserInfo>
-            <S.ModalUserImg width={80} height={80} src={challenge?.user?.img} />
+            <S.ModalUserImgWrapper>
+              {challenge?.user?.img && <Icon size={80} src={challenge.user.img} circular="true" />}
+            </S.ModalUserImgWrapper>
             <S.ModalUserInfoWrapper>
               <div>
                 <div>{challenge?.user?.nickname}</div>
