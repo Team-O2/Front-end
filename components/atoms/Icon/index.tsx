@@ -8,14 +8,14 @@ export interface IProps {
   alt?: string;
   src: string | StaticImageData;
   layout?: 'fixed' | 'intrinsic' | 'fill' | 'responsive';
-  circular?: boolean;
+  circular?: string | boolean;
 }
 
 function Icon({ size, alt = '', ...props }: IProps): React.ReactElement {
   return <SImg height={size} width={size} alt={alt} {...props} />;
 }
 
-const SImg = Styled(Image)<{ circular?: boolean }>`
+const SImg = Styled(Image)<{ circular?: boolean | string }>`
   border-radius: ${ifProp('circular', '50%', '')};
 `;
 

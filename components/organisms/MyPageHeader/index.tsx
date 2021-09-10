@@ -18,7 +18,7 @@ function MyPageHeader({ userInfo }: IProps): React.ReactElement {
     <Wrapper>
       <UserInfo>
         <Thumbnail>
-          <Icon src={globalUserInfo ? globalUserInfo.img : UserImg} size={75} circular />
+          <Icon src={globalUserInfo ? globalUserInfo.img : UserImg} size={75} circular="true" />
         </Thumbnail>
         <Text>{globalUserInfo?.nickname}님의</Text>
         <TextEng>MY O2</TextEng>
