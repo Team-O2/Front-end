@@ -1,4 +1,4 @@
-import { Button, Img } from 'components/atoms';
+import { Button } from 'components/atoms';
 import Styled from 'styled-components';
 import { ifProp, palette, theme } from 'styled-tools';
 
@@ -32,9 +32,10 @@ export const ModalUserInfo = Styled.div`
   height: 80px;
 `;
 
-export const ModalUserImg = Styled(Img)`
+export const ModalUserImgWrapper = Styled.div`
   margin-right: 15px;
-  border-radius: 50%;
+  width: 80px;
+  height: 80px;
 `;
 
 export const ModalUserInfoWrapper = Styled.div`
