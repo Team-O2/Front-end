@@ -1,7 +1,7 @@
 import { Img, Link } from 'components/atoms';
-import dayjs from 'dayjs';
 import { ThumbnailCommentIcon, ThumbnailLikeIcon } from 'public/assets/images';
 import React from 'react';
+import { getTimeForToday } from 'utils';
 import {
   ConcertWrapper,
   Content,
@@ -37,34 +37,13 @@ function Notice({
 }: IProps): React.ReactElement {
   const interestDivide = interestList?.join(' | ');
 
-  const timeForToday = (value: string) => {
-    const today = new Date();
-    const timeValue = new Date(value);
-
-    const uploadTime = Math.floor((today.getTime() - timeValue.getTime()) / 1000 / 60);
-    if (uploadTime < 1) {
-      return '방금전';
-    } else if (uploadTime < 60) {
-      return `${uploadTime}분전`;
-    }
-
-    const uploadTimeHour = Math.floor(uploadTime / 60);
-    if (uploadTimeHour < 24) {
-      return `${uploadTimeHour}시간전`;
-    }
-
-    const uploadTimeDay = Math.floor(uploadTimeHour / 60 / 24);
-    if (uploadTimeDay < 365) {
-      return dayjs(createdAt).format('YY.MM.DD');
-    }
-  };
   return (
     <Link to={`/notice/${noticeID}`}>
       <ConcertWrapper>
         <Info>
           <p>{authorNickname}</p>
           <p>{interestDivide}</p>
-          <p>{timeForToday(createdAt)}</p>
+          <p>{getTimeForToday(createdAt)}</p>
         </Info>
         <Content>
           <p>{title}</p>
