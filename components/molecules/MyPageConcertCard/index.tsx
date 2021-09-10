@@ -1,5 +1,6 @@
 import { Img } from 'components/atoms';
 import React from 'react';
+import { getTimeForToday } from 'utils';
 import {
   CardContainer,
   Content,
@@ -41,7 +42,7 @@ function MyPageConcertCard({
             <InfoTag name={tagName} color={tagColor} isSelected={false} />
             <Title>{title}</Title>
             <Content dangerouslySetInnerHTML={{ __html: `${content}` }}></Content>
-            <DateInfo>{date}</DateInfo>
+            <DateInfo>{getTimeForToday(date)}</DateInfo>
           </InfoContainer>
         </CardContainer>
       </span>
