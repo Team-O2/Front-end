@@ -1,11 +1,11 @@
 import { CancelChallengeScrap, ChallengeScrap } from 'apis';
 import { Link } from 'components/atoms';
-import dayjs from 'dayjs';
 import Image from 'next/image';
 import { ColorScrapIcon, DeleteIcon, EditIcon, GrayScrapIcon, MenuBarIcon } from 'public/assets/images';
 import React, { useState } from 'react';
 import { useRecoilValue } from 'recoil';
 import { userStatusState } from 'stores/user';
+import { getTimeForToday } from 'utils';
 import {
   DeleteBar,
   DeleteEditCardButton,
@@ -44,28 +44,6 @@ function ChallengeCardProfile({
   const [scrapRender, setScrapRender] = useState(isScrap);
   const userStatusData = useRecoilValue(userStatusState);
   const userStateNum = userStatusData ? userStatusData.userType : 0;
-
-  const timeForToday = (value: string) => {
-    const today = new Date();
-    const timeValue = new Date(value);
-
-    const uploadTime = Math.floor((today.getTime() - timeValue.getTime()) / 1000 / 60);
-    if (uploadTime < 1) {
-      return '방금전';
-    } else if (uploadTime < 60) {
-      return `${uploadTime}분전`;
-    }
-
-    const uploadTimeHour = Math.floor(uploadTime / 60);
-    if (uploadTimeHour < 24) {
-      return `${uploadTimeHour}시간전`;
-    }
-
-    const uploadTimeDay = Math.floor(uploadTimeHour / 60 / 24);
-    if (uploadTimeDay < 365) {
-      return dayjs(createdAt).format('YY.MM.DD');
-    }
-  };
 
   const submitScrap = async () => {
     if (userStatusData) {
@@ -115,7 +93,7 @@ function ChallengeCardProfile({
         <div>
           <ProfileDetailWrapper>
             <h3>{nickname}</h3>
-            <h4>{timeForToday(createdAt)}</h4>
+            <h4>{getTimeForToday(createdAt)}</h4>
           </ProfileDetailWrapper>
           {userStateNum === 0 || userStateNum === 1 || userStateNum === 2 || isMine === false ? (
             scrapRender === false || userStateNum === 0 ? (
