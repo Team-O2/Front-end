@@ -43,10 +43,14 @@ export const RecommentWrapper = Styled.div`
     flex-direction: column;
     align-items : flex-end;
     margin: 8px 0 31px;
+    background-color: #FAFAFA;
+    width: 620px;
+    margin-left: 120px;
+    padding: 0 20px 0 20px;
 `;
 
 export const SingleCommentWrapper = Styled.div`
-  display: flex;
+    display: flex;
     flex-direction: column;
 
     .reply {
