@@ -32,17 +32,19 @@ export const TopSubTitle = Styled.h2`
 export const TopExp = Styled.p`
   ${theme('font.body4')};
   margin-top : 20px;
-  margin-bottom : 30px;
   color : ${palette('grayscale', 7)};
 `;
 
-export const ChallengeBtn = Styled(Button)`
+export const ChallengeBtn = Styled(Button)<{
+  margin: string;
+}>`
   ${theme('font.subhead2')};
   width : 164px;
   height : 40px;
   color : ${palette('grayscale', 0)};
   background-color : ${palette('grayscale', 7)};
   border-radius: 50px;
+  margin : ${(props) => props.margin};
 `;
 
 export const ChallengeWrapper = Styled.div`
@@ -83,8 +85,10 @@ export const ChallengeCard = Styled(Img)`
 
 export const ConcertWrapper = Styled.div`
   width : 1109px;
-  padding-top : 270px;
-  padding-bottom : 151px;
+  padding-top : 234.2px;
+  padding-bottom : 302.1px;
+  display : flex;
+  gap: 64.9px;
 `;
 
 export const ConcertWrapper1 = Styled.div`
