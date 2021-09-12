@@ -13,3 +13,9 @@ export const SSpeakerExpCard = Styled.div`
   flex-direction : column;
   align-items : center;
 `;
+
+export const ImgWrapper = Styled.div`
+  height : 230px;
+  display : flex;
+  align-items : flex-end;
+`;
