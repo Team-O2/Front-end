@@ -4,6 +4,7 @@ import { Img, Link } from 'components/atoms';
 import { BadgeCard, LandingLottie, SpeakerExpCard } from 'components/molecules';
 import {
   CommunicationKingFillIcon,
+  ConcertImg,
   EmpathizingFillIcon,
   GrowingTogetherFillIcon,
   MainCard1Img,
@@ -87,7 +88,7 @@ function Home(): React.ReactElement {
           </TopSubTitle>
           <TopExp>답답한 창업 여정에 시원한 산소 한 모금</TopExp>
           <Link to={`/challenge/${generationNum}`}>
-            <ChallengeBtn>챌린지 보러가기</ChallengeBtn>
+            <ChallengeBtn margin="30px 0 0 0">챌린지 시작하기</ChallengeBtn>
           </Link>
         </TitleWrapper>
         <LandingLottie />
@@ -109,7 +110,23 @@ function Home(): React.ReactElement {
           <ChallengeCard src={MainCard4Img} />
         </ChallengeCardWrapper>
       </ChallengeWrapper>
-      <ConcertWrapper></ConcertWrapper>
+      <ConcertWrapper>
+        <Img src={ConcertImg} width={675.1} height={279.7} />
+        <Reveal keyframes={moveUp}>
+          <div>
+            <MiddleTitle>Share Together</MiddleTitle>
+            <MiddleSubTitle>경험을 나누다, 함께 성장하다. </MiddleSubTitle>
+            <MiddleExp>
+              누구나 O2 Speaker가 될 수 있어요.
+              <br />
+              O2 People 앞에서 당신의 이야기를 나눠주세요.
+            </MiddleExp>
+            <Link to={`/challenge/${generationNum}`}>
+              <ChallengeBtn margin="37px 0 0 0">챌린지 시작하기</ChallengeBtn>
+            </Link>
+          </div>
+        </Reveal>
+      </ConcertWrapper>
       <O2SpeakerWrapper>
         <Reveal keyframes={moveUp}>
           <O2SpeakerTitle>To Be an O2 Speaker</O2SpeakerTitle>
