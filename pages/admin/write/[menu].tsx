@@ -1,7 +1,6 @@
 import { postConcertWrite, postNoticeWrite } from 'apis';
 import { useRouter } from 'next/router';
 import React, { useEffect, useState } from 'react';
-import { useHistory } from 'react-router-dom';
 import { useRecoilValue } from 'recoil';
 import { userStatusState } from 'stores/user';
 import { IAdminWrite } from 'types/admin.type';
@@ -10,7 +9,7 @@ import AdminWriteTemplate from './template';
 function AdminWrite(): React.ReactElement {
   const router = useRouter();
   const { menu } = router.query;
-  const history = useHistory();
+  const history = useRouter();
   const userStatusData = useRecoilValue(userStatusState);
   const [isButtonDisabled, setIsButtonDisabled] = useState(true);
   const [isConditionMet, setIsConditionMet] = useState({
@@ -51,7 +50,7 @@ function AdminWrite(): React.ReactElement {
         hashtag: writeData.hashtag,
         authorNickname: writeData.nickname,
       });
-      isSuccess && history.goBack();
+      isSuccess && history.back();
     } else {
       alert('로그인 후 이용하세요');
     }
@@ -64,7 +63,7 @@ function AdminWrite(): React.ReactElement {
         interest: writeData.category,
         hashtag: writeData.hashtag,
       });
-      isSuccess && history.goBack();
+      isSuccess && history.back();
     } else {
       alert('로그인 후 이용하세요');
     }
