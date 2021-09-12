@@ -48,7 +48,7 @@ export const ChallengeBtn = Styled(Button)<{
 `;
 
 export const ChallengeWrapper = Styled.div`
-  padding-top : 435px;
+  padding-top : 247px;
   width : 1109px;
 `;
 
@@ -154,7 +154,7 @@ export const ConcertContent = Styled.p`
 
 export const O2SpeakerWrapper = Styled.div`
   width : 100vw;
-  background-color : #2f3438;
+  background-color : ${palette('grayscale', 9)};;
   display : flex;
   flex-direction : column;
   align-items : center;
@@ -211,7 +211,7 @@ export const LinkWrapper = Styled.div`
   padding-top : 208px;
   margin-top : 150px;
   padding-bottom : 187px;
-  background-color : #2f3438;
+  background-color : ${palette('grayscale', 9)};;
   display : flex;
   justify-content : center;
   align-items : center;

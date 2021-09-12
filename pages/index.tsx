@@ -133,9 +133,27 @@ function Home(): React.ReactElement {
           <O2SpeakerSubTitle>뱃지를 모아 O2 Speaker가 되어보세요!</O2SpeakerSubTitle>
         </Reveal>
         <O2SpeakerCardWrapper>
-          <SpeakerExpCard img={SpeakerBadge1Img} exp1="챌린지 개수를 주당" exp2="3개 이상으로 설정" />
-          <SpeakerExpCard img={SpeakerBadge2Img} exp1="런마쎌을 80%이상 작성 후" exp2="챌린지뱃지를 획득" />
-          <SpeakerExpCard img={SpeakerBadge3Img} exp1="챌린지뱃지 3개 + 활동뱃지 12개" exp2="얻을 시 연사가능" />
+          <SpeakerExpCard
+            img={SpeakerBadge1Img}
+            width={259}
+            height={230}
+            exp1="챌린지 개수를 주당"
+            exp2="3개 이상으로 설정"
+          />
+          <SpeakerExpCard
+            img={SpeakerBadge2Img}
+            width={246}
+            height={166}
+            exp1="런마쎌을 80%이상 작성 후"
+            exp2="챌린지뱃지를 획득"
+          />
+          <SpeakerExpCard
+            img={SpeakerBadge3Img}
+            width={204}
+            height={204}
+            exp1="챌린지뱃지 3개 + 활동뱃지 12개"
+            exp2="얻을 시 연사가능"
+          />
         </O2SpeakerCardWrapper>
       </O2SpeakerWrapper>
       <O2BadgeWrapper>
