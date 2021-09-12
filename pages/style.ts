@@ -2,6 +2,10 @@ import { Button, Img } from 'components/atoms';
 import Styled from 'styled-components';
 import { palette, theme } from 'styled-tools';
 
+export const LogoWrapper = Styled.div`
+  margin-bottom : 79px;
+`;
+
 export const TopWrapper = Styled.div`
   padding-top : 178px;
   width : 1109px;
@@ -11,26 +15,7 @@ export const HomeContainer = Styled.div`
   display : flex;
   flex-direction : column;
   align-items : center;
-  background-image: url('assets/images/landingBack.svg');
-  background-repeat: no-repeat;
-  background-size: cover;
-  background-position: center;
-  min-height: 6114px;
   overflow-x: hidden;
-  img{
-    margin : 0;
-    padding : 0;
-  }
-`;
-
-export const O2Title = Styled.h1`
-  font-size: 90px;
-  font-weight: bold;
-  line-height: 0.62;
-  letter-spacing: -0.5px;
-  font-family: HomepageBaukasten;
-  margin-bottom : 50px;
-  color : ${palette('grayscale', 9)};
 `;
 
 export const TopSubTitle = Styled.h2`

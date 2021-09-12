@@ -1,11 +1,9 @@
 import { keyframes } from '@emotion/react';
 import { getGeneration } from 'apis';
-import { Link } from 'components/atoms';
+import { Img, Link } from 'components/atoms';
 import { BadgeCard, SpeakerExpCard } from 'components/molecules';
 import {
   CommunicationKingFillIcon,
-  Concert1Img,
-  Concert2Img,
   EmpathizingFillIcon,
   GrowingTogetherFillIcon,
   MainCard1Img,
@@ -13,6 +11,7 @@ import {
   MainCard3Img,
   MainCard4Img,
   NaturalBornO2FillIcon,
+  opentogetherLogo,
   ReadyForGrowFillIcon,
   ShyEmailFillIcon,
   SpeakerBadge1Img,
@@ -29,22 +28,14 @@ import {
   ChallengeCard,
   ChallengeCardWrapper,
   ChallengeWrapper,
-  ConcertContent,
-  ConcertExpContainer1,
-  ConcertExpContainer2,
-  ConcertExpType,
-  ConcertImage1,
-  ConcertImage2,
-  ConcertTitle,
   ConcertWrapper,
-  ConcertWrapper1,
-  ConcertWrapper2,
   HomeContainer,
   LinkBtn,
   LinkCardWrapper,
   LinkExp,
   LinkTitle,
   LinkWrapper,
+  LogoWrapper,
   MiddleExp,
   MiddleSubTitle,
   MiddleTitle,
@@ -55,7 +46,6 @@ import {
   O2SpeakerSubTitle,
   O2SpeakerTitle,
   O2SpeakerWrapper,
-  O2Title,
   TopExp,
   TopSubTitle,
   TopWrapper,
@@ -87,7 +77,9 @@ function Home(): React.ReactElement {
     <HomeContainer>
       <Reveal keyframes={moveUp} cascade>
         <TopWrapper>
-          <O2Title>O2</O2Title>
+          <LogoWrapper>
+            <Img src={opentogetherLogo} width={516} height={56} />
+          </LogoWrapper>
           <TopSubTitle>
             함께 성장하는 공간, <br />
             창업가들이 마시는 산소
@@ -115,58 +107,7 @@ function Home(): React.ReactElement {
           <ChallengeCard src={MainCard4Img} />
         </ChallengeCardWrapper>
       </ChallengeWrapper>
-      <ConcertWrapper>
-        <Reveal keyframes={moveUp}>
-          <MiddleTitle>Share Together</MiddleTitle>
-          <MiddleSubTitle>경험을 나누다, 함께 성장하다.</MiddleSubTitle>
-          <MiddleExp>
-            누구나 O2 Speaker가 될 수 있어요.
-            <br />
-            O2 People 앞에서 당신의 이야기를 나눠주세요.
-          </MiddleExp>
-        </Reveal>
-        <ConcertWrapper1>
-          <ConcertImage1 src={Concert1Img}></ConcertImage1>
-          <ConcertExpContainer1>
-            <Reveal keyframes={moveUp}>
-              <ConcertExpType>Share Together 인기글</ConcertExpType>
-              <ConcertTitle>
-                내가 힘들 때 버틸 수 있었던 <br />
-                3가지
-              </ConcertTitle>
-              <ConcertContent>
-                창업을 하다보면 정말 생각하지 못했던 어려운 일들이 <br />
-                많이 일어나는건 누구나 알고계실거라 생각합니다. <br />
-                중간에 포기하고 싶어지는 순간에 앵엘님의
-                <br />
-                [내가 힘들 때 버틸 수 있었던 3가지] 강연으로 나만의 <br />
-                버팀목도 한번 만들어보세요.
-              </ConcertContent>
-            </Reveal>
-          </ConcertExpContainer1>
-        </ConcertWrapper1>
-        <ConcertWrapper2>
-          <ConcertExpContainer2>
-            <Reveal keyframes={moveUp}>
-              <ConcertExpType>Share Together 인기글</ConcertExpType>
-              <ConcertTitle>
-                CEO라는 꿈. <br />
-                정말 나를 위한 유일한 길일까?
-              </ConcertTitle>
-              <ConcertContent>
-                여러분은 자신의 꿈에 얼마나 큰 확신을 가지고있나요? <br />
-                아마 꿈을 향해 나아가면서도 끊임없이 ‘내가 잘 하고 있는 것인가?‘, <br />
-                ‘이게 정말 나를 위한 길인가?’ 이런 생각이 드실거라 생각합니다. <br />
-                깡토님의 [CEO라는 꿈. 정말 나를 위한 유일한 길일까?] 강연에서는 불안
-                <br />
-                하기만 CEO라는 꿈을 어떻게 이룰 수 있었는지, <br />
-                깡토님의 실제 스토리를 여러분들께 들려드립니다.
-              </ConcertContent>
-            </Reveal>
-          </ConcertExpContainer2>
-          <ConcertImage2 src={Concert2Img}></ConcertImage2>
-        </ConcertWrapper2>
-      </ConcertWrapper>
+      <ConcertWrapper></ConcertWrapper>
       <O2SpeakerWrapper>
         <Reveal keyframes={moveUp}>
           <O2SpeakerTitle>To Be an O2 Speaker</O2SpeakerTitle>
