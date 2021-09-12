@@ -1,7 +1,7 @@
 import { keyframes } from '@emotion/react';
 import { getGeneration } from 'apis';
 import { Img, Link } from 'components/atoms';
-import { BadgeCard, SpeakerExpCard } from 'components/molecules';
+import { BadgeCard, LandingLottie, SpeakerExpCard } from 'components/molecules';
 import {
   CommunicationKingFillIcon,
   EmpathizingFillIcon,
@@ -46,6 +46,7 @@ import {
   O2SpeakerSubTitle,
   O2SpeakerTitle,
   O2SpeakerWrapper,
+  TitleWrapper,
   TopExp,
   TopSubTitle,
   TopWrapper,
@@ -75,8 +76,8 @@ function Home(): React.ReactElement {
 
   return (
     <HomeContainer>
-      <Reveal keyframes={moveUp} cascade>
-        <TopWrapper>
+      <TopWrapper>
+        <TitleWrapper>
           <LogoWrapper>
             <Img src={opentogetherLogo} width={516} height={56} />
           </LogoWrapper>
@@ -88,8 +89,9 @@ function Home(): React.ReactElement {
           <Link to={`/challenge/${generationNum}`}>
             <ChallengeBtn>챌린지 보러가기</ChallengeBtn>
           </Link>
-        </TopWrapper>
-      </Reveal>
+        </TitleWrapper>
+        <LandingLottie />
+      </TopWrapper>
       <ChallengeWrapper>
         <Reveal keyframes={moveUp}>
           <MiddleTitle>Learn Myself</MiddleTitle>

@@ -7,8 +7,14 @@ export const LogoWrapper = Styled.div`
 `;
 
 export const TopWrapper = Styled.div`
+  display : flex;
+  width : 100vw;
+  padding-left : calc(50% - 555px);
+`;
+
+export const TitleWrapper = Styled.div`
   padding-top : 178px;
-  width : 1109px;
+  width : 545px;
 `;
 
 export const HomeContainer = Styled.div`
