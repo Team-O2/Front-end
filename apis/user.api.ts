@@ -40,7 +40,7 @@ export const postNewPw = async (token: string | undefined, password: string, new
       return true;
     }
   } catch (e) {
-    alert(e?.response?.data?.message);
+    // alert(e?.response?.data?.message);
   }
   return false;
 };
