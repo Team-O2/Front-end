@@ -1,12 +1,12 @@
 import { challengeOpen } from 'apis';
+import { useRouter } from 'next/router';
 import React, { useEffect, useState } from 'react';
-import { useHistory } from 'react-router-dom';
 import { useRecoilValue } from 'recoil';
 import { userStatusState } from 'stores/user';
 import AdminChallengeOpenTemplate from './template';
 
 function AdminChallengeOpen(): React.ReactElement {
-  const history = useHistory();
+  const history = useRouter();
   const userStatusData = useRecoilValue(userStatusState);
   const [image, setImage] = useState<File | null>(null);
   const [isChecked, setIsChecked] = useState(false);
@@ -41,7 +41,7 @@ function AdminChallengeOpen(): React.ReactElement {
   const btnHandler = async () => {
     if (userStatusData) {
       const isSuccess = await challengeOpen(userStatusData.token, { ...challengeOpenData, img: image });
-      isSuccess && history.goBack();
+      isSuccess && history.back();
     } else {
       alert('로그인 후 이용하세요');
     }
