@@ -15,20 +15,14 @@ function AdminChallengeListTemplate({ challengeDataList }: IProps): React.ReactE
       <PageLabel>관리자 페이지</PageLabel>
       <Title>챌린지 정보</Title>
       <ListContainer>
-        <Link to="/admin/challenge/open">
+        <Link to="/admin/challengeopen">
           <AddCard>
             <AddImage src={PlusIcon}></AddImage>
             <AddExp>챌린지 등록하기</AddExp>
           </AddCard>
         </Link>
         {challengeDataList?.map((data, id) => {
-          return (
-            data && (
-              <Link to={`/challenge/${data.generation}`}>
-                <AdminChallengeCard key={id} challengeData={data} />
-              </Link>
-            )
-          );
+          return data && <AdminChallengeCard key={id} challengeData={data} />;
         })}
       </ListContainer>
     </Wrapper>
