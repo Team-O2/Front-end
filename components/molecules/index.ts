@@ -31,6 +31,7 @@ export { default as FindPwdForm } from './FindPwdForm';
 export { default as FindPwdModal } from './FindPwdModal';
 export { default as FormInput } from './FormInput';
 export { default as HamDropDown } from './HamDropDown';
+export { default as LandingLottie } from './LandingLottie';
 export { default as LoginModal } from './LoginModal';
 export { default as MyPageConcertCard } from './MyPageConcertCard';
 export { default as MyPageSection } from './MyPageSection';
