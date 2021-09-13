@@ -4,7 +4,7 @@ import React, { useState } from 'react';
 import { useRecoilValue } from 'recoil';
 import { userStatusState } from 'stores/user';
 import { INoticeComment } from 'types/notice.type';
-import { CommentWriteContainer } from './style';
+import { CommentContainer, CommentWriteContainer } from './style';
 
 interface IProps {
   commentList: Array<INoticeComment>;
@@ -42,19 +42,21 @@ function NoticeCommentList({ commentList, noticeID, isRerender, setIsRerender }:
           handleSubmit={handleSubmit}
         ></CommentWrite>
       </CommentWriteContainer>
-      {commentList?.map((data: INoticeComment, index) => (
-        <NoticeSingleComment
-          key={index}
-          parentCommentID={data._id}
-          userID={data.userID}
-          childrenComment={data.childrenComment}
-          text={data.text}
-          noticeID={noticeID}
-          isRerender={isRerender}
-          setIsRerender={setIsRerender}
-          isDeleted={data.isDeleted}
-        ></NoticeSingleComment>
-      ))}
+      <CommentContainer>
+        {commentList?.map((data: INoticeComment, index) => (
+          <NoticeSingleComment
+            key={index}
+            parentCommentID={data._id}
+            userID={data.userID}
+            childrenComment={data.childrenComment}
+            text={data.text}
+            noticeID={noticeID}
+            isRerender={isRerender}
+            setIsRerender={setIsRerender}
+            isDeleted={data.isDeleted}
+          ></NoticeSingleComment>
+        ))}
+      </CommentContainer>
       <LoginModal isLoginModalOpen={isLoginModalOpen} setIsLoginModalOpen={setIsLoginModalOpen} />
     </>
   );

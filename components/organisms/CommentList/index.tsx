@@ -4,7 +4,7 @@ import React, { useState } from 'react';
 import { useRecoilValue } from 'recoil';
 import { userStatusState } from 'stores/user';
 import { IConcertComment } from 'types/concert.type';
-import { CommentWriteContainer } from './style';
+import { CommentContainer, CommentWriteContainer } from './style';
 
 interface IProps {
   commentList: Array<IConcertComment>;
@@ -42,19 +42,21 @@ function CommentList({ commentList, concertID, isRerender, setIsRerender }: IPro
           handleSubmit={handleSubmit}
         ></CommentWrite>
       </CommentWriteContainer>
-      {commentList?.map((data: IConcertComment, index) => (
-        <SingleComment
-          key={index}
-          parentCommentID={data._id}
-          userID={data.userID}
-          childrenComment={data.childrenComment}
-          text={data.text}
-          concertID={concertID}
-          isRerender={isRerender}
-          setIsRerender={setIsRerender}
-          isDeleted={data.isDeleted}
-        ></SingleComment>
-      ))}
+      <CommentContainer>
+        {commentList?.map((data: IConcertComment, index) => (
+          <SingleComment
+            key={index}
+            parentCommentID={data._id}
+            userID={data.userID}
+            childrenComment={data.childrenComment}
+            text={data.text}
+            concertID={concertID}
+            isRerender={isRerender}
+            setIsRerender={setIsRerender}
+            isDeleted={data.isDeleted}
+          ></SingleComment>
+        ))}
+      </CommentContainer>
       <LoginModal isLoginModalOpen={isLoginModalOpen} setIsLoginModalOpen={setIsLoginModalOpen} />
     </>
   );
