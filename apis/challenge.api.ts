@@ -54,7 +54,7 @@ export const ChallengeListData = async (
   generation: string | string[],
   offset: number,
   limit: number,
-): Promise<IChallengeData[]> => {
+): Promise<IChallengeData[] | null> => {
   try {
     if (token) {
       const data = await serverAxios.get(`${PREFIX_URL}/?generation=${generation}&offset=${offset}&limit=${limit}`, {
@@ -69,7 +69,7 @@ export const ChallengeListData = async (
     }
   } catch (error) {
     console.log(error);
-    return error;
+    return null;
   }
 };
 
