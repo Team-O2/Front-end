@@ -19,8 +19,8 @@ export const Text = Styled.div`
 export const ReplyCommentWrapper = Styled.div`
   display: flex;
   justify-content: flex-end;
-  margin:13px 0;
-  margin-left: 133px;
+  margin: 18px 0;
+  margin-left: 20px;
   width : 585px;
   img {
     margin-right: 10px;

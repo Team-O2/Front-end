@@ -11,17 +11,21 @@ export const CommentForm = Styled.div`
 export const CommentTextArea = Styled(TextArea)<{ isCommentCheck?: boolean }>`
   border: 1px solid #dfdfdf;
   padding: 10px;
-  width: ${ifProp('isCommentCheck', '100%', '713px')};
-  height: ${ifProp('isCommentCheck', '110px', '53px')};
+  width: ${ifProp('isCommentCheck', '100%', '685px')};
+  height: ${ifProp('isCommentCheck', '110px', '90px')};
   :focus {
     outline:none;
   }
+  margin-top:21px;
+  margin-right:${ifProp('isCommentCheck', '0', '21px')};
+  margin-left:${ifProp('isCommentCheck', '0', '21px')};
 `;
 
 export const CommentButton = Styled(Button)<{ isCommentCheck?: boolean }>`
   display: flex;
   margin-top: 8px;
   margin-left: auto;
+  margin-right:${ifProp('isCommentCheck', '0', '21px')};
   color: ${palette('grayscale', 6)};
   font-family: 'AppleSDGothicNeo';
   font-size: ${ifProp('isCommentCheck', '16px', '14px')};

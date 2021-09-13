@@ -5,6 +5,7 @@ import { palette, theme } from 'styled-tools';
 export const CommentContainer = Styled.div`
   display: flex;
   justify-content: space-between;
+  align-items:center;
   img {
     width: 28px;
     height: 28px;
@@ -31,7 +32,9 @@ export const CommentToggle = Styled.div`
 export const ReplyContainer = Styled.div`
   display: flex;
   flex-direction: column;
-  margin: 16px 0 31px;
+  margin: 20px 0 50px auto;
+  background-color: rgba(223,223,223,0.22);
+  width :725px;
 `;
 
 export const ReplyCommentWrite = Styled(CommentWrite)`
@@ -46,4 +49,6 @@ export const ReplyContent = Styled.div`
 export const SingleCommentWrapper = Styled.div`
   display: flex;
   flex-direction: column;
+  border-bottom : 1px solid #dfdfdf;
+  margin-top: 50px;
 `;
