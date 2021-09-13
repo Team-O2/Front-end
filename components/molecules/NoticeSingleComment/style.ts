@@ -27,6 +27,9 @@ export const CommentToggle = Styled.div`
   text-align: right;
   color: ${palette('primary', 3)};
   ${theme('font.subhead2')};
+  :hover {
+    cursor:pointer;
+  }
 `;
 
 export const ReplyContainer = Styled.div`
