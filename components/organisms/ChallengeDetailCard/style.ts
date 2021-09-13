@@ -13,5 +13,6 @@ export const MainCardWrapper = Styled.div`
 `;
 
 export const Container = Styled.div`
-  padding-top: 60px;
+  padding-top: 30px;
+  padding-bottom: 30px;
 `;
