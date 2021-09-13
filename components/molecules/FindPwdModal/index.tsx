@@ -1,4 +1,5 @@
 import { Modal } from 'components/atoms';
+import Image from 'next/image';
 import { CheckedIcon } from 'public/assets/images';
 import React from 'react';
 import { ModalEXP, ModalIconWrapper, ModalTitle, SuccessModal } from './style';
@@ -14,7 +15,7 @@ function FindPwdModal({ isModalOpen, setIsModalOpen, email }: IProps): React.Rea
     <Modal isOpen={isModalOpen} isBlur={true} setIsOpen={setIsModalOpen}>
       <SuccessModal>
         <ModalIconWrapper>
-          <img src={CheckedIcon} alt="modal__icon" />
+          <Image src={CheckedIcon} alt="modal__icon" />
         </ModalIconWrapper>
         <ModalTitle>전송완료!</ModalTitle>
         <ModalEXP>
