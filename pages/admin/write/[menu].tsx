@@ -58,6 +58,7 @@ function AdminWrite(): React.ReactElement {
   const postNoticeHandler = async () => {
     if (userStatusData) {
       const isSuccess = await postNoticeWrite(userStatusData.token, {
+        imgThumbnail: writeData.thumbnail,
         title: writeData.title,
         text: writeData.content,
         interest: writeData.category,

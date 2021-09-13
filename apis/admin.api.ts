@@ -67,6 +67,7 @@ export const postConcertWrite = async (token: string, concertWriteData: IConcert
 };
 
 interface INoticeData {
+  imgThumbnail: File | null;
   title: string;
   text: string;
   interest: string[];
@@ -75,10 +76,12 @@ interface INoticeData {
 
 export const postNoticeWrite = async (token: string, noticeWriteData: INoticeData): Promise<boolean> => {
   const form = new FormData();
+  noticeWriteData.imgThumbnail && form.append('imgThumbnail', noticeWriteData.imgThumbnail);
   form.append('title', noticeWriteData.title);
   form.append('text', noticeWriteData.text);
   form.append('interest', changeArrToString(noticeWriteData.interest));
   form.append('hashtag', changeArrToString(noticeWriteData.hashtag));
+
   try {
     const data = await serverAxios.post(`${PREFIX_URL}/notice`, form, {
       headers: {
