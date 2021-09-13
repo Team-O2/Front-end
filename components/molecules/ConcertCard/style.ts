@@ -52,4 +52,7 @@ export const ConcertCardWrapper = Styled.div`
   box-shadow: 0px 0px 24px rgba(13, 12, 63, 0.1);
   width: 271px;
   height: 299px;
+  :hover {
+    cursor:pointer;
+  }
 `;
