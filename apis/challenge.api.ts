@@ -176,9 +176,7 @@ export const ChallengeLike = async (token: string, challengeID: string): Promise
       console.log(data.data.message);
       return true;
     }
-  } catch (error) {
-    console.log(error.response.data.message);
-  }
+  } catch (error) {}
   return false;
 };
 
@@ -192,9 +190,7 @@ export const CancelChallengeLike = async (token: string, challengeID: string): P
     if (data.data.status === 200) {
       return true;
     }
-  } catch (e) {
-    console.log(e.response.data.message);
-  }
+  } catch (e) {}
   return false;
 };
 
@@ -209,9 +205,7 @@ export const ChallengeScrap = async (token: string, challengeID: string): Promis
       console.log(data.data.message);
       return true;
     }
-  } catch (error) {
-    console.log(error.response.data.message);
-  }
+  } catch (error) {}
   return false;
 };
 
@@ -225,8 +219,6 @@ export const CancelChallengeScrap = async (token: string, challengeID: string): 
     if (data.data.status === 200) {
       return true;
     }
-  } catch (e) {
-    console.log(e.response.data.message);
-  }
+  } catch (e) {}
   return false;
 };
