@@ -6,11 +6,11 @@ import { Contents, IconButton, ImageWrapper, Name, Wrapper } from './style';
 export interface IProps {
   imagePath: string;
   isBookmarked?: boolean;
-  id: string;
+  id: number;
   name: string;
   content: string;
   onClick: (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => void;
-  onButtonClick: (id: string) => void;
+  onButtonClick: (id: number) => void;
 }
 
 function ChallengeCard({

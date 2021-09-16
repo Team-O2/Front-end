@@ -15,11 +15,11 @@ export interface IProps {
   setSelectedCategory: (value: string) => void;
   setCurrentPage: (value: number) => void;
   handleModalOpen: () => void;
-  checkedCommentList: string[];
-  setCheckedCommentList: (value: string[]) => void;
+  checkedCommentList: number[];
+  setCheckedCommentList: (value: number[]) => void;
   isSelectAll: boolean;
   setIsSelectAll: (value: boolean) => void;
-  handleDetailModal: (id: string) => void;
+  handleDetailModal: (id: number) => void;
 }
 
 function MyCommentList({
@@ -37,7 +37,7 @@ function MyCommentList({
 }: IProps): React.ReactElement {
   const [startPage, setStartPage] = useState(0);
   const [endPage, setEndPage] = useState(5);
-  const [allCommentIdList, setAllCommentIdList] = useState<string[]>([]);
+  const [allCommentIdList, setAllCommentIdList] = useState<number[]>([]);
   const globalUserInfo = useRecoilValue(userState);
 
   const commentsOfPage = 5;
@@ -51,7 +51,7 @@ function MyCommentList({
   }, [selectedCategory, setCheckedCommentList]);
 
   useEffect(() => {
-    setAllCommentIdList(userComment.comments.map((item) => item._id));
+    setAllCommentIdList(userComment.comments.map((item) => item.id));
   }, [selectedCategory, currentPage, userComment.comments]);
 
   useEffect(() => {
@@ -76,7 +76,7 @@ function MyCommentList({
   };
 
   const handleCommentSelect = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const selectedId = e.target.id;
+    const selectedId = parseInt(e.target.id);
 
     if (checkedCommentList.includes(selectedId)) {
       setCheckedCommentList(checkedCommentList.filter((commentId) => commentId !== selectedId));
@@ -144,12 +144,12 @@ function MyCommentList({
         {userComment.comments?.map((item: IMyUserComment) => {
           return (
             <CommentedBoardRow
-              id={item._id}
-              key={item._id}
+              id={item.id}
+              key={item.id}
               content={item.text}
               date={changeDateFormat(item.createdAt)}
               boardId={item.post}
-              isChecked={checkedCommentList.includes(item._id)}
+              isChecked={checkedCommentList.includes(item.id)}
               onChange={handleCommentSelect}
               category={selectedCategory}
               handleDetailModal={handleDetailModal}

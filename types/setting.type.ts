@@ -1,9 +1,8 @@
 export interface ISettingUserInfo {
   nickname: string;
   img: string;
-  marpolicy: boolean;
-  _id: string;
+  isMarketing: boolean;
+  id: number;
   email: string;
-  gender: number;
   interest: string[];
 }

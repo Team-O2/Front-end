@@ -3,8 +3,7 @@ import { ChallengeDetailCard } from 'components/organisms';
 import React, { useCallback, useEffect, useState } from 'react';
 import { useRecoilValue } from 'recoil';
 import { userStatusState } from 'stores/user';
-import { IChallengeData } from 'types/challenge.type';
-import { IMyScrappedChallenge } from 'types/myPage.type';
+import { IChallenge, IMyScrappedChallenge } from 'types/myPage.type';
 import { Header, NoContents, Wrapper } from './style';
 
 function ScrappedChallenge(): React.ReactElement {
@@ -32,18 +31,18 @@ function ScrappedChallenge(): React.ReactElement {
         <h2>Learn Myself</h2>
       </Header>
       {scrappedChallenge?.totalScrapNum ? (
-        scrappedChallenge?.mypageChallengeScrap.map((data: IChallengeData, id) => {
+        scrappedChallenge?.mypageChallengeScrap.map((data: IChallenge, id) => {
           return (
             <ChallengeDetailCard
-              id={data?._id}
-              nickname={data?.user?.nickname}
-              image={data?.user?.img}
+              id={data?.id}
+              nickname={data?.nickname}
+              image={data?.img}
               createdAt={data?.createdAt}
               interest={data?.interest}
               good={data?.good}
               bad={data?.bad}
               learn={data?.learn}
-              like={data?.likes}
+              like={data?.likeNum}
               comments={data?.comments.length}
               isLike={data?.isLike}
               isScrap={data?.isScrap}

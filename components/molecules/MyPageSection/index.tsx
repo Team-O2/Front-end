@@ -1,6 +1,7 @@
 import { Icon, Link } from 'components/atoms';
 import { MoreViewArrowIcon } from 'public/assets/images';
 import React from 'react';
+import { IChallenge as IChallengeData } from 'types/challenge.type';
 import { IConcert } from 'types/concert.type';
 import { IChallenge } from 'types/myPage.type';
 import {
@@ -19,7 +20,7 @@ export interface IProps {
   column: number;
   gap: number;
   path: string;
-  data?: IConcert[] | IChallenge[] | null;
+  data?: IConcert[] | IChallenge[] | IChallengeData[] | null;
   renderItemList: (data: any[]) => React.ReactElement[]; // FIXME: IConcert[]와 IChallenge[]를 제네릭으로 받는 방법을 모르겠음...
 }
 

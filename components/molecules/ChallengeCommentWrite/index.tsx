@@ -9,10 +9,10 @@ export interface IProps {
   className?: string;
   isComment: boolean;
   comments: number;
-  challengeID: string;
+  challengeID: number;
   commentListFlag: boolean;
   setCommentListFlag: (value: boolean) => void;
-  parentCommentId?: string;
+  parentCommentId?: number;
 }
 
 function ChallengeCommentWrite({

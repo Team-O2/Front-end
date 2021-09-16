@@ -24,7 +24,7 @@ interface IProps {
   comments: number;
   isLike?: boolean;
   isScrap?: boolean;
-  id: string;
+  id: number;
   onChange?: () => void;
   handleFetch?: (offset: number) => void;
 }

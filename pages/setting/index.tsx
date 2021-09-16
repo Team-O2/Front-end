@@ -17,10 +17,9 @@ function Setting(): React.ReactElement {
   const [userInfo, setUserInfo] = useState<ISettingUserInfo>({
     nickname: '',
     img: '',
-    marpolicy: true,
-    _id: '',
+    isMarketing: true,
+    id: 0,
     email: '',
-    gender: 0,
     interest: [],
   });
 
@@ -33,16 +32,10 @@ function Setting(): React.ReactElement {
     history.push('/setting/password/set');
   };
 
-  const handleUserMarpolicy = (e: React.ChangeEvent<HTMLInputElement>) =>
+  const handleUserIsMarketing = (e: React.ChangeEvent<HTMLInputElement>) =>
     setUserInfo({
       ...userInfo,
-      marpolicy: e.target.checked,
-    });
-
-  const handleUserGender = (e: string) =>
-    setUserInfo({
-      ...userInfo,
-      gender: e === '남성' ? 0 : e === '여성' ? 1 : 2,
+      isMarketing: e.target.checked,
     });
 
   const handleUserInterest = (e: string) => {
@@ -92,8 +85,7 @@ function Setting(): React.ReactElement {
         img,
         userInfo.nickname,
         userInfo.interest,
-        userInfo.gender,
-        userInfo.marpolicy,
+        userInfo.isMarketing,
       );
     } else {
       data = await updateUserInfo(
@@ -101,8 +93,7 @@ function Setting(): React.ReactElement {
         undefined,
         userInfo.nickname,
         userInfo.interest,
-        userInfo.gender,
-        userInfo.marpolicy,
+        userInfo.isMarketing,
       );
     }
     if (data) {
@@ -135,8 +126,7 @@ function Setting(): React.ReactElement {
       handleUserNickname={handleUserNickname}
       handleClickDel={handleClickDel}
       handleUserInterest={handleUserInterest}
-      handleUserGender={handleUserGender}
-      handleUserMarpolicy={handleUserMarpolicy}
+      handleUserIsMarketing={handleUserIsMarketing}
       handleClickEdit={handleClickEdit}
       handlePasswordBtnClicked={handlePasswordBtnClicked}
     />

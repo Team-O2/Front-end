@@ -8,10 +8,9 @@ export interface IUserStatusState {
 
 export interface IUserState {
   interest: string[];
-  marpolicy: boolean;
+  isMarketing: boolean;
   img: string;
-  _id: string;
+  id: number;
   email: string;
   nickname: string;
-  gender: number;
 }

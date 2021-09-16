@@ -1,34 +1,35 @@
 export interface IUser {
   img: string;
-  _id: string;
+  id: number;
   nickname: string;
 }
 
 export interface IComment {
   isDeleted: boolean;
-  _id: string;
-  userID: IUser;
+  id: number;
+  userID: number;
+  nickname: string;
+  img: string;
+  children?: IComment[];
   text: string;
 }
 
-export interface IParentComment extends IComment {
-  childrenComment: IComment[];
-}
-
 export interface IChallenge {
-  _id: string;
+  id: number;
   createdAt: string;
   updatedAt: string;
-  user: IUser;
+  userID: number;
+  nickname: string;
+  img: string;
   good: string;
   learn: string;
   bad: string;
-  likes: number;
+  likeNum: number;
   commentNum: number;
   scrapNum: number;
   generation: number;
   interest: string[];
-  comments: IParentComment[];
+  comments: IComment[];
   isLike?: boolean; // 좋아요 클릭 여부
   isScrap?: boolean; // 스크랩 여부
 }
@@ -52,26 +53,6 @@ export interface ICommentData {
   };
   text: string;
   isDeleted?: boolean;
-}
-
-export interface IChallengeData {
-  good: string;
-  bad: string;
-  learn: string;
-  commentNum: number;
-  comments: string[];
-  generation: number;
-  createdAt: string;
-  isDeleted: boolean;
-  scrapNum: number;
-  interest: string[];
-  likes: number;
-  updatedAt: string;
-  isLike: boolean;
-  isScrap: boolean;
-  user: { img: string; nickname: string; _id: string };
-  __v: number;
-  _id: string;
 }
 
 export interface IChallengeOpen {

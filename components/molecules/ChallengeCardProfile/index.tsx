@@ -26,7 +26,7 @@ interface IProps {
   createdAt: string;
   isScrap?: boolean;
   interest?: string[];
-  id: string;
+  id: number;
 }
 
 function ChallengeCardProfile({

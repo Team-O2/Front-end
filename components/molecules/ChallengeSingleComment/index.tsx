@@ -1,11 +1,11 @@
 import { ChallengeReCommentList, ChallengeReCommentWrite } from 'components/molecules';
 import React, { useState } from 'react';
-import { ICommentData, IReply } from 'types/challenge.type';
+import { IComment } from 'types/challenge.type';
 import { CommentFold, CommentWrapper, RecommentWrapper, SingleCommentWrapper } from './style';
 
 interface IProps {
-  commentData: ICommentData;
-  challengeID: string;
+  commentData: IComment;
+  challengeID: number;
   commentListFlag: boolean;
   comments: number;
   setCommentListFlag: (value: boolean) => void;
@@ -18,7 +18,7 @@ function ChallengeSingleComment({
   comments,
   setCommentListFlag,
 }: IProps): React.ReactElement {
-  const { childrenComment, _id, userID, text, isDeleted } = commentData;
+  const { id, userID, img, nickname, text, isDeleted, children } = commentData;
   const [openReply, setOpenReply] = useState(false);
 
   const onClickReplyOpen = () => {
@@ -28,8 +28,8 @@ function ChallengeSingleComment({
   return (
     <SingleCommentWrapper>
       <CommentWrapper>
-        <img src={userID?.img} alt="" />
-        <h1>{userID?.nickname}</h1>
+        <img src={img} alt="" />
+        <h1>{nickname}</h1>
         <h2>{isDeleted ? '삭제된 댓글입니다.' : text}</h2>
         <CommentFold onClick={onClickReplyOpen}>답글</CommentFold>
       </CommentWrapper>
@@ -43,16 +43,16 @@ function ChallengeSingleComment({
               comments={comments}
               commentListFlag={commentListFlag}
               setCommentListFlag={setCommentListFlag}
-              parentCommentId={_id}
+              parentCommentId={id}
             />
           </>
         )}
-        {childrenComment.map((data: IReply) => (
+        {children?.map((data: IComment) => (
           <ChallengeReCommentList // 답글
             className="reply__comment"
-            key={data._id}
-            img={data.userID?.img}
-            nickname={data.userID?.nickname}
+            key={data.id}
+            img={data.img}
+            nickname={data.nickname}
             text={data.text}
             isDeleted={data.isDeleted}
           />
