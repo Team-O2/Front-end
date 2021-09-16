@@ -99,19 +99,21 @@ function MyPageSlider({ userInfo }: IProps): React.ReactElement {
             {userInfo?.learnMyselfAchieve ? (
               <Link to={`challenge/${userInfo.learnMyselfAchieve.generation}`}>
                 <S.SliderLearnMySelf>
-                  <h1>
+                  <S.SliderLearnMySelfDate>
                     {`${dayjs(userInfo.learnMyselfAchieve.startDT).format('YY.MM.DD')} - ${dayjs(
                       userInfo.learnMyselfAchieve.endDT,
                     ).format('YY.MM.DD')}`}
-                  </h1>
+                  </S.SliderLearnMySelfDate>
                   <S.SliderLearnMySelfImg>
                     <Img src={getLevelIcon(userInfo.learnMyselfAchieve.percent)} width={180} height={115} />
                   </S.SliderLearnMySelfImg>
-                  <h2>{userInfo.learnMyselfAchieve.percent}% 달성</h2>
-                  <h3>
+                  <S.SliderLearnMySelfPercentage>
+                    {userInfo.learnMyselfAchieve.percent}% 달성
+                  </S.SliderLearnMySelfPercentage>
+                  <S.SliderLearnMySelfSuccess>
                     내가 쓴 개수 &nbsp; &nbsp;<span>{userInfo.learnMyselfAchieve.completeNum}</span> &nbsp;/ &nbsp;
                     {userInfo.learnMyselfAchieve.totalNum}
-                  </h3>
+                  </S.SliderLearnMySelfSuccess>
                 </S.SliderLearnMySelf>
               </Link>
             ) : (
