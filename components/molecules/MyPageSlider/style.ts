@@ -56,26 +56,29 @@ export const SliderLearnMySelf = Styled.div`
   width: 100%;
   height: 100%;
 
-  h1{
-    margin: 40px 0 20px 0;
-    color: ${palette('grayscale', 4)};
-    ${theme('font.subhead3_eng')};
-  }
-  h2{
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
-    background-image: linear-gradient(to right, ${palette('primary', 3)}, ${palette('primary', 0)});
-    ${theme('font.subhead5_eng')};
-  }
-  h3{
-    margin-top: 5px;
-    color: ${palette('grayscale', 5)};
-    ${theme('font.body2')};
-  }
   span {
     color: ${palette('grayscale', 7)};
   }
+`;
+
+export const SliderLearnMySelfDate = Styled.p`
+  margin: 40px 0 20px 0;
+  color: ${palette('grayscale', 4)};
+  ${theme('font.subhead3_eng')};
+`;
+
+export const SliderLearnMySelfPercentage = Styled.p`
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  background-image: linear-gradient(to right, ${palette('primary', 3)}, ${palette('primary', 0)});
+  ${theme('font.subhead5_eng')};
+`;
+
+export const SliderLearnMySelfSuccess = Styled.p`
+  margin-top: 5px;
+  color: ${palette('grayscale', 5)};
+  ${theme('font.body2')};
 `;
 
 export const SliderLearnMySelfImg = Styled.div`
