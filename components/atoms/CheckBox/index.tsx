@@ -10,7 +10,7 @@ export interface IProps extends React.InputHTMLAttributes<HTMLInputElement> {
   onChange?: (event: React.ChangeEvent<HTMLInputElement>, isChecked?: boolean) => void;
 }
 
-function CheckBox({ ...props }: IProps): React.ReactElement {
+function CheckBox({ id, ...props }: IProps): React.ReactElement {
   return <SCheckBox type="checkbox" {...props} />;
 }
 

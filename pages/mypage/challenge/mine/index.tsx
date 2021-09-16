@@ -3,11 +3,11 @@ import { ChallengeDetailCard } from 'components/organisms';
 import React, { useCallback, useEffect, useState } from 'react';
 import { useRecoilValue } from 'recoil';
 import { userStatusState } from 'stores/user';
-import { IChallengeData } from 'types/challenge.type';
+import { IChallenge } from 'types/challenge.type';
 import { Header, NoContents, Wrapper } from './style';
 
 function MyChallengeList(): React.ReactElement {
-  const [myChallengeList, setMyChallengeList] = useState<IChallengeData[] | null>(null);
+  const [myChallengeList, setMyChallengeList] = useState<IChallenge[] | null>(null);
   const [offset, setOffset] = useState(0);
   const globalUserState = useRecoilValue(userStatusState);
 
@@ -27,18 +27,18 @@ function MyChallengeList(): React.ReactElement {
     <Wrapper>
       <Header>내가 작성한 글</Header>
       {!!myChallengeList ? (
-        myChallengeList?.map((data: IChallengeData, id) => {
+        myChallengeList?.map((data: IChallenge, id) => {
           return (
             <ChallengeDetailCard
-              id={data?._id}
-              nickname={data?.user?.nickname}
-              image={data?.user?.img}
+              id={data.id}
+              nickname={data?.nickname}
+              image={data?.img}
               createdAt={data?.createdAt}
               interest={data?.interest}
               good={data?.good}
               bad={data?.bad}
               learn={data?.learn}
-              like={data?.likes}
+              like={data?.likeNum}
               comments={data?.comments.length}
               isLike={data?.isLike}
               isScrap={data?.isScrap}

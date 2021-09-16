@@ -1,6 +1,6 @@
 import { IConcert } from './concert.type';
 export interface IMyPageConcert {
-  _id: string;
+  id: number;
   title: string;
 }
 
@@ -47,25 +47,21 @@ export interface IMyUserChallenge {
 }
 
 export interface IChallenge {
-  likes: number;
+  likeNum: number;
   commentNum: number;
   scrapNum: number;
   generation: number;
   interest: string[];
-  comments: string[];
-  _id: string;
-  user: {
-    img: string;
-    _id: string;
-    nickname: string;
-  };
+  comments: number[];
+  id: number;
+  userID: number;
+  img: string;
+  nickname: string;
   good: string;
   bad: string;
   learn: string;
   createdAt: string;
   updatedAt: string;
-  __v: number;
-  isDeleted: boolean;
   isLike: boolean;
   isScrap: boolean;
 }
@@ -76,26 +72,19 @@ export interface IMyUserCommentResponse {
 }
 
 export interface IMyUserComment {
-  parentComment: IMyUserComment | null;
-  childrenComment: IMyUserComment[];
-  isDeleted: boolean;
-  _id: string;
-  postModel: string;
-  post: string;
-  userID: string;
+  id: number;
+  post: number;
   text: string;
-  createdAt: string;
-  updatedAt: string;
-  __v: number;
+  createdAt: Date;
 }
 
 export interface IComment {
   childrenComment: IComment[];
   isDeleted: boolean;
-  _id: string;
+  id: number;
   userID: {
     img: string;
-    _id: string;
+    id: number;
     nickname: string;
   };
   text: string;
@@ -103,10 +92,10 @@ export interface IComment {
 
 export interface IGetMyPageUserInfoParameter {
   token?: string;
-  commentIdList: string[];
+  commentIdList: number[];
 }
 
 export interface IDeleteMyPageUserChallengeParameter {
   token?: string;
-  challengeId: string;
+  challengeId: number;
 }

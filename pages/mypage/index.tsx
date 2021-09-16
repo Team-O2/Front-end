@@ -13,7 +13,7 @@ import { Logo } from 'public/assets/images';
 import React, { useCallback, useEffect, useState } from 'react';
 import { useRecoilValue } from 'recoil';
 import { userState, userStatusState } from 'stores/user';
-import { IChallenge, IChallengeData } from 'types/challenge.type';
+import { IChallenge } from 'types/challenge.type';
 import { IConcert } from 'types/concert.type';
 import { IMyPageHeader, IMyScrappedChallenge, IMyScrappedConcert, IMyUserCommentResponse } from 'types/myPage.type';
 import { changeDateFormat } from 'utils';
@@ -24,13 +24,13 @@ function MyPage(): React.ReactElement {
   const [userInfo, setUserInfo] = useState<IMyPageHeader | null>(null);
   const [concertData, setConcertData] = useState<IMyScrappedConcert | null>(null);
   const [scrappedChallenge, setScrappedChallenge] = useState<IMyScrappedChallenge | null>(null);
-  const [userChallengeList, setUserChallengeList] = useState<IChallengeData[] | null>(null);
+  const [userChallengeList, setUserChallengeList] = useState<IChallenge[] | null>(null);
   const [userComment, setUserComment] = useState<IMyUserCommentResponse | null>(null);
   const [selectedCategory, setSelectedCategory] = useState('Concert');
   const [isReRender, setIsReRender] = useState(false);
   const [currentPage, setCurrentPage] = useState(1);
   const [isModalOpened, setIsModalOpened] = useState(false);
-  const [checkedCommentList, setCheckedCommentList] = useState<string[]>([]);
+  const [checkedCommentList, setCheckedCommentList] = useState<number[]>([]);
   const [isSelectAll, setIsSelectAll] = useState(false);
   const [challenge, setChallenge] = useState<IChallenge | null>(null);
   const [isChallengeModalOpen, setIsChallengeModalOpen] = useState(false);
@@ -66,8 +66,8 @@ function MyPage(): React.ReactElement {
     return data?.map((item: IConcert) => {
       return (
         <MyPageConcertCard
-          key={item._id}
-          id={item._id}
+          key={item.id}
+          id={item.id}
           tagName={item.interest[0]}
           title={item.title}
           content={item.text}
@@ -79,13 +79,14 @@ function MyPage(): React.ReactElement {
   };
 
   const renderChallenge = (data: IChallenge[]) => {
+    console.log(data);
     return data?.map((item: IChallenge) => (
       <ChallengeCard
-        imagePath={item.user?.img || Logo}
-        isBookmarked={globalUserInfo?._id !== item?.user?._id}
-        id={item._id}
-        key={item._id}
-        name={item.user?.nickname}
+        imagePath={item?.img || Logo}
+        isBookmarked={globalUserInfo?.id !== item?.userID}
+        id={item.id}
+        key={item.id}
+        name={item?.nickname}
         content={`잘한 점: ${item.good} 못한 점: ${item.bad} 배운 점: ${item.learn}`}
         onClick={cancelChallengeBookmark}
         onButtonClick={fetchLearnMyselfData}
@@ -114,7 +115,7 @@ function MyPage(): React.ReactElement {
   }, [globalUserStatusInfo?.token]);
 
   const fetchLearnMyselfData = useCallback(
-    async (id: string) => {
+    async (id: number) => {
       const data = await getChallengeContent(id, globalUserStatusInfo?.token);
       if (data) {
         setChallenge(data);
@@ -127,7 +128,7 @@ function MyPage(): React.ReactElement {
   );
 
   const cancelChallengeBookmark = async (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
-    const id = e.currentTarget.value;
+    const id = parseInt(e.currentTarget.value);
     await deleteUserChallengeBookmark({ token: globalUserStatusInfo?.token, challengeId: id });
     setIsReRender(!isReRender);
   };

@@ -1,7 +1,7 @@
 import { DeleteModal, MyPageSection } from 'components/molecules';
 import { MyCommentList, MyPageCommentModal, MyPageHeader } from 'components/organisms';
 import React from 'react';
-import { IChallenge, IChallengeData } from 'types/challenge.type';
+import { IChallenge } from 'types/challenge.type';
 import { IConcert } from 'types/concert.type';
 import { IUserState } from 'types/global.type';
 import { IMyPageHeader, IMyScrappedChallenge, IMyScrappedConcert, IMyUserCommentResponse } from 'types/myPage.type';
@@ -12,7 +12,7 @@ export interface IProps {
   globalUserInfo: IUserState | null;
   concertData: IMyScrappedConcert | null;
   scrappedChallenge: IMyScrappedChallenge | null;
-  userChallengeList: IChallengeData[] | null;
+  userChallengeList: IChallenge[] | null;
   userComment: IMyUserCommentResponse | null;
   challenge: IChallenge | null;
   selectedSection: string;
@@ -22,11 +22,11 @@ export interface IProps {
   isChallengeModalOpen: boolean;
   isFolded: boolean;
   currentPage: number;
-  checkedCommentList: string[];
+  checkedCommentList: number[];
   onChangeSection: (e: React.ChangeEvent<HTMLInputElement>) => void;
   setSelectedCategory: (value: string) => void;
   setCurrentPage: (value: number) => void;
-  setCheckedCommentList: (value: string[]) => void;
+  setCheckedCommentList: (value: number[]) => void;
   setIsSelectAll: (value: boolean) => void;
   setIsModalOpened: (value: boolean) => void;
   setIsChallengeModalOpen: (value: boolean) => void;
@@ -34,7 +34,7 @@ export interface IProps {
   renderChallenge: (data: IChallenge[]) => React.ReactElement[];
   handleModalOpen: () => void;
   handleCommentFold: () => void;
-  fetchLearnMyselfData: (id: string) => Promise<void>;
+  fetchLearnMyselfData: (id: number) => Promise<void>;
   deleteSelectedCommentList: () => Promise<void>;
   handleChallengeModalOpen: () => void;
 }

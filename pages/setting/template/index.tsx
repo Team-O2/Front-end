@@ -11,8 +11,7 @@ export interface IProps {
   handleUserNickname: (nickname: string) => void;
   handleClickDel: (e: string) => void;
   handleUserInterest: (e: string) => void;
-  handleUserGender: (e: string) => void;
-  handleUserMarpolicy: (e: React.ChangeEvent<HTMLInputElement>) => void;
+  handleUserIsMarketing: (e: React.ChangeEvent<HTMLInputElement>) => void;
   handleClickEdit: () => Promise<void>;
   handlePasswordBtnClicked: () => void;
 }
@@ -25,8 +24,7 @@ function SettingTemplate({
   handleUserNickname,
   handleClickDel,
   handleUserInterest,
-  handleUserGender,
-  handleUserMarpolicy,
+  handleUserIsMarketing,
   handleClickEdit,
   handlePasswordBtnClicked,
 }: IProps): React.ReactElement {
@@ -40,8 +38,7 @@ function SettingTemplate({
         handleUserNickname={handleUserNickname}
         handleClickDel={handleClickDel}
         handleUserInterest={handleUserInterest}
-        handleUserGender={handleUserGender}
-        handleUserMarpolicy={handleUserMarpolicy}
+        handleUserIsMarketing={handleUserIsMarketing}
         handleClickEdit={handleClickEdit}
         handlePasswordBtnClicked={handlePasswordBtnClicked}
       />

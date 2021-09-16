@@ -1,5 +1,5 @@
 import { serverAxios } from 'libs/axios';
-import { IChallengeData } from 'types/challenge.type';
+import { IChallenge } from 'types/challenge.type';
 import {
   IDeleteMyPageUserChallengeParameter,
   IGetMyPageUserInfoParameter,
@@ -80,7 +80,7 @@ export const getUserChallengeList = async ({
   token,
   limit = 8,
   offset = 0,
-}: IFetchParameter): Promise<IChallengeData[] | null> => {
+}: IFetchParameter): Promise<IChallenge[] | null> => {
   try {
     const data = await serverAxios.get(`${MY_PAGE_URL_PREFIX}/write`, {
       headers: { Accept: 'application/json', Authorization: token },
@@ -120,7 +120,7 @@ export const getUserCommentList = async ({
 
 export const deleteUserCommentList = async ({ token, commentIdList }: IGetMyPageUserInfoParameter): Promise<null> => {
   try {
-    const data = await serverAxios.delete(`${MY_PAGE_URL_PREFIX}/comment`, {
+    const data = await serverAxios.patch(`${MY_PAGE_URL_PREFIX}/comment`, {
       headers: { Accept: 'application/json', Authorization: token },
       data: {
         commentID: commentIdList,

@@ -14,12 +14,11 @@ export const getUserData = async (token: string): Promise<IUserState | null> => 
       if (data.data.data !== undefined) {
         return {
           interest: data.data.data.interest,
-          marpolicy: data.data.data.marpolicy,
+          isMarketing: data.data.data.isMarketing,
           img: data.data.data.img,
-          _id: data.data.data._id,
+          id: data.data.data.id,
           email: data.data.data.email,
           nickname: data.data.data.nickname,
-          gender: data.data.data.gender,
         };
       }
     }
@@ -62,8 +61,7 @@ export const updateUserInfo = async (
   img: any,
   nickname: string,
   interest: string[],
-  gender: number,
-  marpolicy: boolean,
+  isMarketing: boolean,
 ) => {
   try {
     const body = new FormData();
@@ -72,8 +70,7 @@ export const updateUserInfo = async (
     }
     body.append('nickname', nickname);
     body.append('interest', `[${interest.map((item) => `"${item}"`).join(', ')}]`);
-    body.append('gender', String(gender));
-    body.append('marpolicy', String(marpolicy));
+    body.append('isMarketing', String(isMarketing));
 
     const data = await serverAxios.patch(`${PREFIX_URL}/userInfo`, body, { headers: { Authorization: token } });
     if (data.data.status === 200) {

@@ -15,7 +15,7 @@ import {
 
 export interface IProps {
   isChecked: boolean;
-  id: string;
+  id: number;
   content?: string;
   date: string;
   boardId: string;
@@ -42,8 +42,8 @@ function CommentedBoardRow({
     <Wrapper>
       {content && (
         <RowWrapper>
-          <RowCheckBox id={id} onChange={onChange} checked={isChecked} />
-          <RowLabel htmlFor={id}>{content}</RowLabel>
+          <RowCheckBox id={id.toString()} onChange={onChange} checked={isChecked} />
+          <RowLabel htmlFor={id.toString()}>{content}</RowLabel>
           <InfoWrapper>
             <InfoDate>{getTimeForToday(date)}</InfoDate>
             <VerticalBar></VerticalBar>

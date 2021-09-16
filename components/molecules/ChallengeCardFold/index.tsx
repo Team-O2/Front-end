@@ -3,11 +3,11 @@ import { ChallengeComment } from 'components/molecules';
 import React, { useCallback, useEffect, useState } from 'react';
 import { useRecoilValue } from 'recoil';
 import { userStatusState } from 'stores/user';
-import { ICommentData } from 'types/challenge.type';
+import { IComment } from 'types/challenge.type';
 import { CommentButton, CommentFoldButton } from './style';
 
 interface IProps {
-  id: string;
+  id: number;
   comments: number;
   setIsLoginModalOpen: (value: boolean) => void;
 }
@@ -17,7 +17,7 @@ function ChallengeCardFold({ id, comments, setIsLoginModalOpen }: IProps): React
   const userStateNum = userStatusData ? userStatusData.userType : 0;
   const [isOpenComment, setIsOpenComment] = useState(false);
   const [isCommentListFlag, setIsCommentListFlag] = useState<boolean>(false);
-  const [myCommentList, setMyCommentList] = useState<ICommentData[] | null>(null);
+  const [myCommentList, setMyCommentList] = useState<IComment[] | null>(null);
   const isFoldComment = true;
 
   const getCommentList = useCallback(async () => {

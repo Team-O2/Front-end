@@ -1,4 +1,4 @@
-import { DropDown, DropDownMulti, FormInput, ProfileEdit, RemovableTag, ToggleSwitch } from 'components/molecules';
+import { DropDownMulti, FormInput, ProfileEdit, RemovableTag, ToggleSwitch } from 'components/molecules';
 import React from 'react';
 import { interestList } from 'resources/string';
 import { ISettingUserInfo } from 'types/setting.type';
@@ -12,8 +12,7 @@ export interface IProps {
   handleUserNickname: (nickname: string) => void;
   handleClickDel: (e: string) => void;
   handleUserInterest: (e: string) => void;
-  handleUserGender: (e: string) => void;
-  handleUserMarpolicy: (e: React.ChangeEvent<HTMLInputElement>) => void;
+  handleUserIsMarketing: (e: React.ChangeEvent<HTMLInputElement>) => void;
   handleClickEdit: () => Promise<void>;
   handlePasswordBtnClicked: () => void;
 }
@@ -26,8 +25,7 @@ function SettingForm({
   handleUserNickname,
   handleClickDel,
   handleUserInterest,
-  handleUserGender,
-  handleUserMarpolicy,
+  handleUserIsMarketing,
   handleClickEdit,
   handlePasswordBtnClicked,
 }: IProps): React.ReactElement {
@@ -65,17 +63,6 @@ function SettingForm({
           return <RemovableTag text={item} setList={handleClickDel} key={idx} />;
         })}
       </S.InterestList>
-      <S.DropdownWrapper>
-        <DropDown
-          title="성별"
-          state={userInfo.gender === 0 ? '남성' : userInfo.gender === 1 ? '여성' : '선택안함'}
-          setState={handleUserGender}
-          defaultMsg="성별 선택"
-          itemList={['남성', '여성', '선택안함']}
-          page="joinform"
-          isSetting={true}
-        />
-      </S.DropdownWrapper>
       <S.Txt>비밀번호 변경</S.Txt>
       <S.PwBtn onClick={handlePasswordBtnClicked}>비밀번호 변경하기</S.PwBtn>
       <S.PolicyCntnr>
@@ -83,7 +70,7 @@ function SettingForm({
           <S.Text>이메일 수신 설정</S.Text>
           <S.TxtSmall>오투에서 진행하는 챌린지, 이벤트, 프로모션에 관한 광고를 수신하겠습니다.</S.TxtSmall>
         </S.TextWrapper>
-        <ToggleSwitch checked={userInfo.marpolicy} onChange={handleUserMarpolicy} />
+        <ToggleSwitch checked={userInfo.isMarketing} onChange={handleUserIsMarketing} />
       </S.PolicyCntnr>
       <S.Btn isActive={isBtnAtv} onClick={handleClickEdit}>
         수정완료

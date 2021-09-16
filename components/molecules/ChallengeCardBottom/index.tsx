@@ -13,7 +13,7 @@ interface IProps {
   isLike?: boolean;
   like: number;
   comments?: number;
-  id: string;
+  id: number;
 }
 
 function ChallengeCardBottom({

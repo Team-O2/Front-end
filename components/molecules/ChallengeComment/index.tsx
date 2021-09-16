@@ -1,11 +1,11 @@
 import { ChallengeCommentWrite, ChallengeSingleComment } from 'components/molecules';
 import React from 'react';
-import { ICommentData } from 'types/challenge.type';
+import { IComment } from 'types/challenge.type';
 import { CommentListWrapper } from './style';
 
 interface IProps {
-  commentList: Array<ICommentData> | null;
-  challengeID: string;
+  commentList: Array<IComment> | null;
+  challengeID: number;
   comments: number;
   commentListFlag: boolean;
   setCommentListFlag: (value: boolean) => void;
@@ -28,9 +28,9 @@ function ChallengeComment({
         commentListFlag={commentListFlag}
         setCommentListFlag={setCommentListFlag}
       />
-      {commentList?.map((data: ICommentData) => (
+      {commentList?.map((data: IComment) => (
         <ChallengeSingleComment
-          key={data._id}
+          key={data.id}
           commentData={data}
           comments={comments}
           challengeID={challengeID}
