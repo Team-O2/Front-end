@@ -55,7 +55,7 @@ export const postConcertWrite = async (token: string, concertWriteData: IConcert
         Authorization: token,
       },
     });
-    if (data.data.status === 200) {
+    if (data.data.status === 201) {
       alert('콘서트 글 올리기를 완료했습니다.');
       return true;
     }
@@ -88,7 +88,7 @@ export const postNoticeWrite = async (token: string, noticeWriteData: INoticeDat
         Authorization: token,
       },
     });
-    if (data.data.status === 200) {
+    if (data.data.status === 201) {
       alert('공지사항 업로드를 완료했습니다.');
       return true;
     }
