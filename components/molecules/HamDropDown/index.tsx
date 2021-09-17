@@ -1,6 +1,7 @@
 import { Link } from 'components/atoms';
 import { HamArrowDownIcon, HamArrowUpIcon } from 'public/assets/images';
 import React, { useState } from 'react';
+import { HamStatusBtn } from '..';
 import {
   Detail,
   DetailBtn,
@@ -10,6 +11,7 @@ import {
   Hide,
   Label,
   LabelIcon,
+  RowContainer,
   Title,
   Wrapper,
 } from './style';
@@ -20,6 +22,7 @@ export interface IProps {
   itemList: {
     name: string;
     link: string;
+    status?: number;
   }[];
   isEnglish: boolean;
 }
@@ -45,7 +48,14 @@ function HamDropDown({ title, itemList, isEnglish }: IProps): React.ReactElement
           <DetailContainer>
             <DetailBtnContainer>
               {itemList.map((value, id) => {
-                return (
+                return value.status ? (
+                  <Link key={id} to={value.link}>
+                    <RowContainer>
+                      <DetailBtn>{value.name}</DetailBtn>
+                      <HamStatusBtn status={value.status} />
+                    </RowContainer>
+                  </Link>
+                ) : (
                   <Link key={id} to={value.link}>
                     <DetailBtn>{value.name}</DetailBtn>
                   </Link>
