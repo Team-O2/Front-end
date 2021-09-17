@@ -1,10 +1,10 @@
 import { postJoin } from 'apis';
+import { useRouter } from 'next/router';
 import React, { useEffect, useState } from 'react';
-import { useHistory } from 'react-router-dom';
 import JoinTemplate from './template';
 
 function Join(): React.ReactElement {
-  const history = useHistory();
+  const history = useRouter();
   const [isJoinButtonDisabled, setIsJoinButtonDisabled] = useState(true);
   const [isInterestModalOpen, setIsInterestModalOpen] = useState(false);
   const [isConditionMet, setIsConditionMet] = useState({
