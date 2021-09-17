@@ -44,7 +44,9 @@ function Hamburger(): React.ReactElement {
   const [userStateNum, setUserState] = useState(userStatusData ? userStatusData.userType : 0);
   const [generationNum, setGenerationNum] = useState<{ registGeneration: number | null; progressGeneration: number }>();
   const [userName, setUserName] = useState(userData?.nickname);
-  const [challengeList, setChallengeList] = useState<{ name: string; link: string }[]>([{ name: '', link: '' }]);
+  const [challengeList, setChallengeList] = useState<{ name: string; link: string; status: number }[]>([
+    { name: '', link: '', status: -1 },
+  ]);
 
   const changeIndextoName = (index: number) => {
     switch (index) {
@@ -59,13 +61,26 @@ function Hamburger(): React.ReactElement {
     }
   };
   const getChallengeList = () => {
-    const arr: { name: string; link: string }[] = [];
+    const arr: { name: string; link: string; status: number }[] = [];
+    // status :
+    // 진행중인 기수(progressGeneration) => 1
+    // 신청중인 기수(registGeneration) => 2
+    // 진행중X, 신청중X 기수(종료) => 0
+
     if (generationNum) {
       for (let i = 1; i <= generationNum.progressGeneration; i++) {
-        arr.push({ name: changeIndextoName(i), link: `/challenge/${i}` });
+        arr.push({
+          name: changeIndextoName(i),
+          link: `/challenge/${i}`,
+          status: i === generationNum.progressGeneration ? 1 : 0,
+        });
       }
       if (generationNum.registGeneration) {
-        arr.push({ name: changeIndextoName(generationNum.registGeneration), link: '/challenge/register' });
+        arr.push({
+          name: changeIndextoName(generationNum.registGeneration),
+          link: '/challenge/register',
+          status: 2,
+        });
       }
     }
     setChallengeList(arr);

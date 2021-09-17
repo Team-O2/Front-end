@@ -43,13 +43,22 @@ position : relative;
 margin-top : 20px;
 `;
 
+export const RowContainer = Styled.div`
+display : flex;
+align-items : center;
+:hover {
+  cursor : pointer;
+}
+`;
+
 export const DetailBtnContainer = Styled.div`
 width : 200px;
+padding-left : 85px;
 display : flex;
 flex-direction : column;
 max-height : 229px;
 overflow-y: scroll;
-align-items : center;
+align-items : flex-start;
 ::-webkit-scrollbar {
 width: 0.3rem;
 }
@@ -69,7 +78,7 @@ width: 0.3rem;
 export const DetailBtn = Styled(Button)`
 ${theme('font.body2_eng')}
 height: 18px;
-margin: 5px 0;
+margin: 5px 7px 5px 0;
 color : ${palette('grayscale', 4)};
 white-space: nowrap;
 :hover{
