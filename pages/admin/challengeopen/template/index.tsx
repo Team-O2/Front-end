@@ -1,6 +1,6 @@
-import { CheckOffIcon, CheckOnIcon } from 'public/assets/images';
 import { AdminChallengeOpenForm } from 'components/molecules';
 import { ChallengeOpenPhotoUpload } from 'components/organisms';
+import { CheckOffIcon, CheckOnIcon } from 'public/assets/images';
 import React from 'react';
 import { IConditionMet } from 'types/challenge.type';
 import {
@@ -63,7 +63,7 @@ function AdminChallengeOpenTemplate({
         <ChallengeOpenPhotoUpload setImage={setImage} />
       </UploadContainer>
       <CheckContainer>
-        <SCheckBox id="checkBox" checked={isChecked} onChange={checkHandler} />
+        <SCheckBox type="checkbox" id="checkBox" checked={isChecked} onChange={checkHandler} />
         <CheckExp htmlFor="checkBox">
           <CheckImage src={isChecked ? CheckOnIcon : CheckOffIcon} />위 내용을 확인하셨습니까?
         </CheckExp>

@@ -1,4 +1,4 @@
-import { Button, CheckBox, Img, Label } from 'components/atoms';
+import { Button, Img, Label } from 'components/atoms';
 import Styled, { css } from 'styled-components';
 import { palette, theme } from 'styled-tools';
 
@@ -7,6 +7,7 @@ export const CheckExp = Styled.label`
   color : ${palette('grayscale', 4)};
   display : flex;
   align-items : center;
+  gap : 16px;
 `;
 
 export const CheckImage = Styled(Img)`
@@ -15,7 +16,7 @@ export const CheckImage = Styled(Img)`
   margin-right : 16px;
 `;
 
-export const SCheckBox = Styled(CheckBox)`
+export const SCheckBox = Styled.input`
   display : none;
 `;
 
