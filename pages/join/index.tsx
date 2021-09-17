@@ -48,7 +48,7 @@ function Join(): React.ReactElement {
       password: userData.password,
       nickname: userData.nickname,
       interest: userData.interest,
-      marpolicy: userData.marpolicy,
+      isMarketing: userData.marpolicy,
     };
     const getData = await postJoin(postData);
     if (getData) {

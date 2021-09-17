@@ -12,7 +12,7 @@ export interface IJoin {
   password: string;
   nickname: string;
   interest: string[];
-  marpolicy: boolean;
+  isMarketing: boolean;
 }
 
 export interface IJoinData {
