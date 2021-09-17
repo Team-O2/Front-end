@@ -92,7 +92,7 @@ export const getConcertSearchData = async ({
 
 export const postConcertComment = async (
   token: string,
-  concertID: string | undefined,
+  concertID: number | undefined,
   commentData: IConcertCommentData,
 ): Promise<IFetchComment | null> => {
   try {

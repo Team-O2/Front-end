@@ -8,7 +8,7 @@ import { CommentContainer, CommentWriteContainer } from './style';
 
 interface IProps {
   commentList: Array<IConcertComment>;
-  concertID?: string;
+  concertID?: number;
   isRerender: boolean;
   setIsRerender: (value: boolean) => void;
 }
