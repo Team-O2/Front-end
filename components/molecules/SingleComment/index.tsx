@@ -17,7 +17,7 @@ import {
 
 interface IProps {
   childrenComment: {
-    id: string;
+    id: number;
     userID: number;
     nickname: string;
     img: string;
@@ -25,13 +25,13 @@ interface IProps {
     isDeleted: boolean;
   }[];
   isDeleted: boolean;
-  id: string;
+  id: number;
   userID: number;
   nickname: string;
   img: string;
-  parentCommentID: string;
+  parentCommentID: number;
   text: string;
-  concertID?: string;
+  concertID?: number;
   isRerender: boolean;
   setIsRerender: (value: boolean) => void;
 }

@@ -34,7 +34,7 @@ export interface IUserConcert {
   comment: IConcertComment[];
   createdAt: string;
   hashtag: string[];
-  id: string;
+  id: number;
   img: string;
   imgThumbnail: string;
   interest: string[];
@@ -59,14 +59,14 @@ export interface IConcertList {
 
 export interface IConcertComment {
   children: {
-    id: string;
+    id: number;
     userID: number;
     nickname: string;
     img: string;
     text: string;
     isDeleted: boolean;
   }[];
-  id: string;
+  id: number;
   userID: number;
   nickname: string;
   img: string;
@@ -75,7 +75,7 @@ export interface IConcertComment {
 }
 
 export interface IConcertCommentData {
-  parentID?: string | null;
+  parentID?: number | null;
   text: string;
 }
 
@@ -89,12 +89,12 @@ export interface IFetchParameter {
 
 export interface IFetchComment {
   token: string;
-  concertID: string | undefined;
+  concertID: number | undefined;
   commentData: IConcertCommentData;
 }
 
 export interface IReply {
-  id: string;
+  id: number;
   userID: number;
   nickname: string;
   img: string;
