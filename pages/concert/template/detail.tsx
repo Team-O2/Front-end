@@ -64,7 +64,7 @@ function ConcertDetailTemplate({
       )}
       <CommentList
         commentList={commentList}
-        concertID={concert?._id}
+        concertID={concert?.id}
         isRerender={isRerender}
         setIsRerender={setIsRerender}
       ></CommentList>

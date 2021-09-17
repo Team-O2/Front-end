@@ -58,9 +58,9 @@ function ConcertList({ concertData, totalConcertNum, currentPage, setCurrentPage
                 title={card.title}
                 text={card.text}
                 commentNum={card.commentNum}
-                likeNum={card.likes}
-                key={card._id}
-                concertID={card._id}
+                likeNum={card.likeNum}
+                key={card.id}
+                concertID={card.id}
               ></Concert>
             ),
         )}

@@ -6,7 +6,7 @@ interface IProps {
   title: string;
   authorNickname: string;
   interestList: string[];
-  concertID?: string;
+  concertID?: number;
 }
 
 function ConcertCard({ imgThumbnail, title, authorNickname, interestList, concertID }: IProps): React.ReactElement {

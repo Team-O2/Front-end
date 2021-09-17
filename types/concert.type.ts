@@ -1,5 +1,5 @@
 export interface IConcert {
-  id: string;
+  id: number;
   userID: number;
   nickname: string;
   img: string;
@@ -10,46 +10,46 @@ export interface IConcert {
   likeNum: number;
   commentNum: number;
   scrapNum: number;
-  generation: number;
   interest: string[];
   hashtag: string[];
   isDeleted: boolean;
-  comments: {
+  comment: {
     id: number;
     userID: number;
     nickname: string;
     img: string;
     text: string;
+    children: [];
     isDeleted: boolean;
   }[]; // 코멘트 객체
   isNotice: boolean;
   createdAt: string;
   updatedAt: string;
   authorNickname: string;
-  __v: number;
 }
 
 export interface IUserConcert {
   authorNickname: string;
   commentNum: number;
-  comments: IConcertComment[];
+  comment: IConcertComment[];
   createdAt: string;
   hashtag: string[];
+  id: string;
+  img: string;
   imgThumbnail: string;
   interest: string[];
   isDeleted: boolean;
   isLike: boolean;
   isNotice: boolean;
   isScrap: boolean;
-  likes: number;
+  likeNum: number;
+  nickname: string;
   scrapNum: number;
   text: string;
   title: string;
   updatedAt: string;
-  user: { img: string; nickname: string; _id: string };
+  userID: number;
   videoLink: string;
-  __v: number;
-  _id: string;
 }
 
 export interface IConcertList {
@@ -58,24 +58,20 @@ export interface IConcertList {
 }
 
 export interface IConcertComment {
-  childrenComment: {
-    idDeleted: boolean;
-    _id: string;
-    userID: {
-      img: string;
-      _id: string;
-      nickname: string;
-    };
-    text: string;
-  }[];
-  isDeleted: boolean;
-  _id: string;
-  userID: {
-    img: string;
-    _id: string;
+  children: {
+    id: string;
+    userID: number;
     nickname: string;
-  };
+    img: string;
+    text: string;
+    isDeleted: boolean;
+  }[];
+  id: string;
+  userID: number;
+  nickname: string;
+  img: string;
   text: string;
+  isDeleted: boolean;
 }
 
 export interface IConcertCommentData {
@@ -92,8 +88,16 @@ export interface IFetchParameter {
 }
 
 export interface IFetchComment {
-  createdAt: string;
+  token: string;
+  concertID: string | undefined;
+  commentData: IConcertCommentData;
+}
+
+export interface IReply {
+  id: string;
+  userID: number;
   nickname: string;
+  img: string;
   text: string;
-  _id: string;
+  isDeleted: boolean;
 }

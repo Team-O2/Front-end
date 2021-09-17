@@ -30,16 +30,16 @@ function ConcertDetail(): React.ReactElement {
     if (userStatusData) {
       const data = await getConcertUserData(userStatusData.token, id);
       data && setConcert(data);
-      data && setCommentList(data.comments);
-      data && setLikeNum(data.likes);
+      data && setCommentList(data.comment);
+      data && setLikeNum(data.likeNum);
       data && setScrapNum(data.scrapNum);
       data && setIsUserLike(data.isLike);
       data && setIsUserScrap(data.isScrap);
     } else {
       const data = await getConcertData(id);
       data && setConcert(data);
-      data && setCommentList(data.comments);
-      data && setLikeNum(data.likes);
+      data && setCommentList(data.comment);
+      data && setLikeNum(data.likeNum);
       data && setScrapNum(data.scrapNum);
     }
   }, [id, userStatusData]);

@@ -21,7 +21,7 @@ interface IProps {
   text: string;
   commentNum: number;
   likeNum?: number;
-  concertID?: string;
+  concertID?: number;
 }
 
 function Concert({
