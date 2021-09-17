@@ -25,9 +25,10 @@ export interface IProps {
     status?: number;
   }[];
   isEnglish: boolean;
+  isAdmin: boolean;
 }
 
-function HamDropDown({ title, itemList, isEnglish }: IProps): React.ReactElement {
+function HamDropDown({ title, itemList, isEnglish, isAdmin }: IProps): React.ReactElement {
   const [isOpened, setIsOpened] = useState(false);
   const handleOpenOnClick = (): void => {
     setIsOpened(!isOpened);
@@ -46,7 +47,7 @@ function HamDropDown({ title, itemList, isEnglish }: IProps): React.ReactElement
       {isOpened && (
         <Detail>
           <DetailContainer>
-            <DetailBtnContainer>
+            <DetailBtnContainer alignCenter={isAdmin}>
               {itemList.map((value, id) => {
                 return value.status ? (
                   <Link key={id} to={value.link}>
