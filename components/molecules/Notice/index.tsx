@@ -21,7 +21,7 @@ interface IProps {
   text: string;
   commentNum: number;
   likeNum?: number;
-  noticeID?: string;
+  noticeID?: number;
 }
 
 function Notice({

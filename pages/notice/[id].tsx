@@ -14,7 +14,7 @@ function NoticeDetail(): React.ReactElement {
   const getNoticeContent = useCallback(async () => {
     const data = await getNoticeData(id);
     data && setNotice(data);
-    data && setCommentList(data.comments);
+    data && setCommentList(data.comment);
   }, [id]);
 
   useEffect(() => {

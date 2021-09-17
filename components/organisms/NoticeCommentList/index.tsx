@@ -8,7 +8,7 @@ import { CommentContainer, CommentWriteContainer } from './style';
 
 interface IProps {
   commentList: Array<INoticeComment>;
-  noticeID?: string;
+  noticeID?: number;
   isRerender: boolean;
   setIsRerender: (value: boolean) => void;
 }
@@ -46,14 +46,16 @@ function NoticeCommentList({ commentList, noticeID, isRerender, setIsRerender }:
         {commentList?.map((data: INoticeComment, index) => (
           <NoticeSingleComment
             key={index}
-            parentCommentID={data._id}
+            childrenComment={data.children}
+            isDeleted={data.isDeleted}
+            parentCommentID={data.id}
             userID={data.userID}
-            childrenComment={data.childrenComment}
+            nickname={data.nickname}
+            img={data.img}
             text={data.text}
             noticeID={noticeID}
             isRerender={isRerender}
             setIsRerender={setIsRerender}
-            isDeleted={data.isDeleted}
           ></NoticeSingleComment>
         ))}
       </CommentContainer>

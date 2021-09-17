@@ -51,14 +51,14 @@ function NoticeList({ noticeList, totalNoticeNum, currentPage, setCurrentPage }:
             notice && (
               <Notice
                 imgThumbnail={notice.imgThumbnail}
-                authorNickname={notice.user.nickname}
+                authorNickname={notice.nickname}
                 interestList={notice.interest}
                 createdAt={notice.createdAt}
                 title={notice.title}
                 text={notice.text}
                 commentNum={notice.commentNum}
-                key={notice._id}
-                noticeID={notice._id}
+                key={notice.id}
+                noticeID={notice.id}
               ></Notice>
             ),
         )}

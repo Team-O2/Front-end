@@ -32,7 +32,7 @@ export const getNoticeData = async (noticeID: string | string[]): Promise<INotic
   try {
     const data = await serverAxios.get(`${PREFIX_URL}/${noticeID}`, {});
     if (data.data.status === 200) {
-      return data.data.data[0];
+      return data.data.data;
     } else {
       return null;
     }
@@ -65,16 +65,16 @@ export const getNoticeSearchData = async ({
 
 export const postNoticeComment = async (
   token: string,
-  noticeID: string | undefined,
+  noticeID: number | undefined,
   commentData: INoticeCommentData,
 ): Promise<IFetchComment | null> => {
   try {
-    const data = await serverAxios.post(`${PREFIX_URL}/comment/${noticeID}`, commentData, {
+    const data = await serverAxios.post(`${PREFIX_URL}/${noticeID}/comment`, commentData, {
       headers: {
         Authorization: token,
       },
     });
-    if (data.data.status === 200) {
+    if (data.data.status === 201) {
       return data.data.data;
     } else {
       return null;

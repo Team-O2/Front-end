@@ -3,7 +3,7 @@ import { LoginModal, ReplyComment } from 'components/molecules';
 import React, { useState } from 'react';
 import { useRecoilValue } from 'recoil';
 import { userStatusState } from 'stores/user';
-import { IReply } from 'types/challenge.type';
+import { IReply } from 'types/notice.type';
 import {
   CommentContainer,
   CommentText,
@@ -17,31 +17,28 @@ import {
 
 interface IProps {
   childrenComment: {
-    isDeleted?: boolean;
-    _id?: string;
-    userID?: {
-      img: string;
-      _id: string;
-      nickname: string;
-    };
-    text?: string;
+    id: number;
+    userID: number;
+    nickname: string;
+    img: string;
+    text: string;
+    isDeleted: boolean;
   }[];
   isDeleted: boolean;
-  parentCommentID: string;
-  userID: {
-    img: string;
-    _id: string;
-    nickname: string;
-  };
+  parentCommentID: number;
+  userID: number;
+  nickname: string;
+  img: string;
   text: string;
-  noticeID?: string;
+  noticeID?: number;
   isRerender: boolean;
   setIsRerender: (value: boolean) => void;
 }
 
 function NoticeSingleComment({
   parentCommentID,
-  userID,
+  nickname,
+  img,
   childrenComment,
   text,
   noticeID,
@@ -74,8 +71,8 @@ function NoticeSingleComment({
   return (
     <NoticeSingleCommentWrapper>
       <CommentContainer>
-        <img src={userID?.img} alt="" />
-        <CommentWriter>{userID?.nickname}</CommentWriter>
+        <img src={img} alt="" />
+        <CommentWriter>{nickname}</CommentWriter>
         <CommentText>{isDeleted ? '삭제된 댓글입니다.' : text}</CommentText>
         <CommentToggle onClick={onClickReplyOpen}>답글</CommentToggle>
       </CommentContainer>
@@ -92,8 +89,8 @@ function NoticeSingleComment({
           {childrenComment.map((data: IReply, index) => (
             <ReplyComment
               key={index}
-              img={data.userID?.img}
-              nickname={data.userID?.nickname}
+              img={data.img}
+              nickname={data.nickname}
               text={data.text}
               isDeleted={data.isDeleted}
             ></ReplyComment>
