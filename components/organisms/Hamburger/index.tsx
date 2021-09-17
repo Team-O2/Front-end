@@ -189,7 +189,7 @@ function Hamburger(): React.ReactElement {
         {(userStateNum === 0 || userStateNum === 1 || userStateNum === 2 || userStateNum === 3) && (
           <>
             <BottomMargin10>
-              <HamDropDown isEnglish={true} title="Learn Myself" itemList={challengeList} />
+              <HamDropDown isAdmin={false} isEnglish={true} title="Learn Myself" itemList={challengeList} />
             </BottomMargin10>
             <Link to="/concert">
               <EngTitleBtn>Share Together</EngTitleBtn>
@@ -216,6 +216,7 @@ function Hamburger(): React.ReactElement {
               </BottomMargin10>
             </Link>
             <HamDropDown
+              isAdmin={true}
               isEnglish={false}
               title="글 올리기"
               itemList={[

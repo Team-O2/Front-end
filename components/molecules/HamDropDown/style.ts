@@ -1,5 +1,5 @@
 import { Button, Img } from 'components/atoms';
-import Styled from 'styled-components';
+import Styled, { css } from 'styled-components';
 import { palette, theme } from 'styled-tools';
 
 export const LabelIcon = Styled(Img)`
@@ -51,14 +51,22 @@ align-items : center;
 }
 `;
 
-export const DetailBtnContainer = Styled.div`
+export const DetailBtnContainer = Styled.div<{ alignCenter: boolean }>`
+${(props) =>
+  props.alignCenter
+    ? css`
+        align-items: center;
+      `
+    : css`
+        align-items: flex-start;
+        padding-left: 85px;
+      `};
+
 width : 200px;
-padding-left : 85px;
 display : flex;
 flex-direction : column;
 max-height : 229px;
 overflow-y: scroll;
-align-items : flex-start;
 ::-webkit-scrollbar {
 width: 0.3rem;
 }
