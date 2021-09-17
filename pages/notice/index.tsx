@@ -16,8 +16,8 @@ function Notice(): React.ReactElement {
         keyword: keyword,
         offset: (pageIndex - 1) * LIMIT_PER_PAGE,
       });
-      data && setnoticeList(data.searchData);
-      data && setTotalNoticeNum(data.totalNoticeSearchNum);
+      data && setnoticeList(data.notices);
+      data && setTotalNoticeNum(data.totalNoticeNum);
     };
     getNoticeSearchList(currentPage);
   }, [keyword, currentPage]);

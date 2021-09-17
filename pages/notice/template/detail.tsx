@@ -17,7 +17,7 @@ function NoticeDetailTemplate({ notice, commentList, isRerender, setIsRerender }
           pageName="공지사항"
           title={notice.title}
           createdAt={notice.createdAt}
-          authorNickname={notice.user.nickname}
+          authorNickname={notice.nickname}
           interestList={notice.interest}
         ></DetailTitle>
       )}
@@ -30,7 +30,7 @@ function NoticeDetailTemplate({ notice, commentList, isRerender, setIsRerender }
       )}
       <NoticeCommentList
         commentList={commentList}
-        noticeID={notice?._id}
+        noticeID={notice?.id}
         isRerender={isRerender}
         setIsRerender={setIsRerender}
       ></NoticeCommentList>
