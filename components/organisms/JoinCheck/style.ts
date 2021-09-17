@@ -1,14 +1,14 @@
-import { Button, CheckBox, Img } from 'components/atoms';
+import { Button, Img } from 'components/atoms';
 import Styled from 'styled-components';
 import { palette, theme } from 'styled-tools';
 
-export const BiggerCheckBox = Styled(CheckBox)`
+export const BiggerCheckBox = Styled.input`
   display:none;
   margin-right : 16px;
   width : 22px;
   height : 22px
 `;
-export const SmallerCheckBox = Styled(CheckBox)`
+export const SmallerCheckBox = Styled.input`
   display:none;
   margin-right : 16px;
   width : 22px;
