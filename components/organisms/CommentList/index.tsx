@@ -46,14 +46,17 @@ function CommentList({ commentList, concertID, isRerender, setIsRerender }: IPro
         {commentList?.map((data: IConcertComment, index) => (
           <SingleComment
             key={index}
-            parentCommentID={data._id}
+            childrenComment={data.children}
+            isDeleted={data.isDeleted}
+            id={data.id}
             userID={data.userID}
-            childrenComment={data.childrenComment}
+            nickname={data.nickname}
+            img={data.img}
+            parentCommentID={data.id}
             text={data.text}
             concertID={concertID}
             isRerender={isRerender}
             setIsRerender={setIsRerender}
-            isDeleted={data.isDeleted}
           ></SingleComment>
         ))}
       </CommentContainer>

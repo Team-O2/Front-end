@@ -96,12 +96,12 @@ export const postConcertComment = async (
   commentData: IConcertCommentData,
 ): Promise<IFetchComment | null> => {
   try {
-    const data = await serverAxios.post(`${PREFIX_URL}/comment/${concertID}`, commentData, {
+    const data = await serverAxios.post(`${PREFIX_URL}/${concertID}/comment`, commentData, {
       headers: {
         Authorization: token,
       },
     });
-    if (data.data.status === 200) {
+    if (data.data.status === 201) {
       return data.data.data;
     } else {
       return null;
@@ -113,12 +113,12 @@ export const postConcertComment = async (
 
 export const postConcertLike = async (token: string, concertID: string | string[]): Promise<boolean> => {
   try {
-    const data = await serverAxios.post(`${PREFIX_URL}/like/${concertID}`, '', {
+    const data = await serverAxios.post(`${PREFIX_URL}/${concertID}/like`, '', {
       headers: {
         Authorization: token,
       },
     });
-    if (data.data.status === 200) {
+    if (data.data.status === 201) {
       return data.data.data;
     } else {
       return false;
@@ -130,12 +130,12 @@ export const postConcertLike = async (token: string, concertID: string | string[
 
 export const deleteConcertLike = async (token: string, concertID: string | string[]): Promise<boolean> => {
   try {
-    const data = await serverAxios.delete(`${PREFIX_URL}/like/${concertID}`, {
+    const data = await serverAxios.delete(`${PREFIX_URL}/${concertID}/like`, {
       headers: {
         Authorization: token,
       },
     });
-    if (data.data.status === 200) {
+    if (data.data.status === 201) {
       return data.data.data;
     } else {
       return false;
@@ -147,12 +147,12 @@ export const deleteConcertLike = async (token: string, concertID: string | strin
 
 export const postConcertScrap = async (token: string, concertID: string | string[]): Promise<boolean> => {
   try {
-    const data = await serverAxios.post(`${PREFIX_URL}/scrap/${concertID}`, '', {
+    const data = await serverAxios.post(`${PREFIX_URL}/${concertID}/scrap`, '', {
       headers: {
         Authorization: token,
       },
     });
-    if (data.data.status === 200) {
+    if (data.data.status === 201) {
       return data.data.data;
     } else {
       return false;
@@ -164,12 +164,12 @@ export const postConcertScrap = async (token: string, concertID: string | string
 
 export const deleteConcertScrap = async (token: string, concertID: string | string[]): Promise<boolean> => {
   try {
-    const data = await serverAxios.delete(`${PREFIX_URL}/scrap/${concertID}`, {
+    const data = await serverAxios.delete(`${PREFIX_URL}/${concertID}/scrap`, {
       headers: {
         Authorization: token,
       },
     });
-    if (data.data.status === 200) {
+    if (data.data.status === 201) {
       return data.data.data;
     } else {
       return false;

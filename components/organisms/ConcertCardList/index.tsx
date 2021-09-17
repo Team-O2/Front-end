@@ -17,8 +17,8 @@ function ConcertCardList({ concertCardData }: IProps): React.ReactElement {
               title={card.title}
               authorNickname={card.authorNickname}
               interestList={card.interest}
-              key={card._id}
-              concertID={card._id}
+              key={card.id}
+              concertID={card.id}
             ></ConcertCard>
           ),
       )}
