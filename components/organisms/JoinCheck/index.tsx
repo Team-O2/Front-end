@@ -128,7 +128,7 @@ function JoinCheck({ setUserData, userData }: IProps): React.ReactElement {
     <Wrapper>
       <div>
         <FlexContainer>
-          <BiggerCheckBox checked={checkAll} onChange={handleCheckAll} id="policyAll" />
+          <BiggerCheckBox type="checkbox" checked={checkAll} onChange={handleCheckAll} id="policyAll" />
           <BiggerLabel htmlFor="policyAll">
             <CheckAllImg src={checkAll ? CheckAllOnIcon : CheckAllOffIcon} />
             전체 동의 (선택 정보 포함)
@@ -137,7 +137,13 @@ function JoinCheck({ setUserData, userData }: IProps): React.ReactElement {
         <Line />
         <PolicyCheck>
           <FlexContainer>
-            <SmallerCheckBox checked={isChecked.check1} name="policy1" onChange={handleCheck} id="policy1" />
+            <SmallerCheckBox
+              type="checkbox"
+              checked={isChecked.check1}
+              name="policy1"
+              onChange={handleCheck}
+              id="policy1"
+            />
             <Label htmlFor="policy1">
               <CheckImg src={isChecked.check1 ? CheckOnIcon : CheckOffIcon} />
               (필수) 서비스 이용약관 동의
@@ -147,7 +153,13 @@ function JoinCheck({ setUserData, userData }: IProps): React.ReactElement {
         </PolicyCheck>
         <PolicyCheck>
           <FlexContainer>
-            <SmallerCheckBox checked={isChecked.check2} name="policy2" onChange={handleCheck} id="policy2" />
+            <SmallerCheckBox
+              type="checkbox"
+              checked={isChecked.check2}
+              name="policy2"
+              onChange={handleCheck}
+              id="policy2"
+            />
             <Label htmlFor="policy2">
               <CheckImg src={isChecked.check2 ? CheckOnIcon : CheckOffIcon} />
               (필수) 개인정보 수집 이용 동의
@@ -157,7 +169,13 @@ function JoinCheck({ setUserData, userData }: IProps): React.ReactElement {
         </PolicyCheck>
         <PolicyCheck>
           <FlexContainer>
-            <SmallerCheckBox checked={isChecked.check3} name="policy3" onChange={handleCheck} id="policy3" />
+            <SmallerCheckBox
+              type="checkbox"
+              checked={isChecked.check3}
+              name="policy3"
+              onChange={handleCheck}
+              id="policy3"
+            />
             <Label htmlFor="policy3">
               <CheckImg src={isChecked.check3 ? CheckOnIcon : CheckOffIcon} />
               (선택) 광고성 정보 수신 및 마케팅 활용 동의
