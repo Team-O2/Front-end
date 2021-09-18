@@ -23,7 +23,7 @@ export const CardDetailWrapper = Styled.div`
       height: 44px;
       text-align: left;
       color: ${palette('grayscale', 7)};
-      ${theme('font.dp1')};
+      ${theme('font.h2')};
     }
     h3{
       margin-top:40px;
@@ -38,7 +38,7 @@ export const CardDetailWrapper = Styled.div`
       height: 44px;
       text-align: left;
       color: ${palette('grayscale', 7)};
-      ${theme('font.dp1')};
+      ${theme('font.h2')};
     }
 `;
 
