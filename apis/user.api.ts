@@ -82,7 +82,7 @@ export const updateUserInfo = async (
   }
 };
 
-export const SignRegister = async (signData: { challengeCNT: number }, token: string): Promise<boolean> => {
+export const SignRegister = async (signData: { challengeNum: number }, token: string): Promise<boolean> => {
   try {
     const data = await serverAxios.post('/user/register', signData, {
       headers: {
