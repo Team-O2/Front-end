@@ -6,7 +6,7 @@ import React, { useEffect, useState } from 'react';
 import { useRecoilState } from 'recoil';
 import { userStatusState } from 'stores/user';
 import { IAdminChallengePeriod } from 'types/admin.type';
-import { CardWrapper, NoticeCardWrapper, NoticeHeaderWrapper } from './style';
+import { CardWrapper, ImageWrapper, NoticeCardWrapper, NoticeHeaderWrapper } from './style';
 
 function RegisterDetailCard() {
   const [userStatusData, setUserStatusData] = useRecoilState(userStatusState);
@@ -17,7 +17,7 @@ function RegisterDetailCard() {
 
   const handleSubmit = async () => {
     const signData = {
-      challengeCNT: registerCount,
+      challengeNum: registerCount,
     };
     if (userStatusData) {
       const getData = await SignRegister(signData, userStatusData.token);
@@ -70,10 +70,10 @@ function RegisterDetailCard() {
         ) : null}
 
         <NoticeCardWrapper>
-          <NoticeHeaderWrapper>
-            오투 챌린지 주의사항
+          <NoticeHeaderWrapper>오투 챌린지 주의사항</NoticeHeaderWrapper>
+          <ImageWrapper>
             <Image src={AlertIcon}></Image>
-          </NoticeHeaderWrapper>
+          </ImageWrapper>
           <h1>01</h1>
           <p>주당 회고록 개수 3개 이상 선택 및 80% 이상 달성 시 뱃지 획득이 가능합니다.</p>
           <h1>02</h1>

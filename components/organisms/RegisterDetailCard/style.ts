@@ -28,11 +28,17 @@ export const NoticeCardWrapper = Styled.div`
 `;
 
 export const NoticeHeaderWrapper = Styled.div`
+    display:inline-block;
+    padding-right:125px;
     text-align: left;
     color: ${palette('grayscale', 7)};
     ${theme('font.body4')};
 
-    img{
+    Image{
       float:right;
     }
+`;
+
+export const ImageWrapper = Styled.div`
+    display:inline-block;
 `;
