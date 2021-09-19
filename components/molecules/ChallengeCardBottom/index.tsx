@@ -35,10 +35,8 @@ function ChallengeCardBottom({
     if (userStatusData) {
       const token = userStatusData.token;
       const submitSuccess = await ChallengeLike(token, id);
-      if (submitSuccess) {
-        setLikeRender(true);
-        setCountLikes(countLikes + 1);
-      }
+      setLikeRender(true);
+      setCountLikes(countLikes + 1);
     }
   };
 
@@ -46,10 +44,8 @@ function ChallengeCardBottom({
     if (userStatusData) {
       const token = userStatusData.token;
       const cancelSuccess = await CancelChallengeLike(token, id);
-      if (cancelSuccess) {
-        setLikeRender(false);
-        setCountLikes(countLikes - 1);
-      }
+      setLikeRender(false);
+      setCountLikes(countLikes - 1);
     }
   };
 

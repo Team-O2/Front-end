@@ -49,9 +49,7 @@ function ChallengeCardProfile({
     if (userStatusData) {
       const token = userStatusData.token;
       const submitSuccess = await ChallengeScrap(token, id);
-      if (submitSuccess) {
-        setScrapRender(true);
-      }
+      setScrapRender(true);
     }
   };
 
@@ -59,9 +57,7 @@ function ChallengeCardProfile({
     if (userStatusData) {
       const token = userStatusData.token;
       const cancelSuccess = await CancelChallengeScrap(token, id);
-      if (cancelSuccess) {
-        setScrapRender(false);
-      }
+      setScrapRender(false);
     }
   };
 

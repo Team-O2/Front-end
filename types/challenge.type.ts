@@ -123,3 +123,24 @@ export interface IChallengeDataList {
   __v: number;
   _id: string;
 }
+
+export interface IChallengeData {
+  id: number;
+  generation: number;
+  createdAt: string;
+  updatedAt: string;
+  userID: number;
+  nickname: string;
+  img: string;
+  good: string;
+  bad: string;
+  learn: string;
+  interest: string[];
+  likeNum: number;
+  scrapNum: number;
+  commentNum: number;
+  comment: string[];
+  isDeleted: boolean;
+  isLike: boolean;
+  isScrap: boolean;
+}

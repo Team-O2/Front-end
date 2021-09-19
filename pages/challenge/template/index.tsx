@@ -31,16 +31,16 @@ function ChallengeCard({ challengeList, setChallengeList, generationNum }: IProp
         challengeList?.map((data: IChallengeData, id) => {
           return (
             <ChallengeDetailCard
-              id={data?._id}
-              nickname={data?.user?.nickname}
-              image={data?.user?.img}
+              id={data?.id}
+              nickname={data?.nickname}
+              image={data?.img}
               createdAt={data?.createdAt}
               interest={data?.interest}
               good={data?.good}
               bad={data?.bad}
               learn={data?.learn}
-              like={data?.likes}
-              comments={data?.comments.length}
+              like={data?.likeNum}
+              comments={data?.comment.length}
               isLike={data?.isLike}
               isScrap={data?.isScrap}
               onChange={ChallengeList}
