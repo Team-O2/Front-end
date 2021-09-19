@@ -23,7 +23,7 @@ function ChallengeCardFold({ id, comments, setIsLoginModalOpen }: IProps): React
   const getCommentList = useCallback(async () => {
     if (userStatusData) {
       const data = await getChallengeContent(id, userStatusData.token);
-      data && setMyCommentList(data.comments);
+      data && setMyCommentList(data.comment);
     }
   }, [id, userStatusData]);
 
