@@ -67,7 +67,6 @@ export const ColoredTxt = Styled.div`
   height: 68px;
   position: relative;
   top: -8px;
-  margin-bottom: 1.2rem;
   text-align: center;
   background: linear-gradient(to right, ${palette('primary', 3)}, ${palette('primary', 0)});
   -webkit-background-clip: text;
@@ -80,4 +79,13 @@ export const Message = Styled.div`
   height: 73px;
   text-align: center;
   color: ${palette('grayscale', 9)};
+`;
+
+export const ButtonWrapper = Styled.div`
+  text-align: center;
+  
+  button:first-child {
+    ${theme('font.subhead3')};
+    color: ${palette('grayscale', 3)};
+  }
 `;
