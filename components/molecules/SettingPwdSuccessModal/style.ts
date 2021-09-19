@@ -70,7 +70,7 @@ export const ColoredTxt = Styled.div`
   margin-bottom: 1.2rem;
   text-align: center;
   background: linear-gradient(to right, ${palette('primary', 3)}, ${palette('primary', 0)});
-  background-clip: text;
+  -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
 `;
 

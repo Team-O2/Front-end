@@ -1,3 +1,4 @@
+import Image from 'next/image';
 import { useRouter } from 'next/router';
 import { CheckedIcon } from 'public/assets/images';
 import React from 'react';
@@ -22,7 +23,7 @@ function SettingPwdSuccessModal({ setIsOpen, url }: IProps): React.ReactElement 
       <S.ModalWrap>
         <S.InnerModalWrap>
           <S.CheckIcon>
-            <img src={CheckedIcon} alt="check_icon" />
+            <Image src={CheckedIcon} alt="check_icon" />
           </S.CheckIcon>
           <S.ColoredTxt>완료</S.ColoredTxt>
           <S.Message>비밀번호 변경이 완료되었습니다</S.Message>

@@ -19,9 +19,7 @@ function SetNewPwd({ email }: IProps): React.ReactElement {
 
   const handleClickButton = async () => {
     const res = await patchNewPwd(email, pw.pw);
-    if (res) {
-      setIsOpen(true);
-    }
+    setIsOpen(true);
   };
 
   return (
