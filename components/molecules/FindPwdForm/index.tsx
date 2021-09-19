@@ -29,7 +29,7 @@ function FindPWDForm({ setData, isConditionMet, setIsConditionMet, errMsg }: IPr
   const [emailErrMsg, setEmailErrMsg] = useState('');
   const numSendBtnHandler = async () => {
     const isSuccess = await sendEmail(email);
-    setIsModalOpen(isSuccess);
+    setIsModalOpen(true);
   };
 
   useEffect(() => {
@@ -87,7 +87,7 @@ function FindPWDForm({ setData, isConditionMet, setIsConditionMet, errMsg }: IPr
         isConditionMet={isConditionMet.certifiNum}
         errorMsg={errMsg}
       />
-      <FindPwdModal isModalOpen={isModalOpen} setIsModalOpen={setIsModalOpen} email={email} />
+      {isModalOpen && <FindPwdModal isModalOpen={isModalOpen} setIsModalOpen={setIsModalOpen} email={email} />}
     </Wrapper>
   );
 }
