@@ -1,5 +1,5 @@
 import { serverAxios } from 'libs/axios';
-import { IChallenge, IChallengeDataList } from 'types/challenge.type';
+import { IChallenge, IChallengeData } from 'types/challenge.type';
 
 const PREFIX_URL = '/challenge';
 
@@ -54,17 +54,22 @@ export const ChallengeListData = async (
   generation: string | string[],
   offset: number,
   limit: number,
-): Promise<IChallenge[] | null> => {
+): Promise<IChallengeData[] | null> => {
   try {
     if (token) {
-      const data = await serverAxios.get(`${PREFIX_URL}/?generation=${generation}&offset=${offset}&limit=${limit}`, {
-        headers: {
-          Authorization: token,
+      const data = await serverAxios.get(
+        `${PREFIX_URL}/?generation=${generation}&offset=${offset}&limit=${limit + 1}`,
+        {
+          headers: {
+            Authorization: token,
+          },
         },
-      });
+      );
+      console.log('데이터', data);
       return data.data.data;
     } else {
-      const data = await serverAxios.get(`${PREFIX_URL}/?generation=${generation}&offset=${offset}&limit=${limit}`);
+      const data = await serverAxios.get(`${PREFIX_URL}/?generation=${generation}&offset=${offset}&limit=${limit + 1}`);
+      console.log('데이터', data);
       return data.data.data;
     }
   } catch (error) {
@@ -79,12 +84,12 @@ export const postChallengeComment = async (
   commentData: IChallengeCommentData,
 ): Promise<boolean | null> => {
   try {
-    const data = await serverAxios.post(`${PREFIX_URL}/comment/${challengeID}`, commentData, {
+    const data = await serverAxios.post(`${PREFIX_URL}/${challengeID}/comment`, commentData, {
       headers: {
         Authorization: token,
       },
     });
-    if (data.status === 200) {
+    if (data.status === 201) {
       return true;
     }
   } catch (error) {
@@ -104,7 +109,7 @@ export const DeleteChallenge = async (challengeID: number, token: string): Promi
         challengeID: challengeID,
       },
     });
-    if (data.status === 200) {
+    if (data.status === 204) {
       return true;
     }
   } catch (error) {
@@ -139,12 +144,14 @@ export const getChallengeSearchData = async (
   ismine: number,
   offset: number,
   limit: number,
-): Promise<IChallengeDataList[] | null> => {
+): Promise<IChallengeData[] | null> => {
   try {
     let data = undefined;
     if (token) {
       data = await serverAxios.get(
-        `${PREFIX_URL}/search?generation=${generation}&tag=${tag}&ismine=${ismine}&keyword=${keyword}&offset=${offset}&limit=${limit}`,
+        `${PREFIX_URL}/search?generation=${generation}&tag=${tag}&ismine=${ismine}&keyword=${keyword}&offset=${offset}&limit=${
+          limit + 1
+        }`,
         {
           headers: {
             Authorization: token,
@@ -153,7 +160,9 @@ export const getChallengeSearchData = async (
       );
     } else {
       data = await serverAxios.get(
-        `${PREFIX_URL}/search?generation=${generation}&tag=${tag}&ismine=${ismine}&keyword=${keyword}&offset=${offset}&limit=${limit}`,
+        `${PREFIX_URL}/search?generation=${generation}&tag=${tag}&ismine=${ismine}&keyword=${keyword}&offset=${offset}&limit=${
+          limit + 1
+        }`,
       );
     }
     if (data?.data.status === 200) {
@@ -167,12 +176,12 @@ export const getChallengeSearchData = async (
 
 export const ChallengeLike = async (token: string, challengeID: number): Promise<boolean | null> => {
   try {
-    const data = await serverAxios.post(`${PREFIX_URL}/like/${challengeID}`, [], {
+    const data = await serverAxios.post(`${PREFIX_URL}/${challengeID}/like`, [], {
       headers: {
         Authorization: token,
       },
     });
-    if (data.data.status === 200) {
+    if (data.data.status === 204) {
       console.log(data.data.message);
       return true;
     }
@@ -182,12 +191,12 @@ export const ChallengeLike = async (token: string, challengeID: number): Promise
 
 export const CancelChallengeLike = async (token: string, challengeID: number): Promise<boolean | null> => {
   try {
-    const data = await serverAxios.delete(`${PREFIX_URL}/like/${challengeID}`, {
+    const data = await serverAxios.delete(`${PREFIX_URL}/${challengeID}/like`, {
       headers: {
         Authorization: token,
       },
     });
-    if (data.data.status === 200) {
+    if (data.data.status === 204) {
       return true;
     }
   } catch (e) {}
@@ -196,12 +205,12 @@ export const CancelChallengeLike = async (token: string, challengeID: number): P
 
 export const ChallengeScrap = async (token: string, challengeID: number): Promise<boolean | null> => {
   try {
-    const data = await serverAxios.post(`${PREFIX_URL}/scrap/${challengeID}`, [], {
+    const data = await serverAxios.post(`${PREFIX_URL}/${challengeID}/scrap`, [], {
       headers: {
         Authorization: token,
       },
     });
-    if (data.data.status === 200) {
+    if (data.data.status === 204) {
       console.log(data.data.message);
       return true;
     }
@@ -211,12 +220,12 @@ export const ChallengeScrap = async (token: string, challengeID: number): Promis
 
 export const CancelChallengeScrap = async (token: string, challengeID: number): Promise<boolean | null> => {
   try {
-    const data = await serverAxios.delete(`${PREFIX_URL}/scrap/${challengeID}`, {
+    const data = await serverAxios.delete(`${PREFIX_URL}/${challengeID}/scrap`, {
       headers: {
         Authorization: token,
       },
     });
-    if (data.data.status === 200) {
+    if (data.data.status === 204) {
       return true;
     }
   } catch (e) {}
