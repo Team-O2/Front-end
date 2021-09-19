@@ -25,8 +25,7 @@ export const RegisterSubmitWrapper = Styled.div`
       background: linear-gradient(to right, ${palette('primary', 3)}, ${palette('primary', 0)});
       -webkit-background-clip: text;
       background-clip: text;
-      padding-top:20px;
-      padding-bottom:40px;
+      padding-bottom:20px;
       text-align: center;
       -webkit-text-fill-color: transparent;
       ${theme('font.dp4')};
@@ -35,4 +34,21 @@ export const RegisterSubmitWrapper = Styled.div`
       text-align: center;
       ${theme('font.body3')};
     }
+`;
+
+export const ImgWrapper = Styled.div`
+  display: flex;
+  justify-content: center;
+  margin-top: -40px;
+  margin-bottom: 12px;
+`;
+
+export const ButtonWrapper = Styled.div`
+  padding-top: 32px;
+  text-align: center;
+  
+  button:first-child {
+    ${theme('font.subhead3')};
+    color: ${palette('grayscale', 3)};
+  }
 `;
