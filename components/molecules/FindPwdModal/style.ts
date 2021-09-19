@@ -39,8 +39,8 @@ export const ModalIconWrapper = Styled.div`
 
 export const ModalTitle = Styled.div`
     ${theme('font.dp4')};
-    margin-top : 20px;
-    margin-bottom : 20px;
+    margin-top : 10px;
+    margin-bottom : 10px;
     background-image: linear-gradient(to right, ${palette('primary', 3)}, ${palette('primary', 0)});
     -webkit-background-clip: text;
     background-clip: text;
@@ -50,4 +50,14 @@ export const ModalTitle = Styled.div`
 export const ModalEXP = Styled.div`
     ${theme('font.body4')};
     text-align : center;
+`;
+
+export const ButtonWrapper = Styled.div`
+  padding-top: 10px;
+  text-align: center;
+  
+  button:first-child {
+    ${theme('font.subhead3')};
+    color: ${palette('grayscale', 3)};
+  }
 `;

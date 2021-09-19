@@ -1,8 +1,8 @@
-import { Modal } from 'components/atoms';
+import { Button, Modal } from 'components/atoms';
 import Image from 'next/image';
 import { CheckedIcon } from 'public/assets/images';
 import React from 'react';
-import { ModalEXP, ModalIconWrapper, ModalTitle, SuccessModal } from './style';
+import { ButtonWrapper, ModalEXP, ModalIconWrapper, ModalTitle, SuccessModal } from './style';
 
 interface IProps {
   isModalOpen: boolean;
@@ -11,6 +11,10 @@ interface IProps {
 }
 
 function FindPwdModal({ isModalOpen, setIsModalOpen, email }: IProps): React.ReactElement {
+  const handleConfirmButton = () => {
+    setIsModalOpen(false);
+  };
+
   return (
     <Modal isOpen={isModalOpen} isBlur={true} setIsOpen={setIsModalOpen}>
       <SuccessModal>
@@ -25,6 +29,9 @@ function FindPwdModal({ isModalOpen, setIsModalOpen, email }: IProps): React.Rea
           <br />
           이메일을 확인해주세요
         </ModalEXP>
+        <ButtonWrapper>
+          <Button onClick={handleConfirmButton}>확인</Button>
+        </ButtonWrapper>
       </SuccessModal>
     </Modal>
   );
