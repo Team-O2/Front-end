@@ -1,5 +1,5 @@
 import { Button, Label } from 'components/atoms';
-import Styled from 'styled-components';
+import Styled, { css } from 'styled-components';
 import { palette, theme } from 'styled-tools';
 
 export const SubmitButton = Styled(Button)<{ isBtnDisabled: boolean }>`
@@ -9,9 +9,12 @@ export const SubmitButton = Styled(Button)<{ isBtnDisabled: boolean }>`
     height : 60px;
     border-radius : 4px;
     color : ${palette('grayscale', 0)};
-    background-image : ${(props) =>
-      props.isBtnDisabled && `linear-gradient(to right , ${palette('primary', 5)}, ${palette('primary', 0)})`};
-    background-color : ${(props) => !props.isBtnDisabled && palette('grayscale', 1)};
+    ${(props) =>
+      props.isBtnDisabled &&
+      css`
+        background-image: linear-gradient(to right, ${palette('primary', 3)}, ${palette('primary', 0)});
+      `};
+      background-color : ${(props) => !props.isBtnDisabled && palette('grayscale', 1)};
 `;
 
 export const LabelTitle = Styled(Label)`

@@ -35,7 +35,7 @@ export const postJoin = async (joinData: IJoin): Promise<boolean> => {
 export const sendEmail = async (email: string): Promise<boolean> => {
   try {
     const data = await serverAxios.post(`${PREFIX_URL}/email`, { email: email });
-    if (data.data.status === 200) {
+    if (data.data.status === 204) {
       return true;
     }
   } catch (e) {}
