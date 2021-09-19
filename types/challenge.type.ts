@@ -29,30 +29,26 @@ export interface IChallenge {
   scrapNum: number;
   generation: number;
   interest: string[];
-  comments: IComment[];
+  comment: IComment[];
   isLike?: boolean; // 좋아요 클릭 여부
   isScrap?: boolean; // 스크랩 여부
 }
 
 export interface ICommentData {
-  childrenComment: {
-    isDeleted?: boolean;
-    _id: string;
-    userID: {
-      img: string;
-      _id: string;
-      nickname: string;
-    };
-    text: string;
-  }[];
-  _id: string;
-  userID: {
-    img: string;
-    _id: string;
+  children: {
+    id: string;
+    userID: number;
     nickname: string;
-  };
+    img: string;
+    text: string;
+    isDeleted: boolean;
+  }[];
+  id: string;
+  userID: number;
+  nickname: string;
+  img: string;
   text: string;
-  isDeleted?: boolean;
+  isDeleted: boolean;
 }
 
 export interface IChallengeOpen {
