@@ -36,7 +36,7 @@ function ChallengeCard({
       <Button onClick={handleOnClick}>
         <span>
           <ImageWrapper>
-            <Icon src={imagePath} size={100} />
+            <Icon src={imagePath} size={100} circular="true" />
           </ImageWrapper>
           <Name>{name}</Name>
           <Contents>{content}</Contents>
