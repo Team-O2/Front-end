@@ -28,11 +28,11 @@ function MyPageCommentModal({
         <S.ModalWrapper>
           <S.ModalUserInfo>
             <S.ModalUserImgWrapper>
-              {challenge?.user?.img && <Icon size={80} src={challenge.user.img} circular="true" />}
+              {challenge?.img && <Icon size={80} src={challenge.img} circular="true" />}
             </S.ModalUserImgWrapper>
             <S.ModalUserInfoWrapper>
               <div>
-                <div>{challenge?.user?.nickname}</div>
+                <div>{challenge?.nickname}</div>
                 <div>{challenge?.createdAt && getTimeForToday(challenge.createdAt)}</div>
               </div>
               <div>{challenge?.interest?.map((item: string) => `#${item} `)}</div>
@@ -48,8 +48,8 @@ function MyPageCommentModal({
           </S.TextArea>
           <S.MoreButton onClick={handleCommentFold}>{isFolded ? '더보기' : '접기'}</S.MoreButton>
           <S.CommentWrapper>
-            {challenge?.comments.map((comment) => (
-              <ChallengeModalComment key={comment._id} commentData={comment} />
+            {challenge?.comment.map((comment) => (
+              <ChallengeModalComment key={comment.id} commentData={comment} />
             ))}
           </S.CommentWrapper>
         </S.ModalWrapper>

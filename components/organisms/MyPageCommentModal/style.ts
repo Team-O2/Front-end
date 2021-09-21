@@ -33,6 +33,7 @@ export const ModalUserInfo = Styled.div`
 `;
 
 export const ModalUserImgWrapper = Styled.div`
+  border-radius: 50%;
   margin-right: 15px;
   width: 80px;
   height: 80px;
