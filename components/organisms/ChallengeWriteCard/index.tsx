@@ -57,6 +57,7 @@ function WriteCard({ onChangeForm }: IProps): React.ReactElement {
       bad: description2,
       learn: description3,
       interest: selectedInterest,
+      generation: userStatusData?.progressGeneration,
     };
     if (userStatusData) {
       await writeForm(writeData, userStatusData.token);

@@ -8,6 +8,7 @@ interface WriteData {
   bad: string;
   learn: string;
   interest: string[];
+  generation: number | undefined;
 }
 
 interface EditData {
@@ -65,11 +66,9 @@ export const ChallengeListData = async (
           },
         },
       );
-      console.log('데이터', data);
       return data.data.data;
     } else {
       const data = await serverAxios.get(`${PREFIX_URL}/?generation=${generation}&offset=${offset}&limit=${limit + 1}`);
-      console.log('데이터', data);
       return data.data.data;
     }
   } catch (error) {
@@ -118,7 +117,7 @@ export const DeleteChallenge = async (challengeID: number, token: string): Promi
   return false;
 };
 
-export const getChallengeContent = async (id: number | number[], token?: string): Promise<IChallenge | null> => {
+export const getChallengeContent = async (id: string | string[], token?: string): Promise<IChallenge | null> => {
   try {
     const data = await serverAxios.get(`${PREFIX_URL}/${id}`, {
       headers: {
