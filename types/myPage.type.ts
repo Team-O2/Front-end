@@ -1,3 +1,4 @@
+import { IChallenge } from './challenge.type';
 import { IConcert } from './concert.type';
 export interface IMyPageConcert {
   id: number;
@@ -44,26 +45,6 @@ export interface IMyScrappedChallenge {
 
 export interface IMyUserChallenge {
   mypageChallengeScrap: IChallenge[];
-}
-
-export interface IChallenge {
-  likeNum: number;
-  commentNum: number;
-  scrapNum: number;
-  generation: number;
-  interest: string[];
-  comments: number[];
-  id: number;
-  userID: number;
-  img: string;
-  nickname: string;
-  good: string;
-  bad: string;
-  learn: string;
-  createdAt: string;
-  updatedAt: string;
-  isLike: boolean;
-  isScrap: boolean;
 }
 
 export interface IMyUserCommentResponse {

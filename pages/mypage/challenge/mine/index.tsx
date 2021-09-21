@@ -39,7 +39,7 @@ function MyChallengeList(): React.ReactElement {
               bad={data?.bad}
               learn={data?.learn}
               like={data?.likeNum}
-              comments={data?.comments.length}
+              comments={data?.comment.length}
               isLike={data?.isLike}
               isScrap={data?.isScrap}
               handleFetch={fetchMyLearnMyselfList}
