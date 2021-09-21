@@ -3,7 +3,8 @@ import { ChallengeDetailCard } from 'components/organisms';
 import React, { useCallback, useEffect, useState } from 'react';
 import { useRecoilValue } from 'recoil';
 import { userStatusState } from 'stores/user';
-import { IChallenge, IMyScrappedChallenge } from 'types/myPage.type';
+import { IChallenge } from 'types/challenge.type';
+import { IMyScrappedChallenge } from 'types/myPage.type';
 import { Header, NoContents, Wrapper } from './style';
 
 function ScrappedChallenge(): React.ReactElement {
@@ -43,7 +44,7 @@ function ScrappedChallenge(): React.ReactElement {
               bad={data?.bad}
               learn={data?.learn}
               like={data?.likeNum}
-              comments={data?.comments.length}
+              comments={data?.comment.length}
               isLike={data?.isLike}
               isScrap={data?.isScrap}
               handleFetch={fetchScrappedChallenge}
