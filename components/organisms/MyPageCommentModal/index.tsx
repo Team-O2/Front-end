@@ -1,5 +1,6 @@
 import { Icon, Modal } from 'components/atoms';
 import { ChallengeModalComment } from 'components/molecules';
+import { UserImg } from 'public/assets/images';
 import React from 'react';
 import { IChallenge } from 'types/challenge.type';
 import { getTimeForToday } from 'utils';
@@ -28,7 +29,7 @@ function MyPageCommentModal({
         <S.ModalWrapper>
           <S.ModalUserInfo>
             <S.ModalUserImgWrapper>
-              {challenge?.img && <Icon size={80} src={challenge.img} circular="true" />}
+              {<Icon size={80} src={challenge?.img || UserImg} circular="true" />}
             </S.ModalUserImgWrapper>
             <S.ModalUserInfoWrapper>
               <div>
