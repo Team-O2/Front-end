@@ -1,4 +1,5 @@
 import { Button } from 'components/atoms';
+import { UserImg } from 'public/assets/images';
 import React, { useState } from 'react';
 import { IComment } from 'types/challenge.type';
 import { CommentWrapper, UserThumbnail } from './style';
@@ -17,7 +18,7 @@ function ChallengeModalComment({ commentData }: IProps): React.ReactElement {
   return (
     <>
       <CommentWrapper>
-        <UserThumbnail width={28} height={28} src={commentData.img} />
+        <UserThumbnail width={28} height={28} src={commentData?.img || UserImg} />
         <h4>{commentData.nickname}</h4>
         <p>{commentData.isDeleted ? '삭제된 댓글입니다.' : commentData.text}</p>
         {commentData.children?.length > 0 && <Button onClick={handleClick}>{isFolded ? '답글보기' : '접기'}</Button>}
