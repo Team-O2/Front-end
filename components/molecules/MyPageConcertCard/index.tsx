@@ -19,7 +19,7 @@ export interface IProps {
   title: string;
   content: string;
   date: string;
-  id: string;
+  id: number;
 }
 
 function MyPageConcertCard({

@@ -79,7 +79,6 @@ function MyPage(): React.ReactElement {
   };
 
   const renderChallenge = (data: IChallenge[]) => {
-    console.log(data);
     return data?.map((item: IChallenge) => (
       <ChallengeCard
         imagePath={item?.img || Logo}
