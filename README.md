@@ -6,7 +6,8 @@
 
 -함께 성장하는 공간, CEO들이 마시는 산소
 
-Project Period : 2021.06.26 ~ 2021.07.17
+Project Period : 2021.06.26 ~ 2021.07.17 </br>
+Project Code Refactoring : 2021.07.25 ~ ing
 
 ## 프로젝트 소개
 
@@ -20,12 +21,12 @@ Project Period : 2021.06.26 ~ 2021.07.17
 O2의 랜딩 페이지 입니다
 <br />
 <br />
-<img src="https://user-images.githubusercontent.com/60960130/125966502-8a363ce7-7b9a-4673-8137-e0a197b25e07.PNG" width="590" >
+<img src="https://user-images.githubusercontent.com/45025551/134305746-9cc17ba0-11c0-4b41-9d8e-4bcb6ac386cd.png" width="590">
 <br />
 나의 창업 스토리를 기록하는 LearMySelf페이지 입니다
 <br />
 <br />
-<img src="https://user-images.githubusercontent.com/60960130/125966704-180127fa-79d7-4a5e-bc9f-6b272d49f988.PNG" width="590" >
+<img src="https://user-images.githubusercontent.com/45025551/134305439-4e11d9b4-3a26-4d5d-9647-663750fc9515.png" width="590" >
 <br />
 창업 성장 스토리를 나누는 ShareTogether 페이지 입니다
 <br />
