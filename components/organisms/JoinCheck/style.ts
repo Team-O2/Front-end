@@ -48,50 +48,9 @@ export const MoreBtn = Styled(Button)`
   color : ${palette('grayscale', 3)};
 `;
 
-export const Titie = Styled.div`
-  ${theme('font.h1')};
-  margin-bottom : 40px;
-  text-align: left;
-  color : ${palette('grayscale', 9)};
-`;
-
-export const Content = Styled.p`
-  ${theme('font.body1')};
-  font-size: 16px;
-  height : 100%;
-  overflow: scroll;
-  text-align: left;
-  color: #525252;
-`;
-
-export const CloseImage = Styled(Img)`
-  position : absolute;
-  top : 54px;
-  right : 44px;
-  width : 16px;
-  height : 16px;
-`;
-
 export const FlexContainer = Styled.div`
   display : flex;
   align-items : center;
-`;
-
-export const ModalContainer = Styled.div`
-  display : flex;
-  position : fixed;
-  top : 0;
-  right : 0;
-  bottom : 0;
-  left : 0;
-  flex-direction : column;
-  align-items : center;
-  margin : auto;
-  border-radius: 16px;
-  background-color : ${palette('grayscale', 0)};
-  padding : 50px 50px 40px 40px;
-  width : 600px;
-  height : 730px;
 `;
 
 export const ImgWrapper = Styled.div`

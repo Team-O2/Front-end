@@ -171,4 +171,12 @@ export const policyList: Policy[] = [
     <p>시행일 : 수정사항은 2021년 9월 20일부터 시행합니다.</p> \
     ',
   },
+  {
+    title: '개인정보 수집 이용 동의',
+    content: '',
+  },
+  {
+    title: '광고성 정보 수신 및 마케팅 활용 동의',
+    content: '',
+  },
 ];

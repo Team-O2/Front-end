@@ -1,23 +1,20 @@
-import { Button, Modal } from 'components/atoms';
-import { CheckAllOffIcon, CheckAllOnIcon, CheckOffIcon, CheckOnIcon, ModalCloseIcon } from 'public/assets/images';
+import { PolicyModal } from 'components/molecules';
+import { CheckAllOffIcon, CheckAllOnIcon, CheckOffIcon, CheckOnIcon } from 'public/assets/images';
 import React, { useEffect, useState } from 'react';
+import { policyList } from 'resources/policyList';
 import { IUserDataType } from 'types/user.type';
 import {
   BiggerCheckBox,
   BiggerLabel,
   CheckAllImg,
   CheckImg,
-  CloseImage,
-  Content,
   FlexContainer,
   ImgWrapper,
   Label,
   Line,
-  ModalContainer,
   MoreBtn,
   PolicyCheck,
   SmallerCheckBox,
-  Titie,
   Wrapper,
 } from './style';
 
@@ -35,6 +32,9 @@ function JoinCheck({ setUserData, userData }: IProps): React.ReactElement {
     check3: false,
   });
   const [isPolicyOpen, setIsPolicyOpen] = useState(false);
+  const [policyTitle, setPolicyTitle] = useState('');
+  const [policyContent, setPolicyContent] = useState('');
+
   const handleCheckAll = (): void => {
     if (!checkAll) {
       setCheckAll(true);
@@ -75,8 +75,24 @@ function JoinCheck({ setUserData, userData }: IProps): React.ReactElement {
         break;
     }
   };
-  const modalHandler = (): void => {
+  const modalHandler = (e: React.MouseEvent<HTMLButtonElement>): void => {
+    console.log(e.currentTarget.value);
     setIsPolicyOpen(!isPolicyOpen);
+    switch (e.currentTarget.value) {
+      case 'policy1':
+        setPolicyTitle(policyList[0].title);
+        setPolicyContent(policyList[0].content);
+        break;
+      case 'policy2':
+        console.log();
+        setPolicyTitle(policyList[1].title);
+        setPolicyContent(policyList[1].content);
+        break;
+      case 'policy3':
+        setPolicyTitle(policyList[2].title);
+        setPolicyContent(policyList[2].content);
+        break;
+    }
   };
 
   useEffect(() => {
@@ -93,37 +109,6 @@ function JoinCheck({ setUserData, userData }: IProps): React.ReactElement {
     if (isChecked.check1 && isChecked.check2 && isChecked.check3) setCheckAll(true);
     else setCheckAll(false);
   }, [isChecked.check1, isChecked.check2, isChecked.check3]);
-
-  interface Policy {
-    title: string;
-    content: string;
-  }
-
-  const policyList: Policy[] = [
-    {
-      //리스트 인덱스에 따라 내용다르게,
-      //content 꾸미는건 내용 확정돼서 나오면 그때 수정할 것
-      title: '서비스 이용약관',
-      content: `*제1조(목적)
-
-    본 약관은 디긴 투자정보서비스 (이하 회사라고 합니다)가 제공하는 인터넷 기반의 모바일 어플리케이션 디긴(DIGIN) 서비스의 이용과 관련하여 회원과 회사 간에 필요한 사항을 규정하기 위함을 목적으로 합니다.
-    
-    *제2조(용어의 정의)
-    
-    ① 본 약관에서 사용하는 용어의 정의는 다음과 같습니다.
-    1. “서비스”라 함은 회사가 개발하여 인터넷을 통하여 서비스하고 있는 서비스 및 기타 서비스 일체를 의미합니다.
-    2. “회원”이라 함은 회사가 운영하는 사이트에 접속하여 본 약관에 동의하고 회원 가입을 한 자로서, 회사와 서비스 이용 계약을 체결하고 서비스 이용 아이디와 비밀번호를 부여 받아 서비스를 이용하는 고객을 말합니다.
-    3. "아이디"라 함은 회원의 식별과 회원의 서비스 이용을 위하여 "회원"이 가입 시 사용한 이메일 주소를 말한다.
-    ② 본 약관에서 사용하는 용어의 정의에 대하여 본 조 제1항에서 정하는 것을 제외하고는 관계법령 및 서비스별 정책에서 정하는 바에 의하며, 관계법령과 서비스별 정책에서 정하지 아니한 것은 일반적인 상관례에 의합니다.
-    
-    *제3조(약관의 게시와 개정)
-    
-    ① 회사는 본 약관의 내용을 회원이 쉽게 확인할 수 있도록 서비스 내 또는 연결화면을 통하여 게시합니다.
-    ① 회사는 본 약관의 내용을 회원이 쉽게 확인할 수 있도록 서비스 내 또는 연결화면을 통하여 게시합니다.
-    ① 회사는 본 약관의 내용을 회원이 쉽게 확인할 수 있도록 서비스 내 또는 연결화면을 통하여 게시합니다.
-    `,
-    },
-  ];
 
   return (
     <Wrapper>
@@ -154,7 +139,9 @@ function JoinCheck({ setUserData, userData }: IProps): React.ReactElement {
               (필수) 서비스 이용약관 동의
             </Label>
           </FlexContainer>
-          <MoreBtn onClick={modalHandler}>보기</MoreBtn>
+          <MoreBtn onClick={modalHandler} value="policy1">
+            보기
+          </MoreBtn>
         </PolicyCheck>
         <PolicyCheck>
           <FlexContainer>
@@ -172,7 +159,9 @@ function JoinCheck({ setUserData, userData }: IProps): React.ReactElement {
               (필수) 개인정보 수집 이용 동의
             </Label>
           </FlexContainer>
-          <MoreBtn onClick={modalHandler}>보기</MoreBtn>
+          <MoreBtn onClick={modalHandler} value="policy2">
+            보기
+          </MoreBtn>
         </PolicyCheck>
         <PolicyCheck>
           <FlexContainer>
@@ -190,18 +179,17 @@ function JoinCheck({ setUserData, userData }: IProps): React.ReactElement {
               (선택) 광고성 정보 수신 및 마케팅 활용 동의
             </Label>
           </FlexContainer>
-          <MoreBtn onClick={modalHandler}>보기</MoreBtn>
+          <MoreBtn onClick={modalHandler} value="policy3">
+            보기
+          </MoreBtn>
         </PolicyCheck>
       </div>
-      <Modal isOpen={isPolicyOpen} setIsOpen={setIsPolicyOpen} isBlur={true}>
-        <ModalContainer>
-          <Button onClick={modalHandler}>
-            <CloseImage src={ModalCloseIcon}></CloseImage>
-          </Button>
-          <Titie>{policyList[0].title}</Titie>
-          <Content>{policyList[0].content}</Content>
-        </ModalContainer>
-      </Modal>
+      <PolicyModal
+        isPolicyOpen={isPolicyOpen}
+        setIsPolicyOpen={setIsPolicyOpen}
+        title={policyTitle}
+        content={policyContent}
+      />
     </Wrapper>
   );
 }
