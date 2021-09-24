@@ -40,6 +40,21 @@ height: 562px;
 color :'#525252';
 opacity: 0.8;
 overflow:scroll;
+word-break: keep-all;
+::-webkit-scrollbar {
+  width: 6px;
+}
+::-webkit-scrollbar-track {
+  background-color: transparent;
+}
+::-webkit-scrollbar-thumb {
+  border-radius: 3px;
+  background-color: #8b8b8b;
+}
+::-webkit-scrollbar-button {
+  width: 0;
+  height: 0;
+}
 `;
 
 export const Content = Styled.div`
