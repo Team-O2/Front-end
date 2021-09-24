@@ -30,8 +30,8 @@ height : 16px;
 export const Title = Styled.p`
 ${theme('font.h1')};
 color : ${palette('grayscale', 9)};
-margin-right: 130px;
-margin-left: 130px;
+margin-right: 110px;
+margin-left: 120px;
 `;
 
 export const ContentContainer = Styled.div`

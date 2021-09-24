@@ -5,9 +5,13 @@ import React, { useState } from 'react';
 import { policyList } from 'resources/policyList';
 import { Designer, Developer, FooterWrapper, Info, Logo, Member, Planner, Server, Text } from './style';
 function Footer(): React.ReactElement {
-  const [isPolicyOpen, setIsPolicyOpen] = useState(false);
-  const modalHandler = (): void => {
-    setIsPolicyOpen(!isPolicyOpen);
+  const [isServiceOpen, setIsServiceOpen] = useState(false);
+  const [isPersonalOpen, setIsPersonalOpen] = useState(false);
+  const serviceModalHandler = (): void => {
+    setIsServiceOpen(!isServiceOpen);
+  };
+  const personalModalHandler = (): void => {
+    setIsPersonalOpen(!isPersonalOpen);
   };
   return (
     <FooterWrapper>
@@ -19,8 +23,8 @@ function Footer(): React.ReactElement {
           <Link to="/">
             <span>Open Together</span>
           </Link>
-          <span onClick={modalHandler}>이용약관</span>
-          <span>개인정보 처리방침</span>
+          <span onClick={serviceModalHandler}>이용약관</span>
+          <span onClick={personalModalHandler}>개인정보 처리방침</span>
           <Link to="/notice">
             <span>공지사항</span>
           </Link>
@@ -54,10 +58,16 @@ function Footer(): React.ReactElement {
         </Member>
       </Text>
       <PolicyModal
-        isPolicyOpen={isPolicyOpen}
-        setIsPolicyOpen={setIsPolicyOpen}
+        isPolicyOpen={isServiceOpen}
+        setIsPolicyOpen={setIsServiceOpen}
         title={policyList[0].title}
         content={policyList[0].content}
+      />
+      <PolicyModal
+        isPolicyOpen={isPersonalOpen}
+        setIsPolicyOpen={setIsPersonalOpen}
+        title={policyList[1].title}
+        content={policyList[1].content}
       />
     </FooterWrapper>
   );
