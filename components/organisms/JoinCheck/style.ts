@@ -94,6 +94,10 @@ export const ModalContainer = Styled.div`
   height : 730px;
 `;
 
+export const ImgWrapper = Styled.div`
+  margin-right : 14px;
+`;
+
 export const CheckAllImg = Styled(Img)`
   margin-right : 16px;
   width : 20px;

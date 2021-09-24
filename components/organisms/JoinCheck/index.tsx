@@ -1,5 +1,5 @@
-import { CheckAllOffIcon, CheckAllOnIcon, CheckOffIcon, CheckOnIcon, ModalCloseIcon } from 'public/assets/images';
 import { Button, Modal } from 'components/atoms';
+import { CheckAllOffIcon, CheckAllOnIcon, CheckOffIcon, CheckOnIcon, ModalCloseIcon } from 'public/assets/images';
 import React, { useEffect, useState } from 'react';
 import { IUserDataType } from 'types/user.type';
 import {
@@ -10,6 +10,7 @@ import {
   CloseImage,
   Content,
   FlexContainer,
+  ImgWrapper,
   Label,
   Line,
   ModalContainer,
@@ -130,7 +131,9 @@ function JoinCheck({ setUserData, userData }: IProps): React.ReactElement {
         <FlexContainer>
           <BiggerCheckBox type="checkbox" checked={checkAll} onChange={handleCheckAll} id="policyAll" />
           <BiggerLabel htmlFor="policyAll">
-            <CheckAllImg src={checkAll ? CheckAllOnIcon : CheckAllOffIcon} />
+            <ImgWrapper>
+              <CheckAllImg src={checkAll ? CheckAllOnIcon : CheckAllOffIcon} />
+            </ImgWrapper>
             전체 동의 (선택 정보 포함)
           </BiggerLabel>
         </FlexContainer>
@@ -145,7 +148,9 @@ function JoinCheck({ setUserData, userData }: IProps): React.ReactElement {
               id="policy1"
             />
             <Label htmlFor="policy1">
-              <CheckImg src={isChecked.check1 ? CheckOnIcon : CheckOffIcon} />
+              <ImgWrapper>
+                <CheckImg src={isChecked.check1 ? CheckOnIcon : CheckOffIcon} />
+              </ImgWrapper>
               (필수) 서비스 이용약관 동의
             </Label>
           </FlexContainer>
@@ -161,7 +166,9 @@ function JoinCheck({ setUserData, userData }: IProps): React.ReactElement {
               id="policy2"
             />
             <Label htmlFor="policy2">
-              <CheckImg src={isChecked.check2 ? CheckOnIcon : CheckOffIcon} />
+              <ImgWrapper>
+                <CheckImg src={isChecked.check2 ? CheckOnIcon : CheckOffIcon} />
+              </ImgWrapper>
               (필수) 개인정보 수집 이용 동의
             </Label>
           </FlexContainer>
@@ -177,7 +184,9 @@ function JoinCheck({ setUserData, userData }: IProps): React.ReactElement {
               id="policy3"
             />
             <Label htmlFor="policy3">
-              <CheckImg src={isChecked.check3 ? CheckOnIcon : CheckOffIcon} />
+              <ImgWrapper>
+                <CheckImg src={isChecked.check3 ? CheckOnIcon : CheckOffIcon} />
+              </ImgWrapper>
               (선택) 광고성 정보 수신 및 마케팅 활용 동의
             </Label>
           </FlexContainer>
