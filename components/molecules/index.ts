@@ -39,6 +39,7 @@ export { default as MyPageSection } from './MyPageSection';
 export { default as MyPageSlider } from './MyPageSlider';
 export { default as Notice } from './Notice';
 export { default as NoticeSingleComment } from './NoticeSingleComment';
+export { default as PolicyModal } from './PolicyModal';
 export { default as ProfileEdit } from './ProfileEdit';
 export { default as RegisterCard } from './RegisterCard';
 export { default as RegisterCompletedModal } from './RegisterCompletedModal';
