@@ -23,7 +23,7 @@ function AdminChallengeCard({ challengeData }: IProps): React.ReactElement {
           <Title>오투 회고 챌린지 {challengeData.generation}기</Title>
           <RowContainer>
             <Label>오픈일자</Label>
-            <Exp>{changeDatetoString(challengeData.createdDT, true)}</Exp>
+            <Exp>{changeDatetoString(challengeData.createdAt, true)}</Exp>
           </RowContainer>
           <RowContainer>
             <Label>진행기간</Label>
