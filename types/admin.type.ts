@@ -1,6 +1,6 @@
 export interface IAdminChallenge {
   generation: number; //기수
-  createdDT: string; //오픈일자
+  createdAt: string; //오픈일자
   registerStartDT: string;
   registerEndDT: string;
   challengeStartDT: string;
