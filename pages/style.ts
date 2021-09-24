@@ -12,6 +12,13 @@ export const TopWrapper = Styled.div`
   padding-left : calc(50% - 555px);
 `;
 
+export const TopInnerWrapper = Styled.div`
+  display : flex;
+ width : 1404px;
+ min-width : 1404px;
+ max-width : 1404px
+`;
+
 export const TitleWrapper = Styled.div`
   padding-top : 178px;
   width : 545px;

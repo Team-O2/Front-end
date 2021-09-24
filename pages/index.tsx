@@ -49,6 +49,7 @@ import {
   O2SpeakerWrapper,
   TitleWrapper,
   TopExp,
+  TopInnerWrapper,
   TopSubTitle,
   TopWrapper,
 } from './style';
@@ -78,20 +79,22 @@ function Home(): React.ReactElement {
   return (
     <HomeContainer>
       <TopWrapper>
-        <TitleWrapper>
-          <LogoWrapper>
-            <Img src={opentogetherLogo} width={516} height={56} />
-          </LogoWrapper>
-          <TopSubTitle>
-            함께 성장하는 공간, <br />
-            창업가들이 마시는 산소
-          </TopSubTitle>
-          <TopExp>답답한 창업 여정에 시원한 산소 한 모금</TopExp>
-          <Link to={`/challenge/${generationNum}`}>
-            <ChallengeBtn margin="30px 0 0 0">챌린지 시작하기</ChallengeBtn>
-          </Link>
-        </TitleWrapper>
-        <LandingLottie />
+        <TopInnerWrapper>
+          <TitleWrapper>
+            <LogoWrapper>
+              <Img src={opentogetherLogo} width={516} height={56} />
+            </LogoWrapper>
+            <TopSubTitle>
+              함께 성장하는 공간, <br />
+              창업가들이 마시는 산소
+            </TopSubTitle>
+            <TopExp>답답한 창업 여정에 시원한 산소 한 모금</TopExp>
+            <Link to={`/challenge/${generationNum}`}>
+              <ChallengeBtn margin="30px 0 0 0">챌린지 시작하기</ChallengeBtn>
+            </Link>
+          </TitleWrapper>
+          <LandingLottie />
+        </TopInnerWrapper>
       </TopWrapper>
       <ChallengeWrapper>
         <Reveal keyframes={moveUp}>
