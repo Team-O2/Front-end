@@ -1,9 +1,14 @@
 import { Img, Link } from 'components/atoms';
+import { PolicyModal } from 'components/molecules';
 import { HeaderLogoIcon } from 'public/assets/images';
-import React from 'react';
+import React, { useState } from 'react';
+import { policyList } from 'resources/policyList';
 import { Designer, Developer, FooterWrapper, Info, Logo, Member, Planner, Server, Text } from './style';
-
 function Footer(): React.ReactElement {
+  const [isPolicyOpen, setIsPolicyOpen] = useState(false);
+  const modalHandler = (): void => {
+    setIsPolicyOpen(!isPolicyOpen);
+  };
   return (
     <FooterWrapper>
       <Logo>
@@ -14,7 +19,7 @@ function Footer(): React.ReactElement {
           <Link to="/">
             <span>Open Together</span>
           </Link>
-          <span>이용약관</span>
+          <span onClick={modalHandler}>이용약관</span>
           <span>개인정보 처리방침</span>
           <Link to="/notice">
             <span>공지사항</span>
@@ -48,6 +53,12 @@ function Footer(): React.ReactElement {
           </Server>
         </Member>
       </Text>
+      <PolicyModal
+        isPolicyOpen={isPolicyOpen}
+        setIsPolicyOpen={setIsPolicyOpen}
+        title={policyList[0].title}
+        content={policyList[0].content}
+      />
     </FooterWrapper>
   );
 }
