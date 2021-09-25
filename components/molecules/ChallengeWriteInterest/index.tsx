@@ -1,4 +1,5 @@
 import { Button } from 'components/atoms';
+import Image from 'next/image';
 import { MoreClickedIcon } from 'public/assets/images';
 import React, { useState } from 'react';
 import { interestList } from 'resources/string';
@@ -105,7 +106,7 @@ function ChallengeWriteInterest({ selectedInterest, setSelectedInterest }: IProp
             setIsOpenTag(!isOpenTag);
           }}
         >
-          <img src={MoreClickedIcon} alt=""></img>
+          <Image src={MoreClickedIcon} alt=""></Image>
         </Button>
         <TagListWrapper>
           {isOpenTag === true ? (

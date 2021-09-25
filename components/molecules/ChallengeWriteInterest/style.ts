@@ -1,4 +1,5 @@
 import { Button } from 'components/atoms';
+import Image from 'next/image';
 import Styled from 'styled-components';
 import { palette, theme } from 'styled-tools';
 
@@ -20,11 +21,12 @@ export const TagWrapper = Styled.div`
     width:844px;
     text-align: left;
     ${theme('font.subhead5')};
+`;
 
-    img{
-        padding-bottom:5px;
-        vertical-align : middle;
-    }
+export const ImageWrapper = Styled(Image)`
+    display : inline-block;
+    padding-bottom:5px;
+    vertical-align : middle;
 `;
 
 export const TagListWrapper = Styled.div`
