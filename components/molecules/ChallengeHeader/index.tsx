@@ -17,9 +17,9 @@ interface IProps {
 
 //userState상태 :
 // 0: 비회원,
-// 1: 챌린지안하는유저,
-// 2: 챌린지하는유저,
-// 3: 챌린지하는유저&챌린지종료,
+// 1: 챌린지안하는유저 (기간은 신청기간중),
+// 2: 챌린지안하는유저 (기간은 신청기간이 아님),
+// 3: 챌린지하는유저 (기간은 챌린지중),
 // 4: 관리자
 
 function ChallengeHeader({ challengeList, setChallengeList, generationNum }: IProps): React.ReactElement {
@@ -106,7 +106,7 @@ function ChallengeHeader({ challengeList, setChallengeList, generationNum }: IPr
         selectedCategory={selectedCategory}
         contentListNum={challengeListNum}
       />
-      {userStateNum === 1 || userStateNum === 0 ? null : (
+      {userStateNum === 1 || userStateNum === 0 || userStateNum === 2 ? null : (
         <div>
           <WriteButton>
             <Link href={{ pathname: `/challenge/write` }}>
