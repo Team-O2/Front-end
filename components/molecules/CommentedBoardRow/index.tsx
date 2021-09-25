@@ -18,10 +18,10 @@ export interface IProps {
   id: number;
   content?: string;
   date: string;
-  boardId: string;
+  boardId: number;
   category: string;
   onChange?: (e: React.ChangeEvent<HTMLInputElement>) => void;
-  handleDetailModal: (id: string) => void;
+  handleDetailModal: (id: number) => void;
 }
 
 function CommentedBoardRow({
