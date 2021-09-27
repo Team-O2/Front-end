@@ -77,7 +77,6 @@ function Setting(): React.ReactElement {
     if (!isBtnAtv) {
       return;
     }
-
     let data = null;
     if (!isEmpty) {
       data = await updateUserInfo(
@@ -98,7 +97,7 @@ function Setting(): React.ReactElement {
     }
     if (data) {
       history.back();
-      setUserData(userInfo);
+      setUserData(data.data);
     }
   };
 
