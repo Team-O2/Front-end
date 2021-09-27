@@ -1,9 +1,8 @@
 import { Icon, Link } from 'components/atoms';
 import { MoreViewArrowIcon } from 'public/assets/images';
 import React from 'react';
-import { IChallenge as IChallengeData } from 'types/challenge.type';
+import { IChallenge, IChallenge as IChallengeData } from 'types/challenge.type';
 import { IConcert } from 'types/concert.type';
-import { IChallenge } from 'types/myPage.type';
 import {
   EmptyTextWrapper,
   EngTitle,

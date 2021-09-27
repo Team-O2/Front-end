@@ -117,7 +117,7 @@ export const DeleteChallenge = async (challengeID: number, token: string): Promi
   return false;
 };
 
-export const getChallengeContent = async (id: string | string[], token?: string): Promise<IChallenge | null> => {
+export const getChallengeContent = async (id: number | number[], token?: string): Promise<IChallenge | null> => {
   try {
     const data = await serverAxios.get(`${PREFIX_URL}/${id}`, {
       headers: {
