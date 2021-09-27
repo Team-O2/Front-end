@@ -1,5 +1,5 @@
 import { serverAxios } from 'libs/axios';
-import { IChallenge, IChallengeData } from 'types/challenge.type';
+import { IChallenge, IChallengeData, IChallengeDataList } from 'types/challenge.type';
 
 const PREFIX_URL = '/challenge';
 
@@ -117,7 +117,7 @@ export const DeleteChallenge = async (challengeID: number, token: string): Promi
   return false;
 };
 
-export const getChallengeContent = async (id: number | number[], token?: string): Promise<IChallenge | null> => {
+export const getChallengeContent = async (id: string | string[], token?: string): Promise<IChallenge | null> => {
   try {
     const data = await serverAxios.get(`${PREFIX_URL}/${id}`, {
       headers: {
@@ -143,7 +143,7 @@ export const getChallengeSearchData = async (
   ismine: number,
   offset: number,
   limit: number,
-): Promise<IChallengeData[] | null> => {
+): Promise<IChallengeDataList[] | null> => {
   try {
     let data = undefined;
     if (token) {
