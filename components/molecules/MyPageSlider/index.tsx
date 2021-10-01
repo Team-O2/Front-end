@@ -130,7 +130,7 @@ function MyPageSlider({ userInfo }: IProps): React.ReactElement {
                   <br /> 강연의 주제들이에요!
                 </h4>
                 {userInfo?.shareTogether.map((item: IMyPageConcert) => (
-                  <DotText key={item._id} content={item.title} />
+                  <DotText key={item.id} content={item.title} />
                 ))}
               </S.SliderShareTogether>
             ) : (

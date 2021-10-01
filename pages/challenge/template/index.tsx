@@ -8,7 +8,7 @@ import { ChallengeCardWrapper } from './style';
 
 interface IProps {
   challengeList: IChallengeData[] | null;
-  setChallengeList: (value: IChallengeData[]) => void;
+  setChallengeList: (value: IChallengeData[] | null) => void;
   generationNum: string | string[];
 }
 

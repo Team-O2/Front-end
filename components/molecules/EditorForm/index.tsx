@@ -8,9 +8,13 @@ export interface IProps {
   setContent: (value: string) => void;
 }
 
+function loadingComponent() {
+  return <p>Loading ...</p>;
+}
+
 const QuillNoSSRWrapper = dynamic(import('react-quill'), {
   ssr: false,
-  loading: () => <p>Loading ...</p>,
+  loading: loadingComponent,
 });
 
 const modules = {

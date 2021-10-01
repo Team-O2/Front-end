@@ -6,12 +6,12 @@ import { AllFeedIcon, MyFeedIcon, WriteIcon } from 'public/assets/images';
 import React, { useCallback, useState } from 'react';
 import { useRecoilValue } from 'recoil';
 import { userStatusState } from 'stores/user';
-import { IChallengeDataList } from 'types/challenge.type';
+import { IChallengeData } from 'types/challenge.type';
 import { AllFeedButtom, HeaderWrapper, MyFeedButtom, SChallengeHeader, WriteButton } from './style';
 
 interface IProps {
-  challengeList: IChallengeDataList[] | null;
-  setChallengeList: (value: IChallengeDataList[] | null) => void;
+  challengeList: IChallengeData[] | null;
+  setChallengeList: (value: IChallengeData[] | null) => void;
   generationNum: string | string[];
 }
 

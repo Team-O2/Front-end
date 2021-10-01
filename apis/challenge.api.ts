@@ -1,5 +1,5 @@
 import { serverAxios } from 'libs/axios';
-import { IChallenge, IChallengeData, IChallengeDataList } from 'types/challenge.type';
+import { IChallenge, IChallengeData } from 'types/challenge.type';
 
 const PREFIX_URL = '/challenge';
 
@@ -146,7 +146,7 @@ export const getChallengeSearchData = async (
   ismine: number,
   offset: number,
   limit: number,
-): Promise<IChallengeDataList[] | null> => {
+): Promise<IChallengeData[] | null> => {
   try {
     let data = undefined;
     if (token) {
