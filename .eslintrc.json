@@ -16,7 +16,8 @@
     "plugin:import/warnings",
     "plugin:react/recommended",
     "plugin:@typescript-eslint/recommended",
-    "plugin:prettier/recommended"  
+    "plugin:prettier/recommended",
+    "plugin:@next/next/recommended"
   ],
   "plugins": ["react", "jest", "@typescript-eslint", "prettier", "react-hooks"],
   "env": {
