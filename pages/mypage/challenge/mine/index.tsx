@@ -4,7 +4,7 @@ import React, { useCallback, useEffect, useState } from 'react';
 import { useRecoilValue } from 'recoil';
 import { userStatusState } from 'stores/user';
 import { IChallenge } from 'types/challenge.type';
-import { Header, NoContents, Wrapper } from './style';
+import { Header, NoContents, Wrapper } from '../../../../components/template/mypage/challenge/mine/style';
 
 function MyChallengeList(): React.ReactElement {
   const [myChallengeList, setMyChallengeList] = useState<IChallenge[] | null>(null);

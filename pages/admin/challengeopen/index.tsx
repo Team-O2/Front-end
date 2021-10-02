@@ -3,7 +3,7 @@ import { useRouter } from 'next/router';
 import React, { useEffect, useState } from 'react';
 import { useRecoilValue } from 'recoil';
 import { userStatusState } from 'stores/user';
-import AdminChallengeOpenTemplate from './template';
+import AdminChallengeOpenTemplate from '../../../components/template/admin/challengeopen';
 
 function AdminChallengeOpen(): React.ReactElement {
   const history = useRouter();

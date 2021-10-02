@@ -11,7 +11,7 @@ import React, { useCallback, useEffect, useState } from 'react';
 import { useRecoilValue } from 'recoil';
 import { userStatusState } from 'stores/user';
 import { IConcertComment, IUserConcert } from 'types/concert.type';
-import ConcertDetailTemplate from './template/detail';
+import ConcertDetailTemplate from '../../components/template/concert/detail';
 
 function ConcertDetail(): React.ReactElement {
   const router = useRouter();

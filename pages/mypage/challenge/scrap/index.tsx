@@ -5,7 +5,7 @@ import { useRecoilValue } from 'recoil';
 import { userStatusState } from 'stores/user';
 import { IChallenge } from 'types/challenge.type';
 import { IMyScrappedChallenge } from 'types/myPage.type';
-import { Header, NoContents, Wrapper } from './style';
+import { Header, NoContents, Wrapper } from '../../../../components/template/mypage/challenge/scrap/style';
 
 function ScrappedChallenge(): React.ReactElement {
   const [scrappedChallenge, setScrappedChallenge] = useState<IMyScrappedChallenge | null>(null);

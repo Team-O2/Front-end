@@ -5,7 +5,7 @@ import React, { useCallback, useState } from 'react';
 import { useRecoilValue } from 'recoil';
 import { userStatusState } from 'stores/user';
 import { IChallengeData } from 'types/challenge.type';
-import ChallengeMiddle from './template';
+import ChallengeMiddle from '../../components/template/challenge';
 
 function ChallengeView(): React.ReactElement {
   const router = useRouter();

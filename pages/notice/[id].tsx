@@ -2,7 +2,7 @@ import { getNoticeData } from 'apis';
 import { useRouter } from 'next/router';
 import React, { useCallback, useEffect, useState } from 'react';
 import { INotice, INoticeComment } from 'types/notice.type';
-import NoticeDetailTemplate from './template/detail';
+import NoticeDetailTemplate from '../../components/template/notice/detail';
 
 function NoticeDetail(): React.ReactElement {
   const router = useRouter();

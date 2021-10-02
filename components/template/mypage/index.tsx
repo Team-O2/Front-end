@@ -5,7 +5,7 @@ import { IChallenge } from 'types/challenge.type';
 import { IConcert } from 'types/concert.type';
 import { IUserState } from 'types/global.type';
 import { IMyPageHeader, IMyScrappedChallenge, IMyScrappedConcert, IMyUserCommentResponse } from 'types/myPage.type';
-import * as S from './style';
+import * as S from './index.style';
 
 export interface IProps {
   userInfo: IMyPageHeader | null;

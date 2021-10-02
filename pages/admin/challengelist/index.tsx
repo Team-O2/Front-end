@@ -3,7 +3,7 @@ import React, { useEffect, useState } from 'react';
 import { useRecoilValue } from 'recoil';
 import { userStatusState } from 'stores/user';
 import { IAdminChallenge } from 'types/admin.type';
-import AdminChallengeListTemplate from './template';
+import AdminChallengeListTemplate from '../../../components/template/admin/challengelist';
 
 function AdminChallengeList(): React.ReactElement {
   const userStatusData = useRecoilValue(userStatusState);

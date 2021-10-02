@@ -2,7 +2,7 @@ import { postNewPw } from 'apis';
 import React, { useState } from 'react';
 import { useRecoilValue } from 'recoil';
 import { userStatusState } from 'stores/user';
-import SettingPwdTemplate from './template';
+import SettingPwdTemplate from '../../../../components/template/setting/set';
 
 function SettingPwdView(): React.ReactElement {
   const userStatusData = useRecoilValue(userStatusState);

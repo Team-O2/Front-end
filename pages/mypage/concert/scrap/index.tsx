@@ -4,7 +4,7 @@ import React, { useCallback, useEffect, useState } from 'react';
 import { useRecoilValue } from 'recoil';
 import { userStatusState } from 'stores/user';
 import { IMyScrappedConcert } from 'types/myPage.type';
-import { Header, NoContents, Wrapper } from './style';
+import { Header, NoContents, Wrapper } from '../../../../components/template/mypage/concert/scrap/style';
 
 function ScrappedConcert(): React.ReactElement {
   const [scrappedConcert, setScrappedConcert] = useState<IMyScrappedConcert | null>(null);

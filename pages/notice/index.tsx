@@ -1,7 +1,7 @@
 import { getNoticeSearchData } from 'apis';
 import React, { useEffect, useState } from 'react';
 import { INotice } from 'types/notice.type';
-import NoticeTemplate from './template/index';
+import NoticeTemplate from '../../components/template/notice';
 
 function Notice(): React.ReactElement {
   const [noticeList, setnoticeList] = useState<INotice[] | null>(null);

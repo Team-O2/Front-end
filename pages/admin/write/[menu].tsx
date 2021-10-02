@@ -4,7 +4,7 @@ import React, { useEffect, useState } from 'react';
 import { useRecoilValue } from 'recoil';
 import { userStatusState } from 'stores/user';
 import { IAdminWrite } from 'types/admin.type';
-import AdminWriteTemplate from './template';
+import AdminWriteTemplate from '../../../components/template/admin/write';
 
 function AdminWrite(): React.ReactElement {
   const router = useRouter();

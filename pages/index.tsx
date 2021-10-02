@@ -52,7 +52,7 @@ import {
   TopInnerWrapper,
   TopSubTitle,
   TopWrapper,
-} from './style';
+} from '../components/template/style';
 
 const moveUp = keyframes`
   from {

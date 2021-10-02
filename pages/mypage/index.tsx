@@ -17,7 +17,7 @@ import { IChallenge } from 'types/challenge.type';
 import { IConcert } from 'types/concert.type';
 import { IMyPageHeader, IMyScrappedChallenge, IMyScrappedConcert, IMyUserCommentResponse } from 'types/myPage.type';
 import { changeDateFormat } from 'utils';
-import MyPageTemplate from './template';
+import MyPageTemplate from '../../components/template/mypage';
 
 function MyPage(): React.ReactElement {
   const [selectedSection, setSelectedSection] = useState('scrap');

@@ -1,7 +1,7 @@
 import { postJoin } from 'apis';
 import { useRouter } from 'next/router';
 import React, { useEffect, useState } from 'react';
-import JoinTemplate from './template';
+import JoinTemplate from '../../components/template/join';
 
 function Join(): React.ReactElement {
   const history = useRouter();

@@ -1,7 +1,7 @@
 import { getConcertSearchData } from 'apis';
 import React, { useEffect, useState } from 'react';
 import { IConcert } from 'types/concert.type';
-import ConcertTemplate from './template';
+import ConcertTemplate from '../../components/template/concert';
 
 function Concert(): React.ReactElement {
   const [concertList, setConcertList] = useState<IConcert[] | null>(null);

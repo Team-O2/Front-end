@@ -4,7 +4,7 @@ import React, { useEffect, useRef, useState } from 'react';
 import { useRecoilValue, useSetRecoilState } from 'recoil';
 import { userState, userStatusState } from 'stores/user';
 import { ISettingUserInfo } from 'types/setting.type';
-import SettingTemplate from './template';
+import SettingTemplate from '../../components/template/setting';
 
 function Setting(): React.ReactElement {
   // for edit btn

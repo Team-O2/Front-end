@@ -3,7 +3,7 @@ import { useRouter } from 'next/router';
 import React, { useEffect, useState } from 'react';
 import { useRecoilState } from 'recoil';
 import { userState, userStatusState } from 'stores/user';
-import LoginTemplate from './template';
+import LoginTemplate from '../../components/template/login';
 
 function Login(): React.ReactElement {
   const history = useRouter();
